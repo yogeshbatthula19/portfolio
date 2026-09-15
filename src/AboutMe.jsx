@@ -1,7 +1,6 @@
 import React from 'react';
-import { ChevronRight, ArrowUpRight, Mail, Briefcase, Globe, User } from './symbols.jsx';
 
-export default function AboutMe({ onContact, onProjects }) {
+export default function AboutMe() {
   return (
     <div className="apple-profile-view">
 
@@ -11,14 +10,10 @@ export default function AboutMe({ onContact, onProjects }) {
           <div className="apple-profile-headings">
             <h1 className="apple-profile-name">Yogesh Battula</h1>
             <p className="apple-profile-role">Senior Product Designer</p>
-            <div className="apple-profile-meta">
-              <span><Briefcase size={14} /> Product & Design Systems</span>
-              <span><Globe size={14} /> Hyderabad, India</span>
-            </div>
           </div>
           <div className="apple-profile-portrait-wrap">
             <img
-              src="/images/yogesh-hero.png"
+              src="/images/yogesh-portrait.jpg"
               alt="Yogesh Battula"
               className="apple-profile-portrait"
             />
@@ -39,18 +34,6 @@ export default function AboutMe({ onContact, onProjects }) {
             <p>
               He approaches product design not as surface decoration, but as a system of decisions: aligning business intent, engineering feasibility, and genuine human empathy to create tools people love using every day.
             </p>
-
-            <div className="apple-profile-highlight-box">
-              <h4>Areas of Expertise</h4>
-              <div className="apple-profile-tags">
-                <span>Product Design</span>
-                <span>Interaction Design</span>
-                <span>Design Systems</span>
-                <span>Prototyping</span>
-                <span>UX Architecture</span>
-                <span>Mobile & Web</span>
-              </div>
-            </div>
           </div>
 
           <div className="apple-profile-col">
@@ -63,15 +46,6 @@ export default function AboutMe({ onContact, onProjects }) {
             <p>
               Beyond interface design, Yogesh explores creative coding, motion design, and intelligent interfaces that anticipate user intent. He combines rigorous systems thinking with modern frontend craft to ensure designs are realized with pixel-perfect fidelity.
             </p>
-
-            <div className="apple-profile-actions">
-              <button className="apple-profile-btn primary" onClick={onProjects}>
-                Explore Selected Work <ArrowUpRight size={15} />
-              </button>
-              <button className="apple-profile-btn secondary" onClick={onContact}>
-                Get in Touch <Mail size={15} />
-              </button>
-            </div>
           </div>
         </div>
       </section>
