@@ -13,7 +13,7 @@ export default function AboutMe() {
           </div>
           <div className="apple-profile-portrait-wrap">
             <img
-              src="/images/yogesh-portrait.jpg"
+              src="/images/yogesh-portrait.png"
               alt="Yogesh Battula"
               className="apple-profile-portrait"
             />
