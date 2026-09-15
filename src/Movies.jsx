@@ -1,0 +1,7 @@
+import React,{useRef,useEffect} from 'react';
+const movies=[['Premalu',30,18],['Salaar',429,18],['Baahubali: The Beginning',828,18],['Black Panther',1254,18],['F1',1680,18],['Captain America: Civil War',30,637],['Rangasthalam',429,637],['Eega',828,637],['John Wick',1254,637],['Oohalu Gusagusalade',1680,637]];
+export default function Movies(){
+ const dialog=useRef(null),trigger=useRef(null);
+ useEffect(()=>{const el=dialog.current;const restore=()=>trigger.current?.focus();el.addEventListener('close',restore);return()=>el.removeEventListener('close',restore)},[]);
+ return <><button ref={trigger} onClick={()=>dialog.current.showModal()} aria-label="Movies — my 10 favorites"><div className="desktop-file"><img src="/icons/movies.png" alt=""/></div><span>Movies</span></button><dialog ref={dialog} className="movies-window" aria-labelledby="movies-title" onClick={e=>{if(e.target===dialog.current)dialog.current.close()}}><header className="movies-header"><button className="movies-close" aria-label="Close movies" onClick={()=>dialog.current.close()}>×</button><img src="/icons/movies.png" alt=""/><div><h2 id="movies-title">Movies</h2><p>My 10 favorites</p></div></header><div className="movies-gallery">{movies.map(([name,x,y],i)=><figure key={name}><div className="movie-poster" role="img" aria-label={name+' poster'} style={{backgroundPosition:`${x/(2048-367)*100}% ${Math.min(100,y/(1178-541)*100)}%`}}/><figcaption><span>{String(i+1).padStart(2,'0')}</span><b>{name}</b></figcaption></figure>)}</div></dialog></>
+}

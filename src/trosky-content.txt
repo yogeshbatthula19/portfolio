@@ -1,0 +1,117 @@
+UX CASE STUDY: Coach in Your Pocket
+Turning the Trosky 365 home screen from a static list of assignments into a conversational, persona-driven coaching experience with Coach Trosky.
+
+At a glance
+12 design iterations · approved and shipped same day
+Early tracking suggests ~30% more daily reps completed
+Client: Trosky 365 (Trosky Baseball Academy)
+Role: Product Designer — research, interaction design, UI, and testing
+Collaborators: Coach Matt (mental performance), Coach Trosky (hitting & throwing mechanics)
+Platform: iOS / Android — mobile app
+Key deliverable: Home screen redesign + the "Ask Trosky" interactive drill flow
+
+Overview
+Trosky 365 is a training app for youth baseball players. Every day, players are expected to open the app, complete a set of assigned reps — swing mechanics, throwing drills, timing work — and log reflection and mental-performance exercises set by their coaches. The app is the daily bridge between in-person coaching sessions with Coach Trosky and Coach Matt and what a player actually does at home.
+This case study covers the redesign of the app's home screen and the introduction of a new conversational drill flow, replacing a static assignment list with something a player actually exchanges messages with.
+
+Problem
+The existing home screen presented a player's daily assignments as a flat, static list — a title, a rep count, a due date, tap to mark complete. It was a to-do list wearing an app's clothes: no back-and-forth, no personality, no feedback loop beyond a checkbox.
+At the same time, the client noticed a pattern: players — mostly kids and young teens — had started turning to ChatGPT and Claude to ask the exact questions the app was supposed to answer. "Why does my elbow hurt after pitching," "how do I get more power in my swing" — questions that belonged inside a coached, structured drill were instead being typed into a general-purpose chatbot, outside of any context Coach Trosky or Coach Matt could see or shape.
+
+The Core Insight
+Kids weren't avoiding coaching. They were avoiding the app's version of it. A flat assignment list gave them nothing to talk to, so they went looking for something that would talk back — and an outside AI chatbot was the closest thing they could find.
+The client's brief followed directly from that: rebuild the assignment list as a conversational drill flow — Coach Trosky himself asking the questions, a player answering, and the app replying back — strong enough that a player has a reason to come back to it instead of opening a chatbot.
+
+Research & Discovery
+Research centered on working sessions with Coach Matt and Coach Trosky rather than a large player survey — the goal was to capture how they actually coach, then translate that into product.
+Shadowed and interviewed Coach Trosky on how he opens a correction with a player — almost always a question ("what do you think happens if...") rather than a flat instruction, so the player arrives at the answer instead of being handed it.
+Worked with Coach Matt to map his "Character Launch Checklist" — humility, responsibility, balance, readiness — the mental-performance framework he uses alongside physical mechanics, and which had no home in the app at all before this redesign.
+Reviewed where players dropped off in the old flow: engagement fell right after a drill was opened, before any real content was seen — the entry point itself wasn't earning the tap.
+Confirmed with the client that the reliance on outside AI chatbots was happening at that same gap — the moment a player had a training question and the app offered no conversational way to ask it.
+
+Goals
+Replace the static assignment list with an interactive coaching dialogue, modeled on how Trosky and Matt actually talk to players in person.
+Turn completing a drill into a short back-and-forth, not a form to submit.
+Make progress visible and immediate — every rep should pay off in the moment, not just at the end of the week.
+Put physical mechanics and mental performance in the same interaction pattern, so neither feels like a bolt-on.
+Reduce the reason a player would ever need to leave the app to ask a basic coaching question.
+
+Ideation & Concept Exploration
+Early Wireframes
+Early exploration happened on paper and on a whiteboard, in the room with Coach Matt and Coach Trosky. Low fidelity was deliberate here — the coaches needed to react to the shape of the flow and the wording of the questions, not visual polish, and sketches let each round change in minutes rather than days.
+[Wireframe 1 Description]: Early hand-drawn wireframe — home screen layout. Features a greeting with an XP badge at the top, a prominent daily streak banner, followed by a 'Daily Wins' section (e.g., 0/10) with the primary drill highlighted with a 'START' button. Below are collapsed sections for strength, baseball dev, and reflection, and a horizontal scroll for 'Programs for you'.
+[Wireframe 2 Description]: Early hand-drawn wireframe — the three-step Ask Trosky question flow. 
+Step 1: Trosky opens with a question in a voice-of-coach tone.
+Step 2: Recap of the question, a drill demo video clip, and an answer input field (text, true/false, or multi-select).
+Step 3: Trosky reacts to the answer with specific feedback, showing an instant reward loop of +50 XP and a button for the next activity.
+
+Exploring Alternative Architectures
+Before landing on the hybrid card layout, we prototyped a pure chat interface similar to standard LLM clients. We quickly rejected this direction because open-ended text interfaces introduced "blank canvas paralysis" for younger players.
+
+The Architectural Pivot
+We pivoted to a guided, multi-step card flow. It retains the conversational cadence of a chat but utilizes constrained inputs (true/false, multi-select) to reduce cognitive load and keep the user's physical focus on their baseball reps rather than typing on a screen.
+
+Accessibility & Youth-Centered UI
+Ergonomics and Touch Targets: All primary interaction zones (e.g., Start Now, Next Activity) were scaled to a minimum of 48x48pt, accommodating the developing motor skills of younger users holding devices with one hand on the field.
+Typography & Environmental Contrast: We selected clean, highly legible geometric sans-serif fonts (such as Graphik) to ensure rapid scannability. The dark "Daily Insight" streak banner was explicitly calibrated to pass WCAG AAA contrast ratios so it remains readable outdoors in direct sunlight during practice.
+
+The Solution
+Home screen, section by section
+The final home screen keeps the same job as before — show a player what's due today — but rebuilds every section around a reason to open it.
+Section
+Why it's built this way
+ 
+Greeting + XP badge
+Names the player and surfaces their running point total in the same glance, so the screen reads as "this player's progress," not a generic list.
+Daily Insight / streak banner
+A dark, high-contrast band that functions like the coach's opening line for the day. Tied to a day-streak so the cost of skipping a day is felt immediately, the same loss-averse pull that keeps a habit going.
+Daily Wins list
+Reframed from "assignments" to "wins" — a completed-count (e.g. 0/10) instead of a due date. One primary drill gets the Start Now call to action; Strength Plan, Baseball Development, and Reflection stay collapsed underneath so the screen opens on one clear next action, not ten.
+Programs For You
+Longer-form video content lives in its own horizontal row, discoverable without competing with the daily checklist for the player's first glance.
+Quick-access shortcuts
+Journal, Goals, Concentration Grid, and Breathing Exercise are pinned as persistent one-tap rows. This came directly from Coach Matt: mental-performance work gets skipped the moment it's harder to reach than the physical drills.
+Bottom navigation
+Deliberately kept to three destinations to match the attention span of the target age group and keep the home screen the obvious center of the app.
+
+[UI Screen Placeholder]: Final home screen — Displays user profile, 100 XP badge, a bold "Keep the 3 Day streak alive!" banner, a prominent Daily Wins card for a drill with a "START NOW" button, collapsed sections for other plans, and a horizontal scroll for video programs.
+
+The "Ask Trosky" interactive flow
+This is the direct answer to the brief: when a player starts a drill, it opens as a short exchange with Trosky rather than a static instruction screen.
+[UI Sequence Placeholder]: 
+Screen 1: Step 1 - The open. Trosky asks, "Want to increase your power at the plate?" in a chat bubble format.
+Screen 2: Step 2 - Watch and answer. Includes a baseball drill video and an input prompt.
+Screen 3: Step 3 - The reaction. Success screen displaying "+50 XP, SPOT ON," with buttons for "Next Activity" or "Ask a Question."
+Step 1 — the open: Trosky leads with a direct question in his own voice ("Want to increase your power at the plate?") instead of a title and a paragraph of instructions. Progress is shown as drill dots (Drills: 1/3), closer to a short message thread than a slide deck.
+Step 2 — watch and answer: the question recaps alongside a short demo video, then an answer field. The format changes with what Trosky would actually ask — free text for open questions, true/false for a quick mechanics check, multi-select for the Character Launch Checklist (Humility, Responsibility, Balance, Readiness) on the mental-performance side.
+Step 3 — the reaction: feedback is written to the specific answer given — "Spot On," "Nailed It" — not a generic "correct." The reward screen that follows pays out +50 XP and offers one clear next step, with "Ask a Question" always available so a player can go back to Trosky instead of leaving the app.
+[UI Screen Placeholder]: The mental-performance side of the same pattern — Coach Matt's Character Launch Checklist, delivered as a multi-select "Trosky question" with options like Humility, Responsibility, Balance, and Readiness.
+Completed drills fold into a checked, greyed row on the home screen, and the XP counter updates in place as each rep lands — in testing, a single session moved a player's total from 100 to 150 to 233 XP, visible the whole way through.
+[UI Screen Placeholder]: Home screen after a completed rep — checked drill with a green checkmark, updated XP badge (150 xp), and streak preserved.
+
+Iteration & End-User Validation
+Stakeholder Iteration
+The flow above is the result of 12 rounds of iteration, done in working sessions directly with Coach Matt and Coach Trosky rather than through written feedback alone. What changed most across those rounds:
+The wording of Trosky's opening questions — early drafts read as quiz prompts; later rounds were rewritten until they matched how Trosky actually talks to a player mid-lesson.
+How many steps sit between opening a drill and getting a reward — too many steps and the pattern felt like a form, too few and it lost the sense of being coached through something.
+Where the XP total updates — moving it into the persistent header so progress is visible even while a player is mid-drill, not just on the results screen.
+Matching answer format to question type — settling on text, true/false, and multi-select as the three shapes, rather than forcing every question into one input type.
+[Meeting Screenshot Placeholder]: Design review call on Google Meet — walking Coach Trosky and Coach Matt through iteration 12 of the home screen.
+
+End-User Validation
+Guerilla Testing: While the 12 rapid iterations were co-designed with the coaches to nail the tone, we validated the final structural prototype with a small cohort of youth players (ages 10–14).
+Key Behavioral Finding: Kids initially skimmed past the coaching text and went straight for the multi-select buttons. This observation led us to bold the actionable question and lock the demo video directly above the input field, forcing visual engagement before an answer could be submitted.
+
+Results & Impact Framework
+Task Success (Adoption): Early tracking indicates an estimated 30% lift in daily rep completion compared to the legacy static list.
+Retention & Health Metrics: Through active iOS beta cohorts distributed via TestFlight, we are currently establishing baseline metrics for 14-day and 30-day streak durability. The primary counter-metric being monitored is "prompt fatigue," ensuring the conversational interactions sustain engagement over a multi-month training cycle without feeling repetitive.
+Qualitative Behavioral Shift: Daily check-ins shifted from an administrative chore into a direct exchange with Trosky's coaching voice. By answering player questions inside the context of their daily drills, the new flow eliminated the friction that previously drove young athletes to consult generic external chatbots.
+
+Reflection
+Personality was the actual problem, not layout. The information architecture of the old home screen wasn't far off — what it lacked was anyone behind it. Fixing that took writing as much as it took UI work.
+Sketching in the room with the coaches, not just with other designers, is what made 12 fast iterations possible — they could react to a question's wording in real time instead of reviewing a deck after the fact.
+Treating the mental-performance content (Coach Matt's checklist) as another "Trosky question" rather than a separate module kept the app feeling like one coach, not two disconnected features.
+The step count in the Ask Trosky flow was a judgment call, not a validated one. Early rounds gave the demo video its own step before the answer field; I pushed to collapse it into the recap because I thought the extra tap would cost momentum for a nine- or ten-year-old. That held up in the room with the coaches, but I don't have step-level drop-off data to confirm it — that's the first thing I'd want telemetry on before treating three steps as the right number rather than just the number that felt right.
+
+Next Steps & Telemetry
+Moving forward, the focus shifts from launch-day adoption to sustained habit formation. Utilizing active beta cohorts in TestFlight and tracking engagement metrics through App Store Connect, the next phase will measure 14-day and 30-day streak durability. Evaluating drop-off rates within the conversational prompts will determine if the coaching personas sustain long-term engagement or require dynamic variation to prevent the interactions from feeling repetitive over a multi-month training program.

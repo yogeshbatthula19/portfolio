@@ -1,0 +1,358 @@
+[
+  {
+    "type": "p",
+    "text": "UX CASE STUDY"
+  },
+  {
+    "type": "p",
+    "text": "Coach in Your Pocket"
+  },
+  {
+    "type": "p",
+    "text": "Turning the Trosky 365 home screen from a static list of assignments into a voice-driven coaching experience with Coach Trosky"
+  },
+  {
+    "type": "table",
+    "rows": [
+      [
+        "At a glance\n12 design iterations · approved and shipped same day · early tracking suggests ~30% more daily reps completed (internal estimate)"
+      ]
+    ]
+  },
+  {
+    "type": "p",
+    "text": "Client:  Trosky 365 (Trosky Baseball Academy)"
+  },
+  {
+    "type": "p",
+    "text": "Role:  Product Designer — research, interaction design, UI, and testing"
+  },
+  {
+    "type": "p",
+    "text": "Collaborators:  Coach Matt (mental performance), Coach Trosky (hitting & throwing mechanics)"
+  },
+  {
+    "type": "p",
+    "text": "Platform:  iOS / Android — mobile app"
+  },
+  {
+    "type": "p",
+    "text": "Key deliverable:  Home screen redesign + the \"Ask Trosky\" interactive drill flow"
+  },
+  {
+    "type": "h2",
+    "text": "Overview"
+  },
+  {
+    "type": "p",
+    "text": "Trosky 365 is a training app for youth baseball players. Every day, players are expected to open the app, complete a set of assigned reps — swing mechanics, throwing drills, timing work — and log reflection and mental-performance exercises set by their coaches. The app is the daily bridge between in-person coaching sessions with Coach Trosky and Coach Matt and what a player actually does at home."
+  },
+  {
+    "type": "p",
+    "text": "This case study covers the redesign of the app's home screen and the introduction of a new conversational drill flow, replacing a static assignment list with something a player actually exchanges messages with."
+  },
+  {
+    "type": "h2",
+    "text": "Problem"
+  },
+  {
+    "type": "p",
+    "text": "The existing home screen presented a player's daily assignments as a flat, static list — a title, a rep count, a due date, tap to mark complete. It was a to-do list wearing an app's clothes: no back-and-forth, no personality, no feedback loop beyond a checkbox."
+  },
+  {
+    "type": "p",
+    "text": "At the same time, the client noticed a pattern: players — mostly kids and young teens — had started turning to ChatGPT and Claude to ask the exact questions the app was supposed to answer. \"Why does my elbow hurt after pitching,\" \"how do I get more power in my swing\" — questions that belonged inside a coached, structured drill were instead being typed into a general-purpose chatbot, outside of any context Coach Trosky or Coach Matt could see or shape."
+  },
+  {
+    "type": "table",
+    "rows": [
+      [
+        "The core insight\nKids weren't avoiding coaching. They were avoiding the app's version of it. A flat assignment list gave them nothing to talk to, so they went looking for something that would talk back — and an outside AI chatbot was the closest thing they could find."
+      ]
+    ]
+  },
+  {
+    "type": "p",
+    "text": "The client's brief followed directly from that: rebuild the assignment list as a conversational drill flow — Coach Trosky himself asking the questions, a player answering, and the app replying back — strong enough that a player has a reason to come back to it instead of opening a chatbot."
+  },
+  {
+    "type": "h2",
+    "text": "Research & Discovery"
+  },
+  {
+    "type": "p",
+    "text": "Research centered on working sessions with Coach Matt and Coach Trosky rather than a large player survey — the goal was to capture how they actually coach, then translate that into product."
+  },
+  {
+    "type": "li",
+    "text": "Shadowed and interviewed Coach Trosky on how he opens a correction with a player — almost always a question (\"what do you think happens if...\") rather than a flat instruction, so the player arrives at the answer instead of being handed it."
+  },
+  {
+    "type": "li",
+    "text": "Worked with Coach Matt to map his \"Character Launch Checklist\" — humility, responsibility, balance, readiness — the mental-performance framework he uses alongside physical mechanics, and which had no home in the app at all before this redesign."
+  },
+  {
+    "type": "li",
+    "text": "Reviewed where players dropped off in the old flow: engagement fell right after a drill was opened, before any real content was seen — the entry point itself wasn't earning the tap."
+  },
+  {
+    "type": "li",
+    "text": "Confirmed with the client that the reliance on outside AI chatbots was happening at that same gap — the moment a player had a training question and the app offered no conversational way to ask it."
+  },
+  {
+    "type": "h2",
+    "text": "Goals"
+  },
+  {
+    "type": "li",
+    "text": "Replace the static assignment list with an interactive coaching dialogue, modeled on how Trosky and Matt actually talk to players in person."
+  },
+  {
+    "type": "li",
+    "text": "Turn completing a drill into a short back-and-forth, not a form to submit."
+  },
+  {
+    "type": "li",
+    "text": "Make progress visible and immediate — every rep should pay off in the moment, not just at the end of the week."
+  },
+  {
+    "type": "li",
+    "text": "Put physical mechanics and mental performance in the same interaction pattern, so neither feels like a bolt-on."
+  },
+  {
+    "type": "li",
+    "text": "Reduce the reason a player would ever need to leave the app to ask a basic coaching question."
+  },
+  {
+    "type": "h2",
+    "text": "Ideation — Early Wireframes"
+  },
+  {
+    "type": "p",
+    "text": "Early exploration happened on paper and on a whiteboard, in the room with Coach Matt and Coach Trosky. Low fidelity was deliberate here — the coaches needed to react to the shape of the flow and the wording of the questions, not visual polish, and sketches let each round change in minutes rather than days."
+  },
+  {
+    "type": "p",
+    "text": "The two sketches below are representative of that stage: the home screen layout, and the three-step \"Trosky asks a question\" pattern that became the core interaction."
+  },
+  {
+    "type": "image",
+    "src": "/case-studies/trosky/a2a267de5513239af780bcaf91e2027578358112.png"
+  },
+  {
+    "type": "p",
+    "text": "Early hand-drawn wireframe — home screen layout."
+  },
+  {
+    "type": "image",
+    "src": "/case-studies/trosky/bd9648a5f3d7b55a8f7a5dba1f0ac26117a4ced8.png"
+  },
+  {
+    "type": "p",
+    "text": "Early hand-drawn wireframe — the three-step Ask Trosky question flow."
+  },
+  {
+    "type": "h2",
+    "text": "The Solution"
+  },
+  {
+    "type": "h3",
+    "text": "Home screen, section by section"
+  },
+  {
+    "type": "p",
+    "text": "The final home screen keeps the same job as before — show a player what's due today — but rebuilds every section around a reason to open it."
+  },
+  {
+    "type": "table",
+    "rows": [
+      [
+        "Section",
+        "Why it's built this way"
+      ],
+      [
+        "Greeting + XP badge",
+        "Names the player and surfaces their running point total in the same glance, so the screen reads as \"this player's progress,\" not a generic list."
+      ],
+      [
+        "Daily Insight / streak banner",
+        "A dark, high-contrast band that functions like the coach's opening line for the day. Tied to a day-streak so the cost of skipping a day is felt immediately, the same loss-averse pull that keeps a habit going."
+      ],
+      [
+        "Daily Wins list",
+        "Reframed from \"assignments\" to \"wins\" — a completed-count (e.g. 0/10) instead of a due date. One primary drill gets the Start Now call to action; Strength Plan, Baseball Development, and Reflection stay collapsed underneath so the screen opens on one clear next action, not ten."
+      ],
+      [
+        "Programs For You",
+        "Longer-form video content (Trosky Live, Hitting Class, Mastering Motion) lives in its own horizontal row, discoverable without competing with the daily checklist for the player's first glance."
+      ],
+      [
+        "Quick-access shortcuts",
+        "Journal, Goals, Concentration Grid, and Breathing Exercise are pinned as persistent one-tap rows. This came directly from Coach Matt: mental-performance work gets skipped the moment it's harder to reach than the physical drills."
+      ],
+      [
+        "Bottom navigation",
+        "Deliberately kept to three destinations to match the attention span of the target age group and keep the home screen the obvious center of the app."
+      ]
+    ]
+  },
+  {
+    "type": "image",
+    "src": "/case-studies/trosky/42e00451045c32de61f9c68b53c46469d07f6129.jpg"
+  },
+  {
+    "type": "p",
+    "text": "Final home screen — greeting and XP, streak banner, Daily Wins, and Programs For You."
+  },
+  {
+    "type": "h3",
+    "text": "The \"Ask Trosky\" interactive flow"
+  },
+  {
+    "type": "p",
+    "text": "This is the direct answer to the brief: when a player starts a drill, it opens as a short exchange with Trosky rather than a static instruction screen."
+  },
+  {
+    "type": "gallery",
+    "rows": [
+      [
+        "",
+        "",
+        ""
+      ]
+    ],
+    "images": [
+      "/case-studies/trosky/fc29d95ff10280ce663684cd4a13840e14a06dd1.jpg",
+      "/case-studies/trosky/ff7736796fd5c04654ecf72fdb3338c8006a1ef6.jpg",
+      "/case-studies/trosky/5bcce196f69b8e44de390d20a7555daf5aeb77cf.jpg"
+    ]
+  },
+  {
+    "type": "p",
+    "text": "The three-step pattern: Trosky opens with a question → recap, demo video, and answer → Trosky reacts and the rep pays out in XP."
+  },
+  {
+    "type": "li",
+    "text": "Step 1 — the open: Trosky leads with a direct question in his own voice (\"Want to increase your power at the plate?\") instead of a title and a paragraph of instructions. Progress is shown as drill dots (Drills: 1/3), closer to a short message thread than a slide deck."
+  },
+  {
+    "type": "li",
+    "text": "Step 2 — watch and answer: the question recaps alongside a short demo video, then an answer field. The format changes with what Trosky would actually ask — free text for open questions, true/false for a quick mechanics check, multi-select for the Character Launch Checklist (Humility, Responsibility, Balance, Readiness) on the mental-performance side."
+  },
+  {
+    "type": "li",
+    "text": "Step 3 — the reaction: feedback is written to the specific answer given — \"Spot On,\" \"Nailed It\" — not a generic \"correct.\" The reward screen that follows pays out +50 XP and offers one clear next step, with \"Ask a Question\" always available so a player can go back to Trosky instead of leaving the app."
+  },
+  {
+    "type": "image",
+    "src": "/case-studies/trosky/63ea32689bae5f7abe97987209c88a5db9b65343.jpg"
+  },
+  {
+    "type": "p",
+    "text": "The mental-performance side of the same pattern — Coach Matt's Character Launch Checklist, delivered as a multi-select \"Trosky question\" rather than a separate section of the app."
+  },
+  {
+    "type": "p",
+    "text": "Completed drills fold into a checked, greyed row on the home screen, and the XP counter updates in place as each rep lands — in testing, a single session moved a player's total from 100 to 150 to 233 XP, visible the whole way through."
+  },
+  {
+    "type": "image",
+    "src": "/case-studies/trosky/a19f6d0017e788a2b739f1cae3474f3c0de51a69.jpg"
+  },
+  {
+    "type": "p",
+    "text": "Home screen after a completed rep — checked drill, updated XP, streak preserved."
+  },
+  {
+    "type": "h2",
+    "text": "Iteration & Validation"
+  },
+  {
+    "type": "p",
+    "text": "The flow above is the result of 12 rounds of iteration, done in working sessions directly with Coach Matt and Coach Trosky rather than through written feedback alone. What changed most across those rounds:"
+  },
+  {
+    "type": "li",
+    "text": "The wording of Trosky's opening questions — early drafts read as quiz prompts; later rounds were rewritten until they matched how Trosky actually talks to a player mid-lesson."
+  },
+  {
+    "type": "li",
+    "text": "How many steps sit between opening a drill and getting a reward — too many steps and the pattern felt like a form, too few and it lost the sense of being coached through something."
+  },
+  {
+    "type": "li",
+    "text": "Where the XP total updates — moving it into the persistent header so progress is visible even while a player is mid-drill, not just on the results screen."
+  },
+  {
+    "type": "li",
+    "text": "Matching answer format to question type — settling on text, true/false, and multi-select as the three shapes, rather than forcing every question into one input type."
+  },
+  {
+    "type": "p",
+    "text": "Most of these rounds happened live, over screen-shared calls with Coach Matt and Coach Trosky reacting to the actual flow in real time rather than a written deck."
+  },
+  {
+    "type": "image",
+    "src": "/case-studies/trosky/23aff4a88a63c0a6714f762b44912a67bb64ecf4.png"
+  },
+  {
+    "type": "p",
+    "text": "Design review call — walking Coach Trosky and Coach Matt through iteration 12 of the home screen."
+  },
+  {
+    "type": "p",
+    "text": "The twelfth round was approved by the client and implemented the same day — the version shown throughout this case study."
+  },
+  {
+    "type": "image",
+    "src": "/case-studies/trosky/f766d667f867bc58112aea12dd6c14d77a4e1525.png"
+  },
+  {
+    "type": "p",
+    "text": "Sign-off call with the client — presenting the final, shipped version of the home screen."
+  },
+  {
+    "type": "h2",
+    "text": "Results"
+  },
+  {
+    "type": "p",
+    "text": "Immediate Deployment: The same-day approval didn't skip review — it replaced a written-deck review cycle with live, in-person iteration. Coach Trosky and Coach Matt reacted to each round in real time, the same way they'd react to a player mid-lesson, which compressed a typical week of async feedback into a single working session. The final flow (v12) was approved and cleared for release on that call."
+  },
+  {
+    "type": "p",
+    "text": "Lift in Daily Completion: Comparing daily completion rates over the first weeks post-launch against the prior static list, reps completed rose by roughly 30%. This wasn't a controlled A/B test — same-day shipping meant a before/after comparison rather than a held-back control group — so it's best read as an early, directional signal that's now being tracked properly rather than a validated result. Even so, requiring an active response gave players an immediate stake in the rep rather than just passively watching a drill."
+  },
+  {
+    "type": "p",
+    "text": "Qualitative Behavioral Shift: Daily check-ins shifted from an administrative chore into a direct exchange with Trosky's coaching voice. By answering player questions inside the context of their daily drills, the new flow eliminated the friction that previously drove young athletes to consult generic external chatbots."
+  },
+  {
+    "type": "h2",
+    "text": "Reflection"
+  },
+  {
+    "type": "li",
+    "text": "Personality was the actual problem, not layout. The information architecture of the old home screen wasn't far off — what it lacked was anyone behind it. Fixing that took writing as much as it took UI work."
+  },
+  {
+    "type": "li",
+    "text": "Sketching in the room with the coaches, not just with other designers, is what made 12 fast iterations possible — they could react to a question's wording in real time instead of reviewing a deck after the fact."
+  },
+  {
+    "type": "li",
+    "text": "Treating the mental-performance content (Coach Matt's checklist) as another \"Trosky question\" rather than a separate module kept the app feeling like one coach, not two disconnected features."
+  },
+  {
+    "type": "li",
+    "text": "The step count in the Ask Trosky flow was a judgment call, not a validated one. Early rounds gave the demo video its own step before the answer field; I pushed to collapse it into the recap because I thought the extra tap would cost momentum for a nine- or ten-year-old. That held up in the room with the coaches, but I don't have step-level drop-off data to confirm it — that's the first thing I'd want telemetry on before treating three steps as the right number rather than just the number that felt right."
+  },
+  {
+    "type": "h2",
+    "text": "Next Steps & Telemetry"
+  },
+  {
+    "type": "p",
+    "text": "Moving forward, the focus shifts from launch-day adoption to sustained habit formation. Utilizing active beta cohorts in TestFlight and tracking engagement metrics through App Store Connect, the next phase will measure 14-day and 30-day streak durability. Evaluating drop-off rates within the conversational prompts will determine if the coaching personas sustain long-term engagement or require dynamic variation to prevent the interactions from feeling repetitive over a multi-month training program."
+  }
+]

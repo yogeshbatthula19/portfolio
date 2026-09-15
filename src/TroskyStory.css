@@ -1,0 +1,50 @@
+.trosky-document{background:#fff;color:#1d1d1f;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.65;overflow-wrap:anywhere;padding:0 0 64px}
+.trosky-hero{display:grid;grid-template-columns:1.2fr .8fr;align-items:center;gap:40px;max-width:1180px;margin:auto;padding:72px clamp(24px,5vw,72px);background:#f5f5f7;border-radius:0 0 32px 32px}
+.trosky-hero small{font-size:11px;font-weight:600;letter-spacing:.09em;color:#6e6e73}
+.trosky-hero h1{font-size:clamp(44px,6.5vw,80px);line-height:1.03;letter-spacing:-.055em;margin:22px 0}
+.trosky-hero p{font-size:20px;line-height:1.5;color:#6e6e73;max-width:520px;margin:0 0 28px}
+.trosky-hero-label{font-size:12px;color:#6e6e73}
+.trosky-hero-screen{text-align:center;background:#e8ebef;padding:32px 24px 22px;border-radius:28px}
+.trosky-hero-screen img{display:block;width:auto;max-width:100%;height:390px;margin:auto;border:6px solid #fff;border-radius:26px;box-shadow:0 22px 36px #18233320}
+.trosky-hero-screen span{display:block;font-size:11px;color:#6e6e73;margin-top:22px}
+.trosky-project-meta{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px 32px;max-width:1040px;padding:40px clamp(24px,5vw,48px);margin:auto}
+.trosky-project-meta small,.trosky-at-glance small{display:block;font-size:11px;font-weight:600;color:#86868b;margin-bottom:8px}
+.trosky-project-meta p{font-size:13px;line-height:1.6;margin:0}
+.trosky-at-glance{max-width:944px;margin:0 auto 24px;padding:24px 28px;background:#f5f5f7;border-radius:20px}
+.trosky-at-glance p{margin:0;font-size:16px;font-weight:500;line-height:1.7}
+.trosky-document-body{max-width:1040px;margin:auto;padding:0 clamp(24px,5vw,48px)}
+.trosky-chapter{padding:48px 0;border-bottom:1px solid #e8e8ed}
+.trosky-chapter:last-child{border:0}
+.trosky-chapter-heading{display:flex;align-items:baseline;gap:18px;margin-bottom:26px}
+.trosky-chapter-heading>span{font-size:12px;color:#86868b;font-variant-numeric:tabular-nums}
+.trosky-document h2{font-size:clamp(27px,3.3vw,38px);letter-spacing:-.035em;line-height:1.15;margin:0}
+.trosky-chapter-content>p,.trosky-chapter-content>ul{max-width:740px}
+.trosky-document-body p,.trosky-document-body li{font-size:16px;line-height:1.8;color:#515154}
+.trosky-document-body p{margin:0 0 20px;white-space:pre-line}
+.trosky-document h3{font-size:23px;letter-spacing:-.025em;line-height:1.3;margin:36px 0 18px}
+.trosky-document h4{font-size:16px;margin:0 0 10px;letter-spacing:-.015em}
+.trosky-document ul{padding-left:20px;margin:20px 0}
+.trosky-document li{padding-left:5px;margin-bottom:14px}
+.trosky-document figure{margin:32px 0;background:#f5f5f7;padding:32px;border-radius:24px;text-align:center}
+.trosky-document figure img{display:block;max-width:100%;max-height:600px;width:auto;height:auto;margin:auto;border-radius:8px}
+.trosky-document figure a{display:block;min-width:0}
+.trosky-document figure a:focus-visible{outline:3px solid #0071e3;outline-offset:6px}
+.trosky-document figcaption{font-size:12px;color:#6e6e73;line-height:1.6;margin:22px auto 0;max-width:600px}
+.trosky-document .trosky-image-sequence{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;align-items:start}
+.trosky-document .trosky-summary{margin:30px 0;padding:28px 32px;border-left:3px solid #1d1d1f;font-size:20px;line-height:1.65;letter-spacing:-.02em;color:#1d1d1f;background:#fafafa;border-radius:0 16px 16px 0}
+.trosky-details{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin:24px 0}
+.trosky-details>div{padding:26px;background:#f5f5f7;border-radius:18px}
+.trosky-details p{font-size:14px;margin:0;line-height:1.75}
+@media(max-width:650px){.trosky-hero{grid-template-columns:1fr;padding:40px 24px;gap:28px}.trosky-hero h1{font-size:52px}.trosky-hero p{font-size:18px}.trosky-hero-screen img{height:330px}.trosky-project-meta{grid-template-columns:repeat(2,minmax(0,1fr));gap:24px}.trosky-at-glance{margin:0 24px;padding:22px}.trosky-chapter{padding:36px 0}.trosky-details{grid-template-columns:1fr}.trosky-document figure{padding:20px 12px;border-radius:18px}.trosky-document .trosky-image-sequence{gap:10px}.trosky-document .trosky-summary{font-size:18px;padding:20px}.trosky-document-body p,.trosky-document-body li{font-size:15px}}
+.trosky-metrics{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;max-width:1040px;margin:0 auto 24px;padding:0 clamp(24px,5vw,48px)}
+.trosky-metric{background:#f5f5f7;border:1px solid #ededf0;border-radius:22px;padding:26px 24px}
+.trosky-metric small{font-size:11px;color:#6e6e73;font-weight:600}
+.trosky-metric strong{display:block;font-size:clamp(28px,4vw,46px);letter-spacing:-.045em;line-height:1.15;margin:20px 0 12px}
+.trosky-metric p{font-size:14px;font-weight:600;margin:0 0 10px}
+.trosky-metric span{display:block;font-size:12px;line-height:1.6;color:#6e6e73}
+.trosky-document .trosky-key-line,.trosky-document .trosky-summary{background:#f5f5f7;border:1px solid #e8e8ed;border-radius:20px;padding:28px 30px;margin:26px 0;color:#1d1d1f}
+.trosky-document .trosky-key-line{font-size:17px;line-height:1.75}
+.trosky-reveal{transition:opacity .65s ease,transform .65s cubic-bezier(.2,.7,.2,1)}
+.trosky-reveal-pending{opacity:0;transform:translateY(18px)}
+@media(max-width:650px){.trosky-metrics{grid-template-columns:1fr}.trosky-metric strong{font-size:38px;margin-top:12px}.trosky-document .trosky-key-line{padding:22px;font-size:16px}}
+@media(prefers-reduced-motion:reduce){.trosky-reveal{transition:none}.trosky-reveal-pending{opacity:1;transform:none}}
