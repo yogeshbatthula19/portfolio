@@ -154,20 +154,6 @@ export function ProjectBrowser({query,onPreview}){
         ))}
       </div>
       {!visible.length&&<p className="finder-empty-msg">No matching folders found.</p>}
-      {active&&(
-        <div className="finder-status-bar" role="status" aria-live="polite">
-          <div className="finder-status-left">
-            <span className="finder-status-badge">Selected</span>
-            <span><b>{active.folderName||active.title}</b> — {active.summary}</span>
-          </div>
-          <div className="finder-status-actions">
-            <span className="finder-status-hint">Press <b>Space</b> or <b>Enter</b></span>
-            <button type="button" className="finder-open-btn" onClick={()=>onPreview(active)}>
-              Open Case Study <span>␣</span>
-            </button>
-          </div>
-        </div>
-      )}
     </div>
   );
 }

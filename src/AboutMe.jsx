@@ -4,9 +4,6 @@ import { ChevronRight, ArrowUpRight, Mail, Briefcase, Globe, User } from './symb
 export default function AboutMe({ onContact, onProjects }) {
   return (
     <div className="apple-profile-view">
-      <div className="breadcrumb">
-        My workspace <ChevronRight size={13} /> About me
-      </div>
 
       {/* Hero Banner — Apple Leadership Profile Style */}
       <section className="apple-profile-hero">
