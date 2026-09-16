@@ -5,6 +5,7 @@
 .window-bar,.window-footer{flex-shrink:0}
 .window-body{flex:1;min-height:0;overflow:hidden}
 .content{overflow-y:auto;overscroll-behavior:contain;scrollbar-width:none;-ms-overflow-style:none}
+.content.content-full,.content:has(.apple-profile-view){padding:0!important}
 .content::-webkit-scrollbar,.apple-profile-view::-webkit-scrollbar,aside::-webkit-scrollbar,.finder-folder-view::-webkit-scrollbar{display:none;width:0;height:0}
 .breadcrumb,.window-resize,.finder-status-bar{display:none!important}
 .window.maximized{position:absolute;inset:44px 12px 125px;width:auto;height:auto;max-width:none;max-height:none}
