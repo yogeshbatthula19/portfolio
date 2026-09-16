@@ -9,9 +9,11 @@
 .welcome-screen{background:#efebe7;padding-top:clamp(24px,4vh,48px);padding-bottom:clamp(24px,4vh,48px)}
 .welcome-aurora{inset:0;background:url('/images/welcome-wallpaper.png') center center/cover no-repeat;animation:none;transform:none}
 .welcome-clock{color:#303033;text-shadow:0 1px 12px #ffffff80}
-.welcome-clock time{color:#303033;font-size:clamp(72px,10vw,128px)}
-.welcome-clock p{font-size:clamp(16px,2vw,23px)}
-.welcome-profile button{background:none;backdrop-filter:none;padding:16px 28px;border:0;gap:8px}
+.welcome-clock time{color:#303033;font-size:clamp(54px,7.5vw,84px);line-height:1.08}
+.welcome-clock p{font-size:clamp(13px,1.4vw,16px);font-weight:500;margin-bottom:2px}
+.welcome-profile button{background:none;backdrop-filter:none;padding:10px 20px;border:0;gap:6px}
+.welcome-profile strong{font-size:14px;font-weight:600}
+.welcome-enter{font-size:11px}
 .welcome-profile strong,.welcome-enter{text-shadow:0 1px 4px #000,0 2px 12px #0009}
-.welcome-avatar{background-color:#fff;background-image:url('/images/welcome-memoji.png');background-size:200% 200%;background-repeat:no-repeat;border:3px solid white;backdrop-filter:none;padding:0;width:76px;height:76px}
-@media(max-height:520px){.welcome-clock time{font-size:64px}.welcome-avatar{width:48px;height:48px}.welcome-profile button{padding:10px 20px;gap:4px}}
+.welcome-avatar{background-color:#fff;background-image:url('/images/welcome-memoji.png');background-size:200% 200%;background-repeat:no-repeat;border:2.5px solid white;backdrop-filter:none;padding:0;width:54px;height:54px;box-shadow:0 6px 20px rgba(0,0,0,.25)}
+@media(max-height:520px){.welcome-clock time{font-size:46px}.welcome-avatar{width:42px;height:42px}.welcome-profile button{padding:6px 14px;gap:3px}}
