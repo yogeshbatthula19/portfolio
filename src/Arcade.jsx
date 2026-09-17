@@ -463,115 +463,180 @@ export default function Arcade() {
             style={{ transform: `translate(${pos.x}px, ${pos.y}px)` }}
             onClick={(e) => e.stopPropagation()}
           >
-            {/* Native macOS Header Bar - Draggable */}
+            {/* Native macOS Header Bar with Traffic Lights & Apple Arcade Navigation */}
             <header className="arcade-header" {...dragHandlers}>
-              <div className="arcade-header-left">
-                <img src="/icons/arcade.png" alt="" />
-                <h2 className="arcade-header-title">
-                  {selectedGame === 'flippy'
-                    ? 'Flippy Bird'
-                    : selectedGame === 'tictactoe'
-                    ? 'Tic Tac Toi'
-                    : 'Games'}
-                </h2>
+              <div className="arcade-traffic">
+                <button
+                  type="button"
+                  className="red"
+                  aria-label="Close Arcade"
+                  title="Close"
+                  onClick={closeArcade}
+                />
+                <button
+                  type="button"
+                  className="yellow"
+                  aria-label="Minimize"
+                  title="Minimize"
+                  onClick={closeArcade}
+                />
+                <button
+                  type="button"
+                  className="green"
+                  aria-label="Zoom"
+                  title="Zoom"
+                />
               </div>
 
-              <button
-                type="button"
-                className="arcade-close-cross"
-                aria-label="Close games panel"
-                title="Close"
-                onClick={closeArcade}
-              >
-                <svg
-                  width="10"
-                  height="10"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2.8"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  aria-hidden="true"
-                  style={{ pointerEvents: 'none' }}
-                >
-                  <line x1="18" y1="6" x2="6" y2="18" />
-                  <line x1="6" y1="6" x2="18" y2="18" />
-                </svg>
-              </button>
+              <div className="arcade-nav-center">
+                {selectedGame ? (
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                    <button
+                      type="button"
+                      className="arcade-back-nav"
+                      onClick={() => setSelectedGame(null)}
+                    >
+                      ‹ Arcade
+                    </button>
+                    <span className="arcade-header-game-title">
+                      {selectedGame === 'flippy' ? 'Flippy Bird' : 'Tic Tac Toi'}
+                    </span>
+                  </div>
+                ) : (
+                  <>
+                    <div className="arcade-brand">
+                      <svg width="15" height="17" viewBox="0 0 170 170" fill="currentColor">
+                        <path d="M150.37 130.25c-2.45 5.66-5.35 10.87-8.71 15.66-4.58 6.53-8.33 11.05-11.22 13.56-4.48 4.12-9.28 6.23-14.42 6.35-3.69 0-8.14-1.05-13.32-3.18-5.19-2.12-9.97-3.17-14.34-3.17-4.58 0-9.49 1.05-14.75 3.17-5.26 2.13-9.5 3.24-12.74 3.35-4.35.13-9.16-1.9-14.42-6.08-3.69-3.08-7.7-7.94-12.04-14.59-6.08-9.33-10.88-20.15-14.4-32.48-3.52-12.33-5.28-24.12-5.28-35.37 0-14.44 3.73-26.6 11.19-36.48 7.46-9.88 16.99-14.93 28.58-15.15 4.8 0 10.3 1.25 16.51 3.74 6.2 2.49 10.29 3.78 12.27 3.86 1.77 0 5.92-1.37 12.44-4.11 6.52-2.74 12.08-3.99 16.68-3.74 12.63.66 22.84 5.37 30.63 14.13-11.04 6.74-16.44 16.03-16.2 27.87.24 9.87 4.09 18.25 11.55 25.13 7.46 6.89 16.32 10.74 26.58 11.56-2.2 6.64-4.8 13.06-7.8 19.26zM119.22 33.64c0-7.3 2.66-14.18 7.99-20.64 5.33-6.46 11.89-10.8 19.68-13 1.09 8.24-.76 15.69-5.55 22.35-4.79 6.66-11.39 10.8-19.8 12.42-.65-.37-1.42-.7-2.32-1.13z"/>
+                      </svg>
+                      Arcade <span>ORIGINALS</span>
+                    </div>
+
+                    <div className="arcade-tabs">
+                      {['Discover', 'Arcade', 'All Games'].map((tab, idx) => (
+                        <button
+                          key={tab}
+                          type="button"
+                          className={`arcade-tab ${idx === 0 ? 'active' : ''}`}
+                        >
+                          {tab}
+                        </button>
+                      ))}
+                    </div>
+                  </>
+                )}
+              </div>
+
+              <div style={{ width: 70 }} />
             </header>
 
-            {/* Clean Apple Body Content */}
+            {/* Apple Arcade Body Content */}
             <div className="arcade-body">
               {selectedGame === null ? (
-                <div className="arcade-selection-view">
-                  <h2 className="games-list-title">Games</h2>
-                  <p className="games-list-sub">Select a game to play.</p>
-
-                  <div className="games-list-stack">
-                    {/* 1. Flippy Bird Row */}
-                    <div
-                      className="game-apple-row"
-                      role="button"
-                      tabIndex={0}
+                <div className="arcade-discover-view">
+                  {/* Spotlight Hero Banner */}
+                  <div className="arcade-hero-spotlight">
+                    <div>
+                      <div className="arcade-hero-badge">Arcade Spotlight</div>
+                      <h2 className="arcade-hero-title">Flippy Bird: Flight Edition</h2>
+                      <p className="arcade-hero-desc">
+                        Tap to flap and weave through dynamic obstacles in this addicting endless arcade flier.
+                      </p>
+                    </div>
+                    <button
+                      type="button"
+                      className="arcade-hero-btn"
                       onClick={() => setSelectedGame('flippy')}
-                      onKeyDown={(e) => {
-                        if (e.key === 'Enter' || e.key === ' ') {
-                          setSelectedGame('flippy');
-                        }
-                      }}
                     >
-                      <div className="game-icon-box">🐥</div>
-                      <div className="game-info-col">
-                        <h3>Flippy Bird</h3>
-                        <p>Tap to flap and fly through obstacles.</p>
-                      </div>
-                      <button
-                        type="button"
-                        className="game-play-pill"
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          setSelectedGame('flippy');
-                        }}
-                      >
-                        Play
-                      </button>
+                      Play Now
+                    </button>
+                  </div>
+
+                  {/* 2 Games App Cards Shelf */}
+                  <section className="arcade-shelf">
+                    <div className="arcade-shelf-header">
+                      <h3 className="arcade-shelf-title">Popular Arcade Games</h3>
+                      <span className="arcade-shelf-count">2 Games Available</span>
                     </div>
 
-                    {/* 2. Tic Tac Toi Row */}
-                    <div
-                      className="game-apple-row"
-                      role="button"
-                      tabIndex={0}
-                      onClick={() => setSelectedGame('tictactoe')}
-                      onKeyDown={(e) => {
-                        if (e.key === 'Enter' || e.key === ' ') {
-                          setSelectedGame('tictactoe');
-                        }
-                      }}
-                    >
-                      <div className="game-icon-box">✕ ◯</div>
-                      <div className="game-info-col">
-                        <h3>Tic Tac Toi</h3>
-                        <p>Classic 3×3 game against the computer.</p>
-                      </div>
-                      <button
-                        type="button"
-                        className="game-play-pill"
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          setSelectedGame('tictactoe');
+                    <div className="arcade-games-grid">
+                      {/* Flippy Bird */}
+                      <div
+                        className="arcade-game-card"
+                        role="button"
+                        tabIndex={0}
+                        onClick={() => setSelectedGame('flippy')}
+                        onKeyDown={(e) => {
+                          if (e.key === 'Enter' || e.key === ' ') {
+                            setSelectedGame('flippy');
+                          }
                         }}
                       >
-                        Play
-                      </button>
+                        <div className="arcade-app-icon arcade-icon-flippy">
+                          🐥
+                        </div>
+                        <div className="arcade-card-details">
+                          <h4 className="arcade-card-title">Flippy Bird</h4>
+                          <p className="arcade-card-genre">Action · Endless Flier</p>
+                          <div className="arcade-card-rating">
+                            ★ 4.9 · 12K Ratings
+                          </div>
+                        </div>
+                        <button
+                          type="button"
+                          className="arcade-play-btn"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            setSelectedGame('flippy');
+                          }}
+                        >
+                          Play
+                        </button>
+                      </div>
+
+                      {/* Tic Tac Toi */}
+                      <div
+                        className="arcade-game-card"
+                        role="button"
+                        tabIndex={0}
+                        onClick={() => setSelectedGame('tictactoe')}
+                        onKeyDown={(e) => {
+                          if (e.key === 'Enter' || e.key === ' ') {
+                            setSelectedGame('tictactoe');
+                          }
+                        }}
+                      >
+                        <div className="arcade-app-icon arcade-icon-ttt">
+                          ✕ ◯
+                        </div>
+                        <div className="arcade-card-details">
+                          <h4 className="arcade-card-title">Tic Tac Toi</h4>
+                          <p className="arcade-card-genre">Strategy · Board Game</p>
+                          <div className="arcade-card-rating">
+                            ★ 4.8 · 8.4K Ratings
+                          </div>
+                        </div>
+                        <button
+                          type="button"
+                          className="arcade-play-btn"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            setSelectedGame('tictactoe');
+                          }}
+                        >
+                          Play
+                        </button>
+                      </div>
                     </div>
-                  </div>
+                  </section>
                 </div>
               ) : selectedGame === 'flippy' ? (
-                <FlippyBird onBack={() => setSelectedGame(null)} />
+                <div className="active-game-container">
+                  <FlippyBird onBack={() => setSelectedGame(null)} />
+                </div>
               ) : (
-                <TicTacToi onBack={() => setSelectedGame(null)} />
+                <div className="active-game-container">
+                  <TicTacToi onBack={() => setSelectedGame(null)} />
+                </div>
               )}
             </div>
           </div>

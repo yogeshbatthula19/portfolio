@@ -1,7 +1,8 @@
-/* ==========================================================================
-   MINIMALIST APPLE INTERFACE STYLE — GAMES (2 GAMES ONLY)
-   ========================================================================== */
+/* =============================================================================
+   APPLE ARCADE / GAMES INTERFACE STYLE — MACOS WINDOW
+   ============================================================================= */
 
+/* Modal Backdrop: Completely Transparent (NO BLUR, NO DIMMING — Desktop remains sharp) */
 .arcade-modal-overlay {
   position: fixed;
   inset: 0;
@@ -9,58 +10,50 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(0, 0, 0, 0.28);
-  backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(4px);
+  background: transparent !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
   padding: 20px;
-  animation: appleFadeIn 0.18s ease-out;
   box-sizing: border-box;
 }
 
-@keyframes appleFadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
+/* Apple Arcade Window Frame (macOS Dark Glass) */
 .arcade-window {
-  width: min(480px, calc(100vw - 32px));
-  max-height: 85svh;
+  width: min(720px, calc(100vw - 32px));
+  max-height: 88svh;
   margin: 0 auto;
-  border: 1px solid rgba(0, 0, 0, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: 18px;
-  background: rgba(255, 255, 255, 0.98);
-  backdrop-filter: blur(35px) saturate(1.8);
-  -webkit-backdrop-filter: blur(35px) saturate(1.8);
-  color: #1d1d1f;
+  background: rgba(22, 22, 28, 0.94);
+  backdrop-filter: blur(50px) saturate(1.8);
+  -webkit-backdrop-filter: blur(50px) saturate(1.8);
+  color: #ffffff;
   box-shadow: 
-    0 24px 60px rgba(0, 0, 0, 0.25),
-    0 4px 14px rgba(0, 0, 0, 0.06);
+    0 35px 95px rgba(0, 0, 0, 0.65),
+    0 4px 18px rgba(0, 0, 0, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15);
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Segoe UI", sans-serif;
   animation: appleWindowIn 0.22s cubic-bezier(0.16, 1, 0.3, 1);
   will-change: transform;
 }
 
 @keyframes appleWindowIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
+  from { opacity: 0; transform: scale(0.96); }
+  to { opacity: 1; transform: scale(1); }
 }
 
-/* Header bar (macOS Native Window Titlebar - Draggable) */
+/* Header bar (macOS Native Window Titlebar with Traffic Lights) */
 .arcade-header {
-  height: 48px;
-  padding: 0 16px;
+  height: 52px;
+  padding: 0 18px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background: #fbfbfd;
-  border-bottom: 1px solid #e5e5ea;
+  background: rgba(26, 26, 32, 0.85);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   user-select: none;
   flex-shrink: 0;
   cursor: grab;
@@ -71,217 +64,376 @@
   cursor: grabbing;
 }
 
-.arcade-header-left {
+/* Left: macOS Native Traffic Lights */
+.arcade-traffic {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
+  width: 70px;
 }
 
-.arcade-header-left img {
-  width: 22px;
-  height: 22px;
+.arcade-traffic button {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 1px solid rgba(0, 0, 0, 0.18);
+  padding: 0;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  transition: opacity 0.15s;
+}
+
+.arcade-traffic .red { background: #ff5f57; }
+.arcade-traffic .yellow { background: #febc2e; }
+.arcade-traffic .green { background: #28c840; }
+
+.arcade-traffic button:hover {
+  filter: brightness(0.92);
+}
+
+/* Center: Apple Arcade Brand & Navigation */
+.arcade-nav-center {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.arcade-brand {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 15px;
+  font-weight: 700;
+  color: #ffffff;
+  letter-spacing: -0.02em;
+}
+
+.arcade-brand svg {
+  fill: currentColor;
+}
+
+.arcade-brand span {
+  font-size: 11px;
+  font-weight: 700;
+  padding: 2px 6px;
+  background: linear-gradient(135deg, #e52d27, #b31217);
+  border-radius: 4px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.arcade-tabs {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  background: rgba(255, 255, 255, 0.06);
+  padding: 3px;
+  border-radius: 8px;
+}
+
+.arcade-tab {
+  border: none;
+  background: transparent;
+  color: #98989f;
+  font-size: 12px;
+  font-weight: 500;
+  padding: 4px 12px;
   border-radius: 6px;
-  display: block;
+  cursor: pointer;
+  transition: all 0.18s ease;
 }
 
-.arcade-header-title {
+.arcade-tab:hover {
+  color: #ffffff;
+}
+
+.arcade-tab.active {
+  background: rgba(255, 255, 255, 0.16);
+  color: #ffffff;
+  font-weight: 600;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+}
+
+/* Back Button when playing a game */
+.arcade-back-nav {
+  background: none;
+  border: none;
+  font-size: 13px;
+  font-weight: 500;
+  color: #2997ff;
+  cursor: pointer;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  transition: opacity 0.15s;
+}
+
+.arcade-back-nav:hover {
+  text-decoration: underline;
+  opacity: 0.85;
+}
+
+.arcade-header-game-title {
   font-size: 14px;
   font-weight: 600;
-  color: #1d1d1f;
-  margin: 0;
-  letter-spacing: -0.01em;
+  color: #ffffff;
 }
 
-.arcade-close-cross {
-  background: #e8e8ed;
-  border: none;
-  border-radius: 50%;
-  width: 28px;
-  height: 28px;
+/* Body Container */
+.arcade-body {
+  padding: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  flex: 1;
+  box-sizing: border-box;
+  background: transparent;
+}
+
+/* =============================================================================
+   APPLE ARCADE DISCOVER VIEW
+   ============================================================================= */
+
+.arcade-discover-view {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding-bottom: 28px;
+}
+
+/* Hero Spotlight Banner */
+.arcade-hero-spotlight {
+  margin: 18px 20px 0;
+  padding: 26px 28px;
+  border-radius: 16px;
+  background: linear-gradient(135deg, #ff416c 0%, #8a2387 60%, #1a1a24 100%);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.45);
   display: flex;
   align-items: center;
-  justify-content: center;
-  color: #636366;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.arcade-hero-badge {
+  font-size: 9.5px;
+  font-weight: 750;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #ffd6e0;
+  margin-bottom: 6px;
+}
+
+.arcade-hero-title {
+  font-size: 24px;
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  line-height: 1.15;
+  margin: 0 0 6px 0;
+  color: #ffffff;
+}
+
+.arcade-hero-desc {
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.85);
+  margin: 0;
+  max-width: 380px;
+  line-height: 1.45;
+}
+
+.arcade-hero-btn {
+  background: #ffffff;
+  color: #000000;
+  border: none;
+  border-radius: 999px;
+  padding: 10px 24px;
+  font-size: 13px;
+  font-weight: 700;
   cursor: pointer;
-  transition: all 0.15s ease;
-  padding: 0;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);
+  transition: transform 0.18s, background-color 0.18s;
   flex-shrink: 0;
 }
 
-.arcade-close-cross:hover {
-  background: #d1d1d6;
-  color: #1d1d1f;
-  transform: scale(1.08);
+.arcade-hero-btn:hover {
+  transform: scale(1.05);
+  background: #f2f2f7;
 }
 
-.arcade-close-cross:active {
-  transform: scale(0.92);
-}
-
-.arcade-close-cross svg {
-  pointer-events: none;
-}
-
-/* Body container */
-.arcade-body {
-  padding: 20px 22px 24px;
-  overflow-y: auto;
-  box-sizing: border-box;
-  background: #ffffff;
-}
-
-/* ==========================================================================
-   2 GAMES LIST (MINIMALIST APPLE STYLE)
-   ========================================================================== */
-
-.games-list-title {
-  font-size: 19px;
-  font-weight: 700;
-  letter-spacing: -0.02em;
-  color: #1d1d1f;
-  margin: 0 0 4px 0;
-  text-align: center;
-}
-
-.games-list-sub {
-  font-size: 13px;
-  color: #86868b;
-  margin: 0 0 18px 0;
-  text-align: center;
-}
-
-.games-list-stack {
+/* Shelf Section */
+.arcade-shelf {
+  padding: 0 20px;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 14px;
 }
 
-.game-apple-row {
+.arcade-shelf-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+}
+
+.arcade-shelf-title {
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  color: #ffffff;
+  margin: 0;
+}
+
+.arcade-shelf-count {
+  font-size: 11px;
+  font-weight: 500;
+  color: #8e8e93;
+}
+
+/* 2 Games Grid in Apple Arcade App Style */
+.arcade-games-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.arcade-game-card {
   display: flex;
   align-items: center;
   gap: 16px;
-  padding: 14px 16px;
-  background: #fbfbfd;
-  border: 1px solid #e5e5ea;
-  border-radius: 14px;
-  transition: all 0.15s ease;
+  padding: 16px 18px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  transition: all 0.2s cubic-bezier(0.2, 0.8, 0.2, 1);
   cursor: pointer;
   text-align: left;
   user-select: none;
   outline: none;
 }
 
-.game-apple-row:hover {
-  background: #f5f5f7;
-  border-color: #d2d2d7;
-  transform: translateY(-1px);
+.arcade-game-card:hover {
+  background: rgba(255, 255, 255, 0.09);
+  border-color: rgba(255, 255, 255, 0.2);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
 }
 
-.game-apple-row:focus-visible {
-  outline: 2px solid #0071e3;
-  outline-offset: 2px;
-}
-
-.game-icon-box {
-  width: 52px;
-  height: 52px;
-  border-radius: 12px;
-  background: #f2f2f7;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 26px;
+/* Apple Squircle 3D App Icon */
+.arcade-app-icon {
+  width: 58px;
+  height: 58px;
+  border-radius: 14px;
+  display: grid;
+  place-items: center;
+  font-size: 28px;
   flex-shrink: 0;
-  border: 1px solid rgba(0, 0, 0, 0.06);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  position: relative;
+  overflow: hidden;
 }
 
-.game-info-col {
+.arcade-app-icon::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 50%;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.25) 0%, transparent 100%);
+  pointer-events: none;
+}
+
+.arcade-icon-flippy {
+  background: linear-gradient(145deg, #ffd000, #ff8c00);
+}
+
+.arcade-icon-ttt {
+  background: linear-gradient(145deg, #4776e6, #8e54e9);
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 20px;
+}
+
+.arcade-card-details {
   flex: 1;
   min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
 }
 
-.game-info-col h3 {
+.arcade-card-title {
   font-size: 15px;
-  font-weight: 600;
-  color: #1d1d1f;
-  margin: 0 0 3px 0;
+  font-weight: 650;
+  color: #ffffff;
+  margin: 0;
   letter-spacing: -0.01em;
 }
 
-.game-info-col p {
-  font-size: 12.5px;
-  color: #86868b;
+.arcade-card-genre {
+  font-size: 11.5px;
+  color: #8e8e93;
   margin: 0;
-  line-height: 1.4;
 }
 
-.game-play-pill {
-  background: #e8e8ed;
-  color: #0071e3;
-  border: none;
-  border-radius: 980px;
-  padding: 6px 16px;
-  font-size: 12.5px;
-  font-weight: 600;
-  letter-spacing: 0.02em;
-  text-transform: uppercase;
-  cursor: pointer;
-  transition: all 0.15s ease;
-  flex-shrink: 0;
-}
-
-.game-apple-row:hover .game-play-pill {
-  background: #0071e3;
-  color: #ffffff;
-}
-
-/* ==========================================================================
-   ACTIVE GAME VIEW
-   ========================================================================== */
-
-.active-game-header-bar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 14px;
-}
-
-.nav-back-link {
-  background: none;
-  border: none;
-  font-size: 13px;
+.arcade-card-rating {
+  font-size: 11px;
+  color: #ffd60a;
   font-weight: 500;
-  color: #0071e3;
-  cursor: pointer;
-  padding: 0;
-  display: inline-flex;
+  display: flex;
   align-items: center;
   gap: 4px;
 }
 
-.nav-back-link:hover {
-  text-decoration: underline;
+.arcade-play-btn {
+  background: #0071e3;
+  color: #ffffff;
+  border: none;
+  border-radius: 999px;
+  padding: 6px 18px;
+  font-size: 12.5px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.18s ease;
+  flex-shrink: 0;
+  box-shadow: 0 4px 12px rgba(0, 113, 227, 0.35);
 }
 
-.active-game-title {
-  font-size: 14px;
-  font-weight: 600;
-  color: #1d1d1f;
-  margin: 0;
+.arcade-play-btn:hover {
+  background: #0077ed;
+  transform: scale(1.06);
 }
 
-/* Flippy Bird Minimalist */
+.arcade-play-btn:active {
+  transform: scale(0.96);
+}
+
+/* =============================================================================
+   ACTIVE GAME VIEWS (FLIPPY BIRD & TIC TAC TOI)
+   ============================================================================= */
+
+.active-game-container {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Flippy Bird Canvas */
 .flappy-game-box {
   position: relative;
   width: 100%;
-  max-width: 320px;
+  max-width: 340px;
   height: 440px;
   margin: 0 auto;
-  border-radius: 14px;
+  border-radius: 16px;
   overflow: hidden;
-  background: #f5f5f7;
-  border: 1px solid #d2d2d7;
-  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.03);
+  background: #1c1c22;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.5);
   cursor: pointer;
   user-select: none;
   touch-action: none;
@@ -296,9 +448,9 @@
 .flappy-overlay-simple {
   position: absolute;
   inset: 0;
-  background: rgba(255, 255, 255, 0.88);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+  background: rgba(18, 18, 24, 0.88);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -309,22 +461,22 @@
 }
 
 .flappy-overlay-simple h4 {
-  font-size: 20px;
+  font-size: 22px;
   font-weight: 700;
-  color: #1d1d1f;
+  color: #ffffff;
   margin: 0 0 6px 0;
 }
 
 .flappy-overlay-simple p {
   font-size: 13px;
-  color: #86868b;
-  margin: 0 0 16px 0;
+  color: #8e8e93;
+  margin: 0 0 18px 0;
 }
 
 .flappy-score-row {
   display: flex;
-  gap: 24px;
-  margin-bottom: 20px;
+  gap: 28px;
+  margin-bottom: 22px;
 }
 
 .flappy-score-unit {
@@ -336,18 +488,141 @@
 .flappy-score-unit span {
   font-size: 11px;
   font-weight: 600;
-  color: #86868b;
+  color: #8e8e93;
   text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
 .flappy-score-unit b {
-  font-size: 24px;
+  font-size: 26px;
   font-weight: 800;
-  color: #1d1d1f;
+  color: #ffffff;
 }
 
 .apple-pill-btn {
-  background: #1d1d1f;
+  background: #0071e3;
+  color: #ffffff;
+  border: none;
+  border-radius: 980px;
+  padding: 10px 26px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  box-shadow: 0 4px 14px rgba(0, 113, 227, 0.4);
+}
+
+.apple-pill-btn:hover {
+  background: #0077ed;
+  transform: scale(1.04);
+}
+
+/* Tic Tac Toi */
+.ttt-simple-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 12px 0;
+}
+
+.ttt-status-msg {
+  font-size: 15px;
+  font-weight: 600;
+  color: #ffffff;
+  margin-bottom: 18px;
+  min-height: 22px;
+  text-align: center;
+}
+
+.ttt-board-apple {
+  display: grid;
+  grid-template-columns: repeat(3, 85px);
+  grid-template-rows: repeat(3, 85px);
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.08);
+  padding: 8px;
+  border-radius: 16px;
+  margin-bottom: 22px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
+}
+
+.ttt-tile {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  font-size: 38px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: #ffffff;
+  transition: all 0.15s ease;
+}
+
+.ttt-tile:hover:empty {
+  background: rgba(255, 255, 255, 0.14);
+}
+
+.active-game-header-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 340px;
+  margin: 0 auto 16px;
+  padding: 0 4px;
+}
+
+.nav-back-link {
+  background: none;
+  border: none;
+  color: #2997ff;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.nav-back-link:hover {
+  text-decoration: underline;
+}
+
+.active-game-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0;
+}
+
+.ttt-tile.x,
+.ttt-tile.tile-x {
+  color: #2997ff;
+}
+
+.ttt-tile.o,
+.ttt-tile.tile-o {
+  color: #ff375f;
+}
+
+.ttt-tile.win,
+.ttt-tile.tile-win {
+  background: rgba(40, 200, 64, 0.25);
+  border-color: #28c840;
+}
+
+.ttt-actions-row {
+  display: flex;
+  justify-content: center;
+  margin-top: 4px;
+}
+
+.ttt-restart-pill {
+  background: #0071e3;
   color: #ffffff;
   border: none;
   border-radius: 980px;
@@ -355,92 +630,25 @@
   font-size: 13px;
   font-weight: 600;
   cursor: pointer;
-  transition: all 0.15s ease;
-}
-
-.apple-pill-btn:hover {
-  background: #0071e3;
-}
-
-/* ==========================================================================
-   TIC TAC TOI (APPLE MINIMALIST)
-   ========================================================================== */
-
-.ttt-simple-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 8px 0;
-}
-
-.ttt-status-msg {
-  font-size: 14px;
-  font-weight: 600;
-  color: #1d1d1f;
-  margin-bottom: 16px;
-  min-height: 20px;
-  text-align: center;
-}
-
-.ttt-board-apple {
-  display: grid;
-  grid-template-columns: repeat(3, 80px);
-  grid-template-rows: repeat(3, 80px);
-  gap: 6px;
-  background: #e5e5ea;
-  padding: 6px;
-  border-radius: 14px;
-  margin-bottom: 20px;
-}
-
-.ttt-tile {
-  background: #ffffff;
-  border: none;
-  border-radius: 10px;
-  font-size: 36px;
-  font-weight: 700;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: background 0.12s ease;
-}
-
-.ttt-tile:hover:not(:disabled) {
-  background: #fbfbfd;
-}
-
-.ttt-tile.x {
-  color: #1d1d1f;
-}
-
-.ttt-tile.o {
-  color: #86868b;
-}
-
-.ttt-tile.win {
-  background: #f2f2f7;
-  color: #0071e3;
-  font-weight: 800;
-}
-
-.ttt-actions-row {
-  display: flex;
-  gap: 10px;
-}
-
-.ttt-restart-pill {
-  background: #f2f2f7;
-  color: #1d1d1f;
-  border: 1px solid #d2d2d7;
-  border-radius: 980px;
-  padding: 7px 18px;
-  font-size: 13px;
-  font-weight: 600;
-  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(0, 113, 227, 0.4);
   transition: all 0.15s ease;
 }
 
 .ttt-restart-pill:hover {
-  background: #e5e5ea;
+  background: #0077ed;
+  transform: scale(1.04);
+}
+
+/* Responsive Queries */
+@media (max-width: 650px) {
+  .arcade-games-grid {
+    grid-template-columns: 1fr;
+  }
+  .arcade-hero-spotlight {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .arcade-nav-center .arcade-tabs {
+    display: none;
+  }
 }
