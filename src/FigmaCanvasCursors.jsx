@@ -1,7 +1,6 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import './FigmaCanvasCursors.css';
 
-// SVG cursor pointer tip matching Figma's classic multiplayer pointer
 function FigmaPointer({ color }) {
   return (
     <svg className="figma-cursor-icon" viewBox="0 0 16 16" width="16" height="16" fill="none">
@@ -28,38 +27,28 @@ function SelectionBoxHandles() {
 }
 
 export default function FigmaCanvasCursors() {
-  const stageRef = useRef(null);
   const [userPos, setUserPos] = useState(null);
   const [userClickBox, setUserClickBox] = useState(null);
 
   const handlePointerMove = (e) => {
-    if (!stageRef.current) return;
-    const rect = stageRef.current.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-    if (x >= 0 && x <= rect.width && y >= 0 && y <= rect.height) {
-      setUserPos({ x, y });
-    } else {
-      setUserPos(null);
-    }
+    setUserPos({ x: e.clientX, y: e.clientY });
   };
 
   const handlePointerLeave = () => {
     setUserPos(null);
   };
 
-  const handleStageClick = (e) => {
-    if (!stageRef.current) return;
-    const rect = stageRef.current.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-
-    const boxW = Math.min(140, rect.width * 0.28);
-    const boxH = Math.min(90, rect.height * 0.75);
-    const left = Math.max(10, Math.min(rect.width - boxW - 10, x - boxW / 2));
-    const top = Math.max(10, Math.min(rect.height - boxH - 10, y - boxH / 2));
-
-    setUserClickBox({ left, top, width: boxW, height: boxH, id: Date.now() });
+  const handleCanvasClick = (e) => {
+    if (e.target.closest('.desktop-files') || e.target.closest('.dock-wrap') || e.target.closest('.menubar')) return;
+    const boxW = 160;
+    const boxH = 88;
+    setUserClickBox({
+      left: e.clientX - boxW / 2,
+      top: e.clientY - boxH / 2,
+      width: boxW,
+      height: boxH,
+      id: Date.now()
+    });
   };
 
   useEffect(() => {
@@ -71,24 +60,25 @@ export default function FigmaCanvasCursors() {
 
   return (
     <div
-      ref={stageRef}
-      className="figma-collab-layer"
+      className="figma-desktop-canvas"
       onPointerMove={handlePointerMove}
       onPointerLeave={handlePointerLeave}
-      onClick={handleStageClick}
+      onClick={handleCanvasClick}
       aria-hidden="true"
     >
-      {/* Selection Box 1 (Dhruv A's selection on left letters "Port", tilted -4deg) */}
-      <div className="figma-selection-box figma-box-dhruv">
+      {/* Selection Box 1: "the car" (Framing the Porsche driving along the evening highway) */}
+      <div className="figma-selection-box figma-box-car">
+        <span className="figma-layer-name">the car</span>
         <SelectionBoxHandles />
       </div>
 
-      {/* Selection Box 2 (Marcus L's selection on right letters "lio") */}
-      <div className="figma-selection-box figma-box-marcus">
+      {/* Selection Box 2: "Portfolio" (Framing the portfolio title typography) */}
+      <div className="figma-selection-box figma-box-words">
+        <span className="figma-layer-name">Portfolio</span>
         <SelectionBoxHandles />
       </div>
 
-      {/* Interactive User Selection Box (on click) */}
+      {/* Interactive User Selection Box */}
       {userClickBox && (
         <div
           className="figma-selection-box figma-user-box"
@@ -99,45 +89,50 @@ export default function FigmaCanvasCursors() {
             height: `${userClickBox.height}px`,
           }}
         >
+          <span className="figma-layer-name">Selection</span>
           <SelectionBoxHandles />
         </div>
       )}
 
-      {/* Dhruv A Cursor (Purple) */}
-      <div className="figma-cursor figma-cursor-dhruv">
-        <FigmaPointer color="#8B5CF6" />
-        <div className="figma-badge" style={{ backgroundColor: '#8B5CF6' }}>
-          Dhruv A
-        </div>
-      </div>
-
-      {/* Marcus L Cursor (Green) */}
+      {/* Cursor 1: Marcus L selecting "the car" (Green) */}
       <div className="figma-cursor figma-cursor-marcus">
         <FigmaPointer color="#10B981" />
-        <div className="figma-badge" style={{ backgroundColor: '#10B981' }}>
-          Marcus L
+        <div className="figma-cursor-tag">
+          <div className="figma-badge" style={{ backgroundColor: '#10B981' }}>Marcus L</div>
+          <div className="figma-chat">the car 🏎️</div>
         </div>
       </div>
 
-      {/* Zaria Z Cursor (Hot Pink) */}
+      {/* Cursor 2: Dhruv A selecting "Portfolio" / words (Purple) */}
+      <div className="figma-cursor figma-cursor-dhruv">
+        <FigmaPointer color="#8B5CF6" />
+        <div className="figma-cursor-tag">
+          <div className="figma-badge" style={{ backgroundColor: '#8B5CF6' }}>Dhruv A</div>
+          <div className="figma-chat">typography ✨</div>
+        </div>
+      </div>
+
+      {/* Cursor 3: Zaria Z roaming the windmills & sunset (Hot Pink) */}
       <div className="figma-cursor figma-cursor-zaria">
         <FigmaPointer color="#EC4899" />
-        <div className="figma-badge" style={{ backgroundColor: '#EC4899' }}>
-          Zaria Z
+        <div className="figma-cursor-tag">
+          <div className="figma-badge" style={{ backgroundColor: '#EC4899' }}>Zaria Z</div>
+          <div className="figma-chat">sunset vibe 🌅</div>
         </div>
       </div>
 
-      {/* Interactive User Cursor ("You") when hovering over portfolio */}
+      {/* Interactive User Cursor ("You") following the mouse */}
       {userPos && (
         <div
           className="figma-cursor figma-user-cursor"
           style={{
-            transform: `translate3d(${userPos.x}px, ${userPos.y}px, 0)`,
+            left: `${userPos.x}px`,
+            top: `${userPos.y}px`,
           }}
         >
           <FigmaPointer color="#0D99FF" />
-          <div className="figma-badge" style={{ backgroundColor: '#0D99FF' }}>
-            You
+          <div className="figma-cursor-tag">
+            <div className="figma-badge" style={{ backgroundColor: '#0D99FF' }}>You</div>
           </div>
         </div>
       )}
