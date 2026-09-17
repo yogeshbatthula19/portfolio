@@ -26,10 +26,6 @@ export default function AboutMe({ onContact, onProjects }) {
     setEmojiIndex((prev) => (prev + 1) % emojis.length);
   };
 
-  const scrollToStory = () => {
-    storyRef.current?.scrollIntoView({ behavior: 'smooth' });
-  };
-
   const scrollToTop = () => {
     const scrollContainer = screenRef.current?.closest('.content') || screenRef.current;
     scrollContainer?.scrollTo({ top: 0, behavior: 'smooth' });
@@ -52,13 +48,13 @@ export default function AboutMe({ onContact, onProjects }) {
           </div>
 
           {/* =============================================================
-              DYNAMIC PARALLAX STICKERS (MOVE DOWN AS YOU SCROLL)
+              DYNAMIC PARALLAX STICKERS (STAY IN MARGINS & GLIDE DOWN)
               ============================================================= */}
-          {/* 1. Drone Sticker on Top Left */}
+          {/* 1. Drone Sticker on Left Margin */}
           <div
             className="realistic-sticker sticker-drone"
             style={{
-              transform: `translateY(${scrollY * 0.7}px) rotate(${-7 + scrollY * 0.03}deg)`,
+              transform: `translateY(${scrollY * 0.4}px) rotate(${-7 + scrollY * 0.02}deg)`,
             }}
             title="Tech & FPV Drone"
             aria-label="Quadcopter camera drone sticker"
@@ -66,11 +62,11 @@ export default function AboutMe({ onContact, onProjects }) {
             <img src="/images/drone-sticker.png" alt="Camera drone die-cut sticker" />
           </div>
 
-          {/* 2. Charminar Hyderabad Monument Sticker on Top Right */}
+          {/* 2. Charminar Hyderabad Monument Sticker on Right Margin */}
           <div
             className="realistic-sticker sticker-charminar"
             style={{
-              transform: `translateY(${scrollY * 0.85}px) rotate(${6 - scrollY * 0.02}deg)`,
+              transform: `translateY(${scrollY * 0.45}px) rotate(${6 - scrollY * 0.02}deg)`,
             }}
             title="Charminar, Hyderabad"
             aria-label="Charminar Hyderabad monument sticker"
@@ -78,11 +74,11 @@ export default function AboutMe({ onContact, onProjects }) {
             <img src="/images/charminar-sticker.png" alt="Charminar monument die-cut sticker" />
           </div>
 
-          {/* 3. Off-Road 4x4 Jeep Sticker on Bottom Left */}
+          {/* 3. Off-Road 4x4 Jeep Sticker on Bottom-Left Margin */}
           <div
             className="realistic-sticker sticker-jeep"
             style={{
-              transform: `translateY(${scrollY * 0.5}px) rotate(${-5 + scrollY * 0.02}deg)`,
+              transform: `translateY(${scrollY * 0.3}px) rotate(${-5 + scrollY * 0.015}deg)`,
             }}
             title="4x4 Adventure Jeep"
             aria-label="Off-road 4x4 Jeep sticker"
@@ -186,69 +182,55 @@ export default function AboutMe({ onContact, onProjects }) {
           </div>
 
         </div>
-
-        {/* Scroll down indicator button */}
-        <button
-          type="button"
-          className="scroll-hint-bar"
-          onClick={scrollToStory}
-          aria-label="Scroll down to read more"
-        >
-          <span>Scroll down for story</span>
-          <span className="scroll-arrow-down">↓</span>
-        </button>
       </section>
 
       {/* =================================================================
-          SECTION 2: DETAILED STORY & BIO (REVEALED ON SCROLL)
+          SECTION 2: CLEAN DETAILED STORY (NO CONTAINER BOXES)
           ================================================================= */}
       <section className="about-extended-story" ref={storyRef}>
-        <div className="story-card">
-          <div className="story-sparkle">✦ ✦ ✦</div>
-          <h2 className="story-title">Behind the Pixels</h2>
-          
-          <div className="story-paragraphs">
-            <p className="story-p">
-              I’m a <strong>Product Designer</strong> based in Hyderabad, deeply driven by the intersection of system architecture, tactile micro-interactions, and human psychology. Over the past 4+ years, I’ve focused on transforming intricate, high-friction domains into digital experiences that feel effortless, intuitive, and thoughtfully crafted.
-            </p>
+        <h2 className="story-title">Behind the Pixels</h2>
+        
+        <div className="story-paragraphs">
+          <p className="story-p">
+            I’m a <strong>Product Designer</strong> based in Hyderabad, deeply driven by the intersection of system architecture, tactile micro-interactions, and human psychology. Over the past 4+ years, I’ve focused on transforming intricate, high-friction domains into digital experiences that feel effortless, intuitive, and thoughtfully crafted.
+          </p>
 
-            <p className="story-p">
-              My work spans from zero-to-one product strategy to shipping polished web, mobile, and design systems. At <strong>Recovery</strong>, I led the end-to-end design of a connected clinical rehabilitation platform, bridging orthopedic surgeons, physical therapists, and recovering patients through shared progress telemetry. On <strong>Trosky 365</strong>, I designed an AI-guided baseball coaching platform that turns complex athletic mechanics into an engaging conversational training companion.
-            </p>
+          <p className="story-p">
+            My work spans from zero-to-one product strategy to shipping polished web, mobile, and design systems. At <strong>Recovery</strong>, I led the end-to-end design of a connected clinical rehabilitation platform, bridging orthopedic surgeons, physical therapists, and recovering patients through shared progress telemetry. On <strong>Trosky 365</strong>, I designed an AI-guided baseball coaching platform that turns complex athletic mechanics into an engaging conversational training companion.
+          </p>
 
-            <p className="story-p">
-              I believe that the best products aren’t just visually striking—they operate with clear intentionality, respect the user’s cognitive load, and spark genuine joy. Outside of design sprints and code, you’ll usually find me exploring scenic trails in a 4×4 Jeep, capturing cinematic aerial shots with FPV drones, or diving into sci-fi cinema over a fresh pour-over coffee.
-            </p>
-          </div>
+          <p className="story-p">
+            I believe that the best products aren’t just visually striking—they operate with clear intentionality, respect the user’s cognitive load, and spark genuine joy. Outside of design sprints and code, you’ll usually find me exploring scenic trails in a 4×4 Jeep, capturing cinematic aerial shots with FPV drones, or diving into sci-fi cinema over a fresh pour-over coffee.
+          </p>
+        </div>
 
-          {/* Quick interactive action buttons */}
-          <div className="story-cta-strip">
-            {onProjects && (
-              <button
-                type="button"
-                className="story-action-btn primary"
-                onClick={onProjects}
-              >
-                View Selected Projects ↗
-              </button>
-            )}
-            {onContact && (
-              <button
-                type="button"
-                className="story-action-btn secondary"
-                onClick={onContact}
-              >
-                Let’s Connect
-              </button>
-            )}
+        {/* Quick interactive action buttons */}
+        <div className="story-cta-strip">
+          {onProjects && (
             <button
               type="button"
-              className="story-action-btn ghost"
-              onClick={scrollToTop}
+              className="story-action-btn primary"
+              onClick={onProjects}
             >
-              Back to top ↑
+              View Selected Projects ↗
             </button>
-          </div>
+          )}
+          {onContact && (
+            <button
+              type="button"
+              className="story-action-btn secondary"
+              onClick={onContact}
+            >
+              Let’s Connect
+            </button>
+          )}
+          <button
+            type="button"
+            className="story-action-btn ghost"
+            onClick={scrollToTop}
+          >
+            Back to top ↑
+          </button>
         </div>
       </section>
 
