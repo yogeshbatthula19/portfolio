@@ -1,4 +1,5 @@
 import React, { useRef, useState, useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import { useDraggable } from './useDraggable.js';
 import './AppleTVMovies.css';
 
@@ -136,17 +137,22 @@ const movies = [
 ];
 
 export default function Movies() {
-  const dialog = useRef(null);
   const trigger = useRef(null);
+  const [isOpen, setIsOpen] = useState(false);
   const [selectedMovie, setSelectedMovie] = useState(movies[2]); // Default to Baahubali
   const [activeTab, setActiveTab] = useState('Watch Now');
   const [searchQuery, setSearchQuery] = useState('');
   const [playingToast, setPlayingToast] = useState('');
   const { pos, resetPos, dragHandlers } = useDraggable();
 
-  const close = () => {
+  const openMovies = () => {
+    setIsOpen(true);
+  };
+
+  const closeMovies = () => {
+    setIsOpen(false);
     resetPos();
-    dialog.current?.close();
+    trigger.current?.focus();
   };
 
   const handlePlay = (movie) => {
@@ -154,13 +160,17 @@ export default function Movies() {
     setTimeout(() => setPlayingToast(''), 3500);
   };
 
+  // Close on Escape key
   useEffect(() => {
-    const el = dialog.current;
-    if (!el) return;
-    const restore = () => trigger.current?.focus();
-    el.addEventListener('close', restore);
-    return () => el.removeEventListener('close', restore);
-  }, []);
+    if (!isOpen) return;
+    const onKeyDown = (e) => {
+      if (e.key === 'Escape') {
+        closeMovies();
+      }
+    };
+    window.addEventListener('keydown', onKeyDown);
+    return () => window.removeEventListener('keydown', onKeyDown);
+  }, [isOpen]);
 
   const filteredMovies = movies.filter(
     (m) =>
@@ -170,9 +180,10 @@ export default function Movies() {
 
   return (
     <>
+      {/* Desktop File Icon Trigger */}
       <button
         ref={trigger}
-        onClick={() => dialog.current?.showModal()}
+        onClick={openMovies}
         aria-label="Apple TV — My 10 Favorite Movies"
       >
         <div className="desktop-file">
@@ -181,78 +192,105 @@ export default function Movies() {
         <span>Movies</span>
       </button>
 
-      <dialog
-        ref={dialog}
-        className="movies-window"
-        style={{ transform: `translate(${pos.x}px, ${pos.y}px)` }}
-        aria-labelledby="appletv-title"
-        onClick={(e) => {
-          if (e.target === dialog.current) close();
-        }}
-      >
-        {/* Apple TV macOS Titlebar */}
-        <header className="appletv-navbar" {...dragHandlers}>
-          {/* Native macOS Traffic Lights */}
-          <div className="appletv-traffic">
-            <button
-              type="button"
-              className="red"
-              aria-label="Close Apple TV"
-              title="Close"
-              onClick={close}
-            />
-            <button
-              type="button"
-              className="yellow"
-              aria-label="Minimize"
-              title="Minimize"
-              onClick={close}
-            />
-            <button
-              type="button"
-              className="green"
-              aria-label="Zoom"
-              title="Zoom"
-            />
-          </div>
-
-          {/* Apple TV Branding & Nav Tabs */}
-          <div className="appletv-nav-center">
-            <div className="appletv-brand" id="appletv-title">
-              <svg width="15" height="18" viewBox="0 0 170 170" fill="currentColor">
-                <path d="M150.37 130.25c-2.45 5.66-5.35 10.87-8.71 15.66-4.58 6.53-8.33 11.05-11.22 13.56-4.48 4.12-9.28 6.23-14.42 6.35-3.69 0-8.14-1.05-13.32-3.18-5.19-2.12-9.97-3.17-14.34-3.17-4.58 0-9.49 1.05-14.75 3.17-5.26 2.13-9.5 3.24-12.74 3.35-4.35.13-9.16-1.9-14.42-6.08-3.69-3.08-7.7-7.94-12.04-14.59-6.08-9.33-10.88-20.15-14.4-32.48-3.52-12.33-5.28-24.12-5.28-35.37 0-14.44 3.73-26.6 11.19-36.48 7.46-9.88 16.99-14.93 28.58-15.15 4.8 0 10.3 1.25 16.51 3.74 6.2 2.49 10.29 3.78 12.27 3.86 1.77 0 5.92-1.37 12.44-4.11 6.52-2.74 12.08-3.99 16.68-3.74 12.63.66 22.84 5.37 30.63 14.13-11.04 6.74-16.44 16.03-16.2 27.87.24 9.87 4.09 18.25 11.55 25.13 7.46 6.89 16.32 10.74 26.58 11.56-2.2 6.64-4.8 13.06-7.8 19.26zM119.22 33.64c0-7.3 2.66-14.18 7.99-20.64 5.33-6.46 11.89-10.8 19.68-13 1.09 8.24-.76 15.69-5.55 22.35-4.79 6.66-11.39 10.8-19.8 12.42-.65-.37-1.42-.7-2.32-1.13z"/>
-              </svg>
-              tv <span>app</span>
-            </div>
-
-            <div className="appletv-tabs">
-              {['Watch Now', 'Top 10', 'Library'].map((tab) => (
+      {/* Apple TV Window & Transparent Modal Backdrop */}
+      {isOpen && createPortal(
+        <div
+          className="appletv-modal-overlay"
+          onClick={(e) => {
+            if (e.target === e.currentTarget) {
+              closeMovies();
+            }
+          }}
+        >
+          <div
+            className="movies-window"
+            style={{ transform: `translate(${pos.x}px, ${pos.y}px)` }}
+            aria-labelledby="appletv-title"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Apple TV macOS Titlebar */}
+            <header className="appletv-navbar" {...dragHandlers}>
+              {/* Native macOS Traffic Lights */}
+              <div className="appletv-traffic">
                 <button
-                  key={tab}
                   type="button"
-                  className={`appletv-tab ${activeTab === tab ? 'active' : ''}`}
-                  onClick={() => setActiveTab(tab)}
+                  className="red"
+                  aria-label="Close Apple TV"
+                  title="Close (Esc)"
+                  onClick={closeMovies}
                 >
-                  {tab}
+                  <svg width="7" height="7" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3.2" strokeLinecap="round">
+                    <line x1="18" y1="6" x2="6" y2="18"/>
+                    <line x1="6" y1="6" x2="18" y2="18"/>
+                  </svg>
                 </button>
-              ))}
-            </div>
-          </div>
+                <button
+                  type="button"
+                  className="yellow"
+                  aria-label="Minimize"
+                  title="Minimize"
+                  onClick={closeMovies}
+                />
+                <button
+                  type="button"
+                  className="green"
+                  aria-label="Zoom"
+                  title="Zoom"
+                />
+              </div>
 
-          {/* Right: Search Filter */}
-          <div className="appletv-search-box">
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-              <circle cx="11" cy="11" r="8"/>
-              <line x1="21" y1="21" x2="16.65" y2="16.65"/>
-            </svg>
-            <input
-              type="text"
-              placeholder="Search Movies..."
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-            />
-          </div>
-        </header>
+              {/* Apple TV Branding & Nav Tabs */}
+              <div className="appletv-nav-center">
+                <div className="appletv-brand" id="appletv-title">
+                  <svg width="15" height="18" viewBox="0 0 170 170" fill="currentColor">
+                    <path d="M150.37 130.25c-2.45 5.66-5.35 10.87-8.71 15.66-4.58 6.53-8.33 11.05-11.22 13.56-4.48 4.12-9.28 6.23-14.42 6.35-3.69 0-8.14-1.05-13.32-3.18-5.19-2.12-9.97-3.17-14.34-3.17-4.58 0-9.49 1.05-14.75 3.17-5.26 2.13-9.5 3.24-12.74 3.35-4.35.13-9.16-1.9-14.42-6.08-3.69-3.08-7.7-7.94-12.04-14.59-6.08-9.33-10.88-20.15-14.4-32.48-3.52-12.33-5.28-24.12-5.28-35.37 0-14.44 3.73-26.6 11.19-36.48 7.46-9.88 16.99-14.93 28.58-15.15 4.8 0 10.3 1.25 16.51 3.74 6.2 2.49 10.29 3.78 12.27 3.86 1.77 0 5.92-1.37 12.44-4.11 6.52-2.74 12.08-3.99 16.68-3.74 12.63.66 22.84 5.37 30.63 14.13-11.04 6.74-16.44 16.03-16.2 27.87.24 9.87 4.09 18.25 11.55 25.13 7.46 6.89 16.32 10.74 26.58 11.56-2.2 6.64-4.8 13.06-7.8 19.26zM119.22 33.64c0-7.3 2.66-14.18 7.99-20.64 5.33-6.46 11.89-10.8 19.68-13 1.09 8.24-.76 15.69-5.55 22.35-4.79 6.66-11.39 10.8-19.8 12.42-.65-.37-1.42-.7-2.32-1.13z"/>
+                  </svg>
+                  tv <span>app</span>
+                </div>
+
+                <div className="appletv-tabs">
+                  {['Watch Now', 'Top 10', 'Library'].map((tab) => (
+                    <button
+                      key={tab}
+                      type="button"
+                      className={`appletv-tab ${activeTab === tab ? 'active' : ''}`}
+                      onClick={() => setActiveTab(tab)}
+                    >
+                      {tab}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              {/* Right: Search Filter + Explicit Close Cross */}
+              <div className="appletv-header-right">
+                <div className="appletv-search-box">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                    <circle cx="11" cy="11" r="8"/>
+                    <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+                  </svg>
+                  <input
+                    type="text"
+                    placeholder="Search Movies..."
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                  />
+                </div>
+
+                <button
+                  type="button"
+                  className="appletv-close-btn"
+                  aria-label="Close Apple TV window"
+                  title="Close (Esc)"
+                  onClick={closeMovies}
+                >
+                  <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.8" strokeLinecap="round">
+                    <line x1="18" y1="6" x2="6" y2="18"/>
+                    <line x1="6" y1="6" x2="18" y2="18"/>
+                  </svg>
+                </button>
+              </div>
+            </header>
 
         {/* Apple TV Scrollable Body */}
         <div className="appletv-body">
@@ -364,7 +402,10 @@ export default function Movies() {
             <span>{playingToast}</span>
           </div>
         )}
-      </dialog>
+          </div>
+        </div>,
+        document.body
+      )}
     </>
   );
 }

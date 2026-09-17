@@ -73,23 +73,86 @@
 }
 
 .arcade-traffic button {
-  width: 12px;
-  height: 12px;
+  width: 13px;
+  height: 13px;
   border-radius: 50%;
-  border: 1px solid rgba(0, 0, 0, 0.18);
+  border: 1px solid rgba(0, 0, 0, 0.2);
   padding: 0;
   display: grid;
   place-items: center;
   cursor: pointer;
-  transition: opacity 0.15s;
+  transition: filter 0.15s, transform 0.1s;
+  position: relative;
 }
 
-.arcade-traffic .red { background: #ff5f57; }
-.arcade-traffic .yellow { background: #febc2e; }
-.arcade-traffic .green { background: #28c840; }
+.arcade-traffic button::before {
+  content: "";
+  position: absolute;
+  inset: -6px;
+}
+
+.arcade-traffic .red {
+  background: #ff5f57;
+  color: #5c0002;
+}
+
+.arcade-traffic .yellow {
+  background: #febc2e;
+}
+
+.arcade-traffic .green {
+  background: #28c840;
+}
+
+.arcade-traffic .red svg {
+  opacity: 0;
+  transition: opacity 0.12s;
+  pointer-events: none;
+}
+
+.arcade-traffic:hover .red svg {
+  opacity: 0.85;
+}
 
 .arcade-traffic button:hover {
   filter: brightness(0.92);
+}
+
+.arcade-traffic button:active {
+  transform: scale(0.9);
+}
+
+.arcade-close-btn {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(255, 255, 255, 0.08);
+  color: #c7c7cc;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  padding: 0;
+  transition: all 0.18s ease;
+  flex-shrink: 0;
+  position: relative;
+}
+
+.arcade-close-btn::before {
+  content: "";
+  position: absolute;
+  inset: -6px;
+}
+
+.arcade-close-btn:hover {
+  background: rgba(255, 255, 255, 0.22);
+  border-color: rgba(255, 255, 255, 0.3);
+  color: #ffffff;
+  transform: scale(1.08);
+}
+
+.arcade-close-btn:active {
+  transform: scale(0.92);
 }
 
 /* Center: Apple Arcade Brand & Navigation */

@@ -2,6 +2,21 @@
    APPLE TV INTERFACE STYLE — MOVIES WINDOW
    ============================================================================= */
 
+/* Transparent Overlay for True macOS Viewport Centering & Click-to-Close */
+.appletv-modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 99998;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
 /* Window Container: Dark Cinematic Apple TV Glass */
 .movies-window {
   width: min(1040px, calc(100vw - 36px));
@@ -23,6 +38,10 @@
   font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Segoe UI", sans-serif;
   animation: appleWindowIn 0.22s cubic-bezier(0.16, 1, 0.3, 1);
   will-change: transform;
+}
+
+dialog.movies-window:not([open]) {
+  display: none !important;
 }
 
 /* NO Backdrop Blur or Dimming: Desktop remains 100% sharp and clear like macOS */
@@ -60,23 +79,54 @@
 }
 
 .appletv-traffic button {
-  width: 12px;
-  height: 12px;
+  width: 13px;
+  height: 13px;
   border-radius: 50%;
-  border: 1px solid rgba(0, 0, 0, 0.18);
+  border: 1px solid rgba(0, 0, 0, 0.2);
   padding: 0;
   display: grid;
   place-items: center;
   cursor: pointer;
-  transition: opacity 0.15s;
+  transition: filter 0.15s, transform 0.1s;
+  position: relative;
 }
 
-.appletv-traffic .red { background: #ff5f57; }
-.appletv-traffic .yellow { background: #febc2e; }
-.appletv-traffic .green { background: #28c840; }
+/* Enlarged click target so clicks are never missed */
+.appletv-traffic button::before {
+  content: "";
+  position: absolute;
+  inset: -6px;
+}
+
+.appletv-traffic .red {
+  background: #ff5f57;
+  color: #5c0002;
+}
+
+.appletv-traffic .yellow {
+  background: #febc2e;
+}
+
+.appletv-traffic .green {
+  background: #28c840;
+}
+
+.appletv-traffic .red svg {
+  opacity: 0;
+  transition: opacity 0.12s;
+  pointer-events: none;
+}
+
+.appletv-traffic:hover .red svg {
+  opacity: 0.85;
+}
 
 .appletv-traffic button:hover {
   filter: brightness(0.92);
+}
+
+.appletv-traffic button:active {
+  transform: scale(0.9);
 }
 
 /* Center: Apple TV Logo & Navigation Tabs */
@@ -177,6 +227,46 @@
 
 .appletv-search-box input::placeholder {
   color: #8e8e93;
+}
+
+/* Right Header Controls */
+.appletv-header-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.appletv-close-btn {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(255, 255, 255, 0.08);
+  color: #c7c7cc;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  padding: 0;
+  transition: all 0.18s ease;
+  flex-shrink: 0;
+  position: relative;
+}
+
+.appletv-close-btn::before {
+  content: "";
+  position: absolute;
+  inset: -6px;
+}
+
+.appletv-close-btn:hover {
+  background: rgba(255, 255, 255, 0.22);
+  border-color: rgba(255, 255, 255, 0.3);
+  color: #ffffff;
+  transform: scale(1.08);
+}
+
+.appletv-close-btn:active {
+  transform: scale(0.92);
 }
 
 /* Scrollable Content Body */

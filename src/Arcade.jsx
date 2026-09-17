@@ -470,9 +470,14 @@ export default function Arcade() {
                   type="button"
                   className="red"
                   aria-label="Close Arcade"
-                  title="Close"
+                  title="Close (Esc)"
                   onClick={closeArcade}
-                />
+                >
+                  <svg width="7" height="7" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3.2" strokeLinecap="round">
+                    <line x1="18" y1="6" x2="6" y2="18"/>
+                    <line x1="6" y1="6" x2="18" y2="18"/>
+                  </svg>
+                </button>
                 <button
                   type="button"
                   className="yellow"
@@ -526,7 +531,20 @@ export default function Arcade() {
                 )}
               </div>
 
-              <div style={{ width: 70 }} />
+              <div style={{ width: 70, display: 'flex', justifyContent: 'flex-end' }}>
+                <button
+                  type="button"
+                  className="arcade-close-btn"
+                  aria-label="Close Arcade window"
+                  title="Close (Esc)"
+                  onClick={closeArcade}
+                >
+                  <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.8" strokeLinecap="round">
+                    <line x1="18" y1="6" x2="6" y2="18"/>
+                    <line x1="6" y1="6" x2="18" y2="18"/>
+                  </svg>
+                </button>
+              </div>
             </header>
 
             {/* Apple Arcade Body Content */}
