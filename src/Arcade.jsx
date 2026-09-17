@@ -1,4 +1,5 @@
 import React, { useRef, useState, useEffect, useCallback } from 'react';
+import { createPortal } from 'react-dom';
 import { useDraggable } from './useDraggable.js';
 import './Arcade.css';
 
@@ -447,8 +448,8 @@ export default function Arcade() {
         <span className="tooltip">Games</span>
       </button>
 
-      {/* Clean Apple Modal Dialog Overlay & Draggable Window */}
-      {isOpen && (
+      {/* Clean Apple Modal Dialog Overlay & Draggable Window (rendered at document.body for true viewport centering) */}
+      {isOpen && createPortal(
         <div
           className="arcade-modal-overlay"
           onClick={(e) => {
@@ -503,7 +504,7 @@ export default function Arcade() {
             {/* Clean Apple Body Content */}
             <div className="arcade-body">
               {selectedGame === null ? (
-                <div>
+                <div className="arcade-selection-view">
                   <h2 className="games-list-title">Games</h2>
                   <p className="games-list-sub">Select a game to play.</p>
 
@@ -511,14 +512,28 @@ export default function Arcade() {
                     {/* 1. Flippy Bird Row */}
                     <div
                       className="game-apple-row"
+                      role="button"
+                      tabIndex={0}
                       onClick={() => setSelectedGame('flippy')}
+                      onKeyDown={(e) => {
+                        if (e.key === 'Enter' || e.key === ' ') {
+                          setSelectedGame('flippy');
+                        }
+                      }}
                     >
                       <div className="game-icon-box">🐥</div>
                       <div className="game-info-col">
                         <h3>Flippy Bird</h3>
                         <p>Tap to flap and fly through obstacles.</p>
                       </div>
-                      <button type="button" className="game-play-pill">
+                      <button
+                        type="button"
+                        className="game-play-pill"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setSelectedGame('flippy');
+                        }}
+                      >
                         Play
                       </button>
                     </div>
@@ -526,14 +541,28 @@ export default function Arcade() {
                     {/* 2. Tic Tac Toi Row */}
                     <div
                       className="game-apple-row"
+                      role="button"
+                      tabIndex={0}
                       onClick={() => setSelectedGame('tictactoe')}
+                      onKeyDown={(e) => {
+                        if (e.key === 'Enter' || e.key === ' ') {
+                          setSelectedGame('tictactoe');
+                        }
+                      }}
                     >
                       <div className="game-icon-box">✕ ◯</div>
                       <div className="game-info-col">
                         <h3>Tic Tac Toi</h3>
                         <p>Classic 3×3 game against the computer.</p>
                       </div>
-                      <button type="button" className="game-play-pill">
+                      <button
+                        type="button"
+                        className="game-play-pill"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setSelectedGame('tictactoe');
+                        }}
+                      >
                         Play
                       </button>
                     </div>
@@ -546,7 +575,8 @@ export default function Arcade() {
               )}
             </div>
           </div>
-        </div>
+        </div>,
+        document.body
       )}
     </>
   );
