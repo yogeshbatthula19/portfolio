@@ -6,8 +6,8 @@
   height: 100%;
   width: 100%;
   box-sizing: border-box;
-  /* Authentic Apple Notes lined textured paper background */
-  background: #f7f5ef url('/images/notes-paper.png') center / cover no-repeat;
+  /* Solid pure white background */
+  background: #ffffff;
   display: flex;
   flex-direction: column;
   align-items: center;
