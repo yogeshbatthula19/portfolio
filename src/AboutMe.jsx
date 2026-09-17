@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './PolaroidAbout.css';
 
-export default function AboutMe({ onContact, onProjects }) {
+export default function AboutMe({ onContact, onProjects, onExperience }) {
   const [emojiIndex, setEmojiIndex] = useState(0);
   const emojis = ['🤩', '😎', '🚀', '☕', '🎨', '✨'];
 
@@ -170,6 +170,30 @@ export default function AboutMe({ onContact, onProjects }) {
           <p className="story-p">
             I believe that the best products aren’t just visually striking—they operate with clear intentionality, respect the user’s cognitive load, and spark genuine joy. Outside of design sprints and code, you’ll usually find me exploring scenic trails in a 4×4 Jeep, capturing cinematic aerial shots with FPV drones, or diving into sci-fi cinema over a fresh pour-over coffee.
           </p>
+
+          {onExperience && (
+            <div style={{ marginTop: '26px' }}>
+              <button
+                type="button"
+                className="exp-learn-more-link"
+                onClick={onExperience}
+                style={{
+                  background: 'none',
+                  border: 'none',
+                  padding: 0,
+                  fontSize: '14px',
+                  fontWeight: 600,
+                  color: '#0071e3',
+                  cursor: 'pointer',
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '6px'
+                }}
+              >
+                View previous companies timeline <span aria-hidden="true" style={{ fontSize: '17px' }}>›</span>
+              </button>
+            </div>
+          )}
         </div>
       </section>
 

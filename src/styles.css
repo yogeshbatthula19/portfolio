@@ -248,15 +248,15 @@ nav button.selected{background:linear-gradient(180deg,#148aff,#007aff);box-shado
 .sidebar-label{font-size:12px;font-weight:600;letter-spacing:0;text-transform:capitalize;padding-left:12px;color:#808084}
 nav button,.side-link{font-size:15px;gap:11px;padding:11px 12px;border-radius:10px;color:#252527}
 nav button .sf-symbol,.side-link .sf-symbol{color:#29292c;width:20px!important;height:20px!important}
-nav button.selected{background:#eaeaec;box-shadow:none;color:#007aff;font-weight:500}
-nav button.selected .sf-symbol{color:#007aff}nav button.selected span:not(.sf-symbol){color:#86868b}
+nav button.selected, .side-link.selected{background:#eaeaec;box-shadow:none;color:#007aff;font-weight:500}
+nav button.selected .sf-symbol, .side-link.selected .sf-symbol, .side-link.selected svg{color:#007aff}nav button.selected span:not(.sf-symbol){color:#86868b}
 .window-body>.content{margin:0 0 0 8px;border-radius:0 0 19px 0;background:#ffffffed;box-shadow:none;padding-top:19px}
 .window-footer{margin-left:224px;padding:0 12px;border-top:1px solid #e5e5e9;background:#ffffff9e;border-radius:0 0 18px 0}
 .sidebar-bottom{margin-left:12px}.second{margin-top:28px}
 .night .window{background:#29292de0;border-color:#ffffff26}
 .night .window::before{background:#343439b3;border-color:#ffffff1c;box-shadow:none}
 .night .window-bar,.night .window-body>aside{background:transparent}
-.night nav button.selected{background:#ffffff16;color:#409cff}.night nav button.selected .sf-symbol{color:#409cff}
+.night nav button.selected, .night .side-link.selected{background:#ffffff16;color:#409cff}.night nav button.selected .sf-symbol, .night .side-link.selected .sf-symbol, .night .side-link.selected svg{color:#409cff}
 .night nav button .sf-symbol,.night .side-link .sf-symbol{color:#e5e5ea}
 .night .window-footer{background:#ffffff0d}
 @media(max-width:1100px) and (min-width:761px){.window::before,.traffic,.window-body>aside{width:182px}.window-footer{margin-left:190px}.window-tools{gap:12px}.window-tools b{font-size:15px}}
