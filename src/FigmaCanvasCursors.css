@@ -1,11 +1,11 @@
-/* Full Desktop Collaborative Figma Canvas */
+/* Full Desktop Collaborative Figma Canvas - Pure Background Animation Effect */
 .figma-desktop-canvas {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
-  pointer-events: auto;
-  z-index: 1;
+  pointer-events: none !important; /* Non-blocking: all clicks and normal user actions pass right through */
+  z-index: 0;
   overflow: hidden;
   user-select: none;
 }
@@ -15,7 +15,7 @@
   position: absolute;
   border: 1.5px solid #0d99ff;
   border-radius: 1px;
-  pointer-events: none;
+  pointer-events: none !important;
   box-sizing: border-box;
   will-change: transform, opacity;
   z-index: 2;
@@ -37,6 +37,7 @@
   white-space: nowrap;
   letter-spacing: -0.01em;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+  pointer-events: none !important;
 }
 
 /* Corner Handles: white square with blue border */
@@ -49,7 +50,7 @@
   border-radius: 1px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
   box-sizing: border-box;
-  pointer-events: none;
+  pointer-events: none !important;
 }
 
 .figma-handle-tl { top: -4px; left: -4px; }
@@ -77,16 +78,6 @@
   animation: figma-box-words-anim 12s cubic-bezier(0.25, 1, 0.5, 1) infinite;
 }
 
-/* Interactive click selection box */
-.figma-user-box {
-  animation: figma-user-box-pop 0.3s cubic-bezier(0.2, 0.9, 0.3, 1.2) forwards;
-}
-
-@keyframes figma-user-box-pop {
-  0% { opacity: 0; transform: scale(0.92); }
-  100% { opacity: 1; transform: scale(1); }
-}
-
 /* Cursor pointers & badges */
 .figma-cursor {
   position: absolute;
@@ -94,7 +85,7 @@
   left: 0;
   display: flex;
   align-items: flex-start;
-  pointer-events: none;
+  pointer-events: none !important;
   z-index: 5;
   will-change: left, top, opacity;
   filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.35));
@@ -105,6 +96,7 @@
   height: 17px;
   flex-shrink: 0;
   transform: translate(-1px, -1px);
+  pointer-events: none !important;
 }
 
 .figma-cursor-tag {
@@ -113,6 +105,7 @@
   gap: 5px;
   margin-left: 2px;
   margin-top: 10px;
+  pointer-events: none !important;
 }
 
 .figma-badge {
@@ -126,6 +119,7 @@
   letter-spacing: -0.01em;
   white-space: nowrap;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.28);
+  pointer-events: none !important;
 }
 
 .figma-chat {
@@ -142,6 +136,7 @@
   border: 1px solid rgba(0, 0, 0, 0.08);
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.22);
   white-space: nowrap;
+  pointer-events: none !important;
 }
 
 /* Specific animated cursors */
@@ -155,10 +150,6 @@
 
 .figma-cursor-zaria {
   animation: figma-cursor-zaria-anim 12s cubic-bezier(0.25, 1, 0.5, 1) infinite;
-}
-
-.figma-user-cursor {
-  transition: left 0.04s ease-out, top 0.04s ease-out;
 }
 
 /* --- ANIMATIONS FOR THE CAR & WORDS --- */
@@ -176,12 +167,10 @@
     opacity: 1;
   }
   20% {
-    /* Land right on top-right corner handle of the car selection box */
     left: calc(50vw + clamp(140px, 16vw, 220px));
     top: calc(73.5vh - clamp(37px, 6.7vh, 62px));
   }
   36% {
-    /* Nudges corner handle slightly as car moves */
     left: calc(50vw + clamp(146px, 17vw, 230px));
     top: calc(73.5vh - clamp(40px, 7.2vh, 67px));
   }
@@ -190,7 +179,6 @@
     top: calc(73.5vh - clamp(37px, 6.7vh, 62px));
   }
   74% {
-    /* Releases and glides down the highway */
     left: 58vw;
     top: 80vh;
   }
@@ -221,7 +209,6 @@
     transform: translate(-50%, -50%) scale(1);
   }
   36% {
-    /* Slight stretch with Marcus's cursor */
     opacity: 1;
     transform: translate(-50%, -50%) scale(1.03, 1.02);
   }
@@ -252,12 +239,10 @@
     opacity: 1;
   }
   16% {
-    /* Snaps to top-right handle of Portfolio words selection */
     left: calc(50vw + clamp(150px, 23vw, 290px));
     top: calc(35vh - clamp(37px, 6vh, 55px));
   }
   32% {
-    /* Adjusts typography */
     left: calc(50vw + clamp(156px, 24vw, 300px));
     top: calc(35vh - clamp(40px, 6.5vh, 60px));
   }
@@ -266,7 +251,6 @@
     top: calc(35vh - clamp(37px, 6vh, 55px));
   }
   70% {
-    /* Releases and drifts into the sunset */
     left: 42vw;
     top: 20vh;
   }
@@ -297,7 +281,6 @@
     transform: translate(-50%, -50%) rotate(-3deg) scale(1);
   }
   32% {
-    /* Nudge with Dhruv's adjustment */
     opacity: 1;
     transform: translate(-50%, -50%) rotate(-2.5deg) scale(1.03, 1.02);
   }
@@ -328,12 +311,10 @@
     opacity: 1;
   }
   24% {
-    /* Near right windmill */
     left: 66vw;
     top: 25vh;
   }
   42% {
-    /* Across the upper sunset */
     left: 54vw;
     top: 16vh;
   }

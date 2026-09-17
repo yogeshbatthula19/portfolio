@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import './FigmaCanvasCursors.css';
 
 function FigmaPointer({ color }) {
@@ -27,45 +27,8 @@ function SelectionBoxHandles() {
 }
 
 export default function FigmaCanvasCursors() {
-  const [userPos, setUserPos] = useState(null);
-  const [userClickBox, setUserClickBox] = useState(null);
-
-  const handlePointerMove = (e) => {
-    setUserPos({ x: e.clientX, y: e.clientY });
-  };
-
-  const handlePointerLeave = () => {
-    setUserPos(null);
-  };
-
-  const handleCanvasClick = (e) => {
-    if (e.target.closest('.desktop-files') || e.target.closest('.dock-wrap') || e.target.closest('.menubar')) return;
-    const boxW = 160;
-    const boxH = 88;
-    setUserClickBox({
-      left: e.clientX - boxW / 2,
-      top: e.clientY - boxH / 2,
-      width: boxW,
-      height: boxH,
-      id: Date.now()
-    });
-  };
-
-  useEffect(() => {
-    if (userClickBox) {
-      const timer = setTimeout(() => setUserClickBox(null), 3500);
-      return () => clearTimeout(timer);
-    }
-  }, [userClickBox]);
-
   return (
-    <div
-      className="figma-desktop-canvas"
-      onPointerMove={handlePointerMove}
-      onPointerLeave={handlePointerLeave}
-      onClick={handleCanvasClick}
-      aria-hidden="true"
-    >
+    <div className="figma-desktop-canvas" aria-hidden="true">
       {/* Selection Box 1: "the car" (Framing the Porsche driving along the evening highway) */}
       <div className="figma-selection-box figma-box-car">
         <span className="figma-layer-name">the car</span>
@@ -77,22 +40,6 @@ export default function FigmaCanvasCursors() {
         <span className="figma-layer-name">Portfolio</span>
         <SelectionBoxHandles />
       </div>
-
-      {/* Interactive User Selection Box */}
-      {userClickBox && (
-        <div
-          className="figma-selection-box figma-user-box"
-          style={{
-            left: `${userClickBox.left}px`,
-            top: `${userClickBox.top}px`,
-            width: `${userClickBox.width}px`,
-            height: `${userClickBox.height}px`,
-          }}
-        >
-          <span className="figma-layer-name">Selection</span>
-          <SelectionBoxHandles />
-        </div>
-      )}
 
       {/* Cursor 1: Marcus L selecting "the car" (Green) */}
       <div className="figma-cursor figma-cursor-marcus">
@@ -120,22 +67,6 @@ export default function FigmaCanvasCursors() {
           <div className="figma-chat">sunset vibe 🌅</div>
         </div>
       </div>
-
-      {/* Interactive User Cursor ("You") following the mouse */}
-      {userPos && (
-        <div
-          className="figma-cursor figma-user-cursor"
-          style={{
-            left: `${userPos.x}px`,
-            top: `${userPos.y}px`,
-          }}
-        >
-          <FigmaPointer color="#0D99FF" />
-          <div className="figma-cursor-tag">
-            <div className="figma-badge" style={{ backgroundColor: '#0D99FF' }}>You</div>
-          </div>
-        </div>
-      )}
     </div>
   );
 }
