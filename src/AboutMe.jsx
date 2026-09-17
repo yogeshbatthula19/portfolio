@@ -158,8 +158,6 @@ export default function AboutMe({ onContact, onProjects }) {
           SECTION 2: CLEAN DETAILED STORY (NO CONTAINER BOXES)
           ================================================================= */}
       <section className="about-extended-story">
-        <h2 className="story-title">Behind the Pixels</h2>
-        
         <div className="story-paragraphs">
           <p className="story-p">
             I’m a <strong>Product Designer</strong> based in Hyderabad, deeply driven by the intersection of system architecture, tactile micro-interactions, and human psychology. Over the past 4+ years, I’ve focused on transforming intricate, high-friction domains into digital experiences that feel effortless, intuitive, and thoughtfully crafted.
