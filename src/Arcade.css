@@ -90,21 +90,29 @@
   letter-spacing: -0.01em;
 }
 
-.arcade-close-pill {
-  background: #f2f2f7;
+.arcade-close-cross {
+  background: #e8e8ed;
   border: none;
-  border-radius: 980px;
-  padding: 4px 11px;
-  font-size: 12px;
-  font-weight: 500;
+  border-radius: 50%;
+  width: 26px;
+  height: 26px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   color: #636366;
   cursor: pointer;
   transition: all 0.15s ease;
+  padding: 0;
 }
 
-.arcade-close-pill:hover {
-  background: #e5e5ea;
+.arcade-close-cross:hover {
+  background: #d1d1d6;
   color: #1d1d1f;
+  transform: scale(1.05);
+}
+
+.arcade-close-cross:active {
+  transform: scale(0.95);
 }
 
 /* Body container */
