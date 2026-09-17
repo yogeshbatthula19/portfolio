@@ -1,400 +1,333 @@
-/* Photobooth Dispenser "About Me" Style */
-.photobooth-view {
+/* 1:1 Precise Photobooth Machine & Dispensed Card Style */
+.photobooth-screen {
   min-height: 100%;
+  width: 100%;
+  box-sizing: border-box;
+  /* Seamless brushed gunmetal metallic surface */
+  background: 
+    radial-gradient(ellipse at 50% 20%, #9ca0a6 0%, #81858b 45%, #6a6e74 85%, #585b61 100%);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  padding: 40px 20px 80px;
-  box-sizing: border-box;
-  background: radial-gradient(circle at 50% 15%, #3d4148 0%, #24262b 60%, #17181b 100%);
-  color: #f0f2f5;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  user-select: none;
-  overflow-x: hidden;
-}
-
-/* Machine Title / Subtitle */
-.photobooth-header {
-  text-align: center;
-  margin-bottom: 24px;
-}
-
-.photobooth-header h2 {
-  font-size: 22px;
-  font-weight: 600;
-  letter-spacing: -0.02em;
-  color: #e4e7ec;
-  margin: 0 0 6px 0;
-}
-
-.photobooth-header p {
-  font-size: 13px;
-  color: #9aa1ad;
-  margin: 0;
-}
-
-/* Dispenser Chassis / Machine Face */
-.dispenser-chassis {
+  padding: 50px 20px 80px;
   position: relative;
-  width: min(440px, 92vw);
-  background: linear-gradient(180deg, #51565e 0%, #3e4249 20%, #32353b 100%);
-  border-radius: 28px;
-  padding: 34px 28px 44px;
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.2),
-    inset 0 -2px 4px rgba(0, 0, 0, 0.4),
-    0 24px 60px rgba(0, 0, 0, 0.6),
-    0 4px 16px rgba(0, 0, 0, 0.3);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  box-sizing: border-box;
+  overflow-x: hidden;
+  user-select: none;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Segoe UI", sans-serif;
+  color: #1d1d1f;
+}
+
+/* Subtle brushed metal sheen lines overlay */
+.photobooth-screen::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    90deg,
+    transparent 0px,
+    transparent 2px,
+    rgba(255, 255, 255, 0.015) 2px,
+    rgba(255, 255, 255, 0.015) 4px
+  );
+  pointer-events: none;
+}
+
+/* Dispenser Container */
+.dispenser-apparatus {
+  position: relative;
+  width: 100%;
+  max-width: 440px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  z-index: 1;
 }
 
-/* Screw Accents on Chassis Corners */
-.chassis-screw {
-  position: absolute;
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background: radial-gradient(circle at 35% 35%, #7a818c 0%, #303338 100%);
-  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.4), 0 1px 2px rgba(0, 0, 0, 0.5);
-}
-.screw-tl { top: 14px; left: 16px; }
-.screw-tr { top: 14px; right: 16px; }
-.screw-bl { bottom: 14px; left: 16px; }
-.screw-br { bottom: 14px; right: 16px; }
-
-/* Slot Opening */
-.dispenser-slot-housing {
+/* Metallic Slot Outer Bezel */
+.slot-bezel {
   position: relative;
-  width: min(340px, 86%);
-  height: 52px;
-  background: linear-gradient(180deg, #18191c 0%, #202226 40%, #2a2d33 100%);
-  border-radius: 26px;
-  padding: 6px;
-  box-shadow:
-    inset 0 4px 12px rgba(0, 0, 0, 0.9),
-    0 1px 0 rgba(255, 255, 255, 0.15),
-    0 4px 12px rgba(0, 0, 0, 0.3);
-  border: 2px solid #1f2125;
+  width: min(340px, 92vw);
+  height: 64px;
+  border-radius: 999px;
+  background: linear-gradient(
+    180deg,
+    #5f6268 0%,
+    #7d8187 8%,
+    #a8acb2 22%,
+    #e8ebf0 42%,
+    #989ca3 60%,
+    #5a5d63 88%,
+    #4a4c52 100%
+  );
+  padding: 8px;
   box-sizing: border-box;
-  z-index: 10;
+  box-shadow:
+    0 8px 24px rgba(0, 0, 0, 0.45),
+    0 2px 6px rgba(0, 0, 0, 0.35),
+    inset 0 2px 2px rgba(255, 255, 255, 0.7),
+    inset 0 -2px 3px rgba(0, 0, 0, 0.6);
+  cursor: pointer;
+  z-index: 20;
   display: flex;
   align-items: center;
   justify-content: center;
-  cursor: pointer;
+  transition: transform 0.15s ease, filter 0.15s ease;
 }
 
-.dispenser-inner-slot {
-  width: calc(100% - 16px);
-  height: 24px;
-  background: #090a0c;
-  border-radius: 12px;
-  box-shadow: inset 0 6px 14px #000000;
+.slot-bezel:hover {
+  filter: brightness(1.04);
+}
+
+.slot-bezel:active {
+  transform: scale(0.99);
+}
+
+/* Deep Inner Cavity */
+.slot-cavity {
+  width: 100%;
+  height: 100%;
+  border-radius: 999px;
+  background: #08090a;
+  box-shadow:
+    inset 0 10px 24px #000000,
+    inset 0 2px 6px rgba(0, 0, 0, 0.95),
+    0 1px 0 rgba(255, 255, 255, 0.25);
   position: relative;
-  overflow: visible;
+  overflow: hidden;
 }
 
-/* Mechanical Dispense Button / Indicator */
-.dispenser-controls {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  margin-top: 18px;
-}
-
-.dispense-btn {
-  background: linear-gradient(180deg, #2b70f6 0%, #1a56cc 100%);
-  border: 1px solid #4586ff;
-  color: #ffffff;
-  padding: 8px 18px;
-  border-radius: 20px;
-  font-size: 12px;
-  font-weight: 600;
-  letter-spacing: 0.02em;
-  display: inline-flex;
-  align-items: center;
-  gap: 7px;
-  cursor: pointer;
-  box-shadow: 0 4px 14px rgba(27, 88, 204, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.3);
-  transition: all 0.2s cubic-bezier(0.2, 0.8, 0.2, 1);
-}
-
-.dispense-btn:hover {
-  transform: translateY(-1px);
-  background: linear-gradient(180deg, #3b7ef8 0%, #2162de 100%);
-  box-shadow: 0 6px 20px rgba(27, 88, 204, 0.55);
-}
-
-.dispense-btn:active {
-  transform: translateY(1px);
-  box-shadow: 0 2px 6px rgba(27, 88, 204, 0.3);
-}
-
-.status-led {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  font-size: 11px;
-  color: #9da5b3;
-}
-
-.led-dot {
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: #28c840;
-  box-shadow: 0 0 8px #28c840;
-  animation: led-pulse 2s infinite alternate ease-in-out;
-}
-
-@keyframes led-pulse {
-  from { opacity: 0.6; }
-  to { opacity: 1; filter: drop-shadow(0 0 4px #28c840); }
-}
-
-/* Card Container Mask: hides the card inside the machine slot */
-.dispenser-stage {
+/* Dispenser Track where card exits */
+.card-track {
   position: relative;
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  overflow: visible;
-  margin-top: -24px;
+  margin-top: -34px; /* Pulls top of card up into the slot cavity */
+  z-index: 10;
 }
 
-/* Photobooth Card (Print) */
-.photobooth-card {
-  width: min(320px, 86vw);
-  background: #f4f3f0;
-  background-image: 
-    radial-gradient(#e4e2de 0.5px, transparent 0.5px),
-    linear-gradient(to bottom, #faf9f6, #f0eee9);
-  background-size: 8px 8px, 100% 100%;
-  border-radius: 4px;
-  padding: 14px 14px 22px;
-  box-sizing: border-box;
+/* Photobooth Card (Exact match to reference) */
+.photobooth-print {
+  width: min(300px, 84vw);
+  background: #f7f6f3;
+  border-radius: 1px;
   box-shadow:
-    0 22px 50px rgba(0, 0, 0, 0.45),
-    0 2px 6px rgba(0, 0, 0, 0.2);
-  border: 1px solid #e0ded9;
+    0 24px 60px rgba(0, 0, 0, 0.45),
+    0 6px 16px rgba(0, 0, 0, 0.25),
+    0 1px 2px rgba(0, 0, 0, 0.15);
+  box-sizing: border-box;
+  padding: 10px 10px 20px 10px;
   cursor: pointer;
   transform-origin: top center;
-  transition: transform 0.65s cubic-bezier(0.18, 0.9, 0.24, 1.05), opacity 0.4s ease;
-  z-index: 5;
-  color: #1a1a1c;
+  transition: transform 0.75s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
+  position: relative;
 }
 
-/* Card States: Ejected vs Peeking */
-.photobooth-card.is-peeking {
-  transform: translateY(-82%) rotate(0deg);
-  opacity: 0.95;
-  cursor: pointer;
-}
-
-.photobooth-card.is-peeking:hover {
-  transform: translateY(-75%) rotate(0.5deg);
-}
-
-.photobooth-card.is-ejected {
-  transform: translateY(18px) rotate(0.4deg);
-  opacity: 1;
-}
-
-/* Slot Shadow Effect at top of card */
-.photobooth-card::before {
+/* Shading from the slot on the top of the card */
+.photobooth-print::before {
   content: "";
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
-  height: 24px;
-  background: linear-gradient(180deg, rgba(0, 0, 0, 0.4) 0%, transparent 100%);
+  height: 38px;
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.82) 0%,
+    rgba(0, 0, 0, 0.45) 30%,
+    rgba(0, 0, 0, 0.15) 65%,
+    transparent 100%
+  );
+  z-index: 5;
   pointer-events: none;
-  opacity: 0.85;
 }
 
-/* 2x2 Photobooth Shots Grid */
-.photobooth-grid {
+/* States: Peeking inside slot vs Dispensed out */
+.photobooth-print.is-peeking {
+  transform: translateY(-80%);
+}
+
+.photobooth-print.is-peeking:hover {
+  transform: translateY(-74%);
+}
+
+.photobooth-print.is-dispensed {
+  transform: translateY(32px);
+  box-shadow:
+    0 32px 75px rgba(0, 0, 0, 0.55),
+    0 10px 25px rgba(0, 0, 0, 0.3);
+}
+
+/* 2x2 Photo Cuts Grid */
+.print-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 8px;
+  gap: 6px;
+  background: #f7f6f3;
   margin-bottom: 14px;
 }
 
-.photo-cell {
+.print-cut {
   position: relative;
-  aspect-ratio: 4 / 5;
-  background: #e2ddd3;
+  aspect-ratio: 1 / 1.15;
+  background: #eae5dc;
   overflow: hidden;
-  border-radius: 2px;
-  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.08);
 }
 
-.photo-cell img {
+.print-cut img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
 }
 
-/* Poses / Variants for the 4 cuts */
-.cell-1 img {
-  object-position: center 20%;
-  filter: saturate(0.92) contrast(1.08) brightness(1.02);
+/* 4 distinct authentic photobooth crops */
+.cut-1 img {
+  object-position: center 18%;
+  filter: contrast(1.08) saturate(0.95) brightness(1.02);
 }
 
-.cell-2 img {
-  object-position: center 12%;
-  filter: saturate(0.96) contrast(1.12) brightness(0.98);
+.cut-2 img {
+  object-position: center 14%;
+  filter: contrast(1.12) saturate(0.98) brightness(0.99);
 }
 
-.cell-3 img {
-  object-position: center 25%;
-  filter: saturate(0.88) contrast(1.05) sepia(0.08);
+.cut-3 img {
+  object-position: center 22%;
+  filter: contrast(1.05) saturate(0.9) brightness(1.04);
 }
 
-.cell-4 img {
+.cut-4 img {
   object-position: center 16%;
-  filter: saturate(1.05) contrast(1.1);
+  filter: contrast(1.1) saturate(1.02) brightness(1.01);
 }
 
-/* Subtle Photobooth Print Stamp / Grain */
-.photo-cell::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2);
-  pointer-events: none;
+/* Card Bottom Metadata Section (Exact match to reference) */
+.print-footer {
+  padding: 0 4px;
 }
 
-/* Card Typography Header */
-.card-header-row {
+.print-main-row {
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
-  border-bottom: 1px solid #e1ded9;
-  padding-bottom: 8px;
-  margin-bottom: 10px;
+  margin-bottom: 6px;
 }
 
-.card-title-group h3 {
-  font-size: 20px;
-  font-weight: 750;
-  letter-spacing: -0.03em;
-  line-height: 1.15;
+.print-title {
+  font-size: 26px;
+  line-height: 1.05;
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  color: #0b0c0e;
   margin: 0;
-  color: #18191b;
+  display: flex;
+  flex-direction: column;
 }
 
-.card-meta-group {
+.print-meta-right {
   text-align: right;
   font-size: 11px;
-  color: #63676e;
   line-height: 1.35;
+  color: #63676e;
   font-weight: 500;
-}
-
-/* Card Trait Row */
-.card-traits {
-  font-size: 11.5px;
-  font-weight: 500;
-  color: #4b4f56;
-  margin: 0 0 12px;
   letter-spacing: -0.01em;
 }
 
-.card-traits span {
-  color: #1a56cc;
-  font-weight: 600;
+.print-meta-right span {
+  display: block;
 }
 
-/* Detailed Information revealed on Card */
-.card-info-content {
-  background: #ffffff;
-  border-radius: 6px;
-  padding: 12px 14px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
-  border: 1px solid #ebe8e2;
-  margin-top: 8px;
-}
-
-.card-info-content p {
+.print-traits {
   font-size: 11.5px;
+  color: #72767d;
+  font-weight: 500;
+  margin: 0 0 14px 0;
+  letter-spacing: -0.01em;
+}
+
+/* Extended Info section on the card (reveals your background & craft) */
+.print-extended-info {
+  border-top: 1px solid #e5e2db;
+  padding-top: 14px;
+  margin-top: 4px;
+}
+
+.print-extended-info p {
+  font-size: 12px;
   line-height: 1.6;
-  color: #3b3e44;
-  margin: 0 0 10px;
+  color: #3e4147;
+  margin: 0 0 10px 0;
 }
 
-.card-info-content p:last-child {
-  margin-bottom: 0;
-}
-
-.card-tags {
+.print-tags-strip {
   display: flex;
   flex-wrap: wrap;
   gap: 5px;
-  margin-top: 10px;
-  padding-top: 8px;
-  border-top: 1px dashed #e2ded7;
+  margin-top: 12px;
 }
 
-.card-tags span {
+.print-tags-strip span {
   font-size: 9.5px;
   font-weight: 600;
-  background: #f0f2f5;
-  color: #2b303a;
+  background: #ede9e1;
+  color: #2c2f36;
   padding: 3px 7px;
-  border-radius: 4px;
+  border-radius: 3px;
 }
 
-/* Interactive Hint */
-.dispenser-hint {
-  margin-top: 18px;
-  font-size: 11.5px;
-  color: #8c93a0;
-  display: flex;
+/* Tap Hint Floating at bottom */
+.dispense-prompt {
+  margin-top: 44px;
+  display: inline-flex;
   align-items: center;
-  gap: 6px;
+  gap: 8px;
+  font-size: 12px;
+  font-weight: 500;
+  color: #e0e3e8;
+  background: rgba(0, 0, 0, 0.35);
+  padding: 7px 16px;
+  border-radius: 20px;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
   cursor: pointer;
-  transition: color 0.15s;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+  transition: all 0.2s ease;
+  z-index: 15;
 }
 
-.dispenser-hint:hover {
-  color: #c4cbd6;
+.dispense-prompt:hover {
+  background: rgba(0, 0, 0, 0.5);
+  color: #ffffff;
+  transform: translateY(-1px);
 }
 
-/* Push In Button */
-.pull-back-btn {
-  background: none;
-  border: 1px solid #d5d1c8;
-  color: #63676e;
-  font-size: 10.5px;
-  padding: 4px 10px;
-  border-radius: 12px;
-  margin-top: 10px;
-  width: 100%;
-  cursor: pointer;
-  transition: all 0.15s;
+.dispense-prompt .prompt-icon {
+  font-size: 13px;
+  color: #60a5fa;
 }
 
-.pull-back-btn:hover {
-  background: #ebe7df;
-  color: #24262b;
-}
-
-@media (max-width: 500px) {
-  .photobooth-view {
-    padding: 24px 12px 60px;
+@media (max-width: 480px) {
+  .photobooth-screen {
+    padding: 36px 14px 60px;
   }
-  .dispenser-chassis {
-    padding: 24px 16px 36px;
+  .slot-bezel {
+    width: 290px;
+    height: 58px;
   }
-  .photobooth-card {
-    width: 90vw;
+  .photobooth-print {
+    width: 265px;
+    padding: 8px 8px 18px 8px;
+  }
+  .print-title {
+    font-size: 22px;
+  }
+  .print-meta-right {
+    font-size: 10px;
+  }
+  .print-traits {
+    font-size: 10.5px;
   }
 }
