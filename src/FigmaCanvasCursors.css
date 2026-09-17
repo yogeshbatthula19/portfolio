@@ -1,0 +1,393 @@
+/* Stage wrapper holding the Portfolio title and Figma multiplayer layer */
+.home-stage-wrapper {
+  position: absolute;
+  left: 50%;
+  top: 35%;
+  transform: translate(-50%, -50%);
+  width: min(85vw, 700px);
+  height: 160px;
+  display: grid;
+  place-items: center;
+  z-index: 1;
+}
+
+.home-stage-wrapper .home-portfolio-title {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  display: grid;
+  place-items: center;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Collaborative Figma Canvas Layer */
+.figma-collab-layer {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: auto;
+  z-index: 2;
+  user-select: none;
+}
+
+/* Selection Box Outline (Figma Vector Bounding Box) */
+.figma-selection-box {
+  position: absolute;
+  border: 1.5px solid #0d99ff;
+  border-radius: 1px;
+  pointer-events: none;
+  box-sizing: border-box;
+  will-change: transform, opacity;
+  z-index: 2;
+}
+
+/* Corner handles: crisp white square with Figma blue border */
+.figma-handle {
+  position: absolute;
+  width: 7px;
+  height: 7px;
+  background: #ffffff;
+  border: 1.5px solid #0d99ff;
+  border-radius: 1px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  box-sizing: border-box;
+  pointer-events: none;
+}
+
+.figma-handle-tl { top: -4px; left: -4px; }
+.figma-handle-tr { top: -4px; right: -4px; }
+.figma-handle-bl { bottom: -4px; left: -4px; }
+.figma-handle-br { bottom: -4px; right: -4px; }
+
+/* Box 1: Dhruv A selecting "Port" (tilted -4.5deg) */
+.figma-box-dhruv {
+  left: 19%;
+  top: 19%;
+  width: 28%;
+  height: 60%;
+  transform-origin: center center;
+  animation: figma-box-dhruv-anim 12s cubic-bezier(0.25, 1, 0.5, 1) infinite;
+}
+
+/* Box 2: Marcus L selecting "lio" */
+.figma-box-marcus {
+  left: 63%;
+  top: 20%;
+  width: 20%;
+  height: 58%;
+  transform-origin: top left;
+  animation: figma-box-marcus-anim 12s cubic-bezier(0.25, 1, 0.5, 1) infinite;
+}
+
+/* Interactive click selection box */
+.figma-user-box {
+  animation: figma-user-box-pop 0.3s cubic-bezier(0.2, 0.9, 0.3, 1.2) forwards;
+}
+
+@keyframes figma-user-box-pop {
+  0% { opacity: 0; transform: scale(0.92); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+/* Cursor pointers & badges */
+.figma-cursor {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: flex-start;
+  pointer-events: none;
+  z-index: 5;
+  will-change: transform, opacity;
+  filter: drop-shadow(0 2px 5px rgba(0, 0, 0, 0.35));
+}
+
+.figma-cursor-icon {
+  width: 17px;
+  height: 17px;
+  flex-shrink: 0;
+  transform: translate(-1px, -1px);
+}
+
+.figma-badge {
+  margin-left: 2px;
+  margin-top: 10px;
+  padding: 2.5px 8px;
+  border-radius: 4px;
+  color: #ffffff;
+  font-family: -apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.28);
+}
+
+/* Dhruv A (Purple #8B5CF6) Animation */
+.figma-cursor-dhruv {
+  animation: figma-cursor-dhruv-anim 12s cubic-bezier(0.25, 1, 0.5, 1) infinite;
+}
+
+/* Marcus L (Green #10B981) Animation */
+.figma-cursor-marcus {
+  animation: figma-cursor-marcus-anim 12s cubic-bezier(0.25, 1, 0.5, 1) infinite;
+}
+
+/* Zaria Z (Hot Pink #EC4899) Animation */
+.figma-cursor-zaria {
+  animation: figma-cursor-zaria-anim 12s cubic-bezier(0.25, 1, 0.5, 1) infinite;
+}
+
+/* Interactive user hover cursor */
+.figma-user-cursor {
+  transition: transform 0.04s ease-out;
+}
+
+/* --- ANIMATION KEYFRAMES --- */
+
+/* Dhruv A Cursor Motion */
+@keyframes figma-cursor-dhruv-anim {
+  0% {
+    transform: translate3d(5%, -18%, 0);
+    opacity: 0;
+  }
+  5% {
+    transform: translate3d(15%, 5%, 0);
+    opacity: 1;
+  }
+  14% {
+    /* Land right on top-right corner handle of Box 1 */
+    transform: translate3d(47%, 16%, 0);
+  }
+  24% {
+    /* Slight stretch/nudge on handle */
+    transform: translate3d(48.5%, 14%, 0);
+  }
+  38% {
+    /* Holding selection */
+    transform: translate3d(47%, 16%, 0);
+  }
+  50% {
+    /* Inspect angle */
+    transform: translate3d(46%, 18%, 0);
+  }
+  64% {
+    transform: translate3d(47%, 16%, 0);
+  }
+  72% {
+    /* Release and drift away */
+    transform: translate3d(26%, -6%, 0);
+  }
+  86% {
+    transform: translate3d(10%, 10%, 0);
+    opacity: 1;
+  }
+  95%, 100% {
+    transform: translate3d(5%, -18%, 0);
+    opacity: 0;
+  }
+}
+
+/* Dhruv A Box Motion */
+@keyframes figma-box-dhruv-anim {
+  0%, 12% {
+    opacity: 0;
+    transform: rotate(-4.5deg) scale(0.92);
+  }
+  15% {
+    opacity: 1;
+    transform: rotate(-4.5deg) scale(1.02);
+  }
+  18%, 23% {
+    opacity: 1;
+    transform: rotate(-4.5deg) scale(1);
+  }
+  24% {
+    /* Stretch with cursor handle nudge */
+    opacity: 1;
+    transform: rotate(-4deg) scale(1.04, 1.02);
+  }
+  38%, 62% {
+    opacity: 1;
+    transform: rotate(-4.5deg) scale(1);
+  }
+  68% {
+    opacity: 1;
+    transform: rotate(-4.5deg) scale(1);
+  }
+  72% {
+    opacity: 0;
+    transform: rotate(-4.5deg) scale(0.96);
+  }
+  100% {
+    opacity: 0;
+    transform: rotate(-4.5deg) scale(0.92);
+  }
+}
+
+/* Marcus L Cursor Motion */
+@keyframes figma-cursor-marcus-anim {
+  0%, 14% {
+    transform: translate3d(96%, 42%, 0);
+    opacity: 0;
+  }
+  19% {
+    transform: translate3d(91%, 30%, 0);
+    opacity: 1;
+  }
+  26% {
+    /* Lands on top-right handle of Box 2 */
+    transform: translate3d(83%, 17%, 0);
+  }
+  35% {
+    /* Drags corner handle out slightly */
+    transform: translate3d(85%, 15%, 0);
+  }
+  48%, 62% {
+    transform: translate3d(83%, 17%, 0);
+  }
+  72% {
+    /* Releases and drifts down-right */
+    transform: translate3d(87%, 32%, 0);
+  }
+  85% {
+    transform: translate3d(93%, 46%, 0);
+    opacity: 1;
+  }
+  94%, 100% {
+    transform: translate3d(96%, 42%, 0);
+    opacity: 0;
+  }
+}
+
+/* Marcus L Box Motion */
+@keyframes figma-box-marcus-anim {
+  0%, 24% {
+    opacity: 0;
+    transform: scale(0.92);
+  }
+  27% {
+    opacity: 1;
+    transform: scale(1.03);
+  }
+  30% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  35% {
+    /* Stretches with Marcus's cursor */
+    opacity: 1;
+    transform: scale(1.05, 1.03);
+  }
+  48%, 65% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  72% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  75% {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.92);
+  }
+}
+
+/* Zaria Z Cursor Motion (Hot Pink) */
+@keyframes figma-cursor-zaria-anim {
+  0% {
+    transform: translate3d(46%, 92%, 0);
+    opacity: 0;
+  }
+  7% {
+    transform: translate3d(46%, 76%, 0);
+    opacity: 1;
+  }
+  22% {
+    /* Glides up towards the middle of Portfolio */
+    transform: translate3d(51%, 60%, 0);
+  }
+  36% {
+    /* Inspects kerning */
+    transform: translate3d(48%, 46%, 0);
+  }
+  50% {
+    /* Sweeps right underneath "folio" */
+    transform: translate3d(64%, 66%, 0);
+  }
+  66% {
+    transform: translate3d(56%, 76%, 0);
+  }
+  80% {
+    transform: translate3d(42%, 84%, 0);
+    opacity: 1;
+  }
+  92%, 100% {
+    transform: translate3d(46%, 92%, 0);
+    opacity: 0;
+  }
+}
+
+/* Reduced motion preference: static tableau matching screenshot */
+@media (prefers-reduced-motion: reduce) {
+  .figma-cursor,
+  .figma-selection-box {
+    animation: none !important;
+  }
+  .figma-box-dhruv {
+    opacity: 1;
+    transform: rotate(-4.5deg);
+  }
+  .figma-cursor-dhruv {
+    opacity: 1;
+    transform: translate3d(47%, 16%, 0);
+  }
+  .figma-box-marcus {
+    opacity: 1;
+    transform: scale(1);
+  }
+  .figma-cursor-marcus {
+    opacity: 1;
+    transform: translate3d(83%, 17%, 0);
+  }
+  .figma-cursor-zaria {
+    opacity: 1;
+    transform: translate3d(48%, 68%, 0);
+    opacity: 1;
+  }
+}
+
+/* Responsive adjustments for mobile and tablets */
+@media (max-width: 760px) {
+  .home-stage-wrapper {
+    width: 95vw;
+    height: 120px;
+    scale: 0.82;
+  }
+  .figma-badge {
+    font-size: 9.5px;
+    padding: 2px 6px;
+    margin-top: 8px;
+  }
+  .figma-cursor-icon {
+    width: 14px;
+    height: 14px;
+  }
+}
+
+@media (max-width: 500px) {
+  .home-stage-wrapper {
+    scale: 0.7;
+  }
+}
