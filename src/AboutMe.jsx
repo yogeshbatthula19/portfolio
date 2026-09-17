@@ -1,92 +1,154 @@
-import React from 'react';
-import './ScrapbookAbout.css';
+import React, { useState } from 'react';
+import './PhotoboothAbout.css';
 
 export default function AboutMe() {
+  const [ejected, setEjected] = useState(true);
+
+  const toggleDispense = () => {
+    // Optional Web Audio feedback for tactile printer sound
+    try {
+      const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      const osc = audioCtx.createOscillator();
+      const gain = audioCtx.createGain();
+      osc.type = 'triangle';
+      osc.frequency.setValueAtTime(ejected ? 160 : 320, audioCtx.currentTime);
+      osc.frequency.exponentialRampToValueAtTime(ejected ? 80 : 540, audioCtx.currentTime + 0.12);
+      gain.gain.setValueAtTime(0.08, audioCtx.currentTime);
+      gain.gain.linearRampToValueAtTime(0.001, audioCtx.currentTime + 0.12);
+      osc.connect(gain);
+      gain.connect(audioCtx.destination);
+      osc.start();
+      osc.stop(audioCtx.currentTime + 0.12);
+    } catch {}
+
+    setEjected((prev) => !prev);
+  };
+
   return (
-    <div className="scrapbook-about-view">
-      {/* Editorial Highlight Title */}
-      <header className="scrapbook-header">
-        <h2 className="scrapbook-title">
-          <span className="scrapbook-title-highlight">now that we’ve officially met...</span>
-        </h2>
+    <div className="photobooth-view">
+      {/* Dispenser Header */}
+      <header className="photobooth-header">
+        <h2>Photo Dispenser</h2>
+        <p>Click the slot or button below to print my ID card</p>
       </header>
 
-      {/* Scrapbook Collage Stage */}
-      <div className="scrapbook-stage">
-        {/* 1. Torn Kraft Paper Backing Card */}
-        <div className="scrapbook-kraft-card" aria-hidden="true">
-          <div className="scrapbook-kraft-badge">
-            cr<span className="badge-orange">e</span>ative
+      {/* Machine Panel / Chassis */}
+      <div className="dispenser-chassis">
+        {/* Beveled Screws */}
+        <span className="chassis-screw screw-tl" aria-hidden="true" />
+        <span className="chassis-screw screw-tr" aria-hidden="true" />
+        <span className="chassis-screw screw-bl" aria-hidden="true" />
+        <span className="chassis-screw screw-br" aria-hidden="true" />
+
+        {/* Machine Dispenser Slot */}
+        <div
+          className="dispenser-slot-housing"
+          onClick={toggleDispense}
+          role="button"
+          tabIndex={0}
+          aria-label={ejected ? "Retract photo card" : "Dispense photo card"}
+          onKeyDown={(e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+              e.preventDefault();
+              toggleDispense();
+            }
+          }}
+        >
+          <div className="dispenser-inner-slot" />
+        </div>
+
+        {/* Machine Controls */}
+        <div className="dispenser-controls">
+          <button
+            type="button"
+            className="dispense-btn"
+            onClick={toggleDispense}
+            aria-expanded={ejected}
+          >
+            <span>{ejected ? "▴ Retract Card" : "▾ Dispense Card"}</span>
+          </button>
+          <div className="status-led">
+            <span className="led-dot" />
+            <span>Ready</span>
           </div>
         </div>
 
-        {/* 2. Sports Car Die-Cut Sticker (Boy Interests) */}
-        <div
-          className="scrapbook-sticker car-sticker"
-          title="Motorsports & Performance Cars"
-          aria-label="Porsche sports car sticker"
-        >
-          <img src="/images/car-sticker.png" alt="Sports car sticker" />
-        </div>
-
-        {/* 3. Polaroid Instant Photo with Washi Tape */}
-        <div className="scrapbook-polaroid">
-          <div className="scrapbook-tape" aria-hidden="true" />
-          <div className="scrapbook-photo-wrap">
-            <img
-              src="/images/yogesh-portrait.jpg"
-              alt="Yogesh Battula portrait"
-              className="scrapbook-photo"
-            />
-            {/* Viewfinder camera grid overlay */}
-            <div className="scrapbook-viewfinder" aria-hidden="true">
-              <div className="viewfinder-grid" />
-              <div className="viewfinder-controls">
-                <span>○</span>
-                <span>☼</span>
-                <span>⟳</span>
-                <span className="vf-shutter" />
+        {/* Card Stage with Mechanical Slide-Out */}
+        <div className="dispenser-stage">
+          <article
+            className={`photobooth-card ${ejected ? "is-ejected" : "is-peeking"}`}
+            onClick={toggleDispense}
+            title={ejected ? "Click to retract" : "Click to pull out full info"}
+          >
+            {/* 4-Shot 2x2 Photobooth Grid */}
+            <div className="photobooth-grid">
+              <div className="photo-cell cell-1">
+                <img src="/images/yogesh-portrait.jpg" alt="Yogesh Battula shot 1" />
+              </div>
+              <div className="photo-cell cell-2">
+                <img src="/images/yogesh-portrait.jpg" alt="Yogesh Battula shot 2" />
+              </div>
+              <div className="photo-cell cell-3">
+                <img src="/images/yogesh-portrait.jpg" alt="Yogesh Battula shot 3" />
+              </div>
+              <div className="photo-cell cell-4">
+                <img src="/images/yogesh-portrait.jpg" alt="Yogesh Battula shot 4" />
               </div>
             </div>
-          </div>
-        </div>
 
-        {/* 4. Spiral Lined Notebook Sheet */}
-        <div className="scrapbook-notebook">
-          <div className="notebook-spiral-edge" aria-hidden="true">
-            {[...Array(6)].map((_, i) => (
-              <span key={i} className="notebook-hole" />
-            ))}
-          </div>
-          <div className="notebook-content">
-            <p className="notebook-line">Hi, I’m Yogesh—the designer</p>
-            <p className="notebook-line">behind thoughtful systems & craft.</p>
-            <p className="notebook-line">Thanks for stopping by</p>
-            <p className="notebook-line">my little creative space</p>
-            <p className="notebook-hearts">✦ ✦ ✦</p>
-          </div>
-        </div>
+            {/* Typography Header */}
+            <div className="card-header-row">
+              <div className="card-title-group">
+                <h3>Product<br />Designer</h3>
+              </div>
+              <div className="card-meta-group">
+                <span>at Recovery & Trosky</span>
+                <br />
+                <span>from 2020</span>
+              </div>
+            </div>
 
-        {/* 5. Quadcopter Drone Die-Cut Sticker (Boy Interests) */}
-        <div
-          className="scrapbook-sticker drone-sticker"
-          title="FPV Drones & Aerial Cinematography"
-          aria-label="Camera drone sticker"
-        >
-          <img src="/images/drone-sticker.png" alt="Camera drone sticker" />
+            {/* Card Trait Row */}
+            <p className="card-traits">
+              Ambitious • Optimistic • <span>Curious</span>
+            </p>
+
+            {/* Detailed Info (Revealed on the card) */}
+            <div className="card-info-content">
+              <p>
+                <strong>Yogesh Battula</strong> is a Senior Product Designer focused on turning complex workflows into intuitive, thoughtful, and human-centered digital experiences.
+              </p>
+              <p>
+                Spearheaded end-to-end multi-platform platforms like <strong>Recovery</strong> (rehab systems for surgeons & patients) and <strong>Trosky 365</strong> (guided conversational athletic coaching).
+              </p>
+              <div className="card-tags">
+                <span>Design Systems</span>
+                <span>Interaction Design</span>
+                <span>Prototyping</span>
+                <span>Mobile & Web</span>
+                <span>Motion UI</span>
+              </div>
+            </div>
+
+            {/* Pull back action button */}
+            <button
+              type="button"
+              className="pull-back-btn"
+              onClick={(e) => {
+                e.stopPropagation();
+                toggleDispense();
+              }}
+            >
+              {ejected ? "▴ Click to push back into slot" : "▾ Click to pull out"}
+            </button>
+          </article>
         </div>
       </div>
 
-      {/* Outro Signoff */}
-      <footer className="scrapbook-footer">
-        <p className="scrapbook-intro-text">
-          Stick around for product design, design systems, creative ideas, and the
-          occasional glimpse behind the pixels.
-        </p>
-        <h3 className="scrapbook-signoff">
-          Nice to meet you! <span className="sparkle">✦</span>
-        </h3>
-      </footer>
+      {/* Interactive Hint */}
+      <div className="dispenser-hint" onClick={toggleDispense}>
+        <span>{ejected ? "Tap card to retract into machine" : "Tap slot to dispense ID card"}</span>
+      </div>
     </div>
   );
 }
