@@ -453,37 +453,14 @@ export default function Arcade() {
         {/* Native macOS Header Bar */}
         <header className="arcade-header">
           <div className="arcade-header-left">
-            <div className="arcade-traffic">
-              <button
-                type="button"
-                className="arcade-dot close"
-                aria-label="Close"
-                title="Close"
-                onClick={closeArcade}
-              />
-              <button
-                type="button"
-                className="arcade-dot minimize"
-                aria-label="Minimize"
-                onClick={() => {
-                  if (selectedGame) setSelectedGame(null);
-                  else closeArcade();
-                }}
-              />
-              <button
-                type="button"
-                className="arcade-dot expand"
-                aria-label="Zoom"
-                onClick={() => {}}
-              />
-            </div>
-            <span className="arcade-header-title">
+            <img src="/icons/arcade.png" alt="" />
+            <h2 className="arcade-header-title">
               {selectedGame === 'flippy'
                 ? 'Flippy Bird'
                 : selectedGame === 'tictactoe'
                 ? 'Tic Tac Toi'
                 : 'Games'}
-            </span>
+            </h2>
           </div>
 
           <button

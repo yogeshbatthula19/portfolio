@@ -59,34 +59,21 @@
 .arcade-header-left {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
 }
 
-.arcade-traffic {
-  display: flex;
-  align-items: center;
-  gap: 7px;
+.arcade-header-left img {
+  width: 22px;
+  height: 22px;
+  border-radius: 6px;
+  display: block;
 }
-
-.arcade-dot {
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  border: 1px solid rgba(0, 0, 0, 0.15);
-  padding: 0;
-  cursor: pointer;
-  outline: none;
-}
-
-.arcade-dot.close { background: #ff5f57; }
-.arcade-dot.minimize { background: #febc2e; }
-.arcade-dot.expand { background: #28c840; }
 
 .arcade-header-title {
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   color: #1d1d1f;
-  margin-left: 8px;
+  margin: 0;
   letter-spacing: -0.01em;
 }
 
