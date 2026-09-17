@@ -6,13 +6,8 @@
   height: 100%;
   width: 100%;
   box-sizing: border-box;
-  /* Crisp creased editorial white paper surface */
-  background-color: #fcfbfa;
-  background-image:
-    /* Realistic subtle diagonal paper folds & creases */
-    linear-gradient(135deg, rgba(0, 0, 0, 0.016) 0%, transparent 40%, rgba(255, 255, 255, 0.6) 42%, rgba(0, 0, 0, 0.02) 44%, transparent 70%),
-    linear-gradient(78deg, transparent 65%, rgba(0, 0, 0, 0.012) 75%, rgba(255, 255, 255, 0.4) 77%, rgba(0, 0, 0, 0.018) 80%, transparent 100%),
-    radial-gradient(ellipse at 50% 30%, #ffffff 0%, #fbfbf9 60%, #f4f3ef 100%);
+  /* Authentic Apple Notes lined textured paper background */
+  background: #f7f5ef url('/images/notes-paper.png') center / cover no-repeat;
   display: flex;
   flex-direction: column;
   align-items: center;
