@@ -1,54 +1,92 @@
 import React from 'react';
+import './ScrapbookAbout.css';
 
 export default function AboutMe() {
   return (
-    <div className="apple-profile-view">
+    <div className="scrapbook-about-view">
+      {/* Editorial Highlight Title */}
+      <header className="scrapbook-header">
+        <h2 className="scrapbook-title">
+          <span className="scrapbook-title-highlight">now that we’ve officially met...</span>
+        </h2>
+      </header>
 
-      {/* Hero Banner — Apple Leadership Profile Style */}
-      <section className="apple-profile-hero">
-        <div className="apple-profile-hero-content">
-          <div className="apple-profile-headings">
-            <h1 className="apple-profile-name">Yogesh Battula</h1>
-            <p className="apple-profile-role">Senior Product Designer</p>
+      {/* Scrapbook Collage Stage */}
+      <div className="scrapbook-stage">
+        {/* 1. Torn Kraft Paper Backing Card */}
+        <div className="scrapbook-kraft-card" aria-hidden="true">
+          <div className="scrapbook-kraft-badge">
+            cr<span className="badge-orange">e</span>ative
           </div>
-          <div className="apple-profile-portrait-wrap">
+        </div>
+
+        {/* 2. Sports Car Die-Cut Sticker (Boy Interests) */}
+        <div
+          className="scrapbook-sticker car-sticker"
+          title="Motorsports & Performance Cars"
+          aria-label="Porsche sports car sticker"
+        >
+          <img src="/images/car-sticker.png" alt="Sports car sticker" />
+        </div>
+
+        {/* 3. Polaroid Instant Photo with Washi Tape */}
+        <div className="scrapbook-polaroid">
+          <div className="scrapbook-tape" aria-hidden="true" />
+          <div className="scrapbook-photo-wrap">
             <img
-              src="/images/yogesh-portrait.png"
-              alt="Yogesh Battula"
-              className="apple-profile-portrait"
+              src="/images/yogesh-portrait.jpg"
+              alt="Yogesh Battula portrait"
+              className="scrapbook-photo"
             />
+            {/* Viewfinder camera grid overlay */}
+            <div className="scrapbook-viewfinder" aria-hidden="true">
+              <div className="viewfinder-grid" />
+              <div className="viewfinder-controls">
+                <span>○</span>
+                <span>☼</span>
+                <span>⟳</span>
+                <span className="vf-shutter" />
+              </div>
+            </div>
           </div>
         </div>
-      </section>
 
-      {/* Editorial Biography — 2-Column Apple Profile Grid */}
-      <section className="apple-profile-body">
-        <div className="apple-profile-columns">
-          <div className="apple-profile-col">
-            <p className="apple-profile-lead">
-              Yogesh Battula is a Senior Product Designer focused on turning complex workflows into intuitive, thoughtful, and human-centered digital experiences.
-            </p>
-            <p>
-              With deep craft spanning healthcare, sports technology, and multi-platform digital systems, Yogesh bridges user needs with technical architecture. Throughout his design career, he has spearheaded end-to-end product design across web, mobile, and desktop environments — including comprehensive platforms like <strong>Recovery</strong> (rehabilitation for surgeons, physiotherapists, and patients) and <strong>Trosky 365</strong> (guided conversational coaching for athletes).
-            </p>
-            <p>
-              He approaches product design not as surface decoration, but as a system of decisions: aligning business intent, engineering feasibility, and genuine human empathy to create tools people love using every day.
-            </p>
+        {/* 4. Spiral Lined Notebook Sheet */}
+        <div className="scrapbook-notebook">
+          <div className="notebook-spiral-edge" aria-hidden="true">
+            {[...Array(6)].map((_, i) => (
+              <span key={i} className="notebook-hole" />
+            ))}
           </div>
-
-          <div className="apple-profile-col">
-            <p>
-              Yogesh has led critical design initiatives focused on clarity, systematic scalability, and emotional resonance. He champions craft in every micro-interaction — from fluid spring physics and state transitions to accessible keyboard navigation and ergonomic layout hierarchies.
-            </p>
-            <p>
-              He partners closely with cross-functional engineering teams, product managers, and domain specialists to take ideas from ambiguous sketches to robust production systems. His work is guided by the philosophy that simplicity is the ultimate sophistication — eliminating noise until only purpose remains.
-            </p>
-            <p>
-              Beyond interface design, Yogesh explores creative coding, motion design, and intelligent interfaces that anticipate user intent. He combines rigorous systems thinking with modern frontend craft to ensure designs are realized with pixel-perfect fidelity.
-            </p>
+          <div className="notebook-content">
+            <p className="notebook-line">Hi, I’m Yogesh—the designer</p>
+            <p className="notebook-line">behind thoughtful systems & craft.</p>
+            <p className="notebook-line">Thanks for stopping by</p>
+            <p className="notebook-line">my little creative space</p>
+            <p className="notebook-hearts">✦ ✦ ✦</p>
           </div>
         </div>
-      </section>
+
+        {/* 5. Quadcopter Drone Die-Cut Sticker (Boy Interests) */}
+        <div
+          className="scrapbook-sticker drone-sticker"
+          title="FPV Drones & Aerial Cinematography"
+          aria-label="Camera drone sticker"
+        >
+          <img src="/images/drone-sticker.png" alt="Camera drone sticker" />
+        </div>
+      </div>
+
+      {/* Outro Signoff */}
+      <footer className="scrapbook-footer">
+        <p className="scrapbook-intro-text">
+          Stick around for product design, design systems, creative ideas, and the
+          occasional glimpse behind the pixels.
+        </p>
+        <h3 className="scrapbook-signoff">
+          Nice to meet you! <span className="sparkle">✦</span>
+        </h3>
+      </footer>
     </div>
   );
 }
