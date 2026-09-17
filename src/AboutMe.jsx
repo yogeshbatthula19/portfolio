@@ -157,7 +157,7 @@ export default function AboutMe({ onContact, onProjects }) {
       {/* =================================================================
           SECTION 2: CLEAN DETAILED STORY (NO CONTAINER BOXES)
           ================================================================= */}
-      <section className="about-extended-story" ref={storyRef}>
+      <section className="about-extended-story">
         <h2 className="story-title">Behind the Pixels</h2>
         
         <div className="story-paragraphs">
