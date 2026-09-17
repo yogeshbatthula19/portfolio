@@ -1,119 +1,247 @@
 import React, { useState } from 'react';
-import './PolaroidAbout.css';
+import './SpatialAbout.css';
 
 export default function AboutMe({ onContact, onProjects }) {
-  const [emojiIndex, setEmojiIndex] = useState(0);
-  const emojis = ['🤩', '😎', '🚀', '☕', '🎨', '✨'];
+  const [activeTab, setActiveTab] = useState('team'); // 'team' | 'details'
+  const [chatMessageIndex, setChatMessageIndex] = useState(0);
 
-  const cycleEmoji = (e) => {
-    e?.stopPropagation();
-    setEmojiIndex((prev) => (prev + 1) % emojis.length);
+  const chatMessages = [
+    'Sketchbook.',
+    'Craft & Systems.',
+    'Obsessed with details.',
+    'Coffee & Curiosity.',
+  ];
+
+  const cycleChat = () => {
+    setChatMessageIndex((prev) => (prev + 1) % chatMessages.length);
   };
 
   return (
-    <div className="polaroid-editorial-screen">
+    <div className="spatial-about-screen">
       {/* =================================================================
-          TOP EDITORIAL HEADER BAR (Matching reference header)
+          TOP SEGMENTED PILL TOGGLE (Meet The Team | Details)
           ================================================================= */}
-      <header className="editorial-header-bar">
-        <span className="header-tag-left">Product Designer</span>
-        <span className="header-tag-center">@YOGESHBATTULA</span>
-        <span className="header-tag-right">Hyderabad, IN</span>
-      </header>
+      <nav className="spatial-segmented-pill" role="tablist" aria-label="About Me Views">
+        <div
+          className="segmented-pill-slider"
+          style={{
+            left: activeTab === 'team' ? '4px' : 'calc(50% + 2px)',
+            width: 'calc(50% - 6px)',
+          }}
+        />
+        <button
+          type="button"
+          role="tab"
+          aria-selected={activeTab === 'team'}
+          className={`segmented-option ${activeTab === 'team' ? 'is-active' : ''}`}
+          onClick={() => setActiveTab('team')}
+        >
+          Meet The Team
+        </button>
+        <button
+          type="button"
+          role="tab"
+          aria-selected={activeTab === 'details'}
+          className={`segmented-option ${activeTab === 'details' ? 'is-active' : ''}`}
+          onClick={() => setActiveTab('details')}
+        >
+          Details
+        </button>
+      </nav>
 
       {/* =================================================================
-          MAIN EDITORIAL STAGE (Polaroid + Annotations + Hand-Drawn Arrows)
+          VIEW 1: SPATIAL SCENE (EXACT 1:1 REPLICA OF REFERENCE PHOTO)
           ================================================================= */}
-      <div className="editorial-stage">
-        
-        {/* Peeking underlay card on bottom-left */}
-        <div className="peeking-card-underlay" aria-hidden="true">
-          <div className="peeking-card-watermark">
-            MEET THE<br />DESIGNER
+      {activeTab === 'team' ? (
+        <div className="spatial-stage">
+          
+          {/* 1. Left Name Callout Bookmark Tab with Blue Pin */}
+          <div className="name-callout-tab">
+            <div className="name-pin-line">
+              <div className="name-pin-dot" />
+            </div>
+            <div className="name-text-group">
+              <span className="name-title-line">Yogesh</span>
+              <span className="name-title-line">Battula</span>
+            </div>
           </div>
-        </div>
 
-        {/* 1. Top Center Note & Upward Curved Arrow */}
-        <div className="editorial-note note-top-center">
-          <span className="note-label">ROLE</span>
-          <span className="note-script">Product & Systems</span>
-        </div>
-        <svg className="arrow-top-center hand-drawn-arrow" viewBox="0 0 44 55" fill="none">
-          <path d="M 6 48 C 18 42, 28 28, 24 10" />
-          <path d="M 18 16 L 24 9 L 30 15" />
-        </svg>
-
-        {/* 2. Top Left Note */}
-        <div className="editorial-note note-top-left">
-          <span className="note-label">nickname:</span>
-          <span className="note-script">the pixel architect</span>
-        </div>
-
-        {/* 3. Top Right Note */}
-        <div className="editorial-note note-top-right">
-          <span className="note-script">multidisciplinary</span>
-        </div>
-
-        {/* 4. Middle Left Note & Squiggly Arrow to Photo */}
-        <div className="editorial-note note-mid-left">
-          <span className="note-label">favorite movies:</span>
-          <span className="note-script">sci-fi & crime</span>
-        </div>
-        <svg className="arrow-mid-left hand-drawn-arrow" viewBox="0 0 32 48" fill="none">
-          <path d="M 2 40 Q 14 36, 6 24 T 22 10" />
-          <path d="M 14 10 L 23 9 L 23 18" />
-        </svg>
-
-        {/* 5. Center Hero Polaroid Frame */}
-        <article className="polaroid-frame" title="Yogesh Battula — Product Designer">
-          <div className="polaroid-photo-wrap">
+          {/* 2. Left macOS Folder: Develops ideas */}
+          <div
+            className="spatial-folder-left"
+            onClick={onProjects}
+            title="Click to view projects"
+          >
             <img
-              src="/images/yogesh-portrait.jpg"
-              alt="Yogesh Battula black and white editorial portrait"
+              src="/icons/folder.png"
+              alt="Develops ideas folder"
+              className="spatial-folder-img"
+            />
+            <span className="folder-label">
+              Develops<br />ideas
+            </span>
+          </div>
+
+          {/* 3. Bottom-Left Wire-Bound Open Spiral Notebook */}
+          <div
+            className="spiral-notebook-wrap"
+            onClick={cycleChat}
+            title="Click to peek sketchbook notes"
+          >
+            <div className="spiral-notebook">
+              <div className="notebook-page-left" />
+              <div className="spiral-binding-spine">
+                {[...Array(9)].map((_, i) => (
+                  <div key={i} className="spiral-ring" />
+                ))}
+              </div>
+              <div className="notebook-page-right" />
+            </div>
+          </div>
+
+          {/* 4. Center Standing Full-Body Cutout of Yogesh */}
+          <div className="hero-cutout-wrap">
+            <img
+              src="/images/yogesh-hero.png"
+              alt="Yogesh Battula standing cutout"
+              className="hero-cutout-img"
             />
           </div>
 
-          {/* Bottom white chin with handwritten red script */}
-          <div className="polaroid-chin">
-            <span className="red-signature">Yogesh</span>
+          {/* 5. Floating macOS Cursor Arrow */}
+          <svg
+            className="macos-cursor-float"
+            viewBox="0 0 24 32"
+            fill="none"
+            aria-hidden="true"
+          >
+            <path
+              d="M 2 2 L 2 26 L 7.5 20.5 L 13 30 L 17 28 L 11.5 18.5 L 18 18.5 Z"
+              fill="#000000"
+              stroke="#ffffff"
+              strokeWidth="1.8"
+              strokeLinejoin="round"
+            />
+          </svg>
+
+          {/* 6. Top-Right macOS Folder: Guides the team */}
+          <div
+            className="spatial-folder-right"
+            onClick={() => setActiveTab('details')}
+            title="Click to view background details"
+          >
+            <img
+              src="/icons/folder.png"
+              alt="Guides the team folder"
+              className="spatial-folder-img"
+            />
+            <span className="folder-label">
+              Guides<br />the team
+            </span>
           </div>
 
-          {/* 3D Emoji Sticker Badge on the right edge */}
-          <button
-            type="button"
-            className="emoji-sticker-badge"
-            onClick={cycleEmoji}
-            aria-label="Change sticker reaction"
-            title="Click to cycle sticker!"
+          {/* 7. Middle-Right Photo Card: Product Designer.jpg (Compass with Blue Plus) */}
+          <div
+            className="spatial-photo-card"
+            onClick={() => setActiveTab('details')}
+            title="Click to view profile card"
           >
-            <span className="emoji-icon">{emojis[emojiIndex]}</span>
-          </button>
-        </article>
+            <div className="photo-card-paper">
+              <div className="photo-card-inner">
+                {/* 3D Metallic Precision Compass SVG */}
+                <svg
+                  className="photo-card-icon"
+                  viewBox="0 0 80 80"
+                  fill="none"
+                >
+                  <circle cx="40" cy="40" r="34" fill="#1e293b" />
+                  <circle cx="40" cy="40" r="34" stroke="#94a3b8" strokeWidth="4" />
+                  <circle cx="40" cy="40" r="28" stroke="rgba(255,255,255,0.15)" strokeWidth="1" />
+                  {/* Top Loop Ring */}
+                  <circle cx="40" cy="6" r="4.5" stroke="#cbd5e1" strokeWidth="2" fill="none" />
+                  {/* Compass Needles */}
+                  <polygon points="40,16 44,40 40,36 36,40" fill="#ef4444" />
+                  <polygon points="40,64 44,40 40,44 36,40" fill="#e2e8f0" />
+                  <polygon points="16,40 40,44 36,40 40,36" fill="#64748b" />
+                  <polygon points="64,40 40,44 44,40 40,36" fill="#64748b" />
+                  <circle cx="40" cy="40" r="3.5" fill="#f8fafc" />
+                  {/* Compass Labels */}
+                  <text x="40" y="24" fill="#ffffff" fontSize="6" fontWeight="bold" textAnchor="middle">N</text>
+                  <text x="40" y="59" fill="#94a3b8" fontSize="6" fontWeight="bold" textAnchor="middle">S</text>
+                  <text x="59" y="42" fill="#94a3b8" fontSize="6" fontWeight="bold" textAnchor="middle">E</text>
+                  <text x="21" y="42" fill="#94a3b8" fontSize="6" fontWeight="bold" textAnchor="middle">W</text>
+                </svg>
 
-        {/* 6. Middle Right Note */}
-        <div className="editorial-note note-mid-right">
-          <span className="note-label">superpower:</span>
-          <span className="note-script">craft & micro-details</span>
+                {/* Blue Plus Badge in Corner */}
+                <div className="photo-card-badge">+</div>
+              </div>
+            </div>
+            <span className="photo-card-label">
+              Product<br />Designer.jpg
+            </span>
+          </div>
+
+          {/* 8. Bottom-Right Apple Blue iMessage Bubble: Sketchbook. */}
+          <div
+            className="imessage-chat-bubble"
+            onClick={cycleChat}
+            title="Click to toggle thought bubble"
+          >
+            <span>{chatMessages[chatMessageIndex]}</span>
+          </div>
+
         </div>
+      ) : (
+        /* =================================================================
+            VIEW 2: DETAILS TAB (Complete Biography, Work & Experience)
+            ================================================================= */
+        <div className="spatial-details-container">
+          <div className="details-header">
+            <span className="details-badge">Product & Interaction Designer</span>
+            <h2 className="details-name">Yogesh Battula</h2>
+            <p className="details-role">Based in Hyderabad / Bangalore, India • Working Worldwide</p>
+          </div>
 
-        {/* 7. Bottom Left Note (Overlapping peeking card) */}
-        <div className="editorial-note note-bottom-left">
-          <span className="note-label">passions outside design:</span>
-          <span className="note-script">cars & tech gadgets</span>
-          <span className="note-subscript">(and dark roast coffee)</span>
+          <div className="details-body">
+            <p>
+              I am a Product Designer driven by the craft of shaping complex workflows into clear, deliberate, and deeply human digital experiences.
+            </p>
+
+            <div className="details-focus-box">
+              <h4>Key Featured Case Studies</h4>
+              <ul>
+                <li><strong>Recovery:</strong> Post-operative clinical rehabilitation system linking surgeons, physiotherapists, and recovering patients.</li>
+                <li><strong>Trosky 365:</strong> AI-powered conversational athletic coaching platform and structured player developmental tracking.</li>
+              </ul>
+            </div>
+
+            <p>
+              My expertise bridges user research, design systems, interactive prototypes, and front-end engineering fidelity.
+            </p>
+
+            <div className="details-actions">
+              {onProjects && (
+                <button
+                  type="button"
+                  className="details-btn primary"
+                  onClick={onProjects}
+                >
+                  Explore Work ↗
+                </button>
+              )}
+              {onContact && (
+                <button
+                  type="button"
+                  className="details-btn"
+                  onClick={onContact}
+                >
+                  Say Hello
+                </button>
+              )}
+            </div>
+          </div>
         </div>
-
-        {/* 8. Bottom Right Note & Curved Downward Arrow */}
-        <svg className="arrow-bottom-right hand-drawn-arrow" viewBox="0 0 38 38" fill="none">
-          <path d="M 4 6 Q 16 12, 22 28" />
-          <path d="M 14 26 L 23 29 L 26 20" />
-        </svg>
-        <div className="editorial-note note-bottom-right">
-          <span className="note-label">favorite tools:</span>
-          <span className="note-script">Figma & Code</span>
-        </div>
-
-      </div>
+      )}
     </div>
   );
 }
