@@ -1,5 +1,5 @@
 /* ==========================================================================
-   EDITORIAL POLAROID ABOUT ME (ULTRA-COMPACT SINGLE GLANCE SHOWCASE)
+   EDITORIAL POLAROID ABOUT ME (WITH REALISTIC VINYL STICKERS)
    ========================================================================== */
 
 .polaroid-editorial-screen {
@@ -12,7 +12,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 10px 20px 14px;
+  padding: 8px 16px 12px;
   position: relative;
   overflow: hidden;
   user-select: none;
@@ -21,52 +21,91 @@
 }
 
 /* ==========================================================================
-   TOP EDITORIAL HEADER BAR
-   ========================================================================== */
-
-.editorial-header-bar {
-  width: 100%;
-  max-width: 620px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding-bottom: 6px;
-  font-size: 10px;
-  font-weight: 600;
-  letter-spacing: 0.16em;
-  color: #2b2c30;
-  text-transform: uppercase;
-  flex-shrink: 0;
-  z-index: 10;
-}
-
-.header-tag-center {
-  font-size: 11px;
-  font-weight: 800;
-  letter-spacing: 0.08em;
-  color: #000000;
-}
-
-.header-tag-left,
-.header-tag-right {
-  font-size: 9.5px;
-  color: #55585f;
-}
-
-/* ==========================================================================
-   MAIN EDITORIAL STAGE (CENTER POLAROID & ANNOTATIONS)
+   MAIN EDITORIAL STAGE (CENTER POLAROID, STICKERS & ANNOTATIONS)
    ========================================================================== */
 
 .editorial-stage {
   position: relative;
   width: 100%;
-  max-width: 590px;
-  height: 430px;
-  max-height: calc(100% - 28px);
+  max-width: 610px;
+  height: 440px;
+  max-height: calc(100% - 10px);
   display: flex;
   justify-content: center;
   align-items: center;
   margin: 0 auto;
+}
+
+/* ==========================================================================
+   REALISTIC VINYL DIE-CUT STICKERS (DRONE, CHARMINAR, JEEP)
+   ========================================================================== */
+
+.realistic-sticker {
+  position: absolute;
+  z-index: 7;
+  cursor: pointer;
+  touch-action: manipulation;
+  filter:
+    drop-shadow(0 7px 15px rgba(0, 0, 0, 0.16))
+    drop-shadow(0 2px 4px rgba(0, 0, 0, 0.08));
+  transition: transform 0.22s cubic-bezier(0.34, 1.56, 0.64, 1), filter 0.2s ease;
+}
+
+.realistic-sticker img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+  pointer-events: none;
+}
+
+.realistic-sticker:hover {
+  filter:
+    drop-shadow(0 12px 24px rgba(0, 0, 0, 0.24))
+    drop-shadow(0 3px 6px rgba(0, 0, 0, 0.12));
+}
+
+.realistic-sticker:active {
+  transform: scale(0.95) !important;
+}
+
+/* 1. Drone Sticker on Top Left */
+.sticker-drone {
+  top: 4px;
+  left: 18px;
+  width: 52px;
+  height: 52px;
+  transform: rotate(-7deg);
+}
+
+.sticker-drone:hover {
+  transform: scale(1.14) rotate(-3deg);
+}
+
+/* 2. Charminar Monument Sticker on Top Right */
+.sticker-charminar {
+  top: 4px;
+  right: 18px;
+  width: 54px;
+  height: 54px;
+  transform: rotate(6deg);
+}
+
+.sticker-charminar:hover {
+  transform: scale(1.14) rotate(10deg);
+}
+
+/* 3. Off-Road 4x4 Jeep Sticker on Bottom Left */
+.sticker-jeep {
+  bottom: 8px;
+  left: 12px;
+  width: 66px;
+  height: 66px;
+  transform: rotate(-5deg);
+}
+
+.sticker-jeep:hover {
+  transform: scale(1.14) rotate(0deg);
 }
 
 /* ==========================================================================
@@ -101,7 +140,7 @@
 }
 
 /* ==========================================================================
-   THE MAIN POLAROID FRAME (MUCH MORE COMPACT & PERFECTLY PROPORTIONED)
+   THE MAIN POLAROID FRAME
    ========================================================================== */
 
 .polaroid-frame {
@@ -143,7 +182,6 @@
   object-fit: cover;
   object-position: center 18%;
   display: block;
-  /* Matching high-contrast B&W photo from reference */
   filter: grayscale(100%) contrast(1.18) brightness(1.02);
   transition: filter 0.3s ease;
 }
@@ -210,7 +248,7 @@
 }
 
 /* ==========================================================================
-   HANDWRITTEN ANNOTATIONS & SVG ARROWS (ALL COMFORTABLY IN VIEW)
+   HANDWRITTEN ANNOTATIONS & SVG ARROWS (SEAMLESS SINGLE GLANCE SPACING)
    ========================================================================== */
 
 .editorial-note {
@@ -247,7 +285,7 @@
   margin-top: 1px;
 }
 
-/* 1. Top Center: ROLE / Product & Systems */
+/* 1. Top Center: ROLE */
 .note-top-center {
   top: 8px;
   left: 50%;
@@ -260,16 +298,16 @@
   font-size: 21px;
 }
 
-/* 2. Top Left: Nickname */
+/* 2. Top Left: Nickname (under drone sticker) */
 .note-top-left {
-  top: 24px;
-  left: 24px;
+  top: 60px;
+  left: 18px;
 }
 
-/* 3. Top Right: Multidisciplinary + Arrow 1 (Sweeping Up-Right) */
+/* 3. Top Right: Multidisciplinary + Arrow 1 (under Charminar sticker) */
 .note-top-right {
-  top: 32px;
-  right: 26px;
+  top: 60px;
+  right: 22px;
 }
 
 .note-top-right .note-script {
@@ -278,59 +316,59 @@
 
 .arrow-top-right {
   position: absolute;
-  top: 56px;
-  left: calc(50% + 76px);
-  width: 28px;
-  height: 48px;
+  top: 84px;
+  left: calc(50% + 78px);
+  width: 26px;
+  height: 44px;
   z-index: 6;
   pointer-events: none;
 }
 
-/* 4. Middle Left: Favorite Movies + Arrow 2 (Serpentine Wavy Doodle) */
+/* 4. Middle Left: Favorite Movies + Arrow 2 */
 .note-mid-left {
-  top: 45%;
+  top: 48%;
   transform: translateY(-40%);
-  left: 16px;
+  left: 14px;
 }
 
 .arrow-mid-left {
   position: absolute;
-  top: calc(45% + 30px);
-  left: 62px;
-  width: 26px;
-  height: 52px;
+  top: calc(48% + 28px);
+  left: 60px;
+  width: 24px;
+  height: 48px;
   z-index: 6;
   pointer-events: none;
 }
 
 /* 5. Middle Right: Superpower */
 .note-mid-right {
-  top: 47%;
+  top: 48%;
   transform: translateY(-40%);
-  right: 20px;
+  right: 18px;
 }
 
-/* 6. Bottom Left: Passions / Outside design */
+/* 6. Bottom Left: Passions (beside Jeep sticker) */
 .note-bottom-left {
-  bottom: 12px;
-  left: 26px;
+  bottom: 8px;
+  left: 84px;
   z-index: 6;
 }
 
-/* 7. Bottom Right: Arrow 3 (Hooked Arc) + Favorite Tools */
+/* 7. Bottom Right: Arrow 3 + Favorite Tools */
 .arrow-bottom-right {
   position: absolute;
-  bottom: 46px;
+  bottom: 44px;
   right: 104px;
-  width: 30px;
-  height: 30px;
+  width: 28px;
+  height: 28px;
   z-index: 6;
   pointer-events: none;
 }
 
 .note-bottom-right {
-  bottom: 12px;
-  right: 22px;
+  bottom: 8px;
+  right: 20px;
 }
 
 /* Hand-Drawn SVG Arrow stroke styles */
@@ -349,11 +387,7 @@
 
 @media (max-width: 720px) {
   .polaroid-editorial-screen {
-    padding: 10px 8px 12px;
-  }
-  .editorial-header-bar {
-    font-size: 8.5px;
-    padding-bottom: 4px;
+    padding: 8px 6px 10px;
   }
   .editorial-stage {
     height: 380px;
@@ -384,7 +418,19 @@
   .emoji-icon {
     font-size: 19px;
   }
-  .arrow-top-center,
+  .sticker-drone {
+    width: 40px;
+    height: 40px;
+  }
+  .sticker-charminar {
+    width: 42px;
+    height: 42px;
+  }
+  .sticker-jeep {
+    width: 48px;
+    height: 48px;
+  }
+  .arrow-top-right,
   .arrow-mid-left,
   .arrow-bottom-right {
     display: none;
