@@ -12,14 +12,6 @@ export default function AboutMe({ onContact, onProjects }) {
 
   return (
     <div className="polaroid-editorial-screen">
-      {/* =================================================================
-          TOP EDITORIAL HEADER BAR (Matching reference header)
-          ================================================================= */}
-      <header className="editorial-header-bar">
-        <span className="header-tag-left">Product Designer</span>
-        <span className="header-tag-center">@YOGESHBATTULA</span>
-        <span className="header-tag-right">Hyderabad, IN</span>
-      </header>
 
       {/* =================================================================
           MAIN EDITORIAL STAGE (Polaroid + Annotations + Hand-Drawn Arrows)
