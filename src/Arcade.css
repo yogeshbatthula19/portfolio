@@ -2,51 +2,59 @@
    MINIMALIST APPLE INTERFACE STYLE — GAMES (2 GAMES ONLY)
    ========================================================================== */
 
-.arcade-dialog {
-  width: min(520px, calc(100vw - 32px));
+.arcade-modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.28);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  padding: 20px;
+  animation: appleFadeIn 0.18s ease-out;
+  box-sizing: border-box;
+}
+
+@keyframes appleFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.arcade-window {
+  width: min(500px, 100%);
   max-height: 85svh;
-  margin: auto auto 95px;
-  padding: 0;
   border: 1px solid rgba(0, 0, 0, 0.12);
   border-radius: 18px;
-  background: rgba(255, 255, 255, 0.95);
+  background: rgba(255, 255, 255, 0.98);
   backdrop-filter: blur(35px) saturate(1.8);
   -webkit-backdrop-filter: blur(35px) saturate(1.8);
   color: #1d1d1f;
   box-shadow: 
-    0 24px 60px rgba(0, 0, 0, 0.22),
-    0 4px 14px rgba(0, 0, 0, 0.05);
+    0 24px 60px rgba(0, 0, 0, 0.25),
+    0 4px 14px rgba(0, 0, 0, 0.06);
   overflow: hidden;
   display: flex;
   flex-direction: column;
   font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", sans-serif;
-}
-
-.arcade-dialog::backdrop {
-  background: rgba(0, 0, 0, 0.25);
-  backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(4px);
-}
-
-.arcade-dialog[open] {
   animation: appleWindowIn 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform;
 }
 
 @keyframes appleWindowIn {
   from {
     opacity: 0;
-    transform: scale(0.96) translateY(10px);
   }
   to {
     opacity: 1;
-    transform: scale(1) translateY(0);
   }
 }
 
-/* Header bar (macOS Native Window Titlebar) */
+/* Header bar (macOS Native Window Titlebar - Draggable) */
 .arcade-header {
-  height: 46px;
-  padding: 0 14px;
+  height: 48px;
+  padding: 0 16px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -54,6 +62,12 @@
   border-bottom: 1px solid #e5e5ea;
   user-select: none;
   flex-shrink: 0;
+  cursor: grab;
+  touch-action: none;
+}
+
+.arcade-header:active {
+  cursor: grabbing;
 }
 
 .arcade-header-left {
@@ -81,8 +95,8 @@
   background: #e8e8ed;
   border: none;
   border-radius: 50%;
-  width: 26px;
-  height: 26px;
+  width: 28px;
+  height: 28px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -90,16 +104,21 @@
   cursor: pointer;
   transition: all 0.15s ease;
   padding: 0;
+  flex-shrink: 0;
 }
 
 .arcade-close-cross:hover {
   background: #d1d1d6;
   color: #1d1d1f;
-  transform: scale(1.05);
+  transform: scale(1.08);
 }
 
 .arcade-close-cross:active {
-  transform: scale(0.95);
+  transform: scale(0.92);
+}
+
+.arcade-close-cross svg {
+  pointer-events: none;
 }
 
 /* Body container */

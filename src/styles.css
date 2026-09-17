@@ -346,3 +346,40 @@ html body .desktop .desktop-files>button>span:not(.sf-symbol){font-size:11px;lin
   .apple-profile-body{padding:28px 20px 40px}
   .apple-profile-columns{grid-template-columns:1fr;gap:24px}
 }
+
+/* Window header dragging & cancel button styles */
+.window:not(.maximized) .window-bar,
+.applications-heading,
+.movies-header,
+.quicklook-bar {
+  cursor: grab;
+  touch-action: none;
+  user-select: none;
+}
+
+.window:not(.maximized) .window-bar:active,
+.applications-heading:active,
+.movies-header:active,
+.quicklook-bar:active {
+  cursor: grabbing;
+}
+
+.window-bar button,
+.applications-heading button,
+.movies-header button,
+.quicklook-bar button {
+  cursor: pointer;
+}
+
+.window-bar button svg,
+.applications-heading button svg,
+.movies-header button svg,
+.quicklook-bar button svg {
+  pointer-events: none;
+}
+
+.applications-panel,
+.movies-window,
+.quicklook {
+  will-change: transform;
+}

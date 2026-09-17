@@ -1,4 +1,5 @@
 import React,{useRef,useEffect,useState} from 'react';
+import { useDraggable } from './useDraggable.js';
 import RecoveryStory from './RecoveryStory.jsx';
 import TroskyStory,{TroskyCover} from './TroskyStory.jsx';
 export const projects=[
@@ -160,24 +161,31 @@ export function ProjectBrowser({query,onPreview}){
 
 export function QuickLook({project,onClose}){
   const ref=useRef(null);
+  const { pos, resetPos, dragHandlers } = useDraggable();
   useEffect(()=>{
     const previous=document.activeElement;
     ref.current?.showModal();
     return()=>previous?.focus();
   },[]);
 
+  const handleClose = () => {
+    resetPos();
+    onClose();
+  };
+
   return (
     <dialog
       className={'quicklook '+(project.id!=='workspace'?'recovery-dialog':'')}
       ref={ref}
-      onCancel={onClose}
-      onClick={e=>{if(e.target===ref.current)onClose()}}
-      onKeyDown={e=>{if((e.code==='Space'||e.key==='Escape')&&e.target===ref.current){e.preventDefault();onClose()}}}
+      style={{ transform: `translate(${pos.x}px, ${pos.y}px)` }}
+      onCancel={handleClose}
+      onClick={e=>{if(e.target===ref.current)handleClose()}}
+      onKeyDown={e=>{if((e.code==='Space'||e.key==='Escape')&&e.target===ref.current){e.preventDefault();handleClose()}}}
     >
-      <div className="quicklook-bar">
+      <div className="quicklook-bar" {...dragHandlers}>
         <span>Quick Look — {project.folderName||project.title}</span>
-        <button onClick={onClose} aria-label="Close Quick Look" className="quicklook-close-btn">
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+        <button onClick={handleClose} aria-label="Close Quick Look" className="quicklook-close-btn">
+          <svg style={{pointerEvents:'none'}} width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
             <line x1="18" y1="6" x2="6" y2="18"/>
             <line x1="6" y1="6" x2="18" y2="18"/>
           </svg>

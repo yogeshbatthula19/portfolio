@@ -1,4 +1,5 @@
 import React, { useRef, useState, useEffect, useCallback } from 'react';
+import { useDraggable } from './useDraggable.js';
 import './Arcade.css';
 
 // =============================================================================
@@ -406,26 +407,32 @@ function TicTacToi({ onBack }) {
 // MAIN ARCADE COMPONENT (JUST 2 GAMES, CLEAN APPLE INTERFACE)
 // =============================================================================
 export default function Arcade() {
-  const dialog = useRef(null);
   const trigger = useRef(null);
+  const [isOpen, setIsOpen] = useState(false);
   const [selectedGame, setSelectedGame] = useState(null); // null, 'flippy', 'tictactoe'
-
-  useEffect(() => {
-    const el = dialog.current;
-    if (!el) return;
-    const restore = () => trigger.current?.focus();
-    el.addEventListener('close', restore);
-    return () => el.removeEventListener('close', restore);
-  }, []);
+  const { pos, resetPos, dragHandlers } = useDraggable();
 
   const openArcade = () => {
-    dialog.current?.showModal();
+    setIsOpen(true);
   };
 
   const closeArcade = () => {
-    dialog.current?.close();
+    setIsOpen(false);
     setSelectedGame(null);
+    resetPos();
+    trigger.current?.focus();
   };
+
+  useEffect(() => {
+    if (!isOpen) return;
+    const onKeyDown = (e) => {
+      if (e.key === 'Escape') {
+        closeArcade();
+      }
+    };
+    window.addEventListener('keydown', onKeyDown);
+    return () => window.removeEventListener('keydown', onKeyDown);
+  }, [isOpen]);
 
   return (
     <>
@@ -440,89 +447,107 @@ export default function Arcade() {
         <span className="tooltip">Games</span>
       </button>
 
-      {/* Clean Apple Modal Dialog */}
-      <dialog
-        ref={dialog}
-        className="arcade-dialog"
-        onClick={(e) => {
-          if (e.target === dialog.current) {
-            closeArcade();
-          }
-        }}
-      >
-        {/* Native macOS Header Bar */}
-        <header className="arcade-header">
-          <div className="arcade-header-left">
-            <img src="/icons/arcade.png" alt="" />
-            <h2 className="arcade-header-title">
-              {selectedGame === 'flippy'
-                ? 'Flippy Bird'
-                : selectedGame === 'tictactoe'
-                ? 'Tic Tac Toi'
-                : 'Games'}
-            </h2>
-          </div>
-
-          <button
-            type="button"
-            className="arcade-close-cross"
-            aria-label="Close games panel"
-            title="Close"
-            onClick={closeArcade}
+      {/* Clean Apple Modal Dialog Overlay & Draggable Window */}
+      {isOpen && (
+        <div
+          className="arcade-modal-overlay"
+          onClick={(e) => {
+            if (e.target === e.currentTarget) {
+              closeArcade();
+            }
+          }}
+        >
+          <div
+            className="arcade-window"
+            style={{ transform: `translate(${pos.x}px, ${pos.y}px)` }}
+            onClick={(e) => e.stopPropagation()}
           >
-            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-              <line x1="18" y1="6" x2="6" y2="18"/>
-              <line x1="6" y1="6" x2="18" y2="18"/>
-            </svg>
-          </button>
-        </header>
-
-        {/* Clean Apple Body Content */}
-        <div className="arcade-body">
-          {selectedGame === null ? (
-            <div>
-              <h2 className="games-list-title">Games</h2>
-              <p className="games-list-sub">Select a game to play.</p>
-
-              <div className="games-list-stack">
-                {/* 1. Flippy Bird Row */}
-                <div
-                  className="game-apple-row"
-                  onClick={() => setSelectedGame('flippy')}
-                >
-                  <div className="game-icon-box">🐥</div>
-                  <div className="game-info-col">
-                    <h3>Flippy Bird</h3>
-                    <p>Tap to flap and fly through obstacles.</p>
-                  </div>
-                  <button type="button" className="game-play-pill">
-                    Play
-                  </button>
-                </div>
-
-                {/* 2. Tic Tac Toi Row */}
-                <div
-                  className="game-apple-row"
-                  onClick={() => setSelectedGame('tictactoe')}
-                >
-                  <div className="game-icon-box">✕ ◯</div>
-                  <div className="game-info-col">
-                    <h3>Tic Tac Toi</h3>
-                    <p>Classic 3×3 game against the computer.</p>
-                  </div>
-                  <button type="button" className="game-play-pill">
-                    Play
-                  </button>
-                </div>
+            {/* Native macOS Header Bar - Draggable */}
+            <header className="arcade-header" {...dragHandlers}>
+              <div className="arcade-header-left">
+                <img src="/icons/arcade.png" alt="" />
+                <h2 className="arcade-header-title">
+                  {selectedGame === 'flippy'
+                    ? 'Flippy Bird'
+                    : selectedGame === 'tictactoe'
+                    ? 'Tic Tac Toi'
+                    : 'Games'}
+                </h2>
               </div>
+
+              <button
+                type="button"
+                className="arcade-close-cross"
+                aria-label="Close games panel"
+                title="Close"
+                onClick={closeArcade}
+              >
+                <svg
+                  width="10"
+                  height="10"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2.8"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  aria-hidden="true"
+                  style={{ pointerEvents: 'none' }}
+                >
+                  <line x1="18" y1="6" x2="6" y2="18" />
+                  <line x1="6" y1="6" x2="18" y2="18" />
+                </svg>
+              </button>
+            </header>
+
+            {/* Clean Apple Body Content */}
+            <div className="arcade-body">
+              {selectedGame === null ? (
+                <div>
+                  <h2 className="games-list-title">Games</h2>
+                  <p className="games-list-sub">Select a game to play.</p>
+
+                  <div className="games-list-stack">
+                    {/* 1. Flippy Bird Row */}
+                    <div
+                      className="game-apple-row"
+                      onClick={() => setSelectedGame('flippy')}
+                    >
+                      <div className="game-icon-box">🐥</div>
+                      <div className="game-info-col">
+                        <h3>Flippy Bird</h3>
+                        <p>Tap to flap and fly through obstacles.</p>
+                      </div>
+                      <button type="button" className="game-play-pill">
+                        Play
+                      </button>
+                    </div>
+
+                    {/* 2. Tic Tac Toi Row */}
+                    <div
+                      className="game-apple-row"
+                      onClick={() => setSelectedGame('tictactoe')}
+                    >
+                      <div className="game-icon-box">✕ ◯</div>
+                      <div className="game-info-col">
+                        <h3>Tic Tac Toi</h3>
+                        <p>Classic 3×3 game against the computer.</p>
+                      </div>
+                      <button type="button" className="game-play-pill">
+                        Play
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              ) : selectedGame === 'flippy' ? (
+                <FlippyBird onBack={() => setSelectedGame(null)} />
+              ) : (
+                <TicTacToi onBack={() => setSelectedGame(null)} />
+              )}
             </div>
-          ) : selectedGame === 'flippy' ? (
-            <FlippyBird onBack={() => setSelectedGame(null)} />
-          ) : (
-            <TicTacToi onBack={() => setSelectedGame(null)} />
-          )}
+          </div>
         </div>
-      </dialog>
+      )}
     </>
   );
 }
