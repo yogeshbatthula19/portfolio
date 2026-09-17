@@ -1,38 +1,17 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState } from 'react';
 import './PolaroidAbout.css';
 
 export default function AboutMe({ onContact, onProjects }) {
-  const screenRef = useRef(null);
-  const storyRef = useRef(null);
-  const [scrollY, setScrollY] = useState(0);
   const [emojiIndex, setEmojiIndex] = useState(0);
   const emojis = ['🤩', '😎', '🚀', '☕', '🎨', '✨'];
-
-  // Track parent scrolling container for dynamic sticker parallax
-  useEffect(() => {
-    const scrollContainer = screenRef.current?.closest('.content') || screenRef.current;
-    if (!scrollContainer) return;
-
-    const onScroll = () => {
-      setScrollY(scrollContainer.scrollTop);
-    };
-
-    scrollContainer.addEventListener('scroll', onScroll, { passive: true });
-    return () => scrollContainer.removeEventListener('scroll', onScroll);
-  }, []);
 
   const cycleEmoji = (e) => {
     e?.stopPropagation();
     setEmojiIndex((prev) => (prev + 1) % emojis.length);
   };
 
-  const scrollToTop = () => {
-    const scrollContainer = screenRef.current?.closest('.content') || screenRef.current;
-    scrollContainer?.scrollTo({ top: 0, behavior: 'smooth' });
-  };
-
   return (
-    <div className="polaroid-editorial-screen" ref={screenRef}>
+    <div className="polaroid-editorial-screen">
       
       {/* =================================================================
           SECTION 1: HERO SCRAPBOOK (SINGLE GLANCE HERO VIEW)
@@ -48,14 +27,11 @@ export default function AboutMe({ onContact, onProjects }) {
           </div>
 
           {/* =============================================================
-              DYNAMIC PARALLAX STICKERS (STAY IN MARGINS & GLIDE DOWN)
+              STATIC REALISTIC VINYL STICKERS
               ============================================================= */}
           {/* 1. Drone Sticker on Left Margin */}
           <div
             className="realistic-sticker sticker-drone"
-            style={{
-              transform: `translateY(${scrollY * 0.4}px) rotate(${-7 + scrollY * 0.02}deg)`,
-            }}
             title="Tech & FPV Drone"
             aria-label="Quadcopter camera drone sticker"
           >
@@ -65,9 +41,6 @@ export default function AboutMe({ onContact, onProjects }) {
           {/* 2. Charminar Hyderabad Monument Sticker on Right Margin */}
           <div
             className="realistic-sticker sticker-charminar"
-            style={{
-              transform: `translateY(${scrollY * 0.45}px) rotate(${6 - scrollY * 0.02}deg)`,
-            }}
             title="Charminar, Hyderabad"
             aria-label="Charminar Hyderabad monument sticker"
           >
@@ -77,9 +50,6 @@ export default function AboutMe({ onContact, onProjects }) {
           {/* 3. Off-Road 4x4 Jeep Sticker on Bottom-Left Margin */}
           <div
             className="realistic-sticker sticker-jeep"
-            style={{
-              transform: `translateY(${scrollY * 0.3}px) rotate(${-5 + scrollY * 0.015}deg)`,
-            }}
             title="4x4 Adventure Jeep"
             aria-label="Off-road 4x4 Jeep sticker"
           >
@@ -202,35 +172,6 @@ export default function AboutMe({ onContact, onProjects }) {
           <p className="story-p">
             I believe that the best products aren’t just visually striking—they operate with clear intentionality, respect the user’s cognitive load, and spark genuine joy. Outside of design sprints and code, you’ll usually find me exploring scenic trails in a 4×4 Jeep, capturing cinematic aerial shots with FPV drones, or diving into sci-fi cinema over a fresh pour-over coffee.
           </p>
-        </div>
-
-        {/* Quick interactive action buttons */}
-        <div className="story-cta-strip">
-          {onProjects && (
-            <button
-              type="button"
-              className="story-action-btn primary"
-              onClick={onProjects}
-            >
-              View Selected Projects ↗
-            </button>
-          )}
-          {onContact && (
-            <button
-              type="button"
-              className="story-action-btn secondary"
-              onClick={onContact}
-            >
-              Let’s Connect
-            </button>
-          )}
-          <button
-            type="button"
-            className="story-action-btn ghost"
-            onClick={scrollToTop}
-          >
-            Back to top ↑
-          </button>
         </div>
       </section>
 
