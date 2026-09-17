@@ -251,7 +251,7 @@
 .note-top-center {
   top: 8px;
   left: 50%;
-  transform: translateX(-16%);
+  transform: translateX(-50%);
   align-items: center;
   text-align: center;
 }
@@ -260,45 +260,45 @@
   font-size: 21px;
 }
 
-.arrow-top-center {
-  position: absolute;
-  top: 36px;
-  left: calc(50% + 64px);
-  width: 26px;
-  height: 34px;
-  z-index: 6;
-  pointer-events: none;
-}
-
 /* 2. Top Left: Nickname */
 .note-top-left {
   top: 24px;
   left: 24px;
 }
 
-/* 3. Top Right: Multidisciplinary */
+/* 3. Top Right: Multidisciplinary + Arrow 1 (Sweeping Up-Right) */
 .note-top-right {
-  top: 34px;
-  right: 28px;
+  top: 32px;
+  right: 26px;
 }
 
 .note-top-right .note-script {
-  font-size: 21px;
+  font-size: 21.5px;
 }
 
-/* 4. Middle Left: Favorite Movies */
+.arrow-top-right {
+  position: absolute;
+  top: 56px;
+  left: calc(50% + 76px);
+  width: 28px;
+  height: 48px;
+  z-index: 6;
+  pointer-events: none;
+}
+
+/* 4. Middle Left: Favorite Movies + Arrow 2 (Serpentine Wavy Doodle) */
 .note-mid-left {
-  top: 47%;
+  top: 45%;
   transform: translateY(-40%);
-  left: 18px;
+  left: 16px;
 }
 
 .arrow-mid-left {
   position: absolute;
-  top: calc(47% + 24px);
-  left: 64px;
-  width: 20px;
-  height: 32px;
+  top: calc(45% + 30px);
+  left: 62px;
+  width: 26px;
+  height: 52px;
   z-index: 6;
   pointer-events: none;
 }
@@ -317,29 +317,30 @@
   z-index: 6;
 }
 
-/* 7. Bottom Right: Favorite Tools */
-.note-bottom-right {
-  bottom: 12px;
-  right: 24px;
-}
-
+/* 7. Bottom Right: Arrow 3 (Hooked Arc) + Favorite Tools */
 .arrow-bottom-right {
   position: absolute;
   bottom: 46px;
-  right: 98px;
-  width: 24px;
-  height: 24px;
+  right: 104px;
+  width: 30px;
+  height: 30px;
   z-index: 6;
   pointer-events: none;
 }
 
+.note-bottom-right {
+  bottom: 12px;
+  right: 22px;
+}
+
 /* Hand-Drawn SVG Arrow stroke styles */
 .hand-drawn-arrow {
-  stroke: #141416;
-  stroke-width: 1.8;
+  stroke: #121316;
+  stroke-width: 2;
   stroke-linecap: round;
   stroke-linejoin: round;
   fill: none;
+  filter: drop-shadow(0 0.5px 1px rgba(0, 0, 0, 0.12));
 }
 
 /* ==========================================================================
