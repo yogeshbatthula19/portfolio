@@ -1,333 +1,570 @@
-/* 1:1 Precise Photobooth Machine & Dispensed Card Style */
+/* ==========================================================================
+   PHOTOBOOTH MACHINE & DISPENSED CARD (1:1 ACCURATE TO REFERENCE)
+   ========================================================================== */
+
 .photobooth-screen {
   min-height: 100%;
   width: 100%;
   box-sizing: border-box;
-  /* Seamless brushed gunmetal metallic surface */
-  background: 
-    radial-gradient(ellipse at 50% 20%, #9ca0a6 0%, #81858b 45%, #6a6e74 85%, #585b61 100%);
+  /* Monolithic brushed gunmetal titanium panel */
+  background: radial-gradient(
+    ellipse 850px 600px at 50% 18%,
+    #989ba1 0%,
+    #84878d 40%,
+    #6d7077 75%,
+    #5a5d63 100%
+  );
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  padding: 50px 20px 80px;
+  padding: 44px 20px 80px;
   position: relative;
   overflow-x: hidden;
   user-select: none;
-  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Segoe UI", sans-serif;
-  color: #1d1d1f;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
+  color: #111215;
 }
 
-/* Subtle brushed metal sheen lines overlay */
+/* Authentic fine bead-blasted metallic sheen texture */
 .photobooth-screen::before {
   content: "";
   position: absolute;
   inset: 0;
-  background: repeating-linear-gradient(
-    90deg,
-    transparent 0px,
-    transparent 2px,
-    rgba(255, 255, 255, 0.015) 2px,
-    rgba(255, 255, 255, 0.015) 4px
-  );
+  background-image: 
+    radial-gradient(circle at 50% 18%, rgba(255, 255, 255, 0.08) 0%, transparent 65%),
+    repeating-linear-gradient(
+      90deg,
+      transparent 0px,
+      transparent 2px,
+      rgba(255, 255, 255, 0.018) 2px,
+      rgba(255, 255, 255, 0.018) 4px
+    );
   pointer-events: none;
+  z-index: 0;
 }
 
-/* Dispenser Container */
-.dispenser-apparatus {
+/* Dispenser Apparatus Assembly */
+.photobooth-machine {
   position: relative;
   width: 100%;
-  max-width: 440px;
+  max-width: 520px;
   display: flex;
   flex-direction: column;
   align-items: center;
   z-index: 1;
 }
 
-/* Metallic Slot Outer Bezel */
-.slot-bezel {
+/* ==========================================================================
+   THE METALLIC SLOT BEZEL & CAVITY (MATCHING REFERENCE 1:1)
+   ========================================================================== */
+
+.slot-assembly {
   position: relative;
-  width: min(340px, 92vw);
-  height: 64px;
+  width: min(440px, 94vw);
+  height: 72px;
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Outer Stamped Metallic Trench & Collar */
+.slot-collar {
+  position: absolute;
+  inset: 0;
   border-radius: 999px;
+  /* Stamped brushed metal bezel with realistic specular top and shadow bottom */
   background: linear-gradient(
     180deg,
-    #5f6268 0%,
-    #7d8187 8%,
-    #a8acb2 22%,
-    #e8ebf0 42%,
-    #989ca3 60%,
-    #5a5d63 88%,
+    #55585e 0%,
+    #787c82 8%,
+    #a8acb2 20%,
+    #e2e5ea 38%,
+    #b2b6bd 52%,
+    #7a7e85 75%,
     #4a4c52 100%
   );
-  padding: 8px;
+  padding: 6px;
   box-sizing: border-box;
   box-shadow:
-    0 8px 24px rgba(0, 0, 0, 0.45),
-    0 2px 6px rgba(0, 0, 0, 0.35),
-    inset 0 2px 2px rgba(255, 255, 255, 0.7),
-    inset 0 -2px 3px rgba(0, 0, 0, 0.6);
+    0 12px 28px rgba(0, 0, 0, 0.5),
+    0 3px 8px rgba(0, 0, 0, 0.35),
+    inset 0 2px 2px rgba(255, 255, 255, 0.75),
+    inset 0 -2px 3px rgba(0, 0, 0, 0.65);
   cursor: pointer;
-  z-index: 20;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: transform 0.15s ease, filter 0.15s ease;
+  z-index: 2;
+  transition: filter 0.15s ease, transform 0.15s ease;
 }
 
-.slot-bezel:hover {
-  filter: brightness(1.04);
+.slot-collar:hover {
+  filter: brightness(1.03);
 }
 
-.slot-bezel:active {
-  transform: scale(0.99);
+.slot-collar:active {
+  transform: scale(0.995);
 }
 
-/* Deep Inner Cavity */
-.slot-cavity {
+/* Deep Black Recessed Aperture Cavity */
+.slot-aperture {
   width: 100%;
   height: 100%;
   border-radius: 999px;
-  background: #08090a;
+  background: #030304;
   box-shadow:
-    inset 0 10px 24px #000000,
-    inset 0 2px 6px rgba(0, 0, 0, 0.95),
-    0 1px 0 rgba(255, 255, 255, 0.25);
-  position: relative;
-  overflow: hidden;
-}
-
-/* Dispenser Track where card exits */
-.card-track {
-  position: relative;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-top: -34px; /* Pulls top of card up into the slot cavity */
-  z-index: 10;
-}
-
-/* Photobooth Card (Exact match to reference) */
-.photobooth-print {
-  width: min(300px, 84vw);
-  background: #f7f6f3;
-  border-radius: 1px;
-  box-shadow:
-    0 24px 60px rgba(0, 0, 0, 0.45),
-    0 6px 16px rgba(0, 0, 0, 0.25),
-    0 1px 2px rgba(0, 0, 0, 0.15);
-  box-sizing: border-box;
-  padding: 10px 10px 20px 10px;
-  cursor: pointer;
-  transform-origin: top center;
-  transition: transform 0.75s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
+    inset 0 12px 22px #000000,
+    inset 0 2px 5px rgba(0, 0, 0, 0.95),
+    0 1px 0 rgba(255, 255, 255, 0.3);
   position: relative;
 }
 
-/* Shading from the slot on the top of the card */
-.photobooth-print::before {
-  content: "";
+/* Top Lip / Hood of Slot (Renders IN FRONT of the card top) */
+.slot-top-lip {
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
-  height: 38px;
+  height: 36px;
+  border-radius: 999px 999px 0 0;
+  pointer-events: none;
+  z-index: 15;
   background: linear-gradient(
     180deg,
-    rgba(0, 0, 0, 0.82) 0%,
-    rgba(0, 0, 0, 0.45) 30%,
-    rgba(0, 0, 0, 0.15) 65%,
+    rgba(255, 255, 255, 0.4) 0%,
+    rgba(255, 255, 255, 0.1) 25%,
     transparent 100%
   );
-  z-index: 5;
-  pointer-events: none;
+  overflow: hidden;
 }
 
-/* States: Peeking inside slot vs Dispensed out */
-.photobooth-print.is-peeking {
-  transform: translateY(-80%);
+.slot-top-lip::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 12px;
+  right: 12px;
+  height: 12px;
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.9) 0%,
+    rgba(0, 0, 0, 0.4) 60%,
+    transparent 100%
+  );
 }
 
-.photobooth-print.is-peeking:hover {
-  transform: translateY(-74%);
+/* ==========================================================================
+   CARD CHUTE & DISPENSED CARD (PHYSICAL SLIDING & DEPTH)
+   ========================================================================== */
+
+/* The passage where card emerges: clipped at top (inside slot), open at bottom */
+.card-chute {
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: -38px; /* Feeds card out from center of slot */
+  z-index: 8;
+  /* Clips anything moving above the inner slot cavity, completely open below */
+  clip-path: inset(18px -100px -2000px -100px);
 }
 
-.photobooth-print.is-dispensed {
+/* Card Motion Wrapper */
+.card-motion-wrapper {
+  position: relative;
+  width: min(330px, 86vw);
+  perspective: 1200px;
+  cursor: pointer;
+  transform-origin: top center;
+  transition: transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Dispensed State vs Peeking State */
+.card-motion-wrapper.is-peeking {
+  transform: translateY(-82%);
+}
+
+.card-motion-wrapper.is-peeking:hover {
+  transform: translateY(-76%);
+}
+
+.card-motion-wrapper.is-dispensed {
   transform: translateY(32px);
+}
+
+/* 3D Flipper for front / back flip */
+.card-flipper {
+  position: relative;
+  width: 100%;
+  transform-style: preserve-3d;
+  transition: transform 0.7s cubic-bezier(0.2, 0.8, 0.2, 1);
   box-shadow:
-    0 32px 75px rgba(0, 0, 0, 0.55),
-    0 10px 25px rgba(0, 0, 0, 0.3);
+    0 26px 65px rgba(0, 0, 0, 0.46),
+    0 6px 18px rgba(0, 0, 0, 0.25),
+    0 1px 3px rgba(0, 0, 0, 0.15);
+  border-radius: 1px;
+}
+
+.card-motion-wrapper.is-flipped .card-flipper {
+  transform: rotateY(180deg);
+}
+
+/* Common Card Face Styles */
+.card-face {
+  width: 100%;
+  background: #fdfdfb;
+  box-sizing: border-box;
+  border-radius: 1px;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+/* ==========================================================================
+   FRONT FACE: EXACT 1:1 REPLICA OF REFERENCE PHOTO (media_1789628207264)
+   ========================================================================== */
+
+.card-front {
+  position: relative;
+  padding: 14px 14px 18px 14px;
+}
+
+/* Upper slot drop shadow cast directly onto top of card & hair */
+.card-top-slot-shadow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 46px;
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.88) 0%,
+    rgba(0, 0, 0, 0.45) 24%,
+    rgba(0, 0, 0, 0.15) 60%,
+    transparent 100%
+  );
+  pointer-events: none;
+  z-index: 5;
 }
 
 /* 2x2 Photo Cuts Grid */
-.print-grid {
+.photo-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 6px;
-  background: #f7f6f3;
-  margin-bottom: 14px;
+  gap: 5px;
+  background: #fdfdfb;
+  margin-bottom: 15px;
 }
 
-.print-cut {
+.photo-cut {
   position: relative;
-  aspect-ratio: 1 / 1.15;
+  aspect-ratio: 1 / 1.16;
   background: #eae5dc;
   overflow: hidden;
 }
 
-.print-cut img {
+.photo-cut img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
 }
 
-/* 4 distinct authentic photobooth crops */
+/* Subtle individual photobooth framing for each cut */
 .cut-1 img {
-  object-position: center 18%;
-  filter: contrast(1.08) saturate(0.95) brightness(1.02);
+  object-position: center 20%;
+  filter: sepia(0.14) contrast(1.06) brightness(1.01) saturate(0.92);
+  transform: scale(1.02);
 }
 
 .cut-2 img {
-  object-position: center 14%;
-  filter: contrast(1.12) saturate(0.98) brightness(0.99);
+  object-position: 48% 18%;
+  filter: sepia(0.16) contrast(1.09) brightness(0.99) saturate(0.94);
+  transform: scale(1.06) rotate(0.6deg);
 }
 
 .cut-3 img {
-  object-position: center 22%;
-  filter: contrast(1.05) saturate(0.9) brightness(1.04);
+  object-position: 52% 24%;
+  filter: sepia(0.12) contrast(1.05) brightness(1.02) saturate(0.9);
+  transform: scale(1.04) rotate(-0.5deg);
 }
 
 .cut-4 img {
-  object-position: center 16%;
-  filter: contrast(1.1) saturate(1.02) brightness(1.01);
+  object-position: center 18%;
+  filter: sepia(0.15) contrast(1.08) brightness(1.0) saturate(0.93);
+  transform: scale(1.08);
 }
 
-/* Card Bottom Metadata Section (Exact match to reference) */
-.print-footer {
-  padding: 0 4px;
-}
-
-.print-main-row {
+/* Card Bottom Typography (Exact match to reference) */
+.card-bottom-info {
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
-  margin-bottom: 6px;
+  padding: 0 2px;
 }
 
-.print-title {
-  font-size: 26px;
-  line-height: 1.05;
-  font-weight: 800;
-  letter-spacing: -0.04em;
-  color: #0b0c0e;
-  margin: 0;
+.card-title-group {
   display: flex;
   flex-direction: column;
 }
 
-.print-meta-right {
-  text-align: right;
-  font-size: 11px;
-  line-height: 1.35;
-  color: #63676e;
-  font-weight: 500;
-  letter-spacing: -0.01em;
+.card-job-title {
+  font-size: 28px;
+  line-height: 1.0;
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  color: #0d0e11;
+  display: flex;
+  flex-direction: column;
 }
 
-.print-meta-right span {
+.card-traits {
+  font-size: 11.5px;
+  color: #6e7279;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  margin-top: 7px;
+}
+
+.card-meta-right {
+  text-align: right;
+  font-size: 11.5px;
+  line-height: 1.35;
+  color: #4a4d53;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  padding-bottom: 2px;
+}
+
+.card-meta-right span {
   display: block;
 }
 
-.print-traits {
-  font-size: 11.5px;
-  color: #72767d;
-  font-weight: 500;
-  margin: 0 0 14px 0;
-  letter-spacing: -0.01em;
-}
-
-/* Extended Info section on the card (reveals your background & craft) */
-.print-extended-info {
-  border-top: 1px solid #e5e2db;
-  padding-top: 14px;
-  margin-top: 4px;
-}
-
-.print-extended-info p {
-  font-size: 12px;
-  line-height: 1.6;
-  color: #3e4147;
-  margin: 0 0 10px 0;
-}
-
-.print-tags-strip {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 5px;
-  margin-top: 12px;
-}
-
-.print-tags-strip span {
-  font-size: 9.5px;
+/* Flip hint on hover */
+.flip-pill-hint {
+  position: absolute;
+  bottom: 6px;
+  right: 14px;
+  font-size: 9px;
   font-weight: 600;
-  background: #ede9e1;
-  color: #2c2f36;
-  padding: 3px 7px;
-  border-radius: 3px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #a0a3a8;
+  opacity: 0;
+  transform: translateY(3px);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  pointer-events: none;
 }
 
-/* Tap Hint Floating at bottom */
-.dispense-prompt {
-  margin-top: 44px;
+.card-motion-wrapper:hover .flip-pill-hint {
+  opacity: 0.85;
+  transform: translateY(0);
+}
+
+/* ==========================================================================
+   BACK FACE: DETAILED INFO & BIO (CLEAN ARCHIVAL PHOTO PAPER BACK)
+   ========================================================================== */
+
+.card-back {
+  position: absolute;
+  inset: 0;
+  transform: rotateY(180deg);
+  background: #f8f6f0;
+  padding: 24px 20px 22px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-left: 1px solid #eeebe3;
+  box-shadow: inset 0 0 40px rgba(0, 0, 0, 0.03);
+}
+
+/* Archival Stamp Header */
+.card-back-header {
+  border-bottom: 1.5px dashed #d8d4c9;
+  padding-bottom: 12px;
+  margin-bottom: 12px;
+}
+
+.stamp-badge {
+  display: inline-block;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #1e3a8a;
+  border: 1px solid #93c5fd;
+  padding: 2px 6px;
+  border-radius: 3px;
+  background: #eff6ff;
+  margin-bottom: 6px;
+}
+
+.card-back-name {
+  font-size: 20px;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: #111827;
+  margin: 0;
+}
+
+.card-back-role {
+  font-size: 11px;
+  color: #6b7280;
+  font-weight: 500;
+  margin: 2px 0 0;
+}
+
+/* Bio Content */
+.card-back-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.card-back-body p {
+  font-size: 11.5px;
+  line-height: 1.55;
+  color: #374151;
+  margin: 0;
+}
+
+.card-back-projects {
+  background: #f1ede4;
+  border-radius: 4px;
+  padding: 8px 10px;
+}
+
+.card-back-projects h5 {
+  margin: 0 0 4px;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #4b5563;
+}
+
+.card-back-projects ul {
+  margin: 0;
+  padding-left: 14px;
+  font-size: 11px;
+  color: #1f2937;
+  line-height: 1.45;
+}
+
+/* Back Footer Actions */
+.card-back-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 14px;
+}
+
+.card-btn {
+  flex: 1;
+  padding: 7px 10px;
+  font-size: 11px;
+  font-weight: 600;
+  border-radius: 4px;
+  border: 1px solid #d1d5db;
+  background: #ffffff;
+  color: #111827;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  text-align: center;
+}
+
+.card-btn:hover {
+  background: #111827;
+  color: #ffffff;
+  border-color: #111827;
+}
+
+.card-btn.primary {
+  background: #111827;
+  color: #ffffff;
+  border-color: #111827;
+}
+
+.card-btn.primary:hover {
+  background: #2563eb;
+  border-color: #2563eb;
+}
+
+.flip-back-prompt {
+  text-align: center;
+  font-size: 9.5px;
+  color: #9ca3af;
+  margin-top: 8px;
+}
+
+/* ==========================================================================
+   INTERACTIVE DISPENSE / RETRACT TOGGLE CONTROLLER
+   ========================================================================== */
+
+.dispenser-controls {
+  margin-top: 50px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  z-index: 10;
+}
+
+.dispense-toggle-btn {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  font-size: 12px;
-  font-weight: 500;
-  color: #e0e3e8;
-  background: rgba(0, 0, 0, 0.35);
-  padding: 7px 16px;
+  gap: 7px;
+  font-size: 11.5px;
+  font-weight: 600;
+  color: #d1d5db;
+  background: rgba(18, 20, 24, 0.7);
+  padding: 6px 14px;
   border-radius: 20px;
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  backdrop-filter: blur(12px);
   cursor: pointer;
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
-  transition: all 0.2s ease;
-  z-index: 15;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  transition: all 0.15s ease;
 }
 
-.dispense-prompt:hover {
-  background: rgba(0, 0, 0, 0.5);
+.dispense-toggle-btn:hover {
+  background: rgba(30, 34, 42, 0.9);
   color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.25);
   transform: translateY(-1px);
 }
 
-.dispense-prompt .prompt-icon {
-  font-size: 13px;
+.dispense-toggle-btn:active {
+  transform: translateY(0);
+}
+
+.toggle-arrow {
+  font-size: 12px;
   color: #60a5fa;
 }
 
+/* ==========================================================================
+   RESPONSIVE ADJUSTMENTS
+   ========================================================================== */
+
 @media (max-width: 480px) {
   .photobooth-screen {
-    padding: 36px 14px 60px;
+    padding: 30px 12px 60px;
   }
-  .slot-bezel {
-    width: 290px;
-    height: 58px;
+  .slot-assembly {
+    width: 320px;
+    height: 60px;
   }
-  .photobooth-print {
-    width: 265px;
-    padding: 8px 8px 18px 8px;
+  .card-motion-wrapper {
+    width: 275px;
   }
-  .print-title {
-    font-size: 22px;
+  .card-front {
+    padding: 10px 10px 14px 10px;
   }
-  .print-meta-right {
+  .card-job-title {
+    font-size: 23px;
+  }
+  .card-traits {
     font-size: 10px;
   }
-  .print-traits {
-    font-size: 10.5px;
+  .card-meta-right {
+    font-size: 10px;
   }
 }
