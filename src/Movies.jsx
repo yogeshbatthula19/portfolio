@@ -139,24 +139,29 @@ const movies = [
 export default function Movies() {
   const trigger = useRef(null);
   const [isOpen, setIsOpen] = useState(false);
+  const [maximized, setMaximized] = useState(false);
+  const isMinimized = useRef(false);
   const [selectedMovie, setSelectedMovie] = useState(movies[2]); // Default to Baahubali
-  const [activeTab, setActiveTab] = useState('Watch Now');
+  const [activeTab, setActiveTab] = useState('Top 10');
   const [searchQuery, setSearchQuery] = useState('');
   const [playingToast, setPlayingToast] = useState('');
-  const { pos, resetPos, dragHandlers } = useDraggable();
+  const { pos, resetPos, dragHandlers } = useDraggable(maximized);
 
   const openMovies = () => {
+    if (!isMinimized.current) { setMaximized(false); resetPos(); }
+    isMinimized.current = false;
     setIsOpen(true);
   };
 
   const closeMovies = () => {
+    isMinimized.current = false;
     setIsOpen(false);
     resetPos();
     trigger.current?.focus();
   };
 
   const handlePlay = (movie) => {
-    setPlayingToast(`Now Playing: ${movie.name} on Apple TV`);
+    setPlayingToast(`${movie.name} · ${movie.year} · ${movie.duration}. This is a favorites collection; playback isn't available.`);
     setTimeout(() => setPlayingToast(''), 3500);
   };
 
@@ -203,8 +208,8 @@ export default function Movies() {
           }}
         >
           <div
-            className="movies-window"
-            style={{ transform: `translate(${pos.x}px, ${pos.y}px)` }}
+            className={'movies-window'+(maximized?' app-fullscreen':'')}
+            style={maximized?undefined:{ transform: `translate(${pos.x}px, ${pos.y}px)` }}
             aria-labelledby="appletv-title"
             onClick={(e) => e.stopPropagation()}
           >
@@ -229,12 +234,13 @@ export default function Movies() {
                   className="yellow"
                   aria-label="Minimize"
                   title="Minimize"
-                  onClick={closeMovies}
+                  onClick={() => { isMinimized.current = true; setIsOpen(false); trigger.current?.focus(); }}
                 />
                 <button
                   type="button"
                   className="green"
-                  aria-label="Zoom"
+                  aria-label="Toggle maximize Movies"
+                  onClick={() => { resetPos(); setMaximized(v => !v); }}
                   title="Zoom"
                 />
               </div>
@@ -249,7 +255,7 @@ export default function Movies() {
                 </div>
 
                 <div className="appletv-tabs">
-                  {['Watch Now', 'Top 10', 'Library'].map((tab) => (
+                  {['Top 10'].map((tab) => (
                     <button
                       key={tab}
                       type="button"
@@ -294,59 +300,6 @@ export default function Movies() {
 
         {/* Apple TV Scrollable Body */}
         <div className="appletv-body">
-          {/* Cinematic Hero Spotlight Banner */}
-          {selectedMovie && (
-            <div className="appletv-hero">
-              <div
-                className="appletv-hero-backdrop"
-                style={{
-                  backgroundImage: `url('/images/favorite-movies.png')`,
-                  backgroundPosition: `${selectedMovie.x / (2048 - 367) * 100}% ${Math.min(100, selectedMovie.y / (1178 - 541) * 100)}%`,
-                }}
-              />
-
-              <div className="appletv-hero-content">
-                <div className="appletv-hero-badges">
-                  <span className="appletv-badge-tv"> tv+</span>
-                  <span className="appletv-badge-format">{selectedMovie.quality}</span>
-                  <span className="appletv-badge-format">{selectedMovie.audio}</span>
-                </div>
-
-                <h1 className="appletv-hero-title">{selectedMovie.name}</h1>
-
-                <div className="appletv-hero-meta">
-                  <span>★ {selectedMovie.rating}</span>
-                  <span>{selectedMovie.genre}</span>
-                  <span>{selectedMovie.year}</span>
-                  <span>{selectedMovie.duration}</span>
-                </div>
-
-                <p className="appletv-hero-desc">{selectedMovie.tagline}</p>
-
-                <div className="appletv-hero-actions">
-                  <button
-                    type="button"
-                    className="appletv-btn-play"
-                    onClick={() => handlePlay(selectedMovie)}
-                  >
-                    <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
-                      <polygon points="5 3 19 12 5 21 5 3"/>
-                    </svg>
-                    Play Movie
-                  </button>
-
-                  <button
-                    type="button"
-                    className="appletv-btn-secondary"
-                    onClick={() => setPlayingToast(`Added "${selectedMovie.name}" to Up Next`)}
-                  >
-                    + Up Next
-                  </button>
-                </div>
-              </div>
-            </div>
-          )}
-
           {/* Top 10 Favorites Shelf */}
           <section className="appletv-shelf">
             <div className="appletv-shelf-header">
@@ -366,7 +319,7 @@ export default function Movies() {
                     className={`appletv-card ${isSelected ? 'selected' : ''}`}
                     onClick={() => setSelectedMovie(movie)}
                     onDoubleClick={() => handlePlay(movie)}
-                    title={`Click to preview, double-click to play ${movie.name}`}
+                    title={`${movie.name} · ${movie.year} · ${movie.duration}`}
                   >
                     <div className="appletv-poster-wrap">
                       <div

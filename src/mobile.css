@@ -1,0 +1,106 @@
+/* Touch layouts preserve the desktop metaphor without desktop-sized geometry. */
+@media (max-width:760px) {
+  html { -webkit-text-size-adjust:100%; }
+  body .desktop {height:100dvh;min-height:100dvh;padding:0;overflow:hidden;}
+  body .menubar {height:calc(44px + env(safe-area-inset-top));padding:env(safe-area-inset-top) 14px 0;gap:8px;}
+  body .menu-left {gap:8px;min-width:0;}
+  body .menu-left b {font-size:12px;white-space:nowrap;}
+  body .menu-left>button,body .menu-right>svg,body .menu-right>.sf-symbol,body .menu-right>span {display:none;}
+  body .menu-right {display:flex;gap:2px;}
+  body .menu-right>button {display:grid;place-items:center;width:36px;height:40px;}
+  body .figma-desktop-canvas {display:none;}
+  body .home-portfolio-title {top:23%;left:50%;width:90%;font-size:clamp(42px,12vw,76px);}
+  body .desktop .desktop-files {display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px 12px;position:absolute;top:auto;bottom:calc(140px + env(safe-area-inset-bottom));left:24px;right:24px;width:auto;}
+  body .desktop .desktop-files>button {display:flex!important;flex-direction:column;align-items:center;min-height:80px;gap:4px;padding:6px;border-radius:14px;}
+  body .desktop .desktop-file {height:52px;}
+  body .desktop .desktop-file img {width:52px;height:52px;}
+  body .desktop-files>button>span {font-size:12px;}
+  body .desktop:has(.window) .desktop-files {visibility:hidden;}
+  body .dock-wrap {position:fixed;bottom:calc(10px + env(safe-area-inset-bottom));left:8px;right:8px;width:auto;transform:none;display:flex;justify-content:center;}
+  body .dock {max-width:100%;overflow-x:auto;overflow-y:hidden;justify-content:flex-start;gap:4px;padding:10px;scrollbar-width:none;}
+  body .dock-item {width:44px;height:44px;flex:0 0 44px;padding:4px;transform:none!important;}
+  body .dock-item img,body .dock-item.messages-launcher img {width:40px;height:40px;aspect-ratio:1;}
+  body .dock-item.music,body .dock-item.bin,body .dock-divider {display:none;}
+  body .dock-item .tooltip {display:none!important;}
+  body .desktop .window,body .movies-window,body .arcade-window,body .applications-panel,body .quicklook,body .messages-window {
+    position:fixed!important;inset:calc(52px + env(safe-area-inset-top)) 8px auto!important;margin:0!important;
+    width:calc(100% - 16px)!important;height:calc(100dvh - 138px - env(safe-area-inset-top) - env(safe-area-inset-bottom))!important;
+    min-width:0!important;max-width:none!important;max-height:none!important;transform:none!important;box-sizing:border-box;
+  }
+  body .desktop .window.maximized,body .app-fullscreen {
+    inset:calc(44px + env(safe-area-inset-top)) 0 0!important;width:100%!important;
+    height:calc(100dvh - 44px - env(safe-area-inset-top))!important;border-radius:0!important;padding-bottom:env(safe-area-inset-bottom);
+  }
+  body .desktop .window {z-index:30;display:flex;flex-direction:column;}
+  body .window .window-bar {height:104px;min-height:104px;position:relative;display:block;}
+  body .desktop .window .traffic {width:114px;height:52px;padding-left:18px;background:none;}
+  body :is(.traffic,.appletv-traffic,.arcade-traffic,.mac-window-controls) {gap:20px;width:auto;flex-shrink:0;}
+  body :is(.traffic,.appletv-traffic,.arcade-traffic,.mac-window-controls) button::after {inset:-10px;}
+  body .desktop .window .window-tools {position:absolute;inset:0;padding:0 12px;display:block;pointer-events:none;}
+  body .window-tools>b {position:absolute;left:130px;top:18px;right:12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+  body .window .view-tools {position:absolute;left:10px;right:10px;bottom:5px;margin:0;pointer-events:auto;display:flex;padding:0;gap:4px;background:none;border:0;}
+  body .view-tools>button {width:40px;height:40px;flex-shrink:0;}
+  body .finder-search {flex:1;min-width:0;height:38px;margin-left:6px;}
+  body .finder-search input {width:100%;font-size:16px;}
+  body .window .window-body {display:flex;flex-direction:column;flex:1;min-height:0;overflow:hidden;}
+  body .desktop .window .window-body>aside {display:flex;flex-shrink:0;gap:4px;align-items:center;width:100%;padding:5px 8px;overflow-x:auto;scrollbar-width:none;border-bottom:1px solid var(--mac-line);}
+  body .window aside nav {display:flex;flex-wrap:nowrap;gap:4px;flex-shrink:0;}
+  body .window aside nav button,body .window aside .side-link {display:flex;flex:0 0 auto;min-height:44px;width:auto;white-space:nowrap;font-size:12px;padding:8px 12px;}
+  body .window aside .sidebar-label,body .window aside .side-link:not(.selected):first-of-type {display:none;}
+  body .window aside nav button span {display:none;}
+  body .desktop .window .window-body>.content {padding:22px 16px;flex:1;min-width:0;min-height:0;overflow:auto;overscroll-behavior:contain;}
+  body .desktop .window .window-body>.content-full {padding:0;}
+  body .cards {grid-template-columns:1fr;gap:12px;}
+  body .card {min-height:145px;padding:20px;}
+  body .finder-folder-grid {grid-template-columns:repeat(2,minmax(0,1fr));gap:22px 8px;padding:0;}
+  body .finder-folder-item {width:100%;min-width:0;padding:8px 0;}
+  body .folder-container-graphic {max-width:100%;}
+  body .finder-list-view .finder-folder-sub {display:none;}
+  body .page-title {font-size:clamp(28px,8vw,42px);overflow-wrap:anywhere;}
+  body .intro {font-size:15px;}
+  body .contact-info {align-items:flex-start;gap:12px;overflow-wrap:anywhere;}
+  body .resume-toolbar {flex-wrap:wrap;gap:6px;font-size:12px;}
+  body .resume-toolbar a {display:inline-flex;align-items:center;min-height:44px;}
+  body .hero-glance-section {padding:28px 16px 0;min-height:0;height:auto;}
+  body .editorial-stage {height:auto;display:flex;flex-wrap:wrap;justify-content:center;gap:24px 12px;padding:0;}
+  body .editorial-stage .polaroid-frame {position:relative;inset:auto;transform:rotate(-3deg);order:-1;margin:0 calc((100% - 190px)/2) 12px;width:190px;flex-shrink:0;}
+  body .editorial-stage .editorial-note {position:static;inset:auto;transform:none;width:calc(50% - 6px);text-align:center;}
+  body .editorial-stage :is(.realistic-sticker,.hand-drawn-arrow,.peeking-card-underlay) {display:none;}
+  body .about-extended-story {margin:30px auto;padding:0 20px;}
+  body .story-p {font-size:15px;line-height:1.75;}
+  body .experience-list {padding:24px 18px;}
+  body .experience-company-header {min-width:0;align-items:flex-start;}
+  body .experience-company-copy {min-width:0;}
+  body .experience-company-line h3 {overflow-wrap:anywhere;}
+  body :is(.appletv-navbar,.arcade-header,.quicklook-bar,.messages-toolbar) {padding-inline:18px;gap:18px;min-height:56px;}
+  body .appletv-nav-left {gap:14px;}
+  body .appletv-search-box {display:flex;min-width:0;width:100%;}
+  body .appletv-navbar {flex-wrap:wrap;height:auto;padding-block:12px;}
+  body .appletv-nav-right {width:100%;}
+  body .appletv-search-box input {width:100%;font-size:16px;}
+  body .appletv-shelf {padding:20px 16px;}
+  body .appletv-grid {grid-template-columns:repeat(2,minmax(0,1fr));gap:22px 12px;}
+  body .arcade-content {min-height:0;overflow:auto;}
+  body .arcade-hero-spotlight {padding:24px 18px;}
+  body .arcade-games-grid {grid-template-columns:1fr;}
+  body canvas {max-width:100%;height:auto;}
+  body .applications-panel {padding:16px;overflow:auto!important;}
+  body .applications-heading {gap:12px;}
+  body .applications-grid {grid-template-columns:repeat(3,minmax(0,1fr));gap:10px 5px;}
+  body .applications-filters button {min-height:40px;}
+  body .quicklook-bar>span {overflow:hidden;white-space:nowrap;text-overflow:ellipsis;min-width:0;}
+  body .quicklook-scroll {min-height:0;overflow:auto;}
+  body .messages-sidebar {display:none;}
+  body .messages-toolbar {gap:22px;}
+  body .messages-composer input {font-size:16px;}
+  body .messages-composer button {width:36px;height:36px;}
+  body .messages-suggestions button {min-height:40px;}
+  body .messages-reset {width:40px;height:40px;}
+  body .restore-preview {bottom:calc(86px + env(safe-area-inset-bottom));right:12px;max-width:calc(100vw - 24px);}
+  body .toast {max-width:calc(100vw - 32px);white-space:normal;}
+  body .welcome-profile button {min-height:100px;}
+}
+@media(max-width:760px) and (max-height:550px) {
+  body .desktop .desktop-files {grid-template-columns:repeat(5,minmax(0,1fr));bottom:100px;gap:4px;left:12px;right:12px;}
+  body .home-portfolio-title {top:25%;font-size:42px;}
+}

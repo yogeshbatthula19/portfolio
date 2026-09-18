@@ -410,14 +410,19 @@ function TicTacToi({ onBack }) {
 export default function Arcade() {
   const trigger = useRef(null);
   const [isOpen, setIsOpen] = useState(false);
+  const [maximized, setMaximized] = useState(false);
   const [selectedGame, setSelectedGame] = useState(null); // null, 'flippy', 'tictactoe'
-  const { pos, resetPos, dragHandlers } = useDraggable();
+  const [minimized, setMinimized] = useState(false);
+  const { pos, resetPos, dragHandlers } = useDraggable(maximized);
 
   const openArcade = () => {
+    if (!minimized) setMaximized(false);
+    setMinimized(false);
     setIsOpen(true);
   };
 
   const closeArcade = () => {
+    setMinimized(false);
     setIsOpen(false);
     setSelectedGame(null);
     resetPos();
@@ -425,7 +430,7 @@ export default function Arcade() {
   };
 
   useEffect(() => {
-    if (!isOpen) return;
+    if (!isOpen || minimized) return;
     const onKeyDown = (e) => {
       if (e.key === 'Escape') {
         closeArcade();
@@ -433,7 +438,7 @@ export default function Arcade() {
     };
     window.addEventListener('keydown', onKeyDown);
     return () => window.removeEventListener('keydown', onKeyDown);
-  }, [isOpen]);
+  }, [isOpen, minimized]);
 
   return (
     <>
@@ -452,6 +457,7 @@ export default function Arcade() {
       {isOpen && createPortal(
         <div
           className="arcade-modal-overlay"
+          style={minimized?{display:'none'}:undefined}
           onClick={(e) => {
             if (e.target === e.currentTarget) {
               closeArcade();
@@ -459,8 +465,8 @@ export default function Arcade() {
           }}
         >
           <div
-            className="arcade-window"
-            style={{ transform: `translate(${pos.x}px, ${pos.y}px)` }}
+            className={'arcade-window'+(maximized&&!minimized?' app-fullscreen':'')}
+            style={maximized?undefined:{ transform: `translate(${pos.x}px, ${pos.y}px)` }}
             onClick={(e) => e.stopPropagation()}
           >
             {/* Native macOS Header Bar with Traffic Lights & Apple Arcade Navigation */}
@@ -483,12 +489,13 @@ export default function Arcade() {
                   className="yellow"
                   aria-label="Minimize"
                   title="Minimize"
-                  onClick={closeArcade}
+                  onClick={()=>{setMinimized(true);trigger.current?.focus();}}
                 />
                 <button
                   type="button"
                   className="green"
-                  aria-label="Zoom"
+                  aria-label="Toggle maximize Games"
+                  onClick={()=>{resetPos();setMaximized(v=>!v)}}
                   title="Zoom"
                 />
               </div>
@@ -517,7 +524,7 @@ export default function Arcade() {
                     </div>
 
                     <div className="arcade-tabs">
-                      {['Discover', 'Arcade', 'All Games'].map((tab, idx) => (
+                      {['Discover'].map((tab, idx) => (
                         <button
                           key={tab}
                           type="button"

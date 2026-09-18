@@ -88,7 +88,7 @@ function FolderWithAssets({project}){
 
 function Visual({project}){return project.visual==='trosky'?<TroskyCover/>:project.visual==='recovery'?<img className="case-image recovery-cover" src="/case-studies/recovery/cover.png" alt="Recovery rehabilitation app showing surgeon dashboard, patient progress, and patient list"/>:project.visual==='house'?<img className="case-image" src="/images/house-lineup.png" alt="South House concept artwork"/>:<div className="workspace-preview"><img src="/icons/finder.png" alt=""/><div><small>YOGESH’S SPACE</small><strong>A familiar feeling.<br/>A personal touch.</strong></div><img src="/icons/folder.png" alt=""/></div>}
 
-export function ProjectBrowser({query,onPreview}){
+export function ProjectBrowser({query,onPreview,viewMode='grid'}){
   const[selected,setSelected]=useState('trosky');
   const itemsRef=useRef([]);
   const visible=projects.filter(p=>(p.title+' '+(p.folderName||'')+' '+p.category).toLowerCase().includes(query.toLowerCase()));
@@ -127,7 +127,7 @@ export function ProjectBrowser({query,onPreview}){
   };
 
   return (
-    <div className="finder-folder-view" role="region" aria-label="Projects Explorer">
+    <div className={'finder-folder-view '+(viewMode==='list'?'finder-list-view':'')} role="region" aria-label="Projects Explorer">
       <div className="finder-folder-grid" role="listbox" aria-label="Case study folders. Use arrow keys to navigate.">
         {visible.map((p,idx)=>(
           <div
@@ -139,7 +139,7 @@ export function ProjectBrowser({query,onPreview}){
             aria-selected={selected===p.id}
             aria-label={`${p.folderName||p.title}. Folder with ${p.assets?.length||3} files. Use arrow keys to navigate, Space or Enter to open.`}
             onClick={()=>{
-              if(selected===p.id&&window.innerWidth<=768){
+              if(window.innerWidth<=760 || window.matchMedia('(pointer: coarse)').matches){
                 onPreview(p);
               }else{
                 setSelected(p.id);
@@ -148,7 +148,7 @@ export function ProjectBrowser({query,onPreview}){
             onDoubleClick={()=>onPreview(p)}
             onKeyDown={e=>handleKeyDown(e,idx,p)}
           >
-            <FolderWithAssets project={p}/>
+            {viewMode==='list'?<img className="finder-list-icon" src="/icons/folder.png" alt=""/>:<FolderWithAssets project={p}/>}
             <span className="finder-folder-name">{p.folderName||p.title}</span>
             <span className="finder-folder-sub">{p.category.split('·')[0].trim()}</span>
           </div>
@@ -161,7 +161,9 @@ export function ProjectBrowser({query,onPreview}){
 
 export function QuickLook({project,onClose}){
   const ref=useRef(null);
-  const { pos, resetPos, dragHandlers } = useDraggable();
+  const [maximized,setMaximized]=useState(false);
+  const [minimized,setMinimized]=useState(false);
+  const { pos, resetPos, dragHandlers } = useDraggable(maximized);
   useEffect(()=>{
     const previous=document.activeElement;
     ref.current?.showModal();
@@ -174,15 +176,22 @@ export function QuickLook({project,onClose}){
   };
 
   return (
+    <>
+    {minimized&&<button className="restore-preview" onClick={()=>{setMinimized(false);ref.current?.showModal();}}>Restore {project.folderName||project.title}</button>}
     <dialog
-      className={'quicklook '+(project.id!=='workspace'?'recovery-dialog':'')}
+      className={'quicklook '+(project.id!=='workspace'?'recovery-dialog':'')+(maximized?' app-fullscreen':'')}
       ref={ref}
-      style={{ transform: `translate(${pos.x}px, ${pos.y}px)` }}
+      style={maximized?undefined:{ transform: `translate(${pos.x}px, ${pos.y}px)` }}
       onCancel={handleClose}
       onClick={e=>{if(e.target===ref.current)handleClose()}}
       onKeyDown={e=>{if((e.code==='Space'||e.key==='Escape')&&e.target===ref.current){e.preventDefault();handleClose()}}}
     >
       <div className="quicklook-bar" {...dragHandlers}>
+        <div className="mac-window-controls">
+          <button className="red" onClick={handleClose} aria-label="Close Quick Look"/>
+          <button className="yellow" onClick={()=>{ref.current?.close();setMinimized(true);}} aria-label="Minimize Quick Look"/>
+          <button className="green" onClick={()=>{resetPos();setMaximized(v=>!v)}} aria-label="Toggle maximize Quick Look"/>
+        </div>
         <span>Quick Look — {project.folderName||project.title}</span>
         <button onClick={handleClose} aria-label="Close Quick Look" className="quicklook-close-btn">
           <svg style={{pointerEvents:'none'}} width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
@@ -195,5 +204,6 @@ export function QuickLook({project,onClose}){
         {project.id==='trosky'?<TroskyStory/>:project.id==='recovery'?<RecoveryStory/>:<><Visual project={project}/><div className="quicklook-copy"><small>{project.status}</small><h2>{project.title}</h2><p className="case-summary">{project.summary}</p><section><h3>The problem</h3><p>{project.problem}</p></section><section><h3>Key decisions</h3><ul>{project.decisions.map(d=><li key={d}>{d}</li>)}</ul></section><section><h3>Current outcome</h3><p>{project.result}</p></section>{project.id==='recovery'?<><section><h3>What changed</h3><p>The source case study compares disconnected clinic check-ins with shared onboarding, ongoing progress tracking, and explicit recovery states.</p><a href="/case-studies/recovery/transformation.png" target="_blank" rel="noreferrer"><img className="transformation-image" src="/case-studies/recovery/transformation.png" alt="Recovery case study: before and after comparison and design principles"/></a></section><a className="figma-source" href={project.url} target="_blank" rel="noreferrer">Explore the Figma case study ↗</a><p className="case-disclosure">Summary based on the supplied Recovery design file. Clinical outcome metrics are not disclosed.</p></>:<p className="case-disclosure">Project role, timeline, and measured results are awaiting confirmation.</p>}</div></>}
       </div>
     </dialog>
+    </>
   );
 }

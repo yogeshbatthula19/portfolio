@@ -77,82 +77,37 @@ const previousCompanies = [
   }
 ];
 
-export default function Experience({ onContact, onProjects }) {
+export default function Experience() {
   return (
-    <div className="experience-glance-screen">
-      {/* Minimal Header */}
-      <div className="experience-minimal-header">
-        <div>
-          <h2 className="exp-minimal-title">Experience</h2>
-          <p className="exp-minimal-sub">Companies, roles, and product impact at a glance.</p>
-        </div>
-        <span className="exp-count-badge">4 previous roles</span>
-      </div>
-
-      {/* Compact 2x2 Minimalist Grid Visible in One Glance */}
-      <div className="experience-glance-grid">
-        {previousCompanies.map((c) => (
-          <article key={c.id} className="exp-glance-card">
-            {/* Workspace Cover Background */}
-            <div
-              className="exp-glance-bg"
-              style={{ backgroundImage: `url(${c.coverImage})` }}
-              aria-hidden="true"
-            />
-            {/* Dark Frosted Scrim Overlay for ultra-clean readability */}
-            <div className="exp-glance-scrim" />
-
-            {/* Card Content */}
-            <div className="exp-glance-content">
-              {/* Header: Logo, Company Name, and Period Badge */}
-              <div className="exp-glance-top">
-                <div className="exp-glance-brand">
-                  {c.logo}
-                  <div className="exp-glance-names">
-                    <h3 className="exp-glance-company">{c.company}</h3>
-                    <span className="exp-glance-role">{c.role}</span>
+    <section className="experience-list" aria-labelledby="experience-title">
+      <header className="experience-heading">
+        <h2 id="experience-title">Experience</h2>
+        <p>Design, products, and the teams behind them.</p>
+      </header>
+      <div className="experience-roles">
+        {previousCompanies.map(c => (
+          <article className="experience-row" key={c.id}>
+            <div className="experience-dates">
+              <span>{c.period.split(' · ')[0]}</span>
+              {c.id === 'paradigmit' && <small>Current</small>}
+            </div>
+            <div className="experience-detail">
+              <div className="experience-company-header">
+                {c.logo}
+                <div className="experience-company-copy">
+                  <div className="experience-company-line">
+                    <h3>{c.company}</h3>
+                    <a href={c.websiteUrl} target="_blank" rel="noopener noreferrer" aria-label={`Visit ${c.company} website`}>↗</a>
                   </div>
+                  <p className="experience-role">{c.role}</p>
                 </div>
               </div>
-
-              {/* Meta: Location and Timeline */}
-              <div className="exp-glance-meta">
-                <span className="exp-meta-pill exp-period">
-                  <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2">
-                    <circle cx="12" cy="12" r="10" />
-                    <polyline points="12 6 12 12 16 14" />
-                  </svg>
-                  {c.period}
-                </span>
-
-                <span className="exp-meta-pill exp-location">
-                  <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2">
-                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" />
-                    <circle cx="12" cy="10" r="3" />
-                  </svg>
-                  {c.location}
-                </span>
-              </div>
-
-              {/* Description */}
-              <p className="exp-glance-desc">{c.description}</p>
-
-              {/* Learn More link */}
-              <div className="exp-glance-bottom">
-                <a
-                  href={c.websiteUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="exp-glance-link"
-                  aria-label={`Visit ${c.company} website`}
-                >
-                  Learn more <span className="exp-arrow" aria-hidden="true">›</span>
-                </a>
-              </div>
+              <p className="experience-location">{c.location}</p>
+              <p className="experience-summary">{c.description}</p>
             </div>
           </article>
         ))}
       </div>
-    </div>
+    </section>
   );
 }

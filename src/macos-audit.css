@@ -1,0 +1,99 @@
+/* Shared window metrics and contrast-safe content surfaces. */
+:root {
+  --mac-font: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --mac-text: #24262b;
+  --mac-secondary: #555b65;
+  --mac-content: #f6f7f9;
+  --mac-line: #d9dde3;
+  --mac-selection: #dce8f8;
+}
+body:has(.desktop.night) {
+  --mac-text: #f2f4f7;
+  --mac-secondary: #bac2cf;
+  --mac-content: #252b35;
+  --mac-line: #454d59;
+  --mac-selection: #354d6d;
+}
+body :is(.window,.movies-window,.arcade-window,.applications-panel,.quicklook) {
+  font-family:var(--mac-font);font-size:13px;color:var(--mac-text);
+  --window-glass:rgba(236,241,247,.88);
+  --window-glass-strong:rgba(243,246,251,.72);
+}
+body:has(.desktop.night) :is(.window,.movies-window,.arcade-window,.applications-panel,.quicklook) {
+  --window-glass:rgba(36,44,57,.91);--window-glass-strong:rgba(46,55,69,.8);
+}
+body .desktop .window:not(.maximized){width:min(1060px,calc(100vw - 48px));height:min(680px,calc(100svh - 150px));}
+body :is(.window-bar,.appletv-navbar,.arcade-header,.quicklook-bar){min-height:56px;height:56px;flex-shrink:0;padding-block:0;align-items:center;}
+body :is(.appletv-navbar,.arcade-header,.quicklook-bar){padding-inline:20px;}
+body .applications-heading{min-height:56px;padding:0 0 14px;gap:18px;}
+body .applications-heading h2{font-size:15px;letter-spacing:-.2px;font-weight:600;}
+body .applications-heading img{width:24px;height:24px;}
+body :is(.traffic,.appletv-traffic,.arcade-traffic,.mac-window-controls){gap:8px;align-items:center;}
+body :is(.traffic,.appletv-traffic,.arcade-traffic,.mac-window-controls) button{width:12px;height:12px;min-width:12px;position:relative;}
+body :is(.traffic,.appletv-traffic,.arcade-traffic,.mac-window-controls) button::after{content:'';position:absolute;inset:-5px;}
+body :is(button,a,input,[tabindex]):focus-visible{outline:3px solid #006bda;outline-offset:3px;}
+body:has(.desktop.night) :is(button,a,input,[tabindex]):focus-visible{outline-color:#8ac1ff;}
+body .desktop .window .window-body>.content,
+body :is(.appletv-body,.arcade-body,.quicklook-scroll){background:var(--mac-content)!important;color:var(--mac-text);min-height:0;overflow:auto;}
+body .desktop .window .window-body>aside{width:200px;padding:16px 12px;}
+body .desktop .window .traffic{width:200px;padding-left:20px;}
+body .desktop .window .window-tools{padding:0 18px;gap:14px;min-width:0;}
+body .window-tools b{font-size:14px;color:var(--mac-text);}
+body .window nav button,body .window .side-link{font-size:13px;min-height:34px;padding:8px 10px;color:var(--mac-text);}
+body .window .sidebar-label{font-size:11px;color:var(--mac-secondary);}
+body .window :is(nav button.selected,.side-link.selected){background:var(--mac-selection);color:var(--mac-text);}
+body .window :is(.history,.view-tools){display:flex;align-items:center;gap:4px;padding:3px;border-radius:9px;box-shadow:none;}
+body .history button,body .view-tools>button{display:grid;place-items:center;border:0;border-radius:6px;background:transparent;color:var(--mac-text);width:28px;height:28px;padding:0;}
+body .history button:disabled{opacity:.35;cursor:default;}
+body .view-tools>button[aria-pressed=true]{background:var(--mac-selection);}
+.finder-search{display:flex;align-items:center;gap:5px;margin-left:7px;padding:4px 8px;background:var(--mac-content);border:1px solid var(--mac-line);border-radius:8px;color:var(--mac-secondary);}
+.finder-search input{width:125px;min-width:0;background:none;border:0;outline:none;color:var(--mac-text);font-size:12px;}
+.finder-search input::placeholder{color:var(--mac-secondary);}
+.finder-search:focus-within{outline:2px solid #006bda;outline-offset:1px;}
+body .finder-list-view .finder-folder-grid{display:flex;flex-direction:column;gap:4px;}
+body .finder-list-view .finder-folder-item{display:flex;flex-direction:row;align-items:center;justify-content:flex-start;gap:16px;width:100%;padding:8px 12px;min-height:60px;}
+.finder-list-icon{width:36px;height:36px;object-fit:contain;flex-shrink:0;}
+body .finder-list-view .finder-folder-name{max-width:none;text-align:left;}
+body .finder-search input:focus-visible{outline:none;}
+body .finder-list-view .folder-container-graphic{width:60px;height:46px;flex-shrink:0;margin:0;}
+body .finder-list-view .finder-folder-name{margin:0;font-size:13px;}
+body .finder-list-view .finder-folder-sub{margin-left:auto;font-size:12px;}
+body :is(.experience-heading>p,.experience-dates,.experience-location,.experience-summary,.experience-role,.exp-count-badge,.card p,.intro,.finder-folder-sub,.section-heading>span){color:var(--mac-secondary);}
+body :is(.experience-list,.experience-company-line h3,.experience-heading h2,.finder-folder-name,.card h4){color:var(--mac-text);}
+body .experience-row{border-color:var(--mac-line);}
+body :is(.appletv-card-title,.appletv-shelf-title,.arcade-shelf-title,.arcade-game-title,.applications-grid span,.applications-heading h2){color:var(--mac-text);}
+body :is(.appletv-card-sub,.appletv-shelf-count,.arcade-shelf-count,.arcade-game-desc,.applications-description){color:var(--mac-secondary);}
+body .appletv-search-box{background:var(--mac-content);border:1px solid var(--mac-line);}
+body .appletv-search-box input{color:var(--mac-text);}
+body .appletv-search-box input::placeholder{color:var(--mac-secondary);}
+body .arcade-game-card{background:var(--mac-content);border-color:var(--mac-line);}
+body .applications-filters button{color:var(--mac-text);background:var(--mac-content);}
+body .applications-filters button[aria-pressed=true]{color:var(--mac-text);background:var(--mac-selection);}
+body .resume-toolbar{flex-shrink:0;min-height:32px;}
+body .resume-view{min-height:0;}
+body .resume-view iframe{min-height:0;}
+body .applications-panel:not(.app-fullscreen){overflow:auto;}
+body .window .finder-folder-item.is-selected .finder-folder-name{color:#fff;}
+body .window .finder-folder-name{font-size:13px;}
+.restore-preview{position:fixed;right:24px;bottom:24px;z-index:100;background:var(--mac-content);color:var(--mac-text);border:1px solid var(--mac-line);border-radius:12px;padding:12px 16px;box-shadow:0 8px 25px #0003;font-size:12px;}
+body :is(.arcade-card-title,.arcade-tab,.arcade-brand span){color:var(--mac-text);}
+body :is(.arcade-card-genre,.arcade-card-rating){color:var(--mac-secondary);}
+body .quicklook-bar>span{flex:1;font-size:13px;font-weight:600;}
+body .applications-heading,body .arcade-header{cursor:grab;}
+body .app-fullscreen :is(.applications-heading,.arcade-header,.quicklook-bar){cursor:default;}
+body .resume-toolbar a{color:#0066c0;}
+body:has(.desktop.night) .resume-toolbar a{color:#8ac1ff;}
+@media(max-width:760px){
+ body .desktop .window:not(.maximized){width:calc(100vw - 20px);height:calc(100svh - 140px);}
+ body .desktop .window .traffic{width:76px;padding-left:12px;}
+ body .desktop .window .window-body>aside{width:100%;padding:6px;}
+ body .desktop .window .window-tools{padding:0 8px;gap:6px;}
+ body .history{display:none!important;}
+ .finder-search input{width:70px;}
+ body .view-tools>button{width:24px;}
+ body .window nav{display:flex;flex-wrap:wrap;}
+ body .window nav button{width:auto;flex:1;font-size:11px;}
+}
+@media(prefers-reduced-motion:reduce){
+ body :is(.window,.movies-window,.arcade-window,.applications-panel,.quicklook,.content,.dock-item,.portfolio-font){animation:none!important;transition:none!important;}
+}
