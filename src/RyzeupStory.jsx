@@ -182,6 +182,10 @@ export default function RyzeupStory({ onClose }) {
                 </p>
               </div>
             </div>
+
+            <p className="ryzeup-footnote">
+              Illustrative hypotheses based on the product flows, not profiles of interviewed participants.
+            </p>
           </div>
         </section>
 
@@ -205,7 +209,7 @@ export default function RyzeupStory({ onClose }) {
                 alt="Hand-drawn wireframes: Join workspace, Find updates, Share an update"
                 loading="lazy"
               />
-              <figcaption>Hand-drawn wireframes exploring workspace entry, feed exploration, and multi-format posting.</figcaption>
+              <figcaption>Reconstructed hand-drawn wireframes explaining the design logic.</figcaption>
             </figure>
           </div>
         </section>
@@ -214,7 +218,7 @@ export default function RyzeupStory({ onClose }) {
         <section className="trosky-chapter">
           <div className="trosky-chapter-heading">
             <span>03</span>
-            <h2>The right person, the right context</h2>
+            <h2>The right person. The right context.</h2>
           </div>
           <div className="trosky-chapter-content">
             <p>
@@ -230,8 +234,11 @@ export default function RyzeupStory({ onClose }) {
                 alt="Hand-drawn wireframes: Context switching, choosing employee, recovery search"
                 loading="lazy"
               />
-              <figcaption>Wireframes detailing scope switching, employee selection hierarchy, and zero-match recovery.</figcaption>
+              <figcaption>Reconstructed wireframes detailing scope switching, employee selection hierarchy, and zero-match recovery.</figcaption>
             </figure>
+            <p className="ryzeup-footnote">
+              I would test whether confirmation prevents mistakes or adds unnecessary friction during frequent switching.
+            </p>
           </div>
         </section>
 
@@ -239,14 +246,14 @@ export default function RyzeupStory({ onClose }) {
         <section className="trosky-chapter">
           <div className="trosky-chapter-heading">
             <span>04</span>
-            <h2>Join the right workspace</h2>
+            <h2>Join the right workspace.</h2>
           </div>
           <div className="trosky-chapter-content">
             <p>
               The first decision is about trust before participation. I place organization verification ahead of sign-in so the workspace can be identified before the user enters credentials. The organization name on the next screen helps answer a basic question: am I in the right place?
             </p>
             <p>
-              The extra step introduces friction, so recovery matters. Changing the organization code and recovering a password remain available. Invalid-code feedback preserves what the user entered and explains how to continue.
+              The extra step introduces friction, so recovery matters. Changing the organization code and recovering a password remain available. Invalid-code feedback should preserve what the user entered and explain how to continue.
             </p>
 
             <figure>
@@ -264,23 +271,24 @@ export default function RyzeupStory({ onClose }) {
         <section className="trosky-chapter">
           <div className="trosky-chapter-heading">
             <span>05</span>
-            <h2>Make every update useful</h2>
+            <h2>Make every update useful.</h2>
           </div>
           <div className="trosky-chapter-content">
             <p>
               On the wall, I use content categories, authorship, timestamps, and attachment previews to help people scan. A document and a question serve different purposes; showing those differences lets the user judge relevance before opening either one.
             </p>
             <p>
-              Field Q&A gives a question its own discussion space. The original question, contributor roles, replies, and response field support a focused exchange without losing context in general feeds.
+              Field Q&A gives a question its own discussion space. The original question, contributor roles, replies, and response field support a focused exchange. The remaining challenge is navigation language: people need to understand Field Q&A without being taught the label.
             </p>
 
             <div className="ryzeup-callout-box contrast">
               <div className="callout-header">
-                <strong>Contrast Check</strong>
+                <strong>Contrast check</strong>
               </div>
               <p>
-                Verify text pairings against WCAG AA: at least 4.5:1 for normal text and 3:1 for large text. Test readability in outdoor daylight conditions.
+                Verify text pairings against WCAG AA: at least 4.5:1 for normal text and 3:1 for large text. Test readability in outdoor lighting as well.
               </p>
+              <span className="callout-link">WCAG contrast guidance ↗</span>
             </div>
 
             <figure>
@@ -298,14 +306,14 @@ export default function RyzeupStory({ onClose }) {
         <section className="trosky-chapter">
           <div className="trosky-chapter-heading">
             <span>06</span>
-            <h2>Give every idea the right format</h2>
+            <h2>Give every idea the right format.</h2>
           </div>
           <div className="trosky-chapter-content">
             <p>
               Participation needs more than a single text field. A photo update benefits from a preview, while a poll needs explicit choices and a closing period. I treat these as different tasks while keeping the destination and posting action recognizable.
             </p>
             <p>
-              The visible screen is only part of that interaction. Upload progress, draft preservation, and duplicate-submission prevention determine whether contributing feels reliable during interrupted mobile sessions.
+              The visible screen is only part of that interaction. Upload progress, draft preservation, and duplicate-submission prevention determine whether contributing feels reliable. These are the next states I would specify before implementation, especially for interrupted mobile sessions.
             </p>
 
             <figure>
@@ -323,7 +331,7 @@ export default function RyzeupStory({ onClose }) {
         <section className="trosky-chapter">
           <div className="trosky-chapter-heading">
             <span>07</span>
-            <h2>Know what needs attention</h2>
+            <h2>Know what needs attention.</h2>
           </div>
           <div className="trosky-chapter-content">
             <p>
@@ -335,11 +343,12 @@ export default function RyzeupStory({ onClose }) {
 
             <div className="ryzeup-callout-box">
               <div className="callout-header">
-                <strong>Screen Reader Check</strong>
+                <strong>Screen reader check</strong>
               </div>
               <p>
                 Expose Important and New status text in each card’s native accessibility semantics. Verify VoiceOver and TalkBack reading order without duplicate announcements.
               </p>
+              <span className="callout-link">Native accessibility guidance ↗</span>
             </div>
 
             <figure>
@@ -357,23 +366,24 @@ export default function RyzeupStory({ onClose }) {
         <section className="trosky-chapter">
           <div className="trosky-chapter-heading">
             <span>08</span>
-            <h2>Keep context in view</h2>
+            <h2>Keep context in view.</h2>
           </div>
           <div className="trosky-chapter-content">
             <p>
               When the view changes from Self to My Team, the selected person becomes essential context. I keep that identity near the switch because interpreting the same reminder differently can lead to an unnecessary or misdirected follow-up.
             </p>
             <p>
-              The selection flow uses an explicit confirmation. Names alone are not enough when colleagues have similar names, so role or department helps disambiguate them. In implementation, the choice resolves to an employee identifier and respects current access permissions.
+              The selection flow uses an explicit confirmation. Names alone are not enough when colleagues have similar names, so role or department helps disambiguate them. In implementation, the choice must resolve to an employee identifier and respect current access permissions.
             </p>
 
             <div className="ryzeup-callout-box touch">
               <div className="callout-header">
-                <strong>Touch Target Check</strong>
+                <strong>Touch target check</strong>
               </div>
               <p>
                 Specify at least 44 × 44 pt targets on iOS and 48 × 48 dp on Android, including each Self / My Team option. Verify hit areas in the native build.
               </p>
+              <span className="callout-link">Platform accessibility guidance ↗</span>
             </div>
 
             <figure>
@@ -391,14 +401,14 @@ export default function RyzeupStory({ onClose }) {
         <section className="trosky-chapter">
           <div className="trosky-chapter-heading">
             <span>09</span>
-            <h2>Make the next step clear</h2>
+            <h2>Make the next step clear.</h2>
           </div>
           <div className="trosky-chapter-content">
             <p>
               An empty screen can mean several things. A search with no match calls for a different response from a leaderboard that has no data yet. I use specific messages so the user can tell whether they should change an input, return later, or take another action.
             </p>
             <p>
-              The reportee search offers Clear Search, a small but useful recovery path. The leaderboard separates “no activity yet” from loading states, delayed data sync, and connection failures.
+              The reportee search offers Clear Search, a small but useful recovery path. The leaderboard still needs a more precise explanation of why rankings are unavailable. I would separate “no activity yet” from loading, delayed data, and a failed request.
             </p>
 
             <figure>
@@ -416,11 +426,11 @@ export default function RyzeupStory({ onClose }) {
         <section className="trosky-chapter">
           <div className="trosky-chapter-heading">
             <span>10</span>
-            <h2>Built to hold together</h2>
+            <h2>Built to hold together.</h2>
           </div>
           <div className="trosky-chapter-content">
             <p>
-              A successful interface must hold up in a native build. My handoff plan connects the visual decisions to platform behavior, release assets, beta evaluation, and recovery states.
+              A successful interface must hold up in a native build. My handoff plan connects the visual decisions to platform behavior, release assets, beta evaluation, and recovery states. These requirements guide implementation and launch-readiness checks.
             </p>
 
             <div className="ryzeup-handoff-grid">
@@ -456,6 +466,10 @@ export default function RyzeupStory({ onClose }) {
                 </p>
               </div>
             </div>
+
+            <p className="ryzeup-footnote">
+              *Handoff acceptance: verify platform behavior, accessible labels and hit areas, draft recovery, and role-based access in the running build.
+            </p>
           </div>
         </section>
 
@@ -463,16 +477,16 @@ export default function RyzeupStory({ onClose }) {
         <section className="trosky-chapter">
           <div className="trosky-chapter-heading">
             <span>11</span>
-            <h2>Validation and next steps</h2>
+            <h2>Next steps. Real evidence.</h2>
           </div>
           <div className="trosky-chapter-content">
             <p>
-              To validate the design against the initial hypotheses, I structured usability testing with field employees and managers covering submitting Field Q&A questions, finding policies, and recovering from interrupted sessions.
+              To validate the design against the initial hypotheses, I would run structured usability testing with field employees and managers. The sessions would cover submitting a Field Q&A question, finding a policy, switching viewing context, and recovering from an interrupted session.
             </p>
 
             <div className="ryzeup-validation-grid">
               <div className="validation-col">
-                <h4>Quantitative Measures</h4>
+                <h4>Quantitative measures</h4>
                 <div className="validation-item">
                   <b>Task success rate</b>
                   <p>Track unassisted completion for submitting Field Q&A questions and switching employee context.</p>
@@ -488,9 +502,9 @@ export default function RyzeupStory({ onClose }) {
               </div>
 
               <div className="validation-col">
-                <h4>Qualitative Signals</h4>
+                <h4>Qualitative signals</h4>
                 <div className="validation-item">
-                  <b>System Usability Scale (SUS)</b>
+                  <b>System Usability Scale</b>
                   <p>Standard SUS survey administered after testing to assess perceived usability and complexity.</p>
                 </div>
                 <div className="validation-item">
@@ -503,6 +517,10 @@ export default function RyzeupStory({ onClose }) {
                 </div>
               </div>
             </div>
+
+            <p className="ryzeup-footnote source-note">
+              *Source: ryzeup(1).pdf and the author’s supplied role and platform details. Personas and wireframes are reconstructed; accessibility checks, handoff requirements, and validation activities describe the next phase.
+            </p>
           </div>
         </section>
 

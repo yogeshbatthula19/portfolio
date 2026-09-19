@@ -190,6 +190,40 @@
   color: #475569;
 }
 
+.callout-link {
+  display: inline-block;
+  margin-top: 10px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #7c3aed;
+  text-decoration: none;
+}
+
+.ryzeup-callout-box.contrast .callout-link {
+  color: #d97706;
+}
+
+.ryzeup-callout-box.touch .callout-link {
+  color: #059669;
+}
+
+.ryzeup-footnote {
+  font-size: 13px;
+  line-height: 1.6;
+  color: #86868b;
+  font-style: italic;
+  margin: 16px 0 0;
+}
+
+.ryzeup-footnote.source-note {
+  margin-top: 32px;
+  padding-top: 20px;
+  border-top: 1px solid #e5e5ea;
+  font-style: normal;
+  color: #a1a1a6;
+  font-size: 12px;
+}
+
 /* Implementation 4-Pillars Grid */
 .ryzeup-handoff-grid {
   display: grid;
