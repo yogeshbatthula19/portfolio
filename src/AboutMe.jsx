@@ -59,18 +59,18 @@ export default function AboutMe({ onContact, onProjects, onExperience }) {
           {/* 1. Top Center: Role */}
           <div className="editorial-note note-top-center">
             <span className="note-label">ROLE</span>
-            <span className="note-script">Product & Systems</span>
+            <span className="note-script">Product Designer & AI Vibe Coder</span>
           </div>
 
-          {/* 2. Top Left: Nickname */}
+          {/* 2. Top Left: Mindset */}
           <div className="editorial-note note-top-left">
-            <span className="note-label">nickname:</span>
-            <span className="note-script">the pixel architect</span>
+            <span className="note-label">mindset:</span>
+            <span className="note-script">deeply spiritual & mindful</span>
           </div>
 
-          {/* 3. Top Right: Multidisciplinary + Arrow 1 */}
+          {/* 3. Top Right: Superpower + Arrow 1 */}
           <div className="editorial-note note-top-right">
-            <span className="note-script">multidisciplinary</span>
+            <span className="note-script">vibe code & ship live</span>
           </div>
           <svg
             className="arrow-top-right hand-drawn-arrow"
@@ -82,10 +82,11 @@ export default function AboutMe({ onContact, onProjects, onExperience }) {
             <path d="M 12 16 L 20 7 L 26 17" />
           </svg>
 
-          {/* 4. Middle Left: Favorite Movies + Arrow 2 */}
+          {/* 4. Middle Left: In the kitchen + Arrow 2 */}
           <div className="editorial-note note-mid-left">
-            <span className="note-label">favorite movies:</span>
-            <span className="note-script">sci-fi & crime</span>
+            <span className="note-label">in the kitchen:</span>
+            <span className="note-script">loves cooking</span>
+            <span className="note-subscript">(flavors & culinary craft)</span>
           </div>
           <svg
             className="arrow-mid-left hand-drawn-arrow"
@@ -98,11 +99,11 @@ export default function AboutMe({ onContact, onProjects, onExperience }) {
           </svg>
 
           {/* 5. Center Hero Polaroid Frame */}
-          <article className="polaroid-frame" title="Yogesh Battula — Product Designer">
+          <article className="polaroid-frame" title="Yogesh Battula — Product Designer & Builder">
             <div className="polaroid-photo-wrap">
               <img
                 src="/images/yogesh-portrait.jpg"
-                alt="Yogesh Battula black and white editorial portrait"
+                alt="Yogesh Battula editorial portrait"
               />
             </div>
 
@@ -117,23 +118,23 @@ export default function AboutMe({ onContact, onProjects, onExperience }) {
               className="emoji-sticker-badge"
               onClick={cycleEmoji}
               aria-label="Change sticker reaction"
-              title="Click to cycle sticker!"
+              title="Click to cycle reaction"
             >
               <span className="emoji-icon">{emojis[emojiIndex]}</span>
             </button>
           </article>
 
-          {/* 6. Middle Right: Superpower */}
+          {/* 6. Middle Right: Passions */}
           <div className="editorial-note note-mid-right">
-            <span className="note-label">superpower:</span>
-            <span className="note-script">craft & micro-details</span>
+            <span className="note-label">daily obsessions:</span>
+            <span className="note-script">tech gadgets & cars</span>
           </div>
 
           {/* 7. Bottom Left: Passions outside design */}
           <div className="editorial-note note-bottom-left">
-            <span className="note-label">passions outside design:</span>
-            <span className="note-script">cars & tech gadgets</span>
-            <span className="note-subscript">(and dark roast coffee)</span>
+            <span className="note-label">favorite pastimes:</span>
+            <span className="note-script">culinary arts & road trips</span>
+            <span className="note-subscript">(and fresh coffee)</span>
           </div>
 
           {/* 8. Bottom Right: Arrow 3 + Favorite Tools */}
@@ -147,8 +148,8 @@ export default function AboutMe({ onContact, onProjects, onExperience }) {
             <path d="M 15 29 L 24 30 L 24 21" />
           </svg>
           <div className="editorial-note note-bottom-right">
-            <span className="note-label">favorite tools:</span>
-            <span className="note-script">Figma & Code</span>
+            <span className="note-label">builder tools:</span>
+            <span className="note-script">Figma & Production Code</span>
           </div>
 
         </div>
@@ -160,40 +161,84 @@ export default function AboutMe({ onContact, onProjects, onExperience }) {
       <section className="about-extended-story">
         <div className="story-paragraphs">
           <p className="story-p">
-            I’m a <strong>Product Designer</strong> based in Hyderabad, deeply driven by the intersection of system architecture, tactile micro-interactions, and human psychology. Over the past 4+ years, I’ve focused on transforming intricate, high-friction domains into digital experiences that feel effortless, intuitive, and thoughtfully crafted.
+            I’m <strong>Yogesh Battula</strong>—a Product Designer and end-to-end builder based in Hyderabad. Over the past year, I trained rigorously in <strong>AI vibe coding like a pro</strong>. Rather than just designing screens in Figma and handing them off, I’ve unlocked the capability to genuinely conceive, design, code, and <strong>push full-stack digital products live</strong> to real users at lightning speed.
           </p>
 
           <p className="story-p">
-            My work spans from zero-to-one product strategy to shipping polished web, mobile, and design systems. At <strong>Recovery</strong>, I led the end-to-end design of a connected clinical rehabilitation platform, bridging orthopedic surgeons, physical therapists, and recovering patients through shared progress telemetry. On <strong>Trosky 365</strong>, I designed an AI-guided baseball coaching platform that turns complex athletic mechanics into an engaging conversational training companion.
+            At my core, I am <strong>deeply spiritual and grounded</strong>. I believe that mindful intention, calmness, and inner clarity are what separate superficial apps from enduring technology. When digital experiences are crafted from a place of centeredness, they eliminate friction and bring peace, focus, and genuine delight to people’s everyday lives.
           </p>
 
           <p className="story-p">
-            I believe that the best products aren’t just visually striking—they operate with clear intentionality, respect the user’s cognitive load, and spark genuine joy. Outside of design sprints and code, you’ll usually find me exploring scenic trails in a 4×4 Jeep, capturing cinematic aerial shots with FPV drones, or diving into sci-fi cinema over a fresh pour-over coffee.
+            Outside the canvas and terminal, I have a genuine <strong>love for cooking</strong>—approaching recipes with culinary care, balancing fresh spices, slow cooking, and sharing nourishing food with people I care about. I’m equally captivated by <strong>favorite tech gadgets</strong> (from spatial computing and custom hardware rigs to FPV drones) and the mechanical artistry of <strong>cars</strong>—obsessing over vehicle dynamics, aerodynamic lines, and late-night highway drives.
           </p>
 
-          {onExperience && (
-            <div style={{ marginTop: '26px' }}>
+          <div style={{ marginTop: '30px', display: 'flex', gap: '12px', flexWrap: 'wrap', alignItems: 'center' }}>
+            {onProjects && (
               <button
                 type="button"
-                className="exp-learn-more-link"
-                onClick={onExperience}
+                onClick={onProjects}
                 style={{
-                  background: 'none',
+                  background: '#0071e3',
+                  color: '#ffffff',
                   border: 'none',
-                  padding: 0,
-                  fontSize: '14px',
+                  padding: '9px 18px',
+                  borderRadius: '980px',
+                  fontSize: '13px',
                   fontWeight: 600,
-                  color: '#0071e3',
                   cursor: 'pointer',
                   display: 'inline-flex',
                   alignItems: 'center',
                   gap: '6px'
                 }}
               >
-                View previous companies timeline <span aria-hidden="true" style={{ fontSize: '17px' }}>›</span>
+                Explore Selected Work →
               </button>
-            </div>
-          )}
+            )}
+
+            {onExperience && (
+              <button
+                type="button"
+                className="exp-learn-more-link"
+                onClick={onExperience}
+                style={{
+                  background: 'none',
+                  border: '1px solid rgba(0,0,0,0.12)',
+                  padding: '8px 16px',
+                  borderRadius: '980px',
+                  fontSize: '13px',
+                  fontWeight: 500,
+                  color: '#1d1d1f',
+                  cursor: 'pointer',
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '6px'
+                }}
+              >
+                View Career Timeline ›
+              </button>
+            )}
+
+            {onContact && (
+              <button
+                type="button"
+                onClick={onContact}
+                style={{
+                  background: 'none',
+                  border: 'none',
+                  padding: '8px 12px',
+                  fontSize: '13px',
+                  fontWeight: 600,
+                  color: '#0071e3',
+                  cursor: 'pointer',
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '4px'
+                }}
+              >
+                Get in Touch ↗
+              </button>
+            )}
+          </div>
         </div>
       </section>
 

@@ -35,7 +35,7 @@ const suggestions = [
   'Outside of design?'
 ];
 
-export default function IOSMobileView({ dark, setDark, time, onPreview }) {
+export default function IOSMobileView({ time, onPreview }) {
   const [activeApp, setActiveApp] = useState(null);
   const [islandExpanded, setIslandExpanded] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
@@ -73,7 +73,7 @@ export default function IOSMobileView({ dark, setDark, time, onPreview }) {
   };
 
   const handlePlayMovie = (movie) => {
-    setMovieToast(`Now Playing: ${movie.name} on Apple TV`);
+    setMovieToast(`Now Playing: ${movie.name}`);
     setTimeout(() => setMovieToast(''), 3500);
   };
 
@@ -90,7 +90,7 @@ export default function IOSMobileView({ dark, setDark, time, onPreview }) {
   });
 
   return (
-    <div className={`ios-mobile-screen ${dark ? 'ios-dark' : 'ios-light'}`}>
+    <div className="ios-mobile-screen ios-light">
       {/* Background Live Wallpaper */}
       <div className="ios-wallpaper-wrap" aria-hidden="true">
         <video
@@ -165,11 +165,12 @@ export default function IOSMobileView({ dark, setDark, time, onPreview }) {
               </div>
               <div className="widget-body">
                 <h1 className="widget-title">Yogesh Battula</h1>
-                <p className="widget-desc">Crafting thoughtful digital interfaces & systems.</p>
+                <p className="widget-desc">Product Designer & AI Vibe Coder · Shipped products live.</p>
               </div>
               <div className="widget-chips">
                 <span>📍 Hyderabad</span>
-                <span>✨ UX / Code</span>
+                <span>⚡ AI Vibe Coder</span>
+                <span>🍳 Cooking & Cars</span>
               </div>
             </div>
           </section>
@@ -245,7 +246,7 @@ export default function IOSMobileView({ dark, setDark, time, onPreview }) {
               <div className="ios-app-squircle app-movies">
                 <img src="/icons/movies.png" alt="" />
               </div>
-              <span className="ios-app-label">Apple TV</span>
+              <span className="ios-app-label">Cinema</span>
             </button>
 
             {/* 7. Arcade (Games) */}
@@ -277,40 +278,46 @@ export default function IOSMobileView({ dark, setDark, time, onPreview }) {
             </button>
           </section>
 
-          {/* iOS Floating Bottom Dock */}
+          {/* iOS Persistent Dock */}
           <footer className="ios-dock-container">
-            <div className="ios-frosted-dock">
+            <div className="ios-dock-glass">
+              {/* Phone */}
               <button
                 type="button"
                 className="ios-dock-icon"
-                aria-label="Call / Contact"
+                aria-label="Contact"
                 onClick={() => setActiveApp('contact')}
               >
-                <img src="/icons/contacts.png" alt="" />
+                <img src="/icons/phone.png" alt="" />
               </button>
+
+              {/* Messages (AI Assistant) */}
               <button
                 type="button"
                 className="ios-dock-icon"
-                aria-label="Safari Projects"
+                aria-label="Messages with Yogesh"
+                onClick={() => setActiveApp('messages')}
+              >
+                <img src="/icons/messages.png" alt="" />
+              </button>
+
+              {/* Safari / Work */}
+              <button
+                type="button"
+                className="ios-dock-icon"
+                aria-label="Projects"
                 onClick={() => setActiveApp('projects')}
               >
                 <img src="/icons/folder.png" alt="" />
               </button>
-              <button
-                type="button"
-                className="ios-dock-icon"
-                aria-label="Messages"
-                onClick={() => setActiveApp('messages')}
-              >
-                <img src="/icons/messages.png" alt="" />
-                <span className="ios-dock-badge">1</span>
-              </button>
+
+              {/* Music */}
               <button
                 type="button"
                 className="ios-dock-icon"
                 aria-label="Music"
                 onClick={() => {
-                  setMovieToast('Apple Music · Lofi Beats for focus');
+                  setMovieToast('Focus Beats · Music for deep design focus & vibe coding');
                   setTimeout(() => setMovieToast(''), 3000);
                 }}
               >
@@ -352,7 +359,7 @@ export default function IOSMobileView({ dark, setDark, time, onPreview }) {
                 : activeApp === 'resume'
                 ? 'Resume'
                 : activeApp === 'movies'
-                ? 'Apple TV'
+                ? 'Cinema'
                 : activeApp === 'arcade'
                 ? arcadeGame === 'flippy'
                   ? 'Flippy Bird'
@@ -362,16 +369,7 @@ export default function IOSMobileView({ dark, setDark, time, onPreview }) {
                 : 'Messages'}
             </h2>
 
-            <div className="ios-nav-right-actions">
-              <button
-                type="button"
-                className="ios-theme-toggle"
-                aria-label="Toggle Dark Mode"
-                onClick={() => setDark(!dark)}
-              >
-                {dark ? <Sun size={17} /> : <Moon size={17} />}
-              </button>
-            </div>
+            <div className="ios-nav-right-actions" />
           </header>
 
           {/* iOS App Scrollable Body */}
@@ -536,7 +534,7 @@ export default function IOSMobileView({ dark, setDark, time, onPreview }) {
                     }}
                   />
                   <div className="ios-movies-hero-content">
-                    <span className="ios-tv-badge"> tv+</span>
+                    <span className="ios-tv-badge">TOP 10 · CINEMA</span>
                     <h2>{selectedMovie.name}</h2>
                     <p className="hero-meta">
                       ★ {selectedMovie.rating} · {selectedMovie.genre} · {selectedMovie.year}

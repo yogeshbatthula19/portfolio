@@ -3,7 +3,7 @@ import { createPortal } from 'react-dom';
 import { useDraggable } from './useDraggable.js';
 import './AboutMacWindow.css';
 
-export default function AboutMacWindow({ isOpen, onClose, onMoreInfo, dark }) {
+export default function AboutMacWindow({ isOpen, onClose, onMoreInfo }) {
   const [certNotice, setCertNotice] = useState(false);
   const { pos, resetPos, dragHandlers } = useDraggable(false);
   const dialogRef = useRef(null);
@@ -25,7 +25,7 @@ export default function AboutMacWindow({ isOpen, onClose, onMoreInfo, dark }) {
     <div className="about-mac-backdrop" onClick={onClose}>
       <div
         ref={dialogRef}
-        className={`about-mac-window ${dark ? 'about-mac-dark' : 'about-mac-light'}`}
+        className="about-mac-window about-mac-light"
         style={{
           transform: `translate(${pos.x}px, ${pos.y}px)`,
         }}
@@ -79,12 +79,12 @@ export default function AboutMacWindow({ isOpen, onClose, onMoreInfo, dark }) {
           <h2 id="about-mac-title" className="about-mac-name">
             Yogesh Battula
           </h2>
-          <p className="about-mac-sub">Product Designer & Developer</p>
+          <p className="about-mac-sub">Product Designer & AI Vibe Coder</p>
 
           <div className="about-mac-specs">
             <div className="spec-row">
               <span className="spec-label">Role</span>
-              <span className="spec-value">Product Designer & Dev</span>
+              <span className="spec-value">Product Designer & Builder</span>
             </div>
             <div className="spec-row">
               <span className="spec-label">Location</span>
@@ -92,15 +92,15 @@ export default function AboutMacWindow({ isOpen, onClose, onMoreInfo, dark }) {
             </div>
             <div className="spec-row">
               <span className="spec-label">Experience</span>
-              <span className="spec-value">3+ Years Building Products</span>
+              <span className="spec-value">4+ Years · End-to-End Craft</span>
             </div>
             <div className="spec-row">
-              <span className="spec-label">Core Stack</span>
-              <span className="spec-value">Figma, React, Design Systems</span>
+              <span className="spec-label">Superpowers</span>
+              <span className="spec-value">Figma, AI Vibe Coding, Full-Stack</span>
             </div>
           </div>
 
-          {/* Action Button: More Info... */}
+          {/* Action Button: Explore My Story */}
           <div className="about-mac-actions">
             <button
               type="button"
@@ -110,11 +110,11 @@ export default function AboutMacWindow({ isOpen, onClose, onMoreInfo, dark }) {
                 onMoreInfo?.('About me');
               }}
             >
-              More Info...
+              Explore My Story →
             </button>
           </div>
 
-          {/* Legal / Copyright Footer */}
+          {/* Craft Notice Footer */}
           <div className="about-mac-footer">
             <button
               type="button"
@@ -124,15 +124,15 @@ export default function AboutMacWindow({ isOpen, onClose, onMoreInfo, dark }) {
                 setTimeout(() => setCertNotice(false), 3000);
               }}
             >
-              Regulatory Certification
+              Mindful Craft & Code
             </button>
             {certNotice && (
               <div className="about-mac-cert-toast" role="status">
-                Pixel-crafted in Hyderabad with Figma & React.
+                Built with intentionality, mindfulness, and attention to detail.
               </div>
             )}
             <p className="about-mac-copyright">
-              ™ and © 1983–2026 Apple Inc. All Rights Reserved.
+              ™ and © 2026 Yogesh Battula. All Rights Reserved.
             </p>
           </div>
         </div>
