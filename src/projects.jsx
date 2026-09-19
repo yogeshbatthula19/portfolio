@@ -28,6 +28,7 @@ export const projects = [
     folderName: 'Trosky 365',
     category: 'Case Studies · AI & UX Design',
     categoryType: 'case-studies',
+    year: '2024',
     summary: 'Turning daily baseball assignments into a guided conversation with a coach.',
     visual: 'trosky',
     folderColor: '#4ea5eb',
@@ -43,6 +44,7 @@ export const projects = [
     folderName: 'Ryzeup',
     category: 'Case Studies · Native Mobile UX',
     categoryType: 'case-studies',
+    year: '2024',
     summary: 'A unified mobile workspace separating team actions from company feeds to improve focus and response times.',
     visual: 'ryzeup',
     folderColor: '#5843a8',
@@ -58,6 +60,7 @@ export const projects = [
     folderName: 'HIMSeva HP',
     category: 'Websites · Digital Governance',
     categoryType: 'websites',
+    year: '2024',
     status: 'NDA signed',
     folderSub: 'NDA signed',
     isLocked: true,
@@ -219,19 +222,14 @@ export function WebsiteQuickLook({ project }) {
 }
 
 export function ProjectBrowser({ query, onPreview, viewMode = 'grid' }) {
-  const [activeCategory, setActiveCategory] = useState('all'); // 'all' | '2025' | 'websites' | 'case-studies'
   const [selected, setSelected] = useState('picklemates');
   const itemsRef = useRef([]);
 
-  const categoryFiltered = activeCategory === 'all'
-    ? projects
-    : activeCategory === '2025'
-    ? projects.filter(p => p.year === '2025' || p.category.includes('2025'))
-    : projects.filter(p => p.categoryType === activeCategory);
-
-  const visible = categoryFiltered.filter(p =>
+  const visible = projects.filter(p =>
     (p.title + ' ' + (p.folderName || '') + ' ' + p.category).toLowerCase().includes(query.toLowerCase())
   );
+
+  const years = Array.from(new Set(visible.map(p => p.year || '2024'))).sort((a, b) => b.localeCompare(a));
 
   const active = projects.find(p => p.id === selected) || visible[0];
 
@@ -239,7 +237,7 @@ export function ProjectBrowser({ query, onPreview, viewMode = 'grid' }) {
     if (visible.length && !visible.some(p => p.id === selected)) {
       setSelected(visible[0].id);
     }
-  }, [query, activeCategory, visible, selected]);
+  }, [query, visible, selected]);
 
   const handleKeyDown = (e, index, project) => {
     if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
@@ -267,114 +265,83 @@ export function ProjectBrowser({ query, onPreview, viewMode = 'grid' }) {
     }
   };
 
-  const websitesCount = projects.filter(p => p.categoryType === 'websites').length;
-  const caseStudiesCount = projects.filter(p => p.categoryType === 'case-studies').length;
-  const caseStudies2025Count = projects.filter(p => p.year === '2025' || p.category.includes('2025')).length;
-
   return (
     <div className={'finder-folder-view ' + (viewMode === 'list' ? 'finder-list-view' : '')} role="region" aria-label="Projects Explorer">
-      {/* Apple Segmented Category Filter Bar */}
-      <div className="finder-category-header">
-        <div className="finder-category-bar" role="tablist" aria-label="Filter projects by category">
-          <button
-            type="button"
-            role="tab"
-            aria-selected={activeCategory === 'all'}
-            className={`finder-category-pill ${activeCategory === 'all' ? 'active' : ''}`}
-            onClick={() => setActiveCategory('all')}
-          >
-            <span>All</span>
-            <span className="cat-count">{projects.length}</span>
-          </button>
-          <button
-            type="button"
-            role="tab"
-            aria-selected={activeCategory === '2025'}
-            className={`finder-category-pill ${activeCategory === '2025' ? 'active' : ''}`}
-            onClick={() => setActiveCategory('2025')}
-          >
-            <span>2025 Case Studies</span>
-            <span className="cat-count">{caseStudies2025Count}</span>
-          </button>
-          <button
-            type="button"
-            role="tab"
-            aria-selected={activeCategory === 'case-studies'}
-            className={`finder-category-pill ${activeCategory === 'case-studies' ? 'active' : ''}`}
-            onClick={() => setActiveCategory('case-studies')}
-          >
-            <span>Case Studies</span>
-            <span className="cat-count">{caseStudiesCount}</span>
-          </button>
-          <button
-            type="button"
-            role="tab"
-            aria-selected={activeCategory === 'websites'}
-            className={`finder-category-pill ${activeCategory === 'websites' ? 'active' : ''}`}
-            onClick={() => setActiveCategory('websites')}
-          >
-            <span>Websites</span>
-            <span className="cat-count">{websitesCount}</span>
-          </button>
-        </div>
-      </div>
-
-      <div className="finder-folder-grid" role="listbox" aria-label="Project folders. Use arrow keys to navigate.">
-        {visible.map((p, idx) => (
-          <div
-            key={p.id}
-            ref={el => itemsRef.current[idx] = el}
-            className={'finder-folder-item ' + (selected === p.id ? 'is-selected' : '')}
-            tabIndex={0}
-            role="option"
-            aria-selected={selected === p.id}
-            aria-label={`${p.folderName || p.title}. ${p.badgeTag || (p.categoryType === 'websites' ? 'Website' : 'Case study')}. Use arrow keys to navigate, Space or Enter to open.`}
-            onClick={() => {
-              setSelected(p.id);
-              onPreview(p);
-            }}
-            onDoubleClick={() => onPreview(p)}
-            onKeyDown={e => handleKeyDown(e, idx, p)}
-          >
-            {viewMode === 'list' ? (
-              <div className="finder-list-item-row">
-                <img
-                  className="finder-list-icon"
-                  src={p.categoryType === 'websites' ? '/icons/finder.png' : '/icons/folder.png'}
-                  alt=""
-                />
-                <div className="finder-list-text">
-                  <span className="finder-list-title">{p.folderName || p.title}</span>
-                  <span className="finder-list-category">
-                    {p.isLocked ? 'NDA signed' : p.category}
-                  </span>
-                </div>
-                <span className={`finder-list-tag ${p.isLocked ? 'is-locked-tag' : ''}`}>
-                  {p.isLocked ? 'NDA signed' : (p.badgeTag || (p.categoryType === 'websites' ? 'Website' : 'Case Study'))}
-                </span>
+      {/* Down-scrolling macOS Finder view grouped by year */}
+      <div className="finder-folder-scroll" role="listbox" aria-label="Project folders. Use arrow keys to navigate.">
+        {years.map(year => {
+          const yearProjects = visible.filter(p => (p.year || '2024') === year);
+          if (!yearProjects.length) return null;
+          return (
+            <div key={year} className="finder-date-section">
+              <div className="finder-date-header" aria-hidden="true">
+                <span className="finder-date-title">{year}</span>
+                <div className="finder-date-line" />
               </div>
-            ) : (
-              <>
-                <FolderWithAssets project={p} />
-                <span className="finder-folder-name">{p.folderName || p.title}</span>
-                <span className={`finder-folder-sub ${p.isLocked ? 'is-locked-sub' : ''}`}>
-                  {p.isLocked ? 'NDA signed' : (p.badgeTag || (p.categoryType === 'websites' ? 'Website' : 'Case Study'))}
-                </span>
-              </>
-            )}
-          </div>
-        ))}
-      </div>
+              <div className="finder-folder-grid">
+                {yearProjects.map(p => {
+                  const overallIdx = visible.findIndex(item => item.id === p.id);
+                  const projectType = p.categoryType === 'websites' ? 'Website' : 'Case Study';
+                  return (
+                    <div
+                      key={p.id}
+                      ref={el => itemsRef.current[overallIdx] = el}
+                      className={'finder-folder-item ' + (selected === p.id ? 'is-selected' : '')}
+                      tabIndex={0}
+                      role="option"
+                      aria-selected={selected === p.id}
+                      aria-label={`${p.folderName || p.title}. ${projectType}. Use arrow keys to navigate, Space or Enter to open.`}
+                      onClick={() => {
+                        setSelected(p.id);
+                        onPreview(p);
+                      }}
+                      onDoubleClick={() => onPreview(p)}
+                      onKeyDown={e => handleKeyDown(e, overallIdx, p)}
+                    >
+                      {viewMode === 'list' ? (
+                        <div className="finder-list-item-row">
+                          <img
+                            className="finder-list-icon"
+                            src={p.categoryType === 'websites' ? '/icons/finder.png' : '/icons/folder.png'}
+                            alt=""
+                          />
+                          <div className="finder-list-text">
+                            <span className="finder-list-title">{p.folderName || p.title}</span>
+                            <span className="finder-list-category">
+                              {projectType}
+                            </span>
+                          </div>
+                          <span className={`finder-list-tag ${p.isLocked ? 'is-locked-tag' : ''}`}>
+                            {p.isLocked ? 'NDA signed' : projectType}
+                          </span>
+                        </div>
+                      ) : (
+                        <>
+                          <FolderWithAssets project={p} />
+                          <span className="finder-folder-name">{p.folderName || p.title}</span>
+                          <span className={`finder-folder-sub ${p.isLocked ? 'is-locked-sub' : ''}`}>
+                            {projectType}
+                          </span>
+                        </>
+                      )}
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          );
+        })}
 
-      {!visible.length && (
-        <p className="finder-empty-msg">No matching projects found in this category.</p>
-      )}
+        {!visible.length && (
+          <p className="finder-empty-msg">No matching projects found.</p>
+        )}
+      </div>
 
       {/* Authentic macOS Finder status bar */}
       <div className="finder-status-bar">
         <div className="finder-status-left">
           <span className={`finder-status-badge ${active?.isLocked ? 'locked-badge' : ''}`}>
-            {active?.isLocked ? 'NDA signed' : (active?.badgeTag || (active?.categoryType === 'websites' ? 'Website' : 'Case Study'))}
+            {active?.categoryType === 'websites' ? 'Website' : 'Case Study'}
           </span>
           <span>
             <b>{active?.folderName || active?.title}</b> — {active?.isLocked ? 'NDA signed' : active?.summary}
