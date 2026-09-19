@@ -24,8 +24,8 @@ aside{overflow-y:auto}
 .sf-symbol{display:inline-block;flex-shrink:0;background:currentColor;mask-position:center;mask-size:contain;mask-repeat:no-repeat;-webkit-mask-position:center;-webkit-mask-size:contain;-webkit-mask-repeat:no-repeat;vertical-align:middle}
 /* Native macOS artwork, including its original transparency and shading. */
 .desktop-file img{width:66px;height:66px;object-fit:contain;filter:drop-shadow(0 3px 4px #32234730)}
-.dock-item{background:none;border:0;box-shadow:none;border-radius:0}
-.dock-item img{width:calc(100% + 9px);height:calc(100% + 9px);object-fit:contain;filter:drop-shadow(0 3px 3px #3d2b5526)}
+.dock-item{background:none;border:0;box-shadow:none;border-radius:0;padding:0}
+.dock-item img{width:48px;height:48px;object-fit:contain;filter:drop-shadow(0 3px 3px #3d2b5526)}
 .card-icon{background:none;border-radius:0}
 .card-icon img{width:46px;height:46px;object-fit:contain}
 @media(max-width:1100px){.desktop-file img{width:49px;height:49px}}
