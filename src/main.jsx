@@ -14,6 +14,7 @@ import {genie} from './windowMotion.js';
 import RecoveryStory from './RecoveryStory.jsx';
 import TroskyStory from './TroskyStory.jsx';
 import RyzeupStory from './RyzeupStory.jsx';
+import PickleMatesStory from './PickleMatesStory.jsx';
 import {ProjectBrowser,QuickLook,projects,WebsiteQuickLook} from './projects.jsx';
 import AboutMe from './AboutMe.jsx';
 import Experience from './Experience.jsx';
@@ -54,4 +55,4 @@ const go=s=>{setNotesMode(false);motionSequence.current++;closeAnimation.current
 </div>
 <AboutMacWindow isOpen={aboutMacOpen} onClose={()=>setAboutMacOpen(false)} onMoreInfo={go} dark={dark}/>
 <IOSMobileView dark={dark} setDark={setDark} time={time} onPreview={setPreview} />
-{preview&&<QuickLook project={preview} onClose={()=>setPreview(null)}/>}</>};createRoot(document.getElementById('root')).render(window.location.pathname==='/trosky'?<div className="standalone-case"><a className="back-portfolio" href="/">← Back to portfolio</a><TroskyStory/></div>:window.location.pathname==='/ryzeup'?<div className="standalone-case"><a className="back-portfolio" href="/">← Back to portfolio</a><RyzeupStory/></div>:window.location.pathname==='/himseva'?<div className="standalone-case"><a className="back-portfolio" href="/">← Back to portfolio</a><div style={{maxWidth:'1000px',margin:'30px auto',padding:'0 20px'}}><WebsiteQuickLook project={projects.find(p=>p.id==='himseva')}/></div></div>:window.location.pathname==='/recovery'?<div className="standalone-case"><a className="back-portfolio" href="/">← Back to portfolio</a><RecoveryStory/></div>:<WelcomeScreen><App/></WelcomeScreen>);
+{preview&&<QuickLook project={preview} onClose={()=>setPreview(null)}/>}</>};createRoot(document.getElementById('root')).render(window.location.pathname==='/trosky'?<div className="standalone-case"><a className="back-portfolio" href="/">← Back to portfolio</a><TroskyStory/></div>:window.location.pathname==='/ryzeup'?<div className="standalone-case"><a className="back-portfolio" href="/">← Back to portfolio</a><RyzeupStory/></div>:window.location.pathname==='/picklemates'?<div className="standalone-case"><a className="back-portfolio" href="/">← Back to portfolio</a><PickleMatesStory/></div>:window.location.pathname==='/himseva'?<div className="standalone-case"><a className="back-portfolio" href="/">← Back to portfolio</a><div style={{maxWidth:'1000px',margin:'30px auto',padding:'0 20px'}}><WebsiteQuickLook project={projects.find(p=>p.id==='himseva')}/></div></div>:window.location.pathname==='/recovery'?<div className="standalone-case"><a className="back-portfolio" href="/">← Back to portfolio</a><RecoveryStory/></div>:<WelcomeScreen><App/></WelcomeScreen>);

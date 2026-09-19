@@ -2,8 +2,26 @@ import React, { useRef, useEffect, useState } from 'react';
 import { useDraggable } from './useDraggable.js';
 import TroskyStory, { TroskyCover } from './TroskyStory.jsx';
 import RyzeupStory, { RyzeupCover } from './RyzeupStory.jsx';
+import PickleMatesStory, { PickleMatesCover } from './PickleMatesStory.jsx';
 
 export const projects = [
+  {
+    id: 'picklemates',
+    title: 'Crafting PickleMates — A User-Centric Design Journey',
+    folderName: 'PickleMates',
+    category: '2025 Case Studies · Mobile & B2C Product Design',
+    categoryType: 'case-studies',
+    year: '2025',
+    badgeTag: '2025 Case Study',
+    summary: 'A one-stop platform for scheduling pickleball games, managing teams, and tracking real-time scores.',
+    visual: 'picklemates',
+    folderColor: '#10b981',
+    assets: [
+      { type: 'photo', src: '/case-studies/picklemates/hero.jpg', title: 'PickleMates Mobile App', pos: 'asset-left' },
+      { type: 'photo', src: '/case-studies/picklemates/prototype-mockup.jpg', title: 'Court Schedules', pos: 'asset-center' },
+      { type: 'badge', icon: '/icons/figma.png', title: '2025', pos: 'asset-right' }
+    ]
+  },
   {
     id: 'trosky',
     title: 'Coach in Your Pocket',
@@ -201,12 +219,14 @@ export function WebsiteQuickLook({ project }) {
 }
 
 export function ProjectBrowser({ query, onPreview, viewMode = 'grid' }) {
-  const [activeCategory, setActiveCategory] = useState('all'); // 'all' | 'websites' | 'case-studies'
-  const [selected, setSelected] = useState('trosky');
+  const [activeCategory, setActiveCategory] = useState('all'); // 'all' | '2025' | 'websites' | 'case-studies'
+  const [selected, setSelected] = useState('picklemates');
   const itemsRef = useRef([]);
 
   const categoryFiltered = activeCategory === 'all'
     ? projects
+    : activeCategory === '2025'
+    ? projects.filter(p => p.year === '2025' || p.category.includes('2025'))
     : projects.filter(p => p.categoryType === activeCategory);
 
   const visible = categoryFiltered.filter(p =>
@@ -249,6 +269,7 @@ export function ProjectBrowser({ query, onPreview, viewMode = 'grid' }) {
 
   const websitesCount = projects.filter(p => p.categoryType === 'websites').length;
   const caseStudiesCount = projects.filter(p => p.categoryType === 'case-studies').length;
+  const caseStudies2025Count = projects.filter(p => p.year === '2025' || p.category.includes('2025')).length;
 
   return (
     <div className={'finder-folder-view ' + (viewMode === 'list' ? 'finder-list-view' : '')} role="region" aria-label="Projects Explorer">
@@ -268,12 +289,12 @@ export function ProjectBrowser({ query, onPreview, viewMode = 'grid' }) {
           <button
             type="button"
             role="tab"
-            aria-selected={activeCategory === 'websites'}
-            className={`finder-category-pill ${activeCategory === 'websites' ? 'active' : ''}`}
-            onClick={() => setActiveCategory('websites')}
+            aria-selected={activeCategory === '2025'}
+            className={`finder-category-pill ${activeCategory === '2025' ? 'active' : ''}`}
+            onClick={() => setActiveCategory('2025')}
           >
-            <span>Websites</span>
-            <span className="cat-count">{websitesCount}</span>
+            <span>2025 Case Studies</span>
+            <span className="cat-count">{caseStudies2025Count}</span>
           </button>
           <button
             type="button"
@@ -284,6 +305,16 @@ export function ProjectBrowser({ query, onPreview, viewMode = 'grid' }) {
           >
             <span>Case Studies</span>
             <span className="cat-count">{caseStudiesCount}</span>
+          </button>
+          <button
+            type="button"
+            role="tab"
+            aria-selected={activeCategory === 'websites'}
+            className={`finder-category-pill ${activeCategory === 'websites' ? 'active' : ''}`}
+            onClick={() => setActiveCategory('websites')}
+          >
+            <span>Websites</span>
+            <span className="cat-count">{websitesCount}</span>
           </button>
         </div>
       </div>
@@ -297,7 +328,7 @@ export function ProjectBrowser({ query, onPreview, viewMode = 'grid' }) {
             tabIndex={0}
             role="option"
             aria-selected={selected === p.id}
-            aria-label={`${p.folderName || p.title}. ${p.categoryType === 'websites' ? 'Website' : 'Case study'}. Use arrow keys to navigate, Space or Enter to open.`}
+            aria-label={`${p.folderName || p.title}. ${p.badgeTag || (p.categoryType === 'websites' ? 'Website' : 'Case study')}. Use arrow keys to navigate, Space or Enter to open.`}
             onClick={() => {
               setSelected(p.id);
               onPreview(p);
@@ -319,7 +350,7 @@ export function ProjectBrowser({ query, onPreview, viewMode = 'grid' }) {
                   </span>
                 </div>
                 <span className={`finder-list-tag ${p.isLocked ? 'is-locked-tag' : ''}`}>
-                  {p.isLocked ? 'NDA signed' : (p.categoryType === 'websites' ? 'Website' : 'Case Study')}
+                  {p.isLocked ? 'NDA signed' : (p.badgeTag || (p.categoryType === 'websites' ? 'Website' : 'Case Study'))}
                 </span>
               </div>
             ) : (
@@ -327,7 +358,7 @@ export function ProjectBrowser({ query, onPreview, viewMode = 'grid' }) {
                 <FolderWithAssets project={p} />
                 <span className="finder-folder-name">{p.folderName || p.title}</span>
                 <span className={`finder-folder-sub ${p.isLocked ? 'is-locked-sub' : ''}`}>
-                  {p.isLocked ? 'NDA signed' : (p.categoryType === 'websites' ? 'Website' : 'Case Study')}
+                  {p.isLocked ? 'NDA signed' : (p.badgeTag || (p.categoryType === 'websites' ? 'Website' : 'Case Study'))}
                 </span>
               </>
             )}
@@ -343,20 +374,23 @@ export function ProjectBrowser({ query, onPreview, viewMode = 'grid' }) {
       <div className="finder-status-bar">
         <div className="finder-status-left">
           <span className={`finder-status-badge ${active?.isLocked ? 'locked-badge' : ''}`}>
-            {active?.isLocked ? 'NDA signed' : (active?.categoryType === 'websites' ? 'Website' : 'Case Study')}
+            {active?.isLocked ? 'NDA signed' : (active?.badgeTag || (active?.categoryType === 'websites' ? 'Website' : 'Case Study'))}
           </span>
           <span>
             <b>{active?.folderName || active?.title}</b> — {active?.isLocked ? 'NDA signed' : active?.summary}
           </span>
         </div>
-        <div className="finder-status-actions">
-          <span className="finder-status-hint">Press <b>Space</b> to preview</span>
+        <div className="finder-status-right">
+          <span>{visible.length} items</span>
+          <span className="status-separator">|</span>
+          <span>macOS Sonoma</span>
           <button
             type="button"
-            className="finder-open-btn"
-            onClick={() => active && onPreview(active)}
+            className="finder-open-active-btn"
+            onClick={() => onPreview(active)}
+            aria-label={`Open ${active?.folderName || active?.title}`}
           >
-            {active?.isLocked ? 'Enter Password' : active?.categoryType === 'websites' ? 'Preview Website' : 'Open Case Study'} <span>↵</span>
+            Open ↗
           </button>
         </div>
       </div>
@@ -449,6 +483,8 @@ export function QuickLook({ project, onClose }) {
             <TroskyStory onClose={handleClose} />
           ) : project.id === 'ryzeup' ? (
             <RyzeupStory onClose={handleClose} />
+          ) : project.id === 'picklemates' ? (
+            <PickleMatesStory onClose={handleClose} />
           ) : (
             <div className="quicklook-copy">
               <h2>{project.title}</h2>
