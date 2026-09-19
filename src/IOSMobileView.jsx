@@ -161,16 +161,10 @@ export default function IOSMobileView({ time, onPreview }) {
             <div className="ios-glass-widget" onClick={() => setActiveApp('about')}>
               <div className="widget-header">
                 <span className="widget-date">{dateStr.toUpperCase()}</span>
-                <span className="widget-badge">● Available</span>
               </div>
               <div className="widget-body">
                 <h1 className="widget-title">Yogesh Battula</h1>
-                <p className="widget-desc">Product Designer & AI Vibe Coder · Shipped products live.</p>
-              </div>
-              <div className="widget-chips">
-                <span>📍 Hyderabad</span>
-                <span>⚡ AI Vibe Coder</span>
-                <span>🍳 Cooking & Cars</span>
+                <p className="widget-desc">Product Designer & AI Vibe Coder</p>
               </div>
             </div>
           </section>
@@ -534,7 +528,6 @@ export default function IOSMobileView({ time, onPreview }) {
                     }}
                   />
                   <div className="ios-movies-hero-content">
-                    <span className="ios-tv-badge">TOP 10 · CINEMA</span>
                     <h2>{selectedMovie.name}</h2>
                     <p className="hero-meta">
                       ★ {selectedMovie.rating} · {selectedMovie.genre} · {selectedMovie.year}
@@ -585,7 +578,6 @@ export default function IOSMobileView({ time, onPreview }) {
                 {arcadeGame === null ? (
                   <div className="arcade-catalog">
                     <div className="arcade-spotlight-card">
-                      <span className="spotlight-tag">ARCADE SPOTLIGHT</span>
                       <h2>Flippy Bird: Flight Edition</h2>
                       <p>Tap to flap and weave through dynamic obstacles.</p>
                       <button

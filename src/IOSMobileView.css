@@ -243,80 +243,64 @@
 }
 
 .ios-glass-widget {
-  background: rgba(255, 255, 255, 0.18);
-  border: 1px solid rgba(255, 255, 255, 0.28);
-  backdrop-filter: blur(40px) saturate(1.8);
-  -webkit-backdrop-filter: blur(40px) saturate(1.8);
+  background: rgba(255, 255, 255, 0.82);
+  border: 1px solid rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(35px) saturate(190%);
+  -webkit-backdrop-filter: blur(35px) saturate(190%);
   border-radius: 24px;
   padding: 18px 20px;
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12), 0 2px 6px rgba(0, 0, 0, 0.04);
   cursor: pointer;
   transition: transform 0.18s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
 .ios-glass-widget:active {
-  transform: scale(0.97);
+  transform: scale(0.98);
 }
 
 .widget-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 8px;
+  margin-bottom: 6px;
 }
 
 .widget-date {
   font-size: 11px;
   font-weight: 700;
-  letter-spacing: 0.08em;
-  color: #ff375f;
+  letter-spacing: 0.06em;
+  color: #0071e3;
   text-transform: uppercase;
 }
 
-.widget-badge {
-  font-size: 11px;
-  font-weight: 600;
-  color: #30d158;
-}
-
 .widget-title {
-  font-size: 22px;
+  font-size: 21px;
   font-weight: 750;
   letter-spacing: -0.02em;
-  margin: 0 0 3px;
-  color: #ffffff;
+  margin: 0 0 4px;
+  color: #1d1d1f;
 }
 
 .widget-desc {
-  font-size: 13px;
+  font-size: 13.5px;
   line-height: 1.4;
-  color: rgba(255, 255, 255, 0.88);
-  margin: 0 0 12px;
-}
-
-.widget-chips {
-  display: flex;
-  gap: 8px;
-  flex-wrap: wrap;
-}
-
-.widget-chips span {
-  font-size: 11px;
-  font-weight: 600;
-  padding: 4px 9px;
-  background: rgba(0, 0, 0, 0.25);
-  border-radius: 20px;
-  color: rgba(255, 255, 255, 0.9);
-  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #424245;
+  margin: 0;
+  font-weight: 450;
 }
 
 /* 4-Column iOS App Grid */
 .ios-app-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 20px 10px;
-  margin: 24px 0 auto;
+  justify-items: center;
+  align-items: start;
+  gap: 22px 8px;
+  margin: 20px auto auto;
+  max-width: 360px;
+  width: 100%;
   padding: 0 4px;
+  box-sizing: border-box;
 }
 
 .ios-app-item {
@@ -389,7 +373,7 @@
   font-size: 11.5px;
   font-weight: 500;
   color: #ffffff;
-  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.85);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.95), 0 2px 8px rgba(0, 0, 0, 0.75);
   letter-spacing: -0.01em;
   text-align: center;
 }
@@ -400,28 +384,35 @@
 .app-notes { background: #ff9500; }
 .app-mail { background: #007aff; }
 .app-document { background: #34aadc; }
-.app-movies { background: #1c1c1e; }
-.app-arcade { background: #ff2d55; }
+.app-movies { background: #2c2c2e; }
+.app-arcade { background: #5856d6; }
 .app-messages { background: #34c759; }
-.app-siri { background: #5856d6; }
+.app-siri { background: #0071e3; }
 
 /* iOS Floating Bottom Dock */
 .ios-dock-container {
-  margin-top: 18px;
-  padding: 0 4px;
+  margin-top: auto;
+  padding: 0 16px;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  box-sizing: border-box;
 }
 
-.ios-frosted-dock {
+.ios-frosted-dock,
+.ios-dock-glass {
   display: flex;
   align-items: center;
   justify-content: space-around;
-  padding: 12px 14px;
-  background: rgba(255, 255, 255, 0.25);
-  border: 1px solid rgba(255, 255, 255, 0.35);
-  backdrop-filter: blur(45px) saturate(2);
-  -webkit-backdrop-filter: blur(45px) saturate(2);
+  width: 100%;
+  max-width: 320px;
+  padding: 10px 16px;
+  background: rgba(255, 255, 255, 0.48);
+  border: 1px solid rgba(255, 255, 255, 0.72);
+  backdrop-filter: blur(40px) saturate(190%);
+  -webkit-backdrop-filter: blur(40px) saturate(190%);
   border-radius: 35px;
-  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.45);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.16), inset 0 1px 1px rgba(255, 255, 255, 0.75);
 }
 
 .ios-dock-icon {
@@ -490,25 +481,26 @@
 
 /* In-App Header */
 .ios-nav-header {
-  height: calc(48px + env(safe-area-inset-top));
+  height: calc(50px + env(safe-area-inset-top));
   padding: env(safe-area-inset-top) 16px 0;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background: rgba(246, 246, 248, 0.95);
-  backdrop-filter: blur(25px);
-  -webkit-backdrop-filter: blur(25px);
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(25px) saturate(180%);
+  -webkit-backdrop-filter: blur(25px) saturate(180%);
   border-bottom: 1px solid rgba(0, 0, 0, 0.08);
   flex-shrink: 0;
 }
 
 .ios-nav-back-btn {
-  display: flex;
+  min-width: 72px;
+  display: inline-flex;
   align-items: center;
-  gap: 3px;
+  gap: 2px;
   background: none;
   border: none;
-  color: #007aff;
+  color: #0071e3;
   font-size: 16px;
   font-weight: 500;
   cursor: pointer;
@@ -521,11 +513,23 @@
 }
 
 .ios-nav-title {
+  flex: 1;
+  text-align: center;
   font-size: 17px;
   font-weight: 650;
   color: #1d1d1f;
   margin: 0;
   letter-spacing: -0.01em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.ios-nav-right-actions {
+  min-width: 72px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
 }
 
 .ios-theme-toggle {
@@ -753,7 +757,7 @@
 
 .hero-meta {
   font-size: 12px;
-  color: #ffd60a;
+  color: rgba(255, 255, 255, 0.85);
   margin: 0 0 6px;
 }
 
@@ -828,18 +832,19 @@
 
 /* Arcade on iOS */
 .arcade-spotlight-card {
-  background: #ff2d55;
+  background: #1c1c1e;
   border-radius: 18px;
   padding: 22px;
   margin-bottom: 22px;
-  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .spotlight-tag {
   font-size: 9px;
   font-weight: 800;
   letter-spacing: 0.1em;
-  color: #ffd6e0;
+  color: rgba(255, 255, 255, 0.7);
 }
 
 .arcade-spotlight-card h2 {
