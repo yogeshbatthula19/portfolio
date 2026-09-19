@@ -6,20 +6,57 @@ import PickleMatesStory, { PickleMatesCover } from './PickleMatesStory.jsx';
 
 export const projects = [
   {
-    id: 'picklemates',
-    title: 'Crafting PickleMates — A User-Centric Design Journey',
-    folderName: 'PickleMates',
-    category: '2026 Case Studies · Mobile & B2C Product Design',
+    id: 'trosky',
+    title: 'Coach in Your Pocket',
+    folderName: 'Trosky 365',
+    category: '2026 Case Studies · AI & UX Design',
     categoryType: 'case-studies',
     year: '2026',
     badgeTag: '2026 Case Study',
-    summary: 'A one-stop platform for scheduling pickleball games, managing teams, and tracking real-time scores.',
-    visual: 'picklemates',
-    folderColor: '#10b981',
+    summary: 'Turning daily baseball assignments into a guided conversation with a coach.',
+    visual: 'trosky',
+    folderColor: '#4ea5eb',
     assets: [
-      { type: 'photo', src: '/case-studies/picklemates/hero.jpg', title: 'PickleMates Mobile App', pos: 'asset-left' },
-      { type: 'photo', src: '/case-studies/picklemates/prototype-mockup.jpg', title: 'Court Schedules', pos: 'asset-center' },
+      { type: 'photo', src: '/case-studies/trosky/ff7736796fd5c04654ecf72fdb3338c8006a1ef6.jpg', title: 'Drill Video', pos: 'asset-left' },
+      { type: 'doc', src: '/case-studies/trosky/42e00451045c32de61f9c68b53c46469d07f6129.jpg', title: 'Drill Card', pos: 'asset-center' },
       { type: 'badge', icon: '/icons/figma.png', title: '2026', pos: 'asset-right' }
+    ]
+  },
+  {
+    id: 'ryzeup',
+    title: 'A Clearer Workspace for Employees and Managers',
+    folderName: 'Ryzeup',
+    category: '2026 Case Studies · Native Mobile UX',
+    categoryType: 'case-studies',
+    year: '2026',
+    badgeTag: '2026 Case Study',
+    summary: 'A unified mobile workspace separating team actions from company feeds to improve focus and response times.',
+    visual: 'ryzeup',
+    folderColor: '#5843a8',
+    assets: [
+      { type: 'photo', src: '/case-studies/ryzeup/mockup-hero.jpg', title: 'Ryzeup Mobile Overview', pos: 'asset-left' },
+      { type: 'photo', src: '/case-studies/ryzeup/mockup-wall.jpg', title: 'Employee Wall & Q&A', pos: 'asset-center' },
+      { type: 'badge', icon: '/icons/figma.png', title: '2026', pos: 'asset-right' }
+    ]
+  },
+  {
+    id: 'himseva',
+    title: 'HIMSeva · Government of Himachal Pradesh',
+    folderName: 'HIMSeva HP',
+    category: '2026 Websites · Digital Governance',
+    categoryType: 'websites',
+    year: '2026',
+    badgeTag: '2026 Website',
+    status: 'NDA signed',
+    folderSub: 'NDA signed',
+    isLocked: true,
+    summary: 'NDA signed.',
+    coverImage: '/images/workspace/himseva.jpg',
+    folderColor: '#c2843b',
+    assets: [
+      { type: 'photo', src: '/images/workspace/himseva-card.jpg', title: 'HIMSeva Portal Hero', pos: 'asset-left' },
+      { type: 'photo', src: '/images/workspace/himseva.jpg', title: 'Himachal Digital Hub', pos: 'asset-center' },
+      { type: 'badge', icon: '/icons/finder.png', title: 'Gov', pos: 'asset-right' }
     ]
   },
   {
@@ -41,54 +78,20 @@ export const projects = [
     ]
   },
   {
-    id: 'trosky',
-    title: 'Coach in Your Pocket',
-    folderName: 'Trosky 365',
-    category: 'Case Studies · AI & UX Design',
+    id: 'picklemates',
+    title: 'Crafting PickleMates — A User-Centric Design Journey',
+    folderName: 'PickleMates',
+    category: '2024 Case Studies · Mobile & B2C Product Design',
     categoryType: 'case-studies',
     year: '2024',
-    summary: 'Turning daily baseball assignments into a guided conversation with a coach.',
-    visual: 'trosky',
-    folderColor: '#4ea5eb',
+    badgeTag: '2024 Case Study',
+    summary: 'A one-stop platform for scheduling pickleball games, managing teams, and tracking real-time scores.',
+    visual: 'picklemates',
+    folderColor: '#10b981',
     assets: [
-      { type: 'photo', src: '/case-studies/trosky/ff7736796fd5c04654ecf72fdb3338c8006a1ef6.jpg', title: 'Drill Video', pos: 'asset-left' },
-      { type: 'doc', src: '/case-studies/trosky/42e00451045c32de61f9c68b53c46469d07f6129.jpg', title: 'Drill Card', pos: 'asset-center' },
-      { type: 'badge', icon: '/icons/figma.png', title: 'UX', pos: 'asset-right' }
-    ]
-  },
-  {
-    id: 'ryzeup',
-    title: 'A Clearer Workspace for Employees and Managers',
-    folderName: 'Ryzeup',
-    category: 'Case Studies · Native Mobile UX',
-    categoryType: 'case-studies',
-    year: '2024',
-    summary: 'A unified mobile workspace separating team actions from company feeds to improve focus and response times.',
-    visual: 'ryzeup',
-    folderColor: '#5843a8',
-    assets: [
-      { type: 'photo', src: '/case-studies/ryzeup/mockup-hero.jpg', title: 'Ryzeup Mobile Overview', pos: 'asset-left' },
-      { type: 'photo', src: '/case-studies/ryzeup/mockup-wall.jpg', title: 'Employee Wall & Q&A', pos: 'asset-center' },
-      { type: 'badge', icon: '/icons/figma.png', title: 'UX', pos: 'asset-right' }
-    ]
-  },
-  {
-    id: 'himseva',
-    title: 'HIMSeva · Government of Himachal Pradesh',
-    folderName: 'HIMSeva HP',
-    category: 'Websites · Digital Governance',
-    categoryType: 'websites',
-    year: '2024',
-    status: 'NDA signed',
-    folderSub: 'NDA signed',
-    isLocked: true,
-    summary: 'NDA signed.',
-    coverImage: '/images/workspace/himseva.jpg',
-    folderColor: '#c2843b',
-    assets: [
-      { type: 'photo', src: '/images/workspace/himseva-card.jpg', title: 'HIMSeva Portal Hero', pos: 'asset-left' },
-      { type: 'photo', src: '/images/workspace/himseva.jpg', title: 'Himachal Digital Hub', pos: 'asset-center' },
-      { type: 'badge', icon: '/icons/finder.png', title: 'Gov', pos: 'asset-right' }
+      { type: 'photo', src: '/case-studies/picklemates/hero.jpg', title: 'PickleMates Mobile App', pos: 'asset-left' },
+      { type: 'photo', src: '/case-studies/picklemates/prototype-mockup.jpg', title: 'Court Schedules', pos: 'asset-center' },
+      { type: 'badge', icon: '/icons/figma.png', title: '2024', pos: 'asset-right' }
     ]
   }
 ];
@@ -240,7 +243,7 @@ export function WebsiteQuickLook({ project }) {
 }
 
 export function ProjectBrowser({ query, onPreview, viewMode = 'grid' }) {
-  const [selected, setSelected] = useState('picklemates');
+  const [selected, setSelected] = useState(projects[0]?.id || 'trosky');
   const itemsRef = useRef([]);
 
   const visible = projects.filter(p =>

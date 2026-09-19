@@ -6,7 +6,7 @@ import './PickleMatesStory.css';
 export function PickleMatesCover() {
   return (
     <div className="trosky-cover picklemates-cover">
-      <small>PickleMates · 2025 Case Study</small>
+      <small>PickleMates · 2024 Case Study</small>
       <strong>Crafting PickleMates —<br />A User-Centric Design Journey.</strong>
       <span>One-stop platform for scheduling games, managing teams, and tracking scores ↗</span>
     </div>
@@ -44,7 +44,7 @@ export default function PickleMatesStory({ onClose }) {
     <article ref={articleRef} className="trosky-document">
       {/* Editorial Navigation */}
       <nav className="trosky-news-nav" aria-label="Case study navigation">
-        <strong>2025 Case studies</strong>
+        <strong>2024 Case studies</strong>
         <a
           href="/"
           onClick={(e) => {
@@ -61,7 +61,7 @@ export default function PickleMatesStory({ onClose }) {
 
       {/* Hero Header */}
       <header className="trosky-hero">
-        <small>2025 CASE STUDY</small>
+        <small>2024 CASE STUDY</small>
         <span className="trosky-article-byline">PickleMates · Mobile & B2C Product Design</span>
         <h1>Crafting PickleMates — A User-Centric Design Journey</h1>
         <p>
@@ -97,7 +97,7 @@ export default function PickleMatesStory({ onClose }) {
         </div>
         <div>
           <small>Year</small>
-          <p>2025</p>
+          <p>2024</p>
         </div>
         <div>
           <small>Platform</small>
