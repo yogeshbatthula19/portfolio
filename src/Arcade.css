@@ -180,7 +180,7 @@
   font-size: 11px;
   font-weight: 700;
   padding: 2px 6px;
-  background: linear-gradient(135deg, #e52d27, #b31217);
+  background: #e52d27;
   border-radius: 4px;
   letter-spacing: 0.05em;
   text-transform: uppercase;
@@ -271,9 +271,9 @@
   margin: 18px 20px 0;
   padding: 26px 28px;
   border-radius: 16px;
-  background: linear-gradient(135deg, #ff416c 0%, #8a2387 60%, #1a1a24 100%);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.45);
+  background: #007aff;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 10px 25px rgba(0, 122, 255, 0.25);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -399,22 +399,15 @@
 }
 
 .arcade-app-icon::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 50%;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.25) 0%, transparent 100%);
-  pointer-events: none;
+  display: none;
 }
 
 .arcade-icon-flippy {
-  background: linear-gradient(145deg, #ffd000, #ff8c00);
+  background: #ff9500;
 }
 
 .arcade-icon-ttt {
-  background: linear-gradient(145deg, #4776e6, #8e54e9);
+  background: #007aff;
   color: #ffffff;
   font-weight: 700;
   font-size: 20px;

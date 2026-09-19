@@ -23,6 +23,24 @@ export const projects = [
     ]
   },
   {
+    id: 'fmc',
+    title: 'FMC — Finance Hub',
+    folderName: 'FMC',
+    category: '2025 Case Studies · FinTech & Product Design',
+    categoryType: 'case-studies',
+    year: '2025',
+    badgeTag: '2025 Case Study',
+    summary: 'Comprehensive finance hub and analytics dashboard designed in Figma Slides.',
+    visual: 'fmc',
+    folderColor: '#0071e3',
+    externalUrl: 'https://www.figma.com/slides/xycoBbTbSFrl34GxVNAjDn/Finance-Hub?node-id=4-1119&t=F88XB9e6cHSYlpTD-0',
+    assets: [
+      { type: 'photo', src: '/icons/figma.png', title: 'FMC Finance Hub', pos: 'asset-left' },
+      { type: 'doc', src: '/icons/folder.png', title: 'Case Study Slides', pos: 'asset-center' },
+      { type: 'badge', icon: '/icons/figma.png', title: '2025', pos: 'asset-right' }
+    ]
+  },
+  {
     id: 'trosky',
     title: 'Coach in Your Pocket',
     folderName: 'Trosky 365',
@@ -239,6 +257,14 @@ export function ProjectBrowser({ query, onPreview, viewMode = 'grid' }) {
     }
   }, [query, visible, selected]);
 
+  const handleOpen = (project) => {
+    if (project?.externalUrl) {
+      window.open(project.externalUrl, '_blank', 'noopener,noreferrer');
+      return;
+    }
+    onPreview(project);
+  };
+
   const handleKeyDown = (e, index, project) => {
     if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
       e.preventDefault();
@@ -261,7 +287,7 @@ export function ProjectBrowser({ query, onPreview, viewMode = 'grid' }) {
       itemsRef.current[lastIndex]?.focus();
     } else if (e.code === 'Space' || e.key === 'Enter') {
       e.preventDefault();
-      onPreview(project);
+      handleOpen(project);
     }
   };
 
@@ -293,9 +319,9 @@ export function ProjectBrowser({ query, onPreview, viewMode = 'grid' }) {
                       aria-label={`${p.folderName || p.title}. ${projectType}. Use arrow keys to navigate, Space or Enter to open.`}
                       onClick={() => {
                         setSelected(p.id);
-                        onPreview(p);
+                        handleOpen(p);
                       }}
-                      onDoubleClick={() => onPreview(p)}
+                      onDoubleClick={() => handleOpen(p)}
                       onKeyDown={e => handleKeyDown(e, overallIdx, p)}
                     >
                       {viewMode === 'list' ? (
@@ -354,7 +380,7 @@ export function ProjectBrowser({ query, onPreview, viewMode = 'grid' }) {
           <button
             type="button"
             className="finder-open-active-btn"
-            onClick={() => onPreview(active)}
+            onClick={() => handleOpen(active)}
             aria-label={`Open ${active?.folderName || active?.title}`}
           >
             Open ↗

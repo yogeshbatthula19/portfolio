@@ -7,13 +7,7 @@
   width: 100%;
   box-sizing: border-box;
   /* Monolithic brushed gunmetal titanium panel */
-  background: radial-gradient(
-    ellipse 850px 600px at 50% 18%,
-    #989ba1 0%,
-    #84878d 40%,
-    #6d7077 75%,
-    #5a5d63 100%
-  );
+  background: #6d7077;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -28,20 +22,7 @@
 
 /* Authentic fine bead-blasted metallic sheen texture */
 .photobooth-screen::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background-image: 
-    radial-gradient(circle at 50% 18%, rgba(255, 255, 255, 0.08) 0%, transparent 65%),
-    repeating-linear-gradient(
-      90deg,
-      transparent 0px,
-      transparent 2px,
-      rgba(255, 255, 255, 0.018) 2px,
-      rgba(255, 255, 255, 0.018) 4px
-    );
-  pointer-events: none;
-  z-index: 0;
+  display: none;
 }
 
 /* Dispenser Apparatus Assembly */
@@ -75,16 +56,7 @@
   inset: 0;
   border-radius: 999px;
   /* Stamped brushed metal bezel with realistic specular top and shadow bottom */
-  background: linear-gradient(
-    180deg,
-    #55585e 0%,
-    #787c82 8%,
-    #a8acb2 20%,
-    #e2e5ea 38%,
-    #b2b6bd 52%,
-    #7a7e85 75%,
-    #4a4c52 100%
-  );
+  background: #a8acb2;
   padding: 6px;
   box-sizing: border-box;
   box-shadow:
@@ -128,12 +100,7 @@
   border-radius: 999px 999px 0 0;
   pointer-events: none;
   z-index: 15;
-  background: linear-gradient(
-    180deg,
-    rgba(255, 255, 255, 0.4) 0%,
-    rgba(255, 255, 255, 0.1) 25%,
-    transparent 100%
-  );
+  background: rgba(255, 255, 255, 0.15);
   overflow: hidden;
 }
 
@@ -144,12 +111,7 @@
   left: 12px;
   right: 12px;
   height: 12px;
-  background: linear-gradient(
-    180deg,
-    rgba(0, 0, 0, 0.9) 0%,
-    rgba(0, 0, 0, 0.4) 60%,
-    transparent 100%
-  );
+  background: rgba(0, 0, 0, 0.4);
 }
 
 /* ==========================================================================
@@ -234,13 +196,7 @@
   left: 0;
   right: 0;
   height: 46px;
-  background: linear-gradient(
-    180deg,
-    rgba(0, 0, 0, 0.88) 0%,
-    rgba(0, 0, 0, 0.45) 24%,
-    rgba(0, 0, 0, 0.15) 60%,
-    transparent 100%
-  );
+  background: rgba(0, 0, 0, 0.4);
   pointer-events: none;
   z-index: 5;
 }
