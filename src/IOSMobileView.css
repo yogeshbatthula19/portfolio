@@ -413,6 +413,7 @@
 .app-document { background: linear-gradient(145deg, #38bdf8, #0284c7); }
 .app-movies { background: linear-gradient(145deg, #26262a, #111114); }
 .app-arcade { background: linear-gradient(145deg, #ff416c, #8a2387); }
+.app-messages { background: linear-gradient(145deg, #34c759, #30b351); }
 .app-siri { background: linear-gradient(145deg, #ff6b81, #70a1ff); }
 
 /* iOS Floating Bottom Dock */

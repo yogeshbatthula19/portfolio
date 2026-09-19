@@ -269,8 +269,8 @@ export default function IOSMobileView({ dark, setDark, time, onPreview }) {
               className="ios-app-item"
               onClick={() => setActiveApp('messages')}
             >
-              <div className="ios-app-squircle app-siri">
-                <img src="/icons/siri.png" alt="" />
+              <div className="ios-app-squircle app-messages">
+                <img src="/icons/messages.png" alt="" />
                 <span className="ios-badge-count">1</span>
               </div>
               <span className="ios-app-label">Messages</span>
@@ -302,7 +302,7 @@ export default function IOSMobileView({ dark, setDark, time, onPreview }) {
                 aria-label="Messages"
                 onClick={() => setActiveApp('messages')}
               >
-                <img src="/icons/siri.png" alt="" />
+                <img src="/icons/messages.png" alt="" />
                 <span className="ios-dock-badge">1</span>
               </button>
               <button
@@ -669,7 +669,7 @@ export default function IOSMobileView({ dark, setDark, time, onPreview }) {
               <div className="ios-messages-page">
                 <div className="ios-imessage-recipient">
                   <div className="recipient-avatar">
-                    <img src="/icons/siri.png" alt="Yogesh" />
+                    <img src="/images/yogesh-portrait.jpg" alt="Yogesh" />
                   </div>
                   <strong>Yogesh Battula</strong>
                   <small>iMessage with Portfolio AI</small>
