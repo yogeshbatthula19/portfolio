@@ -9,17 +9,17 @@ export const projects = [
     id: 'picklemates',
     title: 'Crafting PickleMates — A User-Centric Design Journey',
     folderName: 'PickleMates',
-    category: '2025 Case Studies · Mobile & B2C Product Design',
+    category: '2026 Case Studies · Mobile & B2C Product Design',
     categoryType: 'case-studies',
-    year: '2025',
-    badgeTag: '2025 Case Study',
+    year: '2026',
+    badgeTag: '2026 Case Study',
     summary: 'A one-stop platform for scheduling pickleball games, managing teams, and tracking real-time scores.',
     visual: 'picklemates',
     folderColor: '#10b981',
     assets: [
       { type: 'photo', src: '/case-studies/picklemates/hero.jpg', title: 'PickleMates Mobile App', pos: 'asset-left' },
       { type: 'photo', src: '/case-studies/picklemates/prototype-mockup.jpg', title: 'Court Schedules', pos: 'asset-center' },
-      { type: 'badge', icon: '/icons/figma.png', title: '2025', pos: 'asset-right' }
+      { type: 'badge', icon: '/icons/figma.png', title: '2026', pos: 'asset-right' }
     ]
   },
   {

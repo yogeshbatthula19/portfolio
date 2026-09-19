@@ -66,7 +66,7 @@ const previousCompanies = [
     employmentType: 'Internship',
     period: 'Jan 2022 — Apr 2022 · 4 mos',
     location: 'Hyderabad, India · Remote',
-    description: 'Designed responsive web interfaces that significantly enhanced usability by 25%, ensuring accessibility and intuitive component hierarchy.',
+    description: 'Designed responsive web interfaces that significantly enhanced usability by 25%, ensuring intuitive component hierarchy.',
     websiteUrl: 'https://buildup.work',
     coverImage: '/images/workspace/buildup.jpg',
     logo: (

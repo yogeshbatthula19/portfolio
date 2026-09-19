@@ -341,16 +341,6 @@ export default function RyzeupStory({ onClose }) {
               Buzz handles a different kind of attention: reminders and work that may need action. Important and New labels, task summaries, and dates help distinguish items. Their meaning needs a consistent rule; if everything looks urgent, the hierarchy stops being useful.
             </p>
 
-            <div className="ryzeup-callout-box">
-              <div className="callout-header">
-                <strong>Screen reader check</strong>
-              </div>
-              <p>
-                Expose Important and New status text in each card’s native accessibility semantics. Verify VoiceOver and TalkBack reading order without duplicate announcements.
-              </p>
-              <span className="callout-link">Native accessibility guidance ↗</span>
-            </div>
-
             <figure>
               <img
                 src="/case-studies/ryzeup/mockup-buzz.jpg"
@@ -375,16 +365,6 @@ export default function RyzeupStory({ onClose }) {
             <p>
               The selection flow uses an explicit confirmation. Names alone are not enough when colleagues have similar names, so role or department helps disambiguate them. In implementation, the choice must resolve to an employee identifier and respect current access permissions.
             </p>
-
-            <div className="ryzeup-callout-box touch">
-              <div className="callout-header">
-                <strong>Touch target check</strong>
-              </div>
-              <p>
-                Specify at least 44 × 44 pt targets on iOS and 48 × 48 dp on Android, including each Self / My Team option. Verify hit areas in the native build.
-              </p>
-              <span className="callout-link">Platform accessibility guidance ↗</span>
-            </div>
 
             <figure>
               <img
@@ -436,9 +416,9 @@ export default function RyzeupStory({ onClose }) {
             <div className="ryzeup-handoff-grid">
               <div className="handoff-pillar-card">
                 <span className="pillar-num">01</span>
-                <h4>Platform guidelines</h4>
+                <h4>Platform standards</h4>
                 <p>
-                  Map navigation, back behavior, safe areas, and accessible controls to iOS Human Interface Guidelines and Android Material Design.
+                  Map navigation, back behavior, safe areas, and responsive controls to native iOS and Android design patterns.
                 </p>
               </div>
 
@@ -519,7 +499,7 @@ export default function RyzeupStory({ onClose }) {
             </div>
 
             <p className="ryzeup-footnote source-note">
-              *Source: ryzeup(1).pdf and the author’s supplied role and platform details. Personas and wireframes are reconstructed; accessibility checks, handoff requirements, and validation activities describe the next phase.
+              *Source: ryzeup(1).pdf and the author’s supplied role and platform details. Personas and wireframes are reconstructed; handoff requirements and validation activities describe the next phase.
             </p>
           </div>
         </section>
