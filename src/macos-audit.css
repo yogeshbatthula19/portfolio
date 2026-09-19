@@ -24,7 +24,7 @@ body:has(.desktop.night) :is(.window,.movies-window,.arcade-window,.applications
 }
 body .desktop .window:not(.maximized){width:min(1060px,calc(100vw - 48px));height:min(680px,calc(100svh - 150px));}
 body :is(.window-bar,.appletv-navbar,.arcade-header,.quicklook-bar){min-height:56px;height:56px;flex-shrink:0;padding-block:0;align-items:center;}
-body :is(.appletv-navbar,.arcade-header,.quicklook-bar){padding-inline:20px;}
+body :is(.appletv-navbar,.arcade-header,.quicklook-bar){padding-inline:20px;gap:20px;}
 body .applications-heading{min-height:56px;padding:0 0 14px;gap:18px;}
 body .applications-heading h2{font-size:15px;letter-spacing:-.2px;font-weight:600;}
 body .applications-heading img{width:24px;height:24px;}
@@ -78,6 +78,8 @@ body .window .finder-folder-name{font-size:13px;}
 .restore-preview{position:fixed;right:24px;bottom:24px;z-index:100;background:var(--mac-content);color:var(--mac-text);border:1px solid var(--mac-line);border-radius:12px;padding:12px 16px;box-shadow:0 8px 25px #0003;font-size:12px;}
 body :is(.arcade-card-title,.arcade-tab,.arcade-brand span){color:var(--mac-text);}
 body :is(.arcade-card-genre,.arcade-card-rating){color:var(--mac-secondary);}
+body .quicklook-bar{gap:20px;}
+body .quicklook-bar .mac-window-controls{margin-right:6px;}
 body .quicklook-bar>span{flex:1;font-size:13px;font-weight:600;}
 body .applications-heading,body .arcade-header{cursor:grab;}
 body .app-fullscreen :is(.applications-heading,.arcade-header,.quicklook-bar){cursor:default;}

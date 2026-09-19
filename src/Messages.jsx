@@ -5,7 +5,7 @@ import {useDraggable} from './useDraggable.js';
 import {answerProfile} from './profileAnswers.js';
 import './Messages.css';
 
-const welcome = {role:'assistant', text:'Hey, I’m Yogesh. ✨\nWelcome to my space! Ask me about my work, my design process, or life outside the screen.', source:'Answers from this portfolio'};
+const welcome = {role:'assistant', text:'Hey, I’m Yogesh. ✨\nWelcome to my space! Ask me about my work, my design process, or life outside the screen.'};
 const suggestions = ['Tell me about yourself', 'What have you worked on?', 'What tools do you use?', 'What do you do outside design?'];
 
 export default function Messages({onNavigate}) {
@@ -35,9 +35,8 @@ export default function Messages({onNavigate}) {
       <div className="messages-layout">
         <aside className="messages-sidebar"><span className="messages-sidebar-label">CONVERSATIONS</span><div className="messages-conversation"><span className="profile-orb"><img src="/icons/siri.png" alt="" draggable="false"/></span><div><strong>Yogesh Battula</strong><span>Ask me anything</span></div><i/></div><div className="messages-profile"><img src="/images/yogesh-portrait.jpg" alt="Yogesh Battula"/><strong>Yogesh Battula</strong><span>Product Designer</span><small>Hyderabad, India</small></div><p>Get to know the person<br/>behind the pixels.</p></aside>
         <section className="messages-thread" aria-label="Conversation with Yogesh">
-          <div className="messages-recipient"><span className="profile-orb"><img src="/icons/siri.png" alt="" draggable="false"/></span><div><strong>Yogesh Battula</strong><span>Product Designer · Hyderabad</span></div></div>
-          <div className="messages-history" role="log" aria-label="Messages" aria-live="polite" aria-relevant="additions"><div className="messages-date">Today · Portfolio conversation</div>{messages.map((m,i)=><div key={i} className={'message-row '+m.role}><div className="message-bubble"><span className="sr-only">{m.role==='user'?'You:':'Yogesh:'}</span><p>{m.text}</p>{m.section&&<button onClick={()=>{close();onNavigate(m.section);}}>{m.action} <span aria-hidden="true">↗</span></button>}</div>{m.source&&<small>{m.source}</small>}</div>)}{typing&&<div className="messages-typing" role="status" aria-label="Preparing answer"><i/><i/><i/></div>}<div ref={end}/></div>
-          <div className="messages-bottom">{messages.length===1&&<div className="messages-suggestions">{suggestions.map(q=><button key={q} onClick={()=>send(q)}>{q}</button>)}</div>}<form className="messages-composer" onSubmit={e=>{e.preventDefault();send(draft);}}><input ref={input} aria-label="Ask about Yogesh" placeholder="Message Yogesh…" value={draft} maxLength={1000} onChange={e=>setDraft(e.target.value)}/><button type="submit" aria-label="Send message" disabled={!draft.trim()||typing}><ArrowUp size={19}/></button></form><p className="messages-footnote">Automated replies in my voice, based on my portfolio.</p></div>
+          <div className="messages-history" role="log" aria-label="Messages" aria-live="polite" aria-relevant="additions"><div className="messages-date">Today</div>{messages.map((m,i)=><div key={i} className={'message-row '+m.role}><div className="message-bubble"><span className="sr-only">{m.role==='user'?'You:':'Yogesh:'}</span><p>{m.text}</p>{m.section&&<button onClick={()=>{close();onNavigate(m.section);}}>{m.action} <span aria-hidden="true">↗</span></button>}</div></div>)}{typing&&<div className="messages-typing" role="status" aria-label="Preparing answer"><i/><i/><i/></div>}<div ref={end}/></div>
+          <div className="messages-bottom">{messages.length===1&&<div className="messages-suggestions">{suggestions.map(q=><button key={q} onClick={()=>send(q)}>{q}</button>)}</div>}<form className="messages-composer" onSubmit={e=>{e.preventDefault();send(draft);}}><input ref={input} aria-label="Ask about Yogesh" placeholder="Message Yogesh…" value={draft} maxLength={1000} onChange={e=>setDraft(e.target.value)}/><button type="submit" aria-label="Send message" disabled={!draft.trim()||typing}><ArrowUp size={19}/></button></form></div>
         </section>
       </div>
     </dialog>,document.body)}

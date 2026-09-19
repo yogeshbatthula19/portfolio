@@ -3,7 +3,7 @@ import { createPortal } from 'react-dom';
 import { useDraggable } from './useDraggable.js';
 import './AppleTVMovies.css';
 
-const movies = [
+export const movies = [
   {
     id: 'premalu',
     name: 'Premalu',

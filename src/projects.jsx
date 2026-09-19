@@ -1,174 +1,320 @@
-import React,{useRef,useEffect,useState} from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import { useDraggable } from './useDraggable.js';
-import RecoveryStory from './RecoveryStory.jsx';
-import TroskyStory,{TroskyCover} from './TroskyStory.jsx';
-export const projects=[
+import TroskyStory, { TroskyCover } from './TroskyStory.jsx';
+import RyzeupStory, { RyzeupCover } from './RyzeupStory.jsx';
+
+export const projects = [
   {
-    id:'trosky',
-    title:'Coach in Your Pocket',
-    folderName:'Trosky 365',
-    category:'Trosky 365 · UX design',
-    summary:'Turning daily baseball assignments into a guided conversation with a coach.',
-    visual:'trosky',
-    folderColor:'#4ea5eb',
-    assets:[
-      {type:'photo',src:'/case-studies/trosky/ff7736796fd5c04654ecf72fdb3338c8006a1ef6.jpg',title:'Drill Video',pos:'asset-left'},
-      {type:'doc',src:'/case-studies/trosky/42e00451045c32de61f9c68b53c46469d07f6129.jpg',title:'Drill Card',pos:'asset-center'},
-      {type:'badge',icon:'/icons/figma.png',title:'UX',pos:'asset-right'}
+    id: 'trosky',
+    title: 'Coach in Your Pocket',
+    folderName: 'Trosky 365',
+    category: 'Case Studies · AI & UX Design',
+    categoryType: 'case-studies',
+    summary: 'Turning daily baseball assignments into a guided conversation with a coach.',
+    visual: 'trosky',
+    folderColor: '#4ea5eb',
+    assets: [
+      { type: 'photo', src: '/case-studies/trosky/ff7736796fd5c04654ecf72fdb3338c8006a1ef6.jpg', title: 'Drill Video', pos: 'asset-left' },
+      { type: 'doc', src: '/case-studies/trosky/42e00451045c32de61f9c68b53c46469d07f6129.jpg', title: 'Drill Card', pos: 'asset-center' },
+      { type: 'badge', icon: '/icons/figma.png', title: 'UX', pos: 'asset-right' }
     ]
   },
   {
-    id:'recovery',
-    title:'Recovery — Re-Design',
-    folderName:'Recovery — Re-Design',
-    category:'Healthcare · Product design',
-    summary:'Connecting surgeons, physiotherapists, and patients through a shared rehabilitation experience.',
-    problem:'The case study describes disconnected onboarding and self-reported progress, leaving care teams with limited visibility between appointments.',
-    decisions:['Use a shared recovery workflow across surgeon, physiotherapist, and patient roles.','Make adherence and daily progress visible through structured dashboards and progress charts.','Design for missed days, exceeded targets, and course changes as part of the core experience.','Keep visual patterns consistent across roles while tailoring each information hierarchy.'],
-    result:'The design covers patient onboarding, exercise tracking, progress dashboards, and care-team coordination. Detailed adoption and clinical outcome metrics are confidential in the source case study.',
-    status:'Senior Product Designer · Case study',
-    visual:'recovery',
-    url:'https://www.figma.com/design/Mx3waiPzObcJFwYa37M6I4/Recovery-Re-Design?node-id=9245-9457',
-    folderColor:'#4ea8de',
-    assets:[
-      {type:'photo',src:'/case-studies/recovery/cover.png',title:'Surgeon View',pos:'asset-left'},
-      {type:'doc',src:'/case-studies/recovery/transformation.png',title:'Patient Progress',pos:'asset-center'},
-      {type:'badge',icon:'/icons/figma.png',title:'Care',pos:'asset-right'}
+    id: 'ryzeup',
+    title: 'A Clearer Workspace for Employees and Managers',
+    folderName: 'Ryzeup',
+    category: 'Case Studies · Native Mobile UX',
+    categoryType: 'case-studies',
+    summary: 'A unified mobile workspace separating team actions from company feeds to improve focus and response times.',
+    visual: 'ryzeup',
+    folderColor: '#5843a8',
+    assets: [
+      { type: 'photo', src: '/case-studies/ryzeup/mockup-hero.jpg', title: 'Ryzeup Mobile Overview', pos: 'asset-left' },
+      { type: 'photo', src: '/case-studies/ryzeup/mockup-wall.jpg', title: 'Employee Wall & Q&A', pos: 'asset-center' },
+      { type: 'badge', icon: '/icons/figma.png', title: 'UX', pos: 'asset-right' }
     ]
   },
   {
-    id:'workspace',
-    title:'A personal workspace',
-    folderName:'Workspace',
-    category:'Portfolio · Interactive web',
-    summary:'A desktop-inspired portfolio that gives familiar interactions a personal purpose.',
-    problem:'Make a personal website feel approachable while keeping work and navigation easy to find.',
-    decisions:['Use familiar folders and a dock to organize the site.','Keep content scrolling inside the window so navigation remains accessible.','Open project case studies directly from the workspace.'],
-    result:'Working responsive prototype with section navigation, native icon assets, and reduced-motion support.',
-    status:'Prototype · In this workspace',
-    visual:'workspace',
-    folderColor:'#5b9be6',
-    assets:[
-      {type:'photo',src:'/images/welcome-memoji.png',title:'Yogesh',pos:'asset-left'},
-      {type:'doc',src:'/images/collage-sticker.png',title:'Desk Art',pos:'asset-center'},
-      {type:'badge',icon:'/icons/finder.png',title:'Mac OS',pos:'asset-right'}
+    id: 'himseva',
+    title: 'HIMSeva · Government of Himachal Pradesh',
+    folderName: 'HIMSeva HP',
+    category: 'Websites · Digital Governance',
+    categoryType: 'websites',
+    status: 'In development · Requires password to open',
+    folderSub: 'In development · Requires password to open',
+    isLocked: true,
+    summary: 'In development · Requires password to open.',
+    coverImage: '/images/workspace/himseva.jpg',
+    folderColor: '#c2843b',
+    assets: [
+      { type: 'photo', src: '/images/workspace/himseva-card.jpg', title: 'HIMSeva Portal Hero', pos: 'asset-left' },
+      { type: 'photo', src: '/images/workspace/himseva.jpg', title: 'Himachal Digital Hub', pos: 'asset-center' },
+      { type: 'badge', icon: '/icons/finder.png', title: 'Gov', pos: 'asset-right' }
     ]
   }
 ];
 
-function FolderWithAssets({project}){
+function FolderWithAssets({ project }) {
   return (
     <div className="folder-container-graphic" aria-hidden="true">
       <div className="folder-back-pocket">
-        <div className="folder-back-tab"/>
+        <div className="folder-back-tab" />
       </div>
       <div className="folder-peeking-assets">
-        {project.assets?.map((asset,i)=>(
+        {project.assets?.map((asset, i) => (
           <div key={i} className={`folder-peeking-asset ${asset.pos}`}>
-            {asset.type==='photo'||asset.type==='doc'?(
-              <img src={asset.src} alt={asset.title||''} className="peeking-img"/>
-            ):asset.type==='badge'?(
+            {asset.type === 'photo' || asset.type === 'doc' ? (
+              <img src={asset.src} alt={asset.title || ''} className="peeking-img" />
+            ) : asset.type === 'badge' ? (
               <div className="peeking-badge">
-                <img src={asset.icon} alt="" className="peeking-badge-icon"/>
+                <img src={asset.icon} alt="" className="peeking-badge-icon" />
                 <span>{asset.title}</span>
               </div>
-            ):null}
+            ) : null}
           </div>
         ))}
       </div>
       <div className="folder-front-flap">
-        <div className="folder-front-sheen"/>
-        <span className="folder-asset-count">
-          {project.id==='trosky'?'3 files':project.id==='recovery'?'4 files':'3 files'}
+        <div className="folder-front-sheen" />
+        <span className={`folder-asset-count ${project.isLocked ? 'is-locked-flap' : ''}`}>
+          {project.isLocked ? (
+            <span className="locked-pill-content">
+              <svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+                <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+              </svg>
+              In development
+            </span>
+          ) : (
+            `${project.assets?.length || 3} files`
+          )}
         </span>
       </div>
     </div>
   );
 }
 
-function Visual({project}){return project.visual==='trosky'?<TroskyCover/>:project.visual==='recovery'?<img className="case-image recovery-cover" src="/case-studies/recovery/cover.png" alt="Recovery rehabilitation app showing surgeon dashboard, patient progress, and patient list"/>:project.visual==='house'?<img className="case-image" src="/images/house-lineup.png" alt="South House concept artwork"/>:<div className="workspace-preview"><img src="/icons/finder.png" alt=""/><div><small>YOGESH’S SPACE</small><strong>A familiar feeling.<br/>A personal touch.</strong></div><img src="/icons/folder.png" alt=""/></div>}
+export function WebsiteQuickLook({ project }) {
+  return (
+    <div className="quicklook-pure-mockup">
+      {/* Sleek Browser Chrome */}
+      <div className="pure-mockup-header">
+        <div className="pure-mockup-dots" aria-hidden="true">
+          <span />
+          <span />
+          <span />
+        </div>
+        <div className="pure-mockup-url">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+            <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+          </svg>
+          <a
+            href="https://himseva.hp.gov.in"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{ color: 'inherit', textDecoration: 'none' }}
+            title="Open himseva.hp.gov.in (opens in new tab)"
+          >
+            himseva.hp.gov.in ↗
+          </a>
+        </div>
+        <div className="pure-mockup-status">
+          <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+            <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+          </svg>
+          <span>In development · Requires password to open</span>
+        </div>
+      </div>
 
-export function ProjectBrowser({query,onPreview,viewMode='grid'}){
-  const[selected,setSelected]=useState('trosky');
-  const itemsRef=useRef([]);
-  const visible=projects.filter(p=>(p.title+' '+(p.folderName||'')+' '+p.category).toLowerCase().includes(query.toLowerCase()));
-  const active=projects.find(p=>p.id===selected)||visible[0];
+      {/* Pure Full Website Mockup with Natural Scroll */}
+      <div className="pure-mockup-viewport">
+        <img
+          src={project.coverImage}
+          alt={`${project.title} full website mockup`}
+          className="pure-mockup-img"
+        />
+      </div>
+    </div>
+  );
+}
 
-  useEffect(()=>{
-    if(visible.length&&!visible.some(p=>p.id===selected)){
+export function ProjectBrowser({ query, onPreview, viewMode = 'grid' }) {
+  const [activeCategory, setActiveCategory] = useState('all'); // 'all' | 'websites' | 'case-studies'
+  const [selected, setSelected] = useState('trosky');
+  const itemsRef = useRef([]);
+
+  const categoryFiltered = activeCategory === 'all'
+    ? projects
+    : projects.filter(p => p.categoryType === activeCategory);
+
+  const visible = categoryFiltered.filter(p =>
+    (p.title + ' ' + (p.folderName || '') + ' ' + p.category).toLowerCase().includes(query.toLowerCase())
+  );
+
+  const active = projects.find(p => p.id === selected) || visible[0];
+
+  useEffect(() => {
+    if (visible.length && !visible.some(p => p.id === selected)) {
       setSelected(visible[0].id);
     }
-  },[query,visible,selected]);
+  }, [query, activeCategory, visible, selected]);
 
-  const handleKeyDown=(e,index,project)=>{
-    if(e.key==='ArrowRight'||e.key==='ArrowDown'){
+  const handleKeyDown = (e, index, project) => {
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
       e.preventDefault();
-      const nextIndex=(index+1)%visible.length;
+      const nextIndex = (index + 1) % visible.length;
       setSelected(visible[nextIndex].id);
       itemsRef.current[nextIndex]?.focus();
-    }else if(e.key==='ArrowLeft'||e.key==='ArrowUp'){
+    } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
       e.preventDefault();
-      const prevIndex=(index-1+visible.length)%visible.length;
+      const prevIndex = (index - 1 + visible.length) % visible.length;
       setSelected(visible[prevIndex].id);
       itemsRef.current[prevIndex]?.focus();
-    }else if(e.key==='Home'){
+    } else if (e.key === 'Home') {
       e.preventDefault();
       setSelected(visible[0].id);
       itemsRef.current[0]?.focus();
-    }else if(e.key==='End'){
+    } else if (e.key === 'End') {
       e.preventDefault();
-      const lastIndex=visible.length-1;
+      const lastIndex = visible.length - 1;
       setSelected(visible[lastIndex].id);
       itemsRef.current[lastIndex]?.focus();
-    }else if(e.code==='Space'||e.key==='Enter'){
+    } else if (e.code === 'Space' || e.key === 'Enter') {
       e.preventDefault();
       onPreview(project);
     }
   };
 
+  const websitesCount = projects.filter(p => p.categoryType === 'websites').length;
+  const caseStudiesCount = projects.filter(p => p.categoryType === 'case-studies').length;
+
   return (
-    <div className={'finder-folder-view '+(viewMode==='list'?'finder-list-view':'')} role="region" aria-label="Projects Explorer">
-      <div className="finder-folder-grid" role="listbox" aria-label="Case study folders. Use arrow keys to navigate.">
-        {visible.map((p,idx)=>(
+    <div className={'finder-folder-view ' + (viewMode === 'list' ? 'finder-list-view' : '')} role="region" aria-label="Projects Explorer">
+      {/* Apple Segmented Category Filter Bar */}
+      <div className="finder-category-header">
+        <div className="finder-category-bar" role="tablist" aria-label="Filter projects by category">
+          <button
+            type="button"
+            role="tab"
+            aria-selected={activeCategory === 'all'}
+            className={`finder-category-pill ${activeCategory === 'all' ? 'active' : ''}`}
+            onClick={() => setActiveCategory('all')}
+          >
+            <span>All</span>
+            <span className="cat-count">{projects.length}</span>
+          </button>
+          <button
+            type="button"
+            role="tab"
+            aria-selected={activeCategory === 'websites'}
+            className={`finder-category-pill ${activeCategory === 'websites' ? 'active' : ''}`}
+            onClick={() => setActiveCategory('websites')}
+          >
+            <span>Websites</span>
+            <span className="cat-count">{websitesCount}</span>
+          </button>
+          <button
+            type="button"
+            role="tab"
+            aria-selected={activeCategory === 'case-studies'}
+            className={`finder-category-pill ${activeCategory === 'case-studies' ? 'active' : ''}`}
+            onClick={() => setActiveCategory('case-studies')}
+          >
+            <span>Case Studies</span>
+            <span className="cat-count">{caseStudiesCount}</span>
+          </button>
+        </div>
+      </div>
+
+      <div className="finder-folder-grid" role="listbox" aria-label="Project folders. Use arrow keys to navigate.">
+        {visible.map((p, idx) => (
           <div
             key={p.id}
-            ref={el=>itemsRef.current[idx]=el}
-            className={'finder-folder-item '+(selected===p.id?'is-selected':'')}
+            ref={el => itemsRef.current[idx] = el}
+            className={'finder-folder-item ' + (selected === p.id ? 'is-selected' : '')}
             tabIndex={0}
             role="option"
-            aria-selected={selected===p.id}
-            aria-label={`${p.folderName||p.title}. Folder with ${p.assets?.length||3} files. Use arrow keys to navigate, Space or Enter to open.`}
-            onClick={()=>{
-              if(window.innerWidth<=760 || window.matchMedia('(pointer: coarse)').matches){
-                onPreview(p);
-              }else{
-                setSelected(p.id);
-              }
+            aria-selected={selected === p.id}
+            aria-label={`${p.folderName || p.title}. ${p.categoryType === 'websites' ? 'Website' : 'Case study'}. Use arrow keys to navigate, Space or Enter to open.`}
+            onClick={() => {
+              setSelected(p.id);
+              onPreview(p);
             }}
-            onDoubleClick={()=>onPreview(p)}
-            onKeyDown={e=>handleKeyDown(e,idx,p)}
+            onDoubleClick={() => onPreview(p)}
+            onKeyDown={e => handleKeyDown(e, idx, p)}
           >
-            {viewMode==='list'?<img className="finder-list-icon" src="/icons/folder.png" alt=""/>:<FolderWithAssets project={p}/>}
-            <span className="finder-folder-name">{p.folderName||p.title}</span>
-            <span className="finder-folder-sub">{p.category.split('·')[0].trim()}</span>
+            {viewMode === 'list' ? (
+              <div className="finder-list-item-row">
+                <img
+                  className="finder-list-icon"
+                  src={p.categoryType === 'websites' ? '/icons/finder.png' : '/icons/folder.png'}
+                  alt=""
+                />
+                <div className="finder-list-text">
+                  <span className="finder-list-title">{p.folderName || p.title}</span>
+                  <span className="finder-list-category">
+                    {p.isLocked ? 'In development · Requires password to open' : p.category}
+                  </span>
+                </div>
+                <span className={`finder-list-tag ${p.isLocked ? 'is-locked-tag' : ''}`}>
+                  {p.isLocked ? 'In development' : (p.categoryType === 'websites' ? 'Website' : 'Case Study')}
+                </span>
+              </div>
+            ) : (
+              <>
+                <FolderWithAssets project={p} />
+                <span className="finder-folder-name">{p.folderName || p.title}</span>
+                <span className={`finder-folder-sub ${p.isLocked ? 'is-locked-sub' : ''}`}>
+                  {p.isLocked ? 'In development · Requires password to open' : (p.categoryType === 'websites' ? 'Website' : 'Case Study')}
+                </span>
+              </>
+            )}
           </div>
         ))}
       </div>
-      {!visible.length&&<p className="finder-empty-msg">No matching folders found.</p>}
+
+      {!visible.length && (
+        <p className="finder-empty-msg">No matching projects found in this category.</p>
+      )}
+
+      {/* Authentic macOS Finder status bar */}
+      <div className="finder-status-bar">
+        <div className="finder-status-left">
+          <span className={`finder-status-badge ${active?.isLocked ? 'locked-badge' : ''}`}>
+            {active?.isLocked ? 'In Development' : (active?.categoryType === 'websites' ? 'Website' : 'Case Study')}
+          </span>
+          <span>
+            <b>{active?.folderName || active?.title}</b> — {active?.isLocked ? 'In development · Requires password to open' : active?.summary}
+          </span>
+        </div>
+        <div className="finder-status-actions">
+          <span className="finder-status-hint">Press <b>Space</b> to preview</span>
+          <button
+            type="button"
+            className="finder-open-btn"
+            onClick={() => active && onPreview(active)}
+          >
+            {active?.isLocked ? 'View Mockup' : active?.categoryType === 'websites' ? 'Preview Website' : 'Open Case Study'} <span>↵</span>
+          </button>
+        </div>
+      </div>
     </div>
   );
 }
 
-export function QuickLook({project,onClose}){
-  const ref=useRef(null);
-  const [maximized,setMaximized]=useState(false);
-  const [minimized,setMinimized]=useState(false);
+export function QuickLook({ project, onClose }) {
+  const ref = useRef(null);
+  const [maximized, setMaximized] = useState(false);
+  const [minimized, setMinimized] = useState(false);
   const { pos, resetPos, dragHandlers } = useDraggable(maximized);
-  useEffect(()=>{
-    const previous=document.activeElement;
+
+  useEffect(() => {
+    const previous = document.activeElement;
     ref.current?.showModal();
-    return()=>previous?.focus();
-  },[]);
+    return () => previous?.focus();
+  }, []);
 
   const handleClose = () => {
     resetPos();
@@ -177,33 +323,80 @@ export function QuickLook({project,onClose}){
 
   return (
     <>
-    {minimized&&<button className="restore-preview" onClick={()=>{setMinimized(false);ref.current?.showModal();}}>Restore {project.folderName||project.title}</button>}
-    <dialog
-      className={'quicklook '+(project.id!=='workspace'?'recovery-dialog':'')+(maximized?' app-fullscreen':'')}
-      ref={ref}
-      style={maximized?undefined:{ transform: `translate(${pos.x}px, ${pos.y}px)` }}
-      onCancel={handleClose}
-      onClick={e=>{if(e.target===ref.current)handleClose()}}
-      onKeyDown={e=>{if((e.code==='Space'||e.key==='Escape')&&e.target===ref.current){e.preventDefault();handleClose()}}}
-    >
-      <div className="quicklook-bar" {...dragHandlers}>
-        <div className="mac-window-controls">
-          <button className="red" onClick={handleClose} aria-label="Close Quick Look"/>
-          <button className="yellow" onClick={()=>{ref.current?.close();setMinimized(true);}} aria-label="Minimize Quick Look"/>
-          <button className="green" onClick={()=>{resetPos();setMaximized(v=>!v)}} aria-label="Toggle maximize Quick Look"/>
-        </div>
-        <span>Quick Look — {project.folderName||project.title}</span>
-        <button onClick={handleClose} aria-label="Close Quick Look" className="quicklook-close-btn">
-          <svg style={{pointerEvents:'none'}} width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-            <line x1="18" y1="6" x2="6" y2="18"/>
-            <line x1="6" y1="6" x2="18" y2="18"/>
-          </svg>
+      {minimized && (
+        <button
+          className="restore-preview"
+          onClick={() => {
+            setMinimized(false);
+            ref.current?.showModal();
+          }}
+        >
+          Restore {project.folderName || project.title}
         </button>
-      </div>
-      <div className="quicklook-scroll">
-        {project.id==='trosky'?<TroskyStory/>:project.id==='recovery'?<RecoveryStory/>:<><Visual project={project}/><div className="quicklook-copy"><small>{project.status}</small><h2>{project.title}</h2><p className="case-summary">{project.summary}</p><section><h3>The problem</h3><p>{project.problem}</p></section><section><h3>Key decisions</h3><ul>{project.decisions.map(d=><li key={d}>{d}</li>)}</ul></section><section><h3>Current outcome</h3><p>{project.result}</p></section>{project.id==='recovery'?<><section><h3>What changed</h3><p>The source case study compares disconnected clinic check-ins with shared onboarding, ongoing progress tracking, and explicit recovery states.</p><a href="/case-studies/recovery/transformation.png" target="_blank" rel="noreferrer"><img className="transformation-image" src="/case-studies/recovery/transformation.png" alt="Recovery case study: before and after comparison and design principles"/></a></section><a className="figma-source" href={project.url} target="_blank" rel="noreferrer">Explore the Figma case study ↗</a><p className="case-disclosure">Summary based on the supplied Recovery design file. Clinical outcome metrics are not disclosed.</p></>:<p className="case-disclosure">Project role, timeline, and measured results are awaiting confirmation.</p>}</div></>}
-      </div>
-    </dialog>
+      )}
+      <dialog
+        className={
+          'quicklook ' +
+          (project.categoryType === 'websites' ? 'website-dialog ' : '') +
+          (project.id !== 'workspace' ? 'recovery-dialog ' : '') +
+          (maximized ? 'app-fullscreen' : '')
+        }
+        ref={ref}
+        style={maximized ? undefined : { transform: `translate(${pos.x}px, ${pos.y}px)` }}
+        onCancel={handleClose}
+        onClick={e => {
+          if (e.target === ref.current) handleClose();
+        }}
+        onKeyDown={e => {
+          if ((e.code === 'Space' || e.key === 'Escape') && e.target === ref.current) {
+            e.preventDefault();
+            handleClose();
+          }
+        }}
+      >
+        <div className="quicklook-bar" {...dragHandlers}>
+          <div className="mac-window-controls">
+            <button className="red" onClick={handleClose} aria-label="Close Quick Look" />
+            <button
+              className="yellow"
+              onClick={() => {
+                ref.current?.close();
+                setMinimized(true);
+              }}
+              aria-label="Minimize Quick Look"
+            />
+            <button
+              className="green"
+              onClick={() => {
+                resetPos();
+                setMaximized(v => !v);
+              }}
+              aria-label="Toggle maximize Quick Look"
+            />
+          </div>
+          <span>Quick Look — {project.folderName || project.title}</span>
+          <button onClick={handleClose} aria-label="Close Quick Look" className="quicklook-close-btn">
+            <svg style={{ pointerEvents: 'none' }} width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+              <line x1="18" y1="6" x2="6" y2="18" />
+              <line x1="6" y1="6" x2="18" y2="18" />
+            </svg>
+          </button>
+        </div>
+        <div className="quicklook-scroll">
+          {project.categoryType === 'websites' ? (
+            <WebsiteQuickLook project={project} />
+          ) : project.id === 'trosky' ? (
+            <TroskyStory onClose={handleClose} />
+          ) : project.id === 'ryzeup' ? (
+            <RyzeupStory onClose={handleClose} />
+          ) : (
+            <div className="quicklook-copy">
+              <h2>{project.title}</h2>
+              <p>{project.summary}</p>
+            </div>
+          )}
+        </div>
+      </dialog>
     </>
   );
 }

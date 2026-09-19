@@ -6,7 +6,7 @@ import './Arcade.css';
 // =============================================================================
 // GAME 1: FLIPPY BIRD (APPLE MINIMALIST)
 // =============================================================================
-function FlippyBird({ onBack }) {
+export function FlippyBird({ onBack }) {
   const canvasRef = useRef(null);
   const [status, setStatus] = useState('ready'); // ready, playing, gameover
   const [score, setScore] = useState(0);
@@ -278,7 +278,7 @@ function FlippyBird({ onBack }) {
 // =============================================================================
 // GAME 2: TIC TAC TOI (APPLE MINIMALIST)
 // =============================================================================
-function TicTacToi({ onBack }) {
+export function TicTacToi({ onBack }) {
   const [grid, setGrid] = useState(Array(9).fill(null));
   const [isXTurn, setIsXTurn] = useState(true);
 
