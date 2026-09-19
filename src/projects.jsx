@@ -40,10 +40,10 @@ export const projects = [
     folderName: 'HIMSeva HP',
     category: 'Websites · Digital Governance',
     categoryType: 'websites',
-    status: 'In development · Requires password to open',
-    folderSub: 'In development · Requires password to open',
+    status: 'NDA signed',
+    folderSub: 'NDA signed',
     isLocked: true,
-    summary: 'In development · Requires password to open.',
+    summary: 'NDA signed.',
     coverImage: '/images/workspace/himseva.jpg',
     folderColor: '#c2843b',
     assets: [
@@ -83,7 +83,7 @@ function FolderWithAssets({ project }) {
                 <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
                 <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
               </svg>
-              In development
+              NDA signed
             </span>
           ) : (
             `${project.assets?.length || 3} files`
@@ -95,6 +95,70 @@ function FolderWithAssets({ project }) {
 }
 
 export function WebsiteQuickLook({ project }) {
+  const [unlocked, setUnlocked] = useState(() => {
+    try {
+      return sessionStorage.getItem('himseva_unlocked') === 'true';
+    } catch {
+      return false;
+    }
+  });
+  const [passwordInput, setPasswordInput] = useState('');
+  const [error, setError] = useState('');
+  const [shake, setShake] = useState(false);
+
+  const handleUnlock = (e) => {
+    e.preventDefault();
+    if (passwordInput.trim() === 'yogesh1972') {
+      try {
+        sessionStorage.setItem('himseva_unlocked', 'true');
+      } catch {}
+      setUnlocked(true);
+      setError('');
+    } else {
+      setError('Incorrect password. Please try again.');
+      setShake(true);
+      setTimeout(() => setShake(false), 500);
+    }
+  };
+
+  if (project?.isLocked && !unlocked) {
+    return (
+      <div className="himseva-password-gate">
+        <div className={`himseva-lock-card ${shake ? 'shake-anim' : ''}`}>
+          <div className="himseva-lock-icon-wrap" aria-hidden="true">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+              <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+              <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+            </svg>
+          </div>
+          <h3>Protected Project</h3>
+          <p className="himseva-lock-meta">
+            <strong>{project.folderName || project.title}</strong> is covered under an NDA. Enter password to view the design mockup.
+          </p>
+          <form onSubmit={handleUnlock} className="himseva-password-form">
+            <div className="password-input-wrap">
+              <input
+                type="password"
+                placeholder="Enter password"
+                value={passwordInput}
+                onChange={(e) => {
+                  setPasswordInput(e.target.value);
+                  if (error) setError('');
+                }}
+                autoFocus
+                className={error ? 'input-error' : ''}
+              />
+              <button type="submit" className="unlock-submit-btn" aria-label="Unlock project">
+                →
+              </button>
+            </div>
+            {error && <span className="password-error-text" role="alert">{error}</span>}
+          </form>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="quicklook-pure-mockup">
       {/* Sleek Browser Chrome */}
@@ -120,11 +184,7 @@ export function WebsiteQuickLook({ project }) {
           </a>
         </div>
         <div className="pure-mockup-status">
-          <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
-            <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
-          </svg>
-          <span>In development · Requires password to open</span>
+          <span className="unlocked-indicator">● NDA Signed · Verified Access</span>
         </div>
       </div>
 
@@ -255,11 +315,11 @@ export function ProjectBrowser({ query, onPreview, viewMode = 'grid' }) {
                 <div className="finder-list-text">
                   <span className="finder-list-title">{p.folderName || p.title}</span>
                   <span className="finder-list-category">
-                    {p.isLocked ? 'In development · Requires password to open' : p.category}
+                    {p.isLocked ? 'NDA signed' : p.category}
                   </span>
                 </div>
                 <span className={`finder-list-tag ${p.isLocked ? 'is-locked-tag' : ''}`}>
-                  {p.isLocked ? 'In development' : (p.categoryType === 'websites' ? 'Website' : 'Case Study')}
+                  {p.isLocked ? 'NDA signed' : (p.categoryType === 'websites' ? 'Website' : 'Case Study')}
                 </span>
               </div>
             ) : (
@@ -267,7 +327,7 @@ export function ProjectBrowser({ query, onPreview, viewMode = 'grid' }) {
                 <FolderWithAssets project={p} />
                 <span className="finder-folder-name">{p.folderName || p.title}</span>
                 <span className={`finder-folder-sub ${p.isLocked ? 'is-locked-sub' : ''}`}>
-                  {p.isLocked ? 'In development · Requires password to open' : (p.categoryType === 'websites' ? 'Website' : 'Case Study')}
+                  {p.isLocked ? 'NDA signed' : (p.categoryType === 'websites' ? 'Website' : 'Case Study')}
                 </span>
               </>
             )}
@@ -283,10 +343,10 @@ export function ProjectBrowser({ query, onPreview, viewMode = 'grid' }) {
       <div className="finder-status-bar">
         <div className="finder-status-left">
           <span className={`finder-status-badge ${active?.isLocked ? 'locked-badge' : ''}`}>
-            {active?.isLocked ? 'In Development' : (active?.categoryType === 'websites' ? 'Website' : 'Case Study')}
+            {active?.isLocked ? 'NDA signed' : (active?.categoryType === 'websites' ? 'Website' : 'Case Study')}
           </span>
           <span>
-            <b>{active?.folderName || active?.title}</b> — {active?.isLocked ? 'In development · Requires password to open' : active?.summary}
+            <b>{active?.folderName || active?.title}</b> — {active?.isLocked ? 'NDA signed' : active?.summary}
           </span>
         </div>
         <div className="finder-status-actions">
@@ -296,7 +356,7 @@ export function ProjectBrowser({ query, onPreview, viewMode = 'grid' }) {
             className="finder-open-btn"
             onClick={() => active && onPreview(active)}
           >
-            {active?.isLocked ? 'View Mockup' : active?.categoryType === 'websites' ? 'Preview Website' : 'Open Case Study'} <span>↵</span>
+            {active?.isLocked ? 'Enter Password' : active?.categoryType === 'websites' ? 'Preview Website' : 'Open Case Study'} <span>↵</span>
           </button>
         </div>
       </div>

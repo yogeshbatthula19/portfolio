@@ -401,6 +401,151 @@ aside{overflow-y:auto}
 }
 
 /* =============================================================================
+   HIMSEVA PASSWORD GATE / NDA SECURITY LOCK
+   ============================================================================= */
+.himseva-password-gate {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 480px;
+  padding: 60px 24px;
+  background: radial-gradient(circle at 50% 30%, rgba(30, 31, 40, 0.98), rgba(13, 13, 18, 1));
+}
+
+.himseva-lock-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  max-width: 360px;
+  width: 100%;
+  padding: 38px 28px;
+  background: rgba(30, 31, 40, 0.88);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 22px;
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.14);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+}
+
+.himseva-lock-icon-wrap {
+  width: 62px;
+  height: 62px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, rgba(245, 158, 11, 0.22), rgba(217, 119, 6, 0.12));
+  border: 1.5px solid rgba(245, 158, 11, 0.45);
+  color: #f59e0b;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 18px;
+  box-shadow: 0 6px 20px rgba(245, 158, 11, 0.16);
+}
+
+.himseva-lock-card h3 {
+  font-size: 19px;
+  font-weight: 600;
+  color: #f3f4f6;
+  margin: 0 0 6px;
+  letter-spacing: -0.3px;
+}
+
+.himseva-lock-meta {
+  font-size: 13px;
+  color: #9ca3af;
+  margin: 0 0 24px;
+  line-height: 1.5;
+}
+
+.himseva-lock-meta strong {
+  color: #e5e7eb;
+}
+
+.himseva-password-form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.password-input-wrap {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.password-input-wrap input {
+  width: 100%;
+  padding: 12px 42px 12px 16px;
+  background: rgba(18, 19, 24, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 12px;
+  color: #ffffff;
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.password-input-wrap input:focus {
+  border-color: #007aff;
+  box-shadow: 0 0 0 3px rgba(0, 122, 255, 0.25);
+}
+
+.password-input-wrap input.input-error {
+  border-color: #ef4444;
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.25);
+}
+
+.unlock-submit-btn {
+  position: absolute;
+  right: 6px;
+  width: 30px;
+  height: 30px;
+  border-radius: 8px;
+  border: none;
+  background: #007aff;
+  color: #ffffff;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.15s, transform 0.1s;
+}
+
+.unlock-submit-btn:hover {
+  background: #0062cc;
+}
+
+.unlock-submit-btn:active {
+  transform: scale(0.95);
+}
+
+.password-error-text {
+  font-size: 12px;
+  color: #ef4444;
+  font-weight: 500;
+}
+
+.unlocked-indicator {
+  color: #10b981;
+  font-size: 11px;
+  font-weight: 550;
+}
+
+@keyframes macShake {
+  0%, 100% { transform: translateX(0); }
+  20%, 60% { transform: translateX(-8px); }
+  40%, 80% { transform: translateX(8px); }
+}
+
+.shake-anim {
+  animation: macShake 0.45s ease-in-out;
+}
+
+/* =============================================================================
    IN DEVELOPMENT / LOCKED STATUS BADGES ON FOLDERS & LIST
    ============================================================================= */
 .folder-asset-count.is-locked-flap {
