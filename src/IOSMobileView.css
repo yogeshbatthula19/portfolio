@@ -47,6 +47,7 @@
   z-index: 0;
   overflow: hidden;
   pointer-events: none;
+  background: #1d2530 url('/images/welcome-wallpaper.png') center/cover no-repeat;
 }
 
 .ios-live-wallpaper {
@@ -434,6 +435,17 @@
   border-radius: 13px;
   box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
   display: block;
+}
+
+.ios-dock-icon.ios-dock-phone {
+  width: 54px;
+  height: 54px;
+  border-radius: 13px;
+  background: #34c759;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .ios-dock-badge {

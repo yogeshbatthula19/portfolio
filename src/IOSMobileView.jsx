@@ -97,6 +97,7 @@ export default function IOSMobileView({ time, onPreview }) {
         <video
           className="ios-live-wallpaper"
           src="/videos/evening-drive-and-windmills.mp4"
+          poster="/images/welcome-wallpaper.png"
           autoPlay
           muted
           loop
@@ -279,11 +280,11 @@ export default function IOSMobileView({ time, onPreview }) {
               {/* Phone */}
               <button
                 type="button"
-                className="ios-dock-icon"
+                className="ios-dock-icon ios-dock-phone"
                 aria-label="Contact"
                 onClick={() => setActiveApp('contact')}
               >
-                <img src="/icons/phone.png" alt="" />
+                <Phone size={24} color="#ffffff" fill="#ffffff" />
               </button>
 
               {/* Messages (AI Assistant) */}

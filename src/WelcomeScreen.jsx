@@ -61,6 +61,21 @@ export default function WelcomeScreen({children}){
     return()=>window.removeEventListener('keydown',handleKeyDown);
   },[entered,leaving]);
 
+  // Touch gesture: Swipe up or tap to unlock on mobile
+  const touchStartY = useRef(null);
+  const handleTouchStart = (e) => {
+    touchStartY.current = e.touches[0].clientY;
+  };
+  const handleTouchEnd = (e) => {
+    if (touchStartY.current !== null) {
+      const deltaY = touchStartY.current - e.changedTouches[0].clientY;
+      if (deltaY > 30) {
+        enter();
+      }
+      touchStartY.current = null;
+    }
+  };
+
   // Inactivity lock: lock screen when user is not active for 1 min (60,000 ms)
   useEffect(()=>{
     if(!entered)return;
@@ -82,11 +97,30 @@ export default function WelcomeScreen({children}){
     };
   },[entered]);
 
+  const isMobile = typeof window !== 'undefined' && (window.innerWidth <= 768 || 'ontouchstart' in window);
+
   if(entered)return <div ref={desktop} tabIndex={-1} className="welcome-desktop">{children}</div>;
-  return <main className={`welcome-screen${leaving?' is-entering':''}`} aria-label="Welcome to Yogesh’s portfolio">
+  return <main
+    className={`welcome-screen${leaving?' is-entering':''}`}
+    aria-label="Welcome to Yogesh’s portfolio"
+    onClick={enter}
+    onTouchStart={handleTouchStart}
+    onTouchEnd={handleTouchEnd}
+  >
     <div className="welcome-aurora" aria-hidden="true"/>
     <WelcomeNotifications/>
-    <div className="welcome-clock"><p>{time.toLocaleDateString('en-US',{weekday:'long',month:'long',day:'numeric'})}</p><time dateTime={time.toISOString()}>{time.toLocaleTimeString('en-US',{hour:'numeric',minute:'2-digit'}) .replace(/\s?[AP]M/,'')}</time></div>
-    <div className="welcome-profile"><button onClick={enter} disabled={leaving} aria-label="Enter Yogesh Battula’s portfolio"><span className="welcome-avatar" style={{backgroundPosition:`${avatar%2*100}% ${Math.floor(avatar/2)*100}%`}} aria-hidden="true"/><strong>Yogesh Battula</strong><span className="welcome-enter">Press Enter or click to open <span aria-hidden="true">→</span></span></button></div>
+    <div className="welcome-clock">
+      <p>{time.toLocaleDateString('en-US',{weekday:'long',month:'long',day:'numeric'})}</p>
+      <time dateTime={time.toISOString()}>{time.toLocaleTimeString('en-US',{hour:'numeric',minute:'2-digit'}).replace(/\s?[AP]M/,'')}</time>
+    </div>
+    <div className="welcome-profile">
+      <button onClick={enter} disabled={leaving} aria-label="Enter Yogesh Battula’s portfolio">
+        <span className="welcome-avatar" style={{backgroundPosition:`${avatar%2*100}% ${Math.floor(avatar/2)*100}%`}} aria-hidden="true"/>
+        <strong>Yogesh Battula</strong>
+        <span className="welcome-enter">
+          {isMobile ? 'Tap anywhere or swipe up to open →' : 'Press Enter or click to open →'}
+        </span>
+      </button>
+    </div>
   </main>;
 }
