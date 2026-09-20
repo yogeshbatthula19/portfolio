@@ -396,9 +396,10 @@ export function ProjectBrowser({ query, onPreview, viewMode = 'grid' }) {
 
 export function QuickLook({ project, onClose }) {
   const ref = useRef(null);
-  const [maximized, setMaximized] = useState(false);
+  const isMobile = typeof window !== 'undefined' && window.innerWidth <= 768;
+  const [maximized, setMaximized] = useState(() => isMobile);
   const [minimized, setMinimized] = useState(false);
-  const { pos, resetPos, dragHandlers } = useDraggable(maximized);
+  const { pos, resetPos, dragHandlers } = useDraggable(maximized || isMobile);
 
   useEffect(() => {
     const previous = document.activeElement;
@@ -429,10 +430,10 @@ export function QuickLook({ project, onClose }) {
           'quicklook ' +
           (project.categoryType === 'websites' ? 'website-dialog ' : '') +
           (project.id !== 'workspace' ? 'recovery-dialog ' : '') +
-          (maximized ? 'app-fullscreen' : '')
+          (maximized || isMobile ? 'app-fullscreen ' : '')
         }
         ref={ref}
-        style={maximized ? undefined : { transform: `translate(${pos.x}px, ${pos.y}px)` }}
+        style={maximized || isMobile ? undefined : { transform: `translate(${pos.x}px, ${pos.y}px)` }}
         onCancel={handleClose}
         onClick={e => {
           if (e.target === ref.current) handleClose();
@@ -444,7 +445,20 @@ export function QuickLook({ project, onClose }) {
           }
         }}
       >
-        <div className="quicklook-bar" {...dragHandlers}>
+        <div className="quicklook-bar" {...(isMobile ? {} : dragHandlers)}>
+          {/* iOS Mobile Back Button */}
+          <button
+            type="button"
+            className="quicklook-mobile-back"
+            onClick={handleClose}
+            aria-label="Back to projects"
+          >
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+              <polyline points="15 18 9 12 15 6" />
+            </svg>
+            <span>Projects</span>
+          </button>
+
           <div className="mac-window-controls">
             <button className="red" onClick={handleClose} aria-label="Close Quick Look" />
             <button
@@ -464,7 +478,18 @@ export function QuickLook({ project, onClose }) {
               aria-label="Toggle maximize Quick Look"
             />
           </div>
-          <span>Quick Look — {project.folderName || project.title}</span>
+          <span className="quicklook-title">{project.folderName || project.title}</span>
+
+          {/* iOS Mobile Done Button */}
+          <button
+            type="button"
+            className="quicklook-mobile-done"
+            onClick={handleClose}
+            aria-label="Done"
+          >
+            Done
+          </button>
+
           <button onClick={handleClose} aria-label="Close Quick Look" className="quicklook-close-btn">
             <svg style={{ pointerEvents: 'none' }} width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
               <line x1="18" y1="6" x2="6" y2="18" />

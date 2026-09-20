@@ -119,6 +119,10 @@ aside{overflow-y:auto}
 .finder-empty-msg{padding:40px 28px;color:#86868b;font-size:14px}
 
 /* Close & Cancel Buttons - 100% Perfectly Centered */
+.quicklook-mobile-back,
+.quicklook-mobile-done {
+  display: none;
+}
 .quicklook-close-btn,
 .movies-close,
 .applications-close-btn,

@@ -1,5 +1,5 @@
 /* Touch layouts preserve the desktop metaphor without desktop-sized geometry. */
-@media (max-width:760px) {
+@media (max-width:768px) {
   html { -webkit-text-size-adjust:100%; }
   body .desktop {height:100dvh;min-height:100dvh;padding:0;overflow:hidden;}
   body .menubar {height:calc(44px + env(safe-area-inset-top));padding:env(safe-area-inset-top) 14px 0;gap:8px;}
@@ -22,14 +22,15 @@
   body .dock-item img,body .dock-item.messages-launcher img {width:40px;height:40px;aspect-ratio:1;}
   body .dock-item.music,body .dock-item.bin,body .dock-divider {display:none;}
   body .dock-item .tooltip {display:none!important;}
-  body .desktop .window,body .movies-window,body .arcade-window,body .applications-panel,body .quicklook,body .messages-window {
-    position:fixed!important;inset:calc(52px + env(safe-area-inset-top)) 8px auto!important;margin:0!important;
-    width:calc(100% - 16px)!important;height:calc(100dvh - 138px - env(safe-area-inset-top) - env(safe-area-inset-bottom))!important;
-    min-width:0!important;max-width:none!important;max-height:none!important;transform:none!important;box-sizing:border-box;
+  body .desktop .window,body .movies-window,body .arcade-window,body .applications-panel,body .quicklook,body dialog.quicklook,body .messages-window {
+    position:fixed!important;inset:0!important;top:0!important;left:0!important;right:0!important;bottom:0!important;margin:0!important;
+    width:100vw!important;max-width:100vw!important;min-width:100vw!important;
+    height:100dvh!important;max-height:100dvh!important;min-height:100dvh!important;
+    transform:none!important;box-sizing:border-box;border-radius:0!important;border:none!important;z-index:99999!important;
   }
-  body .desktop .window.maximized,body .app-fullscreen {
-    inset:calc(44px + env(safe-area-inset-top)) 0 0!important;width:100%!important;
-    height:calc(100dvh - 44px - env(safe-area-inset-top))!important;border-radius:0!important;padding-bottom:env(safe-area-inset-bottom);
+  body .desktop .window.maximized,body .app-fullscreen,body dialog.quicklook.app-fullscreen {
+    inset:0!important;top:0!important;left:0!important;right:0!important;bottom:0!important;width:100vw!important;
+    height:100dvh!important;max-width:100vw!important;max-height:100dvh!important;border-radius:0!important;margin:0!important;padding-bottom:env(safe-area-inset-bottom);
   }
   body .desktop .window {z-index:30;display:flex;flex-direction:column;}
   body .window .window-bar {height:104px;min-height:104px;position:relative;display:block;}
@@ -88,8 +89,73 @@
   body .applications-heading {gap:12px;}
   body .applications-grid {grid-template-columns:repeat(3,minmax(0,1fr));gap:10px 5px;}
   body .applications-filters button {min-height:40px;}
-  body .quicklook-bar>span {overflow:hidden;white-space:nowrap;text-overflow:ellipsis;min-width:0;}
-  body .quicklook-scroll {min-height:0;overflow:auto;}
+  body .quicklook-bar {
+    position: relative !important;
+    height: calc(50px + env(safe-area-inset-top)) !important;
+    min-height: calc(50px + env(safe-area-inset-top)) !important;
+    padding: env(safe-area-inset-top) 12px 0 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    background: rgba(246, 246, 248, 0.94) !important;
+    backdrop-filter: blur(20px) saturate(180%) !important;
+    -webkit-backdrop-filter: blur(20px) saturate(180%) !important;
+    border-bottom: 0.5px solid rgba(0, 0, 0, 0.15) !important;
+    flex-shrink: 0 !important;
+    gap: 8px !important;
+    box-sizing: border-box !important;
+  }
+  body .quicklook-bar .mac-window-controls { display: none !important; }
+  body .quicklook-close-btn { display: none !important; }
+  body .quicklook-mobile-back {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 2px !important;
+    background: none !important;
+    border: none !important;
+    color: #0071e3 !important;
+    font-size: 16px !important;
+    font-weight: 500 !important;
+    padding: 6px 4px !important;
+    cursor: pointer !important;
+    flex-shrink: 0 !important;
+  }
+  body .quicklook-mobile-done {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: flex-end !important;
+    background: none !important;
+    border: none !important;
+    color: #0071e3 !important;
+    font-size: 16px !important;
+    font-weight: 600 !important;
+    padding: 6px 4px !important;
+    cursor: pointer !important;
+    flex-shrink: 0 !important;
+  }
+  body .quicklook-bar>span,
+  body .quicklook-title {
+    flex: 1 !important;
+    text-align: center !important;
+    font-size: 16px !important;
+    font-weight: 600 !important;
+    color: #1d1d1f !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    white-space: nowrap !important;
+    min-width: 0 !important;
+    padding: 0 4px !important;
+  }
+  body .quicklook-scroll {
+    flex: 1 !important;
+    width: 100% !important;
+    height: 100% !important;
+    min-height: 0 !important;
+    overflow-y: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+    padding-bottom: calc(24px + env(safe-area-inset-bottom)) !important;
+    background: #ffffff !important;
+  }
   body .messages-sidebar {display:none;}
   body .messages-toolbar {gap:22px;}
   body .messages-composer input {font-size:16px;}
