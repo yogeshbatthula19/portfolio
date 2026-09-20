@@ -77,13 +77,14 @@ export default function IOSMobileView({ time, onPreview }) {
     setTimeout(() => setMovieToast(''), 3500);
   };
 
-  const formattedTime = time.toLocaleTimeString('en-US', {
+  const safeTime = time instanceof Date ? time : new Date();
+  const formattedTime = safeTime.toLocaleTimeString('en-US', {
     hour: 'numeric',
     minute: '2-digit',
     hour12: true,
   }).replace(/\s?[AP]M/, '');
 
-  const dateStr = time.toLocaleDateString('en-US', {
+  const dateStr = safeTime.toLocaleDateString('en-US', {
     weekday: 'long',
     month: 'short',
     day: 'numeric',
