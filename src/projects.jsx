@@ -3,6 +3,7 @@ import { useDraggable } from './useDraggable.js';
 import TroskyStory, { TroskyCover } from './TroskyStory.jsx';
 import RyzeupStory, { RyzeupCover } from './RyzeupStory.jsx';
 import PickleMatesStory, { PickleMatesCover } from './PickleMatesStory.jsx';
+import AhamXStory, { AhamXCover } from './AhamXStory.jsx';
 
 export const projects = [
   {
@@ -36,6 +37,26 @@ export const projects = [
     assets: [
       { type: 'photo', src: '/case-studies/ryzeup/mockup-hero.jpg', title: 'Ryzeup Mobile Overview', pos: 'asset-left' },
       { type: 'photo', src: '/case-studies/ryzeup/mockup-wall.jpg', title: 'Employee Wall & Q&A', pos: 'asset-center' },
+      { type: 'badge', icon: '/icons/figma.png', title: '2026', pos: 'asset-right' }
+    ]
+  },
+  {
+    id: 'ahamx',
+    title: 'Learning, with continuity',
+    folderName: 'AhamX',
+    category: '2026 Case Studies · AI & EdTech Product Design',
+    categoryType: 'case-studies',
+    year: '2026',
+    badgeTag: '2026 Case Study',
+    status: 'NDA signed',
+    folderSub: 'NDA signed',
+    isLocked: true,
+    summary: 'NDA signed.',
+    coverImage: '/case-studies/ahamx/slide-01.png',
+    folderColor: '#4f46e5',
+    assets: [
+      { type: 'photo', src: '/case-studies/ahamx/slide-01.png', title: 'AhamX Overview', pos: 'asset-left' },
+      { type: 'photo', src: '/case-studies/ahamx/slide-08.png', title: 'Learner Dashboard', pos: 'asset-center' },
       { type: 'badge', icon: '/icons/figma.png', title: '2026', pos: 'asset-right' }
     ]
   },
@@ -136,10 +157,12 @@ function FolderWithAssets({ project }) {
   );
 }
 
-export function WebsiteQuickLook({ project }) {
+export function PasswordGate({ project, children }) {
   const [unlocked, setUnlocked] = useState(() => {
     try {
-      return sessionStorage.getItem('himseva_unlocked') === 'true';
+      return sessionStorage.getItem(`unlocked_${project?.id}`) === 'true' || 
+             (project?.id === 'himseva' && sessionStorage.getItem('himseva_unlocked') === 'true') ||
+             (project?.id === 'ahamx' && sessionStorage.getItem('ahamx_unlocked') === 'true');
     } catch {
       return false;
     }
@@ -150,9 +173,11 @@ export function WebsiteQuickLook({ project }) {
 
   const handleUnlock = (e) => {
     e.preventDefault();
-    if (passwordInput.trim() === 'yogesh1972') {
+    if (passwordInput.trim().toLowerCase() === 'yogesh1972') {
       try {
-        sessionStorage.setItem('himseva_unlocked', 'true');
+        sessionStorage.setItem(`unlocked_${project?.id}`, 'true');
+        if (project?.id === 'himseva') sessionStorage.setItem('himseva_unlocked', 'true');
+        if (project?.id === 'ahamx') sessionStorage.setItem('ahamx_unlocked', 'true');
       } catch {}
       setUnlocked(true);
       setError('');
@@ -175,7 +200,7 @@ export function WebsiteQuickLook({ project }) {
           </div>
           <h3>Protected Project</h3>
           <p className="himseva-lock-meta">
-            <strong>{project.folderName || project.title}</strong> is covered under an NDA. Enter password to view the design mockup.
+            <strong>{project.folderName || project.title}</strong> is covered under an NDA. Enter password to view the {project.categoryType === 'websites' ? 'design mockup' : 'case study'}.
           </p>
           <form onSubmit={handleUnlock} className="himseva-password-form">
             <div className="password-input-wrap">
@@ -201,44 +226,50 @@ export function WebsiteQuickLook({ project }) {
     );
   }
 
-  return (
-    <div className="quicklook-pure-mockup">
-      {/* Sleek Browser Chrome */}
-      <div className="pure-mockup-header">
-        <div className="pure-mockup-dots" aria-hidden="true">
-          <span />
-          <span />
-          <span />
-        </div>
-        <div className="pure-mockup-url">
-          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
-            <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
-          </svg>
-          <a
-            href="https://himseva.hp.gov.in"
-            target="_blank"
-            rel="noopener noreferrer"
-            style={{ color: 'inherit', textDecoration: 'none' }}
-            title="Open himseva.hp.gov.in (opens in new tab)"
-          >
-            himseva.hp.gov.in ↗
-          </a>
-        </div>
-        <div className="pure-mockup-status">
-          <span className="unlocked-indicator">● NDA Signed · Verified Access</span>
-        </div>
-      </div>
+  return children;
+}
 
-      {/* Pure Full Website Mockup with Natural Scroll */}
-      <div className="pure-mockup-viewport">
-        <img
-          src={project.coverImage}
-          alt={`${project.title} full website mockup`}
-          className="pure-mockup-img"
-        />
+export function WebsiteQuickLook({ project }) {
+  return (
+    <PasswordGate project={project}>
+      <div className="quicklook-pure-mockup">
+        {/* Sleek Browser Chrome */}
+        <div className="pure-mockup-header">
+          <div className="pure-mockup-dots" aria-hidden="true">
+            <span />
+            <span />
+            <span />
+          </div>
+          <div className="pure-mockup-url">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+              <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+              <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+            </svg>
+            <a
+              href="https://himseva.hp.gov.in"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ color: 'inherit', textDecoration: 'none' }}
+              title="Open himseva.hp.gov.in (opens in new tab)"
+            >
+              himseva.hp.gov.in ↗
+            </a>
+          </div>
+          <div className="pure-mockup-status">
+            <span className="unlocked-indicator">● NDA Signed · Verified Access</span>
+          </div>
+        </div>
+
+        {/* Pure Full Website Mockup with Natural Scroll */}
+        <div className="pure-mockup-viewport">
+          <img
+            src={project.coverImage}
+            alt={`${project.title} full website mockup`}
+            className="pure-mockup-img"
+          />
+        </div>
       </div>
-    </div>
+    </PasswordGate>
   );
 }
 
@@ -498,7 +529,20 @@ export function QuickLook({ project, onClose }) {
           </button>
         </div>
         <div className="quicklook-scroll">
-          {project.categoryType === 'websites' ? (
+          {project.isLocked ? (
+            <PasswordGate project={project}>
+              {project.id === 'ahamx' ? (
+                <AhamXStory onClose={handleClose} />
+              ) : project.categoryType === 'websites' ? (
+                <WebsiteQuickLook project={project} />
+              ) : (
+                <div className="quicklook-copy">
+                  <h2>{project.title}</h2>
+                  <p>{project.summary}</p>
+                </div>
+              )}
+            </PasswordGate>
+          ) : project.categoryType === 'websites' ? (
             <WebsiteQuickLook project={project} />
           ) : project.id === 'trosky' ? (
             <TroskyStory onClose={handleClose} />
@@ -506,6 +550,8 @@ export function QuickLook({ project, onClose }) {
             <RyzeupStory onClose={handleClose} />
           ) : project.id === 'picklemates' ? (
             <PickleMatesStory onClose={handleClose} />
+          ) : project.id === 'ahamx' ? (
+            <AhamXStory onClose={handleClose} />
           ) : (
             <div className="quicklook-copy">
               <h2>{project.title}</h2>
