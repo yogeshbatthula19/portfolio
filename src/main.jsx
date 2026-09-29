@@ -2,6 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App.jsx'
 import { MotionConfig } from 'framer-motion'
+import 'lenis/dist/lenis.css'
 import './index.css'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
@@ -11,3 +12,5 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     </MotionConfig>
   </React.StrictMode>,
 )
+
+

@@ -164,7 +164,7 @@ export default function CaseStudyAhamX({ onBack, isRevealed = true }) {
         >
           <div>
             <div className="text-[10px] sm:text-[11px] font-basier font-medium uppercase tracking-wider text-[#9ca3af]">My Role</div>
-            <div className="text-[13px] sm:text-[14px] font-switzer font-normal text-[#111827] mt-0.5 sm:mt-1">Product designer</div>
+            <div className="text-[13px] sm:text-[14px] font-switzer font-normal text-[#111827] mt-0.5 sm:mt-1">Product Designer</div>
           </div>
           <div>
             <div className="text-[10px] sm:text-[11px] font-basier font-medium uppercase tracking-wider text-[#9ca3af]">Timeline</div>
@@ -172,7 +172,7 @@ export default function CaseStudyAhamX({ onBack, isRevealed = true }) {
           </div>
           <div>
             <div className="text-[10px] sm:text-[11px] font-basier font-medium uppercase tracking-wider text-[#9ca3af]">Platforms</div>
-            <div className="text-[13px] sm:text-[14px] font-switzer font-normal text-[#111827] mt-0.5 sm:mt-1">Desktop + mobile</div>
+            <div className="text-[13px] sm:text-[14px] font-switzer font-normal text-[#111827] mt-0.5 sm:mt-1">Desktop + Mobile</div>
           </div>
           <div>
             <div className="text-[10px] sm:text-[11px] font-basier font-medium uppercase tracking-wider text-[#9ca3af]">Product Org</div>

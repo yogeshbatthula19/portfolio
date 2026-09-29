@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useLayoutEffect, useRef, useMemo } from 'react';
-import { motion, useScroll, useTransform, AnimatePresence, useSpring, cubicBezier, useReducedMotion } from 'framer-motion';
+import { motion, useScroll, useTransform, AnimatePresence, useSpring, cubicBezier, useReducedMotion, useVelocity } from 'framer-motion';
+import Lenis from 'lenis';
 import { FileText, Heart, ArrowRight, ArrowUpRight, X } from 'lucide-react';
 import CaseStudyAhamX from './CaseStudyAhamX';
 import CaseStudyRyzeup from './CaseStudyRyzeup';
@@ -327,8 +328,8 @@ function ScrollRevealSection({ sectionRef, children }) {
   );
 }
 
-// Case study card with standard pointer and keyboard navigation.
-function CaseStudyCard({ coverImage, title, description, onClick }) {
+// Case study card with kinetic velocity skew and spring physics.
+function CaseStudyCard({ coverImage, title, description, onClick, skewY }) {
   return (
     <motion.div
       onClick={onClick}
@@ -338,7 +339,9 @@ function CaseStudyCard({ coverImage, title, description, onClick }) {
         if (onClick && event.key === "Enter") onClick();
       }}
       data-interactive={Boolean(onClick)}
-      className="case-study-card w-full bg-white rounded-[24px] border border-black/[0.08] overflow-hidden flex flex-col group transition-all duration-300 hover:border-black/20 relative select-none"
+      style={skewY ? { skewY, transformOrigin: "center center" } : undefined}
+      whileHover={{ y: -4, transition: { type: "spring", stiffness: 400, damping: 25 } }}
+      className="case-study-card w-full bg-white rounded-[24px] border border-black/[0.08] overflow-hidden flex flex-col group transition-all duration-300 hover:border-black/20 hover:shadow-[0_16px_36px_-12px_rgba(0,0,0,0.08)] relative select-none will-change-transform"
     >
       {/* Banner */}
       <div className="relative w-full h-[210px] sm:h-[220px] overflow-hidden select-none bg-gray-50">
@@ -538,6 +541,33 @@ export default function App() {
   const returnToWorks = useRef(false);
   const worksRef = useRef(null);
 
+  // Initialize Lenis Kinetic Smooth Scrolling
+  useEffect(() => {
+    if (reduceMotion) return;
+
+    const lenis = new Lenis({
+      lerp: 0.085,
+      wheelMultiplier: 0.95,
+      smoothWheel: true,
+      syncTouch: false,
+    });
+
+    let rafId;
+    function raf(time) {
+      lenis.raf(time);
+      rafId = requestAnimationFrame(raf);
+    }
+    rafId = requestAnimationFrame(raf);
+
+    window.lenis = lenis;
+
+    return () => {
+      cancelAnimationFrame(rafId);
+      lenis.destroy();
+      delete window.lenis;
+    };
+  }, [reduceMotion]);
+
   // Opening / Preloader Animation State (Home: "Yogesh", Case Studies: "Case study", About: "About")
   const [introState, setIntroState] = useState(() => {
     if (typeof window !== 'undefined') {
@@ -658,6 +688,7 @@ export default function App() {
     setIntroState({ show: true, title: 'Case study', key: `case-study-${slug}-${Date.now()}` });
     window.location.hash = `#/case-study/${slug}`;
     setCurrentView(slug);
+    window.lenis?.scrollTo(0, { immediate: true });
     window.scrollTo({ top: 0, behavior: 'instant' });
   };
 
@@ -666,6 +697,7 @@ export default function App() {
     setIntroState({ show: true, title: 'About', key: `about-${Date.now()}` });
     window.location.hash = '#/about';
     setCurrentView('about');
+    window.lenis?.scrollTo(0, { immediate: true });
     window.scrollTo({ top: 0, behavior: 'instant' });
   };
 
@@ -680,6 +712,7 @@ export default function App() {
       } else {
         window.location.hash = '';
       }
+      window.lenis?.scrollTo(0, { immediate: true });
       window.scrollTo({ top: 0, behavior: 'instant' });
     }
     setCurrentView('home');
@@ -689,6 +722,11 @@ export default function App() {
   const handleScrollToWorks = () => {
     if (reduceMotion) {
       document.getElementById('selected-works')?.scrollIntoView({ behavior: 'instant' });
+      return;
+    }
+
+    if (window.lenis) {
+      window.lenis.scrollTo('#selected-works', { offset: -24, duration: 1.2 });
       return;
     }
 
@@ -782,13 +820,27 @@ export default function App() {
     mass: 0.2,
   });
 
-  // Butter-smooth spring-damped scroll tracking (frictionless inertia, eliminates wheel-click jitter)
+  // Lenis manages window smoothing; tight spring ensures instant 1:1 sync with zero rubber-band delay
   const smoothScrollY = useSpring(scrollY, {
-    stiffness: 160,
-    damping: 26,
-    mass: 0.3,
-    restDelta: 0.001,
+    stiffness: 500,
+    damping: 45,
+    mass: 0.04,
+    restDelta: 0.0005,
   });
+
+  // Velocity-based dynamic skew (kinetic mass and fluid air resistance)
+  const scrollVelocity = useVelocity(scrollY);
+  const smoothVelocity = useSpring(scrollVelocity, {
+    damping: 50,
+    stiffness: 350,
+    mass: 0.1,
+  });
+  // Velocity ranges from ~ -2000px/s (upward) to +2000px/s (downward).
+  // A subtle range of -1.3deg to +1.3deg gives tangible kinetic weight without distorting readability.
+  const rawSkewY = useTransform(smoothVelocity, [-2000, 2000], [-1.3, 1.3], {
+    clamp: true,
+  });
+  const cardSkewY = reduceMotion ? 0 : rawSkewY;
 
   // Interpolation range: over natural page scroll down to the card (0px to 480px)
   const scrollRange = [0, 480];
@@ -1299,7 +1351,7 @@ export default function App() {
                       lineHeight: 'normal',
                     }}
                   >
-                    Product
+                    Products
                   </span>
 
                   {/* Hero Star Sparkle directly inside the pill */}
@@ -1408,6 +1460,8 @@ export default function App() {
           style={reduceMotion ? undefined : {
             scale: cardScale,
             y: cardY,
+            skewY: cardSkewY,
+            transformOrigin: "center center",
           }}
           className="w-full will-change-transform"
         >
@@ -1651,6 +1705,8 @@ export default function App() {
           style={{
             scale: cardScale,
             y: cardY,
+            skewY: cardSkewY,
+            transformOrigin: "center center",
           }}
           className="relative shrink-0 w-[940px] max-w-[92vw] mx-auto z-20 will-change-transform"
         >
@@ -1929,10 +1985,11 @@ export default function App() {
           
           {/* Case Study 1: Trosky 365 */}
           <CaseStudyCard
+            skewY={cardSkewY}
             coverImage={coverPoints}
             title={
               <>
-                Players Complete <span className="font-basier font-bold text-blue-600">25%</span> more daily wins.
+                Players complete <span className="font-basier font-bold text-blue-600">25%</span> more daily wins.
               </>
             }
             description="Turning the Trosky 365 home screen from a static list of assignments into a voice-driven coaching experience with Coach Trosky."
@@ -1941,6 +1998,7 @@ export default function App() {
 
           {/* Case Study 2: LearnPulse AI / AhamX */}
           <CaseStudyCard
+            skewY={cardSkewY}
             coverImage={coverEdtech}
             title={
               <>
@@ -1953,6 +2011,7 @@ export default function App() {
 
           {/* Case Study 3: Ryzeup / PassKey ID */}
           <CaseStudyCard
+            skewY={cardSkewY}
             coverImage={coverIdentity}
             title={
               <>
@@ -1965,6 +2024,7 @@ export default function App() {
 
           {/* Case Study 4: CarePulse Health */}
           <CaseStudyCard
+            skewY={cardSkewY}
             coverImage={coverHealth}
             title={
               <>

@@ -2,29 +2,31 @@ import React, { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 
 // Peer endorsements and feedback from cross-functional teammates
-import matthewPhoto from './assets/spotlights/matthew_real.png';
-import belqisePhoto from './assets/spotlights/belqise_photo_exact.png';
+import harishPhoto from './assets/spotlights/harish_photo.jpg';
+import purandharPhoto from './assets/spotlights/purandhar_photo.jpg';
 import rishiPhoto from './assets/spotlights/rishi_photo.jpg';
 import heroBg from './assets/564cc67c35dca41051d7d78448f696fab9f139d9.png';
 
 const spotlights = [
   {
-    id: 'manager-feedback',
-    name: 'Matthew Keller',
-    role: 'Head of Product & Design',
-    badge: 'Manager',
-    photo: matthewPhoto,
-    photoPosition: 'object-[center_25%]',
+    id: 'product-manager-feedback',
+    name: 'Harish Tadikamalla',
+    role: 'Product Manager',
+    badge: 'Product Manager',
+    photo: harishPhoto,
+    photoPosition: 'object-[center_20%]',
+    linkedin: 'https://www.linkedin.com/in/harishtadikam/',
     quote: 'Yogesh has a rare instinct for turning complex product requirements into simple, elegant workflows. He doesn’t just design screens—he actively shapes product strategy and elevates team velocity.',
   },
   {
-    id: 'techie-feedback',
-    name: 'Belqise Morales',
-    role: 'Staff Software Engineer',
-    badge: 'Senior Tech Lead',
-    photo: belqisePhoto,
+    id: 'senior-designer-feedback',
+    name: 'Purandhar Malavathu',
+    role: 'Senior Designer',
+    badge: 'Senior Designer',
+    photo: purandharPhoto,
     photoPosition: 'object-[center_20%]',
-    quote: 'Collaborating with Yogesh is every developer’s dream. His design systems and token structures are mathematically airtight, and he thinks through responsive states, edge cases, and APIs before we write a single ticket.',
+    linkedin: 'https://www.linkedin.com/in/purandhar-malavathu-8b0aa527a/',
+    quote: 'Yogesh brings an exceptional balance of systems thinking and visual craft. His component architectures and attention to interaction detail make collaborating with him an inspiring experience.',
   },
   {
     id: 'junior-designer-feedback',
@@ -34,7 +36,7 @@ const spotlights = [
     photo: rishiPhoto,
     photoPosition: 'object-center',
     linkedin: 'https://www.linkedin.com/in/rishicharan/',
-    quote: 'Working under my Senior Designer sharpened my design thinking and gave me the confidence to tackle complex problems effectively.',
+    quote: 'Working with Yogesh sharpened my design thinking and gave me the confidence to tackle complex problems effectively.',
   },
 ];
 
