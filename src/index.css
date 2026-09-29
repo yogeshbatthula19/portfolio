@@ -1,0 +1,222 @@
+@import "tailwindcss";
+
+html, body {
+  overflow-x: clip;
+  max-width: 100vw;
+}
+
+@font-face {
+  font-family: '__basierCircle_9ca3f5';
+  src: url('./assets/fonts/basier-circle-500.woff2') format('woff2');
+  font-weight: 500 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: '__basierCircle_9ca3f5';
+  src: url('./assets/fonts/basier-circle-regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: '__switzer_c2a0a8';
+  src: url('./assets/fonts/switzer-variable.woff2') format('woff2');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: '__switzer_Fallback_c2a0a8';
+  src: local('Arial');
+  ascent-override: 96.67%;
+  descent-override: 24.66%;
+  line-gap-override: 8.88%;
+  size-adjust: 101.38%;
+}
+
+@font-face {
+  font-family: 'Junicode';
+  src: url('./assets/fonts/JunicodeVF-Roman.woff2') format('woff2');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'The Seasons';
+  src: url('./assets/fonts/Fontspring-DEMO-theseasons-lt.otf') format('opentype');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0020, U+002C, U+002E, U+0030-0033, U+0035-003B, U+003F, U+0041-005A, U+0061-007A, U+00C0-00FF;
+}
+
+@font-face {
+  font-family: 'The Seasons';
+  src: url('./assets/fonts/Fontspring-DEMO-theseasons-reg.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0020, U+002C, U+002E, U+0030-0033, U+0035-003B, U+003F, U+0041-005A, U+0061-007A, U+00C0-00FF;
+}
+
+@font-face {
+  font-family: 'The Seasons';
+  src: url('./assets/fonts/Fontspring-DEMO-theseasons-bd.otf') format('opentype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0020, U+002C, U+002E, U+0030-0033, U+0035-003B, U+003F, U+0041-005A, U+0061-007A, U+00C0-00FF;
+}
+
+@font-face {
+  font-family: 'Sacramento';
+  src: url('./assets/fonts/Sacramento-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Caveat';
+  src: url('./assets/fonts/Caveat-SemiBold.ttf') format('truetype');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@theme {
+  --font-seasons: 'The Seasons', Georgia, serif;
+  --font-basier: '__basierCircle_9ca3f5', 'Segoe UI', Roboto, sans-serif;
+  --font-switzer: '__switzer_c2a0a8', 'Segoe UI', Roboto, sans-serif;
+}
+
+.font-seasons {
+  font-family: 'The Seasons', Georgia, serif !important;
+}
+
+.font-basier {
+  font-family: '__basierCircle_9ca3f5', 'Segoe UI', Roboto, sans-serif !important;
+}
+
+.font-switzer {
+  font-family: '__switzer_c2a0a8', 'Segoe UI', Roboto, sans-serif !important;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  max-width: 100vw;
+  overflow-x: clip;
+  font-family: '__basierCircle_9ca3f5', '__basierCircle_Fallback_9ca3f5', 'Segoe UI', 'Roboto', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #ffffff;
+}
+
+@keyframes borderBeamSpin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-border-beam {
+  animation: borderBeamSpin 2.4s linear infinite;
+}
+
+:focus-visible {
+  outline: 3px solid #0066ff;
+  outline-offset: 4px;
+}
+
+button, a, [role="button"], [role="link"] {
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+
+#selected-works { scroll-margin-top: 24px; }
+.profile-header > div { flex: 1 1 240px; min-width: 0; }
+.case-study-card[data-interactive="true"] { cursor: pointer; }
+
+@media (max-width: 639px) {
+  .hero-section { min-height: 80svh; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .desktop-profile { display: none; }
+  .responsive-profile { display: block; }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Butter-Smooth Global Transitions, Easing & Strict Upright Typography (Zero Italics) */
+*, *::before, *::after {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-style: normal !important;
+}
+
+i, em, cite, dfn, var, address {
+  font-style: normal !important;
+}
+
+.transition-all,
+.transition,
+.transition-transform,
+.transition-opacity,
+.transition-colors,
+.transition-shadow {
+  transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1) !important;
+}
+
+.works-reveal { will-change: transform; }
+.animate-border-beam { animation-play-state: paused; }
+.group\/product:hover .animate-border-beam { animation-play-state: running; }
+@media (prefers-reduced-motion: reduce) {
+  .works-reveal { will-change: auto; }
+}
+
+/* Custom 3D Cursor & System Cursor Suppression */
+@media (pointer: fine) {
+  body.custom-cursor-active,
+  body.custom-cursor-active * {
+    cursor: none !important;
+  }
+}
+
+/* Continuous Pendulum Sway for Indian Nimbu Mirchi Nazar Battu Charm */
+@keyframes nimbuPendulumWave {
+  0% {
+    transform: rotate(-6.5deg);
+  }
+  50% {
+    transform: rotate(6.5deg);
+  }
+  100% {
+    transform: rotate(-6.5deg);
+  }
+}
+
+.nimbu-pendulum-wave {
+  transform-origin: 43.4% 0px !important;
+  animation: nimbuPendulumWave 3.2s ease-in-out infinite !important;
+  will-change: transform;
+}
+
