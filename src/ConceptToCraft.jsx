@@ -74,20 +74,23 @@ function CraftCard({ card, index, progress, width, ribbonMetrics, reduced }) {
 }
 
 function CraftHeading({ progress, reduced }) {
-  // Clean, non-overlapping transition from "From Foodie" to "To Foodieeee"
-  // Phase 1 exits cleanly between [0.38, 0.47]
-  const fromOpacity = useTransform(progress, [0.38, 0.47], [1, 0]);
-  const fromY = useTransform(progress, [0.38, 0.47], [0, -24]);
+  // Phase 1 exits cleanly between [0.42, 0.48]
+  const fromOpacity = useTransform(progress, [0.42, 0.48], [1, 0]);
+  const fromY = useTransform(progress, [0.42, 0.48], [0, -20]);
+  // Strictly hide Phase 1 when progress >= 0.49
+  const fromVisibility = useTransform(progress, p => p < 0.49 ? 'visible' : 'hidden');
   
-  // Phase 2 enters cleanly between [0.49, 0.58] - buffer ensures zero overlap collision
-  const toOpacity = useTransform(progress, [0.49, 0.58], [0, 1]);
-  const toY = useTransform(progress, [0.49, 0.58], [24, 0]);
+  // Phase 2 enters cleanly between [0.51, 0.57]
+  const toOpacity = useTransform(progress, [0.51, 0.57], [0, 1]);
+  const toY = useTransform(progress, [0.51, 0.57], [20, 0]);
+  // Strictly hide Phase 2 when progress < 0.50
+  const toVisibility = useTransform(progress, p => p >= 0.50 ? 'visible' : 'hidden');
 
   if (reduced) {
     return (
       <div className="craft-heading">
-        <h2 id="craft-title">
-          <span className="craft-title-single">From Foodie<br />To Foodieeee</span>
+        <h2 id="craft-title" className="craft-heading-grid">
+          <span className="craft-heading-item">To Foodieeee</span>
         </h2>
       </div>
     );
@@ -95,13 +98,17 @@ function CraftHeading({ progress, reduced }) {
 
   return (
     <div className="craft-heading pointer-events-none select-none">
-      <h2 id="craft-title" className="relative w-full h-[1.3em] flex items-center justify-center">
+      <h2 id="craft-title" className="craft-heading-grid">
         <span className="craft-sr-only">From Foodie to Foodieeee</span>
         
         {/* Phase 1: From Foodie */}
         <motion.span 
-          style={{ opacity: fromOpacity, y: fromY }} 
-          className="craft-title-single absolute inset-0 flex items-center justify-center pointer-events-none select-none"
+          style={{ 
+            opacity: fromOpacity, 
+            y: fromY,
+            visibility: fromVisibility
+          }} 
+          className="craft-heading-item pointer-events-none select-none"
           aria-hidden="true"
         >
           From Foodie
@@ -109,8 +116,12 @@ function CraftHeading({ progress, reduced }) {
 
         {/* Phase 2: To Foodieeee */}
         <motion.span 
-          style={{ opacity: toOpacity, y: toY }} 
-          className="craft-title-single absolute inset-0 flex items-center justify-center pointer-events-none select-none"
+          style={{ 
+            opacity: toOpacity, 
+            y: toY,
+            visibility: toVisibility
+          }} 
+          className="craft-heading-item pointer-events-none select-none"
           aria-hidden="true"
         >
           To Foodieeee
