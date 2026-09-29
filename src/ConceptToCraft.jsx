@@ -1,5 +1,5 @@
-import React, { useLayoutEffect, useRef, useState, useMemo } from 'react';
-import { motion, useScroll, useTransform, useReducedMotion } from 'framer-motion';
+import React, { useEffect, useLayoutEffect, useRef, useState, useMemo } from 'react';
+import { motion, AnimatePresence, useScroll, useTransform, useReducedMotion } from 'framer-motion';
 import foodie01 from './assets/foodiee/08D11BD2-E811-496F-87D0-F920267BBD6F.jpg';
 import foodie02 from './assets/foodiee/14E8659C-DBD2-4AE3-B451-25FE1C1FAC10.jpg';
 import foodie03 from './assets/foodiee/2B9F4E39-0418-4D21-9453-83EE4C46C4B8.jpg';
@@ -74,17 +74,27 @@ function CraftCard({ card, index, progress, width, ribbonMetrics, reduced }) {
 }
 
 function CraftHeading({ progress, reduced }) {
-  // Phase 1 exits cleanly between [0.42, 0.48]
-  const fromOpacity = useTransform(progress, [0.42, 0.48], [1, 0]);
-  const fromY = useTransform(progress, [0.42, 0.48], [0, -20]);
-  // Strictly hide Phase 1 when progress >= 0.49
-  const fromVisibility = useTransform(progress, p => p < 0.49 ? 'visible' : 'hidden');
-  
-  // Phase 2 enters cleanly between [0.51, 0.57]
-  const toOpacity = useTransform(progress, [0.51, 0.57], [0, 1]);
-  const toY = useTransform(progress, [0.51, 0.57], [20, 0]);
-  // Strictly hide Phase 2 when progress < 0.50
-  const toVisibility = useTransform(progress, p => p >= 0.50 ? 'visible' : 'hidden');
+  const [isSecondPhase, setIsSecondPhase] = useState(() => {
+    try {
+      return (progress?.get() || 0) >= 0.48;
+    } catch {
+      return false;
+    }
+  });
+
+  useEffect(() => {
+    if (!progress) return;
+    return progress.on('change', (latest) => {
+      // Hysteresis threshold to eliminate any midpoint flutter:
+      // Switches to Phase 2 ("To Foodieeee") when scrolling down past 48%
+      // Switches back to Phase 1 ("From Foodie") when scrolling up past 44%
+      if (latest >= 0.48 && !isSecondPhase) {
+        setIsSecondPhase(true);
+      } else if (latest < 0.44 && isSecondPhase) {
+        setIsSecondPhase(false);
+      }
+    });
+  }, [progress, isSecondPhase]);
 
   if (reduced) {
     return (
@@ -98,34 +108,38 @@ function CraftHeading({ progress, reduced }) {
 
   return (
     <div className="craft-heading pointer-events-none select-none">
-      <h2 id="craft-title" className="craft-heading-grid">
+      <h2 id="craft-title" className="craft-heading-grid overflow-hidden">
         <span className="craft-sr-only">From Foodie to Foodieeee</span>
         
-        {/* Phase 1: From Foodie */}
-        <motion.span 
-          style={{ 
-            opacity: fromOpacity, 
-            y: fromY,
-            visibility: fromVisibility
-          }} 
-          className="craft-heading-item pointer-events-none select-none"
-          aria-hidden="true"
-        >
-          From Foodie
-        </motion.span>
-
-        {/* Phase 2: To Foodieeee */}
-        <motion.span 
-          style={{ 
-            opacity: toOpacity, 
-            y: toY,
-            visibility: toVisibility
-          }} 
-          className="craft-heading-item pointer-events-none select-none"
-          aria-hidden="true"
-        >
-          To Foodieeee
-        </motion.span>
+        <AnimatePresence mode="popLayout" initial={false}>
+          {!isSecondPhase ? (
+            <motion.span
+              key="phase-1-foodie"
+              initial={{ opacity: 0, y: 28 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -28 }}
+              transition={{ duration: 0.32, ease: [0.16, 1, 0.3, 1] }}
+              className="craft-heading-item pointer-events-none select-none"
+              style={{ color: '#18181b', willChange: 'transform, opacity' }}
+              aria-hidden="true"
+            >
+              From Foodie
+            </motion.span>
+          ) : (
+            <motion.span
+              key="phase-2-foodieeee"
+              initial={{ opacity: 0, y: 28 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -28 }}
+              transition={{ duration: 0.32, ease: [0.16, 1, 0.3, 1] }}
+              className="craft-heading-item pointer-events-none select-none"
+              style={{ color: '#18181b', willChange: 'transform, opacity' }}
+              aria-hidden="true"
+            >
+              To Foodieeee
+            </motion.span>
+          )}
+        </AnimatePresence>
       </h2>
     </div>
   );
