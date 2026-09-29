@@ -42,8 +42,24 @@ export default function OpeningAnimation({
       onRevealStart?.();
     }, 850);
 
-    return () => clearTimeout(timer);
+    // Hard fallback: Guarantee completion after 2000ms even if mobile WebKit drops onAnimationComplete
+    const fallbackTimer = setTimeout(() => {
+      onRevealStart?.();
+      onComplete?.();
+    }, 2000);
+
+    return () => {
+      clearTimeout(timer);
+      clearTimeout(fallbackTimer);
+    };
   }, [reduceMotion, onComplete, onRevealStart]);
+
+  // Tap-anywhere to dismiss instantly on mobile
+  const handleImmediateDismiss = () => {
+    setSlideUp(true);
+    onRevealStart?.();
+    setTimeout(() => onComplete?.(), 250);
+  };
 
   // Butter-smooth cinematic ease: velvety acceleration + luxurious inertial ease-out
   const butterSmoothEase = [0.65, 0, 0.15, 1];
@@ -62,6 +78,7 @@ export default function OpeningAnimation({
       {/* Main Translating Container: 100% GPU Composited */}
       <motion.div
         key="preloader-overlay"
+        onClick={handleImmediateDismiss}
         initial={{ y: '0%' }}
         animate={slideUp ? { y: '-125%' } : { y: '0%' }}
         transition={{ duration: 1.15, ease: butterSmoothEase }}
@@ -70,7 +87,9 @@ export default function OpeningAnimation({
             onComplete?.();
           }
         }}
-        className="fixed inset-0 z-[9999] w-screen h-[calc(100vh+200px)] pointer-events-auto select-none overflow-visible will-change-transform transform-gpu"
+        className={`fixed inset-0 z-[9999] w-screen h-[calc(100vh+200px)] select-none overflow-visible will-change-transform transform-gpu ${
+          slideUp ? 'pointer-events-none' : 'pointer-events-auto cursor-pointer'
+        }`}
         style={{
           clipPath: 'url(#introBgWaveClip)',
           WebkitClipPath: 'url(#introBgWaveClip)',

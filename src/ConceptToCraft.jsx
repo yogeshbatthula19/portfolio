@@ -1,5 +1,5 @@
 import React, { useLayoutEffect, useRef, useState, useMemo } from 'react';
-import { motion, useScroll, useTransform, useSpring, useReducedMotion } from 'framer-motion';
+import { motion, useScroll, useTransform, useReducedMotion } from 'framer-motion';
 import foodie01 from './assets/foodiee/08D11BD2-E811-496F-87D0-F920267BBD6F.jpg';
 import foodie02 from './assets/foodiee/14E8659C-DBD2-4AE3-B451-25FE1C1FAC10.jpg';
 import foodie03 from './assets/foodiee/2B9F4E39-0418-4D21-9453-83EE4C46C4B8.jpg';
@@ -42,6 +42,8 @@ function CraftCard({ card, index, progress, width, ribbonMetrics, reduced }) {
   const z = useTransform(distance, value => -Math.min(value * value, 2) * 35);
   const zIndex = useTransform(distance, value => Math.round(20 - Math.min(Math.abs(value), 2) * 5));
 
+  const isMobile = width < 640;
+
   return (
     <motion.figure
       className={`craft-card craft-card--${card.type}`}
@@ -49,12 +51,12 @@ function CraftCard({ card, index, progress, width, ribbonMetrics, reduced }) {
         x,
         y,
         rotate,
-        rotateY,
+        rotateY: isMobile ? 0 : rotateY,
         scale,
-        z,
+        z: isMobile ? 0 : z,
         zIndex,
-        transformPerspective: 1200,
-        transformStyle: 'preserve-3d',
+        transformPerspective: isMobile ? undefined : 1200,
+        transformStyle: isMobile ? undefined : 'preserve-3d',
         width: size
       }}
     >
@@ -63,7 +65,7 @@ function CraftCard({ card, index, progress, width, ribbonMetrics, reduced }) {
         alt={card.alt}
         width="600"
         height="750"
-        loading="eager"
+        loading={index < 2 ? 'eager' : 'lazy'}
         decoding="async"
         draggable={false}
       />
@@ -128,15 +130,9 @@ export default function ConceptToCraft() {
     offset: ['start start', 'end end']
   });
 
-  // Snappy, silky spring that tracks wheel & touch gestures with zero lag
-  const smoothProgress = useSpring(scrollYProgress, {
-    stiffness: 260,
-    damping: 32,
-    mass: 0.12,
-    restDelta: 0.0001
-  });
-
-  const progress = reduced ? scrollYProgress : smoothProgress;
+  // Use the browser's scroll progress directly so the ribbon stays locked to
+  // wheel and touch input instead of introducing a second spring animation.
+  const progress = scrollYProgress;
 
   useLayoutEffect(() => {
     const viewport = viewportRef.current;

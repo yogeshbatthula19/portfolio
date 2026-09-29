@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 
 // Peer endorsements and feedback from cross-functional teammates
@@ -40,10 +40,10 @@ const spotlights = [
   },
 ];
 
-function StickyCard({ item, index, isLast }) {
+function StickyCard({ item, index, isLast, isDesktop }) {
   const cardRef = useRef(null);
 
-  // Track scroll through the card's pinned lifespan
+  // Track scroll through the card's pinned lifespan (desktop only)
   const { scrollYProgress } = useScroll({
     target: cardRef,
     offset: ['start 90px', 'end 90px'],
@@ -56,12 +56,14 @@ function StickyCard({ item, index, isLast }) {
   return (
     <motion.div
       ref={cardRef}
-      style={{
+      style={isDesktop ? {
         scale,
         opacity,
         zIndex: 10 + index * 10,
+      } : {
+        zIndex: 10 + index * 10,
       }}
-      className="sticky top-20 sm:top-28 lg:top-32 w-full max-w-[390px] sm:max-w-[420px] h-[510px] sm:h-[550px] lg:h-[560px] mx-auto lg:ml-auto lg:mr-0 will-change-transform rounded-[24px] sm:rounded-[32px] overflow-hidden bg-[#28282a] flex flex-col select-none shadow-xl"
+      className="relative lg:sticky top-auto lg:top-32 w-full max-w-[390px] sm:max-w-[420px] h-auto min-h-[460px] sm:h-[530px] lg:h-[560px] mx-auto lg:ml-auto lg:mr-0 rounded-[24px] sm:rounded-[32px] overflow-hidden bg-[#28282a] flex flex-col select-none shadow-xl"
     >
       {/* Top Half: Photo with clean straight edge meeting dark base */}
       <div className="w-full h-[230px] sm:h-[270px] overflow-hidden bg-[#1e1e20] shrink-0">
@@ -122,12 +124,21 @@ function StickyCard({ item, index, isLast }) {
 }
 
 export default function CommunityTestimonials() {
+  const [isDesktop, setIsDesktop] = useState(false);
+
+  useEffect(() => {
+    const check = () => setIsDesktop(window.innerWidth >= 1024);
+    check();
+    window.addEventListener('resize', check, { passive: true });
+    return () => window.removeEventListener('resize', check);
+  }, []);
+
   return (
     <section 
       id="community-testimonials"
       className="relative z-10 w-full select-none border-t border-black/[0.06] pt-12 sm:pt-20 lg:pt-24 pb-20 sm:pb-36 lg:pb-56"
     >
-      {/* Ambient gradient hero background matching hero section - fixed viewport scaling to prevent vertical stretching */}
+      {/* Ambient gradient hero background matching hero section */}
       <div
         aria-hidden="true"
         className="absolute inset-0 pointer-events-none -z-10"
@@ -135,7 +146,6 @@ export default function CommunityTestimonials() {
           backgroundImage: `linear-gradient(to bottom, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0.3) 40%, rgba(255,255,255,0.85) 100%), url(${heroBg})`,
           backgroundSize: 'cover',
           backgroundPosition: 'center top',
-          backgroundAttachment: 'fixed',
           backgroundRepeat: 'no-repeat',
           backgroundColor: '#ffffff',
         }}
@@ -162,13 +172,14 @@ export default function CommunityTestimonials() {
           {/* RIGHT COLUMN: Generous Gap Reel Stacking to Actual        */}
           {/* Placement, followed by Full Section Scroll                */}
           {/* ========================================================= */}
-          <div className="flex flex-col items-center lg:items-end gap-[64px] sm:gap-[110px] lg:gap-[180px] pb-0">
+          <div className="flex flex-col items-center lg:items-end gap-6 sm:gap-10 lg:gap-[180px] pb-0">
             {spotlights.map((item, index) => (
               <StickyCard
                 key={item.id}
                 item={item}
                 index={index}
                 isLast={index === spotlights.length - 1}
+                isDesktop={isDesktop}
               />
             ))}
           </div>

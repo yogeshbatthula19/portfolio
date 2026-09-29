@@ -328,8 +328,8 @@ function ScrollRevealSection({ sectionRef, children }) {
   );
 }
 
-// Case study card with kinetic velocity skew and spring physics.
-function CaseStudyCard({ coverImage, title, description, onClick, skewY }) {
+// Interactive Case study card with smooth hover and click navigation.
+function CaseStudyCard({ coverImage, title, description, onClick }) {
   return (
     <motion.div
       onClick={onClick}
@@ -339,7 +339,6 @@ function CaseStudyCard({ coverImage, title, description, onClick, skewY }) {
         if (onClick && event.key === "Enter") onClick();
       }}
       data-interactive={Boolean(onClick)}
-      style={skewY ? { skewY, transformOrigin: "center center" } : undefined}
       whileHover={{ y: -4, transition: { type: "spring", stiffness: 400, damping: 25 } }}
       className="case-study-card w-full bg-white rounded-[24px] border border-black/[0.08] overflow-hidden flex flex-col group transition-all duration-300 hover:border-black/20 hover:shadow-[0_16px_36px_-12px_rgba(0,0,0,0.08)] relative select-none will-change-transform"
     >
@@ -545,9 +544,15 @@ export default function App() {
   useEffect(() => {
     if (reduceMotion) return;
 
+    // Native momentum scrolling is considerably more reliable on touch hardware.
+    // Running Lenis alongside 3D cards and scroll-linked Framer transforms caused
+    // dropped frames on phones and tablets.
+    const isTouchDevice = window.matchMedia('(pointer: coarse)').matches || window.innerWidth < 1024;
+    if (isTouchDevice) return;
+
     const lenis = new Lenis({
-      lerp: 0.085,
-      wheelMultiplier: 0.95,
+      lerp: 0.075,
+      wheelMultiplier: 0.7,
       smoothWheel: true,
       syncTouch: false,
     });
@@ -615,13 +620,19 @@ export default function App() {
 
   // Prevent background scrolling while opening animation is active
   useEffect(() => {
+    let unlockTimer;
     if (introState.show) {
       document.body.style.overflow = 'hidden';
       window.scrollTo(0, 0);
+      // Hard failsafe: guarantee scroll is always released after 2200ms
+      unlockTimer = setTimeout(() => {
+        document.body.style.overflow = '';
+      }, 2200);
     } else {
       document.body.style.overflow = '';
     }
     return () => {
+      if (unlockTimer) clearTimeout(unlockTimer);
       document.body.style.overflow = '';
     };
   }, [introState.show]);
@@ -820,27 +831,8 @@ export default function App() {
     mass: 0.2,
   });
 
-  // Lenis manages window smoothing; tight spring ensures instant 1:1 sync with zero rubber-band delay
-  const smoothScrollY = useSpring(scrollY, {
-    stiffness: 500,
-    damping: 45,
-    mass: 0.04,
-    restDelta: 0.0005,
-  });
-
-  // Velocity-based dynamic skew (kinetic mass and fluid air resistance)
-  const scrollVelocity = useVelocity(scrollY);
-  const smoothVelocity = useSpring(scrollVelocity, {
-    damping: 50,
-    stiffness: 350,
-    mass: 0.1,
-  });
-  // Velocity ranges from ~ -2000px/s (upward) to +2000px/s (downward).
-  // A subtle range of -1.3deg to +1.3deg gives tangible kinetic weight without distorting readability.
-  const rawSkewY = useTransform(smoothVelocity, [-2000, 2000], [-1.3, 1.3], {
-    clamp: true,
-  });
-  const cardSkewY = reduceMotion ? 0 : rawSkewY;
+  // Lenis owns smoothing; visual transforms track its actual scroll position.
+  const smoothScrollY = scrollY;
 
   // Interpolation range: over natural page scroll down to the card (0px to 480px)
   const scrollRange = [0, 480];
@@ -856,133 +848,24 @@ export default function App() {
 
   const [screenWidth, setScreenWidth] = useState(typeof window !== 'undefined' ? window.innerWidth : 1200);
 
-  // Mobile Hero Anchor Refs (Target positions in Hero at scroll = 0)
-  const mAnchor1Ref = useRef(null); // Lighthouse
-  const mAnchor2Ref = useRef(null); // Cycling
-  const mAnchor3Ref = useRef(null); // Temple
-  const mAnchor4Ref = useRef(null); // Couple
-  const mAnchor5Ref = useRef(null); // Prabhas
-  const mAnchor6Ref = useRef(null); // Note
-
-  // Mobile Bento Slot Refs (Final positions in Bento Profile at scroll >= 480)
-  const mSlot1Ref = useRef(null);
-  const mSlot2Ref = useRef(null);
-  const mSlot3Ref = useRef(null);
-  const mSlot4Ref = useRef(null);
-  const mSlot5Ref = useRef(null);
-  const mSlot6Ref = useRef(null);
-
-  const [mFlightOffsets, setMFlightOffsets] = useState({
-    ready: false,
-    c1: { dx: -123, dy: -167, scale: 0.40, rotate: -5 },
-    c2: { dx: -88, dy: -849, scale: 0.48, rotate: -12 },
-    c3: { dx: 94, dy: -922, scale: 0.43, rotate: 12 },
-    c4: { dx: -92, dy: -563, scale: 0.47, rotate: 8 },
-    c5: { dx: 231, dy: -708, scale: 0.47, rotate: 7 },
-    c6: { dx: 87, dy: -736, scale: 0.47, rotate: -8 },
-  });
-
-  const updateMobileFlights = () => {
-    if (typeof window === 'undefined') return;
-    if (window.innerWidth >= 1280) return;
-
-    const anchors = [
-      mAnchor1Ref.current,
-      mAnchor2Ref.current,
-      mAnchor3Ref.current,
-      mAnchor4Ref.current,
-      mAnchor5Ref.current,
-      mAnchor6Ref.current,
-    ];
-    const slots = [
-      mSlot1Ref.current,
-      mSlot2Ref.current,
-      mSlot3Ref.current,
-      mSlot4Ref.current,
-      mSlot5Ref.current,
-      mSlot6Ref.current,
-    ];
-
-    if (anchors.some((a) => !a) || slots.some((s) => !s)) return;
-
-    const heroSection = document.querySelector('.hero-section');
-    const bentoSection = document.querySelector('.responsive-profile');
-    if (!heroSection || !bentoSection) return;
-
-    const heroSecRect = heroSection.getBoundingClientRect();
-    const bentoSecRect = bentoSection.getBoundingClientRect();
-
-    const heroSecCX = heroSecRect.left + heroSecRect.width / 2;
-    const heroSecCY = heroSecRect.top + heroSecRect.height / 2;
-    const bentoSecCX = bentoSecRect.left + bentoSecRect.width / 2;
-    const bentoSecCY = bentoSecRect.top + bentoSecRect.height / 2;
-
-    const currHeroScale = (typeof heroScale?.get === 'function' ? heroScale.get() : 1) || 1;
-    const currHeroY = (typeof heroY?.get === 'function' ? heroY.get() : 0) || 0;
-
-    const currCardScale = (typeof cardScale?.get === 'function' ? cardScale.get() : 0.96) || 0.96;
-    const currCardY = (typeof cardY?.get === 'function' ? cardY.get() : 20) || 0;
-
-    const bentoSecCX_doc = bentoSecCX;
-    const bentoSecCY_doc = (bentoSecCY - currCardY) + window.scrollY;
-
-    const angles = [-5, -12, 12, 8, 7, -8];
-    const newOffsets = { ready: true };
-
-    for (let i = 0; i < 6; i++) {
-      const aEl = anchors[i];
-      const sEl = slots[i];
-      const aRect = aEl.getBoundingClientRect();
-      const sRect = sEl.getBoundingClientRect();
-
-      const aCX = aRect.left + aRect.width / 2;
-      const aCY = aRect.top + aRect.height / 2;
-      const aCX_doc = heroSecCX + (aCX - heroSecCX) / currHeroScale;
-      const aCY_doc = (heroSecCY - currHeroY) + (aCY - heroSecCY) / currHeroScale + window.scrollY;
-
-      const sCX = sRect.left + sRect.width / 2;
-      const sCY = sRect.top + sRect.height / 2;
-      const sLocalOffsetX = (sCX - bentoSecCX) / currCardScale;
-      const sLocalOffsetY = (sCY - bentoSecCY) / currCardScale;
-
-      const sCX_at_0 = bentoSecCX_doc + 0.96 * sLocalOffsetX;
-      const sCY_at_0 = (bentoSecCY_doc + 20) + 0.96 * sLocalOffsetY;
-
-      const dx = (aCX_doc - sCX_at_0) / 0.96;
-      const dy = (aCY_doc - sCY_at_0) / 0.96;
-      const targetScale = ((aRect.width / currHeroScale) / (sRect.width / currCardScale)) / 0.96;
-
-      newOffsets[`c${i + 1}`] = {
-        dx,
-        dy,
-        scale: Math.min(0.52, Math.max(0.36, targetScale)),
-        rotate: angles[i],
-      };
-    }
-
-    setMFlightOffsets(newOffsets);
-  };
-
   useLayoutEffect(() => {
     smoothScrollY.jump(window.scrollY);
-    updateMobileFlights();
-    const timer = setTimeout(() => {
-      updateMobileFlights();
-    }, 60);
     let frame;
     let active = true;
+    let lastWidth = window.innerWidth;
     const handleResize = () => {
+      // Ignore mobile address-bar collapse/expand (height-only changes) to prevent scroll stutter
+      if (Math.abs(window.innerWidth - lastWidth) < 15) return;
+      lastWidth = window.innerWidth;
       cancelAnimationFrame(frame);
       frame = requestAnimationFrame(() => {
         setScreenWidth(window.innerWidth);
-        updateMobileFlights();
       });
     };
     document.fonts.ready.then(() => { if (active) handleResize(); });
-    window.addEventListener('resize', handleResize);
+    window.addEventListener('resize', handleResize, { passive: true });
     return () => {
       active = false;
-      clearTimeout(timer);
       cancelAnimationFrame(frame);
       window.removeEventListener('resize', handleResize);
     };
@@ -1046,51 +929,6 @@ export default function App() {
   const img6ScaleX = useTransform(smoothScrollY, scrollRange, [205 / 205, 1]);
   const img6ScaleY = useTransform(smoothScrollY, scrollRange, [210 / 210, 1]);
   const img6Rotate = useTransform(smoothScrollY, scrollRange, [6, 0]);
-
-  // Responsive / Mobile Bento Card Scroll Transforms (glide from hero down into slots between 0px and 480px)
-  const mScrollRange = [0, 480];
-
-  // Card 1: Lighthouse (Row 1 banner, spans 2 cols) -> starts floating bottom-left of hero
-  const mImg1X = useTransform(smoothScrollY, mScrollRange, [mFlightOffsets.c1.dx, 0], { ease: fluidEase });
-  const mImg1Y = useTransform(smoothScrollY, mScrollRange, [mFlightOffsets.c1.dy, 0], { ease: fluidEase });
-  const mImg1Rotate = useTransform(smoothScrollY, mScrollRange, [mFlightOffsets.c1.rotate, 0], { ease: fluidEase });
-  const mImg1Scale = useTransform(smoothScrollY, mScrollRange, [mFlightOffsets.c1.scale, 1], { ease: fluidEase });
-  const mImg1Opacity = useTransform(smoothScrollY, [0, 60], [0.94, 1]);
-
-  // Card 2: Yogesh Cycling (Row 2, Col 1) -> starts floating top-left of hero
-  const mImg2X = useTransform(smoothScrollY, mScrollRange, [mFlightOffsets.c2.dx, 0], { ease: fluidEase });
-  const mImg2Y = useTransform(smoothScrollY, mScrollRange, [mFlightOffsets.c2.dy, 0], { ease: fluidEase });
-  const mImg2Rotate = useTransform(smoothScrollY, mScrollRange, [mFlightOffsets.c2.rotate, 0], { ease: fluidEase });
-  const mImg2Scale = useTransform(smoothScrollY, mScrollRange, [mFlightOffsets.c2.scale, 1], { ease: fluidEase });
-  const mImg2Opacity = useTransform(smoothScrollY, [0, 60], [0.94, 1]);
-
-  // Card 3: Temple Gopuram (Row 2 & 3, Col 2 - Tall) -> starts floating top-right of hero
-  const mImg3X = useTransform(smoothScrollY, mScrollRange, [mFlightOffsets.c3.dx, 0], { ease: fluidEase });
-  const mImg3Y = useTransform(smoothScrollY, mScrollRange, [mFlightOffsets.c3.dy, 0], { ease: fluidEase });
-  const mImg3Rotate = useTransform(smoothScrollY, mScrollRange, [mFlightOffsets.c3.rotate, 0], { ease: fluidEase });
-  const mImg3Scale = useTransform(smoothScrollY, mScrollRange, [mFlightOffsets.c3.scale, 1], { ease: fluidEase });
-  const mImg3Opacity = useTransform(smoothScrollY, [0, 60], [0.94, 1]);
-
-  // Card 4: Couple Card (Row 3, Col 1) -> starts floating mid-left of hero
-  const mImg4X = useTransform(smoothScrollY, mScrollRange, [mFlightOffsets.c4.dx, 0], { ease: fluidEase });
-  const mImg4Y = useTransform(smoothScrollY, mScrollRange, [mFlightOffsets.c4.dy, 0], { ease: fluidEase });
-  const mImg4Rotate = useTransform(smoothScrollY, mScrollRange, [mFlightOffsets.c4.rotate, 0], { ease: fluidEase });
-  const mImg4Scale = useTransform(smoothScrollY, mScrollRange, [mFlightOffsets.c4.scale, 1], { ease: fluidEase });
-  const mImg4Opacity = useTransform(smoothScrollY, [0, 60], [0.94, 1]);
-
-  // Card 5: Prabhas Photo (Row 4, Col 1) -> starts floating bottom-right of hero
-  const mImg5X = useTransform(smoothScrollY, mScrollRange, [mFlightOffsets.c5.dx, 0], { ease: fluidEase });
-  const mImg5Y = useTransform(smoothScrollY, mScrollRange, [mFlightOffsets.c5.dy, 0], { ease: fluidEase });
-  const mImg5Rotate = useTransform(smoothScrollY, mScrollRange, [mFlightOffsets.c5.rotate, 0], { ease: fluidEase });
-  const mImg5Scale = useTransform(smoothScrollY, mScrollRange, [mFlightOffsets.c5.scale, 1], { ease: fluidEase });
-  const mImg5Opacity = useTransform(smoothScrollY, [0, 60], [0.94, 1]);
-
-  // Card 6: Substack Note Card (Row 4, Col 2) -> starts floating mid-right of hero
-  const mImg6X = useTransform(smoothScrollY, mScrollRange, [mFlightOffsets.c6.dx, 0], { ease: fluidEase });
-  const mImg6Y = useTransform(smoothScrollY, mScrollRange, [mFlightOffsets.c6.dy, 0], { ease: fluidEase });
-  const mImg6Rotate = useTransform(smoothScrollY, mScrollRange, [mFlightOffsets.c6.rotate, 0], { ease: fluidEase });
-  const mImg6Scale = useTransform(smoothScrollY, mScrollRange, [mFlightOffsets.c6.scale, 1], { ease: fluidEase });
-  const mImg6Opacity = useTransform(smoothScrollY, [0, 60], [0.94, 1]);
 
   const staticLayout = reduceMotion;
 
@@ -1199,7 +1037,6 @@ export default function App() {
             backgroundImage: `url(${footerBlueTexture})`,
             backgroundSize: 'cover',
             backgroundPosition: 'center',
-            backgroundAttachment: 'fixed',
             backgroundColor: '#1799f6',
             transformOrigin: 'bottom center',
             scaleY: staticLayout || reduceMotion ? 1 : smoothFooterBgScaleY,
@@ -1249,45 +1086,6 @@ export default function App() {
             backgroundRepeat: 'no-repeat',
           }}
         />
-
-        {/* Mobile Hero Anchor Targets for the 6 Stamps (used for dynamic flight calculations) */}
-        <div className="absolute inset-0 pointer-events-none xl:hidden z-0 overflow-hidden">
-          {/* Anchor 2: Cycling (Top-Left Edge - Lowered down with comfortable top margin) */}
-          <div 
-            ref={mAnchor2Ref} 
-            className="absolute -left-[14px] sm:-left-[8px] top-[96px] sm:top-[112px] w-[74px] sm:w-[84px] h-[76px] sm:h-[86px]" 
-          />
-
-          {/* Anchor 3: Temple Gopuram (Top-Right Edge - Lowered down with comfortable top margin) */}
-          <div 
-            ref={mAnchor3Ref} 
-            className="absolute -right-[12px] sm:-right-[6px] top-[88px] sm:top-[104px] w-[62px] sm:w-[72px] h-[128px] sm:h-[150px]" 
-          />
-
-          {/* Anchor 4: Couple (Lower-Left - Lowered down completely clear of availability pill) */}
-          <div 
-            ref={mAnchor4Ref} 
-            className="absolute -left-[16px] sm:-left-[10px] bottom-[22px] sm:bottom-[32px] w-[72px] sm:w-[82px] h-[74px] sm:h-[84px]" 
-          />
-
-          {/* Anchor 6: Note Card / About (Lower-Right - Lowered down completely clear of View work button) */}
-          <div 
-            ref={mAnchor6Ref} 
-            className="absolute -right-[12px] sm:-right-[6px] bottom-[20px] sm:bottom-[30px] w-[72px] sm:w-[82px] h-[74px] sm:h-[84px]" 
-          />
-
-          {/* Anchor 1: Lighthouse (Bottom-Left Corner) */}
-          <div 
-            ref={mAnchor1Ref} 
-            className="absolute left-[4px] sm:left-[14px] -bottom-[6px] sm:bottom-[2px] w-[126px] sm:w-[146px] h-[60px] sm:h-[70px]" 
-          />
-
-          {/* Anchor 5: Prabhas (Bottom-Right Corner) */}
-          <div 
-            ref={mAnchor5Ref} 
-            className="absolute right-[4px] sm:right-[14px] -bottom-[4px] sm:bottom-[2px] w-[72px] sm:w-[82px] h-[74px] sm:h-[84px]" 
-          />
-        </div>
 
         {/* Hero Text & Domain Capsule */}
         <div className="relative z-10 flex flex-col items-center text-center max-w-5xl px-2 sm:px-4">
@@ -1460,10 +1258,9 @@ export default function App() {
           style={reduceMotion ? undefined : {
             scale: cardScale,
             y: cardY,
-            skewY: cardSkewY,
             transformOrigin: "center center",
           }}
-          className="w-full will-change-transform"
+          className="w-full"
         >
           <div className="bg-[rgba(0,0,0,0.02)] border border-[rgba(0,0,0,0.08)] p-[4px] rounded-[24px]">
             <div className="bg-white rounded-[20px] p-4 sm:p-5 relative">
@@ -1481,7 +1278,6 @@ export default function App() {
                       <h2 className="text-[17px] font-medium text-[#202020] tracking-tight leading-snug">
                         Yogesh
                       </h2>
-                      {/* Star Anchor directly next to name */}
                       {/* Star directly next to name */}
                       <motion.img 
                         src={starSparkle} 
@@ -1507,20 +1303,10 @@ export default function App() {
               <div className="profile-gallery grid grid-cols-2 gap-2.5 sm:gap-4 max-w-[620px] mx-auto items-stretch">
                 
                 {/* 1. Coastal Lighthouse (Wide Banner across 2 Columns) */}
-                <div 
-                  ref={mSlot1Ref}
-                  className="col-span-2 aspect-[852/420] w-full relative rounded-[14px] sm:rounded-[18px] border border-dashed border-gray-200/80 bg-gray-50/20"
-                >
+                <div className="col-span-2 aspect-[852/420] w-full relative rounded-[14px] sm:rounded-[18px] border border-dashed border-gray-200/80 bg-gray-50/20">
                   <motion.div 
-                    style={reduceMotion ? undefined : {
-                      x: mImg1X,
-                      y: mImg1Y,
-                      rotate: mImg1Rotate,
-                      scale: mImg1Scale,
-                      opacity: mImg1Opacity,
-                    }}
                     whileTap={{ scale: 0.98 }}
-                    className="w-full h-full flex items-center justify-center cursor-pointer group will-change-transform transform-gpu origin-center"
+                    className="w-full h-full flex items-center justify-center cursor-pointer group origin-center"
                   >
                     <div className="w-full h-full select-none transition-transform duration-300 ease-out group-hover:scale-[1.02]">
                       <img 
@@ -1533,20 +1319,10 @@ export default function App() {
                 </div>
 
                 {/* 2. Yogesh Cycling (Row 2, Col 1) */}
-                <div 
-                  ref={mSlot2Ref}
-                  className="col-start-1 row-start-2 aspect-[205/210] w-full relative rounded-[14px] sm:rounded-[18px] border border-dashed border-gray-200/80 bg-gray-50/20"
-                >
+                <div className="col-start-1 row-start-2 aspect-[205/210] w-full relative rounded-[14px] sm:rounded-[18px] border border-dashed border-gray-200/80 bg-gray-50/20">
                   <motion.div 
-                    style={reduceMotion ? undefined : {
-                      x: mImg2X,
-                      y: mImg2Y,
-                      rotate: mImg2Rotate,
-                      scale: mImg2Scale,
-                      opacity: mImg2Opacity,
-                    }}
                     whileTap={{ scale: 0.98 }}
-                    className="w-full h-full flex items-center justify-center cursor-pointer group will-change-transform transform-gpu origin-center"
+                    className="w-full h-full flex items-center justify-center cursor-pointer group origin-center"
                   >
                     <div className="w-full h-full select-none transition-transform duration-300 ease-out group-hover:scale-[1.02]">
                       <img 
@@ -1559,20 +1335,10 @@ export default function App() {
                 </div>
 
                 {/* 3. Temple Gopuram (Row 2 & 3, Col 2 - Spans 2 Rows vertically) */}
-                <div 
-                  ref={mSlot3Ref}
-                  className="col-start-2 row-start-2 row-span-2 aspect-[205/436] w-full relative rounded-[14px] sm:rounded-[18px] border border-dashed border-gray-200/80 bg-gray-50/20"
-                >
+                <div className="col-start-2 row-start-2 row-span-2 aspect-[205/436] w-full relative rounded-[14px] sm:rounded-[18px] border border-dashed border-gray-200/80 bg-gray-50/20">
                   <motion.div 
-                    style={reduceMotion ? undefined : {
-                      x: mImg3X,
-                      y: mImg3Y,
-                      rotate: mImg3Rotate,
-                      scale: mImg3Scale,
-                      opacity: mImg3Opacity,
-                    }}
                     whileTap={{ scale: 0.98 }}
-                    className="w-full h-full flex items-center justify-center cursor-pointer group will-change-transform transform-gpu origin-center"
+                    className="w-full h-full flex items-center justify-center cursor-pointer group origin-center"
                   >
                     <div className="w-full h-full select-none transition-transform duration-300 ease-out group-hover:scale-[1.02]">
                       <img 
@@ -1585,40 +1351,20 @@ export default function App() {
                 </div>
 
                 {/* 4. Couple Card (Row 3, Col 1 - Fits directly under Cycling, level with Temple) */}
-                <div 
-                  ref={mSlot4Ref}
-                  className="col-start-1 row-start-3 aspect-[205/210] w-full relative rounded-[14px] sm:rounded-[18px] border border-dashed border-gray-200/80 bg-gray-50/20"
-                >
+                <div className="col-start-1 row-start-3 aspect-[205/210] w-full relative rounded-[14px] sm:rounded-[18px] border border-dashed border-gray-200/80 bg-gray-50/20">
                   <motion.div 
-                    style={reduceMotion ? undefined : {
-                      x: mImg4X,
-                      y: mImg4Y,
-                      rotate: mImg4Rotate,
-                      scale: mImg4Scale,
-                      opacity: mImg4Opacity,
-                    }}
                     whileTap={{ scale: 0.98 }}
-                    className="w-full h-full flex items-center justify-center cursor-pointer group will-change-transform transform-gpu origin-center"
+                    className="w-full h-full flex items-center justify-center cursor-pointer group origin-center"
                   >
                     <CoupleCard imageSrc={stampCouple} />
                   </motion.div>
                 </div>
 
                 {/* 5. Prabhas Photo (Row 4, Col 1) */}
-                <div 
-                  ref={mSlot5Ref}
-                  className="col-start-1 row-start-4 aspect-[205/210] w-full relative rounded-[14px] sm:rounded-[18px] border border-dashed border-gray-200/80 bg-gray-50/20"
-                >
+                <div className="col-start-1 row-start-4 aspect-[205/210] w-full relative rounded-[14px] sm:rounded-[18px] border border-dashed border-gray-200/80 bg-gray-50/20">
                   <motion.div 
-                    style={reduceMotion ? undefined : {
-                      x: mImg5X,
-                      y: mImg5Y,
-                      rotate: mImg5Rotate,
-                      scale: mImg5Scale,
-                      opacity: mImg5Opacity,
-                    }}
                     whileTap={{ scale: 0.98 }}
-                    className="w-full h-full flex items-center justify-center cursor-pointer group will-change-transform transform-gpu origin-center"
+                    className="w-full h-full flex items-center justify-center cursor-pointer group origin-center"
                   >
                     <div className="w-full h-full select-none transition-transform duration-300 ease-out group-hover:scale-[1.02]">
                       <img 
@@ -1631,20 +1377,10 @@ export default function App() {
                 </div>
 
                 {/* 6. Substack Note Card (Row 4, Col 2) */}
-                <div 
-                  ref={mSlot6Ref}
-                  className="col-start-2 row-start-4 aspect-[205/210] w-full relative rounded-[14px] sm:rounded-[18px] border border-dashed border-gray-200/80 bg-gray-50/20"
-                >
+                <div className="col-start-2 row-start-4 aspect-[205/210] w-full relative rounded-[14px] sm:rounded-[18px] border border-dashed border-gray-200/80 bg-gray-50/20">
                   <motion.div 
-                    style={reduceMotion ? undefined : {
-                      x: mImg6X,
-                      y: mImg6Y,
-                      rotate: mImg6Rotate,
-                      scale: mImg6Scale,
-                      opacity: mImg6Opacity,
-                    }}
                     whileTap={{ scale: 0.98 }}
-                    className="w-full h-full flex items-center justify-center cursor-pointer group will-change-transform transform-gpu origin-center"
+                    className="w-full h-full flex items-center justify-center cursor-pointer group origin-center"
                   >
                     <NoteCard onClick={navigateToAbout} />
                   </motion.div>
@@ -1705,7 +1441,6 @@ export default function App() {
           style={{
             scale: cardScale,
             y: cardY,
-            skewY: cardSkewY,
             transformOrigin: "center center",
           }}
           className="relative shrink-0 w-[940px] max-w-[92vw] mx-auto z-20 will-change-transform"
@@ -1985,7 +1720,6 @@ export default function App() {
           
           {/* Case Study 1: Trosky 365 */}
           <CaseStudyCard
-            skewY={cardSkewY}
             coverImage={coverPoints}
             title={
               <>
@@ -1998,7 +1732,6 @@ export default function App() {
 
           {/* Case Study 2: LearnPulse AI / AhamX */}
           <CaseStudyCard
-            skewY={cardSkewY}
             coverImage={coverEdtech}
             title={
               <>
@@ -2011,7 +1744,6 @@ export default function App() {
 
           {/* Case Study 3: Ryzeup / PassKey ID */}
           <CaseStudyCard
-            skewY={cardSkewY}
             coverImage={coverIdentity}
             title={
               <>
@@ -2024,7 +1756,6 @@ export default function App() {
 
           {/* Case Study 4: CarePulse Health */}
           <CaseStudyCard
-            skewY={cardSkewY}
             coverImage={coverHealth}
             title={
               <>

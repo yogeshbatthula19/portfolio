@@ -163,7 +163,7 @@ button, a, [role="button"], [role="link"] {
 }
 
 html {
-  scroll-behavior: smooth;
+  scroll-behavior: auto;
 }
 
 /* Butter-Smooth Global Transitions, Easing & Strict Upright Typography (Zero Italics) */
@@ -219,4 +219,3 @@ i, em, cite, dfn, var, address {
   animation: nimbuPendulumWave 3.2s ease-in-out infinite !important;
   will-change: transform;
 }
-

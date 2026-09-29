@@ -1,5 +1,5 @@
 .concept-craft { background: #fff; color: #232522; position: relative; z-index: 20; }
-.craft-scroll-track { height: 340svh; position: relative; }
+.craft-scroll-track { height: 480svh; position: relative; }
 .craft-viewport { position: sticky; top: 0; height: 100svh; overflow: hidden; isolation: isolate; }
 .craft-heading { position: absolute; inset: 0; z-index: 0; display: flex; align-items: center; justify-content: center; text-align: center; padding: 20px; pointer-events: none; }
 .craft-heading h2 { font-size: clamp(52px, 8.5vw, 136px); font-family: 'The Seasons', Georgia, serif; font-weight: 400; letter-spacing: -.035em; line-height: 1.12; color: #18181b; }
@@ -35,12 +35,15 @@
 .craft-card--mockup { background: #dfdfd3; }
 .craft-card--mockup > img { object-fit: contain; padding: 18px; }
 .craft-sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
-@media (max-width: 639px) {
+@media (max-width: 1023px) {
   .craft-scroll-track { height: 260svh; }
+}
+@media (max-width: 639px) {
+  .craft-scroll-track { height: 180svh; }
   .craft-heading { inset: 0; top: 0; bottom: 0; height: 100%; z-index: 0; display: flex; align-items: center; justify-content: center; padding: 12px; }
   .craft-heading h2 { font-size: clamp(34px, 10vw, 56px); }
   .craft-ribbon { top: 20%; height: 65%; z-index: 2; }
-  .craft-card { border-radius: 12px; }
+  .craft-card { border-radius: 12px; will-change: auto; }
 }
 .concept-craft--static .craft-scroll-track { height: auto; }
 .concept-craft--static .craft-viewport { position: relative; height: auto; }
