@@ -74,43 +74,46 @@ function CraftCard({ card, index, progress, width, ribbonMetrics, reduced }) {
 }
 
 function CraftHeading({ progress, reduced }) {
-  // Graceful GPU-accelerated crossfade & subtle slide between "From Foodie" and "To Foodieeeee"
-  const fromOpacity = useTransform(progress, [0.40, 0.54], [1, 0]);
-  const fromY = useTransform(progress, [0.40, 0.54], [0, -14]);
-  const toOpacity = useTransform(progress, [0.46, 0.60], [0, 1]);
-  const toY = useTransform(progress, [0.46, 0.60], [14, 0]);
+  // Clean, non-overlapping transition from "From Foodie" to "To Foodieeee"
+  // Phase 1 exits cleanly between [0.38, 0.47]
+  const fromOpacity = useTransform(progress, [0.38, 0.47], [1, 0]);
+  const fromY = useTransform(progress, [0.38, 0.47], [0, -24]);
+  
+  // Phase 2 enters cleanly between [0.49, 0.58] - buffer ensures zero overlap collision
+  const toOpacity = useTransform(progress, [0.49, 0.58], [0, 1]);
+  const toY = useTransform(progress, [0.49, 0.58], [24, 0]);
 
   if (reduced) {
     return (
       <div className="craft-heading">
         <h2 id="craft-title">
-          <span className="craft-title-single">From Foodie<br />To Foodieeeee</span>
+          <span className="craft-title-single">From Foodie<br />To Foodieeee</span>
         </h2>
       </div>
     );
   }
 
   return (
-    <div className="craft-heading">
-      <h2 id="craft-title" className="relative flex items-center justify-center">
-        <span className="craft-sr-only">From Foodie to Foodieeeee</span>
+    <div className="craft-heading pointer-events-none select-none">
+      <h2 id="craft-title" className="relative w-full h-[1.3em] flex items-center justify-center">
+        <span className="craft-sr-only">From Foodie to Foodieeee</span>
         
         {/* Phase 1: From Foodie */}
         <motion.span 
           style={{ opacity: fromOpacity, y: fromY }} 
-          className="craft-title-single"
+          className="craft-title-single absolute inset-0 flex items-center justify-center pointer-events-none select-none"
           aria-hidden="true"
         >
           From Foodie
         </motion.span>
 
-        {/* Phase 2: To Foodieeeee */}
+        {/* Phase 2: To Foodieeee */}
         <motion.span 
           style={{ opacity: toOpacity, y: toY }} 
-          className="craft-title-single absolute"
+          className="craft-title-single absolute inset-0 flex items-center justify-center pointer-events-none select-none"
           aria-hidden="true"
         >
-          To Foodieeeee
+          To Foodieeee
         </motion.span>
       </h2>
     </div>

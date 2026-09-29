@@ -268,59 +268,42 @@ function CoupleCard({ imageSrc }) {
   );
 }
 
-// Reveal the heading and complete grid as one surface behind the profile.
+// Reveal the heading and case studies grid smoothly without lag on fast scroll or mobile.
 function ScrollRevealSection({ sectionRef, children }) {
-  const slotRef = useRef(null);
   const reduceMotion = useReducedMotion();
-  const [origin, setOrigin] = useState({ y: 0, gap: 0, ready: false });
+  const [isDesktop, setIsDesktop] = useState(false);
+
+  useEffect(() => {
+    const check = () => setIsDesktop(typeof window !== 'undefined' && window.innerWidth >= 1280);
+    check();
+    window.addEventListener('resize', check, { passive: true });
+    return () => window.removeEventListener('resize', check);
+  }, []);
+
   const { scrollYProgress } = useScroll({
     target: sectionRef,
-    offset: ['start end', 'start 22%'],
+    offset: ['start end', 'start 25%'],
   });
-  const targetY = useTransform(scrollYProgress, [0, 1], [origin.y, 0]);
-  const y = useSpring(targetY, { stiffness: 160, damping: 26, mass: 0.32, restDelta: 0.001 });
 
-  useLayoutEffect(() => {
-    const slot = slotRef.current;
-    const measure = () => {
-      const section = sectionRef.current;
-      const profile = [...document.querySelectorAll('.desktop-profile, .responsive-profile')]
-        .find((element) => element.getClientRects().length > 0);
-      if (!slot || !section || !profile) return;
-      const card = slot.getBoundingClientRect();
-      const panel = (document.querySelector('.profile-white-strip') || profile).getBoundingClientRect();
-      const gap = Math.max(0, card.top - panel.bottom);
-      const nextY = -card.height - gap;
-      setOrigin((previous) => {
-        if (previous.ready && Math.abs(previous.y - nextY) < 0.5 && Math.abs(previous.gap - gap) < 0.5) return previous;
-        return { y: nextY, gap, ready: true };
-      });
-    };
-    measure();
-    const observer = new ResizeObserver(measure);
-    observer.observe(slot);
-    document.querySelectorAll('.desktop-profile, .responsive-profile, .profile-white-strip').forEach((el) => observer.observe(el));
-    window.addEventListener('resize', measure);
-    return () => {
-      observer.disconnect();
-      window.removeEventListener('resize', measure);
-    };
-  }, [sectionRef]);
+  // Direct 1:1 tracking without spring physics lag so fast scrolling never misses
+  const y = useTransform(scrollYProgress, [0, 1], [isDesktop ? -32 : 0, 0]);
+  const opacity = useTransform(scrollYProgress, [0, 0.35], [isDesktop ? 0.75 : 1, 1]);
 
-  // Synchronize restored routes and resized layouts before they are painted.
-  useLayoutEffect(() => {
-    if (origin.ready) y.jump(targetY.get());
-  }, [origin, y, targetY]);
+  if (!isDesktop || reduceMotion) {
+    return (
+      <div className="works-reveal-slot relative min-w-0">
+        <div className="works-reveal w-full origin-top">
+          {children}
+        </div>
+      </div>
+    );
+  }
 
   return (
-    <div
-      ref={slotRef}
-      className="works-reveal-slot relative min-w-0"
-      style={reduceMotion ? undefined : { clipPath: `inset(${-origin.gap}px -8px -8px)` }}
-    >
+    <div className="works-reveal-slot relative min-w-0">
       <motion.div
         className="works-reveal w-full origin-top"
-        style={reduceMotion ? undefined : { y, visibility: origin.ready ? 'visible' : 'hidden' }}
+        style={{ y, opacity }}
       >
         {children}
       </motion.div>
