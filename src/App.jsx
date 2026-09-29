@@ -1169,10 +1169,10 @@ export default function App() {
             initial={!reduceMotion ? { opacity: 0, y: 24, scale: 0.96 } : false}
             animate={siteOpened ? { opacity: 1, y: 0, scale: 1 } : { opacity: 0, y: 24, scale: 0.96 }}
             transition={{ duration: 0.85, delay: 0.42, ease: entranceEase }}
-            className="availability-pill mt-3.5 sm:mt-7 w-full max-w-[335px] sm:max-w-[560px] min-h-[42px] sm:h-[60px] bg-white border border-[#dedede] rounded-full flex items-center justify-between pl-3 sm:pl-6 pr-1 sm:pr-2 shadow-[0_10px_28px_-6px_rgba(0,0,0,0.05)]"
+            className="availability-pill mt-3.5 sm:mt-7 w-full max-w-[348px] sm:max-w-[560px] min-h-[42px] sm:h-[60px] bg-white border border-[#dedede] rounded-full flex items-center justify-between pl-3 sm:pl-6 pr-1 sm:pr-2 shadow-[0_10px_28px_-6px_rgba(0,0,0,0.05)]"
           >
             <div 
-              className="availability-text flex items-center text-[11px] min-[380px]:text-[12.5px] sm:text-[15px] md:text-[17px] tracking-tight overflow-hidden whitespace-nowrap min-w-0"
+              className="availability-text flex items-center text-[11.5px] min-[380px]:text-[13px] sm:text-[15px] md:text-[17px] tracking-tight overflow-hidden whitespace-nowrap min-w-0"
               style={{
                 fontFamily: "'__basierCircle_9ca3f5', sans-serif",
                 fontStyle: 'normal',
@@ -1180,7 +1180,7 @@ export default function App() {
                 color: '#1B1B1B',
               }}
             >
-              <span className="hidden min-[420px]:inline" style={{ color: 'rgba(27, 27, 27, 0.48)' }}>Currently&nbsp;</span>
+              <span className="hidden min-[430px]:inline" style={{ color: 'rgba(27, 27, 27, 0.48)' }}>Currently&nbsp;</span>
               <span style={{ color: 'rgba(27, 27, 27, 0.48)' }}>open for&nbsp;</span>
               <div className="relative shrink-0 h-6 sm:h-7 w-[46px] min-[380px]:w-[50px] sm:w-[68px] overflow-hidden flex items-center justify-center">
                 <AnimatePresence initial={false} mode="sync">
@@ -1202,7 +1202,7 @@ export default function App() {
                   </motion.span>
                 </AnimatePresence>
               </div>
-              <span style={{ color: 'rgba(27, 27, 27, 0.48)' }}>&nbsp;Design roles.</span>
+              <span style={{ color: 'rgba(27, 27, 27, 0.48)' }}>&nbsp;<span className="hidden min-[380px]:inline">Design </span>roles.</span>
             </div>
 
             {/* View Work Button with Colorful Gradient Border */}
@@ -1211,8 +1211,8 @@ export default function App() {
                 onClick={handleScrollToWorks}
                 className="h-[30px] sm:h-[42px] px-2.5 min-[380px]:px-3.5 sm:px-[20px] rounded-full bg-white text-[#2c2c2c] text-[10.5px] min-[380px]:text-[12px] sm:text-[13.5px] font-medium tracking-tight hover:bg-gray-50 transition-colors cursor-pointer"
               >
-                <span className="inline min-[380px]:hidden">View work</span>
-                <span className="hidden min-[380px]:inline">View my work</span>
+                <span className="inline min-[400px]:hidden">View work</span>
+                <span className="hidden min-[400px]:inline">View my work</span>
               </button>
             </div>
           </motion.div>
