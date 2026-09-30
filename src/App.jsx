@@ -534,8 +534,8 @@ export default function App() {
     if (isTouchDevice) return;
 
     const lenis = new Lenis({
-      lerp: 0.075,
-      wheelMultiplier: 0.7,
+      lerp: 0.12,
+      wheelMultiplier: 1.05,
       smoothWheel: true,
       syncTouch: false,
     });
