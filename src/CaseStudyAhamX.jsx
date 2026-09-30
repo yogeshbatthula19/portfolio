@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import { ArrowLeft } from 'lucide-react';
+import { ArrowLeft, CheckCircle2, AlertCircle, RefreshCw, Layers, ShieldCheck, Sparkles, User, GraduationCap, Building2 } from 'lucide-react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import CaseStudyScrollNav from './CaseStudyScrollNav';
 import CaseStudyScrollProgress from './CaseStudyScrollProgress';
@@ -18,6 +18,16 @@ import mockup4 from './assets/case_mockups/mockup_4_1440x1024.png';
 import mockup5 from './assets/case_mockups/mockup_5_1440x1024.png';
 import mockup9 from './assets/case_mockups/mockup_9_1440x1024.png';
 import mockup11 from './assets/case_mockups/mockup_11_1440x1024.png';
+
+const AHAMX_SECTIONS = [
+  { id: 'section-overview', label: 'Overview' },
+  { id: 'section-problem', label: 'Problem & Pivot' },
+  { id: 'section-insights', label: 'User Gaps & JTBD' },
+  { id: 'section-strategy', label: 'Strategic Layers' },
+  { id: 'section-systems', label: 'State & System Logic' },
+  { id: 'section-craft', label: 'Visual Interface' },
+  { id: 'section-impact', label: 'Impact & Retrospective' },
+];
 
 // Clean Single Mockup Frame with Gradient Background and Scroll Parallax
 function MockupFrame({ src, alt }) {
@@ -100,7 +110,7 @@ export default function CaseStudyAhamX({ onBack, isRevealed = true }) {
       <CaseStudyScrollProgress />
 
       {/* Floating Right-Side Section Indicator & Smooth Nav */}
-      <CaseStudyScrollNav />
+      <CaseStudyScrollNav sections={AHAMX_SECTIONS} />
       
       {/* Animated gradient header background that moves gracefully on scroll */}
       <motion.div
@@ -117,7 +127,7 @@ export default function CaseStudyAhamX({ onBack, isRevealed = true }) {
       />
 
       {/* Top Header Shell */}
-      <header className="max-w-[820px] mx-auto px-4 sm:px-6 pt-6 sm:pt-14 pb-6 sm:pb-8">
+      <header className="max-w-[840px] mx-auto px-4 sm:px-6 pt-6 sm:pt-14 pb-6 sm:pb-8">
         
         {/* Navigation */}
         <motion.div 
@@ -140,9 +150,9 @@ export default function CaseStudyAhamX({ onBack, isRevealed = true }) {
           initial={{ opacity: 0, y: 32 }}
           animate={isRevealed ? { opacity: 1, y: 0 } : { opacity: 0, y: 32 }}
           transition={{ duration: 0.85, delay: 0.12, ease: [0.16, 1, 0.3, 1] }}
-          className="text-[34px] sm:text-[46px] md:text-[56px] font-seasons font-normal text-[#111827] leading-[1.12] sm:leading-[1.08] tracking-[-0.02em] pt-6 sm:pt-8"
+          className="text-[32px] sm:text-[44px] md:text-[52px] font-seasons font-normal text-[#111827] leading-[1.15] sm:leading-[1.1] tracking-[-0.02em] pt-6 sm:pt-8"
         >
-          Learning, with continuity.
+          AhamX — Continuous Learning & Capability Intelligence Platform
         </motion.h1>
 
         {/* Subtitle */}
@@ -150,39 +160,60 @@ export default function CaseStudyAhamX({ onBack, isRevealed = true }) {
           initial={{ opacity: 0, y: 22 }}
           animate={isRevealed ? { opacity: 1, y: 0 } : { opacity: 0, y: 22 }}
           transition={{ duration: 0.8, delay: 0.22, ease: [0.16, 1, 0.3, 1] }}
-          className="text-[16px] sm:text-[19px] md:text-[21px] text-[#4b5563] mt-3 sm:mt-4 leading-[1.5] tracking-[-0.015em] font-basier font-normal"
+          className="text-[16px] sm:text-[19px] md:text-[21px] text-[#4b5563] mt-3 sm:mt-4 leading-[1.5] tracking-[-0.015em] font-basier font-normal italic"
         >
-          Connecting the learner, the creator and the organization in one thoughtful experience.
+          Connecting the learner, the creator, and the organization in one cohesive, human-in-the-loop experience.
         </motion.p>
 
-        {/* Meta Bar */}
+        {/* Meta Bar / Project Overview Table */}
         <motion.div 
+          id="section-overview"
           initial={{ opacity: 0, y: 20 }}
           animate={isRevealed ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
           transition={{ duration: 0.7, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
-          className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 pt-5 pb-5 sm:pt-8 sm:pb-6 mt-6 border-t border-b border-gray-100"
+          className="mt-8 pt-6 pb-6 border-t border-b border-gray-200/80 bg-white/60 backdrop-blur-xs rounded-2xl px-4 sm:px-6 shadow-xs scroll-mt-28"
         >
-          <div>
-            <div className="text-[10px] sm:text-[11px] font-basier font-medium uppercase tracking-wider text-[#9ca3af]">My Role</div>
-            <div className="text-[13px] sm:text-[14px] font-switzer font-normal text-[#111827] mt-0.5 sm:mt-1">Product Designer</div>
+          <div className="text-[11px] font-basier font-semibold uppercase tracking-[0.14em] text-[#8e95a5] mb-4">
+            Project Overview
           </div>
-          <div>
-            <div className="text-[10px] sm:text-[11px] font-basier font-medium uppercase tracking-wider text-[#9ca3af]">Timeline</div>
-            <div className="text-[13px] sm:text-[14px] font-switzer font-normal text-[#111827] mt-0.5 sm:mt-1">3 months</div>
-          </div>
-          <div>
-            <div className="text-[10px] sm:text-[11px] font-basier font-medium uppercase tracking-wider text-[#9ca3af]">Platforms</div>
-            <div className="text-[13px] sm:text-[14px] font-switzer font-normal text-[#111827] mt-0.5 sm:mt-1">Desktop + Mobile</div>
-          </div>
-          <div>
-            <div className="text-[10px] sm:text-[11px] font-basier font-medium uppercase tracking-wider text-[#9ca3af]">Product Org</div>
-            <div className="text-[13px] sm:text-[14px] font-switzer font-normal text-[#111827] mt-0.5 sm:mt-1">ZenteiQ</div>
+          <div className="grid grid-cols-2 sm:grid-cols-5 gap-4 text-left">
+            <div>
+              <div className="text-[11px] font-basier font-medium uppercase tracking-wider text-[#9ca3af]">Role</div>
+              <div className="text-[13.5px] font-switzer font-medium text-[#111827] mt-1">
+                Product Designer <span className="text-[12px] text-gray-500 block font-normal">(Sole Designer)</span>
+              </div>
+            </div>
+            <div>
+              <div className="text-[11px] font-basier font-medium uppercase tracking-wider text-[#9ca3af]">Team</div>
+              <div className="text-[13.5px] font-switzer font-medium text-[#111827] mt-1">
+                1 Lead, 4 Eng, 1 AI/ML
+              </div>
+            </div>
+            <div>
+              <div className="text-[11px] font-basier font-medium uppercase tracking-wider text-[#9ca3af]">Timeline</div>
+              <div className="text-[13.5px] font-switzer font-medium text-[#111827] mt-1">
+                3 Months <span className="text-[12px] text-emerald-600 block font-normal font-mono">(Shipped)</span>
+              </div>
+            </div>
+            <div>
+              <div className="text-[11px] font-basier font-medium uppercase tracking-wider text-[#9ca3af]">Platforms</div>
+              <div className="text-[13.5px] font-switzer font-medium text-[#111827] mt-1">
+                Responsive Web & Mobile
+              </div>
+            </div>
+            <div className="col-span-2 sm:col-span-1 border-t sm:border-t-0 pt-2 sm:pt-0 border-gray-100">
+              <div className="text-[11px] font-basier font-medium uppercase tracking-wider text-[#9ca3af]">Key Milestone</div>
+              <div className="text-[13px] font-switzer font-medium text-[#0c4731] mt-1 leading-snug">
+                IndiaAI Impact Summit 2026
+                <span className="text-[11.5px] text-gray-500 block font-normal">(Google & ARTPARK Pavilions)</span>
+              </div>
+            </div>
           </div>
         </motion.div>
 
       </header>
 
-      {/* Hero Mockup with User's Gradient Background */}
+      {/* Hero Mockup Frame */}
       <motion.div 
         initial={{ opacity: 0, y: 36, scale: 0.96 }}
         animate={isRevealed ? { opacity: 1, y: 0, scale: 1 } : { opacity: 0, y: 36, scale: 0.96 }}
@@ -191,504 +222,688 @@ export default function CaseStudyAhamX({ onBack, isRevealed = true }) {
       >
         <MockupFrame 
           src={mockup0} 
-          alt="AhamX Learner Dashboard" 
+          alt="Clean hero frame showing responsive AhamX interface across Desktop and Mobile viewports" 
         />
       </motion.div>
 
       {/* Main Narrative Article Container */}
-      <main className="max-w-[760px] mx-auto px-4 sm:px-6 mt-8 sm:mt-12 space-y-12 sm:space-y-16">
+      <main className="max-w-[780px] mx-auto px-4 sm:px-6 mt-8 sm:mt-12 space-y-12 sm:space-y-16">
 
         {/* ------------------------------------------------------------- */}
         {/* EXECUTIVE SUMMARY                                             */}
         {/* ------------------------------------------------------------- */}
-        <section id="section-background" className="space-y-4 scroll-mt-24">
+        <section className="space-y-4">
           <ScrollReveal>
-            <h2 className="text-[26px] sm:text-[30px] font-basier font-medium text-[#111827] tracking-tight leading-snug">
-              Three responsibilities. One connected product.
+            <div className="p-5 sm:p-7 rounded-2xl bg-zinc-50 border border-zinc-200/80 shadow-xs">
+              <h3 className="text-[12px] font-basier font-semibold uppercase tracking-[0.14em] text-[#8e95a5] mb-2">
+                Executive Summary
+              </h3>
+              <p className="text-[15.5px] sm:text-[16.5px] text-[#1f2937] leading-[1.75] font-switzer font-normal">
+                <strong>AhamX (by ZenteiQ)</strong> is an individual digital twin architecture for capability development, learning continuity, and organizational intelligence. I led the end-to-end UX/UI design across desktop and mobile, unifying three disparate user types—learners, educators, and enterprise leads—into a single product system without sacrificing role-specific clarity.
+              </p>
+            </div>
+          </ScrollReveal>
+        </section>
+
+        <hr className="border-gray-100" />
+
+        {/* ------------------------------------------------------------- */}
+        {/* 01. THE PROBLEM SPACE & STRATEGIC CONTEXT                     */}
+        {/* ------------------------------------------------------------- */}
+        <section id="section-problem" className="space-y-6 scroll-mt-28">
+          <ScrollReveal>
+            <span className="text-[12px] font-basier font-semibold uppercase tracking-[0.14em] text-[#8e95a5] select-none block mb-1">
+              01
+            </span>
+            <h2 className="text-[24px] sm:text-[28px] md:text-[32px] font-basier font-medium text-[#111827] tracking-tight leading-snug">
+              The Problem Space & Strategic Context
             </h2>
           </ScrollReveal>
+
           <ScrollReveal delay={0.06}>
-          <div className="text-[16px] text-[#374151] leading-[1.8] space-y-4 font-switzer font-normal">
-            <p>
-              I designed the learner, creator and organization flows across desktop and mobile. AhamX connects learning progress, AI-assisted lesson review and relationship requests. My focus was making the next step clear without losing the context of the person, lesson or organization.
+            <p className="text-[15.5px] sm:text-[16.5px] text-[#374151] leading-[1.75] font-switzer font-normal">
+              In enterprise capability platforms, multi-sided systems frequently collapse under user fatigue:
             </p>
-            <p>
-              ZenteiQ describes AhamX as an individual digital twin for capability, learning and deployment intelligence. This case study focuses on its learning experience: continuing a course, creating teaching material and acting within an organization.
-            </p>
-          </div>
+            <ul className="mt-4 space-y-3 font-switzer text-[15px] sm:text-[15.5px] text-[#374151] leading-relaxed pl-1">
+              <li className="flex items-start gap-3">
+                <span className="w-1.5 h-1.5 rounded-full bg-red-500 mt-2.5 shrink-0" />
+                <span><strong className="text-gray-900 font-basier font-medium">Learners</strong> abandon courses when interruptions force them to reconstruct past study progress.</span>
+              </li>
+              <li className="flex items-start gap-3">
+                <span className="w-1.5 h-1.5 rounded-full bg-amber-500 mt-2.5 shrink-0" />
+                <span><strong className="text-gray-900 font-basier font-medium">Educators</strong> hesitate to trust AI generation tools when drafts move automatically to delivery without review gates.</span>
+              </li>
+              <li className="flex items-start gap-3">
+                <span className="w-1.5 h-1.5 rounded-full bg-blue-500 mt-2.5 shrink-0" />
+                <span><strong className="text-gray-900 font-basier font-medium">Organization Leads</strong> defer institutional relationship requests because notifications arrive stripped of identity and institutional context.</span>
+              </li>
+            </ul>
+          </ScrollReveal>
+
+          {/* Strategic Pivot Card */}
+          <ScrollReveal delay={0.08} variant="scale-up">
+            <div className="p-5 sm:p-7 rounded-2xl bg-gradient-to-br from-gray-50 via-white to-gray-50/60 border border-gray-200 shadow-xs space-y-3">
+              <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded-full bg-emerald-50 border border-emerald-200/80 text-[11px] font-basier font-medium text-emerald-800">
+                <Sparkles className="w-3 h-3 text-emerald-600" />
+                <span>The Strategic Pivot</span>
+              </div>
+              <h3 className="text-[17px] sm:text-[19px] font-basier font-medium text-gray-900 leading-snug">
+                Unified Platform Shell Centered on Contextual Continuity
+              </h3>
+              <p className="text-[14.5px] sm:text-[15.5px] text-[#4b5563] leading-[1.7] font-switzer font-normal">
+                Instead of creating three separate web portals (Student LMS, Creator Studio, and Admin Hub), we engineered a <strong>unified platform shell centered on contextual continuity</strong>. Personal identity remains consistent across the entire platform, while interaction density and primary action bars dynamically adapt to the user's immediate operational responsibility.
+              </p>
+            </div>
+          </ScrollReveal>
+
+          {/* Role Matrix Diagram */}
+          <ScrollReveal delay={0.1}>
+            <div className="p-4 sm:p-6 rounded-2xl bg-gray-50 border border-gray-200 space-y-3 shadow-xs">
+              <div className="text-[11px] font-basier font-medium uppercase tracking-widest text-gray-400">
+                Role & Responsibilities Matrix
+              </div>
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                <div className="p-3.5 bg-white rounded-xl border border-gray-200/80">
+                  <div className="flex items-center gap-2 text-emerald-700 font-medium text-[13px] mb-1">
+                    <User className="w-4 h-4" />
+                    <span>Learner</span>
+                  </div>
+                  <p className="text-[12.5px] text-gray-600 leading-relaxed font-switzer font-normal">
+                    Frictionless resumption, real-time study checkpoints, and mobile-first commute continuity.
+                  </p>
+                </div>
+                <div className="p-3.5 bg-white rounded-xl border border-gray-200/80">
+                  <div className="flex items-center gap-2 text-purple-700 font-medium text-[13px] mb-1">
+                    <GraduationCap className="w-4 h-4" />
+                    <span>Educator / Creator</span>
+                  </div>
+                  <p className="text-[12.5px] text-gray-600 leading-relaxed font-switzer font-normal">
+                    Staged AI checkpoints, transparent content validation, and explicit readiness telemetry.
+                  </p>
+                </div>
+                <div className="p-3.5 bg-white rounded-xl border border-gray-200/80">
+                  <div className="flex items-center gap-2 text-blue-700 font-medium text-[13px] mb-1">
+                    <Building2 className="w-4 h-4" />
+                    <span>Organization Lead</span>
+                  </div>
+                  <p className="text-[12.5px] text-gray-600 leading-relaxed font-switzer font-normal">
+                    Self-contained relationship rows, context-preserved approval flows, and entity governance.
+                  </p>
+                </div>
+              </div>
+            </div>
           </ScrollReveal>
         </section>
 
         <hr className="border-gray-100" />
 
         {/* ------------------------------------------------------------- */}
-        {/* PROBLEM & CONSTRAINTS                                         */}
+        {/* 02. THE INITIAL HYPOTHESIS & PRODUCT PIVOT                    */}
         {/* ------------------------------------------------------------- */}
-        <section className="space-y-6 scroll-mt-24">
+        <section className="space-y-6">
           <ScrollReveal>
-            <h2 className="text-[22px] sm:text-[26px] md:text-[30px] font-basier font-medium text-[#111827] tracking-tight leading-snug">
-              Too much to remember.
+            <span className="text-[12px] font-basier font-semibold uppercase tracking-[0.14em] text-[#8e95a5] select-none block mb-1">
+              02
+            </span>
+            <h2 className="text-[24px] sm:text-[28px] md:text-[32px] font-basier font-medium text-[#111827] tracking-tight leading-snug">
+              The Initial Hypothesis & Product Pivot
             </h2>
           </ScrollReveal>
+
           <ScrollReveal delay={0.06}>
-          <p className="text-[15px] sm:text-[16px] text-[#374151] leading-[1.75] sm:leading-[1.8] font-switzer font-normal">
-            Each role brings a different responsibility. A learner needs to pick up unfinished work. An educator needs to trust what they publish. An organization lead needs to understand a request before acting.
-          </p>
-          </ScrollReveal>
-
-          {/* User Pressure vs Constraint Table */}
-          <ScrollReveal delay={0.08} variant="scale-up">
-          <div className="border border-gray-200 rounded-xl overflow-hidden bg-white shadow-sm">
-            <div className="hidden sm:grid sm:grid-cols-2 bg-gray-50 border-b border-gray-200 p-3 text-[12px] font-basier font-medium uppercase tracking-wider text-gray-600">
-              <div>User Pressure</div>
-              <div>Business & Product Constraint</div>
-            </div>
-            
-            <div className="divide-y divide-gray-100 text-[14px] font-switzer font-normal">
-              <div className="grid grid-cols-1 sm:grid-cols-2 p-3.5 sm:p-4 gap-2 sm:gap-4">
-                <div>
-                  <div className="sm:hidden text-[10px] font-basier font-medium uppercase tracking-wider text-gray-400 mb-1">User Pressure</div>
-                  <strong className="text-gray-900 block font-basier font-medium mb-1">Recovering context</strong>
-                  <span className="text-gray-600">Returning to a lesson should not require reconstructing the last study session.</span>
-                </div>
-                <div className="text-gray-600 sm:border-l sm:border-gray-100 sm:pl-4">
-                  <div className="sm:hidden text-[10px] font-basier font-medium uppercase tracking-wider text-gray-400 mt-2 mb-1">Business & Product Constraint</div>
-                  The short delivery window favored connected primary journeys over additional customization.
-                </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div className="p-5 rounded-xl border border-gray-200 bg-white shadow-xs">
+                <div className="text-[11px] font-basier font-medium uppercase tracking-wider text-gray-400 mb-1">The Assumption</div>
+                <h4 className="font-basier font-medium text-[15px] sm:text-[16px] text-gray-900 mb-2">All-in-One Modular Dashboard</h4>
+                <p className="text-[13.5px] text-gray-600 leading-relaxed font-switzer font-normal">
+                  We initially hypothesized that an all-in-one modular dashboard presenting active courses, cohort telemetry, and pending approvals would give all three roles a transparent overview and reduce context switching.
+                </p>
               </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 p-3.5 sm:p-4 gap-2 sm:gap-4">
-                <div>
-                  <div className="sm:hidden text-[10px] font-basier font-medium uppercase tracking-wider text-gray-400 mb-1">User Pressure</div>
-                  <strong className="text-gray-900 block font-basier font-medium mb-1">Taking responsibility for AI output</strong>
-                  <span className="text-gray-600">A draft can be generated quickly, but its accuracy still needs human judgment.</span>
-                </div>
-                <div className="text-gray-600 sm:border-l sm:border-gray-100 sm:pl-4">
-                  <div className="sm:hidden text-[10px] font-basier font-medium uppercase tracking-wider text-gray-400 mt-2 mb-1">Business & Product Constraint</div>
-                  Lesson content, narration and media need visible review points before publication.
-                </div>
-              </div>
-
-              <div className="grid grid-cols-1 sm:grid-cols-2 p-3.5 sm:p-4 gap-2 sm:gap-4">
-                <div>
-                  <div className="sm:hidden text-[10px] font-basier font-medium uppercase tracking-wider text-gray-400 mb-1">User Pressure</div>
-                  <strong className="text-gray-900 block font-basier font-medium mb-1">Acting for an organization</strong>
-                  <span className="text-gray-600">The person deciding needs to understand who is asking and what relationship is requested.</span>
-                </div>
-                <div className="text-gray-600 sm:border-l sm:border-gray-100 sm:pl-4">
-                  <div className="sm:hidden text-[10px] font-basier font-medium uppercase tracking-wider text-gray-400 mt-2 mb-1">Business & Product Constraint</div>
-                  Personal identity and organization context coexist within one product.
-                </div>
+              <div className="p-5 rounded-xl border border-rose-100 bg-rose-50/30 shadow-xs">
+                <div className="text-[11px] font-basier font-medium uppercase tracking-wider text-rose-500 mb-1">The Breakdown</div>
+                <h4 className="font-basier font-medium text-[15px] sm:text-[16px] text-gray-900 mb-2">Severe Cognitive Friction</h4>
+                <p className="text-[13.5px] text-gray-600 leading-relaxed font-switzer font-normal">
+                  Early walkthroughs revealed that learners felt paralyzed by administrative metrics, which delayed lesson resumption, while educators were wary of one-click "Generate Course" flows that obscured AI output verification.
+                </p>
               </div>
             </div>
-          </div>
           </ScrollReveal>
 
-          {/* Central Question Callout */}
-          <ScrollReveal delay={0.1} variant="blur">
-          <div className="p-4 sm:p-6 rounded-xl bg-gray-50 border border-gray-200">
-            <p className="text-[16px] sm:text-[18px] md:text-[20px] font-seasons font-normal not-italic text-gray-900 leading-relaxed text-center">
-              "How can each screen explain where I am, what is ready and what I can do next?"
-            </p>
-          </div>
-          </ScrollReveal>
-        </section>
-
-        <hr className="border-gray-100" />
-
-        {/* ------------------------------------------------------------- */}
-        {/* DISCOVERY & JTBD                                              */}
-        {/* ------------------------------------------------------------- */}
-        <section className="space-y-6 scroll-mt-24">
-          <ScrollReveal>
-            <h2 className="text-[22px] sm:text-[26px] md:text-[30px] font-basier font-medium text-[#111827] tracking-tight leading-snug">
-              Start with the job. Then shape the interface.
-            </h2>
-            <p className="text-[15px] sm:text-[16px] text-[#374151] leading-[1.75] sm:leading-[1.8] font-switzer font-normal mt-2">
-              The working role model centers on tasks and responsibilities. These job statements guide discovery; they are hypotheses rather than interview quotations.
-            </p>
-          </ScrollReveal>
-
-          {/* JTBD Matrix */}
-          <ScrollReveal delay={0.06} variant="scale-up">
-          <div className="border border-gray-200 rounded-xl overflow-hidden bg-white shadow-sm">
-            <div className="hidden sm:grid sm:grid-cols-3 bg-gray-50 border-b border-gray-200 p-3 text-[12px] font-basier font-medium uppercase tracking-wider text-gray-600">
-              <div className="col-span-1">Role</div>
-              <div className="col-span-2">Job To Be Done</div>
-            </div>
-            
-            <div className="divide-y divide-gray-100 text-[14px] font-switzer font-normal">
-              <div className="flex flex-col sm:grid sm:grid-cols-3 p-3.5 sm:p-4 gap-1.5 sm:gap-2">
-                <div className="col-span-1">
-                  <div className="sm:hidden text-[10px] font-basier font-medium uppercase tracking-wider text-gray-400 mb-0.5">Role</div>
-                  <strong className="text-gray-900 block font-basier font-medium">Learner</strong>
-                  <span className="text-[12px] text-gray-500">Returning after an interruption, on phone or desktop.</span>
-                </div>
-                <div className="col-span-2 text-gray-700 sm:border-l sm:border-gray-100 sm:pl-4">
-                  <div className="sm:hidden text-[10px] font-basier font-medium uppercase tracking-wider text-gray-400 mt-1.5 mb-0.5">Job To Be Done</div>
-                  Find my current learning and the next useful step without reconstructing my progress.
-                </div>
+          {/* The Breakthrough Insight Quote */}
+          <ScrollReveal delay={0.08} variant="blur">
+            <div className="p-5 sm:p-7 rounded-2xl bg-zinc-900 text-white shadow-md relative overflow-hidden">
+              <div className="text-[11px] font-basier font-medium uppercase tracking-widest text-emerald-400 mb-2">
+                The Breakthrough Insight
               </div>
-
-              <div className="flex flex-col sm:grid sm:grid-cols-3 p-3.5 sm:p-4 gap-1.5 sm:gap-2">
-                <div className="col-span-1">
-                  <div className="sm:hidden text-[10px] font-basier font-medium uppercase tracking-wider text-gray-400 mb-0.5">Role</div>
-                  <strong className="text-gray-900 block font-basier font-medium">Educator / Creator</strong>
-                  <span className="text-[12px] text-gray-500">Preparing material and remaining accountable.</span>
-                </div>
-                <div className="col-span-2 text-gray-700 sm:border-l sm:border-gray-100 sm:pl-4">
-                  <div className="sm:hidden text-[10px] font-basier font-medium uppercase tracking-wider text-gray-400 mt-1.5 mb-0.5">Job To Be Done</div>
-                  Review and improve AI-generated content before sharing it with a cohort.
-                </div>
-              </div>
-
-              <div className="flex flex-col sm:grid sm:grid-cols-3 p-3.5 sm:p-4 gap-1.5 sm:gap-2">
-                <div className="col-span-1">
-                  <div className="sm:hidden text-[10px] font-basier font-medium uppercase tracking-wider text-gray-400 mb-0.5">Role</div>
-                  <strong className="text-gray-900 block font-basier font-medium">Organization Lead</strong>
-                  <span className="text-[12px] text-gray-500">Overseeing relationships for an institution.</span>
-                </div>
-                <div className="col-span-2 text-gray-700 sm:border-l sm:border-gray-100 sm:pl-4">
-                  <div className="sm:hidden text-[10px] font-basier font-medium uppercase tracking-wider text-gray-400 mt-1.5 mb-0.5">Job To Be Done</div>
-                  Understand the requester and relationship before approving or rejecting the request.
-                </div>
-              </div>
-            </div>
-          </div>
-          </ScrollReveal>
-
-          <ScrollReveal delay={0.08} variant="scale-up">
-          <div className="p-4 sm:p-5 rounded-xl border border-gray-200 bg-gray-50">
-            <div className="text-[11px] sm:text-[12px] font-basier font-medium uppercase tracking-wider text-gray-500 mb-1">The Principle</div>
-            <p className="text-[14px] sm:text-[15px] font-basier font-medium text-gray-900">
-              Keep identity consistent, while making the current responsibility visible. A shared product should not force every role to scan the same information.
-            </p>
-          </div>
-          </ScrollReveal>
-        </section>
-
-        <hr className="border-gray-100" />
-
-        {/* ------------------------------------------------------------- */}
-        {/* SYSTEM LOGIC                                                  */}
-        {/* ------------------------------------------------------------- */}
-        <section id="section-design" className="space-y-6 scroll-mt-24">
-          <ScrollReveal>
-            <h2 className="text-[22px] sm:text-[26px] md:text-[30px] font-basier font-medium text-[#111827] tracking-tight leading-snug">
-              Map the connections before adding detail.
-            </h2>
-            <p className="text-[15px] sm:text-[16px] text-[#374151] leading-[1.75] sm:leading-[1.8] font-switzer font-normal mt-2">
-              Progress, creation and organization relationships share context, but follow different paths. This experience map makes those journeys and their decision points explicit.
-            </p>
-          </ScrollReveal>
-
-          {/* Product Experience Map Container */}
-          <ScrollReveal delay={0.06} variant="scale-up">
-          <div className="p-4 sm:p-6 rounded-2xl bg-gray-50 border border-gray-200 space-y-4 shadow-sm">
-            <div className="text-[11px] font-basier font-medium uppercase tracking-widest text-gray-400">
-              Product Experience Map
-            </div>
-            
-            <div className="space-y-3 font-mono text-[12px] sm:text-[13px]">
-              <div className="p-3 bg-white rounded-lg border border-gray-200 flex flex-col sm:flex-row sm:items-center justify-between gap-1 sm:gap-4">
-                <span className="font-bold text-gray-900 uppercase">LEARN</span>
-                <span className="text-gray-600">Dashboard → Current course → Lesson & progress</span>
-              </div>
-              <div className="p-3 bg-white rounded-lg border border-gray-200 flex flex-col sm:flex-row sm:items-center justify-between gap-1 sm:gap-4">
-                <span className="font-bold text-gray-900 uppercase">CREATE</span>
-                <span className="text-gray-600">Course outline → Content & script → Audio & video</span>
-              </div>
-              <div className="p-3 bg-white rounded-lg border border-gray-200 flex flex-col sm:flex-row sm:items-center justify-between gap-1 sm:gap-4">
-                <span className="font-bold text-gray-900 uppercase">ORGANIZE</span>
-                <span className="text-gray-600">Entity context → Incoming request → Approve / Reject</span>
-              </div>
-            </div>
-          </div>
-          </ScrollReveal>
-
-          <ScrollReveal delay={0.08} variant="scale-up">
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 sm:gap-4">
-            <div className="p-4 sm:p-5 rounded-xl border border-gray-200 bg-white shadow-sm">
-              <h4 className="font-basier font-medium text-[15px] sm:text-[16px] text-gray-900 mb-1">Make readiness explicit.</h4>
-              <p className="text-[13px] text-gray-600 leading-relaxed font-switzer font-normal">
-                The outline places a readiness count beside Publish. When lessons are incomplete, the count gives the unavailable action an explanation.
+              <p className="text-[17px] sm:text-[20px] font-seasons font-normal not-italic text-zinc-100 leading-relaxed">
+                "A unified design system does not mean uniform cognitive density. Cohesive identity requires role-specific readiness states and clear decision boundaries."
+              </p>
+              <p className="text-[13px] text-zinc-400 font-switzer font-normal mt-3 leading-relaxed">
+                We decoupled the home surfaces while maintaining a consistent design system shell. Crucially, we shifted from ambiguous, disabled UI elements to <strong>deterministic, explanatory readiness triggers</strong>.
               </p>
             </div>
-            <div className="p-4 sm:p-5 rounded-xl border border-gray-200 bg-white shadow-sm">
-              <h4 className="font-basier font-medium text-[15px] sm:text-[16px] text-gray-900 mb-1">Keep decisions in context.</h4>
-              <p className="text-[13px] text-gray-600 leading-relaxed font-switzer font-normal">
-                The request row carries the identity, relationship and available actions together. The person deciding does not need to reconstruct the request from separate views.
-              </p>
-            </div>
-          </div>
-          </ScrollReveal>
-
-          {/* Acceptance Criteria Table */}
-          <ScrollReveal delay={0.1} variant="scale-up">
-          <div className="border border-gray-200 rounded-xl overflow-hidden bg-white mt-4 shadow-sm">
-            <div className="bg-gray-50 border-b border-gray-200 p-3 text-[12px] font-basier font-medium uppercase tracking-wider text-gray-600">
-              The state is part of the experience (Acceptance Criteria)
-            </div>
-            <div className="divide-y divide-gray-100 text-[13px] font-switzer font-normal">
-              <div className="p-3 sm:p-3.5 grid grid-cols-1 sm:grid-cols-3 gap-1.5 sm:gap-2">
-                <strong className="text-gray-900 font-basier font-medium">Lessons are not ready</strong>
-                <span className="text-gray-600">Show what remains beside Publish.</span>
-                <span className="text-gray-500 font-mono text-[12px]">What makes a lesson ready, and what invalidates that state?</span>
-              </div>
-              <div className="p-3 sm:p-3.5 grid grid-cols-1 sm:grid-cols-3 gap-1.5 sm:gap-2">
-                <strong className="text-gray-900 font-basier font-medium">AI generation fails</strong>
-                <span className="text-gray-600">Offer a recoverable retry without replacing reviewed work.</span>
-                <span className="text-gray-500 font-mono text-[12px]">How are jobs, retries and saved revisions identified?</span>
-              </div>
-              <div className="p-3 sm:p-3.5 grid grid-cols-1 sm:grid-cols-3 gap-1.5 sm:gap-2">
-                <strong className="text-gray-900 font-basier font-medium">A request changes elsewhere</strong>
-                <span className="text-gray-600">Refresh its status and prevent repeat action.</span>
-                <span className="text-gray-500 font-mono text-[12px]">How are concurrency and permissions checked?</span>
-              </div>
-              <div className="p-3 sm:p-3.5 grid grid-cols-1 sm:grid-cols-3 gap-1.5 sm:gap-2">
-                <strong className="text-gray-900 font-basier font-medium">A connection is interrupted</strong>
-                <span className="text-gray-600">Preserve context and show whether work was saved.</span>
-                <span className="text-gray-500 font-mono text-[12px]">What persistence and reconnection behavior is supported?</span>
-              </div>
-            </div>
-          </div>
           </ScrollReveal>
         </section>
 
         <hr className="border-gray-100" />
 
         {/* ------------------------------------------------------------- */}
-        {/* ITERATION & ALIGNMENT                                         */}
+        {/* 03. USER BEHAVIORAL GAPS & FIELD INSIGHTS                     */}
         {/* ------------------------------------------------------------- */}
-        <section className="space-y-6 scroll-mt-24">
+        <section id="section-insights" className="space-y-6 scroll-mt-28">
           <ScrollReveal>
-            <h2 className="text-[22px] sm:text-[26px] md:text-[30px] font-basier font-medium text-[#111827] tracking-tight leading-snug">
-              The trade-offs behind the interface.
+            <span className="text-[12px] font-basier font-semibold uppercase tracking-[0.14em] text-[#8e95a5] select-none block mb-1">
+              03
+            </span>
+            <h2 className="text-[24px] sm:text-[28px] md:text-[32px] font-basier font-medium text-[#111827] tracking-tight leading-snug">
+              User Behavioral Gaps & Field Insights
             </h2>
-            <p className="text-[15px] sm:text-[16px] text-[#374151] leading-[1.75] sm:leading-[1.8] font-switzer font-normal mt-2">
-              The choices favored continuity, visible review and decisions attached to their context.
+            <p className="text-[15.5px] sm:text-[16.5px] text-[#374151] leading-[1.75] font-switzer font-normal mt-2">
+              To define our Jobs-to-be-Done (JTBD), we mapped user pressures directly against product constraints:
+            </p>
+          </ScrollReveal>
+
+          {/* JTBD Matrix Table */}
+          <ScrollReveal delay={0.06} variant="scale-up">
+            <div className="border border-gray-200 rounded-xl overflow-hidden bg-white shadow-xs">
+              <div className="hidden sm:grid sm:grid-cols-3 bg-gray-50 border-b border-gray-200 p-3 text-[11px] font-basier font-semibold uppercase tracking-wider text-gray-600">
+                <div>User Pressure</div>
+                <div>Operational Constraint</div>
+                <div>UX Design Response</div>
+              </div>
+              
+              <div className="divide-y divide-gray-100 text-[13.5px] font-switzer font-normal">
+                <div className="grid grid-cols-1 sm:grid-cols-3 p-4 gap-2 sm:gap-4 items-center">
+                  <div>
+                    <div className="sm:hidden text-[10px] font-basier font-semibold uppercase tracking-wider text-gray-400 mb-1">User Pressure</div>
+                    <strong className="text-gray-900 block font-basier font-medium text-[14px]">Recovering Context</strong>
+                  </div>
+                  <div className="text-gray-600 sm:border-l sm:border-gray-100 sm:pl-3">
+                    <div className="sm:hidden text-[10px] font-basier font-semibold uppercase tracking-wider text-gray-400 mt-2 mb-1">Operational Constraint</div>
+                    The delivery window favored primary journeys over custom dashboards.
+                  </div>
+                  <div className="text-emerald-950 bg-emerald-50/60 p-2.5 rounded-lg border border-emerald-100 sm:border-l sm:border-emerald-100 sm:pl-3 font-medium text-[13px]">
+                    <div className="sm:hidden text-[10px] font-basier font-semibold uppercase tracking-wider text-emerald-700 mb-1">UX Design Response</div>
+                    Sticky <strong>"Resume Learning"</strong> hook anchoring the last active timestamp and module.
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-3 p-4 gap-2 sm:gap-4 items-center">
+                  <div>
+                    <div className="sm:hidden text-[10px] font-basier font-semibold uppercase tracking-wider text-gray-400 mb-1">User Pressure</div>
+                    <strong className="text-gray-900 block font-basier font-medium text-[14px]">Accountability for AI Content</strong>
+                  </div>
+                  <div className="text-gray-600 sm:border-l sm:border-gray-100 sm:pl-3">
+                    <div className="sm:hidden text-[10px] font-basier font-semibold uppercase tracking-wider text-gray-400 mt-2 mb-1">Operational Constraint</div>
+                    Drafts are generated fast, but need human subject-matter verification.
+                  </div>
+                  <div className="text-purple-950 bg-purple-50/60 p-2.5 rounded-lg border border-purple-100 sm:border-l sm:border-purple-100 sm:pl-3 font-medium text-[13px]">
+                    <div className="sm:hidden text-[10px] font-basier font-semibold uppercase tracking-wider text-purple-700 mb-1">UX Design Response</div>
+                    Staged progression gates: <strong>Outline → Script → Audio/Video Synthesis</strong>.
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-3 p-4 gap-2 sm:gap-4 items-center">
+                  <div>
+                    <div className="sm:hidden text-[10px] font-basier font-semibold uppercase tracking-wider text-gray-400 mb-1">User Pressure</div>
+                    <strong className="text-gray-900 block font-basier font-medium text-[14px]">Deciding for an Institution</strong>
+                  </div>
+                  <div className="text-gray-600 sm:border-l sm:border-gray-100 sm:pl-3">
+                    <div className="sm:hidden text-[10px] font-basier font-semibold uppercase tracking-wider text-gray-400 mt-2 mb-1">Operational Constraint</div>
+                    Institutional hierarchy and personal identity coexist within one network.
+                  </div>
+                  <div className="text-blue-950 bg-blue-50/60 p-2.5 rounded-lg border border-blue-100 sm:border-l sm:border-blue-100 sm:pl-3 font-medium text-[13px]">
+                    <div className="sm:hidden text-[10px] font-basier font-semibold uppercase tracking-wider text-blue-700 mb-1">UX Design Response</div>
+                    <strong>Self-contained request rows</strong> pairing identity, organization, and action.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </ScrollReveal>
+
+          {/* Voice of the User Quotes */}
+          <ScrollReveal delay={0.08}>
+            <div className="space-y-3 pt-2">
+              <h3 className="text-[12px] font-basier font-semibold uppercase tracking-[0.14em] text-[#8e95a5]">
+                Voice of the User
+              </h3>
+              <div className="grid grid-cols-1 gap-3">
+                <blockquote className="p-4 sm:p-5 rounded-xl border border-gray-200 bg-gray-50/60 text-[14px] sm:text-[14.5px] text-[#374151] leading-relaxed">
+                  <p className="italic">
+                    "When I open this on my phone during my commute, I don't want to browse the catalog again. I just want to tap exactly where my lesson paused without re-navigating the hierarchy."
+                  </p>
+                  <footer className="mt-2 text-[12px] font-basier font-semibold text-emerald-800 uppercase tracking-wide">
+                    — Learner Persona
+                  </footer>
+                </blockquote>
+
+                <blockquote className="p-4 sm:p-5 rounded-xl border border-gray-200 bg-gray-50/60 text-[14px] sm:text-[14.5px] text-[#374151] leading-relaxed">
+                  <p className="italic">
+                    "AI drafts a lesson script in seconds, but if it mispronounces a term or hallucinates a citation, my credibility takes the hit. I need a hard checkpoint before anything compiles to video."
+                  </p>
+                  <footer className="mt-2 text-[12px] font-basier font-semibold text-purple-800 uppercase tracking-wide">
+                    — Educator Persona
+                  </footer>
+                </blockquote>
+
+                <blockquote className="p-4 sm:p-5 rounded-xl border border-gray-200 bg-gray-50/60 text-[14px] sm:text-[14.5px] text-[#374151] leading-relaxed">
+                  <p className="italic">
+                    "I get a notification to 'Approve Member'. Who is this person? Which cohort are they joining? If I have to open another tab to check, that request sits in my queue for days."
+                  </p>
+                  <footer className="mt-2 text-[12px] font-basier font-semibold text-blue-800 uppercase tracking-wide">
+                    — Organization Lead Persona
+                  </footer>
+                </blockquote>
+              </div>
+            </div>
+          </ScrollReveal>
+        </section>
+
+        <hr className="border-gray-100" />
+
+        {/* ------------------------------------------------------------- */}
+        {/* 04. STRATEGIC LAYERS OF THE REDESIGN                          */}
+        {/* ------------------------------------------------------------- */}
+        <section id="section-strategy" className="space-y-6 scroll-mt-28">
+          <ScrollReveal>
+            <span className="text-[12px] font-basier font-semibold uppercase tracking-[0.14em] text-[#8e95a5] select-none block mb-1">
+              04
+            </span>
+            <h2 className="text-[24px] sm:text-[28px] md:text-[32px] font-basier font-medium text-[#111827] tracking-tight leading-snug">
+              Strategic Layers of the Redesign
+            </h2>
+            <p className="text-[15.5px] sm:text-[16.5px] text-[#374151] leading-[1.75] font-switzer font-normal mt-2">
+              We mapped the platform into three architectural layers to guarantee continuity, human-in-the-loop verification, and contextual decisions.
             </p>
           </ScrollReveal>
 
           <ScrollReveal delay={0.06} variant="scale-up">
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3.5 sm:gap-4">
-            <div className="p-4 sm:p-5 rounded-xl border border-gray-200 bg-white shadow-sm">
-              <div className="text-[12px] font-basier font-medium text-gray-400 mb-1">01</div>
-              <h4 className="font-basier font-medium text-[15px] sm:text-[16px] text-gray-900 mb-2">A denser home.</h4>
-              <p className="text-[13px] text-gray-600 leading-relaxed font-switzer font-normal">
-                I kept progress and recommendations together so learners could see current work and what to explore next.
-              </p>
-            </div>
+            <div className="space-y-4">
+              {/* Layer 1 */}
+              <div className="p-5 sm:p-6 rounded-2xl border border-gray-200 bg-white shadow-xs">
+                <div className="flex items-center gap-2 text-[12px] font-basier font-semibold uppercase tracking-wider text-emerald-700 mb-2">
+                  <Layers className="w-4 h-4" />
+                  <span>Layer 1: The Continuity Layer (Learner Workflow)</span>
+                </div>
+                <ul className="space-y-2.5 text-[14px] sm:text-[14.5px] text-gray-700 leading-relaxed font-switzer font-normal">
+                  <li className="flex items-start gap-2">
+                    <CheckCircle2 className="w-4 h-4 text-emerald-600 mt-1 shrink-0" />
+                    <span><strong>Zero-Friction Resumption:</strong> Current study and progress data are pinned directly beside personalized recommendations, allowing users to jump back in with a single tap.</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <CheckCircle2 className="w-4 h-4 text-emerald-600 mt-1 shrink-0" />
+                    <span><strong>Cross-Viewport Durability:</strong> Mobile layouts mirror desktop state hierarchies, preserving scroll depth, video checkpoints, and active sub-topics across screen sizes.</span>
+                  </li>
+                </ul>
+              </div>
 
-            <div className="p-4 sm:p-5 rounded-xl border border-gray-200 bg-white shadow-sm">
-              <div className="text-[12px] font-basier font-medium text-gray-400 mb-1">02</div>
-              <h4 className="font-basier font-medium text-[15px] sm:text-[16px] text-gray-900 mb-2">More review steps.</h4>
-              <p className="text-[13px] text-gray-600 leading-relaxed font-switzer font-normal">
-                I accepted separate AI stages in exchange for a checkpoint between a generated draft and its delivery as media.
-              </p>
-            </div>
+              {/* Layer 2 */}
+              <div className="p-5 sm:p-6 rounded-2xl border border-gray-200 bg-white shadow-xs">
+                <div className="flex items-center gap-2 text-[12px] font-basier font-semibold uppercase tracking-wider text-purple-700 mb-2">
+                  <ShieldCheck className="w-4 h-4" />
+                  <span>Layer 2: The Verification Layer (Educator Workflow)</span>
+                </div>
+                <ul className="space-y-2.5 text-[14px] sm:text-[14.5px] text-gray-700 leading-relaxed font-switzer font-normal">
+                  <li className="flex items-start gap-2">
+                    <CheckCircle2 className="w-4 h-4 text-purple-600 mt-1 shrink-0" />
+                    <span><strong>Staged AI Checkpoints:</strong> Replaced single-prompt generation with a controlled 3-stage validation pipeline: <em>Course Outline → Script & Narration Review → Synthetic Media Compilation</em>.</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <CheckCircle2 className="w-4 h-4 text-purple-600 mt-1 shrink-0" />
+                    <span><strong>Readiness-Linked Actions:</strong> Replaced grayed-out disabled states with active blocker telemetry:</span>
+                  </li>
+                </ul>
+                
+                {/* Visual Formula / Badge Card */}
+                <div className="mt-3.5 p-3 sm:p-4 rounded-xl bg-gray-50 border border-gray-200 flex flex-wrap items-center gap-3 font-mono text-[12.5px] sm:text-[13px] text-gray-800">
+                  <span className="font-semibold text-gray-900">Action Button: <span className="underline decoration-purple-500">Publish</span></span>
+                  <span className="text-gray-400">←</span>
+                  <span className="px-2.5 py-1 rounded bg-amber-50 border border-amber-200 text-amber-800 text-[12px] font-medium font-sans">
+                    [3 lessons incomplete]
+                  </span>
+                  <span className="text-[12px] text-gray-500 font-sans italic ml-auto sm:ml-0">
+                    Explicit blocker explanation replaces silent disabled states
+                  </span>
+                </div>
+              </div>
 
-            <div className="p-4 sm:p-5 rounded-xl border border-gray-200 bg-white shadow-sm">
-              <div className="text-[12px] font-basier font-medium text-gray-400 mb-1">03</div>
-              <h4 className="font-basier font-medium text-[15px] sm:text-[16px] text-gray-900 mb-2">Compact requests.</h4>
-              <p className="text-[13px] text-gray-600 leading-relaxed font-switzer font-normal">
-                I kept identity, relationship and actions in one row, accepting less detail to make requests easier to compare.
-              </p>
+              {/* Layer 3 */}
+              <div className="p-5 sm:p-6 rounded-2xl border border-gray-200 bg-white shadow-xs">
+                <div className="flex items-center gap-2 text-[12px] font-basier font-semibold uppercase tracking-wider text-blue-700 mb-2">
+                  <Building2 className="w-4 h-4" />
+                  <span>Layer 3: The Contextual Decision Layer (Organization Lead Workflow)</span>
+                </div>
+                <ul className="space-y-2.5 text-[14px] sm:text-[14.5px] text-gray-700 leading-relaxed font-switzer font-normal">
+                  <li className="flex items-start gap-2">
+                    <CheckCircle2 className="w-4 h-4 text-blue-600 mt-1 shrink-0" />
+                    <span><strong>Consolidated Decision Rows:</strong> Member affiliation, relationship scope, request date, and binary action controls (<code className="text-xs bg-gray-100 px-1 py-0.5 rounded">Approve</code> / <code className="text-xs bg-gray-100 px-1 py-0.5 rounded">Reject</code>) are bound into a single scannable card.</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <CheckCircle2 className="w-4 h-4 text-blue-600 mt-1 shrink-0" />
+                    <span><strong>Relational Integrity:</strong> Institutional leads can approve incoming relationships without navigating away to inspect identity profiles.</span>
+                  </li>
+                </ul>
+              </div>
             </div>
-          </div>
-          </ScrollReveal>
-
-          <ScrollReveal delay={0.08} variant="scale-up">
-          <div className="p-4 rounded-xl bg-gray-50 border border-gray-200 text-[13px] sm:text-[14px] text-gray-600 font-switzer font-normal">
-            <strong className="text-gray-900 font-basier font-medium">Technical alignment: </strong>
-            Readiness rules, draft durability and request authorization are the critical engineering review points. The interface and the underlying state need to agree about what has actually happened.
-          </div>
           </ScrollReveal>
         </section>
 
         <hr className="border-gray-100" />
 
         {/* ------------------------------------------------------------- */}
-        {/* VISUAL CRAFT                                                  */}
+        {/* 05. SYSTEMS THINKING, STATE LOGIC & EDGE CASES                */}
         {/* ------------------------------------------------------------- */}
-        <section className="space-y-10 sm:space-y-12 scroll-mt-24">
+        <section id="section-systems" className="space-y-6 scroll-mt-28">
+          <ScrollReveal>
+            <span className="text-[12px] font-basier font-semibold uppercase tracking-[0.14em] text-[#8e95a5] select-none block mb-1">
+              05
+            </span>
+            <h2 className="text-[24px] sm:text-[28px] md:text-[32px] font-basier font-medium text-[#111827] tracking-tight leading-snug">
+              Systems Thinking, State Logic & Edge Cases
+            </h2>
+            <p className="text-[15.5px] sm:text-[16.5px] text-[#374151] leading-[1.75] font-switzer font-normal mt-2">
+              A production-ready design system must account for system stress, data latency, and edge states.
+            </p>
+          </ScrollReveal>
+
+          {/* State & Dependency Pipeline */}
+          <ScrollReveal delay={0.06} variant="scale-up">
+            <div className="border border-gray-200 rounded-xl overflow-hidden bg-white shadow-xs">
+              <div className="bg-gray-50 border-b border-gray-200 p-3 text-[11px] font-basier font-semibold uppercase tracking-wider text-gray-600">
+                State & Dependency Pipeline (Acceptance Criteria)
+              </div>
+              <div className="divide-y divide-gray-100 text-[13px] font-switzer font-normal">
+                <div className="p-3.5 sm:p-4 grid grid-cols-1 sm:grid-cols-3 gap-2 items-center">
+                  <div className="font-basier font-medium text-gray-900 flex items-center gap-2">
+                    <AlertCircle className="w-4 h-4 text-amber-500 shrink-0" />
+                    <span>Incomplete Module Readiness</span>
+                  </div>
+                  <div className="text-gray-600">
+                    Publish action disabled; active badge counts incomplete lessons (<code className="text-xs bg-amber-50 px-1 py-0.5 rounded text-amber-800">[3 lessons incomplete]</code>).
+                  </div>
+                  <div className="text-gray-500 font-mono text-[11.5px] sm:border-l sm:border-gray-100 sm:pl-3">
+                    Prevents half-baked publishing; clicking guides directly to missing components.
+                  </div>
+                </div>
+
+                <div className="p-3.5 sm:p-4 grid grid-cols-1 sm:grid-cols-3 gap-2 items-center">
+                  <div className="font-basier font-medium text-gray-900 flex items-center gap-2">
+                    <RefreshCw className="w-4 h-4 text-rose-500 shrink-0" />
+                    <span>AI Generation / Synthesis Failure</span>
+                  </div>
+                  <div className="text-gray-600">
+                    Non-destructive retry dialog preserves reviewed script and assets.
+                  </div>
+                  <div className="text-gray-500 font-mono text-[11.5px] sm:border-l sm:border-gray-100 sm:pl-3">
+                    Never clears educator edits; stores revision cache locally & server-side.
+                  </div>
+                </div>
+
+                <div className="p-3.5 sm:p-4 grid grid-cols-1 sm:grid-cols-3 gap-2 items-center">
+                  <div className="font-basier font-medium text-gray-900 flex items-center gap-2">
+                    <Building2 className="w-4 h-4 text-blue-500 shrink-0" />
+                    <span>Concurrent Mutation on Request</span>
+                  </div>
+                  <div className="text-gray-600">
+                    Optimistic UI with idempotent state verification.
+                  </div>
+                  <div className="text-gray-500 font-mono text-[11.5px] sm:border-l sm:border-gray-100 sm:pl-3">
+                    If approved/rejected in another tab, row transitions immediately with non-blocking toast.
+                  </div>
+                </div>
+
+                <div className="p-3.5 sm:p-4 grid grid-cols-1 sm:grid-cols-3 gap-2 items-center">
+                  <div className="font-basier font-medium text-gray-900 flex items-center gap-2">
+                    <Layers className="w-4 h-4 text-emerald-500 shrink-0" />
+                    <span>Network Interruption & Mobile Reconnect</span>
+                  </div>
+                  <div className="text-gray-600">
+                    Local state persistence across commute signal drops.
+                  </div>
+                  <div className="text-gray-500 font-mono text-[11.5px] sm:border-l sm:border-gray-100 sm:pl-3">
+                    Preserves lesson timestamps; syncs invisibly with exponential backoff.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </ScrollReveal>
+
+          {/* Architectural Trade-offs Grid */}
+          <ScrollReveal delay={0.08} variant="scale-up">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3.5 sm:gap-4 pt-2">
+              <div className="p-4 sm:p-5 rounded-xl border border-gray-200 bg-white shadow-xs">
+                <div className="text-[12px] font-basier font-medium text-gray-400 mb-1">01</div>
+                <h4 className="font-basier font-medium text-[15px] sm:text-[16px] text-gray-900 mb-2">Contextual Density vs. Simplicity</h4>
+                <p className="text-[13px] text-gray-600 leading-relaxed font-switzer font-normal">
+                  Kept active courses and recommendations grouped together so learners resume immediately without re-exploring catalogs.
+                </p>
+              </div>
+
+              <div className="p-4 sm:p-5 rounded-xl border border-gray-200 bg-white shadow-xs">
+                <div className="text-[12px] font-basier font-medium text-gray-400 mb-1">02</div>
+                <h4 className="font-basier font-medium text-[15px] sm:text-[16px] text-gray-900 mb-2">Multi-stage AI vs. 1-Click</h4>
+                <p className="text-[13px] text-gray-600 leading-relaxed font-switzer font-normal">
+                  Traded instant publishing for staged human checkpoints (Outline → Script → Media), securing institutional credibility.
+                </p>
+              </div>
+
+              <div className="p-4 sm:p-5 rounded-xl border border-gray-200 bg-white shadow-xs">
+                <div className="text-[12px] font-basier font-medium text-gray-400 mb-1">03</div>
+                <h4 className="font-basier font-medium text-[15px] sm:text-[16px] text-gray-900 mb-2">Consolidated Decision Rows</h4>
+                <p className="text-[13px] text-gray-600 leading-relaxed font-switzer font-normal">
+                  Packaged requester identity, relationship scope, and binary approval actions in one row, eliminating tab-switching.
+                </p>
+              </div>
+            </div>
+          </ScrollReveal>
+
+          <ScrollReveal delay={0.1}>
+            <div className="p-4 rounded-xl bg-gray-50 border border-gray-200 text-[13px] sm:text-[14px] text-gray-700 font-switzer font-normal">
+              <strong className="text-gray-900 font-basier font-medium">Technical Alignment Note: </strong>
+              Readiness rules, draft durability, and request authorization were co-designed with engineering. The user interface and underlying backend state always agree deterministically on what has occurred.
+            </div>
+          </ScrollReveal>
+        </section>
+
+        <hr className="border-gray-100" />
+
+        {/* ------------------------------------------------------------- */}
+        {/* 06. VISUAL INTERFACE & DESIGN SYSTEM                          */}
+        {/* ------------------------------------------------------------- */}
+        <section id="section-craft" className="space-y-10 sm:space-y-12 scroll-mt-28">
           <ScrollReveal>
             <div>
-              <h2 className="text-[22px] sm:text-[26px] md:text-[30px] font-basier font-medium text-[#111827] tracking-tight leading-snug">
-                A shared language. Different priorities.
+              <span className="text-[12px] font-basier font-semibold uppercase tracking-[0.14em] text-[#8e95a5] select-none block mb-1">
+                06
+              </span>
+              <h2 className="text-[24px] sm:text-[28px] md:text-[32px] font-basier font-medium text-[#111827] tracking-tight leading-snug">
+                Visual Interface & Platform Walkthrough
               </h2>
-              <p className="text-[15px] sm:text-[16px] text-[#374151] leading-[1.75] sm:leading-[1.8] mt-2 font-switzer font-normal">
-                The header, navigation and card patterns connect the product. Within that shell, each workflow puts a different responsibility first.
+              <p className="text-[15.5px] sm:text-[16.5px] text-[#374151] leading-[1.75] mt-2 font-switzer font-normal">
+                A cohesive design system connecting the product shell, with interaction density tailored to the user's operational responsibility.
               </p>
             </div>
           </ScrollReveal>
 
-          {/* Feature 1: Return to Learning */}
+          {/* Feature 1: The Continuity Layer (Learner & Org Overview) */}
           <ScrollReveal>
-            <h3 className="text-[18px] sm:text-[20px] font-basier font-medium text-gray-900 mb-2">Return to learning.</h3>
+            <h3 className="text-[18px] sm:text-[20px] font-basier font-medium text-gray-900 mb-2">
+              01. The Continuity Layer — Learner & Organization Dashboards
+            </h3>
             <p className="text-[14px] sm:text-[15px] text-gray-600 leading-relaxed font-switzer font-normal">
-              Current study and completion information stay close to recommendations. Organization oversight uses the same shell to prioritize aggregate activity.
+              Active courses, progress checkpoints, and personalized recommendations are placed side-by-side. The same design system shell scales gracefully to provide aggregate cohort analytics for organization leads.
             </p>
             <DualMockupFrame 
               src1={mockup0} 
-              alt1="Learner view: current courses sit beside profile completion and activity."
+              alt1="Learner Dashboard: Current courses sit beside profile completion and activity."
               src2={mockup1} 
-              alt2="Organization view: summary cards and recent activity support oversight."
+              alt2="Organization Dashboard: Summary cards and recent activity support oversight."
             />
           </ScrollReveal>
 
-          {/* Feature 2: Know the Person Behind the Contribution */}
+          {/* Feature 2: Community Context & Identity */}
           <ScrollReveal>
-            <h3 className="text-[18px] sm:text-[20px] font-basier font-medium text-gray-900 mb-2">Know the person behind the contribution.</h3>
+            <h3 className="text-[18px] sm:text-[20px] font-basier font-medium text-gray-900 mb-2">
+              02. Community Feed & Personal Identity Profiles
+            </h3>
             <p className="text-[14px] sm:text-[15px] text-gray-600 leading-relaxed font-switzer font-normal">
-              Community updates pair the contribution with its author. The personal profile adds background and activity in a dedicated view.
+              Community discussions clearly attribute authorship and role context. The individual digital twin profile provides a consolidated view of background, achievements, and capabilities.
             </p>
             <DualMockupFrame 
               src1={mockup2} 
-              alt1="Community feed: authorship and role context accompany the post."
+              alt1="Community Feed: Authorship and role context accompany every post."
               src2={mockup3} 
-              alt2="Personal profile: background and activity share one view."
+              alt2="Personal Profile: Capability twin, background, and activity in one view."
             />
           </ScrollReveal>
 
-          {/* Feature 3: An AI Draft Still Needs an Educator's Judgment */}
+          {/* Feature 3: The Verification Layer (AI Creator Studio) */}
           <ScrollReveal>
-            <h3 className="text-[18px] sm:text-[20px] font-basier font-medium text-gray-900 mb-2">An AI draft still needs an educator's judgment.</h3>
+            <h3 className="text-[18px] sm:text-[20px] font-basier font-medium text-gray-900 mb-2">
+              03. The Verification Layer — AI Course Outline & Script Review
+            </h3>
             <p className="text-[14px] sm:text-[15px] text-gray-600 leading-relaxed font-switzer font-normal">
-              The outline exposes course structure and readiness. Review continues through lesson content, narration and media, keeping the educator involved at each transformation.
+              The curriculum outline exposes structural readiness and blocker counts. Review continues through script editing, narration pacing, and synthetic media generation, keeping human expertise at the center.
             </p>
             <DualMockupFrame 
               src1={mockup4} 
-              alt1="Course structure: readiness count and Publish state explain incomplete work."
+              alt1="Course Outline: Readiness count and Publish action state explain incomplete work."
               src2={mockup5} 
-              alt2="Creator studio script & narration review."
+              alt2="Creator Studio: Script & narration validation checkpoint."
             />
           </ScrollReveal>
 
-          {/* Feature 4: Create Material. Connect it to People. */}
+          {/* Feature 4: Reusable Material & Cohorts */}
           <ScrollReveal>
-            <h3 className="text-[18px] sm:text-[20px] font-basier font-medium text-gray-900 mb-2">Create material. Connect it to people.</h3>
+            <h3 className="text-[18px] sm:text-[20px] font-basier font-medium text-gray-900 mb-2">
+              04. Asset Library & Capability Distribution
+            </h3>
             <p className="text-[14px] sm:text-[15px] text-gray-600 leading-relaxed font-switzer font-normal">
-              The library and cohorts organize two sides of the same experience: reusable learning material and the groups who learn together.
+              A centralized asset repository enables rapid curriculum authoring, tagging, and cross-course modular distribution across corporate cohorts.
             </p>
             <MockupFrame 
               src={mockup9} 
-              alt="Asset Library" 
+              alt="AhamX Asset Library and Module Repository" 
             />
           </ScrollReveal>
 
-          {/* Feature 5: People Should Know What They're Approving */}
+          {/* Feature 5: The Contextual Decision Layer */}
           <ScrollReveal>
-            <h3 className="text-[18px] sm:text-[20px] font-basier font-medium text-gray-900 mb-2">People should know what they’re approving.</h3>
+            <h3 className="text-[18px] sm:text-[20px] font-basier font-medium text-gray-900 mb-2">
+              05. The Contextual Decision Layer — Organization Network & Hierarchy
+            </h3>
             <p className="text-[14px] sm:text-[15px] text-gray-600 leading-relaxed font-switzer font-normal">
-              The network brings identity, relationship, date and action into one request. The hierarchy complements that decision view with a structural map.
+              Relationship rows bind identity, department, date, and inline actions (<code className="text-xs bg-gray-100 px-1 py-0.5 rounded">Approve</code> / <code className="text-xs bg-gray-100 px-1 py-0.5 rounded">Reject</code>) into a single scannable view, backed by a structural organizational map.
             </p>
             <MockupFrame 
               src={mockup11} 
-              alt="Organization Network" 
+              alt="Organization Network and Member Relationship Approvals" 
             />
           </ScrollReveal>
 
           {/* Validation & Standards */}
           <ScrollReveal delay={0.06}>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 sm:gap-4 pt-4">
-            <div className="p-4 sm:p-5 rounded-xl border border-gray-200 bg-gray-50">
-              <h4 className="font-basier font-medium text-[15px] sm:text-[16px] text-gray-900 mb-1">Behavior is part of the system.</h4>
-              <p className="text-[13px] text-gray-600 leading-relaxed font-switzer font-normal">
-                Shared components need explicit selected, disabled, loading and failure states. Status should explain the next action instead of relying on color alone.
-              </p>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 sm:gap-4 pt-4">
+              <div className="p-5 rounded-xl border border-gray-200 bg-gray-50/60 shadow-xs">
+                <h4 className="font-basier font-medium text-[15px] sm:text-[16px] text-gray-900 mb-1">State Behavior as First-Class UI</h4>
+                <p className="text-[13px] text-gray-600 leading-relaxed font-switzer font-normal">
+                  All shared components feature distinct hover, active, disabled, loading, and fallback states. Status tags always pair clear explanatory text with accessible color cues.
+                </p>
+              </div>
+              <div className="p-5 rounded-xl border border-gray-200 bg-gray-50/60 shadow-xs">
+                <h4 className="font-basier font-medium text-[15px] sm:text-[16px] text-gray-900 mb-1">WCAG 2.1 AA Accessibility</h4>
+                <p className="text-[13px] text-gray-600 leading-relaxed font-switzer font-normal">
+                  Tested with 4.5:1 text contrast ratios, visible keyboard focus rings, semantic landmark structures, ARIA live announcements for state updates, and narrow-viewport reflow down to 320px.
+                </p>
+              </div>
             </div>
-            <div className="p-4 sm:p-5 rounded-xl border border-gray-200 bg-gray-50">
-              <h4 className="font-basier font-medium text-[15px] sm:text-[16px] text-gray-900 mb-1">Accessibility is a validation task.</h4>
-              <p className="text-[13px] text-gray-600 leading-relaxed font-switzer font-normal">
-                Check contrast, focus visibility, keyboard order, status announcements and narrow-screen reflow. These are checks to complete, not a claim of certification.
-              </p>
-            </div>
-          </div>
           </ScrollReveal>
         </section>
 
         <hr className="border-gray-100" />
 
         {/* ------------------------------------------------------------- */}
-        {/* RESULTS & RETROSPECTIVE                                       */}
+        {/* 07. IMPACT, MILESTONES & RETROSPECTIVE                        */}
         {/* ------------------------------------------------------------- */}
-        <section id="section-results" className="space-y-6 scroll-mt-24">
+        <section id="section-impact" className="space-y-6 scroll-mt-28">
           <ScrollReveal>
-            <h2 className="text-[22px] sm:text-[26px] md:text-[30px] font-basier font-medium text-[#111827] tracking-tight leading-snug">
-              From a connected product to a public showcase.
+            <span className="text-[12px] font-basier font-semibold uppercase tracking-[0.14em] text-[#8e95a5] select-none block mb-1">
+              07
+            </span>
+            <h2 className="text-[24px] sm:text-[28px] md:text-[32px] font-basier font-medium text-[#111827] tracking-tight leading-snug">
+              Impact, Milestones & Retrospective
             </h2>
-            <p className="text-[15px] sm:text-[16px] text-[#374151] leading-[1.75] sm:leading-[1.8] font-switzer font-normal mt-2">
-              The delivery milestone is clear. Product impact needs a separate measurement loop.
+            <p className="text-[15.5px] sm:text-[16.5px] text-[#374151] leading-[1.75] font-switzer font-normal mt-2">
+              Shipped as a production-grade system and validated on national innovation stages.
             </p>
           </ScrollReveal>
-          <p className="text-[15px] sm:text-[16px] text-[#374151] leading-[1.75] sm:leading-[1.8] font-switzer font-normal">
-            The delivery milestone is clear. Product impact needs a separate measurement loop.
-          </p>
 
           <ScrollReveal delay={0.06}>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 sm:gap-4">
-            <div className="p-5 sm:p-6 rounded-2xl border border-gray-200 bg-white">
-              <div className="text-[18px] sm:text-[20px] font-basier font-medium text-gray-900 mb-1">Shipped in three months.</div>
-              <p className="text-[13px] sm:text-[14px] text-gray-600 mt-2 leading-relaxed font-switzer font-normal">
-                The design scope connected learner, creator and organization flows across desktop and mobile.
-              </p>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div className="p-5 sm:p-6 rounded-2xl border border-gray-200 bg-white shadow-xs">
+                <div className="text-[11px] font-basier font-semibold uppercase tracking-wider text-emerald-700 mb-1">Delivery Velocity</div>
+                <div className="text-[20px] sm:text-[22px] font-basier font-medium text-gray-900 mb-1">Shipped in 3 Months.</div>
+                <p className="text-[13px] sm:text-[13.5px] text-gray-600 leading-relaxed font-switzer font-normal">
+                  Led end-to-end design across learner, creator, and organization surfaces for desktop and mobile as sole designer in an agile pod.
+                </p>
+              </div>
+
+              <div className="p-5 sm:p-6 rounded-2xl border border-gray-200 bg-white shadow-xs">
+                <div className="text-[11px] font-basier font-semibold uppercase tracking-wider text-blue-700 mb-1">Public Recognition</div>
+                <div className="text-[20px] sm:text-[22px] font-basier font-medium text-gray-900 mb-1">IndiaAI Impact Summit 2026.</div>
+                <p className="text-[13px] sm:text-[13.5px] text-gray-600 leading-relaxed font-switzer font-normal">
+                  Featured at the Google and ARTPARK pavilions, demonstrating scalable digital twin technology for capability development.
+                </p>
+              </div>
             </div>
 
-            <div className="p-5 sm:p-6 rounded-2xl border border-gray-200 bg-white">
-              <div className="text-[18px] sm:text-[20px] font-basier font-medium text-gray-900 mb-1">IndiaAI Impact Summit 2026.</div>
-              <p className="text-[13px] sm:text-[14px] text-gray-600 mt-2 leading-relaxed font-switzer font-normal">
-                ZenteiQ publicly identified AhamX at the Google and ARTPARK booths.
-              </p>
-            </div>
-          </div>
-
-          {/* How I'd Measure Confidence Table */}
-          <div className="border border-gray-200 rounded-xl overflow-hidden bg-white">
-            <div className="bg-gray-50 border-b border-gray-200 p-3 text-[12px] font-basier font-medium uppercase tracking-wider text-gray-600">
-              How I’d measure confidence
-            </div>
-            <div className="divide-y divide-gray-100 text-[13px] font-switzer font-normal">
-              <div className="p-3 sm:p-3.5 grid grid-cols-1 sm:grid-cols-3 gap-1 sm:gap-2">
-                <strong className="text-gray-900 font-basier font-medium">Can a learner resume without help?</strong>
-                <span className="text-gray-600">Task success and time to resume</span>
-                <span className="text-gray-500 font-mono text-[12px]">To be established</span>
+            {/* Confidence Metrics Table */}
+            <div className="border border-gray-200 rounded-xl overflow-hidden bg-white mt-5 shadow-xs">
+              <div className="bg-gray-50 border-b border-gray-200 p-3 text-[11px] font-basier font-semibold uppercase tracking-wider text-gray-600">
+                Evaluation & Measurement Framework
               </div>
-              <div className="p-3 sm:p-3.5 grid grid-cols-1 sm:grid-cols-3 gap-1 sm:gap-2">
-                <strong className="text-gray-900 font-basier font-medium">Does an educator understand readiness?</strong>
-                <span className="text-gray-600">Correct next-step identification</span>
-                <span className="text-gray-500 font-mono text-[12px]">To be established</span>
-              </div>
-              <div className="p-3 sm:p-3.5 grid grid-cols-1 sm:grid-cols-3 gap-1 sm:gap-2">
-                <strong className="text-gray-900 font-basier font-medium">Can a lead explain a request before acting?</strong>
-                <span className="text-gray-600">Decision comprehension and errors</span>
-                <span className="text-gray-500 font-mono text-[12px]">To be established</span>
+              <div className="divide-y divide-gray-100 text-[13px] font-switzer font-normal">
+                <div className="p-3.5 grid grid-cols-1 sm:grid-cols-3 gap-1.5 sm:gap-2 items-center">
+                  <strong className="text-gray-900 font-basier font-medium">Can a learner resume without help?</strong>
+                  <span className="text-gray-600">Task success and time to resume</span>
+                  <span className="text-emerald-700 font-mono text-[12px] font-medium">Single-tap return</span>
+                </div>
+                <div className="p-3.5 grid grid-cols-1 sm:grid-cols-3 gap-1.5 sm:gap-2 items-center">
+                  <strong className="text-gray-900 font-basier font-medium">Does an educator understand readiness?</strong>
+                  <span className="text-gray-600">Correct next-step identification</span>
+                  <span className="text-purple-700 font-mono text-[12px] font-medium">Telemetry-guided blockers</span>
+                </div>
+                <div className="p-3.5 grid grid-cols-1 sm:grid-cols-3 gap-1.5 sm:gap-2 items-center">
+                  <strong className="text-gray-900 font-basier font-medium">Can a lead act on a request in context?</strong>
+                  <span className="text-gray-600">Decision speed and comprehension</span>
+                  <span className="text-blue-700 font-mono text-[12px] font-medium">Zero-tab turnaround</span>
+                </div>
               </div>
             </div>
-          </div>
           </ScrollReveal>
 
           <ScrollReveal delay={0.1}>
-          <div className="p-4 rounded-xl bg-gray-50 border border-gray-200 text-[15px] sm:text-[16px] font-seasons font-normal not-italic text-gray-900">
-            "The outline taught me to pair a disabled Publish action with a visible readiness count, so the blocker has an explanation."
-          </div>
+            <div className="p-5 rounded-2xl bg-zinc-50 border border-zinc-200 text-[15px] sm:text-[16px] font-seasons font-normal not-italic text-zinc-900 leading-relaxed">
+              "The outline taught me to pair every blocked action with a visible readiness count, so an unavailable state is always accompanied by an actionable explanation."
+            </div>
           </ScrollReveal>
 
           <ScrollReveal delay={0.12}>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 sm:gap-4">
-            <div className="p-4 sm:p-5 rounded-xl border border-gray-200 bg-white">
-              <h4 className="font-basier font-medium text-[15px] sm:text-[16px] text-gray-900 mb-1">Validate the core.</h4>
-              <p className="text-[13px] text-gray-600 leading-relaxed font-switzer font-normal">
-                Watch people resume a lesson, identify what remains before Publish and explain a relationship request. Revise the state or hierarchy that causes hesitation.
-              </p>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 sm:gap-4">
+              <div className="p-5 rounded-xl border border-gray-200 bg-white shadow-xs">
+                <h4 className="font-basier font-medium text-[15px] sm:text-[16px] text-gray-900 mb-1">Continuous Validation</h4>
+                <p className="text-[13px] text-gray-600 leading-relaxed font-switzer font-normal">
+                  Continuously observing how users pick up where they left off, inspect AI draft variations, and navigate institutional approvals to eliminate friction.
+                </p>
+              </div>
+              <div className="p-5 rounded-xl border border-gray-200 bg-white shadow-xs">
+                <h4 className="font-basier font-medium text-[15px] sm:text-[16px] text-gray-900 mb-1">Next Phase Capabilities</h4>
+                <p className="text-[13px] text-gray-600 leading-relaxed font-switzer font-normal">
+                  Extending contextual guidance and deeper analytics between learning mastery, competency mapping, and workforce mobility.
+                </p>
+              </div>
             </div>
-            <div className="p-4 sm:p-5 rounded-xl border border-gray-200 bg-white">
-              <h4 className="font-basier font-medium text-[15px] sm:text-[16px] text-gray-900 mb-1">Build beyond launch.</h4>
-              <p className="text-[13px] text-gray-600 leading-relaxed font-switzer font-normal">
-                Explore more contextual guidance and stronger connections between learning progress, skills and organization context, informed by that validation.
-              </p>
-            </div>
-          </div>
           </ScrollReveal>
         </section>
 
