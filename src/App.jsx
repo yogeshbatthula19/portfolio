@@ -1276,10 +1276,16 @@ export default function App() {
                   </div>
                 </div>
 
-                <button className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-[#2c2c2c] hover:bg-black text-white text-[12px] font-normal rounded-full transition-all shrink-0">
+                <a
+                  href="/yogesh-battula-resume.pdf"
+                  download="Yogesh_Battula_Resume.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-[#2c2c2c] hover:bg-black text-white text-[12px] font-normal rounded-full transition-all shrink-0 cursor-pointer"
+                >
                   <FileText className="w-3 h-3 text-white" />
                   Resume
-                </button>
+                </a>
               </div>
 
               {/* Responsive Bento Grid of Stamps */}
@@ -1460,10 +1466,16 @@ export default function App() {
                 </div>
               </div>
 
-              <button className="inline-flex items-center gap-2 px-4 py-2 bg-[#2c2c2c] hover:bg-black text-white text-[13px] font-normal rounded-full transition-all hover:scale-[1.02]">
+              <a
+                href="/yogesh-battula-resume.pdf"
+                download="Yogesh_Battula_Resume.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-4 py-2 bg-[#2c2c2c] hover:bg-black text-white text-[13px] font-normal rounded-full transition-all hover:scale-[1.02] cursor-pointer"
+              >
                 <FileText className="w-3.5 h-3.5 text-white" />
                 Resume
-              </button>
+              </a>
             </div>
 
             {/* 6 Outline Slots Balanced Bento Grid (868px total width) */}

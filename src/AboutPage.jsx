@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
-import { ArrowLeft, ArrowUpRight, Mail } from 'lucide-react';
+import { ArrowLeft, ArrowUpRight, Mail, FileText } from 'lucide-react';
 import photoAvatar from './assets/photo_yogesh_avatar.jpg';
 import heroGradient from './assets/564cc67c35dca41051d7d78448f696fab9f139d9.png';
 import ExperienceSection from './ExperienceSection';
@@ -195,6 +195,18 @@ export default function AboutPage({ onBack, isRevealed = true }) {
                 >
                   <BehanceIcon className="w-3 h-3" />
                   <span>Behance</span>
+                  <ArrowUpRight className="w-2.5 h-2.5 text-[#0c4731]/70" />
+                </a>
+
+                <a
+                  href="/yogesh-battula-resume.pdf"
+                  download="Yogesh_Battula_Resume.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1 font-medium text-[#0c4731] hover:underline"
+                >
+                  <FileText className="w-3 h-3" />
+                  <span>Resume</span>
                   <ArrowUpRight className="w-2.5 h-2.5 text-[#0c4731]/70" />
                 </a>
               </motion.div>

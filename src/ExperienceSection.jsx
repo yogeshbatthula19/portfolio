@@ -3,32 +3,28 @@ import { motion } from 'framer-motion';
 
 const EXPERIENCES = [
   {
-    company: 'F5',
-    role: 'Software Engineer II',
-    period: 'Jun 2025 to present',
+    company: 'Paradigm IT',
+    role: 'Product Designer',
+    period: 'Aug 2025 to present',
     underlineColor: '#ef4444', // Red
-    link: 'https://www.f5.com/',
   },
   {
-    company: 'Fletch',
+    company: 'Prasthana Software Solutions',
     role: 'Product Designer',
-    period: 'Jul 2024 to Jun 2025',
+    period: 'Apr 2022 to Dec 2024',
     underlineColor: '#eab308', // Yellow/Gold
-    link: 'https://fletch.ai/',
   },
   {
-    company: 'SMART Lab',
-    role: 'Design Researcher',
-    period: 'Jan 2023 to May 2024',
+    company: 'Buildup Service',
+    role: 'UI Designer',
+    period: 'Mar 2021 to Apr 2022',
     underlineColor: '#f97316', // Orange/Coral
-    link: 'https://smartlab.purdue.edu/',
   },
   {
-    company: 'OLX Group',
-    role: 'Product Designer',
-    period: 'Jan 2021 to Jul 2022',
+    company: 'Freelance & Contract',
+    role: 'Junior UI/UX Designer',
+    period: 'Jan 2021 to Mar 2021',
     underlineColor: '#3b82f6', // Blue
-    link: 'https://www.olxgroup.com/',
   },
 ];
 

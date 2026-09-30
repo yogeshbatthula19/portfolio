@@ -1,44 +1,30 @@
 import React, { useRef, useState } from 'react';
 import { motion, useScroll, useTransform, useSpring, useMotionValue } from 'framer-motion';
 
-// Sliced CD Jewel Cases
-import cdOzark from './assets/movies/cd_01_ozark.png';
-import cdHomeland from './assets/movies/cd_02_homeland.png';
-import cdSuccession from './assets/movies/cd_03_succession.png';
-import cdDerryGirls from './assets/movies/cd_04_derry_girls.png';
-import cdRachel from './assets/movies/cd_05_rachel_getting_married.png';
-import cdModernFamily from './assets/movies/cd_06_modern_family.png';
-import cdSlowHorses from './assets/movies/cd_07_slow_horses.png';
-import cdFleabag from './assets/movies/cd_08_fleabag.png';
-import cdTedLasso from './assets/movies/cd_09_ted_lasso.png';
-import cdLostDaughter from './assets/movies/cd_10_the_lost_daughter.png';
-import cdSheepDetectives from './assets/movies/cd_11_the_sheep_detectives.png';
-import cdBanshees from './assets/movies/cd_12_the_banshees_of_inisherin.png';
-import cdTheDrama from './assets/movies/cd_13_the_drama.png';
-import cdMindhunter from './assets/movies/cd_14_mindhunter.png';
-import cdSeverance from './assets/movies/cd_15_severance.png';
-import cdBetterCallSaul from './assets/movies/cd_16_better_call_saul.png';
+// Movie Posters from Desktop Movies Folder
+import moviePremalu from './assets/movies/movie_01_premalu.jpg';
+import movieJohnWick from './assets/movies/movie_02_john_wick.jpg';
+import movieEega from './assets/movies/movie_03_eega.jpg';
+import movieBlackPanther from './assets/movies/movie_04_black_panther.jpg';
+import movieCivilWar from './assets/movies/movie_05_civil_war.jpg';
+import movieRangasthalam from './assets/movies/movie_06_rangasthalam.jpg';
+import movieF1 from './assets/movies/movie_07_f1.jpg';
+import movieSalaar from './assets/movies/movie_08_salaar.jpg';
+import movieOohalu from './assets/movies/movie_09_oohalu_gusagusalade.jpg';
+import movieBaahubali from './assets/movies/movie_10_baahubali.jpg';
 
 const MOVIES_AND_SHOWS = [
-  { id: 'ozark', title: 'Ozark', type: 'TV Series', year: '2022', cover: cdOzark, colIndex: 0 },
-  { id: 'homeland', title: 'Homeland', type: 'TV Series', year: '2020', cover: cdHomeland, colIndex: 1 },
-  { id: 'succession', title: 'Succession', type: 'TV Series', year: '2023', cover: cdSuccession, colIndex: 2 },
-  { id: 'derry-girls', title: 'Derry Girls', type: 'TV Series', year: '2022', cover: cdDerryGirls, colIndex: 3 },
-  { id: 'rachel', title: 'Rachel Getting Married', type: 'Movie', year: '2008', cover: cdRachel, colIndex: 4 },
+  { id: 'premalu', title: 'Premalu', type: 'Movie', year: '2024', cover: moviePremalu, colIndex: 0 },
+  { id: 'john-wick', title: 'John Wick', type: 'Movie', year: '2014', cover: movieJohnWick, colIndex: 1 },
+  { id: 'eega', title: 'Eega', type: 'Movie', year: '2012', cover: movieEega, colIndex: 2 },
+  { id: 'black-panther', title: 'Black Panther', type: 'Movie', year: '2018', cover: movieBlackPanther, colIndex: 3 },
+  { id: 'civil-war', title: 'Captain America: Civil War', type: 'Movie', year: '2016', cover: movieCivilWar, colIndex: 4 },
   
-  { id: 'modern-family', title: 'Modern Family', type: 'TV Series', year: '2020', cover: cdModernFamily, colIndex: 0 },
-  { id: 'slow-horses', title: 'Slow Horses', type: 'TV Series', year: '2024', cover: cdSlowHorses, colIndex: 1 },
-  { id: 'fleabag', title: 'Fleabag', type: 'TV Series', year: '2019', cover: cdFleabag, colIndex: 2 },
-  { id: 'ted-lasso', title: 'Ted Lasso', type: 'TV Series', year: '2023', cover: cdTedLasso, colIndex: 3 },
-  { id: 'lost-daughter', title: 'The Lost Daughter', type: 'Movie', year: '2021', cover: cdLostDaughter, colIndex: 4 },
-  
-  { id: 'sheep-detectives', title: 'The Sheep Detectives', type: 'Movie', year: '2023', cover: cdSheepDetectives, colIndex: 0 },
-  { id: 'banshees', title: 'The Banshees of Inisherin', type: 'Movie', year: '2022', cover: cdBanshees, colIndex: 1 },
-  { id: 'the-drama', title: 'The Drama', type: 'Movie', year: '2024', cover: cdTheDrama, colIndex: 2 },
-  { id: 'mindhunter', title: 'Mindhunter', type: 'TV Series', year: '2019', cover: cdMindhunter, colIndex: 3 },
-  { id: 'severance', title: 'Severance', type: 'TV Series', year: '2022', cover: cdSeverance, colIndex: 4 },
-  
-  { id: 'saul', title: 'Better Call Saul', type: 'TV Series', year: '2022', cover: cdBetterCallSaul, colIndex: 0 },
+  { id: 'rangasthalam', title: 'Rangasthalam', type: 'Movie', year: '2018', cover: movieRangasthalam, colIndex: 0 },
+  { id: 'f1', title: 'F1', type: 'Movie', year: '2025', cover: movieF1, colIndex: 1 },
+  { id: 'salaar', title: 'Salaar: Part 1 – Ceasefire', type: 'Movie', year: '2023', cover: movieSalaar, colIndex: 2 },
+  { id: 'oohalu-gusagusalade', title: 'Oohalu Gusagusalade', type: 'Movie', year: '2014', cover: movieOohalu, colIndex: 3 },
+  { id: 'baahubali', title: 'Baahubali: The Beginning', type: 'Movie', year: '2015', cover: movieBaahubali, colIndex: 4 },
 ];
 
 function JewelCaseCard({ item, index, parallaxY }) {
@@ -109,39 +95,99 @@ function JewelCaseCard({ item, index, parallaxY }) {
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.97 }}
         transition={{ type: 'spring', stiffness: 400, damping: 25 }}
-        className="relative w-full aspect-[180/186] rounded-[6px] overflow-hidden drop-shadow-[0_4px_16px_rgba(0,0,0,0.06)] group-hover:drop-shadow-[0_12px_28px_rgba(0,0,0,0.14)] transition-all duration-300"
+        className="relative w-full aspect-[1/1.03] rounded-[8px] overflow-hidden bg-[#e2e6eb] dark:bg-[#15171a] border border-black/15 shadow-[0_6px_20px_rgba(0,0,0,0.08),inset_0_1px_1px_rgba(255,255,255,0.6)] group-hover:shadow-[0_14px_32px_rgba(0,0,0,0.18)] transition-all duration-300 select-none"
       >
-        {/* Jewel Case Asset Image */}
-        <img
-          src={item.cover}
-          alt={item.title}
-          loading="lazy"
-          className="w-full h-full object-contain pointer-events-none select-none transition-transform duration-500 ease-out group-hover:scale-[1.02]"
+        {/* Left Spine with Dual Acrylic Hinges */}
+        <div className="absolute left-0 top-0 bottom-0 w-[8px] bg-gradient-to-r from-white/50 via-white/20 to-black/15 border-r border-black/20 flex flex-col justify-between py-2 items-center z-10 pointer-events-none">
+          <div className="w-[3px] h-[10px] bg-white/60 rounded-full shadow-xs" />
+          <div className="w-[3px] h-[10px] bg-white/60 rounded-full shadow-xs" />
+        </div>
+
+        {/* Right Thumb Grip Notch */}
+        <div className="absolute right-0 top-1/2 -translate-y-1/2 w-[3px] h-[16px] bg-black/20 rounded-l-full z-10 pointer-events-none" />
+
+        {/* Dark Inner Tray */}
+        <div className="absolute inset-y-[3px] right-[4px] left-[9px] rounded-[5px] bg-[#1a1d22] shadow-[inset_0_2px_8px_rgba(0,0,0,0.6)] flex items-center justify-center overflow-hidden">
+          {/* Circular CD Disc */}
+          <div className="relative w-[92%] h-[92%] rounded-full overflow-hidden shadow-[0_4px_16px_rgba(0,0,0,0.5)] border border-black/60 flex items-center justify-center">
+            {/* Movie Poster on Disc Face */}
+            <img
+              src={item.cover}
+              alt={item.title}
+              loading="lazy"
+              className="w-full h-full object-cover select-none pointer-events-none transition-transform duration-700 ease-out group-hover:scale-105"
+            />
+
+            {/* Circular Optical Sheen Overlay */}
+            <div
+              className="absolute inset-0 rounded-full pointer-events-none"
+              style={{
+                background:
+                  'radial-gradient(circle, transparent 28%, rgba(255,255,255,0.14) 42%, transparent 58%, rgba(255,255,255,0.08) 82%)',
+              }}
+            />
+
+            {/* Clear Inner Hub Ring */}
+            <div className="absolute inset-0 m-auto w-[34%] h-[34%] rounded-full bg-black/45 backdrop-blur-[2px] border border-white/20 shadow-inner flex items-center justify-center">
+              {/* Center Spindle with Radial Spokes */}
+              <svg
+                viewBox="0 0 100 100"
+                className="w-[64%] h-[64%] text-[#101214] select-none pointer-events-none drop-shadow-sm"
+              >
+                <circle cx="50" cy="50" r="48" fill="#14171a" stroke="#000" strokeWidth="2" />
+                {[0, 22.5, 45, 67.5, 90, 112.5, 135, 157.5, 180, 202.5, 225, 247.5, 270, 292.5, 315, 337.5].map(
+                  (deg) => (
+                    <rect
+                      key={deg}
+                      x="48"
+                      y="10"
+                      width="4"
+                      height="14"
+                      rx="1"
+                      fill="#252a32"
+                      transform={`rotate(${deg} 50 50)`}
+                    />
+                  )
+                )}
+                <circle cx="50" cy="50" r="20" fill="#121417" stroke="#000" strokeWidth="2" />
+                <circle cx="50" cy="50" r="14" fill="#0d0e10" />
+              </svg>
+            </div>
+          </div>
+        </div>
+
+        {/* Glass Specular Reflection on Acrylic Lid */}
+        <div
+          className="absolute inset-0 pointer-events-none rounded-[8px] z-20"
+          style={{
+            background:
+              'linear-gradient(130deg, rgba(255,255,255,0.35) 0%, rgba(255,255,255,0.06) 38%, transparent 55%, rgba(255,255,255,0.12) 100%)',
+          }}
         />
 
-        {/* Dynamic Glass Specular Sheen (mimics real acrylic CD case) */}
+        {/* Dynamic Interactive Mouse Glare */}
         <motion.div
-          className="absolute inset-0 pointer-events-none rounded-[6px] opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+          className="absolute inset-0 pointer-events-none rounded-[8px] opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20"
           style={{
             background: `radial-gradient(circle at ${glareX.get()}% ${glareY.get()}%, rgba(255,255,255,0.45) 0%, rgba(255,255,255,0.08) 45%, transparent 70%)`,
           }}
         />
 
-        {/* Clear Plastic Corner Highlight Border */}
-        <div className="absolute inset-0 rounded-[6px] border border-white/40 pointer-events-none group-hover:border-white/70 transition-colors duration-300" />
+        {/* Clear Acrylic Outer Highlight Border */}
+        <div className="absolute inset-0 rounded-[8px] border border-white/40 pointer-events-none group-hover:border-white/70 transition-colors duration-300 z-20" />
 
         {/* Sleek Floating Badge on Hover / Focus */}
         <motion.div
           initial={{ opacity: 0, y: 6 }}
           animate={isHovered ? { opacity: 1, y: 0 } : { opacity: 0, y: 6 }}
           transition={{ duration: 0.2 }}
-          className="absolute bottom-2 inset-x-2 pointer-events-none bg-black/75 backdrop-blur-md rounded-md py-1 px-1.5 text-center text-white"
+          className="absolute bottom-2 inset-x-2 pointer-events-none bg-black/80 backdrop-blur-md rounded-md py-1 px-1.5 text-center text-white z-30"
         >
           <p className="text-[11.5px] font-medium leading-tight truncate">
             {item.title}
           </p>
           <p className="text-[9.5px] text-white/70 font-normal leading-tight">
-            {item.type}
+            {item.type} • {item.year}
           </p>
         </motion.div>
       </motion.div>
