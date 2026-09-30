@@ -148,7 +148,7 @@ button, a, [role="button"], [role="link"] {
 .case-study-card[data-interactive="true"] { cursor: pointer; }
 
 @media (max-width: 639px) {
-  .hero-section { min-height: 80svh; }
+  .hero-section { min-height: clamp(380px, 55svh, 480px); }
 }
 
 @media (prefers-reduced-motion: reduce) {

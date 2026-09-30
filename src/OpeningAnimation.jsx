@@ -67,7 +67,20 @@ export default function OpeningAnimation({
   return (
     <>
       {/* SVG ClipPath Definition for the Organic Wave (ObjectBoundingBox) */}
-      <svg width="0" height="0" className="absolute pointer-events-none" aria-hidden="true">
+      <svg 
+        width="0" 
+        height="0" 
+        className="pointer-events-none" 
+        style={{ 
+          position: 'absolute', 
+          top: 0, 
+          left: 0, 
+          width: 0, 
+          height: 0, 
+          overflow: 'hidden' 
+        }} 
+        aria-hidden="true"
+      >
         <defs>
           <clipPath id="introBgWaveClip" clipPathUnits="objectBoundingBox">
             <path d="M 0 0 L 1 0 L 1 0.84 C 0.94 0.86, 0.84 0.90, 0.72 0.90 C 0.58 0.90, 0.44 0.76, 0.30 0.76 C 0.20 0.76, 0.10 0.80, 0 0.84 Z" />
@@ -96,6 +109,8 @@ export default function OpeningAnimation({
           transform: 'translate3d(0, 0, 0)',
           WebkitBackfaceVisibility: 'hidden',
           backfaceVisibility: 'hidden',
+          WebkitTapHighlightColor: 'transparent',
+          outline: 'none',
         }}
       >
         {/* Background Image Layer: Fills the entire container right down into the curved wave */}
@@ -108,7 +123,7 @@ export default function OpeningAnimation({
         />
 
         {/* Centered Bold White Title in The Seasons font */}
-        <div className="absolute top-0 left-0 right-0 h-screen flex items-center justify-center pointer-events-none px-6">
+        <div className="absolute top-0 left-0 right-0 h-screen flex items-center justify-center pointer-events-none px-4 sm:px-6">
           <motion.h1
             key={title}
             initial={{ opacity: 0, scale: 0.95 }}
@@ -121,7 +136,7 @@ export default function OpeningAnimation({
             className="text-white leading-none select-none text-center tracking-tight drop-shadow-[0_4px_24px_rgba(0,0,0,0.08)] whitespace-nowrap"
             style={{
               fontFamily: "'The Seasons', Georgia, serif",
-              fontSize: title.length > 7 ? 'clamp(46px, 12vw, 175px)' : 'clamp(84px, 18vw, 220px)',
+              fontSize: title.length > 7 ? 'clamp(36px, 10vw, 160px)' : 'clamp(52px, 14.5vw, 200px)',
               fontWeight: 700,
               color: '#ffffff',
             }}
