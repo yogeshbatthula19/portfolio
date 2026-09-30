@@ -728,6 +728,15 @@ export default function App() {
   };
 
   const navigateToAbout = () => {
+    try {
+      const AudioCtx = window.AudioContext || window.webkitAudioContext;
+      if (AudioCtx) {
+        window.__portfolioAudioCtx = window.__portfolioAudioCtx || new AudioCtx();
+        if (window.__portfolioAudioCtx.state === 'suspended') {
+          window.__portfolioAudioCtx.resume().catch(() => {});
+        }
+      }
+    } catch (e) {}
     setAboutRevealed(false);
     setIntroState({ show: true, title: 'About', key: `about-${Date.now()}` });
     window.location.hash = '#/about';
