@@ -3,8 +3,7 @@ import { motion } from 'framer-motion';
 import { ArrowLeft, ArrowUpRight, Mail, FileText } from 'lucide-react';
 import photoAvatar from './assets/photo_yogesh_avatar.jpg';
 import heroGradient from './assets/564cc67c35dca41051d7d78448f696fab9f139d9.png';
-import ExperienceSection from './ExperienceSection';
-import RecentMoviesGrid from './RecentMoviesGrid';
+import { TypewriterExperience, CassetteCollection } from './AboutCollections';
 
 // LinkedIn Icon SVG
 function LinkedinIcon({ className = "w-4 h-4" }) {
@@ -45,7 +44,7 @@ export default function AboutPage({ onBack, isRevealed = true }) {
   const entranceEase = [0.16, 1, 0.3, 1];
 
   return (
-    <div className="min-h-screen bg-white text-[#111827] relative selection:bg-[#0c4731] selection:text-white flex flex-col overflow-x-hidden">
+    <div className="min-h-screen bg-white text-[#111827] relative selection:bg-[#0c4731] selection:text-white flex flex-col overflow-x-clip">
       {/* Ambient gradient header background matching case studies & hero */}
       <div
         aria-hidden="true"
@@ -57,32 +56,6 @@ export default function AboutPage({ onBack, isRevealed = true }) {
           backgroundRepeat: 'no-repeat',
         }}
       />
-
-      {/* Top Clean Navigation Header */}
-      <motion.nav
-        initial={{ opacity: 0, y: -16 }}
-        animate={shouldAnimate ? { opacity: 1, y: 0 } : { opacity: 0, y: -16 }}
-        transition={{ duration: 0.65, ease: entranceEase }}
-        className="sticky top-0 z-40 px-5 sm:px-8 lg:px-10 py-3 sm:py-3.5 flex items-center justify-between pointer-events-auto bg-white/80 backdrop-blur-md border-b border-black/[0.05] shrink-0"
-      >
-        <button
-          onClick={onBack}
-          className="group inline-flex items-center gap-2 px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-full bg-transparent hover:bg-black/[0.04] text-[#111827] text-[13px] sm:text-[13.5px] font-medium border border-black/[0.12] transition-colors cursor-pointer"
-        >
-          <ArrowLeft className="w-4 h-4 transition-transform duration-300 group-hover:-translate-x-1" />
-          <span>Back to home</span>
-        </button>
-
-        <div className="flex items-center gap-2 sm:gap-3">
-          <a
-            href="mailto:yogeshbattula55@gmail.com"
-            className="inline-flex items-center gap-1.5 px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-full bg-[#0c4731] hover:bg-[#093524] text-white text-[12.5px] sm:text-[13px] font-medium transition-colors"
-          >
-            <Mail className="w-3.5 h-3.5" />
-            <span>Say hello</span>
-          </a>
-        </div>
-      </motion.nav>
 
       {/* Main Content Area */}
       <main className="w-full flex-1 flex flex-col">
@@ -221,10 +194,10 @@ export default function AboutPage({ onBack, isRevealed = true }) {
         </section>
 
         {/* 2. Experience Section */}
-        <ExperienceSection />
+        <TypewriterExperience />
 
         {/* 3. Recent Movies & Shows Section with Scroll Parallax */}
-        <RecentMoviesGrid />
+        <CassetteCollection />
 
         {/* 4. Elegant Bottom Navigation & Footer */}
         <section className="w-full max-w-5xl mx-auto px-5 sm:px-8 lg:px-10 pt-8 pb-16 sm:pb-24 border-t border-black/[0.06] mt-8 flex flex-col sm:flex-row items-center justify-between gap-6">
