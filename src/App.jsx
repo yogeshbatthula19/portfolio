@@ -312,7 +312,7 @@ function ScrollRevealSection({ sectionRef, children }) {
 }
 
 // Interactive Case study card with smooth hover and click navigation.
-function CaseStudyCard({ coverImage, title, description, onClick }) {
+function CaseStudyCard({ coverImage, tag, title, description, onClick }) {
   return (
     <motion.div
       onClick={onClick}
@@ -323,7 +323,7 @@ function CaseStudyCard({ coverImage, title, description, onClick }) {
       }}
       data-interactive={Boolean(onClick)}
       whileHover={{ y: -4, transition: { type: "spring", stiffness: 400, damping: 25 } }}
-      className="case-study-card w-full bg-white rounded-[24px] border border-black/[0.08] overflow-hidden flex flex-col group transition-all duration-300 hover:border-black/20 hover:shadow-[0_16px_36px_-12px_rgba(0,0,0,0.08)] relative select-none will-change-transform"
+      className={`case-study-card w-full bg-white rounded-[24px] border border-black/[0.08] overflow-hidden flex flex-col group transition-all duration-300 hover:border-black/20 hover:shadow-[0_16px_36px_-12px_rgba(0,0,0,0.08)] relative select-none will-change-transform ${onClick ? 'cursor-pointer' : ''}`}
     >
       {/* Banner */}
       <div className="relative w-full h-[210px] sm:h-[220px] overflow-hidden select-none bg-gray-50">
@@ -337,13 +337,25 @@ function CaseStudyCard({ coverImage, title, description, onClick }) {
       {/* Content */}
       <div className="p-5 sm:p-6 flex flex-col flex-1 justify-between">
         <div>
-          <h3 className="font-basier text-[17.5px] sm:text-[18.5px] font-bold not-italic text-[#18181b] tracking-tight leading-snug mb-2 group-hover:text-blue-600 transition-colors duration-300">
+          {tag && (
+            <div className="text-[10.5px] sm:text-[11px] font-basier font-medium uppercase tracking-wider text-gray-400 mb-2">
+              {tag}
+            </div>
+          )}
+          <h3 className="font-basier text-[17px] sm:text-[18px] font-bold not-italic text-[#18181b] tracking-tight leading-snug mb-2 group-hover:text-blue-600 transition-colors duration-300">
             {title}
           </h3>
           <p className="font-basier text-[13.5px] text-[#71717a] leading-[1.55] line-clamp-3 font-normal">
             {description}
           </p>
         </div>
+
+        {onClick && (
+          <div className="mt-4 pt-3.5 border-t border-gray-100 flex items-center justify-between text-[12px] sm:text-[12.5px] font-basier font-medium text-gray-500 group-hover:text-gray-900 transition-colors">
+            <span>Explore Case Study</span>
+            <span className="transition-transform duration-300 group-hover:translate-x-1 font-semibold">→</span>
+          </div>
+        )}
       </div>
     </motion.div>
   );
@@ -1716,48 +1728,52 @@ export default function App() {
           {/* Case Study 1: Trosky 365 */}
           <CaseStudyCard
             coverImage={coverPoints}
+            tag="iOS App · Athletic Training & Habit System"
             title={
               <>
-                Players complete <span className="font-basier font-bold text-blue-600">25%</span> more daily wins.
+                Trosky 365 — Turning a static drill catalog into a <span className="font-basier font-bold text-blue-600">+36%</span> daily practice habit.
               </>
             }
-            description="Turning the Trosky 365 home screen from a static list of assignments into a voice-driven coaching experience with Coach Trosky."
+            description="Translating Coach Nate Trosky’s elite infield curriculum and 6th Tool mental composure framework into a 10-minute daily routine—slashing drill startup to <6s and boosting active reflections 3.4x."
             onClick={() => navigateToCaseStudy('trosky')}
           />
 
-          {/* Case Study 2: LearnPulse AI / AhamX */}
+          {/* Case Study 2: AhamX */}
           <CaseStudyCard
             coverImage={coverEdtech}
+            tag="Enterprise Platform · AI & Capability Intelligence"
             title={
               <>
-                Boosting learner completion by <span className="font-basier font-bold text-purple-600">42%</span> with voice streaks.
+                AhamX — Slashing enterprise study resumption by <span className="font-basier font-bold text-purple-600">91%</span> via digital twins.
               </>
             }
-            description="Transforming passive video curriculum into interactive, voice-guided micro-learning challenges with AI milestone feedback."
+            description="Unifying learners, educators, and enterprise leads into one continuous capability system with staged AI validation gates—featured at IndiaAI Impact Summit 2026 across Google & ARTPARK pavilions."
             onClick={() => navigateToCaseStudy('ahamx')}
           />
 
-          {/* Case Study 3: Ryzeup / PassKey ID */}
+          {/* Case Study 3: Ryzeup */}
           <CaseStudyCard
             coverImage={coverIdentity}
+            tag="Mobile App · Workplace Knowledge & Priorities"
             title={
               <>
-                Streamlining workplace verification to under <span className="font-basier font-bold text-amber-500">45s</span>.
+                Ryzeup — Cutting manager context-switching from 28s to <span className="font-basier font-bold text-amber-500">&lt;3s</span>.
               </>
             }
-            description="Designing a mobile-first digital credential pass with instant NFC check-ins and encrypted biometric access."
+            description="Redesigning workplace feeds, structured Field Q&A, and direct-report priority drawers into a focused mobile experience that drove a +15% monthly active usage increase."
             onClick={() => navigateToCaseStudy('ryzeup')}
           />
 
           {/* Case Study 4: CarePulse Health */}
           <CaseStudyCard
             coverImage={coverHealth}
+            tag="Concept · Ambient Healthcare Intelligence"
             title={
               <>
-                Reducing clinical EHR chart time by <span className="font-basier font-bold text-emerald-600">35%</span> for clinicians.
+                CarePulse — Saving clinicians <span className="font-basier font-bold text-emerald-600">2.4 hrs/day</span> on EHR documentation.
               </>
             }
-            description="Architecting an ambient clinical notes assistant that lets physicians focus directly on patient care rather than electronic health record entry."
+            description="Architecting an ambient clinical notes interface that converts unstructured doctor-patient conversations into structured medical records with zero physician burnout."
           />
 
         </div>
