@@ -2,16 +2,15 @@ import React, { useState, useEffect, useLayoutEffect, useRef, useMemo } from 're
 import { motion, useScroll, useTransform, AnimatePresence, useSpring, cubicBezier, useReducedMotion, useVelocity } from 'framer-motion';
 import Lenis from 'lenis';
 import { FileText, Heart, ArrowRight, ArrowUpRight, X } from 'lucide-react';
-import CaseStudyAhamX from './CaseStudyAhamX';
-import CaseStudyRyzeup from './CaseStudyRyzeup';
-import CaseStudyTrosky from './CaseStudyTrosky';
-import AboutPage from './AboutPage';
+const CaseStudyAhamX = React.lazy(() => import('./CaseStudyAhamX'));
+const CaseStudyRyzeup = React.lazy(() => import('./CaseStudyRyzeup'));
+const CaseStudyTrosky = React.lazy(() => import('./CaseStudyTrosky'));
+const AboutPage = React.lazy(() => import('./AboutPage'));
 import ConceptToCraft from './ConceptToCraft';
 import CommunityTestimonials from './CommunityTestimonials';
 import CustomCursor from './CustomCursor';
 import OpeningAnimation from './OpeningAnimation';
 import photoAvatar from './assets/photo_yogesh_avatar.jpg';
-import stampAbout from './assets/stamp_about.png';
 import stampAboutOrange from './assets/stamp_about_orange.png';
 
 // Substack Brand Icon
@@ -165,10 +164,12 @@ function StampFrame({ children, className = "", innerClassName = "", defaultW = 
 }
 
 // Custom Amber/Orange Postage Stamp About Card
-function NoteCard({ onClick }) {
+function NoteCard({ onClick, onMouseEnter, onFocus }) {
   return (
     <div
       onClick={onClick}
+      onMouseEnter={onMouseEnter}
+      onFocus={onFocus}
       role="link"
       tabIndex={0}
       onKeyDown={(e) => { if (e.key === 'Enter') onClick(); }}
@@ -177,6 +178,8 @@ function NoteCard({ onClick }) {
       <img
         src={stampAboutOrange}
         alt="About Yogesh - Postage Stamp"
+        loading="lazy"
+        decoding="async"
         className="w-full h-full object-contain select-none transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-105"
       />
     </div>
@@ -203,6 +206,8 @@ function CoupleCard({ imageSrc }) {
       <img
         src={imageSrc}
         alt="Yogesh and partner"
+        loading="lazy"
+        decoding="async"
         className="w-full h-full object-contain select-none transition-transform duration-700 ease-out group-hover:scale-105"
       />
 
@@ -312,10 +317,12 @@ function ScrollRevealSection({ sectionRef, children }) {
 }
 
 // Interactive Case study card with smooth hover and click navigation.
-function CaseStudyCard({ coverImage, title, description, onClick }) {
+function CaseStudyCard({ coverImage, title, description, onClick, onMouseEnter, onFocus }) {
   return (
     <motion.div
       onClick={onClick}
+      onMouseEnter={onMouseEnter}
+      onFocus={onFocus}
       role={onClick ? "link" : undefined}
       tabIndex={onClick ? 0 : undefined}
       onKeyDown={(event) => {
@@ -330,6 +337,8 @@ function CaseStudyCard({ coverImage, title, description, onClick }) {
         <img 
           src={coverImage} 
           alt={typeof title === 'string' ? title : "Case Study"} 
+          loading="lazy"
+          decoding="async"
           className="w-full h-full object-cover transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-105" 
         />
       </div>
@@ -421,7 +430,7 @@ import coverHealth from './assets/cover_health.jpg';
 
 // 3D Star Sparkle Asset from Figma (Node 314:1415)
 import starSparkle from './assets/star_sparkle.png';
-import footerBlueTexture from './assets/footer-blue-texture.png';
+import footerBlueTexture from './assets/footer-blue-texture.jpg';
 import nimbuMirchi from './assets/nimbu_mirchi.png';
 
 // Waving Indian "Nimbu Mirchi" (Lemon & Chilli) Nazar Battu Hanging Charm
@@ -452,6 +461,8 @@ function WavingNimbuMirchi({ bottomPosition = 'clamp(270px, 46vh, 400px)' }) {
         <img
           src={nimbuMirchi}
           alt="Nimbu Mirchi - Traditional lemon and chilli hanging good luck charm"
+          loading="lazy"
+          decoding="async"
           className="w-[42px] sm:w-[50px] md:w-[58px] lg:w-[64px] h-auto object-contain pointer-events-none select-none"
           draggable={false}
         />
@@ -1007,7 +1018,9 @@ export default function App() {
             exit={{ opacity: 0 }}
             transition={{ duration: 0.32, ease: [0.22, 1, 0.36, 1] }}
           >
-            <CaseStudyAhamX onBack={navigateToHome} isRevealed={caseStudyRevealed} />
+            <React.Suspense fallback={<div className="min-h-screen bg-[#fafafa]" />}>
+              <CaseStudyAhamX onBack={navigateToHome} isRevealed={caseStudyRevealed} />
+            </React.Suspense>
           </motion.div>
         ) : currentView === 'trosky' ? (
           <motion.div
@@ -1017,7 +1030,9 @@ export default function App() {
             exit={{ opacity: 0 }}
             transition={{ duration: 0.32, ease: [0.22, 1, 0.36, 1] }}
           >
-            <CaseStudyTrosky onBack={navigateToHome} isRevealed={caseStudyRevealed} />
+            <React.Suspense fallback={<div className="min-h-screen bg-[#fafafa]" />}>
+              <CaseStudyTrosky onBack={navigateToHome} isRevealed={caseStudyRevealed} />
+            </React.Suspense>
           </motion.div>
         ) : currentView === 'ryzeup' ? (
           <motion.div
@@ -1027,7 +1042,9 @@ export default function App() {
             exit={{ opacity: 0 }}
             transition={{ duration: 0.32, ease: [0.22, 1, 0.36, 1] }}
           >
-            <CaseStudyRyzeup onBack={navigateToHome} isRevealed={caseStudyRevealed} />
+            <React.Suspense fallback={<div className="min-h-screen bg-[#fafafa]" />}>
+              <CaseStudyRyzeup onBack={navigateToHome} isRevealed={caseStudyRevealed} />
+            </React.Suspense>
           </motion.div>
         ) : currentView === 'about' ? (
           <motion.div
@@ -1037,7 +1054,9 @@ export default function App() {
             exit={{ opacity: 0 }}
             transition={{ duration: 0.32, ease: [0.22, 1, 0.36, 1] }}
           >
-            <AboutPage onBack={() => navigateToHome('about')} isRevealed={aboutRevealed} />
+            <React.Suspense fallback={<div className="min-h-screen bg-[#fafafa]" />}>
+              <AboutPage onBack={() => navigateToHome('about')} isRevealed={aboutRevealed} />
+            </React.Suspense>
           </motion.div>
         ) : (
           <motion.div
@@ -1312,6 +1331,8 @@ export default function App() {
                   <img
                     src={photoAvatar}
                     alt="Yogesh"
+                    loading="lazy"
+                    decoding="async"
                     className="shrink-0 w-[52px] h-[52px] rounded-full object-cover shadow-sm border border-black/5"
                   />
                   <div>
@@ -1323,6 +1344,8 @@ export default function App() {
                       <motion.img 
                         src={starSparkle} 
                         alt="Sparkle star" 
+                        loading="lazy"
+                        decoding="async"
                         animate={{ rotate: reduceMotion ? 0 : 360 }}
                         transition={{ repeat: Infinity, duration: 16, ease: "linear" }}
                         className="w-[18px] sm:w-[20px] h-[18px] sm:h-[20px] object-contain select-none pointer-events-none"
@@ -1359,6 +1382,8 @@ export default function App() {
                       <img 
                         src={stampLighthouse} 
                         alt="Coastal lighthouse surrounded by palm trees - Panoramic Postage Stamp" 
+                        loading="lazy"
+                        decoding="async"
                         className="w-full h-full object-contain select-none transition-transform duration-500 ease-out group-hover:scale-105" 
                       />
                     </div>
@@ -1375,6 +1400,8 @@ export default function App() {
                       <img 
                         src={stampCycling} 
                         alt="Yogesh cycling on campus - Postage Stamp" 
+                        loading="lazy"
+                        decoding="async"
                         className="w-full h-full object-contain select-none transition-transform duration-500 ease-out group-hover:scale-105" 
                       />
                     </div>
@@ -1391,6 +1418,8 @@ export default function App() {
                       <img 
                         src={stampTemple} 
                         alt="Historic temple gopuram with devotees - Tall Postage Stamp" 
+                        loading="lazy"
+                        decoding="async"
                         className="w-full h-full object-contain select-none transition-transform duration-500 ease-out group-hover:scale-105" 
                       />
                     </div>
@@ -1417,6 +1446,8 @@ export default function App() {
                       <img 
                         src={stampPrabhas} 
                         alt="Prabhas with sunflowers in postage stamp" 
+                        loading="lazy"
+                        decoding="async"
                         className="w-full h-full object-contain select-none transition-transform duration-500 ease-out group-hover:scale-105" 
                       />
                     </div>
@@ -1429,7 +1460,11 @@ export default function App() {
                     whileTap={{ scale: 0.98 }}
                     className="w-full h-full flex items-center justify-center cursor-pointer group origin-center"
                   >
-                    <NoteCard onClick={navigateToAbout} />
+                    <NoteCard 
+                      onClick={navigateToAbout} 
+                      onMouseEnter={() => import('./AboutPage')}
+                      onFocus={() => import('./AboutPage')}
+                    />
                   </motion.div>
                 </div>
 
@@ -1622,6 +1657,8 @@ export default function App() {
                   <img
                     src={stampCycling}
                     alt="Yogesh cycling on campus - Postage Stamp"
+                    loading="lazy"
+                    decoding="async"
                     className="w-full h-full object-contain select-none transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-105"
                   />
                 </div>
@@ -1646,6 +1683,8 @@ export default function App() {
                   <img
                     src={stampLighthouse}
                     alt="Coastal lighthouse surrounded by palm trees - Panoramic Postage Stamp"
+                    loading="lazy"
+                    decoding="async"
                     className="w-full h-full object-contain select-none transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-105"
                   />
                 </div>
@@ -1670,6 +1709,8 @@ export default function App() {
                   <img
                     src={stampTemple}
                     alt="Historic temple gopuram with devotees - Tall Postage Stamp"
+                    loading="lazy"
+                    decoding="async"
                     className="w-full h-full object-contain select-none transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-105"
                   />
                 </div>
@@ -1712,6 +1753,8 @@ export default function App() {
                   <img
                     src={stampPrabhas}
                     alt="Prabhas with sunflowers in postage stamp"
+                    loading="lazy"
+                    decoding="async"
                     className="w-full h-full object-contain select-none transition-transform duration-700 ease-out group-hover:scale-105"
                   />
                 </div>
@@ -1732,7 +1775,11 @@ export default function App() {
                 }}
                 className="absolute left-[478px] top-[356px] pointer-events-auto"
               >
-                <NoteCard onClick={navigateToAbout} />
+                <NoteCard 
+                  onClick={navigateToAbout} 
+                  onMouseEnter={() => import('./AboutPage')}
+                  onFocus={() => import('./AboutPage')}
+                />
               </motion.div>
 
             </div>
@@ -1781,6 +1828,8 @@ export default function App() {
             }
             description="Translating Coach Nate Trosky’s elite infield curriculum and 6th Tool mental composure framework into a 10-minute daily routine—slashing drill startup to <6s and boosting active reflections 3.4x."
             onClick={() => navigateToCaseStudy('trosky')}
+            onMouseEnter={() => import('./CaseStudyTrosky')}
+            onFocus={() => import('./CaseStudyTrosky')}
           />
 
           {/* Case Study 2: AhamX */}
@@ -1793,6 +1842,8 @@ export default function App() {
             }
             description="Unifying learners, educators, and enterprise leads into one continuous capability system with staged AI validation gates—featured at IndiaAI Impact Summit 2026 across Google & ARTPARK pavilions."
             onClick={() => navigateToCaseStudy('ahamx')}
+            onMouseEnter={() => import('./CaseStudyAhamX')}
+            onFocus={() => import('./CaseStudyAhamX')}
           />
 
           {/* Case Study 3: Ryzeup */}
@@ -1805,6 +1856,8 @@ export default function App() {
             }
             description="Redesigning workplace feeds, structured Field Q&A, and direct-report priority drawers into a focused mobile experience that drove a +15% monthly active usage increase."
             onClick={() => navigateToCaseStudy('ryzeup')}
+            onMouseEnter={() => import('./CaseStudyRyzeup')}
+            onFocus={() => import('./CaseStudyRyzeup')}
           />
 
           {/* Case Study 4: CarePulse Health */}

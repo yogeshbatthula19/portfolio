@@ -115,6 +115,7 @@ function JewelCaseCard({ item, index, parallaxY }) {
               src={item.cover}
               alt={item.title}
               loading="lazy"
+              decoding="async"
               className="w-full h-full object-cover select-none pointer-events-none transition-transform duration-700 ease-out group-hover:scale-105"
             />
 

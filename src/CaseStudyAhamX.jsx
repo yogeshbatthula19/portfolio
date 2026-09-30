@@ -52,6 +52,7 @@ function MockupFrame({ src, alt }) {
               alt={alt} 
               className="w-full h-auto object-cover block pointer-events-none" 
               loading="lazy"
+              decoding="async"
             />
           </div>
         </motion.div>
@@ -80,12 +81,12 @@ function DualMockupFrame({ src1, alt1, src2, alt2 }) {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-6">
           <motion.div style={{ y: innerY1 }}>
             <div className="rounded-[10px] sm:rounded-[14px] overflow-hidden shadow-lg border border-black/10 bg-white">
-              <img src={src1} alt={alt1} className="w-full h-auto object-cover block pointer-events-none" loading="lazy" />
+              <img src={src1} alt={alt1} className="w-full h-auto object-cover block pointer-events-none" loading="lazy" decoding="async" />
             </div>
           </motion.div>
           <motion.div style={{ y: innerY2 }}>
             <div className="rounded-[10px] sm:rounded-[14px] overflow-hidden shadow-lg border border-black/10 bg-white">
-              <img src={src2} alt={alt2} className="w-full h-auto object-cover block pointer-events-none" loading="lazy" />
+              <img src={src2} alt={alt2} className="w-full h-auto object-cover block pointer-events-none" loading="lazy" decoding="async" />
             </div>
           </motion.div>
         </div>

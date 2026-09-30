@@ -61,6 +61,7 @@ function MockupFrame({ src, alt, maxWidth = "max-w-[340px] sm:max-w-[400px]" }) 
               alt={alt} 
               className="w-full h-auto object-contain drop-shadow-2xl mx-auto rounded-[12px] sm:rounded-[18px] pointer-events-none select-none" 
               loading="lazy"
+              decoding="async"
             />
           </div>
         </motion.div>
@@ -94,6 +95,7 @@ function DualMockupFrame({ src1, alt1, src2, alt2 }) {
                 alt={alt1} 
                 className="w-full h-auto object-contain drop-shadow-2xl mx-auto rounded-[12px] sm:rounded-[18px] pointer-events-none select-none" 
                 loading="lazy" 
+                decoding="async"
               />
             </div>
           </motion.div>
@@ -104,6 +106,7 @@ function DualMockupFrame({ src1, alt1, src2, alt2 }) {
                 alt={alt2} 
                 className="w-full h-auto object-contain drop-shadow-2xl mx-auto rounded-[12px] sm:rounded-[18px] pointer-events-none select-none" 
                 loading="lazy" 
+                decoding="async"
               />
             </div>
           </motion.div>
@@ -360,6 +363,7 @@ export default function CaseStudyRyzeup({ onBack, isRevealed = true }) {
                   alt="Ryzeup New Mobile Experience Mockup (Purple)" 
                   className="w-full h-full object-contain drop-shadow-[0_20px_35px_rgba(0,0,0,0.22)] mx-auto pointer-events-none select-none" 
                   loading="eager"
+                  decoding="async"
                 />
               </motion.div>
 
@@ -378,6 +382,7 @@ export default function CaseStudyRyzeup({ onBack, isRevealed = true }) {
                   alt="Ryzeup Old Interface Reference Mockup (Orange)" 
                   className="w-full h-full object-contain drop-shadow-[0_20px_35px_rgba(0,0,0,0.22)] mx-auto pointer-events-none select-none" 
                   loading="eager"
+                  decoding="async"
                 />
               </motion.div>
             </div>

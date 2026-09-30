@@ -69,6 +69,7 @@ function HeroShowcaseFrame() {
             alt="Trosky 365 Daily Home Screen" 
             className="w-full h-auto object-contain drop-shadow-[0_20px_35px_rgba(0,0,0,0.25)] pointer-events-none select-none" 
             loading="eager"
+            decoding="async"
           />
           <p className="mt-3 text-center text-[12px] font-basier text-gray-700 font-normal">
             Daily Routine Home
@@ -85,6 +86,7 @@ function HeroShowcaseFrame() {
             alt="Trosky 365 Drill Instructional Content Screen" 
             className="w-full h-auto object-contain drop-shadow-[0_25px_45px_rgba(0,0,0,0.3)] pointer-events-none select-none" 
             loading="eager"
+            decoding="async"
           />
           <p className="mt-3 text-center text-[12px] font-basier text-gray-900 font-medium">
             Active Drill Breakdown
@@ -101,6 +103,7 @@ function HeroShowcaseFrame() {
             alt="Trosky 365 Session Complete Screen" 
             className="w-full h-auto object-contain drop-shadow-[0_20px_35px_rgba(0,0,0,0.25)] pointer-events-none select-none" 
             loading="eager"
+            decoding="async"
           />
           <p className="mt-3 text-center text-[12px] font-basier text-gray-700 font-normal">
             Session Win & Streak
@@ -134,6 +137,7 @@ function MockupFrame({ src, alt, caption }) {
               alt={alt} 
               className="w-full h-auto object-cover block pointer-events-none select-none" 
               loading="lazy"
+              decoding="async"
             />
           </div>
         </motion.div>
@@ -172,6 +176,7 @@ function DualMockupFrame({ src1, alt1, caption1, src2, alt2, caption2 }) {
                 alt={alt1} 
                 className="w-full h-auto object-contain drop-shadow-[0_20px_35px_rgba(0,0,0,0.25)] mx-auto pointer-events-none select-none" 
                 loading="lazy" 
+                decoding="async"
               />
             </div>
             {caption1 && (
@@ -188,6 +193,7 @@ function DualMockupFrame({ src1, alt1, caption1, src2, alt2, caption2 }) {
                 alt={alt2} 
                 className="w-full h-auto object-contain drop-shadow-[0_20px_35px_rgba(0,0,0,0.25)] mx-auto pointer-events-none select-none" 
                 loading="lazy" 
+                decoding="async"
               />
             </div>
             {caption2 && (
@@ -233,6 +239,7 @@ function TrioMockupFrame({
                 alt={alt1} 
                 className="w-full h-auto object-contain drop-shadow-[0_20px_35px_rgba(0,0,0,0.25)] mx-auto pointer-events-none select-none" 
                 loading="lazy" 
+                decoding="async"
               />
             </div>
             {caption1 && (
@@ -250,6 +257,7 @@ function TrioMockupFrame({
                 alt={alt2} 
                 className="w-full h-auto object-contain drop-shadow-[0_20px_35px_rgba(0,0,0,0.25)] mx-auto pointer-events-none select-none" 
                 loading="lazy" 
+                decoding="async"
               />
             </div>
             {caption2 && (
@@ -267,6 +275,7 @@ function TrioMockupFrame({
                 alt={alt3} 
                 className="w-full h-auto object-contain drop-shadow-[0_20px_35px_rgba(0,0,0,0.25)] mx-auto pointer-events-none select-none" 
                 loading="lazy" 
+                decoding="async"
               />
             </div>
             {caption3 && (
