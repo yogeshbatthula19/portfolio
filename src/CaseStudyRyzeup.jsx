@@ -157,7 +157,12 @@ function MicroInteractionVideo({ mp4Src, webmSrc, title, caption }) {
 
 export default function CaseStudyRyzeup({ onBack, isRevealed = true }) {
   useEffect(() => {
-    window.scrollTo({ top: 0, behavior: 'instant' });
+    if (window.lenis) {
+      window.lenis.scrollTo(0, { immediate: true });
+      requestAnimationFrame(() => window.lenis?.resize());
+    } else {
+      window.scrollTo({ top: 0, behavior: 'instant' });
+    }
   }, []);
 
   const [viewMode, setViewMode] = useState('new');

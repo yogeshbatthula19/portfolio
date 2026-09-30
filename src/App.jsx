@@ -475,14 +475,26 @@ function WhiteFooterCard({ navigateToCaseStudy, navigateToAbout, onScrollToWorks
             <span className="font-semibold text-zinc-900 tracking-tight">Yogesh Battula</span>
             <span className="text-zinc-300">|</span>
             <button
-              onClick={onScrollToWorks || (() => document.getElementById('selected-works')?.scrollIntoView({ behavior: 'smooth' }))}
+              onClick={onScrollToWorks || (() => {
+                if (window.lenis) {
+                  window.lenis.scrollTo('#selected-works', { offset: -24, duration: 1.0 });
+                } else {
+                  document.getElementById('selected-works')?.scrollIntoView({ behavior: 'smooth' });
+                }
+              })}
               className="hover:text-black transition-colors cursor-pointer"
             >
               Works
             </button>
             <span className="text-zinc-300">|</span>
             <button
-              onClick={navigateToAbout || (() => window.scrollTo({ top: 0, behavior: 'smooth' }))}
+              onClick={navigateToAbout || (() => {
+                if (window.lenis) {
+                  window.lenis.scrollTo(0, { duration: 1.0 });
+                } else {
+                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                }
+              })}
               className="hover:text-black transition-colors cursor-pointer"
             >
               About
@@ -527,17 +539,20 @@ export default function App() {
   useEffect(() => {
     if (reduceMotion) return;
 
-    // Native momentum scrolling is considerably more reliable on touch hardware.
-    // Running Lenis alongside 3D cards and scroll-linked Framer transforms caused
-    // dropped frames on phones and tablets.
-    const isTouchDevice = window.matchMedia('(pointer: coarse)').matches || window.innerWidth < 1024;
-    if (isTouchDevice) return;
+    // Use native momentum on pure mobile touch devices (phones), while retaining
+    // silky smooth Lenis physics across all desktop, laptop, and precision trackpad setups.
+    const isTouchOnly = window.matchMedia('(pointer: coarse) and (hover: none)').matches;
+    if (isTouchOnly) return;
 
     const lenis = new Lenis({
-      lerp: 0.12,
-      wheelMultiplier: 1.05,
+      duration: 1.0,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // Silky exponential ease-out
+      orientation: 'vertical',
+      gestureOrientation: 'vertical',
       smoothWheel: true,
-      syncTouch: false,
+      wheelMultiplier: 1.0,
+      touchMultiplier: 1.5,
+      autoResize: true,
     });
 
     let rafId;
@@ -607,16 +622,31 @@ export default function App() {
     if (introState.show) {
       document.body.style.overflow = 'hidden';
       window.scrollTo(0, 0);
+      if (window.lenis) {
+        window.lenis.stop();
+        window.lenis.scrollTo(0, { immediate: true });
+      }
       // Hard failsafe: guarantee scroll is always released after 2200ms
       unlockTimer = setTimeout(() => {
         document.body.style.overflow = '';
+        if (window.lenis) {
+          window.lenis.start();
+          window.lenis.resize();
+        }
       }, 2200);
     } else {
       document.body.style.overflow = '';
+      if (window.lenis) {
+        window.lenis.start();
+        requestAnimationFrame(() => window.lenis?.resize());
+      }
     }
     return () => {
       if (unlockTimer) clearTimeout(unlockTimer);
       document.body.style.overflow = '';
+      if (window.lenis) {
+        window.lenis.start();
+      }
     };
   }, [introState.show]);
 
@@ -773,7 +803,11 @@ export default function App() {
       const performScroll = () => {
         const el = document.getElementById('selected-works');
         if (el) {
-          el.scrollIntoView({ behavior: 'instant' });
+          if (window.lenis) {
+            window.lenis.scrollTo(el, { offset: -24, immediate: true });
+          } else {
+            el.scrollIntoView({ behavior: 'instant' });
+          }
           document.querySelector('.case-study-card[data-interactive="true"]')?.focus({ preventScroll: true });
           returnToWorks.current = false;
           return true;
@@ -791,6 +825,23 @@ export default function App() {
           clearTimeout(timer3);
         };
       }
+    }
+  }, [currentView]);
+
+  // Synchronize Lenis scroll position and recalculate document height across page transitions
+  useEffect(() => {
+    if (window.lenis) {
+      if (!returnToWorks.current) {
+        window.lenis.scrollTo(0, { immediate: true });
+      }
+      const timer1 = setTimeout(() => window.lenis?.resize(), 60);
+      const timer2 = setTimeout(() => window.lenis?.resize(), 250);
+      const timer3 = setTimeout(() => window.lenis?.resize(), 650);
+      return () => {
+        clearTimeout(timer1);
+        clearTimeout(timer2);
+        clearTimeout(timer3);
+      };
     }
   }, [currentView]);
 
@@ -998,7 +1049,14 @@ export default function App() {
             onAnimationComplete={() => {
               if (returnToWorks.current) {
                 returnToWorks.current = false;
-                document.getElementById('selected-works')?.scrollIntoView({ behavior: 'instant' });
+                const el = document.getElementById('selected-works');
+                if (el) {
+                  if (window.lenis) {
+                    window.lenis.scrollTo(el, { offset: -24, immediate: true });
+                  } else {
+                    el.scrollIntoView({ behavior: 'instant' });
+                  }
+                }
               }
             }}
           >

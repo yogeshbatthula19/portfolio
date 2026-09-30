@@ -78,17 +78,29 @@ export default function CaseStudyScrollNav({ sections = DEFAULT_SECTIONS }) {
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
+    if (window.lenis) {
+      window.lenis.on('scroll', handleScroll);
+    }
     handleScroll(); // Initial check
 
-    return () => window.removeEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      if (window.lenis) {
+        window.lenis.off('scroll', handleScroll);
+      }
+    };
   }, [sections]);
 
   const handleScrollTo = (id) => {
     const el = document.getElementById(id);
     if (el) {
-      const yOffset = -70; // offset so heading is clearly visible
-      const y = el.getBoundingClientRect().top + window.pageYOffset + yOffset;
-      window.scrollTo({ top: y, behavior: 'smooth' });
+      if (window.lenis) {
+        window.lenis.scrollTo(el, { offset: -70, duration: 1.0 });
+      } else {
+        const yOffset = -70; // offset so heading is clearly visible
+        const y = el.getBoundingClientRect().top + window.pageYOffset + yOffset;
+        window.scrollTo({ top: y, behavior: 'smooth' });
+      }
     }
   };
 

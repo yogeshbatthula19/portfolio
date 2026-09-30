@@ -28,9 +28,15 @@ export default function AboutPage({ onBack, isRevealed = true }) {
   const [hasLanded, setHasLanded] = useState(false);
 
   useEffect(() => {
-    window.scrollTo(0, 0);
+    if (window.lenis) {
+      window.lenis.scrollTo(0, { immediate: true });
+      requestAnimationFrame(() => window.lenis?.resize());
+    } else {
+      window.scrollTo(0, 0);
+    }
     const timer = setTimeout(() => {
       setHasLanded(true);
+      window.lenis?.resize();
     }, 60);
     return () => clearTimeout(timer);
   }, []);
