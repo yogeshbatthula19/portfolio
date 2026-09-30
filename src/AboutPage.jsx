@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { ArrowLeft, ArrowUpRight, Mail, FileText } from 'lucide-react';
-import photoAvatar from './assets/photo_yogesh_avatar.jpg';
+import AboutCamera from './AboutCamera';
 import heroGradient from './assets/564cc67c35dca41051d7d78448f696fab9f139d9.png';
 import { TypewriterExperience, CassetteCollection } from './AboutCollections';
 
@@ -25,6 +25,7 @@ function BehanceIcon({ className = "w-4 h-4" }) {
 
 export default function AboutPage({ onBack, isRevealed = true }) {
   const [hasLanded, setHasLanded] = useState(false);
+  const [photoReady, setPhotoReady] = useState(false);
 
   useEffect(() => {
     if (window.lenis) {
@@ -62,7 +63,7 @@ export default function AboutPage({ onBack, isRevealed = true }) {
         {/* 1. Hero / Bio Section */}
         <section className="w-full max-w-5xl mx-auto px-5 sm:px-8 lg:px-10 pt-8 sm:pt-14 pb-8 sm:pb-12 flex flex-col">
           {/* Large Iconic Header Title in The Seasons Font */}
-          <div className="text-center mb-6 sm:mb-10 shrink-0">
+          <div className="text-center mb-5 sm:mb-7 shrink-0">
             <motion.h1
               initial={{ opacity: 0, y: 24 }}
               animate={shouldAnimate ? { opacity: 1, y: 0 } : { opacity: 0, y: 24 }}
@@ -74,78 +75,60 @@ export default function AboutPage({ onBack, isRevealed = true }) {
                 lineHeight: 1.1,
               }}
             >
-              I'm Yogesh.
+              A little about me.
             </motion.h1>
           </div>
 
-          {/* Two-Column Hero Row: Left Arch Portrait | Right Bio & Overview */}
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 lg:gap-10 xl:gap-12 items-center">
-            {/* Left Column: Architectural Arch Portrait */}
-            <motion.div
-              initial={{ opacity: 0, y: 30, scale: 0.96 }}
-              animate={shouldAnimate ? { opacity: 1, y: 0, scale: 1 } : { opacity: 0, y: 30, scale: 0.96 }}
-              transition={{ duration: 0.9, delay: 0.16, ease: entranceEase }}
-              className="lg:col-span-5 flex justify-center items-center"
-            >
-              <div
-                className="w-[190px] sm:w-[220px] md:w-[230px] lg:w-[240px] xl:w-[260px] aspect-[3/4] rounded-t-full rounded-b-none overflow-hidden relative border border-black/[0.08] shrink-0 bg-white"
-                style={{
-                  backgroundImage: `linear-gradient(to bottom, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.2) 60%, rgba(255,255,255,0.6) 100%), url(${heroGradient})`,
-                  backgroundSize: 'cover',
-                  backgroundPosition: 'center top',
-                }}
-              >
-                <img
-                  src={photoAvatar}
-                  alt="Yogesh Battula"
-                  className="w-full h-full object-cover object-top mix-blend-multiply"
-                />
-              </div>
-            </motion.div>
+          <div className="about-camera-intro">
+            <AboutCamera onPrinted={() => setPhotoReady(true)} />
 
             {/* Right Column: Narrative & Story */}
             <motion.div
               initial={{ opacity: 0, y: 28 }}
-              animate={shouldAnimate ? { opacity: 1, y: 0 } : { opacity: 0, y: 28 }}
+              animate={shouldAnimate && photoReady ? { opacity: 1, y: 0 } : { opacity: 0, y: 28 }}
               transition={{ duration: 0.9, delay: 0.24, ease: entranceEase }}
-              className="lg:col-span-7 flex flex-col justify-center space-y-3 sm:space-y-4 text-[#1f2937]"
+              className={`camera-introduction flex flex-col justify-center space-y-3 sm:space-y-4 text-[#1f2937] ${photoReady ? 'is-visible' : ''}`}
+              inert={!photoReady}
+              aria-hidden={!photoReady}
             >
               {/* Headline in The Seasons */}
               <motion.h2
                 initial={{ opacity: 0, y: 16 }}
-                animate={shouldAnimate ? { opacity: 1, y: 0 } : { opacity: 0, y: 16 }}
+                animate={shouldAnimate && photoReady ? { opacity: 1, y: 0 } : { opacity: 0, y: 16 }}
                 transition={{ duration: 0.8, delay: 0.3, ease: entranceEase }}
                 className="text-lg sm:text-xl lg:text-[22px] xl:text-[24px] font-seasons font-normal not-italic text-[#0c4731] leading-[1.3] tracking-tight"
               >
-                I'm a Product Designer working remotely from 28°C Hyderabad, India.
+                Product designer, based in Hyderabad.
               </motion.h2>
 
               {/* Body Copy 1 */}
               <motion.p
                 initial={{ opacity: 0, y: 14 }}
-                animate={shouldAnimate ? { opacity: 1, y: 0 } : { opacity: 0, y: 14 }}
+                animate={shouldAnimate && photoReady ? { opacity: 1, y: 0 } : { opacity: 0, y: 14 }}
                 transition={{ duration: 0.8, delay: 0.36, ease: entranceEase }}
                 className="text-[13.5px] sm:text-[14.5px] lg:text-[15px] leading-[1.65] text-[#374151] font-normal"
               >
-                Over the past 5+ years, I've worked in various areas of digital design, including front-end development, design systems, mobile apps, and UI/UX. I'm proud to have worn many hats across product teams.
+                Over 5+ years, I’ve designed digital products across mobile apps, design systems, and UI/UX.
               </motion.p>
 
               {/* Body Copy 2 */}
               <motion.p
                 initial={{ opacity: 0, y: 14 }}
-                animate={shouldAnimate ? { opacity: 1, y: 0 } : { opacity: 0, y: 14 }}
+                animate={shouldAnimate && photoReady ? { opacity: 1, y: 0 } : { opacity: 0, y: 14 }}
                 transition={{ duration: 0.8, delay: 0.42, ease: entranceEase }}
                 className="text-[13px] sm:text-[14px] lg:text-[14.5px] leading-[1.65] text-[#374151] font-normal"
               >
-                These days, I focus on crafting human-centered digital products that look clean on the surface and make sense underneath.
+                I bring design and front-end experience to make complex experiences feel simple.
               </motion.p>
+
+              <p className="about-signature" aria-label="Yogesh">Yogesh</p>
 
               {/* Social & Contact Links */}
               <motion.div
                 initial={{ opacity: 0, y: 12 }}
-                animate={shouldAnimate ? { opacity: 1, y: 0 } : { opacity: 0, y: 12 }}
+                animate={shouldAnimate && photoReady ? { opacity: 1, y: 0 } : { opacity: 0, y: 12 }}
                 transition={{ duration: 0.8, delay: 0.48, ease: entranceEase }}
-                className="pt-2 flex flex-wrap items-center gap-4 sm:gap-5 text-[13px] text-[#4b5563]"
+                className="pt-2 flex flex-wrap justify-center items-center gap-4 sm:gap-5 text-[13px] text-[#4b5563]"
               >
                 <a
                   href="mailto:yogeshbattula55@gmail.com"
