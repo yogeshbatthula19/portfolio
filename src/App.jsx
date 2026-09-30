@@ -312,7 +312,7 @@ function ScrollRevealSection({ sectionRef, children }) {
 }
 
 // Interactive Case study card with smooth hover and click navigation.
-function CaseStudyCard({ coverImage, tag, title, description, onClick }) {
+function CaseStudyCard({ coverImage, title, description, onClick }) {
   return (
     <motion.div
       onClick={onClick}
@@ -337,25 +337,13 @@ function CaseStudyCard({ coverImage, tag, title, description, onClick }) {
       {/* Content */}
       <div className="p-5 sm:p-6 flex flex-col flex-1 justify-between">
         <div>
-          {tag && (
-            <div className="text-[10.5px] sm:text-[11px] font-basier font-medium uppercase tracking-wider text-gray-400 mb-2">
-              {tag}
-            </div>
-          )}
-          <h3 className="font-basier text-[17px] sm:text-[18px] font-bold not-italic text-[#18181b] tracking-tight leading-snug mb-2 group-hover:text-blue-600 transition-colors duration-300">
+          <h3 className="font-basier text-[17.5px] sm:text-[18.5px] font-bold not-italic text-[#18181b] tracking-tight leading-snug mb-2 group-hover:text-blue-600 transition-colors duration-300">
             {title}
           </h3>
           <p className="font-basier text-[13.5px] text-[#71717a] leading-[1.55] line-clamp-3 font-normal">
             {description}
           </p>
         </div>
-
-        {onClick && (
-          <div className="mt-4 pt-3.5 border-t border-gray-100 flex items-center justify-between text-[12px] sm:text-[12.5px] font-basier font-medium text-gray-500 group-hover:text-gray-900 transition-colors">
-            <span>Explore Case Study</span>
-            <span className="transition-transform duration-300 group-hover:translate-x-1 font-semibold">→</span>
-          </div>
-        )}
       </div>
     </motion.div>
   );
@@ -1728,7 +1716,6 @@ export default function App() {
           {/* Case Study 1: Trosky 365 */}
           <CaseStudyCard
             coverImage={coverPoints}
-            tag="iOS App · Athletic Training & Habit System"
             title={
               <>
                 Trosky 365 — Turning a static drill catalog into a <span className="font-basier font-bold text-blue-600">+36%</span> daily practice habit.
@@ -1741,7 +1728,6 @@ export default function App() {
           {/* Case Study 2: AhamX */}
           <CaseStudyCard
             coverImage={coverEdtech}
-            tag="Enterprise Platform · AI & Capability Intelligence"
             title={
               <>
                 AhamX — Slashing enterprise study resumption by <span className="font-basier font-bold text-purple-600">91%</span> via digital twins.
@@ -1754,7 +1740,6 @@ export default function App() {
           {/* Case Study 3: Ryzeup */}
           <CaseStudyCard
             coverImage={coverIdentity}
-            tag="Mobile App · Workplace Knowledge & Priorities"
             title={
               <>
                 Ryzeup — Cutting manager context-switching from 28s to <span className="font-basier font-bold text-amber-500">&lt;3s</span>.
@@ -1767,7 +1752,6 @@ export default function App() {
           {/* Case Study 4: CarePulse Health */}
           <CaseStudyCard
             coverImage={coverHealth}
-            tag="Concept · Ambient Healthcare Intelligence"
             title={
               <>
                 CarePulse — Saving clinicians <span className="font-basier font-bold text-emerald-600">2.4 hrs/day</span> on EHR documentation.
