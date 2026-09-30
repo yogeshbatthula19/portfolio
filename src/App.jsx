@@ -582,48 +582,69 @@ export default function App() {
     };
   }, [reduceMotion]);
 
+  // Route detector supporting both clean path URLs (/about, /case-study/ahamx) and legacy hash URLs (/#/about)
+  const parseCurrentRoute = () => {
+    if (typeof window === 'undefined') return 'home';
+    const pathname = window.location.pathname.toLowerCase().replace(/\/+$/, '') || '/';
+    const hash = (window.location.hash || '').toLowerCase();
+
+    // Check pathname first (clean URLs)
+    if (pathname === '/about' || pathname.startsWith('/about/')) return 'about';
+    if (pathname === '/case-study/ahamx' || pathname === '/ahamx') return 'ahamx';
+    if (pathname === '/case-study/ryzeup' || pathname === '/ryzeup') return 'ryzeup';
+    if (pathname === '/case-study/trosky' || pathname === '/trosky') return 'trosky';
+
+    // Support legacy hash if present (e.g. #/about, #about, #/case-study/ahamx)
+    const cleanHash = hash.replace(/^#\/?/, '').trim();
+    if (cleanHash === 'about' || cleanHash.startsWith('about/')) return 'about';
+    if (cleanHash === 'case-study/ahamx' || cleanHash === 'ahamx') return 'ahamx';
+    if (cleanHash === 'case-study/ryzeup' || cleanHash === 'ryzeup') return 'ryzeup';
+    if (cleanHash === 'case-study/trosky' || cleanHash === 'trosky') return 'trosky';
+
+    return 'home';
+  };
+
+  const getInitialRouteInfo = () => {
+    if (typeof window === 'undefined') return { route: 'home', hasIntro: true, title: 'Yogesh' };
+    const pathname = window.location.pathname.toLowerCase().replace(/\/+$/, '') || '/';
+    const hash = (window.location.hash || '').toLowerCase();
+    const full = `${pathname} ${hash}`;
+
+    if (full.includes('nointro')) {
+      return { route: 'home', hasIntro: false, title: 'Yogesh' };
+    }
+    const route = parseCurrentRoute();
+    if (route === 'about') {
+      return { route: 'about', hasIntro: true, title: 'About' };
+    }
+    if (['ahamx', 'ryzeup', 'trosky'].includes(route)) {
+      return { route, hasIntro: true, title: 'Case study' };
+    }
+    return { route: 'home', hasIntro: true, title: 'Yogesh' };
+  };
+
   // Opening / Preloader Animation State (Home: "Yogesh", Case Studies: "Case study", About: "About")
   const [introState, setIntroState] = useState(() => {
-    if (typeof window !== 'undefined') {
-      const hash = window.location.hash || '';
-      if (hash.includes('nointro')) {
-        return { show: false, title: 'Yogesh', key: 'initial-home' };
-      }
-      if (hash.includes('ahamx') || hash.includes('ryzeup') || hash.includes('trosky')) {
-        return { show: true, title: 'Case study', key: 'initial-case-study' };
-      }
-      if (hash.includes('about')) {
-        return { show: true, title: 'About', key: 'initial-about' };
-      }
-    }
-    return { show: true, title: 'Yogesh', key: 'initial-home' };
+    const info = getInitialRouteInfo();
+    return { show: info.hasIntro, title: info.title, key: `initial-${info.route}` };
   });
 
   // Track if website components should play open-site entrance animation
   const [siteOpened, setSiteOpened] = useState(() => {
-    if (typeof window !== 'undefined') {
-      const hash = window.location.hash || '';
-      if (hash.includes('ahamx') || hash.includes('ryzeup') || hash.includes('trosky') || hash.includes('about') || hash.includes('nointro')) return true;
-    }
-    return false;
+    const info = getInitialRouteInfo();
+    return info.route !== 'home' || !info.hasIntro;
   });
 
   // Track if case study components should play entrance animation on reveal
   const [caseStudyRevealed, setCaseStudyRevealed] = useState(() => {
-    if (typeof window !== 'undefined') {
-      const hash = window.location.hash || '';
-      if (hash.includes('ahamx') || hash.includes('ryzeup') || hash.includes('trosky')) return false;
-    }
-    return true;
+    const info = getInitialRouteInfo();
+    return !['ahamx', 'ryzeup', 'trosky'].includes(info.route);
   });
 
   // Track if about page components should play entrance animation on reveal
   const [aboutRevealed, setAboutRevealed] = useState(() => {
-    if (typeof window !== 'undefined') {
-      const hash = window.location.hash || '';
-      if (hash.includes('about')) return false;
-    }
-    return true;
+    const info = getInitialRouteInfo();
+    return info.route !== 'about';
   });
   const entranceEase = [0.16, 1, 0.3, 1];
 
@@ -661,29 +682,32 @@ export default function App() {
     };
   }, [introState.show]);
 
-  // Clean Route Parser for Hash Navigation
-  const parseRoute = (hash) => {
-    if (!hash) return 'home';
-    const clean = hash.replace(/^#\/?/, '').toLowerCase().trim();
-    if (clean === 'about' || clean.startsWith('about/')) return 'about';
-    if (clean === 'case-study/ahamx' || clean === 'ahamx') return 'ahamx';
-    if (clean === 'case-study/ryzeup' || clean === 'ryzeup') return 'ryzeup';
-    if (clean === 'case-study/trosky' || clean === 'trosky') return 'trosky';
-    return 'home';
-  };
-
-  // Simple Hash-based Router for Case Studies & About Page
+  // Clean HTML5 Path-based Router for Case Studies & About Page
   const [currentView, setCurrentView] = useState(() => {
-    if (typeof window !== 'undefined') {
-      return parseRoute(window.location.hash);
-    }
-    return 'home';
+    return parseCurrentRoute();
   });
 
+  // Upgrade legacy hash URLs (/#/about) to clean URLs (/about) without reload
   useEffect(() => {
-    const handleHashChange = () => {
+    if (typeof window !== 'undefined' && window.location.hash) {
+      const hash = window.location.hash.toLowerCase();
+      if (hash.includes('about')) {
+        window.history.replaceState(null, '', '/about');
+      } else if (hash.includes('ahamx')) {
+        window.history.replaceState(null, '', '/case-study/ahamx');
+      } else if (hash.includes('ryzeup')) {
+        window.history.replaceState(null, '', '/case-study/ryzeup');
+      } else if (hash.includes('trosky')) {
+        window.history.replaceState(null, '', '/case-study/trosky');
+      }
+    }
+  }, []);
+
+  // Listen to popstate (browser back/forward) and hashchange
+  useEffect(() => {
+    const handleLocationChange = () => {
+      const targetView = parseCurrentRoute();
       const hash = window.location.hash || '';
-      const targetView = parseRoute(hash);
 
       if (hash === '#selected-works') {
         returnToWorks.current = true;
@@ -714,14 +738,18 @@ export default function App() {
         return targetView;
       });
     };
-    window.addEventListener('hashchange', handleHashChange);
-    return () => window.removeEventListener('hashchange', handleHashChange);
+    window.addEventListener('popstate', handleLocationChange);
+    window.addEventListener('hashchange', handleLocationChange);
+    return () => {
+      window.removeEventListener('popstate', handleLocationChange);
+      window.removeEventListener('hashchange', handleLocationChange);
+    };
   }, []);
 
   const navigateToCaseStudy = (slug) => {
     setCaseStudyRevealed(false);
     setIntroState({ show: true, title: 'Case study', key: `case-study-${slug}-${Date.now()}` });
-    window.location.hash = `#/case-study/${slug}`;
+    window.history.pushState(null, '', `/case-study/${slug}`);
     setCurrentView(slug);
     window.lenis?.scrollTo(0, { immediate: true });
     window.scrollTo({ top: 0, behavior: 'instant' });
@@ -739,7 +767,7 @@ export default function App() {
     } catch (e) {}
     setAboutRevealed(false);
     setIntroState({ show: true, title: 'About', key: `about-${Date.now()}` });
-    window.location.hash = '#/about';
+    window.history.pushState(null, '', '/about');
     setCurrentView('about');
     window.lenis?.scrollTo(0, { immediate: true });
     window.scrollTo({ top: 0, behavior: 'instant' });
@@ -748,14 +776,10 @@ export default function App() {
   const navigateToHome = (target = 'works') => {
     if (target === 'works') {
       returnToWorks.current = true;
-      window.location.hash = '#selected-works';
+      window.history.pushState(null, '', '/#selected-works');
     } else {
       returnToWorks.current = false;
-      if (window.history.pushState) {
-        window.history.pushState(null, '', window.location.pathname);
-      } else {
-        window.location.hash = '';
-      }
+      window.history.pushState(null, '', '/');
       window.lenis?.scrollTo(0, { immediate: true });
       window.scrollTo({ top: 0, behavior: 'instant' });
     }
