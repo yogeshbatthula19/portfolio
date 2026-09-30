@@ -27,8 +27,8 @@ function getAudioContext() {
   return window.__portfolioAudioCtx;
 }
 
-// Studio-grade mechanical typewriter keystroke synthesis
-function playTypewriterClick(ctx, isSpaceOrReturn = false) {
+// Initial authentic typewriter click synthesis (clean white noise burst with exponential falloff)
+function playTypewriterClick(ctx) {
   if (!ctx) return;
   if (ctx.state === 'suspended') {
     ctx.resume().catch(() => {});
@@ -36,68 +36,33 @@ function playTypewriterClick(ctx, isSpaceOrReturn = false) {
   if (ctx.state !== 'running') return;
 
   try {
-    const now = ctx.currentTime;
-
-    // 1. Crisp Metallic Hammer Strike (Shaped noise burst through high-Q bandpass)
-    const bufferLen = Math.floor(ctx.sampleRate * 0.042);
-    const noiseBuffer = ctx.createBuffer(1, bufferLen, ctx.sampleRate);
-    const data = noiseBuffer.getChannelData(0);
-    const decayConst = ctx.sampleRate * 0.007; // 7ms fast exponential falloff
-    for (let i = 0; i < bufferLen; i++) {
-      data[i] = (Math.random() * 2 - 1) * Math.exp(-i / decayConst);
+    const buffer = ctx.createBuffer(1, Math.floor(ctx.sampleRate * 0.035), ctx.sampleRate);
+    const data = buffer.getChannelData(0);
+    for (let i = 0; i < data.length; i++) {
+      data[i] = (Math.random() * 2 - 1) * Math.exp(-i / (ctx.sampleRate * 0.005));
     }
-
-    const noiseSource = ctx.createBufferSource();
-    noiseSource.buffer = noiseBuffer;
-
-    const filter = ctx.createBiquadFilter();
-    filter.type = 'bandpass';
-    const centerFreq = isSpaceOrReturn ? 1750 : 2450 + (Math.random() - 0.5) * 400;
-    filter.frequency.setValueAtTime(centerFreq, now);
-    filter.Q.setValueAtTime(3.8, now);
-
-    const noiseGain = ctx.createGain();
-    const peakVolume = isSpaceOrReturn ? 0.22 : 0.28;
-    noiseGain.gain.setValueAtTime(peakVolume, now);
-    noiseGain.gain.exponentialRampToValueAtTime(0.0001, now + 0.04);
-
-    noiseSource.connect(filter);
-    filter.connect(noiseGain);
-    noiseGain.connect(ctx.destination);
-    noiseSource.start(now);
-    noiseSource.stop(now + 0.042);
-
-    // 2. Heavy Platen / Chassis Thud (Low-end acoustic body resonance)
-    const osc = ctx.createOscillator();
-    const oscGain = ctx.createGain();
-
-    osc.type = 'triangle';
-    const startFreq = isSpaceOrReturn ? 210 : 280 + (Math.random() - 0.5) * 40;
-    const endFreq = isSpaceOrReturn ? 80 : 110;
-    osc.frequency.setValueAtTime(startFreq, now);
-    osc.frequency.exponentialRampToValueAtTime(endFreq, now + 0.035);
-
-    const oscVolume = isSpaceOrReturn ? 0.26 : 0.20;
-    oscGain.gain.setValueAtTime(oscVolume, now);
-    oscGain.gain.exponentialRampToValueAtTime(0.0001, now + 0.038);
-
-    osc.connect(oscGain);
-    oscGain.connect(ctx.destination);
-
-    osc.start(now);
-    osc.stop(now + 0.04);
-  } catch (e) {
-    // Fail silently
-  }
+    const source = ctx.createBufferSource();
+    const gain = ctx.createGain();
+    source.buffer = buffer;
+    gain.gain.value = 0.08;
+    source.connect(gain);
+    gain.connect(ctx.destination);
+    source.onended = () => {
+      try {
+        source.disconnect();
+        gain.disconnect();
+      } catch (e) {}
+    };
+    source.start();
+  } catch (e) {}
 }
 
 export function TypewriterExperience() {
   const ref = useRef(null);
   const previousCount = useRef(0);
-  const lastPlayTime = useRef(0);
+  const lastTick = useRef(0);
   const reduced = useReducedMotion();
   const [count, setCount] = useState(0);
-  const [soundEnabled, setSoundEnabled] = useState(true);
 
   const { scrollYProgress } = useScroll({ target: ref, offset: ['start 20%', 'end 85%'] });
   useMotionValueEvent(scrollYProgress, 'change', (p) => {
@@ -112,23 +77,19 @@ export function TypewriterExperience() {
         ctx.resume().catch(() => {});
       }
     };
-    const events = ['click', 'pointerdown', 'touchstart', 'touchend', 'keydown', 'wheel'];
+    const events = ['click', 'pointerdown', 'touchstart', 'touchend', 'keydown', 'wheel', 'scroll'];
     events.forEach((evt) => window.addEventListener(evt, unlock, { passive: true }));
     return () => {
       events.forEach((evt) => window.removeEventListener(evt, unlock));
     };
   }, []);
 
-  // Play audio when text progresses forwards
+  // Play initial audio when text progresses forwards - always on on scroll
   useEffect(() => {
-    if (count <= previousCount.current) {
-      previousCount.current = count;
-      return;
-    }
-    const delta = count - previousCount.current;
+    const advancing = count > previousCount.current;
     previousCount.current = count;
 
-    if (reduced || !soundEnabled) return;
+    if (!advancing || reduced) return;
 
     const ctx = getAudioContext();
     if (!ctx) return;
@@ -136,39 +97,13 @@ export function TypewriterExperience() {
     if (ctx.state === 'suspended') {
       ctx.resume().catch(() => {});
     }
+    if (ctx.state !== 'running') return;
 
-    const now = performance.now();
-    // Pace keystrokes so fast scrolls sound natural (max ~20 strokes/sec)
-    if (now - lastPlayTime.current < 48) return;
-    lastPlayTime.current = now;
+    if (ctx.currentTime - lastTick.current < 0.045) return;
+    lastTick.current = ctx.currentTime;
 
-    const char = copy[count - 1] || '';
-    const isSpaceOrReturn = char === ' ' || char === '\n';
-
-    playTypewriterClick(ctx, isSpaceOrReturn);
-
-    // If fast scrolling leaped multiple characters, play a quick companion micro-tap
-    if (delta >= 4) {
-      setTimeout(() => {
-        if (ctx && ctx.state === 'running') {
-          playTypewriterClick(ctx, false);
-        }
-      }, 26);
-    }
-  }, [count, reduced, soundEnabled]);
-
-  const handleToggleSound = () => {
-    const next = !soundEnabled;
-    setSoundEnabled(next);
-    if (next) {
-      const ctx = getAudioContext();
-      if (ctx) {
-        ctx.resume().then(() => {
-          playTypewriterClick(ctx, false);
-        }).catch(() => {});
-      }
-    }
-  };
+    playTypewriterClick(ctx);
+  }, [count, reduced]);
 
   const shown = reduced ? copy.length : count;
 
@@ -201,15 +136,6 @@ export function TypewriterExperience() {
                 );
               })}
             </ol>
-            <div className="experience-controls">
-              <button
-                type="button"
-                aria-pressed={soundEnabled}
-                onClick={handleToggleSound}
-              >
-                {soundEnabled ? 'Typewriter Sound: ON 🔊' : 'Typewriter Sound: OFF 🔇'}
-              </button>
-            </div>
           </div>
         </div>
       </div>
