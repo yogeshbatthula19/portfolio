@@ -699,6 +699,8 @@ export default function App() {
         window.history.replaceState(null, '', '/case-study/ryzeup');
       } else if (hash.includes('trosky')) {
         window.history.replaceState(null, '', '/case-study/trosky');
+      } else if (hash.includes('selected-works')) {
+        window.history.replaceState(null, '', '/');
       }
     }
   }, []);
@@ -776,7 +778,7 @@ export default function App() {
   const navigateToHome = (target = 'works') => {
     if (target === 'works') {
       returnToWorks.current = true;
-      window.history.pushState(null, '', '/#selected-works');
+      window.history.pushState(null, '', '/');
     } else {
       returnToWorks.current = false;
       window.history.pushState(null, '', '/');
