@@ -58,10 +58,11 @@ export default function AboutPage({ onBack, isRevealed = true }) {
         }}
       />
 
+      <nav className="about-back-nav" aria-label="Back navigation"><button onClick={onBack}><ArrowLeft size={16}/> Back to home</button></nav>
       {/* Main Content Area */}
       <main className="w-full flex-1 flex flex-col">
         {/* 1. Hero / Bio Section */}
-        <section className="w-full max-w-5xl mx-auto px-5 sm:px-8 lg:px-10 pt-8 sm:pt-14 pb-8 sm:pb-12 flex flex-col">
+        <section className="w-full max-w-5xl mx-auto px-5 sm:px-8 lg:px-10 pt-4 sm:pt-6 pb-8 sm:pb-10 flex flex-col">
           {/* Large Iconic Header Title in The Seasons Font */}
           <div className="text-center mb-5 sm:mb-7 shrink-0">
             <motion.h1
@@ -108,20 +109,8 @@ export default function AboutPage({ onBack, isRevealed = true }) {
                 transition={{ duration: 0.8, delay: 0.36, ease: entranceEase }}
                 className="text-[13.5px] sm:text-[14.5px] lg:text-[15px] leading-[1.65] text-[#374151] font-normal"
               >
-                Over 5+ years, I’ve designed digital products across mobile apps, design systems, and UI/UX.
+                Over 5+ years, I’ve designed digital products across mobile apps, design systems, and UI/UX. I bring design and front-end experience to make complex experiences feel simple.
               </motion.p>
-
-              {/* Body Copy 2 */}
-              <motion.p
-                initial={{ opacity: 0, y: 14 }}
-                animate={shouldAnimate && photoReady ? { opacity: 1, y: 0 } : { opacity: 0, y: 14 }}
-                transition={{ duration: 0.8, delay: 0.42, ease: entranceEase }}
-                className="text-[13px] sm:text-[14px] lg:text-[14.5px] leading-[1.65] text-[#374151] font-normal"
-              >
-                I bring design and front-end experience to make complex experiences feel simple.
-              </motion.p>
-
-              <p className="about-signature" aria-label="Yogesh">Yogesh</p>
 
               {/* Social & Contact Links */}
               <motion.div

@@ -317,7 +317,8 @@ function ScrollRevealSection({ sectionRef, children }) {
 }
 
 // Interactive Case study card with smooth hover and click navigation.
-function CaseStudyCard({ coverImage, title, description, onClick, onMouseEnter, onFocus }) {
+function CaseStudyCard({ coverImage, title, outcome, description, onClick, onMouseEnter, onFocus }) {
+  const reduced = useReducedMotion();
   return (
     <motion.div
       onClick={onClick}
@@ -328,15 +329,19 @@ function CaseStudyCard({ coverImage, title, description, onClick, onMouseEnter, 
       onKeyDown={(event) => {
         if (onClick && event.key === "Enter") onClick();
       }}
+      initial={reduced ? false : { opacity: 0, y: 32, scale: .98 }}
+      whileInView={{ opacity: 1, y: 0, scale: 1 }}
+      viewport={{ once: true, amount: .18 }}
+      transition={{ duration: .6, ease: [.22, 1, .36, 1] }}
       data-interactive={Boolean(onClick)}
-      whileHover={{ y: -4, transition: { type: "spring", stiffness: 400, damping: 25 } }}
+      whileHover={reduced ? undefined : { y: -4, transition: { type: "spring", stiffness: 400, damping: 25 } }}
       className={`case-study-card w-full bg-white rounded-[24px] border border-black/[0.08] overflow-hidden flex flex-col group transition-all duration-300 hover:border-black/20 hover:shadow-[0_16px_36px_-12px_rgba(0,0,0,0.08)] relative select-none will-change-transform ${onClick ? 'cursor-pointer' : ''}`}
     >
       {/* Banner */}
       <div className="relative w-full h-[210px] sm:h-[220px] overflow-hidden select-none bg-gray-50">
         <img 
           src={coverImage} 
-          alt={typeof title === 'string' ? title : "Case Study"} 
+          alt={`${title} project preview`} 
           loading="lazy"
           decoding="async"
           className="w-full h-full object-cover transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-105" 
@@ -352,6 +357,7 @@ function CaseStudyCard({ coverImage, title, description, onClick, onMouseEnter, 
           <p className="font-basier text-[13.5px] text-[#71717a] leading-[1.55] line-clamp-3 font-normal">
             {description}
           </p>
+          {outcome && <p className="project-outcome">{outcome}</p>}
         </div>
       </div>
     </motion.div>
@@ -424,6 +430,8 @@ import stampPrabhas from './assets/stamp_prabhas.png';
 
 // Section 3 Case Study Cover Images
 import coverPoints from './assets/cover_points.png';
+
+
 import coverEdtech from './assets/cover_edtech.png';
 import coverIdentity from './assets/cover_identity.png';
 import coverHealth from './assets/cover_health.jpg';
@@ -891,15 +899,6 @@ export default function App() {
     }
   }, [currentView]);
 
-  // Rotating roles inside search pill ('Product', 'UX', 'UI')
-  useEffect(() => {
-    if (reduceMotion) return;
-    const interval = setInterval(() => {
-      setRoleIndex((prev) => (prev + 1) % roles.length);
-    }, 2200);
-    return () => clearInterval(interval);
-  }, [reduceMotion]);
-
   // Track window scroll
   const { scrollY, scrollYProgress } = useScroll();
 
@@ -918,7 +917,7 @@ export default function App() {
   const scrollRange = [0, 480];
 
   // Hero Section subtle fade, parallax shift, and gentle scale-down on scroll
-  const heroOpacity = useTransform(smoothScrollY, [0, 360], [1, 0.45]);
+  const heroOpacity = useTransform(smoothScrollY, [0, 500, 760], [1, 1, 0.5]);
   const heroScale = useTransform(smoothScrollY, [0, 360], [1, 0.98]);
   const heroY = useTransform(smoothScrollY, [0, 360], [0, 35]);
 
@@ -1183,11 +1182,11 @@ export default function App() {
         />
 
         {/* Hero Text & Domain Capsule */}
-        <div className="relative z-10 flex flex-col items-center text-center max-w-5xl px-2 sm:px-4">
+        <div className="home-hero-copy relative z-10 flex flex-col items-center text-center max-w-5xl px-2 sm:px-4">
 
           {/* Main Headline */}
           <h1 
-            className="tracking-[-0.8px] sm:tracking-[-2px] mx-auto flex flex-col md:flex-row items-center justify-center gap-y-1 sm:gap-y-2 md:gap-y-0 md:gap-x-3.5 whitespace-normal md:whitespace-nowrap"
+            className="home-hero-title tracking-[-0.8px] sm:tracking-[-2px] mx-auto flex flex-col md:flex-row items-center justify-center gap-y-1 sm:gap-y-2 md:gap-y-0 md:gap-x-3.5 whitespace-normal md:whitespace-nowrap"
             style={{
               fontFamily: "'__basierCircle_9ca3f5', '__basierCircle_Fallback_9ca3f5', sans-serif",
               fontStyle: 'normal',
@@ -1276,57 +1275,9 @@ export default function App() {
             I'm Yogesh, a product designer with 5+ years of experience. I design apps that look clean on the surface and make sense underneath.
           </motion.p>
 
-          {/* Roles / Availability Capsule */}
-          <motion.div 
-            initial={!reduceMotion ? { opacity: 0, y: 24, scale: 0.96 } : false}
-            animate={siteOpened ? { opacity: 1, y: 0, scale: 1 } : { opacity: 0, y: 24, scale: 0.96 }}
-            transition={{ duration: 0.85, delay: 0.42, ease: entranceEase }}
-            className="availability-pill mt-3.5 sm:mt-7 w-full max-w-[348px] sm:max-w-[560px] min-h-[42px] sm:h-[60px] bg-white border border-[#dedede] rounded-full flex items-center justify-between pl-3 sm:pl-6 pr-1 sm:pr-2 shadow-[0_10px_28px_-6px_rgba(0,0,0,0.05)]"
-          >
-            <div 
-              className="availability-text flex items-center text-[11.5px] min-[380px]:text-[13px] sm:text-[15px] md:text-[17px] tracking-tight overflow-hidden whitespace-nowrap min-w-0"
-              style={{
-                fontFamily: "'__basierCircle_9ca3f5', sans-serif",
-                fontStyle: 'normal',
-                fontWeight: 400,
-                color: '#1B1B1B',
-              }}
-            >
-              <span className="hidden min-[430px]:inline" style={{ color: 'rgba(27, 27, 27, 0.48)' }}>Currently&nbsp;</span>
-              <span style={{ color: 'rgba(27, 27, 27, 0.48)' }}>open for&nbsp;</span>
-              <div className="relative shrink-0 h-6 sm:h-7 w-[46px] min-[380px]:w-[50px] sm:w-[68px] overflow-hidden flex items-center justify-center">
-                <AnimatePresence initial={false} mode="sync">
-                  <motion.span
-                    key={roles[roleIndex]}
-                    initial={{ y: 16, opacity: 0 }}
-                    animate={{ y: 0, opacity: 1 }}
-                    exit={{ y: -16, opacity: 0 }}
-                    transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-                    className="absolute inset-0 flex items-center justify-center"
-                    style={{
-                      fontFamily: "'__basierCircle_9ca3f5', sans-serif",
-                      fontStyle: 'normal',
-                      fontWeight: 500,
-                      color: '#1B1B1B',
-                    }}
-                  >
-                    {roles[roleIndex]}
-                  </motion.span>
-                </AnimatePresence>
-              </div>
-              <span style={{ color: 'rgba(27, 27, 27, 0.48)' }}>&nbsp;<span className="hidden min-[380px]:inline">Design </span>roles.</span>
-            </div>
-
-            {/* View Work Button with Colorful Gradient Border */}
-            <div className="p-[2px] rounded-full bg-gradient-to-r from-[#26c0ff] via-[#e600c2] via-[#ff494e] via-[#ffa13e] to-[#00cc3d] shadow-sm shrink-0 ml-1">
-              <button 
-                onClick={handleScrollToWorks}
-                className="h-[30px] sm:h-[42px] px-2.5 min-[380px]:px-3.5 sm:px-[20px] rounded-full bg-white text-[#2c2c2c] text-[10.5px] min-[380px]:text-[12px] sm:text-[13.5px] font-medium tracking-tight hover:bg-gray-50 transition-colors cursor-pointer"
-              >
-                <span className="inline min-[400px]:hidden">View work</span>
-                <span className="hidden min-[400px]:inline">View my work</span>
-              </button>
-            </div>
+          <motion.div className="home-primary-actions" initial={reduceMotion?false:{opacity:0,y:12}} animate={siteOpened?{opacity:1,y:0}:{opacity:0,y:12}} transition={{duration:.5,delay:.3}}>
+            <p className="home-availability"><span aria-hidden="true"/>Open to Product Design roles</p>
+            <button onClick={handleScrollToWorks} className="home-work-button">View my work <span aria-hidden="true">↗</span></button>
           </motion.div>
 
           {/* Location Line */}
@@ -1382,7 +1333,7 @@ export default function App() {
                         loading="lazy"
                         decoding="async"
                         animate={{ rotate: reduceMotion ? 0 : 360 }}
-                        transition={{ repeat: Infinity, duration: 16, ease: "linear" }}
+                        transition={{ duration: 1.2, ease: "easeOut" }}
                         className="w-[18px] sm:w-[20px] h-[18px] sm:h-[20px] object-contain select-none pointer-events-none"
                       />
                     </div>
@@ -1584,7 +1535,7 @@ export default function App() {
                       src={starSparkle} 
                       alt="Sparkle star" 
                       animate={{ rotate: reduceMotion ? 0 : 360 }}
-                      transition={{ repeat: Infinity, duration: 16, ease: "linear" }}
+                      transition={{ duration: 1.2, ease: "easeOut" }}
                       className="w-[20px] h-[20px] object-contain select-none pointer-events-none shrink-0"
                     />
                   </div>
@@ -1856,12 +1807,9 @@ export default function App() {
           {/* Case Study 1: Trosky 365 */}
           <CaseStudyCard
             coverImage={coverPoints}
-            title={
-              <>
-                Trosky 365 — Turning a static drill catalog into a <span className="font-basier font-bold text-blue-600">+36%</span> daily practice habit.
-              </>
-            }
-            description="Translating Coach Nate Trosky’s elite infield curriculum and 6th Tool mental composure framework into a 10-minute daily routine—slashing drill startup to <6s and boosting active reflections 3.4x."
+            title="Turning daily drills into lasting habits"
+            description="A daily training experience for baseball players."
+            outcome="+36% daily practice habit"
             onClick={() => navigateToCaseStudy('trosky')}
             onMouseEnter={() => import('./CaseStudyTrosky')}
             onFocus={() => import('./CaseStudyTrosky')}
@@ -1870,12 +1818,9 @@ export default function App() {
           {/* Case Study 2: AhamX */}
           <CaseStudyCard
             coverImage={coverEdtech}
-            title={
-              <>
-                AhamX — Slashing enterprise study resumption by <span className="font-basier font-bold text-purple-600">91%</span> via digital twins.
-              </>
-            }
-            description="Unifying learners, educators, and enterprise leads into one continuous capability system with staged AI validation gates—featured at IndiaAI Impact Summit 2026 across Google & ARTPARK pavilions."
+            title="Helping learners pick up where they left off"
+            description="Connecting learning and capability development."
+            outcome="91% faster study resumption"
             onClick={() => navigateToCaseStudy('ahamx')}
             onMouseEnter={() => import('./CaseStudyAhamX')}
             onFocus={() => import('./CaseStudyAhamX')}
@@ -1884,12 +1829,9 @@ export default function App() {
           {/* Case Study 3: Ryzeup */}
           <CaseStudyCard
             coverImage={coverIdentity}
-            title={
-              <>
-                Ryzeup — Cutting manager context-switching from 28s to <span className="font-basier font-bold text-amber-500">&lt;3s</span>.
-              </>
-            }
-            description="Redesigning workplace feeds, structured Field Q&A, and direct-report priority drawers into a focused mobile experience that drove a +15% monthly active usage increase."
+            title="Bringing focus to everyday team management"
+            description="Helping managers focus on their teams."
+            outcome="Context switching: 28s → under 3s"
             onClick={() => navigateToCaseStudy('ryzeup')}
             onMouseEnter={() => import('./CaseStudyRyzeup')}
             onFocus={() => import('./CaseStudyRyzeup')}
@@ -1898,12 +1840,9 @@ export default function App() {
           {/* Case Study 4: CarePulse Health */}
           <CaseStudyCard
             coverImage={coverHealth}
-            title={
-              <>
-                CarePulse — Saving clinicians <span className="font-basier font-bold text-emerald-600">2.4 hrs/day</span> on EHR documentation.
-              </>
-            }
-            description="Architecting an ambient clinical notes interface that converts unstructured doctor-patient conversations into structured medical records with zero physician burnout."
+            title="Giving clinicians more time for care"
+            description="An ambient documentation concept for clinicians."
+            outcome="2.4 hours/day saved on documentation"
           />
 
         </div>

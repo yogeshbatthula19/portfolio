@@ -40,6 +40,6 @@ export default function AboutCamera({ onPrinted }) {
     <figcaption>Hello, I’m Yogesh.</figcaption>
    </figure>
   </div>
-  <p className="camera-prompt" role="status">{phase==='ready'?'Press the red button to meet me.':phase==='printing'?'Developing a little introduction…':'Made of curiosity. Based in Hyderabad.'}</p>
+  <p className="camera-prompt" role="status">{phase==='ready'?'Press the red button to meet me.':phase==='printing'?'Developing a little introduction…':''}</p>
  </div>;
 }

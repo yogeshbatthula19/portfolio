@@ -219,3 +219,25 @@ i, em, cite, dfn, var, address {
   animation: nimbuPendulumWave 3.2s ease-in-out infinite !important;
   will-change: transform;
 }
+
+/* Clear reading space for the headline and a distinct work action. */
+.home-hero-copy{z-index:40;max-width:740px!important}
+.home-hero-title{flex-direction:column!important;white-space:normal!important;font-size:clamp(28px,4.6vw,62px)!important;line-height:1.15!important;gap:8px!important}
+.home-primary-actions{display:flex;flex-direction:column;align-items:center;gap:16px;margin-top:24px}
+.home-availability{font-size:13px;color:#47616c;display:flex;align-items:center;gap:8px}.home-availability>span{width:6px;height:6px;background:#24875f;border-radius:50%}
+.home-work-button{display:flex;align-items:center;gap:20px;background:#08304c;color:white;border-radius:28px;padding:14px 24px;font-size:15px;min-height:48px;cursor:pointer;box-shadow:0 5px 12px #08304c14}.home-work-button:hover{background:#124967}.home-work-button:focus-visible{outline:3px solid #62a4c4;outline-offset:4px}
+.project-outcome{margin-top:16px;font-size:13px;font-weight:600;color:#0c4731}.case-study-card img{object-fit:cover!important;padding:0}.case-study-card h3{font-size:clamp(20px,2vw,24px)!important;line-height:1.25}.case-study-card p{line-clamp:unset;-webkit-line-clamp:unset}
+@media(max-width:639px){.home-primary-actions{gap:12px;margin-top:18px}.home-work-button{padding:12px 22px}.home-hero-title{font-size:28px!important}.home-hero-copy{max-width:100%!important}.hero-section{min-height:450px}}
+
+/* Shared editorial typography for all three case studies. */
+.case-study-page{--cs-body-font:'__switzer_c2a0a8','Segoe UI',sans-serif;--cs-heading-font:'__basierCircle_9ca3f5','Segoe UI',sans-serif}
+.case-study-page .cs-title{font-family:'The Seasons',Georgia,serif!important;font-size:clamp(34px,4.5vw,56px);font-weight:400;line-height:1.12;letter-spacing:-.02em;text-wrap:balance}
+.case-study-page .cs-section-title{font-family:var(--cs-heading-font)!important;font-size:clamp(24px,2.8vw,30px);font-weight:500;line-height:1.25;letter-spacing:-.02em;text-wrap:balance}
+.case-study-page .cs-subheading{font-family:var(--cs-heading-font)!important;font-size:18px;font-weight:500;line-height:1.4;letter-spacing:-.01em}
+.case-study-page .cs-detail-heading{font-family:var(--cs-heading-font)!important;font-size:16px;font-weight:500;line-height:1.45;letter-spacing:0}
+.case-study-page .cs-body{font-family:var(--cs-body-font)!important;font-size:16px;font-weight:400;line-height:1.75;letter-spacing:0}
+.case-study-page .cs-lead{font-family:var(--cs-body-font)!important;font-size:clamp(17px,2vw,21px);font-style:normal;font-weight:400;line-height:1.55;letter-spacing:0}
+.case-study-page .cs-caption{font-family:var(--cs-body-font)!important;font-size:13px;font-weight:400;line-height:1.5;color:#58616e;letter-spacing:0;margin-top:12px}
+.case-study-page .cs-label{font-family:var(--cs-heading-font)!important;font-size:11px;font-weight:500;line-height:1.5;letter-spacing:.08em;color:#697381}
+.case-study-page .cs-body strong{font-weight:600}
+@media(max-width:639px){.case-study-page .cs-body{font-size:15px;line-height:1.7}.case-study-page .cs-subheading{font-size:17px}}

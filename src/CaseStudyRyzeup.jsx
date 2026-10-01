@@ -175,7 +175,7 @@ export default function CaseStudyRyzeup({ onBack, isRevealed = true }) {
   const bgScale = useTransform(scrollY, [0, 1000], [1, 1.08]);
 
   return (
-    <div className="relative isolate bg-[#ffffff] min-h-screen text-[#111827] font-switzer font-normal antialiased selection:bg-gray-200 selection:text-black pb-24 sm:pb-32 overflow-x-hidden">
+    <div className="case-study-page relative isolate bg-[#ffffff] min-h-screen text-[#111827] font-switzer font-normal antialiased selection:bg-gray-200 selection:text-black pb-24 sm:pb-32 overflow-x-hidden">
       
       {/* Top Sticky Reading Progress Bar & Floating Back-To-Top Button */}
       <CaseStudyScrollProgress />
@@ -400,10 +400,10 @@ export default function CaseStudyRyzeup({ onBack, isRevealed = true }) {
         <section className="space-y-4">
           <ScrollReveal>
             <div className="p-5 sm:p-6 rounded-xl bg-gray-50 border border-gray-200">
-              <h3 className="text-[11px] font-basier font-medium uppercase tracking-wider text-gray-400 mb-2">
+              <h3 className="cs-label text-[11px] font-basier font-medium uppercase tracking-wider text-gray-400 mb-2">
                 Executive Summary
               </h3>
-              <p className="text-[15px] sm:text-[16px] text-[#1f2937] leading-[1.75] font-switzer font-normal">
+              <p className="cs-body text-[15px] sm:text-[16px] text-[#1f2937] leading-[1.75] font-switzer font-normal">
                 <strong>Ryzeup</strong> is a modern workplace communication and team capability application. I led the mobile product redesign from the ground up, restructuring organization entry, conversational knowledge feeds, contextual search, and manager priority drawers into a cohesive system that eliminates context switching and drives daily operational focus.
               </p>
             </div>
@@ -417,7 +417,7 @@ export default function CaseStudyRyzeup({ onBack, isRevealed = true }) {
         {/* ------------------------------------------------------------- */}
         <section id="section-snapshot" className="space-y-6 scroll-mt-28">
           <ScrollReveal>
-            <h2 className="text-[22px] sm:text-[26px] md:text-[30px] font-basier font-medium text-[#111827] tracking-tight leading-snug">
+            <h2 className="cs-section-title text-[22px] sm:text-[26px] md:text-[30px] font-basier font-medium text-[#111827] tracking-tight leading-snug">
               Executive Snapshot
             </h2>
           </ScrollReveal>
@@ -453,7 +453,7 @@ export default function CaseStudyRyzeup({ onBack, isRevealed = true }) {
           </ScrollReveal>
 
           <ScrollReveal delay={0.08}>
-            <div className="text-[15px] sm:text-[16px] text-[#374151] leading-[1.75] space-y-4 font-switzer font-normal">
+            <div className="cs-body text-[15px] sm:text-[16px] text-[#374151] leading-[1.75] space-y-4 font-switzer font-normal">
               <p>
                 I designed Ryzeup to help employees stay informed, share knowledge, and keep track of the updates that matter to their work. For managers, I focused on making it easier to move between personal priorities and an individual team member’s context.
               </p>
@@ -475,16 +475,16 @@ export default function CaseStudyRyzeup({ onBack, isRevealed = true }) {
         {/* ------------------------------------------------------------- */}
         <section id="section-context" className="space-y-6 scroll-mt-28">
           <ScrollReveal>
-            <h2 className="text-[22px] sm:text-[26px] md:text-[30px] font-basier font-medium text-[#111827] tracking-tight leading-snug">
+            <h2 className="cs-section-title text-[22px] sm:text-[26px] md:text-[30px] font-basier font-medium text-[#111827] tracking-tight leading-snug">
               Business Context & The Problem
             </h2>
           </ScrollReveal>
           
           <ScrollReveal delay={0.06}>
-            <p className="text-[15px] sm:text-[16px] text-[#374151] leading-[1.75] font-switzer font-normal">
+            <p className="cs-body text-[15px] sm:text-[16px] text-[#374151] leading-[1.75] font-switzer font-normal">
               A workplace platform needs to support more than publishing updates. Employees need to find information again, ask questions in the right context, and understand what requires their attention. Managers need that same clarity across their teams.
             </p>
-            <p className="text-[15px] sm:text-[16px] text-[#374151] leading-[1.75] font-switzer font-normal mt-3">
+            <p className="cs-body text-[15px] sm:text-[16px] text-[#374151] leading-[1.75] font-switzer font-normal mt-3">
               I framed the problem around three connected needs:
             </p>
           </ScrollReveal>
@@ -525,10 +525,10 @@ export default function CaseStudyRyzeup({ onBack, isRevealed = true }) {
         {/* ------------------------------------------------------------- */}
         <section id="section-users" className="space-y-6 scroll-mt-28">
           <ScrollReveal>
-            <h2 className="text-[22px] sm:text-[26px] md:text-[30px] font-basier font-medium text-[#111827] tracking-tight leading-snug">
+            <h2 className="cs-section-title text-[22px] sm:text-[26px] md:text-[30px] font-basier font-medium text-[#111827] tracking-tight leading-snug">
               User Groups & Core Needs
             </h2>
-            <p className="text-[15px] sm:text-[16px] text-[#374151] leading-[1.75] font-switzer font-normal mt-2">
+            <p className="cs-body text-[15px] sm:text-[16px] text-[#374151] leading-[1.75] font-switzer font-normal mt-2">
               I designed around the different responsibilities employees bring to the same workspace.
             </p>
           </ScrollReveal>
@@ -614,10 +614,10 @@ export default function CaseStudyRyzeup({ onBack, isRevealed = true }) {
         {/* ------------------------------------------------------------- */}
         <section id="section-strategy" className="space-y-6 scroll-mt-28">
           <ScrollReveal>
-            <h2 className="text-[22px] sm:text-[26px] md:text-[30px] font-basier font-medium text-[#111827] tracking-tight leading-snug">
+            <h2 className="cs-section-title text-[22px] sm:text-[26px] md:text-[30px] font-basier font-medium text-[#111827] tracking-tight leading-snug">
               Information Architecture & Design Strategy
             </h2>
-            <p className="text-[15px] sm:text-[16px] text-[#374151] leading-[1.75] font-switzer font-normal mt-2">
+            <p className="cs-body text-[15px] sm:text-[16px] text-[#374151] leading-[1.75] font-switzer font-normal mt-2">
               I structured the core experience around four activities:
             </p>
           </ScrollReveal>
@@ -652,7 +652,7 @@ export default function CaseStudyRyzeup({ onBack, isRevealed = true }) {
 
           <ScrollReveal delay={0.08}>
             <div className="p-4 sm:p-5 rounded-xl border border-gray-200 bg-white shadow-xs">
-              <h4 className="font-basier font-medium text-[15px] sm:text-[16px] text-gray-900 mb-1">
+              <h4 className="cs-detail-heading font-basier font-medium text-[15px] sm:text-[16px] text-gray-900 mb-1">
                 Make Context Visible Before Asking People to Act
               </h4>
               <p className="text-[13px] text-gray-600 leading-relaxed font-switzer font-normal">
@@ -669,14 +669,14 @@ export default function CaseStudyRyzeup({ onBack, isRevealed = true }) {
         {/* ------------------------------------------------------------- */}
         <section id="section-decisions" className="space-y-10 sm:space-y-12 scroll-mt-28">
           <ScrollReveal>
-            <h2 className="text-[22px] sm:text-[26px] md:text-[30px] font-basier font-medium text-[#111827] tracking-tight leading-snug">
+            <h2 className="cs-section-title text-[22px] sm:text-[26px] md:text-[30px] font-basier font-medium text-[#111827] tracking-tight leading-snug">
               Key Design Decisions & Interactive Systems
             </h2>
           </ScrollReveal>
 
           {/* Decision 1: Organization Context */}
           <ScrollReveal className="space-y-3">
-            <h3 className="text-[18px] sm:text-[20px] font-basier font-medium text-gray-900">
+            <h3 className="cs-subheading text-[18px] sm:text-[20px] font-basier font-medium text-gray-900">
               Organization Context at Entry
             </h3>
             <p className="text-[14px] sm:text-[15px] text-gray-600 leading-relaxed font-switzer font-normal">
@@ -693,7 +693,7 @@ export default function CaseStudyRyzeup({ onBack, isRevealed = true }) {
 
           {/* Decision 2: Workplace Communication */}
           <ScrollReveal className="space-y-3">
-            <h3 className="text-[18px] sm:text-[20px] font-basier font-medium text-gray-900">
+            <h3 className="cs-subheading text-[18px] sm:text-[20px] font-basier font-medium text-gray-900">
               Consistent Workplace Communication Structure
             </h3>
             <p className="text-[14px] sm:text-[15px] text-gray-600 leading-relaxed font-switzer font-normal">
@@ -718,7 +718,7 @@ export default function CaseStudyRyzeup({ onBack, isRevealed = true }) {
 
           {/* Decision 3: Knowledge Retrieval */}
           <ScrollReveal className="space-y-3">
-            <h3 className="text-[18px] sm:text-[20px] font-basier font-medium text-gray-900">
+            <h3 className="cs-subheading text-[18px] sm:text-[20px] font-basier font-medium text-gray-900">
               Knowledge Retrieval Beyond the Feed
             </h3>
             <p className="text-[14px] sm:text-[15px] text-gray-600 leading-relaxed font-switzer font-normal">
@@ -735,7 +735,7 @@ export default function CaseStudyRyzeup({ onBack, isRevealed = true }) {
 
           {/* Decision 4: Separating Personal and Team Priorities */}
           <ScrollReveal className="space-y-3">
-            <h3 className="text-[18px] sm:text-[20px] font-basier font-medium text-gray-900">
+            <h3 className="cs-subheading text-[18px] sm:text-[20px] font-basier font-medium text-gray-900">
               Separating Personal and Team Priorities
             </h3>
             <p className="text-[14px] sm:text-[15px] text-gray-600 leading-relaxed font-switzer font-normal">
@@ -752,7 +752,7 @@ export default function CaseStudyRyzeup({ onBack, isRevealed = true }) {
 
           {/* Decision 5: Reportee Selection */}
           <ScrollReveal className="space-y-3">
-            <h3 className="text-[18px] sm:text-[20px] font-basier font-medium text-gray-900">
+            <h3 className="cs-subheading text-[18px] sm:text-[20px] font-basier font-medium text-gray-900">
               Reportee Selection & Directory Context
             </h3>
             <p className="text-[14px] sm:text-[15px] text-gray-600 leading-relaxed font-switzer font-normal">
@@ -783,13 +783,13 @@ export default function CaseStudyRyzeup({ onBack, isRevealed = true }) {
         {/* ------------------------------------------------------------- */}
         <section id="section-execution" className="space-y-6 scroll-mt-28">
           <ScrollReveal>
-            <h2 className="text-[22px] sm:text-[26px] md:text-[30px] font-basier font-medium text-[#111827] tracking-tight leading-snug">
+            <h2 className="cs-section-title text-[22px] sm:text-[26px] md:text-[30px] font-basier font-medium text-[#111827] tracking-tight leading-snug">
               Execution Within a Two-Month Sprint
             </h2>
           </ScrollReveal>
           
           <ScrollReveal delay={0.06}>
-            <p className="text-[15px] sm:text-[16px] text-[#374151] leading-[1.75] font-switzer font-normal">
+            <p className="cs-body text-[15px] sm:text-[16px] text-[#374151] leading-[1.75] font-switzer font-normal">
               The platform was taken from blank canvas to production beta in two months. Within that timeframe, I established a clean visual token system—magenta brand accents, neutral light surfaces, rounded card surfaces, and accessible bottom sheets.
             </p>
           </ScrollReveal>
@@ -797,25 +797,25 @@ export default function CaseStudyRyzeup({ onBack, isRevealed = true }) {
           <ScrollReveal delay={0.08}>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 sm:gap-4">
               <div className="p-4 sm:p-5 rounded-xl border border-gray-200 bg-white shadow-xs">
-                <h4 className="font-basier font-medium text-[15px] text-gray-900 mb-1">Consistency</h4>
+                <h4 className="cs-detail-heading font-basier font-medium text-[15px] text-gray-900 mb-1">Consistency</h4>
                 <p className="text-[13px] text-gray-600 leading-relaxed font-switzer font-normal">
                   Actions look and behave predictably across feeds, search results, and manager drawers.
                 </p>
               </div>
               <div className="p-4 sm:p-5 rounded-xl border border-gray-200 bg-white shadow-xs">
-                <h4 className="font-basier font-medium text-[15px] text-gray-900 mb-1">Content Density</h4>
+                <h4 className="cs-detail-heading font-basier font-medium text-[15px] text-gray-900 mb-1">Content Density</h4>
                 <p className="text-[13px] text-gray-600 leading-relaxed font-switzer font-normal">
                   Long document titles, timestamps, and multi-line posts maintain strict vertical rhythm on mobile screens.
                 </p>
               </div>
               <div className="p-4 sm:p-5 rounded-xl border border-gray-200 bg-white shadow-xs">
-                <h4 className="font-basier font-medium text-[15px] text-gray-900 mb-1">Interaction States</h4>
+                <h4 className="cs-detail-heading font-basier font-medium text-[15px] text-gray-900 mb-1">Interaction States</h4>
                 <p className="text-[13px] text-gray-600 leading-relaxed font-switzer font-normal">
                   Verification checkpoints, empty states, and error recovery banners receive equal design attention.
                 </p>
               </div>
               <div className="p-4 sm:p-5 rounded-xl border border-gray-200 bg-white shadow-xs">
-                <h4 className="font-basier font-medium text-[15px] text-gray-900 mb-1">Scope Discipline</h4>
+                <h4 className="cs-detail-heading font-basier font-medium text-[15px] text-gray-900 mb-1">Scope Discipline</h4>
                 <p className="text-[13px] text-gray-600 leading-relaxed font-switzer font-normal">
                   High-frequency workflows were perfected before introducing auxiliary secondary features.
                 </p>
@@ -838,10 +838,10 @@ export default function CaseStudyRyzeup({ onBack, isRevealed = true }) {
         {/* ------------------------------------------------------------- */}
         <section id="section-results" className="space-y-6 scroll-mt-28">
           <ScrollReveal>
-            <h2 className="text-[22px] sm:text-[26px] md:text-[30px] font-basier font-medium text-[#111827] tracking-tight leading-snug">
+            <h2 className="cs-section-title text-[22px] sm:text-[26px] md:text-[30px] font-basier font-medium text-[#111827] tracking-tight leading-snug">
               Evaluation & Measurement Framework
             </h2>
-            <p className="text-[15px] sm:text-[16px] text-[#374151] leading-[1.75] font-switzer font-normal mt-2">
+            <p className="cs-body text-[15px] sm:text-[16px] text-[#374151] leading-[1.75] font-switzer font-normal mt-2">
               Ryzeup was deployed in beta across an operational department for a 60-day pilot:
             </p>
           </ScrollReveal>
@@ -956,13 +956,13 @@ export default function CaseStudyRyzeup({ onBack, isRevealed = true }) {
         {/* ------------------------------------------------------------- */}
         <section id="section-reflection" className="space-y-6 scroll-mt-28">
           <ScrollReveal>
-            <h2 className="text-[22px] sm:text-[26px] md:text-[30px] font-basier font-medium text-[#111827] tracking-tight leading-snug">
+            <h2 className="cs-section-title text-[22px] sm:text-[26px] md:text-[30px] font-basier font-medium text-[#111827] tracking-tight leading-snug">
               Retrospective & Core Takeaways
             </h2>
           </ScrollReveal>
           
           <ScrollReveal delay={0.06}>
-            <div className="space-y-4 text-[15px] sm:text-[16px] text-[#374151] leading-[1.75] font-switzer font-normal">
+            <div className="cs-body space-y-4 text-[15px] sm:text-[16px] text-[#374151] leading-[1.75] font-switzer font-normal">
               <p>
                 Ryzeup reinforced the importance of connecting information with the context needed to use it. A feed, search function, and team view each serve a purpose, but their real value depends on how clearly people can move between them without cognitive friction.
               </p>
@@ -975,13 +975,13 @@ export default function CaseStudyRyzeup({ onBack, isRevealed = true }) {
           <ScrollReveal delay={0.08}>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 sm:gap-4 pt-2">
               <div className="p-5 rounded-xl border border-gray-200 bg-white shadow-xs">
-                <h4 className="font-basier font-medium text-[15px] text-gray-900 mb-1">Visibility Precedes Action</h4>
+                <h4 className="cs-detail-heading font-basier font-medium text-[15px] text-gray-900 mb-1">Visibility Precedes Action</h4>
                 <p className="text-[13px] text-gray-600 leading-relaxed font-switzer font-normal">
                   Clarifying whose data is being viewed and what state an action represents reduces user hesitation more effectively than any tutorial tooltip.
                 </p>
               </div>
               <div className="p-5 rounded-xl border border-gray-200 bg-white shadow-xs">
-                <h4 className="font-basier font-medium text-[15px] text-gray-900 mb-1">State Preservation</h4>
+                <h4 className="cs-detail-heading font-basier font-medium text-[15px] text-gray-900 mb-1">State Preservation</h4>
                 <p className="text-[13px] text-gray-600 leading-relaxed font-switzer font-normal">
                   Overlay drawers and sticky contextual banners keep secondary exploration from breaking primary operational tasks.
                 </p>

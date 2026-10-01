@@ -114,29 +114,23 @@ export function TypewriterExperience() {
           <span>Experience</span>
           <h2 id="experience-title">A career, one chapter at a time.</h2>
         </header>
+        <ol className="sr-only">{roles.map(r=><li key={r[0]}>{r.join(', ')}</li>)}</ol>
         <div className="typewriter-layout">
           <div className="typewriter-scene" aria-hidden="true">
             <div className="experience-paper" style={{ transform: `translateY(${-12 - (78 * shown) / copy.length}%)` }}>
               <span className="paper-kicker">YOGESH BATTULA / EXPERIENCE</span>
-              <pre>{copy.slice(0, shown)}{shown < copy.length ? '▌' : ''}</pre>
+              <div className="paper-roles">{roles.map((role, i) => {
+                const offset = roles.slice(0,i).reduce((n,r)=>n+r.join('\n').length+2,0);
+                return <div className="paper-role" key={role[0]}>{role.map((line,j)=>{
+                  const start=offset+role.slice(0,j).reduce((n,l)=>n+l.length+1,0);
+                  const text=line.slice(0,Math.max(0,shown-start));
+                  return <div key={j}>{j===0?<strong>{text}</strong>:j===1?<b>{text}</b>:text}</div>;
+                })}</div>;
+              })}</div>
             </div>
             <img className="typewriter-machine" src="/about-art/typewriter.jpg" alt="" width="736" height="985" loading="lazy" decoding="async" />
           </div>
-          <div className="experience-readable">
-            <ol>
-              {roles.map((r, i) => {
-                const start = roles.slice(0, i).map((role) => role.join('\n')).join('\n\n').length + (i ? 2 : 0);
-                const reveal = reduced ? 1 : Math.max(0, Math.min(1, (shown - start) / r.join('\n').length));
-                return (
-                  <li key={r[0]} style={{ opacity: reveal, transform: `translateY(${(1 - reveal) * 12}px)` }}>
-                    <h3>{r[0]}</h3>
-                    <p>{r[1]}</p>
-                    <time>{r[2]}</time>
-                  </li>
-                );
-              })}
-            </ol>
-          </div>
+
         </div>
       </div>
     </section>

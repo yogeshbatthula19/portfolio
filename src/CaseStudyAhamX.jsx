@@ -152,7 +152,7 @@ export default function CaseStudyAhamX({ onBack, isRevealed = true }) {
   const bgScale = useTransform(scrollY, [0, 1000], [1, 1.08]);
 
   return (
-    <div className="relative isolate bg-[#ffffff] min-h-screen text-[#111827] font-switzer font-normal antialiased selection:bg-gray-200 selection:text-black pb-24 sm:pb-32 overflow-x-hidden">
+    <div className="case-study-page relative isolate bg-[#ffffff] min-h-screen text-[#111827] font-switzer font-normal antialiased selection:bg-gray-200 selection:text-black pb-24 sm:pb-32 overflow-x-hidden">
       
       {/* Top Sticky Reading Progress Bar & Floating Back-To-Top Button */}
       <CaseStudyScrollProgress />
@@ -282,10 +282,10 @@ export default function CaseStudyAhamX({ onBack, isRevealed = true }) {
         <section className="space-y-4">
           <ScrollReveal>
             <div className="p-5 sm:p-6 rounded-xl bg-gray-50 border border-gray-200">
-              <h3 className="text-[11px] font-basier font-medium uppercase tracking-wider text-gray-400 mb-2">
+              <h3 className="cs-label text-[11px] font-basier font-medium uppercase tracking-wider text-gray-400 mb-2">
                 Executive Summary
               </h3>
-              <p className="text-[15px] sm:text-[16px] text-[#1f2937] leading-[1.75] font-switzer font-normal">
+              <p className="cs-body text-[15px] sm:text-[16px] text-[#1f2937] leading-[1.75] font-switzer font-normal">
                 <strong>AhamX (by ZenteiQ)</strong> is an individual digital twin architecture for capability development, learning continuity, and organizational intelligence. I led the end-to-end UX/UI design across desktop and mobile, unifying three disparate user types—learners, educators, and enterprise leads—into a single product system without sacrificing role-specific clarity.
               </p>
             </div>
@@ -299,13 +299,13 @@ export default function CaseStudyAhamX({ onBack, isRevealed = true }) {
         {/* ------------------------------------------------------------- */}
         <section id="section-problem" className="space-y-6 scroll-mt-28">
           <ScrollReveal>
-            <h2 className="text-[22px] sm:text-[26px] md:text-[30px] font-basier font-medium text-[#111827] tracking-tight leading-snug">
+            <h2 className="cs-section-title text-[22px] sm:text-[26px] md:text-[30px] font-basier font-medium text-[#111827] tracking-tight leading-snug">
               The Problem Space & Strategic Context
             </h2>
           </ScrollReveal>
 
           <ScrollReveal delay={0.06}>
-            <p className="text-[15px] sm:text-[16px] text-[#374151] leading-[1.75] font-switzer font-normal">
+            <p className="cs-body text-[15px] sm:text-[16px] text-[#374151] leading-[1.75] font-switzer font-normal">
               In enterprise capability platforms, multi-sided systems frequently collapse under user fatigue:
             </p>
             <ul className="mt-4 space-y-3 font-switzer text-[14.5px] sm:text-[15px] text-[#374151] leading-relaxed pl-1">
@@ -330,7 +330,7 @@ export default function CaseStudyAhamX({ onBack, isRevealed = true }) {
               <div className="text-[11px] font-basier font-medium uppercase tracking-wider text-gray-400">
                 The Strategic Pivot
               </div>
-              <h3 className="text-[16px] sm:text-[18px] font-basier font-medium text-gray-900 leading-snug">
+              <h3 className="cs-subheading text-[16px] sm:text-[18px] font-basier font-medium text-gray-900 leading-snug">
                 Unified Platform Shell Centered on Contextual Continuity
               </h3>
               <p className="text-[14px] sm:text-[15px] text-gray-600 leading-[1.7] font-switzer font-normal">
@@ -385,7 +385,7 @@ export default function CaseStudyAhamX({ onBack, isRevealed = true }) {
         {/* ------------------------------------------------------------- */}
         <section className="space-y-6">
           <ScrollReveal>
-            <h2 className="text-[22px] sm:text-[26px] md:text-[30px] font-basier font-medium text-[#111827] tracking-tight leading-snug">
+            <h2 className="cs-section-title text-[22px] sm:text-[26px] md:text-[30px] font-basier font-medium text-[#111827] tracking-tight leading-snug">
               The Initial Hypothesis & Product Pivot
             </h2>
           </ScrollReveal>
@@ -394,7 +394,7 @@ export default function CaseStudyAhamX({ onBack, isRevealed = true }) {
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div className="p-5 rounded-xl border border-gray-200 bg-white shadow-xs">
                 <div className="text-[11px] font-basier font-medium uppercase tracking-wider text-gray-400 mb-1">The Assumption</div>
-                <h4 className="font-basier font-medium text-[15px] sm:text-[16px] text-gray-900 mb-2">All-in-One Modular Dashboard</h4>
+                <h4 className="cs-detail-heading font-basier font-medium text-[15px] sm:text-[16px] text-gray-900 mb-2">All-in-One Modular Dashboard</h4>
                 <p className="text-[13.5px] text-gray-600 leading-relaxed font-switzer font-normal">
                   We initially hypothesized that an all-in-one modular dashboard presenting active courses, cohort telemetry, and pending approvals would give all three roles a transparent overview and reduce context switching.
                 </p>
@@ -402,7 +402,7 @@ export default function CaseStudyAhamX({ onBack, isRevealed = true }) {
 
               <div className="p-5 rounded-xl border border-gray-200 bg-gray-50/50 shadow-xs">
                 <div className="text-[11px] font-basier font-medium uppercase tracking-wider text-gray-400 mb-1">The Breakdown</div>
-                <h4 className="font-basier font-medium text-[15px] sm:text-[16px] text-gray-900 mb-2">Severe Cognitive Friction</h4>
+                <h4 className="cs-detail-heading font-basier font-medium text-[15px] sm:text-[16px] text-gray-900 mb-2">Severe Cognitive Friction</h4>
                 <p className="text-[13.5px] text-gray-600 leading-relaxed font-switzer font-normal">
                   Early walkthroughs revealed that learners felt paralyzed by administrative metrics, which delayed lesson resumption, while educators were wary of one-click "Generate Course" flows that obscured AI output verification.
                 </p>
@@ -433,10 +433,10 @@ export default function CaseStudyAhamX({ onBack, isRevealed = true }) {
         {/* ------------------------------------------------------------- */}
         <section id="section-insights" className="space-y-6 scroll-mt-28">
           <ScrollReveal>
-            <h2 className="text-[22px] sm:text-[26px] md:text-[30px] font-basier font-medium text-[#111827] tracking-tight leading-snug">
+            <h2 className="cs-section-title text-[22px] sm:text-[26px] md:text-[30px] font-basier font-medium text-[#111827] tracking-tight leading-snug">
               User Behavioral Gaps & Field Insights
             </h2>
-            <p className="text-[15px] sm:text-[16px] text-[#374151] leading-[1.75] font-switzer font-normal mt-2">
+            <p className="cs-body text-[15px] sm:text-[16px] text-[#374151] leading-[1.75] font-switzer font-normal mt-2">
               To define our Jobs-to-be-Done (JTBD), we mapped user pressures directly against product constraints:
             </p>
           </ScrollReveal>
@@ -508,7 +508,7 @@ export default function CaseStudyAhamX({ onBack, isRevealed = true }) {
           {/* Voice of the User Quotes - Clean White/Grey Style */}
           <ScrollReveal delay={0.08}>
             <div className="space-y-3 pt-2">
-              <h3 className="text-[11px] font-basier font-medium uppercase tracking-wider text-gray-400">
+              <h3 className="cs-label text-[11px] font-basier font-medium uppercase tracking-wider text-gray-400">
                 Voice of the User
               </h3>
               <div className="grid grid-cols-1 gap-3">
@@ -550,10 +550,10 @@ export default function CaseStudyAhamX({ onBack, isRevealed = true }) {
         {/* ------------------------------------------------------------- */}
         <section id="section-strategy" className="space-y-6 scroll-mt-28">
           <ScrollReveal>
-            <h2 className="text-[22px] sm:text-[26px] md:text-[30px] font-basier font-medium text-[#111827] tracking-tight leading-snug">
+            <h2 className="cs-section-title text-[22px] sm:text-[26px] md:text-[30px] font-basier font-medium text-[#111827] tracking-tight leading-snug">
               Strategic Layers of the Redesign
             </h2>
-            <p className="text-[15px] sm:text-[16px] text-[#374151] leading-[1.75] font-switzer font-normal mt-2">
+            <p className="cs-body text-[15px] sm:text-[16px] text-[#374151] leading-[1.75] font-switzer font-normal mt-2">
               We mapped the platform into three architectural layers to guarantee continuity, human-in-the-loop verification, and contextual decisions.
             </p>
           </ScrollReveal>
@@ -565,7 +565,7 @@ export default function CaseStudyAhamX({ onBack, isRevealed = true }) {
                 <div className="text-[11px] font-basier font-medium uppercase tracking-wider text-gray-400 mb-1.5">
                   Learner Workflow
                 </div>
-                <h3 className="text-[16px] sm:text-[17px] font-basier font-medium text-gray-900 mb-3">
+                <h3 className="cs-subheading text-[16px] sm:text-[17px] font-basier font-medium text-gray-900 mb-3">
                   The Continuity Layer
                 </h3>
                 <ul className="space-y-2.5 text-[14px] text-gray-700 leading-relaxed font-switzer font-normal">
@@ -585,7 +585,7 @@ export default function CaseStudyAhamX({ onBack, isRevealed = true }) {
                 <div className="text-[11px] font-basier font-medium uppercase tracking-wider text-gray-400 mb-1.5">
                   Educator Workflow
                 </div>
-                <h3 className="text-[16px] sm:text-[17px] font-basier font-medium text-gray-900 mb-3">
+                <h3 className="cs-subheading text-[16px] sm:text-[17px] font-basier font-medium text-gray-900 mb-3">
                   The Verification Layer
                 </h3>
                 <ul className="space-y-2.5 text-[14px] text-gray-700 leading-relaxed font-switzer font-normal">
@@ -617,7 +617,7 @@ export default function CaseStudyAhamX({ onBack, isRevealed = true }) {
                 <div className="text-[11px] font-basier font-medium uppercase tracking-wider text-gray-400 mb-1.5">
                   Organization Lead Workflow
                 </div>
-                <h3 className="text-[16px] sm:text-[17px] font-basier font-medium text-gray-900 mb-3">
+                <h3 className="cs-subheading text-[16px] sm:text-[17px] font-basier font-medium text-gray-900 mb-3">
                   The Contextual Decision Layer
                 </h3>
                 <ul className="space-y-2.5 text-[14px] text-gray-700 leading-relaxed font-switzer font-normal">
@@ -642,10 +642,10 @@ export default function CaseStudyAhamX({ onBack, isRevealed = true }) {
         {/* ------------------------------------------------------------- */}
         <section id="section-systems" className="space-y-6 scroll-mt-28">
           <ScrollReveal>
-            <h2 className="text-[22px] sm:text-[26px] md:text-[30px] font-basier font-medium text-[#111827] tracking-tight leading-snug">
+            <h2 className="cs-section-title text-[22px] sm:text-[26px] md:text-[30px] font-basier font-medium text-[#111827] tracking-tight leading-snug">
               Systems Thinking, State Logic & Edge Cases
             </h2>
-            <p className="text-[15px] sm:text-[16px] text-[#374151] leading-[1.75] font-switzer font-normal mt-2">
+            <p className="cs-body text-[15px] sm:text-[16px] text-[#374151] leading-[1.75] font-switzer font-normal mt-2">
               A production-ready design system must account for system stress, data latency, and edge states.
             </p>
           </ScrollReveal>
@@ -726,21 +726,21 @@ export default function CaseStudyAhamX({ onBack, isRevealed = true }) {
           <ScrollReveal delay={0.08} variant="scale-up">
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-3.5 sm:gap-4 pt-2">
               <div className="p-4 sm:p-5 rounded-xl border border-gray-200 bg-white shadow-xs">
-                <h4 className="font-basier font-medium text-[15px] text-gray-900 mb-1.5">Contextual Density vs. Simplicity</h4>
+                <h4 className="cs-detail-heading font-basier font-medium text-[15px] text-gray-900 mb-1.5">Contextual Density vs. Simplicity</h4>
                 <p className="text-[13px] text-gray-600 leading-relaxed font-switzer font-normal">
                   Kept active courses and recommendations grouped together so learners resume immediately without re-exploring catalogs.
                 </p>
               </div>
 
               <div className="p-4 sm:p-5 rounded-xl border border-gray-200 bg-white shadow-xs">
-                <h4 className="font-basier font-medium text-[15px] text-gray-900 mb-1.5">Multi-stage AI vs. 1-Click</h4>
+                <h4 className="cs-detail-heading font-basier font-medium text-[15px] text-gray-900 mb-1.5">Multi-stage AI vs. 1-Click</h4>
                 <p className="text-[13px] text-gray-600 leading-relaxed font-switzer font-normal">
                   Traded instant publishing for staged human checkpoints (Outline → Script → Media), securing institutional credibility.
                 </p>
               </div>
 
               <div className="p-4 sm:p-5 rounded-xl border border-gray-200 bg-white shadow-xs">
-                <h4 className="font-basier font-medium text-[15px] text-gray-900 mb-1.5">Consolidated Decision Rows</h4>
+                <h4 className="cs-detail-heading font-basier font-medium text-[15px] text-gray-900 mb-1.5">Consolidated Decision Rows</h4>
                 <p className="text-[13px] text-gray-600 leading-relaxed font-switzer font-normal">
                   Packaged requester identity, relationship scope, and binary approval actions in one row, eliminating tab-switching.
                 </p>
@@ -764,10 +764,10 @@ export default function CaseStudyAhamX({ onBack, isRevealed = true }) {
         <section id="section-craft" className="space-y-10 sm:space-y-12 scroll-mt-28">
           <ScrollReveal>
             <div>
-              <h2 className="text-[22px] sm:text-[26px] md:text-[30px] font-basier font-medium text-[#111827] tracking-tight leading-snug">
+              <h2 className="cs-section-title text-[22px] sm:text-[26px] md:text-[30px] font-basier font-medium text-[#111827] tracking-tight leading-snug">
                 Visual Interface & Platform Walkthrough
               </h2>
-              <p className="text-[15px] sm:text-[16px] text-[#374151] leading-[1.75] mt-2 font-switzer font-normal">
+              <p className="cs-body text-[15px] sm:text-[16px] text-[#374151] leading-[1.75] mt-2 font-switzer font-normal">
                 A cohesive design system connecting the product shell, with interaction density tailored to the user's operational responsibility.
               </p>
             </div>
@@ -775,7 +775,7 @@ export default function CaseStudyAhamX({ onBack, isRevealed = true }) {
 
           {/* Feature 1: The Continuity Layer (Learner & Org Overview) */}
           <ScrollReveal>
-            <h3 className="text-[17px] sm:text-[19px] font-basier font-medium text-gray-900 mb-1.5">
+            <h3 className="cs-subheading text-[17px] sm:text-[19px] font-basier font-medium text-gray-900 mb-1.5">
               The Continuity Layer — Learner & Organization Dashboards
             </h3>
             <p className="text-[14px] text-gray-600 leading-relaxed font-switzer font-normal">
@@ -791,7 +791,7 @@ export default function CaseStudyAhamX({ onBack, isRevealed = true }) {
 
           {/* Feature 2: Community Context & Identity */}
           <ScrollReveal>
-            <h3 className="text-[17px] sm:text-[19px] font-basier font-medium text-gray-900 mb-1.5">
+            <h3 className="cs-subheading text-[17px] sm:text-[19px] font-basier font-medium text-gray-900 mb-1.5">
               Community Feed & Personal Identity Profiles
             </h3>
             <p className="text-[14px] text-gray-600 leading-relaxed font-switzer font-normal">
@@ -807,7 +807,7 @@ export default function CaseStudyAhamX({ onBack, isRevealed = true }) {
 
           {/* Feature 3: The Verification Layer (AI Creator Studio) with Embedded 60fps Micro-interaction Video */}
           <ScrollReveal>
-            <h3 className="text-[17px] sm:text-[19px] font-basier font-medium text-gray-900 mb-1.5">
+            <h3 className="cs-subheading text-[17px] sm:text-[19px] font-basier font-medium text-gray-900 mb-1.5">
               The Verification Layer — AI Course Outline & Script Review
             </h3>
             <p className="text-[14px] text-gray-600 leading-relaxed font-switzer font-normal">
@@ -831,7 +831,7 @@ export default function CaseStudyAhamX({ onBack, isRevealed = true }) {
 
           {/* Feature 4: Reusable Material & Cohorts */}
           <ScrollReveal>
-            <h3 className="text-[17px] sm:text-[19px] font-basier font-medium text-gray-900 mb-1.5">
+            <h3 className="cs-subheading text-[17px] sm:text-[19px] font-basier font-medium text-gray-900 mb-1.5">
               Asset Library & Capability Distribution
             </h3>
             <p className="text-[14px] text-gray-600 leading-relaxed font-switzer font-normal">
@@ -845,7 +845,7 @@ export default function CaseStudyAhamX({ onBack, isRevealed = true }) {
 
           {/* Feature 5: The Contextual Decision Layer with Embedded 60fps Micro-interaction Video */}
           <ScrollReveal>
-            <h3 className="text-[17px] sm:text-[19px] font-basier font-medium text-gray-900 mb-1.5">
+            <h3 className="cs-subheading text-[17px] sm:text-[19px] font-basier font-medium text-gray-900 mb-1.5">
               The Contextual Decision Layer — Organization Network & Hierarchy
             </h3>
             <p className="text-[14px] text-gray-600 leading-relaxed font-switzer font-normal">
@@ -869,13 +869,13 @@ export default function CaseStudyAhamX({ onBack, isRevealed = true }) {
           <ScrollReveal delay={0.06}>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 sm:gap-4 pt-2">
               <div className="p-5 rounded-xl border border-gray-200 bg-gray-50/50 shadow-xs">
-                <h4 className="font-basier font-medium text-[15px] text-gray-900 mb-1">State Behavior as First-Class UI</h4>
+                <h4 className="cs-detail-heading font-basier font-medium text-[15px] text-gray-900 mb-1">State Behavior as First-Class UI</h4>
                 <p className="text-[13px] text-gray-600 leading-relaxed font-switzer font-normal">
                   All shared components feature distinct hover, active, disabled, loading, and fallback states. Status tags always pair clear explanatory text with accessible cues.
                 </p>
               </div>
               <div className="p-5 rounded-xl border border-gray-200 bg-gray-50/50 shadow-xs">
-                <h4 className="font-basier font-medium text-[15px] text-gray-900 mb-1">WCAG 2.1 AA Accessibility</h4>
+                <h4 className="cs-detail-heading font-basier font-medium text-[15px] text-gray-900 mb-1">WCAG 2.1 AA Accessibility</h4>
                 <p className="text-[13px] text-gray-600 leading-relaxed font-switzer font-normal">
                   Tested with 4.5:1 text contrast ratios, visible keyboard focus rings, semantic landmark structures, ARIA live announcements for state updates, and narrow-viewport reflow down to 320px.
                 </p>
@@ -891,10 +891,10 @@ export default function CaseStudyAhamX({ onBack, isRevealed = true }) {
         {/* ------------------------------------------------------------- */}
         <section id="section-impact" className="space-y-6 scroll-mt-28">
           <ScrollReveal>
-            <h2 className="text-[22px] sm:text-[26px] md:text-[30px] font-basier font-medium text-[#111827] tracking-tight leading-snug">
+            <h2 className="cs-section-title text-[22px] sm:text-[26px] md:text-[30px] font-basier font-medium text-[#111827] tracking-tight leading-snug">
               Impact, Milestones & Retrospective
             </h2>
-            <p className="text-[15px] sm:text-[16px] text-[#374151] leading-[1.75] font-switzer font-normal mt-2">
+            <p className="cs-body text-[15px] sm:text-[16px] text-[#374151] leading-[1.75] font-switzer font-normal mt-2">
               Shipped as a production-grade system and validated on national innovation stages.
             </p>
           </ScrollReveal>
@@ -983,13 +983,13 @@ export default function CaseStudyAhamX({ onBack, isRevealed = true }) {
           <ScrollReveal delay={0.12}>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 sm:gap-4">
               <div className="p-5 rounded-xl border border-gray-200 bg-white shadow-xs">
-                <h4 className="font-basier font-medium text-[15px] text-gray-900 mb-1">Continuous Validation</h4>
+                <h4 className="cs-detail-heading font-basier font-medium text-[15px] text-gray-900 mb-1">Continuous Validation</h4>
                 <p className="text-[13px] text-gray-600 leading-relaxed font-switzer font-normal">
                   Continuously observing how users pick up where they left off, inspect AI draft variations, and navigate institutional approvals to eliminate friction.
                 </p>
               </div>
               <div className="p-5 rounded-xl border border-gray-200 bg-white shadow-xs">
-                <h4 className="font-basier font-medium text-[15px] text-gray-900 mb-1">Next Phase Capabilities</h4>
+                <h4 className="cs-detail-heading font-basier font-medium text-[15px] text-gray-900 mb-1">Next Phase Capabilities</h4>
                 <p className="text-[13px] text-gray-600 leading-relaxed font-switzer font-normal">
                   Extending contextual guidance and deeper analytics between learning mastery, competency mapping, and workforce mobility.
                 </p>
