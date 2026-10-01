@@ -74,6 +74,24 @@ html, body {
 }
 
 @font-face {
+  font-family: 'The Seasons';
+  src: url('./assets/fonts/Fontspring-DEMO-theseasons-it.otf') format('opentype');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+  unicode-range: U+0020, U+002C, U+002E, U+0030-0033, U+0035-003B, U+003F, U+0041-005A, U+0061-007A, U+00C0-00FF;
+}
+
+@font-face {
+  font-family: 'The Seasons';
+  src: url('./assets/fonts/Fontspring-DEMO-theseasons-bdit.otf') format('opentype');
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+  unicode-range: U+0020, U+002C, U+002E, U+0030-0033, U+0035-003B, U+003F, U+0041-005A, U+0061-007A, U+00C0-00FF;
+}
+
+@font-face {
   font-family: 'Sacramento';
   src: url('./assets/fonts/Sacramento-Regular.ttf') format('truetype');
   font-weight: 400;
@@ -222,12 +240,18 @@ i, em, cite, dfn, var, address {
 
 /* Clear reading space for the headline and a distinct work action. */
 .home-hero-copy{z-index:40;max-width:740px!important}
-.home-hero-title{flex-direction:column!important;white-space:normal!important;font-size:clamp(28px,4.6vw,62px)!important;line-height:1.15!important;gap:8px!important}
+.home-hero-title{font-family:'The Seasons',Georgia,serif!important;font-weight:400!important;flex-direction:column!important;white-space:normal!important;font-size:clamp(28px,4.6vw,62px)!important;line-height:1.15!important;gap:8px!important}
 .home-primary-actions{display:flex;flex-direction:column;align-items:center;gap:16px;margin-top:24px}
 .home-availability{font-size:13px;color:#47616c;display:flex;align-items:center;gap:8px}.home-availability>span{width:6px;height:6px;background:#24875f;border-radius:50%}
-.home-work-button{display:flex;align-items:center;gap:20px;background:#08304c;color:white;border-radius:28px;padding:14px 24px;font-size:15px;min-height:48px;cursor:pointer;box-shadow:0 5px 12px #08304c14}.home-work-button:hover{background:#124967}.home-work-button:focus-visible{outline:3px solid #62a4c4;outline-offset:4px}
+.home-work-button{position:relative;display:inline-flex;align-items:center;justify-content:center;padding:4px;border-radius:9999px;background:conic-gradient(from 270deg at 50% 50%,#2563eb 0%,#7c3aed 14%,#ec4899 28%,#ef4444 42%,#f97316 56%,#eab308 70%,#22c55e 84%,#2563eb 100%);border:none;cursor:pointer;box-shadow:0 4px 14px rgba(0,0,0,0.06);transition:transform .25s cubic-bezier(0.16,1,0.3,1),box-shadow .25s ease;text-decoration:none}
+.home-work-button:hover{transform:translateY(-2px) scale(1.02);box-shadow:0 8px 24px rgba(37,99,235,0.18),0 2px 8px rgba(0,0,0,0.06)}
+.home-work-button:active{transform:translateY(0) scale(0.98)}
+.home-work-button:focus-visible{outline:3px solid #2563eb;outline-offset:4px}
+.home-work-button-inner{display:inline-flex;align-items:center;justify-content:center;gap:12px;background:#ffffff;color:#111827;border-radius:9999px;padding:11px 26px;font-family:'__basierCircle_9ca3f5',-apple-system,BlinkMacSystemFont,sans-serif;font-size:15px;font-weight:600;letter-spacing:-0.01em;transition:background .2s ease,color .2s ease}
+.home-work-button-arrow{display:inline-block;font-size:16px;font-weight:500;transition:transform .25s cubic-bezier(0.16,1,0.3,1)}
+.home-work-button:hover .home-work-button-arrow{transform:translate(2px,-2px)}
 .project-outcome{margin-top:16px;font-size:13px;font-weight:600;color:#0c4731}.case-study-card img{object-fit:cover!important;padding:0}.case-study-card h3{font-size:clamp(20px,2vw,24px)!important;line-height:1.25}.case-study-card p{line-clamp:unset;-webkit-line-clamp:unset}
-@media(max-width:639px){.home-primary-actions{gap:12px;margin-top:18px}.home-work-button{padding:12px 22px}.home-hero-title{font-size:28px!important}.home-hero-copy{max-width:100%!important}.hero-section{min-height:450px}}
+@media(max-width:639px){.home-primary-actions{gap:12px;margin-top:18px}.home-work-button{padding:3.5px}.home-work-button-inner{padding:9px 20px;font-size:14px;gap:8px}.home-hero-title{font-size:28px!important}.home-hero-copy{max-width:100%!important}.hero-section{min-height:450px}}
 
 /* Shared editorial typography for all three case studies. */
 .case-study-page{--cs-body-font:'__switzer_c2a0a8','Segoe UI',sans-serif;--cs-heading-font:'__basierCircle_9ca3f5','Segoe UI',sans-serif}

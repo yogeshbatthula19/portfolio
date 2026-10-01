@@ -1186,13 +1186,13 @@ export default function App() {
 
           {/* Main Headline */}
           <h1 
-            className="home-hero-title tracking-[-0.8px] sm:tracking-[-2px] mx-auto flex flex-col md:flex-row items-center justify-center gap-y-1 sm:gap-y-2 md:gap-y-0 md:gap-x-3.5 whitespace-normal md:whitespace-nowrap"
+            className="home-hero-title tracking-tight sm:tracking-[-1px] mx-auto flex flex-col md:flex-row items-center justify-center gap-y-1 sm:gap-y-2 md:gap-y-0 md:gap-x-3.5 whitespace-normal md:whitespace-nowrap"
             style={{
-              fontFamily: "'__basierCircle_9ca3f5', '__basierCircle_Fallback_9ca3f5', sans-serif",
+              fontFamily: "'The Seasons', Georgia, serif",
               fontStyle: 'normal',
-              fontWeight: 500,
-              fontSize: 'clamp(25px, 6.2vw, 72px)',
-              lineHeight: 'clamp(33px, 7vw, 76.3px)',
+              fontWeight: 400,
+              fontSize: 'clamp(28px, 6.2vw, 72px)',
+              lineHeight: 'clamp(36px, 7vw, 78px)',
               color: '#08304C',
             }}
           >
@@ -1209,49 +1209,26 @@ export default function App() {
                 initial={!reduceMotion ? { opacity: 0, scale: 0.94 } : false}
                 animate={siteOpened ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.94 }}
                 transition={{ duration: 0.8, delay: 0.16, ease: entranceEase }}
-                className="relative inline-flex items-center justify-center p-[2px] rounded-[13px] sm:rounded-[17px] overflow-hidden group/product cursor-pointer align-middle my-[-2px] sm:my-[-4px] transition-all duration-300 shrink-0"
+                className="relative inline-flex items-center justify-center bg-white/95 rounded-[14px] sm:rounded-[18px] px-[12px] sm:px-[18px] xl:px-[22px] py-[3px] sm:py-[5px] shadow-[0_1px_3px_rgba(0,0,0,0.06)] border border-black/[0.08] group/product cursor-pointer align-middle my-[-2px] sm:my-[-4px] transition-all duration-300 shrink-0 gap-[6px] sm:gap-[8px] hover:border-black/20 hover:shadow-[0_2px_8px_rgba(0,0,0,0.08)]"
               >
-                {/* Default Border (visible when not hovered) */}
-                <span className="absolute inset-0 rounded-[13px] sm:rounded-[17px] border border-[#dedede] pointer-events-none transition-opacity duration-300 group-hover/product:opacity-0" />
-
-                {/* Glowing Blue Ambient Blur (moves around border on hover) */}
-                <span 
-                  className="absolute inset-[-140%] opacity-0 group-hover/product:opacity-80 blur-[6px] transition-opacity duration-300 animate-border-beam pointer-events-none"
+                <span
+                  className="capitalize text-[#08304C] not-italic"
                   style={{
-                    background: 'conic-gradient(from 0deg at 50% 50%, transparent 0deg, transparent 230deg, #0072ff 280deg, #00d2ff 340deg, #ffffff 360deg)',
+                    fontFamily: "'The Seasons', Georgia, serif",
+                    fontStyle: 'italic',
+                    fontWeight: 400,
+                    fontSize: '0.9em',
+                    lineHeight: 'normal',
                   }}
-                />
-
-                {/* Crisp Blue Light Beam (moves around border on hover) */}
-                <span 
-                  className="absolute inset-[-140%] opacity-0 group-hover/product:opacity-100 transition-opacity duration-300 animate-border-beam pointer-events-none"
-                  style={{
-                    background: 'conic-gradient(from 0deg at 50% 50%, transparent 0deg, transparent 230deg, #0066ff 280deg, #00d2ff 340deg, #ffffff 360deg)',
-                  }}
-                />
-
-                {/* Inner Badge Pill */}
-                <span 
-                  className="relative z-10 inline-flex items-center justify-center bg-white rounded-[11px] sm:rounded-[15px] px-[9px] sm:px-[18px] xl:px-[22px] py-[2px] sm:py-[5px] transition-all duration-300 gap-[5px] sm:gap-[8px]"
                 >
-                  <span
-                    className="capitalize text-black not-italic"
-                    style={{
-                      fontFamily: "'The Seasons', Georgia, serif",
-                      fontWeight: 400,
-                      fontSize: '0.82em',
-                      lineHeight: 'normal',
-                    }}
-                  >
-                    Products
-                  </span>
+                  Products
+                </span>
 
-                  {/* Hero Star Sparkle directly inside the pill */}
-                  <span
-                    className="relative inline-flex items-center justify-center w-[15px] sm:w-[24px] xl:w-[32px] h-[15px] sm:h-[24px] xl:h-[32px] shrink-0 pointer-events-none"
-                  >
-                    <img src={starSparkle} alt="✦" className="w-full h-full object-contain" />
-                  </span>
+                {/* Hero Star Sparkle directly inside the pill */}
+                <span
+                  className="relative inline-flex items-center justify-center w-[15px] sm:w-[22px] xl:w-[28px] h-[15px] sm:h-[22px] xl:h-[28px] shrink-0 pointer-events-none"
+                >
+                  <img src={starSparkle} alt="✦" className="w-full h-full object-contain" />
                 </span>
               </motion.span>
             </div>
@@ -1277,7 +1254,12 @@ export default function App() {
 
           <motion.div className="home-primary-actions" initial={reduceMotion?false:{opacity:0,y:12}} animate={siteOpened?{opacity:1,y:0}:{opacity:0,y:12}} transition={{duration:.5,delay:.3}}>
             <p className="home-availability"><span aria-hidden="true"/>Open to Product Design roles</p>
-            <button onClick={handleScrollToWorks} className="home-work-button">View my work <span aria-hidden="true">↗</span></button>
+            <button onClick={handleScrollToWorks} className="home-work-button" aria-label="View my work">
+              <span className="home-work-button-inner">
+                <span>View my work</span>
+                <span className="home-work-button-arrow" aria-hidden="true">↗</span>
+              </span>
+            </button>
           </motion.div>
 
           {/* Location Line */}

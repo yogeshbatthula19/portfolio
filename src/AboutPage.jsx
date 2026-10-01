@@ -62,9 +62,9 @@ export default function AboutPage({ onBack, isRevealed = true }) {
       {/* Main Content Area */}
       <main className="w-full flex-1 flex flex-col">
         {/* 1. Hero / Bio Section */}
-        <section className="w-full max-w-5xl mx-auto px-5 sm:px-8 lg:px-10 pt-4 sm:pt-6 pb-8 sm:pb-10 flex flex-col">
+        <section className="w-full max-w-5xl mx-auto px-5 sm:px-8 lg:px-10 pt-8 sm:pt-14 md:pt-16 pb-16 sm:pb-24 flex flex-col min-h-[calc(100vh-80px)] justify-start">
           {/* Large Iconic Header Title in The Seasons Font */}
-          <div className="text-center mb-5 sm:mb-7 shrink-0">
+          <div className="text-center mb-12 sm:mb-16 md:mb-20 shrink-0">
             <motion.h1
               initial={{ opacity: 0, y: 24 }}
               animate={shouldAnimate ? { opacity: 1, y: 0 } : { opacity: 0, y: 24 }}
