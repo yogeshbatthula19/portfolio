@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useLayoutEffect, useRef, useMemo } from 'react';
 import { motion, useScroll, useTransform, AnimatePresence, useSpring, cubicBezier, useReducedMotion, useVelocity } from 'framer-motion';
 import Lenis from 'lenis';
-import { FileText, Heart, ArrowRight, ArrowUpRight, X } from 'lucide-react';
+import { FileText, Heart, ArrowRight, ArrowUpRight, X, Lock, Eye, EyeOff } from 'lucide-react';
 const CaseStudyAhamX = React.lazy(() => import('./CaseStudyAhamX'));
 const CaseStudyRyzeup = React.lazy(() => import('./CaseStudyRyzeup'));
 const CaseStudyTrosky = React.lazy(() => import('./CaseStudyTrosky'));
@@ -317,17 +317,21 @@ function ScrollRevealSection({ sectionRef, children }) {
 }
 
 // Interactive Case study card with smooth hover and click navigation.
-function CaseStudyCard({ coverImage, title, outcome, description, onClick, onMouseEnter, onFocus }) {
+function CaseStudyCard({ coverImage, title, outcome, description, onClick, onMouseEnter, onFocus, isLocked = false }) {
   const reduced = useReducedMotion();
   return (
     <motion.div
       onClick={onClick}
       onMouseEnter={onMouseEnter}
       onFocus={onFocus}
-      role={onClick ? "link" : undefined}
+      role={onClick ? (isLocked ? "button" : "link") : undefined}
+      aria-haspopup={isLocked ? "dialog" : undefined}
       tabIndex={onClick ? 0 : undefined}
       onKeyDown={(event) => {
-        if (onClick && event.key === "Enter") onClick();
+        if (onClick && (event.key === "Enter" || event.key === " ")) {
+          event.preventDefault();
+          onClick();
+        }
       }}
       initial={reduced ? false : { opacity: 0, y: 32, scale: .98 }}
       whileInView={{ opacity: 1, y: 0, scale: 1 }}
@@ -346,6 +350,12 @@ function CaseStudyCard({ coverImage, title, outcome, description, onClick, onMou
           decoding="async"
           className="w-full h-full object-cover transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-105" 
         />
+        {isLocked && (
+          <div className="absolute top-3.5 right-3.5 z-10 inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/90 backdrop-blur-md text-[11.5px] font-medium text-[#111827] shadow-sm border border-black/[0.08]">
+            <Lock className="w-3 h-3 text-[#0c4731]" />
+            <span>Password Required</span>
+          </div>
+        )}
       </div>
 
       {/* Content */}
@@ -553,6 +563,37 @@ export default function App() {
   const [roleIndex, setRoleIndex] = useState(0);
   const returnToWorks = useRef(false);
   const worksRef = useRef(null);
+
+  // Protected Case Study Password Modal
+  const [passwordModalOpen, setPasswordModalOpen] = useState(false);
+  const [enteredPassword, setEnteredPassword] = useState('');
+  const [passwordError, setPasswordError] = useState('');
+  const [isUnlocked, setIsUnlocked] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
+
+  const handlePasswordSubmit = (e) => {
+    e.preventDefault();
+    const normalized = enteredPassword.trim().toLowerCase();
+    const validPasswords = ['yogesh', 'carepulse', 'design', '2026', 'health', 'clinician', 'passkey', 'portfolio'];
+    if (validPasswords.includes(normalized)) {
+      setIsUnlocked(true);
+      setPasswordError('');
+    } else {
+      setPasswordError('Incorrect password. Please try again or request access below.');
+    }
+  };
+
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape' && passwordModalOpen) {
+        setPasswordModalOpen(false);
+      }
+    };
+    if (passwordModalOpen) {
+      window.addEventListener('keydown', handleKeyDown);
+    }
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [passwordModalOpen]);
 
   // Initialize Lenis Kinetic Smooth Scrolling
   useEffect(() => {
@@ -1825,6 +1866,13 @@ export default function App() {
             title="Giving clinicians more time for care"
             description="An ambient documentation concept for clinicians."
             outcome="2.4 hours/day saved on documentation"
+            onClick={() => {
+              setPasswordModalOpen(true);
+              setPasswordError('');
+              setEnteredPassword('');
+              setIsUnlocked(false);
+            }}
+            isLocked={true}
           />
 
         </div>
@@ -1844,6 +1892,128 @@ export default function App() {
       <WhiteFooterCard navigateToCaseStudy={navigateToCaseStudy} navigateToAbout={navigateToAbout} onScrollToWorks={handleScrollToWorks} />
 
       </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Protected Case Study Password Modal */}
+      <AnimatePresence>
+        {passwordModalOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
+            className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6 bg-black/45 backdrop-blur-md"
+            onClick={() => setPasswordModalOpen(false)}
+          >
+            <motion.div
+              initial={{ opacity: 0, scale: 0.94, y: 16 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.94, y: 16 }}
+              transition={{ duration: 0.28, ease: [0.16, 1, 0.3, 1] }}
+              className="relative w-full max-w-[430px] bg-white rounded-[24px] p-6 sm:p-8 shadow-2xl border border-black/[0.08] text-center"
+              onClick={(e) => e.stopPropagation()}
+              role="dialog"
+              aria-modal="true"
+              aria-labelledby="password-modal-title"
+            >
+              {/* Close Button */}
+              <button
+                onClick={() => setPasswordModalOpen(false)}
+                className="absolute top-4 right-4 p-2 rounded-full text-gray-400 hover:text-gray-700 hover:bg-black/[0.04] transition-colors cursor-pointer"
+                aria-label="Close dialog"
+              >
+                <X className="w-4 h-4" />
+              </button>
+
+              {/* Lock Badge */}
+              <div className="w-12 h-12 rounded-2xl bg-[#0c4731]/[0.08] text-[#0c4731] flex items-center justify-center mx-auto mb-4">
+                <Lock className="w-5 h-5" />
+              </div>
+
+              {/* Title in The Seasons */}
+              <h3
+                id="password-modal-title"
+                className="text-[22px] sm:text-[25px] font-bold text-[#111827] tracking-tight mb-2"
+                style={{ fontFamily: "'The Seasons', Georgia, serif" }}
+              >
+                Password Required
+              </h3>
+
+              {/* Subtitle */}
+              <p className="text-[13.5px] text-[#4b5563] leading-relaxed mb-6 font-basier">
+                This project contains clinical EHR workflow designs and unreleased healthcare technology protected under NDA.
+              </p>
+
+              {!isUnlocked ? (
+                <form onSubmit={handlePasswordSubmit} className="space-y-3.5">
+                  <div className="relative">
+                    <input
+                      type={showPassword ? "text" : "password"}
+                      value={enteredPassword}
+                      onChange={(e) => {
+                        setEnteredPassword(e.target.value);
+                        if (passwordError) setPasswordError('');
+                      }}
+                      placeholder="Enter access password"
+                      autoFocus
+                      className={`w-full px-4 py-3 pr-11 rounded-xl text-[14px] bg-gray-50 border ${passwordError ? 'border-red-500 ring-2 ring-red-500/15' : 'border-gray-200 focus:border-[#0c4731] focus:ring-2 focus:ring-[#0c4731]/15'} outline-none transition-all font-basier`}
+                    />
+                    <button
+                      type="button"
+                      onClick={() => setShowPassword(!showPassword)}
+                      className="absolute right-3.5 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 cursor-pointer p-1"
+                      aria-label={showPassword ? "Hide password" : "Show password"}
+                    >
+                      {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+                    </button>
+                  </div>
+
+                  {passwordError && (
+                    <motion.p
+                      initial={{ opacity: 0, y: -4 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      className="text-[12px] text-red-600 font-medium text-left"
+                    >
+                      {passwordError}
+                    </motion.p>
+                  )}
+
+                  <button
+                    type="submit"
+                    className="w-full py-3 px-5 rounded-xl bg-[#0c4731] hover:bg-[#093524] text-white text-[14px] font-medium transition-colors cursor-pointer shadow-sm hover:shadow"
+                  >
+                    View Case Study
+                  </button>
+
+                  <div className="pt-2 text-[12.5px] text-[#6b7280]">
+                    Don't have the password?{' '}
+                    <a
+                      href="mailto:yogeshbattula55@gmail.com?subject=CarePulse%20Health%20Case%20Study%20Access%20Request&body=Hi%20Yogesh,%0A%0AI'd%20love%20to%20review%20your%20CarePulse%20Health%20case%20study.%20Could%20you%20please%20share%20the%20access%20password%3F%0A%0AThanks!"
+                      className="text-[#0c4731] font-medium hover:underline inline-flex items-center gap-0.5"
+                    >
+                      Request access <ArrowUpRight className="w-3 h-3" />
+                    </a>
+                  </div>
+                </form>
+              ) : (
+                <div className="py-2 space-y-4">
+                  <div className="p-4 rounded-xl bg-emerald-50 border border-emerald-200/80 text-emerald-900 text-[13.5px] leading-relaxed text-left">
+                    <p className="font-semibold text-emerald-950 mb-1">Access verified!</p>
+                    <p className="text-[13px] text-emerald-800">
+                      The CarePulse Health web case study is currently being packaged for public viewing. Please reach out to walk through the live Figma design system and clinical workflow deck.
+                    </p>
+                  </div>
+                  <a
+                    href="mailto:yogeshbattula55@gmail.com?subject=Schedule%20CarePulse%20Walkthrough&body=Hi%20Yogesh,%0A%0AI%20verified%20password%20access%20and%20would%20like%20to%20schedule%20a%20walkthrough%20of%20CarePulse%20Health.%0A%0ABest,"
+                    className="inline-flex items-center justify-center gap-1.5 w-full py-3 px-5 rounded-xl bg-[#0c4731] hover:bg-[#093524] text-white text-[14px] font-medium transition-colors"
+                  >
+                    Schedule Walkthrough <ArrowUpRight className="w-4 h-4" />
+                  </a>
+                </div>
+              )}
+            </motion.div>
           </motion.div>
         )}
       </AnimatePresence>
