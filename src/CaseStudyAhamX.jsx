@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { ArrowLeft, User, GraduationCap, Building2 } from 'lucide-react';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { motion, useScroll, useTransform, useInView } from 'framer-motion';
 import CaseStudyScrollNav from './CaseStudyScrollNav';
 import CaseStudyScrollProgress from './CaseStudyScrollProgress';
 import ScrollReveal from './ScrollReveal';
@@ -29,14 +29,41 @@ const AHAMX_SECTIONS = [
   { id: 'section-impact', label: 'Impact & Retrospective' },
 ];
 
-// Clean Single Mockup Frame with Scroll Parallax (No asset link on click)
-function MockupFrame({ src, alt }) {
+// Clean Single Mockup Frame with Scroll Parallax (Supports both images and scroll-triggered video demos)
+function MockupFrame({ src, alt, videoMp4, videoWebm, loop = false }) {
   const frameRef = useRef(null);
+  const videoRef = useRef(null);
+  const isInView = useInView(frameRef, { amount: 0.5 });
+  const prevInViewRef = useRef(false);
+
   const { scrollYProgress } = useScroll({
     target: frameRef,
     offset: ["start end", "end start"],
   });
   const innerY = useTransform(scrollYProgress, [0, 1], [-14, 14]);
+
+  // When scrolled into this position, play the video once!
+  useEffect(() => {
+    if (!videoRef.current || !videoMp4) return;
+
+    if (isInView && !prevInViewRef.current) {
+      videoRef.current.currentTime = 0;
+      const playPromise = videoRef.current.play();
+      if (playPromise !== undefined) {
+        playPromise.catch(() => {});
+      }
+    } else if (!isInView && prevInViewRef.current) {
+      videoRef.current.pause();
+    }
+    prevInViewRef.current = isInView;
+  }, [isInView, videoMp4]);
+
+  const handleReplay = () => {
+    if (videoRef.current) {
+      videoRef.current.currentTime = 0;
+      videoRef.current.play().catch(() => {});
+    }
+  };
 
   return (
     <ScrollReveal variant="scale-up" className="my-6 sm:my-8">
@@ -46,14 +73,44 @@ function MockupFrame({ src, alt }) {
         style={{ backgroundImage: `url(${mockupBg})` }}
       >
         <motion.div style={{ y: innerY }}>
-          <div className="rounded-[10px] sm:rounded-[18px] overflow-hidden shadow-xl border border-black/10 bg-white">
-            <img 
-              src={src} 
-              alt={alt} 
-              className="w-full h-auto object-cover block pointer-events-none" 
-              loading="lazy"
-              decoding="async"
-            />
+          <div 
+            onClick={videoMp4 ? handleReplay : undefined}
+            title={videoMp4 ? "Click to replay" : undefined}
+            className={`rounded-[10px] sm:rounded-[18px] overflow-hidden shadow-xl border border-black/10 bg-white ${videoMp4 ? 'cursor-pointer' : ''}`}
+          >
+            {videoMp4 ? (
+              <video
+                ref={videoRef}
+                autoPlay={false}
+                loop={loop}
+                muted
+                playsInline
+                preload="auto"
+                controls={false}
+                poster={src}
+                className="w-full h-auto object-cover block select-none pointer-events-none"
+              >
+                {videoWebm && <source src={videoWebm} type="video/webm" />}
+                <source src={videoMp4} type="video/mp4" />
+                {src && (
+                  <img 
+                    src={src} 
+                    alt={alt} 
+                    className="w-full h-auto object-cover block pointer-events-none" 
+                    loading="lazy"
+                    decoding="async"
+                  />
+                )}
+              </video>
+            ) : (
+              <img 
+                src={src} 
+                alt={alt} 
+                className="w-full h-auto object-cover block pointer-events-none" 
+                loading="lazy"
+                decoding="async"
+              />
+            )}
           </div>
         </motion.div>
       </div>
@@ -268,8 +325,11 @@ export default function CaseStudyAhamX({ onBack, isRevealed = true }) {
         className="max-w-[1040px] mx-auto px-3 sm:px-6"
       >
         <MockupFrame 
-          src={mockup0} 
-          alt="Clean hero frame showing responsive AhamX interface across Desktop and Mobile viewports" 
+          src="/videos/learner-dashboard-enrolled-active.png" 
+          videoMp4="/videos/learner-dashboard-enrolled-active.mp4"
+          videoWebm="/videos/learner-dashboard-enrolled-active.webm"
+          loop={false}
+          alt="AhamX Learner Dashboard Enrolled Active interface demo" 
         />
       </motion.div>
 
