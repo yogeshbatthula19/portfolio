@@ -1,4 +1,5 @@
 import NextCaseStudy from './NextCaseStudy';
+import CaseStudyTldr from './CaseStudyTldr';
 import React, { useEffect, useRef } from 'react';
 import { ArrowLeft, User, GraduationCap, Building2 } from 'lucide-react';
 import { motion, useScroll, useTransform, useInView } from 'framer-motion';
@@ -337,6 +338,7 @@ export default function CaseStudyAhamX({ onBack, onNext, isRevealed = true }) {
         {/* EXECUTIVE SUMMARY                                             */}
         {/* ------------------------------------------------------------- */}
         <section className="space-y-4">
+          <CaseStudyTldr rows={[["Problem", "Learners lost their place, educators didn't trust unreviewed AI drafts, and org leads couldn't see who they were approving."], ["My role", "Led UX/UI end to end as the sole designer, for desktop and mobile."], ["What I changed", "One product that adapts to each role: a resume-learning card, step-by-step AI review before publishing, and approval rows that show who and why."], ["Result", "Shipped in 3 months and featured at the IndiaAI Impact Summit 2026."]]} />
           <ScrollReveal>
             <div className="p-5 sm:p-6 rounded-xl bg-gray-50 border border-gray-200">
               <h3 className="cs-label text-[11px] font-basier font-medium uppercase tracking-wider text-gray-400 mb-2">

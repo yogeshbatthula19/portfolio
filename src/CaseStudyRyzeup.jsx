@@ -1,4 +1,5 @@
 import NextCaseStudy from './NextCaseStudy';
+import CaseStudyTldr from './CaseStudyTldr';
 import React, { useState, useEffect, useRef } from 'react';
 import { ArrowLeft, Users, MessageSquare, Search, Bell, Layers, CheckCircle2 } from 'lucide-react';
 import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
@@ -399,6 +400,7 @@ export default function CaseStudyRyzeup({ onBack, onNext, isRevealed = true }) {
         {/* EXECUTIVE SUMMARY                                             */}
         {/* ------------------------------------------------------------- */}
         <section className="space-y-4">
+          <CaseStudyTldr rows={[["Problem", "Employees couldn't find information again, and managers lost track of whose updates they were reviewing."], ["My role", "Led the mobile redesign from a blank canvas to a production beta in 2 months."], ["What I changed", "Organization-verified entry, structured feed posts, search across people, posts and files, and a Self / My Team view with a reportee drawer."], ["Result", "+15% monthly usage over a 60-day pilot; switching to a team member's context went from about 28s to under 3s."]]} />
           <ScrollReveal>
             <div className="p-5 sm:p-6 rounded-xl bg-gray-50 border border-gray-200">
               <h3 className="cs-label text-[11px] font-basier font-medium uppercase tracking-wider text-gray-400 mb-2">

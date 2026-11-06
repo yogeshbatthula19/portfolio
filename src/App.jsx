@@ -26,7 +26,7 @@ function SubstackIcon({ className = "w-4 h-4" }) {
 }
 
 // Authentic Postage Stamp Frame with Perforated Edge & Philatelic Margins
-function StampFrame({ children, className = "", innerClassName = "", defaultW = 205, defaultH = 210 }) {
+function StampFrame({ children, className = "", innerClassName = "", defaultW = 205, defaultH = 210, paper = "#fbf9f4", edge = "#dcd5c7" }) {
   const containerRef = useRef(null);
   const [dimensions, setDimensions] = useState({ w: defaultW, h: defaultH });
 
@@ -148,8 +148,8 @@ function StampFrame({ children, className = "", innerClassName = "", defaultW = 
       >
         <path
           d={stampPath}
-          fill="#fbf9f4"
-          stroke="#dcd5c7"
+          fill={paper}
+          stroke={edge}
           strokeWidth="1"
           strokeLinejoin="round"
         />
@@ -451,8 +451,7 @@ import stampCouple from './assets/stamp_couple.png';
 import stampCycling from './assets/stamp_cycling.png';
 import stampLighthouse from './assets/stamp_lighthouse.png';
 import photoCycle from './assets/photo_cycle_full.jpg';
-import photoPrabhas from './assets/photo_prabhas.jpg';
-import stampPrabhas from './assets/stamp_prabhas.png';
+import cafeDumplings from './assets/foodiee/EE067D71-C03C-40AA-A692-A428618A1A7D.jpg';
 
 // Section 3 Case Study Cover Images
 import coverPoints from './assets/cover_points.png';
@@ -1333,7 +1332,7 @@ export default function App() {
                     lineHeight: 'normal',
                   }}
                 >
-                  Products
+                  AI products
                 </span>
 
                 {/* Hero Star Sparkle directly inside the pill */}
@@ -1350,7 +1349,7 @@ export default function App() {
               transition={{ duration: 0.8, delay: 0.22, ease: entranceEase }}
               className="shrink-0 whitespace-nowrap"
             >
-              that work.
+              people trust.
             </motion.span>
           </h1>
 
@@ -1361,7 +1360,7 @@ export default function App() {
             transition={{ duration: 0.8, delay: 0.30, ease: entranceEase }}
             className="text-[14px] sm:text-[16.5px] xl:text-[18px] text-[rgba(8,48,76,0.78)] mt-2 sm:mt-3.5 max-w-[340px] sm:max-w-[520px] xl:max-w-[580px] leading-[21px] sm:leading-[26px] xl:leading-[28px] tracking-[-0.15px]"
           >
-            I'm Yogesh, a product designer with 5+ years of experience. I design apps that look clean on the surface and make sense underneath.
+            I'm Yogesh, a product designer with 5+ years of experience in AI and SaaS products. I design apps that look clean on the surface and make sense underneath.
           </motion.p>
 
           <motion.div className="home-primary-actions" initial={reduceMotion?false:{opacity:0,y:12}} animate={siteOpened?{opacity:1,y:0}:{opacity:0,y:12}} transition={{duration:.5,delay:.3}}>
@@ -1523,13 +1522,15 @@ export default function App() {
                     className="w-full h-full flex items-center justify-center cursor-pointer group origin-center"
                   >
                     <div className="w-full h-full select-none transition-transform duration-300 ease-out group-hover:scale-[1.02]">
-                      <img 
-                        src={stampPrabhas} 
-                        alt="Prabhas with sunflowers in postage stamp" 
-                        loading="lazy"
-                        decoding="async"
-                        className="w-full h-full object-contain select-none transition-transform duration-500 ease-out group-hover:scale-105" 
-                      />
+                      <StampFrame className="w-full h-full" paper="#f7e8cf" edge="#ecd9b8">
+                        <img
+                          src={cafeDumplings}
+                          alt="Crispy golden dumpling purses on a pewter plate, filmed at a café"
+                          loading="lazy"
+                          decoding="async"
+                          className="w-full h-full object-cover select-none"
+                        />
+                      </StampFrame>
                     </div>
                   </motion.div>
                 </div>
@@ -1830,13 +1831,15 @@ export default function App() {
                 className="absolute left-[257px] top-[356px] pointer-events-auto cursor-pointer group"
               >
                 <div className="relative w-full h-full select-none transition-transform duration-300 ease-out group-hover:scale-[1.02]">
-                  <img
-                    src={stampPrabhas}
-                    alt="Prabhas with sunflowers in postage stamp"
-                    loading="lazy"
-                    decoding="async"
-                    className="w-full h-full object-contain select-none transition-transform duration-700 ease-out group-hover:scale-105"
-                  />
+                  <StampFrame className="w-full h-full" paper="#f7e8cf" edge="#ecd9b8">
+                    <img
+                      src={cafeDumplings}
+                      alt="Crispy golden dumpling purses on a pewter plate, filmed at a café"
+                      loading="lazy"
+                      decoding="async"
+                      className="w-full h-full object-cover select-none"
+                    />
+                  </StampFrame>
                 </div>
               </motion.div>
 

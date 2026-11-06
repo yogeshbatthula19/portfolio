@@ -1,4 +1,5 @@
 import NextCaseStudy from './NextCaseStudy';
+import CaseStudyTldr from './CaseStudyTldr';
 import React, { useEffect, useRef } from 'react';
 import { ArrowLeft, Target, ShieldCheck, Activity, Users, CheckCircle2 } from 'lucide-react';
 import { motion, useScroll, useTransform } from 'framer-motion';
@@ -478,6 +479,7 @@ export default function CaseStudyTrosky({ onBack, onNext, isRevealed = true }) {
         {/* EXECUTIVE SUMMARY                                             */}
         {/* ------------------------------------------------------------- */}
         <section className="space-y-4">
+          <CaseStudyTldr rows={[["Problem", "Players faced dozens of unsorted drill videos and no way to tell if they were improving, so solo practice faded within a week."], ["My role", "Sole product designer on iOS, working with the coaches and one engineer over 6 weeks."], ["What I changed", "Replaced the catalog with one 10-minute daily routine: watch, explain it back, practise, reflect."], ["Result", "In a 42-athlete beta, 30-day streak retention went from 26% to 62%."]]} />
           <ScrollReveal>
             <div className="p-5 sm:p-6 rounded-xl bg-gray-50 border border-gray-200">
               <h3 className="cs-label text-[11px] font-basier font-medium uppercase tracking-wider text-gray-400 mb-2">
