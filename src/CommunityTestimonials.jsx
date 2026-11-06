@@ -5,7 +5,7 @@ import { motion, useScroll, useTransform } from 'framer-motion';
 import harishPhoto from './assets/spotlights/harish_photo.jpg';
 import purandharPhoto from './assets/spotlights/purandhar_photo.jpg';
 import rishiPhoto from './assets/spotlights/rishi_photo.jpg';
-import heroBg from './assets/564cc67c35dca41051d7d78448f696fab9f139d9.png';
+import heroBg from './assets/564cc67c35dca41051d7d78448f696fab9f139d9.webp';
 
 // Slight tilts make the cards feel like postcards pinned to a board (desktop only).
 const TILTS = [-1.4, 1.1, -0.8];

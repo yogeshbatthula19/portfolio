@@ -10,8 +10,9 @@ import ConceptToCraft from './ConceptToCraft';
 import CommunityTestimonials from './CommunityTestimonials';
 import CustomCursor from './CustomCursor';
 import OpeningAnimation from './OpeningAnimation';
-import photoAvatar from './assets/photo_yogesh_avatar.jpg';
-import stampAboutOrange from './assets/stamp_about_orange.png';
+import NotFound from './NotFound';
+import photoAvatar from './assets/photo_yogesh_avatar.webp';
+import stampAboutOrange from './assets/stamp_about_orange.webp';
 
 // Substack Brand Icon
 function SubstackIcon({ className = "w-4 h-4" }) {
@@ -464,25 +465,25 @@ function PortraitLogoIcon({ className = "w-3.5 h-3.5" }) {
 }
 
 // Exact Figma Assets
-import imgBg from './assets/564cc67c35dca41051d7d78448f696fab9f139d9.png';
+import imgBg from './assets/564cc67c35dca41051d7d78448f696fab9f139d9.webp';
 import imgAvatar from './assets/208bdeb27929c60ddd450ef1458fb5c7036a5b8f.png';
 import imgBeanie from './assets/29e6abd0792f8f552ecb57740b38e2904bfa9b53.png';
-import imgWomen from './assets/2706ad31caba7f218e50e6bce4e19c7e9ebc1f7e.png';
+import imgWomen from './assets/2706ad31caba7f218e50e6bce4e19c7e9ebc1f7e.webp';
 import imgPolaroid from './assets/b098875ed908e731d63e630d216dc3e2263ed1d3.png';
-import imgMatcha from './assets/e4dbcdd77bc9c13d2de4378af5f748570474120d.png';
+import imgMatcha from './assets/e4dbcdd77bc9c13d2de4378af5f748570474120d.webp';
 import imgNote from './assets/65b0d33492ffd94741f4de8fe2d01b44ab5a58c3.png';
 
 // User Uploaded Photos & Custom Postage Stamps (Full resolution edge-to-edge)
-import photoStatue from './assets/photo_statue.jpg';
-import photoLighthouse from './assets/photo_lighthouse.jpg';
-import photoTemple from './assets/photo_temple.jpg';
-import stampTemple from './assets/stamp_temple.png';
-import photoCouple from './assets/photo_couple_full.jpg';
-import stampCouple from './assets/stamp_couple.png';
-import stampCycling from './assets/stamp_cycling.png';
-import stampLighthouse from './assets/stamp_lighthouse.png';
-import photoCycle from './assets/photo_cycle_full.jpg';
-import cafeDumplings from './assets/foodiee/EE067D71-C03C-40AA-A692-A428618A1A7D.jpg';
+import photoStatue from './assets/photo_statue.webp';
+import photoLighthouse from './assets/photo_lighthouse.webp';
+import photoTemple from './assets/photo_temple.webp';
+import stampTemple from './assets/stamp_temple.webp';
+import photoCouple from './assets/photo_couple_full.webp';
+import stampCouple from './assets/stamp_couple.webp';
+import stampCycling from './assets/stamp_cycling.webp';
+import stampLighthouse from './assets/stamp_lighthouse.webp';
+import photoCycle from './assets/photo_cycle_full.webp';
+import cafeDumplings from './assets/foodiee/EE067D71-C03C-40AA-A692-A428618A1A7D.webp';
 
 // Section 3 Case Study Cover Images
 import troskyHome from './assets/covers/trosky-home.webp';
@@ -494,8 +495,8 @@ import ahamxDashboard from './assets/covers/ahamx-dashboard.webp';
 
 
 // 3D Star Sparkle Asset from Figma (Node 314:1415)
-import starSparkle from './assets/star_sparkle.png';
-import footerBlueTexture from './assets/footer-blue-texture.jpg';
+import starSparkle from './assets/star_sparkle.webp';
+import footerBlueTexture from './assets/footer-blue-texture.webp';
 import nimbuMirchi from './assets/nimbu_mirchi.png';
 
 // Waving Indian "Nimbu Mirchi" (Lemon & Chilli) Nazar Battu Hanging Charm
@@ -735,6 +736,8 @@ export default function App() {
     if (cleanHash === 'case-study/ryzeup' || cleanHash === 'ryzeup') return 'ryzeup';
     if (cleanHash === 'case-study/trosky' || cleanHash === 'trosky') return 'trosky';
 
+    // Anything else that isn't the homepage is a broken link.
+    if (pathname !== '/' && pathname !== '/index.html' && !pathname.includes('nointro')) return 'notfound';
     return 'home';
   };
 
@@ -745,7 +748,7 @@ export default function App() {
     const full = `${pathname} ${hash}`;
 
     const route = parseCurrentRoute();
-    if (full.includes('nointro') || hasSeenIntro()) {
+    if (full.includes('nointro') || hasSeenIntro() || route === 'notfound') {
       return { route, hasIntro: false, title: 'Yogesh' };
     }
     if (route === 'about') {
@@ -1222,6 +1225,16 @@ export default function App() {
             <React.Suspense fallback={<div className="min-h-screen bg-[#fafafa]" />}>
               <CaseStudyRyzeup onBack={navigateToHome} onNext={navigateToCaseStudy} isRevealed={caseStudyRevealed} />
             </React.Suspense>
+          </motion.div>
+        ) : currentView === 'notfound' ? (
+          <motion.div
+            key="notfound"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.32, ease: [0.22, 1, 0.36, 1] }}
+          >
+            <NotFound onHome={() => navigateToHome('top')} onWorks={() => navigateToHome('works')} />
           </motion.div>
         ) : currentView === 'about' ? (
           <motion.div

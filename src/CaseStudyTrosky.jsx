@@ -9,25 +9,25 @@ import ScrollReveal from './ScrollReveal';
 import ThankYouEnvelope from './ThankYouEnvelope';
 
 // Background assets
-import heroGradient from './assets/564cc67c35dca41051d7d78448f696fab9f139d9.png';
-import troskyMockupBg from './assets/trosky/trosky_mockup_bg.jpg';
+import heroGradient from './assets/564cc67c35dca41051d7d78448f696fab9f139d9.webp';
+import troskyMockupBg from './assets/trosky/trosky_mockup_bg.webp';
 
 // Authentic Hand-drawn Paper Wireframe Sketches
-import sketchNotebookImg from './assets/trosky/sections/trosky_sketch_notebook.jpg';
+import sketchNotebookImg from './assets/trosky/sections/trosky_sketch_notebook.webp';
 
 // The 12 Main HD iPhone Mockups
-import m01DailyHome from './assets/trosky/01-daily-home.png';
-import m02DrillIntro from './assets/trosky/02-drill-introduction.png';
-import m03Instructional from './assets/trosky/03-instructional-content.png';
-import m04MarkWatched from './assets/trosky/04-mark-as-watched.png';
-import m05WrittenPrompt from './assets/trosky/05-written-response-prompt.png';
-import m06SubmittedResponse from './assets/trosky/06-submitted-response.png';
-import m07CoachingFeedback from './assets/trosky/07-coaching-feedback.png';
-import m08XpReward from './assets/trosky/08-drill-xp-reward.png';
-import m09ThrowingVideo from './assets/trosky/09-throwing-video.png';
-import m10SelectedAnswer from './assets/trosky/10-selected-answer.png';
-import m11CharacterReflection from './assets/trosky/11-character-reflection.png';
-import m12SessionComplete from './assets/trosky/12-session-complete.png';
+import m01DailyHome from './assets/trosky/01-daily-home.webp';
+import m02DrillIntro from './assets/trosky/02-drill-introduction.webp';
+import m03Instructional from './assets/trosky/03-instructional-content.webp';
+import m04MarkWatched from './assets/trosky/04-mark-as-watched.webp';
+import m05WrittenPrompt from './assets/trosky/05-written-response-prompt.webp';
+import m06SubmittedResponse from './assets/trosky/06-submitted-response.webp';
+import m07CoachingFeedback from './assets/trosky/07-coaching-feedback.webp';
+import m08XpReward from './assets/trosky/08-drill-xp-reward.webp';
+import m09ThrowingVideo from './assets/trosky/09-throwing-video.webp';
+import m10SelectedAnswer from './assets/trosky/10-selected-answer.webp';
+import m11CharacterReflection from './assets/trosky/11-character-reflection.webp';
+import m12SessionComplete from './assets/trosky/12-session-complete.webp';
 
 // Section navigation for floating scroll spy
 const TROSKY_SECTIONS = [

@@ -8,25 +8,25 @@ import CaseStudyScrollProgress from './CaseStudyScrollProgress';
 import ScrollReveal from './ScrollReveal';
 import ThankYouEnvelope from './ThankYouEnvelope';
 
-import orangeBg from './assets/ryzeup_orange_bg.jpg';
-import heroGradient from './assets/564cc67c35dca41051d7d78448f696fab9f139d9.png';
-import starSparkle from './assets/star_sparkle.png';
-import oldMockupOrange from './assets/ryzeup_redesign/old_orange_mockup.png';
-import newMockupPurple from './assets/ryzeup_redesign/new_purple_mockup.png';
+import orangeBg from './assets/ryzeup_orange_bg.webp';
+import heroGradient from './assets/564cc67c35dca41051d7d78448f696fab9f139d9.webp';
+import starSparkle from './assets/star_sparkle.webp';
+import oldMockupOrange from './assets/ryzeup_redesign/old_orange_mockup.webp';
+import newMockupPurple from './assets/ryzeup_redesign/new_purple_mockup.webp';
 
 // 12 Authentic Ryzeup Mockups
-import mockupOrg from './assets/Ryzeup mockups /01-organization.png';
-import mockupLogin from './assets/Ryzeup mockups /02-login.png';
-import mockupWall from './assets/Ryzeup mockups /03-wall.png';
-import mockupFieldQA from './assets/Ryzeup mockups /04-field-qa.png';
-import mockupPoll from './assets/Ryzeup mockups /05-poll.png';
-import mockupSearch from './assets/Ryzeup mockups /06-search.png';
-import mockupFiles from './assets/Ryzeup mockups /07-files.png';
-import mockupNotifications from './assets/Ryzeup mockups /08-notifications.png';
-import mockupBuzz from './assets/Ryzeup mockups /09-buzz.png';
-import mockupMyTeam from './assets/Ryzeup mockups /10-my-team.png';
-import mockupNudge from './assets/Ryzeup mockups /11-nudge.png';
-import mockupReportee from './assets/Ryzeup mockups /12-reportee.png';
+import mockupOrg from './assets/Ryzeup mockups /01-organization.webp';
+import mockupLogin from './assets/Ryzeup mockups /02-login.webp';
+import mockupWall from './assets/Ryzeup mockups /03-wall.webp';
+import mockupFieldQA from './assets/Ryzeup mockups /04-field-qa.webp';
+import mockupPoll from './assets/Ryzeup mockups /05-poll.webp';
+import mockupSearch from './assets/Ryzeup mockups /06-search.webp';
+import mockupFiles from './assets/Ryzeup mockups /07-files.webp';
+import mockupNotifications from './assets/Ryzeup mockups /08-notifications.webp';
+import mockupBuzz from './assets/Ryzeup mockups /09-buzz.webp';
+import mockupMyTeam from './assets/Ryzeup mockups /10-my-team.webp';
+import mockupNudge from './assets/Ryzeup mockups /11-nudge.webp';
+import mockupReportee from './assets/Ryzeup mockups /12-reportee.webp';
 
 const RYZEUP_SECTIONS = [
   { id: 'section-overview', label: 'Overview' },

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { ArrowLeft, ArrowUpRight, Mail, FileText } from 'lucide-react';
 import AboutCamera from './AboutCamera';
-import heroGradient from './assets/564cc67c35dca41051d7d78448f696fab9f139d9.png';
+import heroGradient from './assets/564cc67c35dca41051d7d78448f696fab9f139d9.webp';
 import { TypewriterExperience, CassetteCollection } from './AboutCollections';
 
 // LinkedIn Icon SVG

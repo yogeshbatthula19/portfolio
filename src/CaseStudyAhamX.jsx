@@ -7,17 +7,17 @@ import CaseStudyScrollNav from './CaseStudyScrollNav';
 import CaseStudyScrollProgress from './CaseStudyScrollProgress';
 import ScrollReveal from './ScrollReveal';
 
-import mockupBg from './assets/mockup_bg.jpg';
-import heroGradient from './assets/564cc67c35dca41051d7d78448f696fab9f139d9.png';
+import mockupBg from './assets/mockup_bg.webp';
+import heroGradient from './assets/564cc67c35dca41051d7d78448f696fab9f139d9.webp';
 
 // Extracted authentic 1440x1024 AhamX UI mockups
-import mockup0 from './assets/case_mockups/mockup_0_1440x1024.png';
-import mockup1 from './assets/case_mockups/mockup_1_1440x1024.png';
-import mockup2 from './assets/case_mockups/mockup_2_1440x1024.png';
-import mockup3 from './assets/case_mockups/mockup_3_1440x1024.png';
+import mockup0 from './assets/case_mockups/mockup_0_1440x1024.webp';
+import mockup1 from './assets/case_mockups/mockup_1_1440x1024.webp';
+import mockup2 from './assets/case_mockups/mockup_2_1440x1024.webp';
+import mockup3 from './assets/case_mockups/mockup_3_1440x1024.webp';
 import mockup4 from './assets/case_mockups/mockup_4_1440x1024.png';
-import mockup5 from './assets/case_mockups/mockup_5_1440x1024.png';
-import mockup9 from './assets/case_mockups/mockup_9_1440x1024.png';
+import mockup5 from './assets/case_mockups/mockup_5_1440x1024.webp';
+import mockup9 from './assets/case_mockups/mockup_9_1440x1024.webp';
 import mockup11 from './assets/case_mockups/mockup_11_1440x1024.png';
 
 const AHAMX_SECTIONS = [
