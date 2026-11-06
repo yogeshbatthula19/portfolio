@@ -400,7 +400,7 @@ export default function CaseStudyRyzeup({ onBack, onNext, isRevealed = true }) {
         {/* EXECUTIVE SUMMARY                                             */}
         {/* ------------------------------------------------------------- */}
         <section className="space-y-4">
-          <CaseStudyTldr rows={[["Problem", "Employees couldn't find information again, and managers lost track of whose updates they were reviewing."], ["My role", "Led the mobile redesign from a blank canvas to a production beta in 2 months."], ["What I changed", "Organization-verified entry, structured feed posts, search across people, posts and files, and a Self / My Team view with a reportee drawer."], ["Result", "+15% monthly usage over a 60-day pilot; switching to a team member's context went from about 28s to under 3s."]]} />
+          <CaseStudyTldr accent="#9d174d" rows={[["Problem", "Employees couldn't find information again, and managers lost track of whose updates they were reviewing."], ["My role", "Led the mobile redesign from a blank canvas to a production beta in 2 months."], ["What I changed", "Organization-verified entry, structured feed posts, search across people, posts and files, and a Self / My Team view with a reportee drawer."], ["Result", "+15% monthly usage over a 60-day pilot; switching to a team member's context went from about 28s to under 3s."]]} />
           <ScrollReveal>
             <div className="p-5 sm:p-6 rounded-xl bg-gray-50 border border-gray-200">
               <h3 className="cs-label text-[11px] font-basier font-medium uppercase tracking-wider text-gray-400 mb-2">
@@ -853,7 +853,7 @@ export default function CaseStudyRyzeup({ onBack, onNext, isRevealed = true }) {
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 pt-1">
             <ScrollReveal delay={0.08}>
               <div className="p-5 sm:p-6 rounded-xl bg-gray-50 border border-gray-200 text-center">
-                <div className="text-[34px] sm:text-[42px] font-seasons font-normal text-gray-900 leading-none">
+                <div className="text-[34px] sm:text-[42px] font-seasons font-normal leading-none" style={{ color: '#9d174d' }}>
                   +15%
                 </div>
                 <div className="text-[13px] font-basier font-medium text-gray-900 mt-2">
@@ -867,7 +867,7 @@ export default function CaseStudyRyzeup({ onBack, onNext, isRevealed = true }) {
 
             <ScrollReveal delay={0.12}>
               <div className="p-5 sm:p-6 rounded-xl bg-gray-50 border border-gray-200 text-center">
-                <div className="text-[34px] sm:text-[42px] font-seasons font-normal text-gray-900 leading-none">
+                <div className="text-[34px] sm:text-[42px] font-seasons font-normal leading-none" style={{ color: '#9d174d' }}>
                   &lt;3s
                 </div>
                 <div className="text-[13px] font-basier font-medium text-gray-900 mt-2">
@@ -881,7 +881,7 @@ export default function CaseStudyRyzeup({ onBack, onNext, isRevealed = true }) {
 
             <ScrollReveal delay={0.16}>
               <div className="p-5 sm:p-6 rounded-xl bg-gray-50 border border-gray-200 text-center">
-                <div className="text-[34px] sm:text-[42px] font-seasons font-normal text-gray-900 leading-none">
+                <div className="text-[34px] sm:text-[42px] font-seasons font-normal leading-none" style={{ color: '#9d174d' }}>
                   82%
                 </div>
                 <div className="text-[13px] font-basier font-medium text-gray-900 mt-2">

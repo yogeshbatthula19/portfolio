@@ -7,6 +7,9 @@ import purandharPhoto from './assets/spotlights/purandhar_photo.jpg';
 import rishiPhoto from './assets/spotlights/rishi_photo.jpg';
 import heroBg from './assets/564cc67c35dca41051d7d78448f696fab9f139d9.png';
 
+// Slight tilts make the cards feel like postcards pinned to a board (desktop only).
+const TILTS = [-1.4, 1.1, -0.8];
+
 const spotlights = [
   {
     id: 'product-manager-feedback',
@@ -56,44 +59,45 @@ function StickyCard({ item, index, isLast, isDesktop }) {
       style={isDesktop ? {
         scale,
         opacity,
+        rotate: TILTS[index % TILTS.length],
         zIndex: 10 + index * 10,
       } : {
         zIndex: 10 + index * 10,
       }}
-      className="relative lg:sticky top-auto lg:top-32 w-full max-w-[390px] sm:max-w-[420px] h-auto min-h-0 sm:min-h-[460px] sm:h-[530px] lg:h-[560px] mx-auto lg:ml-auto lg:mr-0 rounded-[24px] sm:rounded-[32px] overflow-hidden bg-[#28282a] flex flex-col select-none shadow-xl"
+      className="relative lg:sticky top-auto lg:top-32 w-full max-w-[390px] sm:max-w-[420px] h-auto min-h-0 sm:min-h-[460px] sm:h-[530px] lg:h-[560px] mx-auto lg:ml-auto lg:mr-0 rounded-[22px] sm:rounded-[28px] overflow-hidden bg-[#f8ecd8] border border-[#e9d6b6] flex flex-col select-none shadow-[0_24px_44px_-18px_rgba(120,80,20,0.35)] p-3 sm:p-4"
     >
       {/* Top Half: Photo with clean straight edge meeting dark base */}
-      <div className="w-full h-[150px] sm:h-[270px] overflow-hidden bg-[#1e1e20] shrink-0">
+      <div className="w-full h-[150px] sm:h-[250px] overflow-hidden bg-white p-1.5 sm:p-2 shadow-[0_6px_16px_-6px_rgba(120,80,20,0.35)] rounded-[4px] -rotate-[1.2deg] shrink-0">
         <img 
           src={item.photo} 
           alt={item.name} 
           loading={index === 0 ? 'eager' : 'lazy'}
-          className={`w-full h-full object-cover ${item.photoPosition}`}
+          className={`w-full h-full object-cover rounded-[2px] ${item.photoPosition}`}
         />
       </div>
 
       {/* Bottom Half: Dark Charcoal Container (Uniform flex distribution) */}
-      <div className="p-5 sm:p-6 flex flex-col justify-between flex-1 min-h-0 bg-[#28282a] text-white">
+      <div className="px-2 pt-5 pb-2 sm:px-3 sm:pt-6 flex flex-col justify-between flex-1 min-h-0 text-[#2a2118]">
         
         {/* Direct Quote */}
-        <p className="font-basier text-[15px] sm:text-[16.5px] font-normal leading-[1.45] text-white tracking-[-0.01em]">
+        <p className="font-seasons text-[19px] sm:text-[22px] font-normal leading-[1.3] text-[#2a2118] tracking-[-0.01em]">
           “{item.quote}”
         </p>
 
         {/* Author Row with Role & Badge */}
-        <div className="mt-auto pt-3 flex items-center justify-between gap-4 border-t border-white/[0.08] shrink-0">
+        <div className="mt-auto pt-3 flex items-center justify-between gap-4 border-t border-dashed border-[#d9c29a] shrink-0">
           <div className="flex flex-col min-w-0">
             {item.linkedin ? (
               <a
                 href={item.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group/author inline-flex items-center gap-1.5 font-basier text-[14px] sm:text-[15.5px] font-semibold text-white tracking-tight truncate hover:text-[#0077b5] transition-colors"
+                className="group/author inline-flex items-center gap-1.5 text-[#2a2118] truncate hover:text-[#ff6a1f] transition-colors"
                 title={`View ${item.name}'s LinkedIn profile`}
               >
-                <span className="truncate">{item.name}</span>
+                <span className="truncate text-[26px] sm:text-[30px] leading-none" style={{ fontFamily: "'Sacramento', 'Caveat', cursive" }}>{item.name}</span>
                 <svg 
-                  className="w-3.5 h-3.5 text-zinc-400 group-hover/author:text-[#0a66c2] transition-colors shrink-0" 
+                  className="w-3.5 h-3.5 text-[#a38a62] group-hover/author:text-[#0a66c2] transition-colors shrink-0" 
                   viewBox="0 0 24 24" 
                   fill="currentColor"
                   aria-hidden="true"
@@ -102,11 +106,11 @@ function StickyCard({ item, index, isLast, isDesktop }) {
                 </svg>
               </a>
             ) : (
-              <span className="font-basier text-[14px] sm:text-[15.5px] font-semibold text-white tracking-tight truncate">
+              <span className="font-basier text-[14px] sm:text-[15.5px] font-semibold text-[#2a2118] tracking-tight truncate">
                 {item.name}
               </span>
             )}
-            <span className="font-basier text-[12px] sm:text-[13px] text-zinc-400 font-normal truncate mt-0.5">
+            <span className="font-basier text-[12px] sm:text-[13px] text-[#8a7650] font-normal truncate mt-1">
               {item.role}
             </span>
           </div>

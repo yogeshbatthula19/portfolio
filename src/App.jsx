@@ -316,8 +316,45 @@ function ScrollRevealSection({ sectionRef, children }) {
   );
 }
 
+// Real product screens as card covers, each on its own soft gradient.
+// Phones rise from the bottom edge; the web product sits in a browser frame.
+function CoverArt({ kind, bg, shots = [], alt }) {
+  const lift = "transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]";
+  return (
+    <div className="absolute inset-0 overflow-hidden" style={{ background: bg }} role="img" aria-label={alt}>
+      {kind === 'phones' && (
+        <>
+          <img src={shots[1]} alt="" aria-hidden="true" loading="lazy" decoding="async" draggable={false}
+            className={`absolute left-1/2 top-[44px] w-[148px] sm:w-[156px] ml-[8px] rotate-[6deg] drop-shadow-[0_18px_28px_rgba(0,0,0,0.18)] group-hover:translate-y-[-8px] group-hover:rotate-[8deg] ${lift}`} />
+          <img src={shots[0]} alt="" aria-hidden="true" loading="lazy" decoding="async" draggable={false}
+            className={`absolute left-1/2 top-[26px] w-[154px] sm:w-[164px] -ml-[150px] sm:-ml-[158px] -rotate-[4deg] drop-shadow-[0_22px_32px_rgba(0,0,0,0.22)] group-hover:translate-y-[-10px] group-hover:-rotate-[5deg] ${lift}`} />
+        </>
+      )}
+      {kind === 'desktop' && (
+        <img src={shots[0]} alt="" aria-hidden="true" loading="lazy" decoding="async" draggable={false}
+          className={`absolute left-1/2 top-[30px] w-[78%] -translate-x-1/2 rounded-t-[10px] shadow-[0_22px_40px_-8px_rgba(60,20,110,0.35)] ring-1 ring-black/10 group-hover:translate-y-[-8px] ${lift}`} />
+      )}
+      {kind === 'locked' && (
+        <div className="absolute inset-0 flex items-end justify-center gap-3 px-8 pt-8" aria-hidden="true">
+          {[150, 188, 132].map((h, i) => (
+            <div key={i} className="w-[30%] rounded-t-2xl bg-white/70 backdrop-blur-sm blur-[3px] p-3 space-y-2" style={{ height: h }}>
+              <div className="h-2 w-2/3 rounded-full bg-emerald-900/20" />
+              <div className="h-2 w-full rounded-full bg-emerald-900/10" />
+              <div className="h-2 w-5/6 rounded-full bg-emerald-900/10" />
+              <div className="h-10 w-full rounded-lg bg-emerald-600/20" />
+            </div>
+          ))}
+          <div className="absolute inset-0 flex items-center justify-center">
+            <span className="w-12 h-12 rounded-full bg-white/90 shadow-md flex items-center justify-center"><Lock className="w-5 h-5 text-[#0c4731]" /></span>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+
 // Interactive Case study card with smooth hover and click navigation.
-function CaseStudyCard({ coverImage, title, outcome, description, onClick, onMouseEnter, onFocus, isLocked = false, href, slug }) {
+function CaseStudyCard({ cover, title, outcome, description, onClick, onMouseEnter, onFocus, isLocked = false, href, slug }) {
   const reduced = useReducedMotion();
   // Unlocked cards are real links so visitors can Cmd/Ctrl-click or middle-click
   // to open a case study in a new tab. A plain click stays in the app.
@@ -359,13 +396,7 @@ function CaseStudyCard({ coverImage, title, outcome, description, onClick, onMou
     >
       {/* Banner */}
       <div className="relative w-full h-[210px] sm:h-[220px] overflow-hidden select-none bg-gray-50">
-        <img 
-          src={coverImage} 
-          alt={`${title} project preview`} 
-          loading="lazy"
-          decoding="async"
-          className="w-full h-full object-cover transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-105" 
-        />
+        <CoverArt {...cover} alt={`${title} project preview`} />
         {isLocked && (
           <div className="absolute top-3.5 right-3.5 z-10 inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/90 backdrop-blur-md text-[11.5px] font-medium text-[#111827] shadow-sm border border-black/[0.08]">
             <Lock className="w-3 h-3 text-[#0c4731]" />
@@ -377,7 +408,7 @@ function CaseStudyCard({ coverImage, title, outcome, description, onClick, onMou
       {/* Content */}
       <div className="p-5 sm:p-6 flex flex-col flex-1 justify-between">
         <div>
-          <h3 className="font-basier text-[17.5px] sm:text-[18.5px] font-bold not-italic text-[#18181b] tracking-tight leading-snug mb-2 group-hover:text-blue-600 transition-colors duration-300">
+          <h3 className="font-basier text-[17.5px] sm:text-[18.5px] font-bold not-italic text-[#18181b] tracking-tight leading-snug mb-2 group-hover:text-[#ff6a1f] transition-colors duration-300">
             {title}
           </h3>
           <p className="font-basier text-[13.5px] text-[#71717a] leading-[1.55] line-clamp-3 font-normal">
@@ -454,12 +485,13 @@ import photoCycle from './assets/photo_cycle_full.jpg';
 import cafeDumplings from './assets/foodiee/EE067D71-C03C-40AA-A692-A428618A1A7D.jpg';
 
 // Section 3 Case Study Cover Images
-import coverPoints from './assets/cover_points.png';
+import troskyHome from './assets/covers/trosky-home.webp';
+import troskyXp from './assets/covers/trosky-xp.webp';
+import ryzeupBuzz from './assets/covers/ryzeup-buzz.webp';
+import ryzeupWall from './assets/covers/ryzeup-wall.webp';
+import ahamxDashboard from './assets/covers/ahamx-dashboard.webp';
 
 
-import coverEdtech from './assets/cover_edtech.png';
-import coverIdentity from './assets/cover_identity.png';
-import coverHealth from './assets/cover_health.jpg';
 
 // 3D Star Sparkle Asset from Figma (Node 314:1415)
 import starSparkle from './assets/star_sparkle.png';
@@ -532,7 +564,7 @@ function StickyNav({ scrollY, onWorks, onAbout, hidden }) {
           </button>
           <button type="button" onClick={onWorks} className={item}>Works</button>
           <button type="button" onClick={onAbout} className={item}>About</button>
-          <a href="/yogesh-battula-resume.pdf" target="_blank" rel="noopener noreferrer" className={`${item} bg-[#111827] text-white hover:bg-black hover:text-white`}>
+          <a href="/yogesh-battula-resume.pdf" target="_blank" rel="noopener noreferrer" className={`${item} bg-[#111827] text-white hover:bg-[#ff6a1f] hover:text-white`}>
             Resume
           </a>
         </motion.nav>
@@ -596,7 +628,7 @@ function WhiteFooterCard({ navigateToCaseStudy, navigateToAbout, onScrollToWorks
           <div className="mt-7 sm:mt-9 flex justify-center">
             <a
               href="mailto:yogeshbattula55@gmail.com"
-              className="inline-flex items-center justify-center px-6 py-3 rounded-full bg-[#111827] hover:bg-black text-white text-[14px] font-medium tracking-tight transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] hover:scale-[1.03] active:scale-95 shadow-sm"
+              className="inline-flex items-center justify-center px-6 py-3 rounded-full bg-[#111827] hover:bg-[#ff6a1f] text-white text-[14px] font-medium tracking-tight transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] hover:scale-[1.03] active:scale-95 shadow-sm"
             >
               Get in touch
             </a>
@@ -1263,7 +1295,7 @@ export default function App() {
       {/* LAYER 1: MAIN CONTENT WRAPPER (SOLID WHITE, RELATIVE Z-10)        */}
       {/* ----------------------------------------------------------------- */}
       <div
-        className="relative z-10 bg-[#ffffff] min-h-screen font-sans text-gray-900 selection:bg-pink-100 overflow-x-clip pt-4 rounded-b-[40px] sm:rounded-b-[56px] md:rounded-b-[68px] shadow-[0_24px_50px_-12px_rgba(0,0,0,0.06)]"
+        className="relative z-10 bg-[#ffffff] min-h-screen font-sans text-gray-900 selection:bg-[#ffd9bd] overflow-x-clip pt-4 rounded-b-[40px] sm:rounded-b-[56px] md:rounded-b-[68px] shadow-[0_24px_50px_-12px_rgba(0,0,0,0.06)]"
         style={{
           marginBottom: 'clamp(270px, 46vh, 400px)',
         }}
@@ -1903,7 +1935,7 @@ export default function App() {
           
           {/* Case Study 1: Trosky 365 */}
           <CaseStudyCard
-            coverImage={coverPoints}
+            cover={{ kind: 'phones', bg: 'linear-gradient(140deg,#e6f7fd 0%,#8fe0f2 55%,#35c5e6 100%)', shots: [troskyHome, troskyXp] }}
             title="Turning daily drills into lasting habits"
             description="A daily training experience for baseball players."
             outcome="30-day streak retention: 26% → 62%"
@@ -1916,7 +1948,7 @@ export default function App() {
 
           {/* Case Study 2: AhamX */}
           <CaseStudyCard
-            coverImage={coverEdtech}
+            cover={{ kind: 'desktop', bg: 'linear-gradient(140deg,#f5ecff 0%,#d9b8fb 55%,#f0a9f5 100%)', shots: [ahamxDashboard] }}
             title="Helping learners pick up where they left off"
             description="Connecting learning and capability development."
             outcome="Resume learning without searching the catalog"
@@ -1929,7 +1961,7 @@ export default function App() {
 
           {/* Case Study 3: Ryzeup */}
           <CaseStudyCard
-            coverImage={coverIdentity}
+            cover={{ kind: 'phones', bg: 'linear-gradient(140deg,#fff2df 0%,#ffbf7a 55%,#ff8f45 100%)', shots: [ryzeupBuzz, ryzeupWall] }}
             title="Bringing focus to everyday team management"
             description="Helping managers focus on their teams."
             outcome="Context switching: 28s → under 3s"
@@ -1942,7 +1974,7 @@ export default function App() {
 
           {/* Case Study 4: CarePulse Health */}
           <CaseStudyCard
-            coverImage={coverHealth}
+            cover={{ kind: 'locked', bg: 'linear-gradient(140deg,#e6fbf2 0%,#8de8c0 55%,#3fd19a 100%)' }}
             title="Giving clinicians more time for care"
             description="An ambient documentation concept for clinicians."
             outcome="Under NDA · walkthrough on request"

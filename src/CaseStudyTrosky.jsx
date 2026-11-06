@@ -479,7 +479,7 @@ export default function CaseStudyTrosky({ onBack, onNext, isRevealed = true }) {
         {/* EXECUTIVE SUMMARY                                             */}
         {/* ------------------------------------------------------------- */}
         <section className="space-y-4">
-          <CaseStudyTldr rows={[["Problem", "Players faced dozens of unsorted drill videos and no way to tell if they were improving, so solo practice faded within a week."], ["My role", "Sole product designer on iOS, working with the coaches and one engineer over 6 weeks."], ["What I changed", "Replaced the catalog with one 10-minute daily routine: watch, explain it back, practise, reflect."], ["Result", "In a 42-athlete beta, 30-day streak retention went from 26% to 62%."]]} />
+          <CaseStudyTldr accent="#0b7a96" rows={[["Problem", "Players faced dozens of unsorted drill videos and no way to tell if they were improving, so solo practice faded within a week."], ["My role", "Sole product designer on iOS, working with the coaches and one engineer over 6 weeks."], ["What I changed", "Replaced the catalog with one 10-minute daily routine: watch, explain it back, practise, reflect."], ["Result", "In a 42-athlete beta, 30-day streak retention went from 26% to 62%."]]} />
           <ScrollReveal>
             <div className="p-5 sm:p-6 rounded-xl bg-gray-50 border border-gray-200">
               <h3 className="cs-label text-[11px] font-basier font-medium uppercase tracking-wider text-gray-400 mb-2">
@@ -900,7 +900,7 @@ export default function CaseStudyTrosky({ onBack, onNext, isRevealed = true }) {
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 pt-1">
             <ScrollReveal delay={0.08}>
               <div className="p-5 sm:p-6 rounded-xl bg-gray-50 border border-gray-200 text-center">
-                <div className="text-[34px] sm:text-[42px] font-seasons font-normal text-gray-900 leading-none">
+                <div className="text-[34px] sm:text-[42px] font-seasons font-normal leading-none" style={{ color: '#0b7a96' }}>
                   +36 pts
                 </div>
                 <div className="text-[13px] font-basier font-medium text-gray-900 mt-2">
@@ -914,7 +914,7 @@ export default function CaseStudyTrosky({ onBack, onNext, isRevealed = true }) {
 
             <ScrollReveal delay={0.12}>
               <div className="p-5 sm:p-6 rounded-xl bg-gray-50 border border-gray-200 text-center">
-                <div className="text-[34px] sm:text-[42px] font-seasons font-normal text-gray-900 leading-none">
+                <div className="text-[34px] sm:text-[42px] font-seasons font-normal leading-none" style={{ color: '#0b7a96' }}>
                   3.4x
                 </div>
                 <div className="text-[13px] font-basier font-medium text-gray-900 mt-2">
@@ -928,7 +928,7 @@ export default function CaseStudyTrosky({ onBack, onNext, isRevealed = true }) {
 
             <ScrollReveal delay={0.16}>
               <div className="p-5 sm:p-6 rounded-xl bg-gray-50 border border-gray-200 text-center">
-                <div className="text-[34px] sm:text-[42px] font-seasons font-normal text-gray-900 leading-none">
+                <div className="text-[34px] sm:text-[42px] font-seasons font-normal leading-none" style={{ color: '#0b7a96' }}>
                   88%
                 </div>
                 <div className="text-[13px] font-basier font-medium text-gray-900 mt-2">

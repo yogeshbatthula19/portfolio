@@ -28,7 +28,7 @@ export default function NextCaseStudy({ current, onNavigate }) {
     >
       <span className="flex flex-col">
         <span className="text-[11px] sm:text-[12px] uppercase tracking-wider text-gray-400 font-switzer">Next case study</span>
-        <span className="text-[14px] sm:text-[15px] font-basier font-medium text-gray-900 group-hover:text-black">
+        <span className="text-[14px] sm:text-[15px] font-basier font-medium text-gray-900 group-hover:text-[#ff6a1f] transition-colors">
           {next.title}: {next.blurb}
         </span>
       </span>
