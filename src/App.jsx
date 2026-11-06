@@ -1843,7 +1843,7 @@ export default function App() {
             coverImage={coverEdtech}
             title="Helping learners pick up where they left off"
             description="Connecting learning and capability development."
-            outcome="91% faster study resumption"
+            outcome="Resume learning without searching the catalog"
             onClick={() => navigateToCaseStudy('ahamx')}
             onMouseEnter={() => import('./CaseStudyAhamX')}
             onFocus={() => import('./CaseStudyAhamX')}

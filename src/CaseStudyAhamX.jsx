@@ -4,7 +4,6 @@ import { motion, useScroll, useTransform, useInView } from 'framer-motion';
 import CaseStudyScrollNav from './CaseStudyScrollNav';
 import CaseStudyScrollProgress from './CaseStudyScrollProgress';
 import ScrollReveal from './ScrollReveal';
-import ThankYouEnvelope from './ThankYouEnvelope';
 
 import mockupBg from './assets/mockup_bg.jpg';
 import heroGradient from './assets/564cc67c35dca41051d7d78448f696fab9f139d9.png';
@@ -166,9 +165,6 @@ function MicroInteractionVideo({ mp4Src, webmSrc, title, caption }) {
             </div>
             <span className="font-mono text-[11px] text-gray-500 ml-2 hidden sm:inline">{title}</span>
           </div>
-          <span className="font-mono text-[10px] text-gray-500 bg-white px-2 py-0.5 rounded border border-gray-200">
-            60 FPS · Looping Recording
-          </span>
         </div>
         <div className="relative bg-black/[0.02]">
           <video
@@ -260,23 +256,13 @@ export default function CaseStudyAhamX({ onBack, isRevealed = true }) {
           AhamX — Continuous Learning & Capability Intelligence Platform
         </motion.h1>
 
-        {/* Subtitle */}
-        <motion.p 
-          initial={{ opacity: 0, y: 22 }}
-          animate={isRevealed ? { opacity: 1, y: 0 } : { opacity: 0, y: 22 }}
-          transition={{ duration: 0.8, delay: 0.22, ease: [0.16, 1, 0.3, 1] }}
-          className="text-[16px] sm:text-[19px] md:text-[21px] text-[#4b5563] mt-3 sm:mt-4 leading-[1.5] tracking-[-0.015em] font-basier font-normal italic"
-        >
-          Connecting the learner, the creator, and the organization in one cohesive, human-in-the-loop experience.
-        </motion.p>
-
         {/* Meta Bar / Project Overview - Clean White & Grey Grid */}
         <motion.div 
           id="section-overview"
           initial={{ opacity: 0, y: 20 }}
           animate={isRevealed ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
           transition={{ duration: 0.7, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
-          className="grid grid-cols-2 sm:grid-cols-5 gap-4 sm:gap-6 pt-6 pb-6 mt-8 border-t border-b border-gray-200 scroll-mt-28"
+          className="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-6 pt-6 pb-6 mt-8 border-t border-b border-gray-200 scroll-mt-28"
         >
           <div>
             <div className="text-[10px] sm:text-[11px] font-basier font-medium uppercase tracking-wider text-[#9ca3af]">Role</div>
@@ -288,9 +274,9 @@ export default function CaseStudyAhamX({ onBack, isRevealed = true }) {
           <div>
             <div className="text-[10px] sm:text-[11px] font-basier font-medium uppercase tracking-wider text-[#9ca3af]">Team</div>
             <div className="text-[13px] sm:text-[14px] font-switzer font-medium text-[#111827] mt-1">
-              6 Members
+              Agile pod
             </div>
-            <div className="text-[12px] text-gray-500 font-normal">1 Lead, 4 Eng, 1 AI</div>
+            <div className="text-[12px] text-gray-500 font-normal">Design + engineering</div>
           </div>
           <div>
             <div className="text-[10px] sm:text-[11px] font-basier font-medium uppercase tracking-wider text-[#9ca3af]">Timeline</div>
@@ -306,14 +292,24 @@ export default function CaseStudyAhamX({ onBack, isRevealed = true }) {
             </div>
             <div className="text-[12px] text-gray-500 font-normal">Responsive System</div>
           </div>
-          <div className="col-span-2 sm:col-span-1 border-t sm:border-t-0 pt-3 sm:pt-0 border-gray-100">
-            <div className="text-[10px] sm:text-[11px] font-basier font-medium uppercase tracking-wider text-[#9ca3af]">Milestone</div>
+          <div className="col-span-2 sm:col-span-4 border-t pt-3 border-gray-100">
+            <div className="text-[10px] sm:text-[11px] font-basier font-medium uppercase tracking-wider text-[#9ca3af]">Outcome</div>
             <div className="text-[13px] sm:text-[14px] font-switzer font-medium text-[#111827] mt-1 leading-snug">
-              IndiaAI Summit '26
+              Shipped; demoed at India AI Impact Summit 2026
             </div>
-            <div className="text-[12px] text-gray-500 font-normal">Google & ARTPARK</div>
+            <div className="text-[12px] text-gray-500 font-normal">Google and ARTPARK pavilions</div>
           </div>
         </motion.div>
+        {/* Subtitle */}
+        <motion.p
+          initial={{ opacity: 0, y: 22 }}
+          animate={isRevealed ? { opacity: 1, y: 0 } : { opacity: 0, y: 22 }}
+          transition={{ duration: 0.8, delay: 0.22, ease: [0.16, 1, 0.3, 1] }}
+          className="text-[16px] sm:text-[19px] md:text-[21px] text-[#374151] mt-3 sm:mt-4 leading-[1.5] tracking-[-0.015em] font-basier font-normal italic"
+        >
+          One learning platform for learners, educators, and organization leads.
+        </motion.p>
+
 
       </header>
 
@@ -346,7 +342,7 @@ export default function CaseStudyAhamX({ onBack, isRevealed = true }) {
                 Executive Summary
               </h3>
               <p className="cs-body text-[15px] sm:text-[16px] text-[#1f2937] leading-[1.75] font-switzer font-normal">
-                <strong>AhamX (by ZenteiQ)</strong> is an individual digital twin architecture for capability development, learning continuity, and organizational intelligence. I led the end-to-end UX/UI design across desktop and mobile, unifying three disparate user types—learners, educators, and enterprise leads—into a single product system without sacrificing role-specific clarity.
+                AhamX is a learning platform where each person has a profile that grows with them — what they've learned, built, and achieved. I designed it end to end, for desktop and mobile. The hard part: three very different users — learners, educators, and organization leads — had to share one product without anyone feeling it was built for someone else.
               </p>
             </div>
           </ScrollReveal>
@@ -456,15 +452,15 @@ export default function CaseStudyAhamX({ onBack, isRevealed = true }) {
                 <div className="text-[11px] font-basier font-medium uppercase tracking-wider text-gray-400 mb-1">The Assumption</div>
                 <h4 className="cs-detail-heading font-basier font-medium text-[15px] sm:text-[16px] text-gray-900 mb-2">All-in-One Modular Dashboard</h4>
                 <p className="text-[13.5px] text-gray-600 leading-relaxed font-switzer font-normal">
-                  We initially hypothesized that an all-in-one modular dashboard presenting active courses, cohort telemetry, and pending approvals would give all three roles a transparent overview and reduce context switching.
+                  I initially explored one dashboard with active courses, cohort progress, and pending approvals to give all three roles an overview in one place.
                 </p>
               </div>
 
               <div className="p-5 rounded-xl border border-gray-200 bg-gray-50/50 shadow-xs">
                 <div className="text-[11px] font-basier font-medium uppercase tracking-wider text-gray-400 mb-1">The Breakdown</div>
-                <h4 className="cs-detail-heading font-basier font-medium text-[15px] sm:text-[16px] text-gray-900 mb-2">Severe Cognitive Friction</h4>
+                <h4 className="cs-detail-heading font-basier font-medium text-[15px] sm:text-[16px] text-gray-900 mb-2">Competing needs on one screen</h4>
                 <p className="text-[13.5px] text-gray-600 leading-relaxed font-switzer font-normal">
-                  Early walkthroughs revealed that learners felt paralyzed by administrative metrics, which delayed lesson resumption, while educators were wary of one-click "Generate Course" flows that obscured AI output verification.
+                  The design risk was giving learners administrative metrics when they needed their next lesson, and giving educators a one-click "Generate Course" flow without a clear opportunity to review the AI output.
                 </p>
               </div>
             </div>
@@ -480,7 +476,7 @@ export default function CaseStudyAhamX({ onBack, isRevealed = true }) {
                 "A unified design system does not mean uniform cognitive density. Cohesive identity requires role-specific readiness states and clear decision boundaries."
               </p>
               <p className="text-[13px] sm:text-[13.5px] text-gray-600 font-switzer font-normal pt-1 leading-relaxed">
-                We decoupled the home surfaces while maintaining a consistent design system shell. Crucially, we shifted from ambiguous, disabled UI elements to <strong>deterministic, explanatory readiness triggers</strong>.
+                I gave each role its own home screen within the same design system. Blocked actions keep their disabled state, explain what is missing, and provide a separate link to resolve it.
               </p>
             </div>
           </ScrollReveal>
@@ -497,7 +493,7 @@ export default function CaseStudyAhamX({ onBack, isRevealed = true }) {
               User Behavioral Gaps & Field Insights
             </h2>
             <p className="cs-body text-[15px] sm:text-[16px] text-[#374151] leading-[1.75] font-switzer font-normal mt-2">
-              To define our Jobs-to-be-Done (JTBD), we mapped user pressures directly against product constraints:
+              I mapped the needs of learners, educators, and organization leads to the decisions each person needed to make. The table below describes those needs and the design response.
             </p>
           </ScrollReveal>
 
@@ -520,7 +516,7 @@ export default function CaseStudyAhamX({ onBack, isRevealed = true }) {
                   </div>
                   <div className="sm:col-span-4 text-gray-600 sm:border-l sm:border-gray-100 sm:pl-3">
                     <div className="sm:hidden text-[10px] font-basier font-medium uppercase tracking-wider text-gray-400 mt-1 mb-0.5">Operational Friction</div>
-                    The delivery window favored primary journeys over custom dashboards.
+                    After a break, learners had to dig through the catalog to find where they stopped.
                   </div>
                   <div className="sm:col-span-5 text-gray-800 sm:border-l sm:border-gray-100 sm:pl-3">
                     <div className="sm:hidden text-[10px] font-basier font-medium uppercase tracking-wider text-gray-400 mt-1 mb-0.5">Design Response</div>
@@ -541,7 +537,7 @@ export default function CaseStudyAhamX({ onBack, isRevealed = true }) {
                   </div>
                   <div className="sm:col-span-5 text-gray-800 sm:border-l sm:border-gray-100 sm:pl-3">
                     <div className="sm:hidden text-[10px] font-basier font-medium uppercase tracking-wider text-gray-400 mt-1 mb-0.5">Design Response</div>
-                    Staged progression gates: <strong>Outline → Script → Media Synthesis</strong>.
+                    Staged progression gates: <strong>Outline → Script → Video</strong>.
                   </div>
                 </div>
 
@@ -565,39 +561,33 @@ export default function CaseStudyAhamX({ onBack, isRevealed = true }) {
             </div>
           </ScrollReveal>
 
-          {/* Voice of the User Quotes - Clean White/Grey Style */}
+          {/* User needs guiding the design Quotes - Clean White/Grey Style */}
           <ScrollReveal delay={0.08}>
             <div className="space-y-3 pt-2">
               <h3 className="cs-label text-[11px] font-basier font-medium uppercase tracking-wider text-gray-400">
-                Voice of the User
+                User needs guiding the design
               </h3>
               <div className="grid grid-cols-1 gap-3">
-                <blockquote className="p-4 sm:p-5 rounded-xl border border-gray-200 bg-gray-50/50 text-[14px] sm:text-[14.5px] text-[#374151] leading-relaxed">
-                  <p className="italic">
-                    "When I open this on my phone during my commute, I don't want to browse the catalog again. I just want to tap exactly where my lesson paused without re-navigating the hierarchy."
+                <div className="p-4 sm:p-5 rounded-xl border border-gray-200 bg-gray-50/50 text-[14px] sm:text-[14.5px] text-[#374151] leading-relaxed">
+                  <p className="font-normal">
+                    Learner: return to the paused lesson without browsing the catalog again.
                   </p>
-                  <footer className="mt-2 text-[11px] font-basier font-medium text-gray-500 uppercase tracking-wider">
-                    — Learner Persona
-                  </footer>
-                </blockquote>
 
-                <blockquote className="p-4 sm:p-5 rounded-xl border border-gray-200 bg-gray-50/50 text-[14px] sm:text-[14.5px] text-[#374151] leading-relaxed">
-                  <p className="italic">
-                    "AI drafts a lesson script in seconds, but if it mispronounces a term or hallucinates a citation, my credibility takes the hit. I need a hard checkpoint before anything compiles to video."
-                  </p>
-                  <footer className="mt-2 text-[11px] font-basier font-medium text-gray-500 uppercase tracking-wider">
-                    — Educator Persona
-                  </footer>
-                </blockquote>
+                </div>
 
-                <blockquote className="p-4 sm:p-5 rounded-xl border border-gray-200 bg-gray-50/50 text-[14px] sm:text-[14.5px] text-[#374151] leading-relaxed">
-                  <p className="italic">
-                    "I get a notification to 'Approve Member'. Who is this person? Which cohort are they joining? If I have to open another tab to check, that request sits in my queue for days."
+                <div className="p-4 sm:p-5 rounded-xl border border-gray-200 bg-gray-50/50 text-[14px] sm:text-[14.5px] text-[#374151] leading-relaxed">
+                  <p className="font-normal">
+                    Educator: review terminology and citations before an AI-drafted script becomes a video.
                   </p>
-                  <footer className="mt-2 text-[11px] font-basier font-medium text-gray-500 uppercase tracking-wider">
-                    — Organization Lead Persona
-                  </footer>
-                </blockquote>
+
+                </div>
+
+                <div className="p-4 sm:p-5 rounded-xl border border-gray-200 bg-gray-50/50 text-[14px] sm:text-[14.5px] text-[#374151] leading-relaxed">
+                  <p className="font-normal">
+                    Organization lead: see who is requesting access and which cohort they want to join before making a decision.
+                  </p>
+
+                </div>
               </div>
             </div>
           </ScrollReveal>
@@ -635,7 +625,7 @@ export default function CaseStudyAhamX({ onBack, isRevealed = true }) {
                   </li>
                   <li className="flex items-start gap-2.5">
                     <span className="w-1.5 h-1.5 rounded-full bg-gray-400 mt-2 shrink-0" />
-                    <span><strong>Cross-Viewport Durability:</strong> Mobile layouts mirror desktop state hierarchies, preserving scroll depth, video checkpoints, and active sub-topics across screen sizes.</span>
+                    <span><strong>Continue across devices:</strong> Start on desktop, continue on your phone, and land in the same spot.</span>
                   </li>
                 </ul>
               </div>
@@ -651,11 +641,11 @@ export default function CaseStudyAhamX({ onBack, isRevealed = true }) {
                 <ul className="space-y-2.5 text-[14px] text-gray-700 leading-relaxed font-switzer font-normal">
                   <li className="flex items-start gap-2.5">
                     <span className="w-1.5 h-1.5 rounded-full bg-gray-400 mt-2 shrink-0" />
-                    <span><strong>Staged AI Checkpoints:</strong> Replaced single-prompt generation with a controlled 3-stage validation pipeline: <em>Course Outline → Script & Narration Review → Synthetic Media Compilation</em>.</span>
+                    <span><strong>Staged AI Checkpoints:</strong> I pushed back on the one-click Generate Course flow and proposed three review stages: <em>Course Outline → Script & Narration Review → Video generation</em>.</span>
                   </li>
                   <li className="flex items-start gap-2.5">
                     <span className="w-1.5 h-1.5 rounded-full bg-gray-400 mt-2 shrink-0" />
-                    <span><strong>Readiness-Linked Actions:</strong> Replaced grayed-out disabled states with active blocker telemetry:</span>
+                    <span><strong>Blocked actions always explain themselves.</strong> Publish stays disabled until a course is ready. A separate “3 lessons incomplete” link explains what is missing and takes the educator straight to the first incomplete lesson.</span>
                   </li>
                 </ul>
                 
@@ -667,7 +657,7 @@ export default function CaseStudyAhamX({ onBack, isRevealed = true }) {
                     [3 lessons incomplete]
                   </span>
                   <span className="text-[12px] text-gray-500 font-sans italic ml-auto sm:ml-0">
-                    Explicit blocker explanation replaces silent disabled states
+                    Publish stays disabled; the missing-lessons link stays available
                   </span>
                 </div>
               </div>
@@ -687,7 +677,7 @@ export default function CaseStudyAhamX({ onBack, isRevealed = true }) {
                   </li>
                   <li className="flex items-start gap-2.5">
                     <span className="w-1.5 h-1.5 rounded-full bg-gray-400 mt-2 shrink-0" />
-                    <span><strong>Relational Integrity:</strong> Institutional leads can approve incoming relationships without navigating away to inspect identity profiles.</span>
+                    <span><strong>Approve in context:</strong> Leads can approve someone without opening their profile in another tab.</span>
                   </li>
                 </ul>
               </div>
@@ -730,7 +720,7 @@ export default function CaseStudyAhamX({ onBack, isRevealed = true }) {
                   </div>
                   <div className="sm:col-span-4 text-gray-500 sm:border-l sm:border-gray-100 sm:pl-3 text-[12.5px]">
                     <div className="sm:hidden text-[10px] font-basier font-medium uppercase tracking-wider text-gray-400 mt-1 mb-0.5">System Rule / Recovery</div>
-                    Prevents premature publishing; clicking focuses missing required assets.
+                    Prevents premature publishing; clicking the missing-items link opens the first incomplete lesson.
                   </div>
                 </div>
 
@@ -756,7 +746,7 @@ export default function CaseStudyAhamX({ onBack, isRevealed = true }) {
                   </div>
                   <div className="sm:col-span-4 text-gray-600 sm:border-l sm:border-gray-100 sm:pl-3">
                     <div className="sm:hidden text-[10px] font-basier font-medium uppercase tracking-wider text-gray-400 mt-1 mb-0.5">Interface Behavior</div>
-                    Optimistic UI response with idempotent server-state confirmation.
+                    If someone else already approved the request in another tab, the row updates and tells you.
                   </div>
                   <div className="sm:col-span-4 text-gray-500 sm:border-l sm:border-gray-100 sm:pl-3 text-[12.5px]">
                     <div className="sm:hidden text-[10px] font-basier font-medium uppercase tracking-wider text-gray-400 mt-1 mb-0.5">System Rule / Recovery</div>
@@ -871,7 +861,7 @@ export default function CaseStudyAhamX({ onBack, isRevealed = true }) {
               The Verification Layer — AI Course Outline & Script Review
             </h3>
             <p className="text-[14px] text-gray-600 leading-relaxed font-switzer font-normal">
-              The curriculum outline exposes structural readiness and blocker counts. Review continues through script editing, narration pacing, and synthetic media generation, keeping human expertise at the center.
+              The curriculum outline exposes structural readiness and blocker counts. Review continues through script editing, narration pacing, and video generation, keeping human expertise at the center.
             </p>
             <DualMockupFrame 
               src1={mockup4} 
@@ -937,7 +927,7 @@ export default function CaseStudyAhamX({ onBack, isRevealed = true }) {
               <div className="p-5 rounded-xl border border-gray-200 bg-gray-50/50 shadow-xs">
                 <h4 className="cs-detail-heading font-basier font-medium text-[15px] text-gray-900 mb-1">WCAG 2.1 AA Accessibility</h4>
                 <p className="text-[13px] text-gray-600 leading-relaxed font-switzer font-normal">
-                  Tested with 4.5:1 text contrast ratios, visible keyboard focus rings, semantic landmark structures, ARIA live announcements for state updates, and narrow-viewport reflow down to 320px.
+                  Designed to WCAG 2.1 AA: 4.5:1 text contrast ratios, visible keyboard focus rings, semantic landmark structures, ARIA live announcements for state updates, and narrow-viewport reflow down to 320px.
                 </p>
               </div>
             </div>
@@ -955,7 +945,7 @@ export default function CaseStudyAhamX({ onBack, isRevealed = true }) {
               Impact, Milestones & Retrospective
             </h2>
             <p className="cs-body text-[15px] sm:text-[16px] text-[#374151] leading-[1.75] font-switzer font-normal mt-2">
-              Shipped as a production-grade system and validated on national innovation stages.
+              Shipped for web and mobile; demoed at the Google and ARTPARK pavilions, India AI Impact Summit 2026.
             </p>
           </ScrollReveal>
 
@@ -970,10 +960,10 @@ export default function CaseStudyAhamX({ onBack, isRevealed = true }) {
               </div>
 
               <div className="p-5 sm:p-6 rounded-xl border border-gray-200 bg-white shadow-xs">
-                <div className="text-[10px] sm:text-[11px] font-basier font-medium uppercase tracking-wider text-gray-400 mb-1">Public Recognition</div>
+                <div className="text-[10px] sm:text-[11px] font-basier font-medium uppercase tracking-wider text-gray-400 mb-1">Public demo</div>
                 <div className="text-[18px] sm:text-[20px] font-basier font-medium text-gray-900 mb-1">IndiaAI Impact Summit 2026.</div>
                 <p className="text-[13px] text-gray-600 leading-relaxed font-switzer font-normal">
-                  Featured at the Google and ARTPARK pavilions, demonstrating scalable digital twin technology for capability development.
+                  Demoed at the Google and ARTPARK pavilions, showing how learners, educators, and organization leads use the platform.
                 </p>
               </div>
             </div>
@@ -982,8 +972,8 @@ export default function CaseStudyAhamX({ onBack, isRevealed = true }) {
             <div className="border border-gray-200 rounded-xl overflow-hidden bg-white mt-5 shadow-xs">
               <div className="hidden sm:grid sm:grid-cols-12 bg-gray-50 border-b border-gray-200 px-4 py-3 text-[11px] font-basier font-semibold uppercase tracking-wider text-gray-500">
                 <div className="sm:col-span-5">Evaluation Focus</div>
-                <div className="sm:col-span-3">Observation Metric</div>
-                <div className="sm:col-span-4">Trial / Baseline Data</div>
+                <div className="sm:col-span-3">Design focus</div>
+                <div className="sm:col-span-4">Design response</div>
               </div>
               <div className="divide-y divide-gray-100 text-[13px] font-switzer font-normal">
                 <div className="p-3.5 sm:px-4 sm:py-3 grid grid-cols-1 sm:grid-cols-12 gap-1.5 sm:gap-4 items-baseline">
@@ -992,12 +982,12 @@ export default function CaseStudyAhamX({ onBack, isRevealed = true }) {
                     Can a learner resume study without manual search?
                   </div>
                   <div className="sm:col-span-3 text-gray-600 sm:border-l sm:border-gray-100 sm:pl-3">
-                    <div className="sm:hidden text-[10px] font-basier font-medium uppercase tracking-wider text-gray-400 mt-1 mb-0.5">Observation Metric</div>
-                    Average time-to-resume
+                    <div className="sm:hidden text-[10px] font-basier font-medium uppercase tracking-wider text-gray-400 mt-1 mb-0.5">Design focus</div>
+                    Resume learning
                   </div>
                   <div className="sm:col-span-4 text-gray-900 font-mono text-[12px] sm:border-l sm:border-gray-100 sm:pl-3 font-medium">
-                    <div className="sm:hidden text-[10px] font-basier font-medium uppercase tracking-wider text-gray-400 mt-1 mb-0.5">Trial / Baseline Data</div>
-                    Reduced from ~45s across catalogs to &lt;4s via sticky hero hook (91% drop)
+                    <div className="sm:hidden text-[10px] font-basier font-medium uppercase tracking-wider text-gray-400 mt-1 mb-0.5">Design response</div>
+                    The Resume card opens the last lesson directly, without searching through the catalog.
                   </div>
                 </div>
 
@@ -1007,12 +997,12 @@ export default function CaseStudyAhamX({ onBack, isRevealed = true }) {
                     Does an educator understand content readiness?
                   </div>
                   <div className="sm:col-span-3 text-gray-600 sm:border-l sm:border-gray-100 sm:pl-3">
-                    <div className="sm:hidden text-[10px] font-basier font-medium uppercase tracking-wider text-gray-400 mt-1 mb-0.5">Observation Metric</div>
-                    Review & blocker telemetry
+                    <div className="sm:hidden text-[10px] font-basier font-medium uppercase tracking-wider text-gray-400 mt-1 mb-0.5">Design focus</div>
+                    Review before publishing
                   </div>
                   <div className="sm:col-span-4 text-gray-900 font-mono text-[12px] sm:border-l sm:border-gray-100 sm:pl-3 font-medium">
-                    <div className="sm:hidden text-[10px] font-basier font-medium uppercase tracking-wider text-gray-400 mt-1 mb-0.5">Trial / Baseline Data</div>
-                    0 unverified courses published across 40+ pilot modules
+                    <div className="sm:hidden text-[10px] font-basier font-medium uppercase tracking-wider text-gray-400 mt-1 mb-0.5">Design response</div>
+                    Educators can edit AI-drafted scripts before video generation; Publish stays disabled until required work is complete.
                   </div>
                 </div>
 
@@ -1022,12 +1012,12 @@ export default function CaseStudyAhamX({ onBack, isRevealed = true }) {
                     Can a lead act on a request in context?
                   </div>
                   <div className="sm:col-span-3 text-gray-600 sm:border-l sm:border-gray-100 sm:pl-3">
-                    <div className="sm:hidden text-[10px] font-basier font-medium uppercase tracking-wider text-gray-400 mt-1 mb-0.5">Observation Metric</div>
-                    Decision speed & comprehension
+                    <div className="sm:hidden text-[10px] font-basier font-medium uppercase tracking-wider text-gray-400 mt-1 mb-0.5">Design focus</div>
+                    Approve in context
                   </div>
                   <div className="sm:col-span-4 text-gray-900 font-mono text-[12px] sm:border-l sm:border-gray-100 sm:pl-3 font-medium">
-                    <div className="sm:hidden text-[10px] font-basier font-medium uppercase tracking-wider text-gray-400 mt-1 mb-0.5">Trial / Baseline Data</div>
-                    94% single-session turnaround; 0 secondary profile lookups required
+                    <div className="sm:hidden text-[10px] font-basier font-medium uppercase tracking-wider text-gray-400 mt-1 mb-0.5">Design response</div>
+                    Requester details and Approve / Reject actions sit in the same row, so leads can make a decision without leaving the page.
                   </div>
                 </div>
               </div>
@@ -1036,22 +1026,22 @@ export default function CaseStudyAhamX({ onBack, isRevealed = true }) {
 
           <ScrollReveal delay={0.1}>
             <div className="p-5 sm:p-6 rounded-xl bg-gray-50 border border-gray-200 text-[15px] sm:text-[16px] font-seasons font-normal not-italic text-gray-900 leading-relaxed text-center">
-              "The outline taught me to pair every blocked action with a visible readiness count, so an unavailable state is always accompanied by an actionable explanation."
+              What I learned: a blocked action needs a reason, not just a grey button.
             </div>
           </ScrollReveal>
 
           <ScrollReveal delay={0.12}>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 sm:gap-4">
               <div className="p-5 rounded-xl border border-gray-200 bg-white shadow-xs">
-                <h4 className="cs-detail-heading font-basier font-medium text-[15px] text-gray-900 mb-1">Continuous Validation</h4>
+                <h4 className="cs-detail-heading font-basier font-medium text-[15px] text-gray-900 mb-1">What I’d do differently</h4>
                 <p className="text-[13px] text-gray-600 leading-relaxed font-switzer font-normal">
-                  Continuously observing how users pick up where they left off, inspect AI draft variations, and navigate institutional approvals to eliminate friction.
+                  I’d test the all-in-one dashboard with learners in week one, before developing the role-specific screens further.
                 </p>
               </div>
               <div className="p-5 rounded-xl border border-gray-200 bg-white shadow-xs">
-                <h4 className="cs-detail-heading font-basier font-medium text-[15px] text-gray-900 mb-1">Next Phase Capabilities</h4>
+                <h4 className="cs-detail-heading font-basier font-medium text-[15px] text-gray-900 mb-1">What’s next</h4>
                 <p className="text-[13px] text-gray-600 leading-relaxed font-switzer font-normal">
-                  Extending contextual guidance and deeper analytics between learning mastery, competency mapping, and workforce mobility.
+                  Linking what someone has learned to the skills their organization needs.
                 </p>
               </div>
             </div>
@@ -1064,7 +1054,10 @@ export default function CaseStudyAhamX({ onBack, isRevealed = true }) {
         {/* CREDITS & SOURCES                                             */}
         {/* ------------------------------------------------------------- */}
         <ScrollReveal className="pt-2 sm:pt-4 pb-8 space-y-4">
-          <ThankYouEnvelope />
+          <a href="/case-study/ryzeup" className="block rounded-xl border border-gray-200 p-6 text-[#111827] hover:bg-gray-50 focus-visible:outline-2 focus-visible:outline-offset-4">
+            <span className="block text-sm mb-2">Next case study →</span>
+            <span className="cs-section-title">Ryzeup</span>
+          </a>
 
           <div className="pt-6 sm:pt-8 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
             <button

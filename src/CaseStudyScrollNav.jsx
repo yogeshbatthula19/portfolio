@@ -107,7 +107,7 @@ export default function CaseStudyScrollNav({ sections = DEFAULT_SECTIONS }) {
   return (
     <nav 
       aria-label="Case study section navigation"
-      className="fixed right-6 lg:right-10 xl:right-16 top-1/2 -translate-y-1/2 z-40 hidden md:block select-none"
+      className="fixed right-6 lg:right-10 xl:right-16 top-1/2 -translate-y-1/2 z-40 hidden min-[1536px]:block select-none"
     >
       <div ref={containerRef} className="relative flex items-start gap-4 lg:gap-5">
         
