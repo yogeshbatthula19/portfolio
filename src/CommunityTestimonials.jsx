@@ -12,7 +12,6 @@ const spotlights = [
     id: 'product-manager-feedback',
     name: 'Harish Tadikamalla',
     role: 'Product Manager',
-    badge: 'Product Manager',
     photo: harishPhoto,
     photoPosition: 'object-[center_20%]',
     linkedin: 'https://www.linkedin.com/in/harishtadikam/',
@@ -22,7 +21,6 @@ const spotlights = [
     id: 'senior-designer-feedback',
     name: 'Purandhar Malavathu',
     role: 'Senior Designer',
-    badge: 'Senior Designer',
     photo: purandharPhoto,
     photoPosition: 'object-[center_20%]',
     linkedin: 'https://www.linkedin.com/in/purandhar-malavathu-8b0aa527a/',
@@ -32,7 +30,6 @@ const spotlights = [
     id: 'junior-designer-feedback',
     name: 'Rishi Charan',
     role: 'Associate Product Designer',
-    badge: 'Junior Designer',
     photo: rishiPhoto,
     photoPosition: 'object-center',
     linkedin: 'https://www.linkedin.com/in/rishicharan/',
@@ -63,10 +60,10 @@ function StickyCard({ item, index, isLast, isDesktop }) {
       } : {
         zIndex: 10 + index * 10,
       }}
-      className="relative lg:sticky top-auto lg:top-32 w-full max-w-[390px] sm:max-w-[420px] h-auto min-h-[460px] sm:h-[530px] lg:h-[560px] mx-auto lg:ml-auto lg:mr-0 rounded-[24px] sm:rounded-[32px] overflow-hidden bg-[#28282a] flex flex-col select-none shadow-xl"
+      className="relative lg:sticky top-auto lg:top-32 w-full max-w-[390px] sm:max-w-[420px] h-auto min-h-0 sm:min-h-[460px] sm:h-[530px] lg:h-[560px] mx-auto lg:ml-auto lg:mr-0 rounded-[24px] sm:rounded-[32px] overflow-hidden bg-[#28282a] flex flex-col select-none shadow-xl"
     >
       {/* Top Half: Photo with clean straight edge meeting dark base */}
-      <div className="w-full h-[230px] sm:h-[270px] overflow-hidden bg-[#1e1e20] shrink-0">
+      <div className="w-full h-[150px] sm:h-[270px] overflow-hidden bg-[#1e1e20] shrink-0">
         <img 
           src={item.photo} 
           alt={item.name} 
@@ -113,9 +110,6 @@ function StickyCard({ item, index, isLast, isDesktop }) {
               {item.role}
             </span>
           </div>
-          <span className="px-2.5 py-1 rounded-full bg-white/[0.08] text-[11px] font-medium text-zinc-300 font-basier uppercase tracking-wider shrink-0 border border-white/[0.06]">
-            {item.badge}
-          </span>
         </div>
 
       </div>

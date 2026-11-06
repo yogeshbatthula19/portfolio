@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useLayoutEffect, useRef, useMemo } from 'react';
 import { motion, useScroll, useTransform, AnimatePresence, useSpring, cubicBezier, useReducedMotion, useVelocity } from 'framer-motion';
 import Lenis from 'lenis';
-import { FileText, Heart, ArrowRight, ArrowUpRight, X, Lock, Eye, EyeOff } from 'lucide-react';
+import { FileText, Heart, ArrowRight, ArrowUpRight, X, Lock } from 'lucide-react';
 const CaseStudyAhamX = React.lazy(() => import('./CaseStudyAhamX'));
 const CaseStudyRyzeup = React.lazy(() => import('./CaseStudyRyzeup'));
 const CaseStudyTrosky = React.lazy(() => import('./CaseStudyTrosky'));
@@ -317,29 +317,45 @@ function ScrollRevealSection({ sectionRef, children }) {
 }
 
 // Interactive Case study card with smooth hover and click navigation.
-function CaseStudyCard({ coverImage, title, outcome, description, onClick, onMouseEnter, onFocus, isLocked = false }) {
+function CaseStudyCard({ coverImage, title, outcome, description, onClick, onMouseEnter, onFocus, isLocked = false, href, slug }) {
   const reduced = useReducedMotion();
+  // Unlocked cards are real links so visitors can Cmd/Ctrl-click or middle-click
+  // to open a case study in a new tab. A plain click stays in the app.
+  const Tag = href && !isLocked ? motion.a : motion.div;
+  const linkProps = href && !isLocked
+    ? {
+        href,
+        onClick: (event) => {
+          if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey || event.button !== 0) return;
+          event.preventDefault();
+          onClick?.();
+        },
+      }
+    : {
+        onClick,
+        role: onClick ? "button" : undefined,
+        'aria-haspopup': isLocked ? "dialog" : undefined,
+        tabIndex: onClick ? 0 : undefined,
+        onKeyDown: (event) => {
+          if (onClick && (event.key === "Enter" || event.key === " ")) {
+            event.preventDefault();
+            onClick();
+          }
+        },
+      };
   return (
-    <motion.div
-      onClick={onClick}
+    <Tag
+      {...linkProps}
+      data-slug={slug}
       onMouseEnter={onMouseEnter}
       onFocus={onFocus}
-      role={onClick ? (isLocked ? "button" : "link") : undefined}
-      aria-haspopup={isLocked ? "dialog" : undefined}
-      tabIndex={onClick ? 0 : undefined}
-      onKeyDown={(event) => {
-        if (onClick && (event.key === "Enter" || event.key === " ")) {
-          event.preventDefault();
-          onClick();
-        }
-      }}
       initial={reduced ? false : { opacity: 0, y: 32, scale: .98 }}
       whileInView={{ opacity: 1, y: 0, scale: 1 }}
       viewport={{ once: true, amount: .18 }}
       transition={{ duration: .6, ease: [.22, 1, .36, 1] }}
       data-interactive={Boolean(onClick)}
       whileHover={reduced ? undefined : { y: -4, transition: { type: "spring", stiffness: 400, damping: 25 } }}
-      className={`case-study-card w-full bg-white rounded-[24px] border border-black/[0.08] overflow-hidden flex flex-col group transition-all duration-300 hover:border-black/20 hover:shadow-[0_16px_36px_-12px_rgba(0,0,0,0.08)] relative select-none will-change-transform ${onClick ? 'cursor-pointer' : ''}`}
+      className={`case-study-card w-full bg-white rounded-[24px] border border-black/[0.08] overflow-hidden flex flex-col group transition-all duration-300 hover:border-black/20 hover:shadow-[0_16px_36px_-12px_rgba(0,0,0,0.08)] relative select-none will-change-transform no-underline text-inherit ${onClick ? 'cursor-pointer' : ''}`}
     >
       {/* Banner */}
       <div className="relative w-full h-[210px] sm:h-[220px] overflow-hidden select-none bg-gray-50">
@@ -353,7 +369,7 @@ function CaseStudyCard({ coverImage, title, outcome, description, onClick, onMou
         {isLocked && (
           <div className="absolute top-3.5 right-3.5 z-10 inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/90 backdrop-blur-md text-[11.5px] font-medium text-[#111827] shadow-sm border border-black/[0.08]">
             <Lock className="w-3 h-3 text-[#0c4731]" />
-            <span>Password Required</span>
+            <span>Under NDA</span>
           </div>
         )}
       </div>
@@ -370,7 +386,7 @@ function CaseStudyCard({ coverImage, title, outcome, description, onClick, onMou
           {outcome && <p className="project-outcome">{outcome}</p>}
         </div>
       </div>
-    </motion.div>
+    </Tag>
   );
 }
 
@@ -489,6 +505,43 @@ function WavingNimbuMirchi({ bottomPosition = 'clamp(270px, 46vh, 400px)' }) {
   );
 }
 
+// Compact pill nav that slides in once the visitor scrolls past the hero,
+// so Works, About and the resume are always one click away.
+function StickyNav({ scrollY, onWorks, onAbout, hidden }) {
+  const [visible, setVisible] = useState(false);
+  useEffect(() => {
+    const update = (y) => setVisible(y > 560);
+    update(scrollY.get());
+    return scrollY.on('change', update);
+  }, [scrollY]);
+  const show = visible && !hidden;
+  const item = "whitespace-nowrap px-2.5 sm:px-3 py-1.5 rounded-full hover:bg-black/[0.05] hover:text-black transition-colors cursor-pointer";
+  return (
+    <AnimatePresence>
+      {show && (
+        <motion.nav
+          aria-label="Primary"
+          initial={{ opacity: 0, y: -16 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -16 }}
+          transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
+          className="fixed top-3 sm:top-4 left-1/2 -translate-x-1/2 z-[60] flex items-center gap-0.5 p-1 rounded-full bg-white/85 backdrop-blur-md border border-black/[0.08] shadow-[0_8px_24px_-12px_rgba(0,0,0,0.18)] text-[13px] font-medium text-zinc-700"
+        >
+          <button type="button" onClick={() => (window.lenis ? window.lenis.scrollTo(0, { duration: 1.0 }) : window.scrollTo({ top: 0, behavior: 'smooth' }))} className={`${item} font-semibold text-zinc-900`}>
+            <span className="sm:hidden">Yogesh</span>
+            <span className="hidden sm:inline">Yogesh Battula</span>
+          </button>
+          <button type="button" onClick={onWorks} className={item}>Works</button>
+          <button type="button" onClick={onAbout} className={item}>About</button>
+          <a href="/yogesh-battula-resume.pdf" target="_blank" rel="noopener noreferrer" className={`${item} bg-[#111827] text-white hover:bg-black hover:text-white`}>
+            Resume
+          </a>
+        </motion.nav>
+      )}
+    </AnimatePresence>
+  );
+}
+
 // Lassie-style White Footer Card (The Rising Curtain Layer)
 function WhiteFooterCard({ navigateToCaseStudy, navigateToAbout, onScrollToWorks }) {
   return (
@@ -558,6 +611,23 @@ function WhiteFooterCard({ navigateToCaseStudy, navigateToAbout, onScrollToWorks
 
 const roles = ['Product', 'UX', 'UI'];
 
+// The full-screen intro plays once per browser session. After that, moving
+// between pages is instant so visitors are never kept waiting twice.
+const INTRO_KEY = 'yb_intro_seen';
+const LAST_CASE_KEY = 'yb_last_case';
+const hasSeenIntro = () => {
+  try { return sessionStorage.getItem(INTRO_KEY) === '1'; } catch { return false; }
+};
+const markIntroSeen = () => {
+  try { sessionStorage.setItem(INTRO_KEY, '1'); } catch {}
+};
+const rememberCase = (slug) => {
+  try { sessionStorage.setItem(LAST_CASE_KEY, slug); } catch {}
+};
+const lastCase = () => {
+  try { return sessionStorage.getItem(LAST_CASE_KEY); } catch { return null; }
+};
+
 export default function App() {
   const reduceMotion = useReducedMotion();
   const [roleIndex, setRoleIndex] = useState(0);
@@ -566,22 +636,6 @@ export default function App() {
 
   // Protected Case Study Password Modal
   const [passwordModalOpen, setPasswordModalOpen] = useState(false);
-  const [enteredPassword, setEnteredPassword] = useState('');
-  const [passwordError, setPasswordError] = useState('');
-  const [isUnlocked, setIsUnlocked] = useState(false);
-  const [showPassword, setShowPassword] = useState(false);
-
-  const handlePasswordSubmit = (e) => {
-    e.preventDefault();
-    const normalized = enteredPassword.trim().toLowerCase();
-    const validPasswords = ['yogesh', 'carepulse', 'design', '2026', 'health', 'clinician', 'passkey', 'portfolio'];
-    if (validPasswords.includes(normalized)) {
-      setIsUnlocked(true);
-      setPasswordError('');
-    } else {
-      setPasswordError('Incorrect password. Please try again or request access below.');
-    }
-  };
 
   useEffect(() => {
     const handleKeyDown = (e) => {
@@ -659,10 +713,10 @@ export default function App() {
     const hash = (window.location.hash || '').toLowerCase();
     const full = `${pathname} ${hash}`;
 
-    if (full.includes('nointro')) {
-      return { route: 'home', hasIntro: false, title: 'Yogesh' };
-    }
     const route = parseCurrentRoute();
+    if (full.includes('nointro') || hasSeenIntro()) {
+      return { route, hasIntro: false, title: 'Yogesh' };
+    }
     if (route === 'about') {
       return { route: 'about', hasIntro: true, title: 'About' };
     }
@@ -687,13 +741,13 @@ export default function App() {
   // Track if case study components should play entrance animation on reveal
   const [caseStudyRevealed, setCaseStudyRevealed] = useState(() => {
     const info = getInitialRouteInfo();
-    return !['ahamx', 'ryzeup', 'trosky'].includes(info.route);
+    return !info.hasIntro || !['ahamx', 'ryzeup', 'trosky'].includes(info.route);
   });
 
   // Track if about page components should play entrance animation on reveal
   const [aboutRevealed, setAboutRevealed] = useState(() => {
     const info = getInitialRouteInfo();
-    return info.route !== 'about';
+    return !info.hasIntro || info.route !== 'about';
   });
   const entranceEase = [0.16, 1, 0.3, 1];
 
@@ -767,18 +821,21 @@ export default function App() {
       setCurrentView((prev) => {
         if (prev !== targetView) {
           if (targetView !== 'home') {
-            const title = targetView === 'about' ? 'About' : 'Case study';
             if (targetView === 'about') {
-              setAboutRevealed(false);
+              setAboutRevealed(true);
             } else {
-              setCaseStudyRevealed(false);
+              rememberCase(targetView);
+              setCaseStudyRevealed(true);
             }
-            setIntroState({ show: true, title, key: `${targetView}-${Date.now()}` });
+            setIntroState((prevIntro) => ({ ...prevIntro, show: false }));
             window.scrollTo({ top: 0, behavior: 'instant' });
           } else {
             // Returning to home via browser back/forward buttons
             setSiteOpened(true);
             setIntroState((prevIntro) => ({ ...prevIntro, show: false }));
+            if (['ahamx', 'ryzeup', 'trosky'].includes(prev)) {
+              returnToWorks.current = true;
+            }
             if (hash === '#selected-works' || returnToWorks.current) {
               returnToWorks.current = true;
             } else {
@@ -798,8 +855,9 @@ export default function App() {
   }, []);
 
   const navigateToCaseStudy = (slug) => {
-    setCaseStudyRevealed(false);
-    setIntroState({ show: true, title: 'Case study', key: `case-study-${slug}-${Date.now()}` });
+    rememberCase(slug);
+    setCaseStudyRevealed(true);
+    setIntroState((prev) => ({ ...prev, show: false }));
     window.history.pushState(null, '', `/case-study/${slug}`);
     setCurrentView(slug);
     window.lenis?.scrollTo(0, { immediate: true });
@@ -816,8 +874,8 @@ export default function App() {
         }
       }
     } catch (e) {}
-    setAboutRevealed(false);
-    setIntroState({ show: true, title: 'About', key: `about-${Date.now()}` });
+    setAboutRevealed(true);
+    setIntroState((prev) => ({ ...prev, show: false }));
     window.history.pushState(null, '', '/about');
     setCurrentView('about');
     window.lenis?.scrollTo(0, { immediate: true });
@@ -898,12 +956,15 @@ export default function App() {
       const performScroll = () => {
         const el = document.getElementById('selected-works');
         if (el) {
+          const slug = lastCase();
+          const card = (slug && document.querySelector(`.case-study-card[data-slug="${slug}"]`)) || el;
+          const offset = card === el ? -24 : -120;
           if (window.lenis) {
-            window.lenis.scrollTo(el, { offset: -24, immediate: true });
+            window.lenis.scrollTo(card, { offset, immediate: true });
           } else {
-            el.scrollIntoView({ behavior: 'instant' });
+            window.scrollTo({ top: card.getBoundingClientRect().top + window.scrollY + offset, behavior: 'instant' });
           }
-          document.querySelector('.case-study-card[data-interactive="true"]')?.focus({ preventScroll: true });
+          (card.matches('.case-study-card') ? card : document.querySelector('.case-study-card[data-interactive="true"]'))?.focus({ preventScroll: true });
           returnToWorks.current = false;
           return true;
         }
@@ -1056,6 +1117,15 @@ export default function App() {
     <>
       <CustomCursor />
 
+      {currentView === 'home' && (
+        <StickyNav
+          scrollY={scrollY}
+          onWorks={handleScrollToWorks}
+          onAbout={navigateToAbout}
+          hidden={introState.show || passwordModalOpen}
+        />
+      )}
+
       {/* Starting / Opening / Case Study / About Reveal Animation */}
       {introState.show && (
         <OpeningAnimation
@@ -1072,6 +1142,7 @@ export default function App() {
             }
           }}
           onComplete={() => {
+            markIntroSeen();
             if (introState.title === 'Yogesh') {
               setSiteOpened(true);
             } else if (introState.title === 'About') {
@@ -1094,7 +1165,7 @@ export default function App() {
             transition={{ duration: 0.32, ease: [0.22, 1, 0.36, 1] }}
           >
             <React.Suspense fallback={<div className="min-h-screen bg-[#fafafa]" />}>
-              <CaseStudyAhamX onBack={navigateToHome} isRevealed={caseStudyRevealed} />
+              <CaseStudyAhamX onBack={navigateToHome} onNext={navigateToCaseStudy} isRevealed={caseStudyRevealed} />
             </React.Suspense>
           </motion.div>
         ) : currentView === 'trosky' ? (
@@ -1106,7 +1177,7 @@ export default function App() {
             transition={{ duration: 0.32, ease: [0.22, 1, 0.36, 1] }}
           >
             <React.Suspense fallback={<div className="min-h-screen bg-[#fafafa]" />}>
-              <CaseStudyTrosky onBack={navigateToHome} isRevealed={caseStudyRevealed} />
+              <CaseStudyTrosky onBack={navigateToHome} onNext={navigateToCaseStudy} isRevealed={caseStudyRevealed} />
             </React.Suspense>
           </motion.div>
         ) : currentView === 'ryzeup' ? (
@@ -1118,7 +1189,7 @@ export default function App() {
             transition={{ duration: 0.32, ease: [0.22, 1, 0.36, 1] }}
           >
             <React.Suspense fallback={<div className="min-h-screen bg-[#fafafa]" />}>
-              <CaseStudyRyzeup onBack={navigateToHome} isRevealed={caseStudyRevealed} />
+              <CaseStudyRyzeup onBack={navigateToHome} onNext={navigateToCaseStudy} isRevealed={caseStudyRevealed} />
             </React.Suspense>
           </motion.div>
         ) : currentView === 'about' ? (
@@ -1181,12 +1252,12 @@ export default function App() {
         {/* Waving Indian Nimbu Mirchi (Lemon & Chilli) Nazar Battu Hanging Charm */}
         <WavingNimbuMirchi />
 
-        <h1
+        <p
           className="relative z-10 text-white text-[20vw] sm:text-[21vw] font-bold tracking-tight leading-[0.78] select-none text-center pointer-events-none transform translate-y-[3%]"
           style={{ fontFamily: "'The Seasons', Georgia, serif" }}
         >
           Battula
-        </h1>
+        </p>
       </div>
 
       {/* ----------------------------------------------------------------- */}
@@ -1269,7 +1340,7 @@ export default function App() {
                 <span
                   className="relative inline-flex items-center justify-center w-[15px] sm:w-[22px] xl:w-[28px] h-[15px] sm:h-[22px] xl:h-[28px] shrink-0 pointer-events-none"
                 >
-                  <img src={starSparkle} alt="✦" className="w-full h-full object-contain" />
+                  <img src={starSparkle} alt="" aria-hidden="true" className="w-full h-full object-contain" />
                 </span>
               </motion.span>
             </div>
@@ -1288,7 +1359,7 @@ export default function App() {
             initial={!reduceMotion ? { opacity: 0, y: 20 } : false}
             animate={siteOpened ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ duration: 0.8, delay: 0.30, ease: entranceEase }}
-            className="text-[12.5px] sm:text-[15.5px] text-[rgba(8,48,76,0.72)] mt-2 sm:mt-3.5 max-w-[330px] sm:max-w-[480px] leading-[18px] sm:leading-[24px] tracking-[-0.15px]"
+            className="text-[14px] sm:text-[16.5px] xl:text-[18px] text-[rgba(8,48,76,0.78)] mt-2 sm:mt-3.5 max-w-[340px] sm:max-w-[520px] xl:max-w-[580px] leading-[21px] sm:leading-[26px] xl:leading-[28px] tracking-[-0.15px]"
           >
             I'm Yogesh, a product designer with 5+ years of experience. I design apps that look clean on the surface and make sense underneath.
           </motion.p>
@@ -1801,7 +1872,7 @@ export default function App() {
     </motion.div>
 
       {/* ----------------------------------------------------------------- */}
-      {/* SECTION 3: SELECTED WORKS (MORE STORIES)                          */}
+      {/* SECTION 3: SELECTED WORKS                                         */}
       {/* ----------------------------------------------------------------- */}
       {/* White gradient keeps the reveal transition soft and feathered below the second section. */}
       <div
@@ -1819,8 +1890,8 @@ export default function App() {
           <h2 className="font-seasons text-[24px] sm:text-[26px] font-normal not-italic text-[#08304c] tracking-tight">
             Selected Works
           </h2>
-          <span className="font-basier text-[13px] text-gray-400 font-medium tracking-tight">
-            More Stories
+          <span className="font-basier text-[13px] text-gray-500 font-medium tracking-tight">
+            4 case studies
           </span>
         </motion.div>
 
@@ -1832,7 +1903,9 @@ export default function App() {
             coverImage={coverPoints}
             title="Turning daily drills into lasting habits"
             description="A daily training experience for baseball players."
-            outcome="+36% daily practice habit"
+            outcome="30-day streak retention: 26% → 62%"
+            href="/case-study/trosky"
+            slug="trosky"
             onClick={() => navigateToCaseStudy('trosky')}
             onMouseEnter={() => import('./CaseStudyTrosky')}
             onFocus={() => import('./CaseStudyTrosky')}
@@ -1844,6 +1917,8 @@ export default function App() {
             title="Helping learners pick up where they left off"
             description="Connecting learning and capability development."
             outcome="Resume learning without searching the catalog"
+            href="/case-study/ahamx"
+            slug="ahamx"
             onClick={() => navigateToCaseStudy('ahamx')}
             onMouseEnter={() => import('./CaseStudyAhamX')}
             onFocus={() => import('./CaseStudyAhamX')}
@@ -1855,6 +1930,8 @@ export default function App() {
             title="Bringing focus to everyday team management"
             description="Helping managers focus on their teams."
             outcome="Context switching: 28s → under 3s"
+            href="/case-study/ryzeup"
+            slug="ryzeup"
             onClick={() => navigateToCaseStudy('ryzeup')}
             onMouseEnter={() => import('./CaseStudyRyzeup')}
             onFocus={() => import('./CaseStudyRyzeup')}
@@ -1865,13 +1942,8 @@ export default function App() {
             coverImage={coverHealth}
             title="Giving clinicians more time for care"
             description="An ambient documentation concept for clinicians."
-            outcome="2.4 hours/day saved on documentation"
-            onClick={() => {
-              setPasswordModalOpen(true);
-              setPasswordError('');
-              setEnteredPassword('');
-              setIsUnlocked(false);
-            }}
+            outcome="Under NDA · walkthrough on request"
+            onClick={() => setPasswordModalOpen(true)}
             isLocked={true}
           />
 
@@ -1938,81 +2010,23 @@ export default function App() {
                 className="text-[22px] sm:text-[25px] font-bold text-[#111827] tracking-tight mb-2"
                 style={{ fontFamily: "'The Seasons', Georgia, serif" }}
               >
-                Password Required
+                Shared on a call
               </h3>
 
               {/* Subtitle */}
               <p className="text-[13.5px] text-[#4b5563] leading-relaxed mb-6 font-basier">
-                This project contains clinical EHR workflow designs and unreleased healthcare technology protected under NDA.
+                This project covers clinical EHR workflows and unreleased healthcare technology under NDA, so I walk through it live instead of publishing it.
               </p>
 
-              {!isUnlocked ? (
-                <form onSubmit={handlePasswordSubmit} className="space-y-3.5">
-                  <div className="relative">
-                    <input
-                      type={showPassword ? "text" : "password"}
-                      value={enteredPassword}
-                      onChange={(e) => {
-                        setEnteredPassword(e.target.value);
-                        if (passwordError) setPasswordError('');
-                      }}
-                      placeholder="Enter access password"
-                      autoFocus
-                      className={`w-full px-4 py-3 pr-11 rounded-xl text-[14px] bg-gray-50 border ${passwordError ? 'border-red-500 ring-2 ring-red-500/15' : 'border-gray-200 focus:border-[#0c4731] focus:ring-2 focus:ring-[#0c4731]/15'} outline-none transition-all font-basier`}
-                    />
-                    <button
-                      type="button"
-                      onClick={() => setShowPassword(!showPassword)}
-                      className="absolute right-3.5 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 cursor-pointer p-1"
-                      aria-label={showPassword ? "Hide password" : "Show password"}
-                    >
-                      {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
-                    </button>
-                  </div>
-
-                  {passwordError && (
-                    <motion.p
-                      initial={{ opacity: 0, y: -4 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      className="text-[12px] text-red-600 font-medium text-left"
-                    >
-                      {passwordError}
-                    </motion.p>
-                  )}
-
-                  <button
-                    type="submit"
-                    className="w-full py-3 px-5 rounded-xl bg-[#0c4731] hover:bg-[#093524] text-white text-[14px] font-medium transition-colors cursor-pointer shadow-sm hover:shadow"
-                  >
-                    View Case Study
-                  </button>
-
-                  <div className="pt-2 text-[12.5px] text-[#6b7280]">
-                    Don't have the password?{' '}
-                    <a
-                      href="mailto:yogeshbattula55@gmail.com?subject=CarePulse%20Health%20Case%20Study%20Access%20Request&body=Hi%20Yogesh,%0A%0AI'd%20love%20to%20review%20your%20CarePulse%20Health%20case%20study.%20Could%20you%20please%20share%20the%20access%20password%3F%0A%0AThanks!"
-                      className="text-[#0c4731] font-medium hover:underline inline-flex items-center gap-0.5"
-                    >
-                      Request access <ArrowUpRight className="w-3 h-3" />
-                    </a>
-                  </div>
-                </form>
-              ) : (
-                <div className="py-2 space-y-4">
-                  <div className="p-4 rounded-xl bg-emerald-50 border border-emerald-200/80 text-emerald-900 text-[13.5px] leading-relaxed text-left">
-                    <p className="font-semibold text-emerald-950 mb-1">Access verified!</p>
-                    <p className="text-[13px] text-emerald-800">
-                      The CarePulse Health web case study is currently being packaged for public viewing. Please reach out to walk through the live Figma design system and clinical workflow deck.
-                    </p>
-                  </div>
-                  <a
-                    href="mailto:yogeshbattula55@gmail.com?subject=Schedule%20CarePulse%20Walkthrough&body=Hi%20Yogesh,%0A%0AI%20verified%20password%20access%20and%20would%20like%20to%20schedule%20a%20walkthrough%20of%20CarePulse%20Health.%0A%0ABest,"
-                    className="inline-flex items-center justify-center gap-1.5 w-full py-3 px-5 rounded-xl bg-[#0c4731] hover:bg-[#093524] text-white text-[14px] font-medium transition-colors"
-                  >
-                    Schedule Walkthrough <ArrowUpRight className="w-4 h-4" />
-                  </a>
-                </div>
-              )}
+              <a
+                href="mailto:yogeshbattula55@gmail.com?subject=CarePulse%20Health%20walkthrough&body=Hi%20Yogesh,%0A%0AI'd%20like%20to%20see%20a%20walkthrough%20of%20your%20CarePulse%20Health%20work.%20Here%20are%20a%20few%20times%20that%20work%20for%20me:%0A%0A"
+                className="inline-flex items-center justify-center gap-1.5 w-full py-3 px-5 rounded-xl bg-[#0c4731] hover:bg-[#093524] text-white text-[14px] font-medium transition-colors"
+              >
+                Request a walkthrough <ArrowUpRight className="w-4 h-4" />
+              </a>
+              <p className="pt-3 text-[12.5px] text-[#6b7280] font-basier">
+                I'll reply with a time for a 20-minute screen-share.
+              </p>
             </motion.div>
           </motion.div>
         )}

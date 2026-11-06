@@ -1,3 +1,4 @@
+import NextCaseStudy from './NextCaseStudy';
 import React, { useState, useEffect, useRef } from 'react';
 import { ArrowLeft, Users, MessageSquare, Search, Bell, Layers, CheckCircle2 } from 'lucide-react';
 import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
@@ -158,7 +159,7 @@ function MicroInteractionVideo({ mp4Src, webmSrc, title, caption }) {
   );
 }
 
-export default function CaseStudyRyzeup({ onBack, isRevealed = true }) {
+export default function CaseStudyRyzeup({ onBack, onNext, isRevealed = true }) {
   useEffect(() => {
     if (window.lenis) {
       window.lenis.scrollTo(0, { immediate: true });
@@ -1007,9 +1008,7 @@ export default function CaseStudyRyzeup({ onBack, isRevealed = true }) {
               <span>Back to Selected Works</span>
             </button>
 
-            <span className="text-[12px] sm:text-[13px] text-gray-400 font-switzer font-normal">
-              Portfolio · 2026
-            </span>
+            <NextCaseStudy current="ryzeup" onNavigate={onNext} />
           </div>
         </ScrollReveal>
 

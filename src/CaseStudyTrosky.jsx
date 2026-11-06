@@ -1,3 +1,4 @@
+import NextCaseStudy from './NextCaseStudy';
 import React, { useEffect, useRef } from 'react';
 import { ArrowLeft, Target, ShieldCheck, Activity, Users, CheckCircle2 } from 'lucide-react';
 import { motion, useScroll, useTransform } from 'framer-motion';
@@ -36,7 +37,7 @@ const TROSKY_SECTIONS = [
   { id: 'section-loop', label: 'The Routine Loop' },
   { id: 'section-structure', label: 'Structure & Flow' },
   { id: 'section-design', label: 'Visual Interface' },
-  { id: 'section-details', label: 'Ergonomic Details' },
+  { id: 'section-details', label: 'Designing for the Field' },
   { id: 'section-outcomes', label: 'Outcomes & Metrics' },
   { id: 'section-reflection', label: 'Retrospective' },
 ];
@@ -332,7 +333,7 @@ function MicroInteractionVideo({ mp4Src, webmSrc, title, caption }) {
   );
 }
 
-export default function CaseStudyTrosky({ onBack, isRevealed = true }) {
+export default function CaseStudyTrosky({ onBack, onNext, isRevealed = true }) {
   useEffect(() => {
     if (window.lenis) {
       window.lenis.scrollTo(0, { immediate: true });
@@ -451,7 +452,7 @@ export default function CaseStudyTrosky({ onBack, isRevealed = true }) {
             <div className="text-[13px] sm:text-[14px] font-switzer font-medium text-[#111827] mt-1 leading-snug">
               42-Athlete Beta
             </div>
-            <div className="text-[12px] text-gray-500 font-normal">Infield & 6th Tool</div>
+            <div className="text-[12px] text-gray-500 font-normal">Hitting, Fielding & 6th Tool</div>
           </div>
         </motion.div>
       </header>
@@ -483,7 +484,7 @@ export default function CaseStudyTrosky({ onBack, isRevealed = true }) {
                 Executive Summary
               </h3>
               <p className="cs-body text-[15px] sm:text-[16px] text-[#1f2937] leading-[1.75] font-switzer font-normal">
-                <strong>Trosky 365</strong> is a mobile coaching companion designed to bridge the gap between weekly private lessons and solo practice. I led the product and interaction design for iOS, translating Coach Nate Trosky’s elite infield curriculum and "6th Tool" mental framework into a focused 10-minute daily practice ritual with zero-friction video recall and habit-reinforcing closure loops.
+                <strong>Trosky 365</strong> is a mobile coaching companion designed to bridge the gap between weekly private lessons and solo practice. I led the product and interaction design for iOS, turning Coach Nate Trosky’s hitting and fielding drills and his "6th Tool" mental framework into a focused 10-minute daily routine: watch a short clip, explain it back, practise, and reflect.
               </p>
             </div>
           </ScrollReveal>
@@ -507,7 +508,7 @@ export default function CaseStudyTrosky({ onBack, isRevealed = true }) {
                 Most baseball players don’t struggle because they lack desire or talent. They struggle because ninety percent of their practice happens when their coach isn’t standing right next to them.
               </p>
               <p>
-                Trosky Baseball has built one of the country's most respected infield programs, known for mastering elite glovework and what Coach Trosky calls the 6th Tool—mental composure, breath control, and self-belief. But when players stepped off the field and opened the app, that inspiring coaching presence disappeared into an uncurated library of static video files.
+                Trosky Baseball has built one of the country's most respected infield programs, known for mastering elite glovework and what Coach Trosky calls the 6th Tool—mental composure, breath control, and self-belief. Alongside fielding, the program coaches hitting mechanics, so the app had to carry both. But when players stepped off the field and opened it, that coaching presence disappeared into an uncurated library of static video files.
               </p>
               <p>
                 Players faced dozens of drills with no clear sequence, no guidance on what they should be feeling, and no way to know whether they were actually improving. Working directly with Coach Nate Trosky and Coach Matt, my goal was to take that catalog and build a simple, focused daily routine that feels like a conversation with your coach.
@@ -834,7 +835,7 @@ export default function CaseStudyTrosky({ onBack, isRevealed = true }) {
         <section id="section-details" className="space-y-6 scroll-mt-28">
           <ScrollReveal>
             <h2 className="cs-section-title text-[22px] sm:text-[26px] md:text-[30px] font-basier font-medium text-[#111827] tracking-tight leading-snug">
-              Ergonomic Details & Field Ergonomics
+              Designing for the Field
             </h2>
           </ScrollReveal>
 
@@ -898,13 +899,13 @@ export default function CaseStudyTrosky({ onBack, isRevealed = true }) {
             <ScrollReveal delay={0.08}>
               <div className="p-5 sm:p-6 rounded-xl bg-gray-50 border border-gray-200 text-center">
                 <div className="text-[34px] sm:text-[42px] font-seasons font-normal text-gray-900 leading-none">
-                  +36%
+                  +36 pts
                 </div>
                 <div className="text-[13px] font-basier font-medium text-gray-900 mt-2">
                   30-Day Streak Retention
                 </div>
                 <p className="text-[12px] text-gray-500 font-switzer mt-1">
-                  Lifted from 26% baseline to 62% over 30 days.
+                  From 26% with the old video catalog to 62% with the new routine.
                 </p>
               </div>
             </ScrollReveal>
@@ -1063,9 +1064,7 @@ export default function CaseStudyTrosky({ onBack, isRevealed = true }) {
               <span>Back to Selected Works</span>
             </button>
 
-            <span className="text-[12px] sm:text-[13px] text-gray-400 font-switzer font-normal">
-              Portfolio · 2026
-            </span>
+            <NextCaseStudy current="trosky" onNavigate={onNext} />
           </div>
         </ScrollReveal>
 

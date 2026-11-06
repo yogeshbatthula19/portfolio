@@ -198,7 +198,7 @@ export default function ThankYouEnvelope({ className = '' }) {
 
         {/* Minimal, quiet editorial caption */}
         <p className="text-[12px] sm:text-[13px] text-gray-400 font-switzer font-normal mt-6 tracking-wide text-center">
-          Thank you for taking the time to read through
+          Thanks for reading. Questions or feedback? <a href="mailto:yogeshbattula55@gmail.com" className="underline underline-offset-2 hover:text-gray-600">Email me</a>.
         </p>
       </div>
     </div>

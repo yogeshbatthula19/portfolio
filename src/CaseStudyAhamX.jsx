@@ -1,3 +1,4 @@
+import NextCaseStudy from './NextCaseStudy';
 import React, { useEffect, useRef } from 'react';
 import { ArrowLeft, User, GraduationCap, Building2 } from 'lucide-react';
 import { motion, useScroll, useTransform, useInView } from 'framer-motion';
@@ -190,7 +191,7 @@ function MicroInteractionVideo({ mp4Src, webmSrc, title, caption }) {
   );
 }
 
-export default function CaseStudyAhamX({ onBack, isRevealed = true }) {
+export default function CaseStudyAhamX({ onBack, onNext, isRevealed = true }) {
   useEffect(() => {
     if (window.lenis) {
       window.lenis.scrollTo(0, { immediate: true });
@@ -387,10 +388,10 @@ export default function CaseStudyAhamX({ onBack, isRevealed = true }) {
                 The Strategic Pivot
               </div>
               <h3 className="cs-subheading text-[16px] sm:text-[18px] font-basier font-medium text-gray-900 leading-snug">
-                Unified Platform Shell Centered on Contextual Continuity
+                One Product That Adapts to Each Role
               </h3>
               <p className="text-[14px] sm:text-[15px] text-gray-600 leading-[1.7] font-switzer font-normal">
-                Instead of creating three separate web portals (Student LMS, Creator Studio, and Admin Hub), we engineered a <strong>unified platform shell centered on contextual continuity</strong>. Personal identity remains consistent across the entire platform, while interaction density and primary action bars dynamically adapt to the user's immediate operational responsibility.
+                Instead of building three separate portals (a student LMS, a creator studio and an admin hub), we built <strong>one product that adapts to whoever is using it</strong>. Your profile and the overall look stay the same everywhere, while the home screen and main actions change depending on whether you're there to learn, to teach or to manage.
               </p>
             </div>
           </ScrollReveal>
@@ -408,7 +409,7 @@ export default function CaseStudyAhamX({ onBack, isRevealed = true }) {
                     <span>Learner</span>
                   </div>
                   <p className="text-[13px] text-gray-600 leading-relaxed font-switzer font-normal">
-                    Frictionless resumption, real-time study checkpoints, and mobile-first commute continuity.
+                    Pick up exactly where they stopped, on any device, including a quick session on the commute.
                   </p>
                 </div>
                 <div className="p-4 sm:p-5">
@@ -417,7 +418,7 @@ export default function CaseStudyAhamX({ onBack, isRevealed = true }) {
                     <span>Educator / Creator</span>
                   </div>
                   <p className="text-[13px] text-gray-600 leading-relaxed font-switzer font-normal">
-                    Staged AI checkpoints, transparent content validation, and explicit readiness telemetry.
+                    Review AI-generated drafts step by step, and always see what's left before a course can be published.
                   </p>
                 </div>
                 <div className="p-4 sm:p-5">
@@ -473,7 +474,7 @@ export default function CaseStudyAhamX({ onBack, isRevealed = true }) {
                 The Breakthrough Insight
               </div>
               <p className="text-[16px] sm:text-[18px] md:text-[20px] font-seasons font-normal not-italic text-gray-900 leading-relaxed">
-                "A unified design system does not mean uniform cognitive density. Cohesive identity requires role-specific readiness states and clear decision boundaries."
+                "One design system doesn't mean every screen should be equally busy. Each role needs its own starting point and clear signals for what's ready and what isn't."
               </p>
               <p className="text-[13px] sm:text-[13.5px] text-gray-600 font-switzer font-normal pt-1 leading-relaxed">
                 I gave each role its own home screen within the same design system. Blocked actions keep their disabled state, explain what is missing, and provide a separate link to resolve it.
@@ -761,11 +762,11 @@ export default function CaseStudyAhamX({ onBack, isRevealed = true }) {
                   </div>
                   <div className="sm:col-span-4 text-gray-600 sm:border-l sm:border-gray-100 sm:pl-3">
                     <div className="sm:hidden text-[10px] font-basier font-medium uppercase tracking-wider text-gray-400 mt-1 mb-0.5">Interface Behavior</div>
-                    Local playback state persistence during commute network drops.
+                    If the connection drops mid-lesson, playback position is kept on the device.
                   </div>
                   <div className="sm:col-span-4 text-gray-500 sm:border-l sm:border-gray-100 sm:pl-3 text-[12.5px]">
                     <div className="sm:hidden text-[10px] font-basier font-medium uppercase tracking-wider text-gray-400 mt-1 mb-0.5">System Rule / Recovery</div>
-                    Stores exact second mark; syncs silently with exponential backoff on reconnect.
+                    Saves the exact second and syncs quietly once the learner is back online.
                   </div>
                 </div>
               </div>
@@ -801,7 +802,7 @@ export default function CaseStudyAhamX({ onBack, isRevealed = true }) {
           <ScrollReveal delay={0.1}>
             <div className="p-4 sm:p-5 rounded-xl bg-gray-50 border border-gray-200 text-[13.5px] text-gray-700 font-switzer font-normal">
               <strong className="text-gray-900 font-basier font-medium">Technical Alignment Note: </strong>
-              Readiness rules, draft durability, and request authorization were co-designed with engineering. The user interface and underlying backend state always agree deterministically on what has occurred.
+              I worked out the publishing rules, draft saving and approval permissions together with engineering, so what the screen shows always matches what has actually happened.
             </div>
           </ScrollReveal>
         </section>
@@ -845,7 +846,7 @@ export default function CaseStudyAhamX({ onBack, isRevealed = true }) {
               Community Feed & Personal Identity Profiles
             </h3>
             <p className="text-[14px] text-gray-600 leading-relaxed font-switzer font-normal">
-              Community discussions clearly attribute authorship and role context. The individual digital twin profile provides a consolidated view of background, achievements, and capabilities.
+              Community discussions clearly attribute authorship and role context. Each person's profile brings their background, achievements and skills together in one place.
             </p>
             <DualMockupFrame 
               src1={mockup2} 
@@ -1068,9 +1069,7 @@ export default function CaseStudyAhamX({ onBack, isRevealed = true }) {
               <span>Back to Selected Works</span>
             </button>
 
-            <span className="text-[12px] sm:text-[13px] text-gray-400 font-switzer font-normal">
-              Portfolio · 2026
-            </span>
+            <NextCaseStudy current="ahamx" onNavigate={onNext} />
           </div>
         </ScrollReveal>
 

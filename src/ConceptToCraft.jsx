@@ -65,7 +65,10 @@ function CraftCard({ card, index, progress, width, ribbonMetrics, reduced }) {
         alt={card.alt}
         width="600"
         height="750"
-        loading={index < 2 ? 'eager' : 'lazy'}
+        // Cards move in from off-screen via transforms, so native lazy loading
+        // starts too late and shows empty grey cards. Fetch them early, at low priority.
+        loading="eager"
+        fetchpriority="low"
         decoding="async"
         draggable={false}
       />
@@ -100,7 +103,7 @@ function CraftHeading({ progress, reduced }) {
     return (
       <div className="craft-heading">
         <h2 id="craft-title" className="craft-heading-grid">
-          <span className="craft-heading-item">To Foodieeee</span>
+          <span className="craft-heading-item">I film cafés</span>
         </h2>
       </div>
     );
@@ -109,7 +112,7 @@ function CraftHeading({ progress, reduced }) {
   return (
     <div className="craft-heading pointer-events-none select-none">
       <h2 id="craft-title" className="craft-heading-grid overflow-hidden">
-        <span className="craft-sr-only">From Foodie to Foodieeee</span>
+        <span className="craft-sr-only">Off the clock, I film cafés</span>
         
         <AnimatePresence mode="popLayout" initial={false}>
           {!isSecondPhase ? (
@@ -123,7 +126,7 @@ function CraftHeading({ progress, reduced }) {
               style={{ color: '#18181b', willChange: 'transform, opacity' }}
               aria-hidden="true"
             >
-              From Foodie
+              Off the clock
             </motion.span>
           ) : (
             <motion.span
@@ -136,7 +139,7 @@ function CraftHeading({ progress, reduced }) {
               style={{ color: '#18181b', willChange: 'transform, opacity' }}
               aria-hidden="true"
             >
-              To Foodieeee
+              I film cafés
             </motion.span>
           )}
         </AnimatePresence>
@@ -205,7 +208,7 @@ export default function ConceptToCraft() {
       <div className="craft-scroll-track" ref={sectionRef}>
         <div className="craft-viewport" ref={viewportRef}>
           <CraftHeading progress={progress} reduced={reduced} />
-          <div className="craft-ribbon" aria-label="From observation to finished design">
+          <div className="craft-ribbon" aria-label="Café dishes I have filmed">
             {cards.map((card, index) => (
               <CraftCard 
                 key={index} 
