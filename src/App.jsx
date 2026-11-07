@@ -39,7 +39,7 @@ function NoteCard({ onClick, onMouseEnter, onFocus }) {
       onKeyDown={(e) => { if (e.key === 'Enter') onClick(); }}
       className="relative w-full h-full select-none cursor-pointer group transition-transform duration-300 ease-out group-hover:scale-[1.02]"
     >
-      <StampFrame variant="plaque" className="w-full h-full">
+      <StampFrame variant="sq2" className="w-full h-full">
         <div
           className="w-full h-full flex items-center justify-center"
           style={{ background: 'radial-gradient(circle at 30% 25%, #1c4784 0%, #12315a 70%, #0d2444 100%)' }}
@@ -68,13 +68,13 @@ function CoupleCard({ imageSrc }) {
       onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') setIsHovered(prev => !prev); }}
       className="relative w-full h-full select-none cursor-pointer transition-transform duration-300 ease-out group-hover:scale-[1.02]"
     >
-      <StampFrame variant="oval" className="w-full h-full">
+      <StampFrame variant="round" className="w-full h-full">
         <img src={imageSrc} alt="Yogesh and partner" loading="lazy" decoding="async" className="w-full h-full object-cover select-none" />
       </StampFrame>
 
       {/* Subtle dimming on hover over inner photo area without dimming the pink perforated teeth */}
       <div
-        className={`absolute inset-[12px] sm:inset-[16px] rounded-[50%] bg-black/35 transition-opacity duration-500 pointer-events-none ${
+        className={`absolute inset-[9%] rounded-[50%] bg-black/35 transition-opacity duration-500 pointer-events-none ${
           isHovered ? "opacity-100" : "opacity-0"
         }`}
       />
@@ -1315,7 +1315,7 @@ export default function App() {
                     className="w-full h-full flex items-center justify-center cursor-pointer group origin-center"
                   >
                     <div className="w-full h-full select-none transition-transform duration-300 ease-out group-hover:scale-[1.02]">
-                      <StampFrame variant="carved" className="w-full h-full"><img src={photoLighthouse} alt="Coastal lighthouse surrounded by palm trees - Panoramic Postage Stamp" loading="lazy" decoding="async" style={{ objectPosition: "center 38%" }} className="w-full h-full object-cover select-none" /></StampFrame>
+                      <StampFrame variant="wide" className="w-full h-full"><img src={photoLighthouse} alt="Coastal lighthouse surrounded by palm trees - Panoramic Postage Stamp" loading="lazy" decoding="async" style={{ objectPosition: "center 38%" }} className="w-full h-full object-cover select-none" /></StampFrame>
                     </div>
                   </motion.div>
                 </div>
@@ -1327,7 +1327,7 @@ export default function App() {
                     className="w-full h-full flex items-center justify-center cursor-pointer group origin-center"
                   >
                     <div className="w-full h-full select-none transition-transform duration-300 ease-out group-hover:scale-[1.02]">
-                      <StampFrame variant="slim" className="w-full h-full"><img src={photoCycle} alt="Yogesh cycling on campus - Postage Stamp" loading="lazy" decoding="async" style={{ objectPosition: "center 55%" }} className="w-full h-full object-cover select-none" /></StampFrame>
+                      <StampFrame variant="sq1" className="w-full h-full"><img src={photoCycle} alt="Yogesh cycling on campus - Postage Stamp" loading="lazy" decoding="async" style={{ objectPosition: "center 55%" }} className="w-full h-full object-cover select-none" /></StampFrame>
                     </div>
                   </motion.div>
                 </div>
@@ -1339,7 +1339,7 @@ export default function App() {
                     className="w-full h-full flex items-center justify-center cursor-pointer group origin-center"
                   >
                     <div className="w-full h-full select-none transition-transform duration-300 ease-out group-hover:scale-[1.02]">
-                      <StampFrame variant="ornate" className="w-full h-full"><img src={photoTemple} alt="Historic temple gopuram with devotees - Tall Postage Stamp" loading="lazy" decoding="async" style={{ objectPosition: "center 40%" }} className="w-full h-full object-cover select-none" /></StampFrame>
+                      <StampFrame variant="tall" className="w-full h-full"><img src={photoTemple} alt="Historic temple gopuram with devotees - Tall Postage Stamp" loading="lazy" decoding="async" style={{ objectPosition: "center 40%" }} className="w-full h-full object-cover select-none" /></StampFrame>
                     </div>
                   </motion.div>
                 </div>
@@ -1361,7 +1361,7 @@ export default function App() {
                     className="w-full h-full flex items-center justify-center cursor-pointer group origin-center"
                   >
                     <div className="w-full h-full select-none transition-transform duration-300 ease-out group-hover:scale-[1.02]">
-                      <StampFrame variant="carved" className="w-full h-full">
+                      <StampFrame variant="land" className="w-full h-full">
                         <img
                           src={cafeDumplings}
                           alt="Crispy golden dumpling purses on a pewter plate, filmed at a café"
@@ -1566,7 +1566,7 @@ export default function App() {
                 className="absolute left-[36px] top-[130px] pointer-events-auto cursor-pointer group"
               >
                 <div className="relative w-full h-full select-none transition-transform duration-300 ease-out group-hover:scale-[1.02]">
-                  <StampFrame variant="slim" className="w-full h-full"><img src={photoCycle} alt="Yogesh cycling on campus - Postage Stamp" loading="lazy" decoding="async" style={{ objectPosition: "center 55%" }} className="w-full h-full object-cover select-none" /></StampFrame>
+                  <StampFrame variant="sq1" className="w-full h-full"><img src={photoCycle} alt="Yogesh cycling on campus - Postage Stamp" loading="lazy" decoding="async" style={{ objectPosition: "center 55%" }} className="w-full h-full object-cover select-none" /></StampFrame>
                 </div>
               </motion.div>
 
@@ -1586,7 +1586,7 @@ export default function App() {
                 className="absolute left-[257px] top-[130px] pointer-events-auto cursor-pointer group"
               >
                 <div className="relative w-full h-full select-none transition-transform duration-300 ease-out group-hover:scale-[1.02]">
-                  <StampFrame variant="carved" className="w-full h-full"><img src={photoLighthouse} alt="Coastal lighthouse surrounded by palm trees - Panoramic Postage Stamp" loading="lazy" decoding="async" style={{ objectPosition: "center 38%" }} className="w-full h-full object-cover select-none" /></StampFrame>
+                  <StampFrame variant="wide" className="w-full h-full"><img src={photoLighthouse} alt="Coastal lighthouse surrounded by palm trees - Panoramic Postage Stamp" loading="lazy" decoding="async" style={{ objectPosition: "center 38%" }} className="w-full h-full object-cover select-none" /></StampFrame>
                 </div>
               </motion.div>
 
@@ -1606,7 +1606,7 @@ export default function App() {
                 className="absolute left-[699px] top-[130px] pointer-events-auto cursor-pointer group"
               >
                 <div className="relative w-full h-full select-none transition-transform duration-300 ease-out group-hover:scale-[1.02]">
-                  <StampFrame variant="ornate" className="w-full h-full"><img src={photoTemple} alt="Historic temple gopuram with devotees - Tall Postage Stamp" loading="lazy" decoding="async" style={{ objectPosition: "center 40%" }} className="w-full h-full object-cover select-none" /></StampFrame>
+                  <StampFrame variant="tall" className="w-full h-full"><img src={photoTemple} alt="Historic temple gopuram with devotees - Tall Postage Stamp" loading="lazy" decoding="async" style={{ objectPosition: "center 40%" }} className="w-full h-full object-cover select-none" /></StampFrame>
                 </div>
               </motion.div>
 
@@ -1644,7 +1644,7 @@ export default function App() {
                 className="absolute left-[257px] top-[356px] pointer-events-auto cursor-pointer group"
               >
                 <div className="relative w-full h-full select-none transition-transform duration-300 ease-out group-hover:scale-[1.02]">
-                  <StampFrame variant="carved" className="w-full h-full">
+                  <StampFrame variant="land" className="w-full h-full">
                     <img
                       src={cafeDumplings}
                       alt="Crispy golden dumpling purses on a pewter plate, filmed at a café"

@@ -8,11 +8,11 @@ import foodie10 from './assets/foodiee/F45DA272-9457-419D-94BB-7A652019D1C0.jpg'
 
 // Each frame hangs at its own size and height, like a gallery wall.
 const photos = [
-  { src: foodie01, alt: 'Mango dessert toast', ratio: '3/4', v: 'ornate', w: 'sm:w-[16%]', drop: 'sm:mt-0' },
-  { src: foodie03, alt: 'Specialty café dish', ratio: '4/5', v: 'carved', w: 'sm:w-[21%]', drop: 'sm:mt-14' },
-  { src: foodie05, alt: 'Crisp café breakfast', ratio: '1/1', v: 'oval', w: 'sm:w-[17%]', drop: 'sm:mt-2' },
-  { src: foodie06, alt: 'Handcrafted pasta dish', ratio: '3/4', v: 'slim', w: 'sm:w-[19%]', drop: 'sm:mt-20' },
-  { src: foodie10, alt: 'Café dessert', ratio: '4/5', v: 'ornate', w: 'sm:w-[14%]', drop: 'sm:mt-6' },
+  { src: foodie01, alt: 'Mango dessert toast', ratio: '3/4', v: 'portrait', w: 'sm:w-[16%]', drop: 'sm:mt-0' },
+  { src: foodie03, alt: 'Specialty café dish', ratio: '4/5', v: 'tall2', w: 'sm:w-[21%]', drop: 'sm:mt-14' },
+  { src: foodie05, alt: 'Crisp café breakfast', ratio: '1/1', v: 'round', w: 'sm:w-[17%]', drop: 'sm:mt-2' },
+  { src: foodie06, alt: 'Handcrafted pasta dish', ratio: '3/4', v: 'tall', w: 'sm:w-[19%]', drop: 'sm:mt-20' },
+  { src: foodie10, alt: 'Café dessert', ratio: '4/5', v: 'small', w: 'sm:w-[14%]', drop: 'sm:mt-6' },
 ];
 
 
