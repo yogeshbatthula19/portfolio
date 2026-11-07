@@ -4,8 +4,8 @@ import { motion } from 'framer-motion';
 export default function ScrollReveal({
   children,
   delay = 0,
-  y = 24,
-  duration = 0.8,
+  y = 16,
+  duration = 0.6,
   variant = 'fade-up',
   className = "",
   amount = 0.1,
