@@ -1,3 +1,4 @@
+import Frame from './Frame';
 import React, { useState, useEffect, useLayoutEffect, useRef, useMemo } from 'react';
 import { motion, useScroll, useTransform, AnimatePresence, useSpring, cubicBezier, useReducedMotion, useVelocity } from 'framer-motion';
 import Lenis from 'lenis';
@@ -23,143 +24,8 @@ function SubstackIcon({ className = "w-4 h-4" }) {
   );
 }
 
-// Authentic Postage Stamp Frame with Perforated Edge & Philatelic Margins
-function StampFrame({ children, className = "", innerClassName = "", defaultW = 205, defaultH = 210, paper = "#f7e8cf", edge = "#ecd9b8" }) {
-  const containerRef = useRef(null);
-  const [dimensions, setDimensions] = useState({ w: defaultW, h: defaultH });
-
-  useLayoutEffect(() => {
-    if (!containerRef.current) return;
-    const el = containerRef.current;
-    const update = () => {
-      if (el.clientWidth && el.clientHeight) {
-        setDimensions({ w: el.clientWidth, h: el.clientHeight });
-      }
-    };
-    update();
-    const observer = new ResizeObserver(update);
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, []);
-
-  const stampPath = useMemo(() => {
-    const { w, h } = dimensions;
-    if (!w || !h) return '';
-
-    // Perforation hole geometry based on authentic vintage stamps
-    const holeR = 4.6;
-    const toothW = 6.2;
-    const cornerTab = 9.5;
-
-    const d = [];
-
-    // TOP EDGE: from (0, 0) to (w, 0)
-    const availX = w - 2 * cornerTab;
-    const pitchX = 2 * holeR + toothW;
-    const nx = Math.max(1, Math.round(availX / pitchX));
-    const actualPitchX = availX / nx;
-    const actualHrX = Math.min(holeR, actualPitchX * 0.38);
-    const actualTwX = actualPitchX - 2 * actualHrX;
-
-    d.push("M 0 0");
-    let curX = cornerTab;
-    d.push(`L ${curX.toFixed(2)} 0`);
-
-    for (let i = 0; i < nx; i++) {
-      const nextX = curX + 2 * actualHrX;
-      d.push(`A ${actualHrX.toFixed(2)} ${actualHrX.toFixed(2)} 0 0 0 ${nextX.toFixed(2)} 0`);
-      curX = nextX;
-      if (i < nx - 1) {
-        curX += actualTwX;
-        d.push(`L ${curX.toFixed(2)} 0`);
-      }
-    }
-    d.push(`L ${w.toFixed(2)} 0`);
-
-    // RIGHT EDGE: from (w, 0) to (w, h)
-    const availY = h - 2 * cornerTab;
-    const pitchY = 2 * holeR + toothW;
-    const ny = Math.max(1, Math.round(availY / pitchY));
-    const actualPitchY = availY / ny;
-    const actualHrY = Math.min(holeR, actualPitchY * 0.38);
-    const actualTwY = actualPitchY - 2 * actualHrY;
-
-    let curY = cornerTab;
-    d.push(`L ${w.toFixed(2)} ${curY.toFixed(2)}`);
-
-    for (let i = 0; i < ny; i++) {
-      const nextY = curY + 2 * actualHrY;
-      d.push(`A ${actualHrY.toFixed(2)} ${actualHrY.toFixed(2)} 0 0 0 ${w.toFixed(2)} ${nextY.toFixed(2)}`);
-      curY = nextY;
-      if (i < ny - 1) {
-        curY += actualTwY;
-        d.push(`L ${w.toFixed(2)} ${curY.toFixed(2)}`);
-      }
-    }
-    d.push(`L ${w.toFixed(2)} ${h.toFixed(2)}`);
-
-    // BOTTOM EDGE: from (w, h) to (0, h)
-    curX = w - cornerTab;
-    d.push(`L ${curX.toFixed(2)} ${h.toFixed(2)}`);
-
-    for (let i = 0; i < nx; i++) {
-      const nextX = curX - 2 * actualHrX;
-      d.push(`A ${actualHrX.toFixed(2)} ${actualHrX.toFixed(2)} 0 0 0 ${nextX.toFixed(2)} ${h.toFixed(2)}`);
-      curX = nextX;
-      if (i < nx - 1) {
-        curX -= actualTwX;
-        d.push(`L ${curX.toFixed(2)} ${h.toFixed(2)}`);
-      }
-    }
-    d.push(`L 0 ${h.toFixed(2)}`);
-
-    // LEFT EDGE: from (0, h) to (0, 0)
-    curY = h - cornerTab;
-    d.push(`L 0 ${curY.toFixed(2)}`);
-
-    for (let i = 0; i < ny; i++) {
-      const nextY = curY - 2 * actualHrY;
-      d.push(`A ${actualHrY.toFixed(2)} ${actualHrY.toFixed(2)} 0 0 0 0 ${nextY.toFixed(2)}`);
-      curY = nextY;
-      if (i < ny - 1) {
-        curY -= actualTwY;
-        d.push(`L 0 ${curY.toFixed(2)}`);
-      }
-    }
-    d.push("L 0 0 Z");
-
-    return d.join(" ");
-  }, [dimensions]);
-
-  return (
-    <div
-      ref={containerRef}
-      className={`relative w-full h-full select-none transition-transform duration-300 ease-out group-hover:scale-[1.02] ${className}`}
-    >
-      {/* Authentic Perforated Stamp Paper (warm cream fill, soft paper edge, NO drop shadow) */}
-      <svg
-        className="absolute inset-0 w-full h-full pointer-events-none overflow-visible"
-        width={dimensions.w}
-        height={dimensions.h}
-        viewBox={`0 0 ${dimensions.w} ${dimensions.h}`}
-        fill="none"
-      >
-        <path
-          d={stampPath}
-          fill={paper}
-          stroke={edge}
-          strokeWidth="1"
-          strokeLinejoin="round"
-        />
-      </svg>
-
-      {/* Inner Image Frame (generous paper border without inner black line) */}
-      <div className={`absolute inset-[13px] sm:inset-[14px] overflow-hidden bg-neutral-100 ${innerClassName}`}>
-        {children}
-      </div>
-    </div>
-  );
-}
+// Gallery frames (see Frame.jsx); kept under the old name so call sites stay small.
+const StampFrame = ({ paper, edge, ...p }) => <Frame {...p} />;
 
 // Custom Amber/Orange Postage Stamp About Card
 function NoteCard({ onClick, onMouseEnter, onFocus }) {
@@ -173,12 +39,12 @@ function NoteCard({ onClick, onMouseEnter, onFocus }) {
       onKeyDown={(e) => { if (e.key === 'Enter') onClick(); }}
       className="relative w-full h-full select-none cursor-pointer group transition-transform duration-300 ease-out group-hover:scale-[1.02]"
     >
-      <StampFrame className="w-full h-full" paper="#f7e8cf" edge="#ecd9b8">
+      <StampFrame variant="plaque" className="w-full h-full">
         <div
           className="w-full h-full flex items-center justify-center"
-          style={{ background: 'radial-gradient(circle at 30% 25%, #f9a35c 0%, #f07a3a 55%, #ec6a2c 100%)' }}
+          style={{ background: 'radial-gradient(circle at 30% 25%, #1c4784 0%, #12315a 70%, #0d2444 100%)' }}
         >
-          <span className="text-white text-[34px] sm:text-[40px] leading-none" style={{ fontFamily: "'The Seasons', serif" }}>About</span>
+          <span className="text-[#e8c773] text-[30px] sm:text-[36px] leading-none" style={{ fontFamily: "'The Seasons', serif" }}>About</span>
         </div>
       </StampFrame>
     </div>
@@ -202,13 +68,13 @@ function CoupleCard({ imageSrc }) {
       onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') setIsHovered(prev => !prev); }}
       className="relative w-full h-full select-none cursor-pointer transition-transform duration-300 ease-out group-hover:scale-[1.02]"
     >
-      <StampFrame className="w-full h-full">
+      <StampFrame variant="oval" className="w-full h-full">
         <img src={imageSrc} alt="Yogesh and partner" loading="lazy" decoding="async" className="w-full h-full object-cover select-none" />
       </StampFrame>
 
       {/* Subtle dimming on hover over inner photo area without dimming the pink perforated teeth */}
       <div
-        className={`absolute inset-[13px] sm:inset-[14px] bg-black/35 transition-opacity duration-500 pointer-events-none ${
+        className={`absolute inset-[12px] sm:inset-[16px] rounded-[50%] bg-black/35 transition-opacity duration-500 pointer-events-none ${
           isHovered ? "opacity-100" : "opacity-0"
         }`}
       />
@@ -584,7 +450,7 @@ function WhiteFooterCard({ navigateToCaseStudy, navigateToAbout, onScrollToWorks
   return (
     <footer
       id="footer"
-      className="relative z-10 w-full rounded-b-[40px] sm:rounded-b-[56px] md:rounded-b-[68px] bg-white border-b border-black/[0.06] shadow-[0_24px_50px_-12px_rgba(0,0,0,0.06)] pt-16 sm:pt-24 pb-16 px-6 sm:px-12 md:px-16 select-none"
+      className="relative z-10 w-full rounded-b-[40px] sm:rounded-b-[56px] md:rounded-b-[68px] bg-[#fbf6ea] border-t border-[#e8c773]/60 shadow-[0_24px_50px_-12px_rgba(0,0,0,0.06)] pt-16 sm:pt-24 pb-16 px-6 sm:px-12 md:px-16 select-none"
     >
       <div className="w-[1472px] max-w-[92vw] mx-auto text-center">
         
@@ -1270,9 +1136,10 @@ export default function App() {
       {/* LAYER 1: MAIN CONTENT WRAPPER (SOLID WHITE, RELATIVE Z-10)        */}
       {/* ----------------------------------------------------------------- */}
       <div
-        className="relative z-10 bg-[#ffffff] min-h-screen font-sans text-gray-900 selection:bg-[#ffd9bd] overflow-x-clip pt-4 rounded-b-[40px] sm:rounded-b-[56px] md:rounded-b-[68px] shadow-[0_24px_50px_-12px_rgba(0,0,0,0.06)]"
+        className="relative z-10 min-h-screen font-sans text-white selection:bg-[#e8c773] selection:text-[#12315a] overflow-x-clip pt-4 rounded-b-[40px] sm:rounded-b-[56px] md:rounded-b-[68px] shadow-[0_24px_50px_-12px_rgba(0,0,0,0.06)]"
         style={{
           marginBottom: 'clamp(270px, 46vh, 400px)',
+          background: 'radial-gradient(ellipse at 50% 0%, #2a6cf0 0%, #1450d6 38%, #0f3fae 100%)',
         }}
       >
       
@@ -1292,7 +1159,7 @@ export default function App() {
           aria-hidden="true"
           className="absolute inset-0 pointer-events-none -z-10"
           style={{
-            backgroundImage: `linear-gradient(to bottom, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0.3) 40%, #ffffff 100%), url(${imgBg})`,
+            backgroundImage: `linear-gradient(to bottom, rgba(20,80,214,0.10) 0%, rgba(20,80,214,0.45) 45%, #1450d6 100%), url(${imgBg})`,
             backgroundSize: 'cover',
             backgroundPosition: 'center top',
             backgroundRepeat: 'no-repeat',
@@ -1311,7 +1178,7 @@ export default function App() {
               fontWeight: 400,
               fontSize: 'clamp(28px, 6.2vw, 72px)',
               lineHeight: 'clamp(36px, 7vw, 78px)',
-              color: '#08304C',
+              color: '#f3f7ff',
             }}
           >
             {/* On mobile: Line 1 pairs Designing with Product pill. On desktop: flows inline */}
@@ -1358,7 +1225,7 @@ export default function App() {
             initial={!reduceMotion ? { opacity: 0, y: 20 } : false}
             animate={siteOpened ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ duration: 0.8, delay: 0.30, ease: entranceEase }}
-            className="text-small sm:text-body xl:text-lead text-[rgba(8,48,76,0.78)] mt-2 sm:mt-3.5 max-w-[340px] sm:max-w-[520px] xl:max-w-[580px] leading-[21px] sm:leading-[26px] xl:leading-[28px] tracking-[-0.15px]"
+            className="text-small sm:text-body xl:text-lead text-[rgba(226,236,255,0.88)] mt-2 sm:mt-3.5 max-w-[340px] sm:max-w-[520px] xl:max-w-[580px] leading-[21px] sm:leading-[26px] xl:leading-[28px] tracking-[-0.15px]"
           >
             I'm Yogesh, a product designer with 5+ years of experience in AI and SaaS products. I design apps that look clean on the surface and make sense underneath.
           </motion.p>
@@ -1378,7 +1245,7 @@ export default function App() {
             initial={!reduceMotion ? { opacity: 0, y: 16 } : false}
             animate={siteOpened ? { opacity: 1, y: 0 } : { opacity: 0, y: 16 }}
             transition={{ duration: 0.75, delay: 0.52, ease: entranceEase }}
-            className="mt-2.5 sm:mt-3.5 text-caption sm:text-small text-[rgba(8,48,76,0.65)] font-medium tracking-tight"
+            className="mt-2.5 sm:mt-3.5 text-caption sm:text-small text-[rgba(226,236,255,0.72)] font-medium tracking-tight"
           >
             Based in Hyderabad, India
           </motion.p>
@@ -1401,8 +1268,8 @@ export default function App() {
           }}
           className="w-full"
         >
-          <div className="bg-[rgba(0,0,0,0.02)] border border-[rgba(0,0,0,0.08)] p-[4px] rounded-[24px]">
-            <div className="bg-white rounded-[20px] p-4 sm:p-5 relative">
+          <div className="border border-[rgba(232,199,115,0.35)] p-[4px] rounded-[24px]">
+            <div className="rounded-[20px] p-4 sm:p-5 relative">
               
               {/* Header */}
               <div className="profile-header flex flex-wrap items-center justify-between gap-4 mb-4 pb-1">
@@ -1416,11 +1283,11 @@ export default function App() {
                   />
                   <div>
                     <div className="flex items-center gap-1.5">
-                      <h2 className="text-body font-medium text-[#202020] tracking-tight leading-snug">
+                      <h2 className="text-body font-medium text-white tracking-tight leading-snug">
                         Yogesh
                       </h2>
                     </div>
-                    <p className="text-small text-[#797979] mt-0.5 leading-snug">
+                    <p className="text-small text-[#b9c9e6] mt-0.5 leading-snug">
                       I design apps that make sense. I film cafés on my Osmo Pocket when I'm off the clock.
                     </p>
                   </div>
@@ -1448,7 +1315,7 @@ export default function App() {
                     className="w-full h-full flex items-center justify-center cursor-pointer group origin-center"
                   >
                     <div className="w-full h-full select-none transition-transform duration-300 ease-out group-hover:scale-[1.02]">
-                      <StampFrame className="w-full h-full"><img src={photoLighthouse} alt="Coastal lighthouse surrounded by palm trees - Panoramic Postage Stamp" loading="lazy" decoding="async" style={{ objectPosition: "center 38%" }} className="w-full h-full object-cover select-none" /></StampFrame>
+                      <StampFrame variant="carved" className="w-full h-full"><img src={photoLighthouse} alt="Coastal lighthouse surrounded by palm trees - Panoramic Postage Stamp" loading="lazy" decoding="async" style={{ objectPosition: "center 38%" }} className="w-full h-full object-cover select-none" /></StampFrame>
                     </div>
                   </motion.div>
                 </div>
@@ -1460,7 +1327,7 @@ export default function App() {
                     className="w-full h-full flex items-center justify-center cursor-pointer group origin-center"
                   >
                     <div className="w-full h-full select-none transition-transform duration-300 ease-out group-hover:scale-[1.02]">
-                      <StampFrame className="w-full h-full"><img src={photoCycle} alt="Yogesh cycling on campus - Postage Stamp" loading="lazy" decoding="async" style={{ objectPosition: "center 55%" }} className="w-full h-full object-cover select-none" /></StampFrame>
+                      <StampFrame variant="slim" className="w-full h-full"><img src={photoCycle} alt="Yogesh cycling on campus - Postage Stamp" loading="lazy" decoding="async" style={{ objectPosition: "center 55%" }} className="w-full h-full object-cover select-none" /></StampFrame>
                     </div>
                   </motion.div>
                 </div>
@@ -1472,7 +1339,7 @@ export default function App() {
                     className="w-full h-full flex items-center justify-center cursor-pointer group origin-center"
                   >
                     <div className="w-full h-full select-none transition-transform duration-300 ease-out group-hover:scale-[1.02]">
-                      <StampFrame className="w-full h-full"><img src={photoTemple} alt="Historic temple gopuram with devotees - Tall Postage Stamp" loading="lazy" decoding="async" style={{ objectPosition: "center 40%" }} className="w-full h-full object-cover select-none" /></StampFrame>
+                      <StampFrame variant="ornate" className="w-full h-full"><img src={photoTemple} alt="Historic temple gopuram with devotees - Tall Postage Stamp" loading="lazy" decoding="async" style={{ objectPosition: "center 40%" }} className="w-full h-full object-cover select-none" /></StampFrame>
                     </div>
                   </motion.div>
                 </div>
@@ -1494,7 +1361,7 @@ export default function App() {
                     className="w-full h-full flex items-center justify-center cursor-pointer group origin-center"
                   >
                     <div className="w-full h-full select-none transition-transform duration-300 ease-out group-hover:scale-[1.02]">
-                      <StampFrame className="w-full h-full" paper="#f7e8cf" edge="#ecd9b8">
+                      <StampFrame variant="carved" className="w-full h-full">
                         <img
                           src={cafeDumplings}
                           alt="Crispy golden dumpling purses on a pewter plate, filmed at a café"
@@ -1582,7 +1449,7 @@ export default function App() {
         >
           {/* Outer card container */}
           <div className="bg-[rgba(0,0,0,0.02)] border border-[rgba(0,0,0,0.08)] p-[5px] rounded-[24px] relative">
-            <div className="bg-white rounded-[20px] p-[32px] relative">
+            <div className="rounded-[20px] p-[32px] relative">
             
             {/* Header */}
             <div className="flex items-center justify-between mb-6 pb-1">
@@ -1594,11 +1461,11 @@ export default function App() {
                 />
                 <div>
                   <div className="flex items-center gap-2">
-                    <h2 className="text-lead font-medium text-[#202020] tracking-tight leading-snug">
+                    <h2 className="text-lead font-medium text-white tracking-tight leading-snug">
                       Yogesh
                     </h2>
                   </div>
-                  <p className="text-small text-[#797979]">
+                  <p className="text-small text-[#b9c9e6]">
                     I design apps that make sense. I film cafés on my Osmo Pocket when I'm off the clock.
                   </p>
                 </div>
@@ -1699,7 +1566,7 @@ export default function App() {
                 className="absolute left-[36px] top-[130px] pointer-events-auto cursor-pointer group"
               >
                 <div className="relative w-full h-full select-none transition-transform duration-300 ease-out group-hover:scale-[1.02]">
-                  <StampFrame className="w-full h-full"><img src={photoCycle} alt="Yogesh cycling on campus - Postage Stamp" loading="lazy" decoding="async" style={{ objectPosition: "center 55%" }} className="w-full h-full object-cover select-none" /></StampFrame>
+                  <StampFrame variant="slim" className="w-full h-full"><img src={photoCycle} alt="Yogesh cycling on campus - Postage Stamp" loading="lazy" decoding="async" style={{ objectPosition: "center 55%" }} className="w-full h-full object-cover select-none" /></StampFrame>
                 </div>
               </motion.div>
 
@@ -1719,7 +1586,7 @@ export default function App() {
                 className="absolute left-[257px] top-[130px] pointer-events-auto cursor-pointer group"
               >
                 <div className="relative w-full h-full select-none transition-transform duration-300 ease-out group-hover:scale-[1.02]">
-                  <StampFrame className="w-full h-full"><img src={photoLighthouse} alt="Coastal lighthouse surrounded by palm trees - Panoramic Postage Stamp" loading="lazy" decoding="async" style={{ objectPosition: "center 38%" }} className="w-full h-full object-cover select-none" /></StampFrame>
+                  <StampFrame variant="carved" className="w-full h-full"><img src={photoLighthouse} alt="Coastal lighthouse surrounded by palm trees - Panoramic Postage Stamp" loading="lazy" decoding="async" style={{ objectPosition: "center 38%" }} className="w-full h-full object-cover select-none" /></StampFrame>
                 </div>
               </motion.div>
 
@@ -1739,7 +1606,7 @@ export default function App() {
                 className="absolute left-[699px] top-[130px] pointer-events-auto cursor-pointer group"
               >
                 <div className="relative w-full h-full select-none transition-transform duration-300 ease-out group-hover:scale-[1.02]">
-                  <StampFrame className="w-full h-full"><img src={photoTemple} alt="Historic temple gopuram with devotees - Tall Postage Stamp" loading="lazy" decoding="async" style={{ objectPosition: "center 40%" }} className="w-full h-full object-cover select-none" /></StampFrame>
+                  <StampFrame variant="ornate" className="w-full h-full"><img src={photoTemple} alt="Historic temple gopuram with devotees - Tall Postage Stamp" loading="lazy" decoding="async" style={{ objectPosition: "center 40%" }} className="w-full h-full object-cover select-none" /></StampFrame>
                 </div>
               </motion.div>
 
@@ -1777,7 +1644,7 @@ export default function App() {
                 className="absolute left-[257px] top-[356px] pointer-events-auto cursor-pointer group"
               >
                 <div className="relative w-full h-full select-none transition-transform duration-300 ease-out group-hover:scale-[1.02]">
-                  <StampFrame className="w-full h-full" paper="#f7e8cf" edge="#ecd9b8">
+                  <StampFrame variant="carved" className="w-full h-full">
                     <img
                       src={cafeDumplings}
                       alt="Crispy golden dumpling purses on a pewter plate, filmed at a café"
@@ -1836,10 +1703,10 @@ export default function App() {
         <motion.div 
           className="flex items-center justify-between mb-6 px-1"
         >
-          <h2 className="font-seasons text-h3 font-normal not-italic text-[#08304c] tracking-tight">
+          <h2 className="font-seasons text-h3 font-normal not-italic text-[#f3f7ff] tracking-tight">
             Selected Works
           </h2>
-          <span className="font-basier text-small text-gray-500 font-medium tracking-tight">
+          <span className="font-basier text-small text-[#e8c773] font-medium tracking-tight">
             4 case studies
           </span>
         </motion.div>

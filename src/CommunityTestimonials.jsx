@@ -126,18 +126,18 @@ export default function CommunityTestimonials() {
   return (
     <section 
       id="community-testimonials"
-      className="relative z-10 w-full select-none border-t border-black/[0.06] pt-12 sm:pt-20 lg:pt-24 pb-14 sm:pb-20 lg:pb-24"
+      className="relative z-10 w-full select-none border-t border-[#e8c773]/25 pt-12 sm:pt-20 lg:pt-24 pb-14 sm:pb-20 lg:pb-24"
     >
       {/* Ambient gradient hero background matching hero section */}
       <div
         aria-hidden="true"
         className="absolute inset-0 pointer-events-none -z-10"
         style={{
-          backgroundImage: `linear-gradient(to bottom, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0.3) 40%, rgba(255,255,255,0.85) 100%), url(${heroBg})`,
+          backgroundImage: `linear-gradient(to bottom, rgba(20,80,214,0.72) 0%, rgba(20,80,214,0.85) 50%, rgba(20,80,214,0.92) 100%), url(${heroBg})`,
           backgroundSize: 'cover',
           backgroundPosition: 'center top',
           backgroundRepeat: 'no-repeat',
-          backgroundColor: '#ffffff',
+          backgroundColor: '#1450d6',
         }}
       />
 
@@ -150,7 +150,7 @@ export default function CommunityTestimonials() {
           <div className="lg:self-start min-h-0 lg:min-h-[460px] flex flex-col justify-start">
             
             {/* Editorial Heading in The Seasons (Upright, Non-Italic) */}
-            <h2 className="font-seasons text-h1 lg:text-display-sm font-normal not-italic text-[#08304C] tracking-tight leading-[1.12]">
+            <h2 className="font-seasons text-h1 lg:text-display-sm font-normal not-italic text-[#f3f7ff] tracking-tight leading-[1.12]">
               Kind words from <br />
               the people I’ve <br />
               built with.
