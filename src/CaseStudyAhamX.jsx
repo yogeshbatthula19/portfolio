@@ -183,7 +183,7 @@ export default function CaseStudyAhamX({ onBack, onNext, isRevealed = true }) {
         style={{
           y: bgY,
           scale: bgScale,
-          backgroundImage: `linear-gradient(to bottom, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0.3) 40%, #ffffff 100%), url(${heroGradient})`,
+          backgroundImage: `linear-gradient(to bottom, #1450d6 0%, #1450d6 48%, rgba(20,80,214,0.55) 72%, #ffffff 100%), url(${heroGradient})`,
           backgroundSize: 'cover',
           backgroundPosition: 'center top',
           backgroundRepeat: 'no-repeat',
@@ -198,11 +198,11 @@ export default function CaseStudyAhamX({ onBack, onNext, isRevealed = true }) {
           initial={{ opacity: 0, y: -10 }}
           animate={isRevealed ? { opacity: 1, y: 0 } : { opacity: 0, y: -10 }}
           transition={{ duration: 0.6, delay: 0.05, ease: [0.16, 1, 0.3, 1] }}
-          className="flex items-center justify-between pb-6 sm:pb-8 border-b border-gray-100"
+          className="flex items-center justify-between pb-6 sm:pb-8 border-b border-white/20"
         >
           <button
             onClick={onBack}
-            className="min-h-11 inline-flex items-center gap-2 text-small font-basier font-medium text-[#6b7280] hover:text-[#111827] transition-colors cursor-pointer group"
+            className="min-h-11 inline-flex items-center gap-2 text-small font-basier font-medium text-[#cfe0ff] hover:text-white transition-colors cursor-pointer group"
           >
             <ArrowLeft className="w-4 h-4 transition-transform group-hover:-translate-x-1" />
             <span>Back to Selected Works</span>
@@ -214,7 +214,7 @@ export default function CaseStudyAhamX({ onBack, onNext, isRevealed = true }) {
           initial={{ opacity: 0, y: 32 }}
           animate={isRevealed ? { opacity: 1, y: 0 } : { opacity: 0, y: 32 }}
           transition={{ duration: 0.85, delay: 0.12, ease: [0.16, 1, 0.3, 1] }}
-          className="text-h2 sm:text-h1 md:text-display-sm font-seasons font-normal text-[#111827] leading-[1.15] sm:leading-[1.1] tracking-[-0.02em] pt-6 sm:pt-8"
+          className="text-h2 sm:text-h1 md:text-display-sm font-seasons font-normal text-[#f3f7ff] leading-[1.15] sm:leading-[1.1] tracking-[-0.02em] pt-6 sm:pt-8"
         >
           AhamX: one learning platform for everyone
         </motion.h1>
@@ -225,7 +225,7 @@ export default function CaseStudyAhamX({ onBack, onNext, isRevealed = true }) {
           initial={{ opacity: 0, y: 20 }}
           animate={isRevealed ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
           transition={{ duration: 0.7, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
-          className="mt-6 pt-4 border-t border-gray-200 text-small text-gray-600 font-basier scroll-mt-28"
+          className="mt-6 pt-4 border-t border-white/25 text-small text-[#cfe0ff] font-basier scroll-mt-28"
         >
           Sole product designer · 3 months · Web & mobile · Shipped, demoed at India AI Impact Summit 2026
         </motion.p>
@@ -234,7 +234,7 @@ export default function CaseStudyAhamX({ onBack, onNext, isRevealed = true }) {
           initial={{ opacity: 0, y: 22 }}
           animate={isRevealed ? { opacity: 1, y: 0 } : { opacity: 0, y: 22 }}
           transition={{ duration: 0.8, delay: 0.22, ease: [0.16, 1, 0.3, 1] }}
-          className="text-body sm:text-lead text-[#374151] mt-3 sm:mt-4 leading-[1.5] tracking-[-0.015em] font-basier font-normal italic"
+          className="text-body sm:text-lead text-[#cfe0ff] mt-3 sm:mt-4 leading-[1.5] tracking-[-0.015em] font-basier font-normal italic"
         >
           One learning platform for learners, educators, and organization leads.
         </motion.p>

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
+import FrameHang from './FrameHang';
 import { ArrowLeft, ArrowUpRight, Mail, FileText } from 'lucide-react';
 import AboutCamera from './AboutCamera';
 import heroGradient from './assets/564cc67c35dca41051d7d78448f696fab9f139d9.webp';
@@ -45,13 +46,14 @@ export default function AboutPage({ onBack, isRevealed = true }) {
   const entranceEase = [0.16, 1, 0.3, 1];
 
   return (
-    <div className="min-h-screen bg-white text-[#111827] relative selection:bg-[#12315a] selection:text-white flex flex-col overflow-x-clip">
+    <div className="about-themed min-h-screen text-white relative selection:bg-[#e8c773] selection:text-[#12315a] flex flex-col overflow-x-clip"
+      style={{ background: 'radial-gradient(ellipse at 50% 0%, #2a6cf0 0%, #1450d6 38%, #0f3fae 100%)' }}>
       {/* Ambient gradient header background matching case studies & hero */}
       <div
         aria-hidden="true"
         className="absolute inset-x-0 top-0 -z-10 h-[680px] sm:h-[840px] pointer-events-none"
         style={{
-          backgroundImage: `linear-gradient(to bottom, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.25) 45%, #ffffff 100%), url(${heroGradient})`,
+          backgroundImage: `linear-gradient(to bottom, rgba(20,80,214,0.10) 0%, rgba(20,80,214,0.5) 50%, #1450d6 100%), url(${heroGradient})`,
           backgroundSize: 'cover',
           backgroundPosition: 'center top',
           backgroundRepeat: 'no-repeat',
@@ -67,7 +69,7 @@ export default function AboutPage({ onBack, isRevealed = true }) {
               initial={{ opacity: 0, y: 24 }}
               animate={shouldAnimate ? { opacity: 1, y: 0 } : { opacity: 0, y: 24 }}
               transition={{ duration: 0.85, delay: 0.08, ease: entranceEase }}
-              className="text-4xl sm:text-5xl md:text-6xl lg:text-display tracking-tight text-[#12315a] select-none"
+              className="text-4xl sm:text-5xl md:text-6xl lg:text-display tracking-tight text-[#f3f7ff] select-none"
               style={{
                 fontFamily: "'The Seasons', Georgia, serif",
                 fontWeight: 700,
@@ -86,14 +88,14 @@ export default function AboutPage({ onBack, isRevealed = true }) {
               initial={{ opacity: 0, y: 28 }}
               animate={shouldAnimate ? { opacity: 1, y: 0 } : { opacity: 0, y: 28 }}
               transition={{ duration: 0.9, delay: 0.24, ease: entranceEase }}
-              className={`camera-introduction flex flex-col justify-center space-y-3 sm:space-y-4 text-[#1f2937] is-visible`}
+              className={`camera-introduction flex flex-col justify-center space-y-3 sm:space-y-4 text-[#d6e2fa] is-visible`}
             >
               {/* Headline in The Seasons */}
               <motion.h2
                 initial={{ opacity: 0, y: 16 }}
                 animate={shouldAnimate ? { opacity: 1, y: 0 } : { opacity: 0, y: 16 }}
                 transition={{ duration: 0.8, delay: 0.3, ease: entranceEase }}
-                className="text-lg sm:text-xl lg:text-h3 font-seasons font-normal not-italic text-[#12315a] leading-[1.3] tracking-tight"
+                className="text-lg sm:text-xl lg:text-h3 font-seasons font-normal not-italic text-[#f3f7ff] leading-[1.3] tracking-tight"
               >
                 Product designer, based in Hyderabad.
               </motion.h2>
@@ -117,7 +119,7 @@ export default function AboutPage({ onBack, isRevealed = true }) {
               >
                 <a
                   href="mailto:yogeshbattula55@gmail.com"
-                  className="inline-flex items-center gap-1.5 font-medium text-[#12315a] hover:underline"
+                  className="inline-flex items-center gap-1.5 font-medium text-[#e8c773] hover:underline"
                 >
                   <Mail className="w-3.5 h-3.5" />
                   <span>yogeshbattula55@gmail.com</span>
@@ -127,22 +129,22 @@ export default function AboutPage({ onBack, isRevealed = true }) {
                   href="https://www.linkedin.com/in/yogeshbattula/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1 font-medium text-[#12315a] hover:underline"
+                  className="inline-flex items-center gap-1 font-medium text-[#e8c773] hover:underline"
                 >
                   <LinkedinIcon className="w-3 h-3" />
                   <span>LinkedIn</span>
-                  <ArrowUpRight className="w-2.5 h-2.5 text-[#12315a]/70" />
+                  <ArrowUpRight className="w-2.5 h-2.5 text-[#e8c773]/70" />
                 </a>
 
                 <a
                   href="https://www.behance.net/yogeshbattula5"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1 font-medium text-[#12315a] hover:underline"
+                  className="inline-flex items-center gap-1 font-medium text-[#e8c773] hover:underline"
                 >
                   <BehanceIcon className="w-3 h-3" />
                   <span>Behance</span>
-                  <ArrowUpRight className="w-2.5 h-2.5 text-[#12315a]/70" />
+                  <ArrowUpRight className="w-2.5 h-2.5 text-[#e8c773]/70" />
                 </a>
 
                 <a
@@ -150,16 +152,18 @@ export default function AboutPage({ onBack, isRevealed = true }) {
                   download="Yogesh_Battula_Resume.pdf"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1 font-medium text-[#12315a] hover:underline"
+                  className="inline-flex items-center gap-1 font-medium text-[#e8c773] hover:underline"
                 >
                   <FileText className="w-3 h-3" />
                   <span>Resume</span>
-                  <ArrowUpRight className="w-2.5 h-2.5 text-[#12315a]/70" />
+                  <ArrowUpRight className="w-2.5 h-2.5 text-[#e8c773]/70" />
                 </a>
               </motion.div>
             </motion.div>
           </div>
         </section>
+
+        <FrameHang />
 
         {/* 2. Experience Section */}
         <TypewriterExperience />
@@ -168,11 +172,11 @@ export default function AboutPage({ onBack, isRevealed = true }) {
         <CassetteCollection />
 
         {/* 4. Elegant Bottom Navigation & Footer */}
-        <section className="w-full max-w-5xl mx-auto px-5 sm:px-8 lg:px-10 pt-8 pb-16 sm:pb-24 border-t border-black/[0.06] mt-8 flex flex-col sm:flex-row items-center justify-between gap-6">
+        <section className="w-full max-w-5xl mx-auto px-5 sm:px-8 lg:px-10 pt-8 pb-16 sm:pb-24 border-t border-[#e8c773]/25 mt-8 flex flex-col sm:flex-row items-center justify-between gap-6">
           <div className="flex items-center gap-4">
             <button
               onClick={onBack}
-              className="group inline-flex items-center gap-2 px-4 py-2 rounded-full bg-black/[0.04] hover:bg-black/[0.08] text-[#111827] text-small font-medium border border-black/[0.1] transition-colors cursor-pointer"
+              className="group inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 hover:bg-white/20 text-white text-small font-medium border border-white/25 transition-colors cursor-pointer"
             >
               <ArrowLeft className="w-3.5 h-3.5 transition-transform duration-300 group-hover:-translate-x-1" />
               <span>Return to portfolio</span>
@@ -180,14 +184,14 @@ export default function AboutPage({ onBack, isRevealed = true }) {
 
             <a
               href="mailto:yogeshbattula55@gmail.com"
-              className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-[#12315a] hover:bg-[#0b2342] text-white text-small font-medium transition-colors"
+              className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-[#e8c773] hover:bg-[#f3d98f] text-[#12315a] text-small font-medium transition-colors"
             >
               <Mail className="w-3.5 h-3.5" />
               <span>Say hello</span>
             </a>
           </div>
 
-          <div className="text-caption text-[#6b7280]">
+          <div className="text-caption text-[#b9c9e6]">
             Crafted with thoughtful care • Hyderabad, India
           </div>
         </section>

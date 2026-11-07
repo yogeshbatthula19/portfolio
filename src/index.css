@@ -292,3 +292,12 @@ i, em, cite, dfn, var, address {
 .frame-root:hover .frame-shimmer,.group:hover .frame-shimmer{background-position:-20% 0;opacity:.85}
 @keyframes frame-sway{0%,100%{rotate:0deg}50%{rotate:.6deg}}
 @media (prefers-reduced-motion:reduce){.frame-shimmer{transition:none}}
+
+/* About page on the cobalt wall */
+.about-themed .collection-heading>span{color:#e8c773}
+.about-themed .collection-heading h2{color:#f3f7ff}
+.about-themed .experience-intro{color:#b9c9e6}
+.about-themed .camera-prompt{color:#b9c9e6}
+.about-themed .shelf-plank{opacity:.95}
+.about-themed .camera-introduction p:not(.about-signature){color:#d6e2fa}
+.about-themed .camera-introduction p a{color:#e8c773}

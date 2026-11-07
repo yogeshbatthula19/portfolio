@@ -1,3 +1,4 @@
+import Frame from './Frame';
 import React, { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { motion, useReducedMotion } from 'framer-motion';
 import { ArrowLeft } from 'lucide-react';
@@ -38,7 +39,7 @@ export default function NotFound({ onHome, onWorks }) {
 
   useEffect(() => {
     const prevTitle = document.title;
-    document.title = 'Returned to sender · Yogesh Battula';
+    document.title = 'Nothing hangs here · Yogesh Battula';
     const robots = document.createElement('meta');
     robots.name = 'robots';
     robots.content = 'noindex';
@@ -52,54 +53,31 @@ export default function NotFound({ onHome, onWorks }) {
   const path = typeof window !== 'undefined' ? window.location.pathname : '';
 
   return (
-    <main className="min-h-screen bg-[#fbf6ee] flex items-center justify-center px-4 py-16 font-basier">
+    <main style={{ background: 'radial-gradient(ellipse at 50% 0%, #2a6cf0 0%, #1450d6 45%, #0f3fae 100%)' }} className="min-h-screen flex items-center justify-center px-4 py-16 font-basier">
       <div className="w-full max-w-[520px] text-center">
         <motion.div
-          initial={reduced ? false : { opacity: 0, y: 24, rotate: -6 }}
-          animate={{ opacity: 1, y: 0, rotate: -3 }}
-          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-          className="relative mx-auto w-[260px] sm:w-[300px] drop-shadow-[0_24px_30px_rgba(120,80,20,0.32)]"
+          initial={reduced ? false : { opacity: 0, y: -50, rotate: -4 }}
+          animate={{ opacity: 1, y: 0, rotate: 0 }}
+          transition={{ type: 'spring', stiffness: 90, damping: 11, mass: 0.9 }}
+          style={{ transformOrigin: '50% 0%' }}
+          className="relative mx-auto w-[240px] sm:w-[280px] aspect-[4/5]"
         >
-          <div ref={stampRef} className="aspect-[4/5] bg-[#f7e8cf] p-4" style={{ clipPath: clip }}>
-          <div className="h-full w-full rounded-[3px] bg-gradient-to-br from-[#ffb36b] via-[#ff8a3d] to-[#f25c2a] flex flex-col items-center justify-center text-white">
-            <span className="text-small uppercase tracking-[0.25em] opacity-80">Error</span>
-            <span className="text-[96px] sm:text-[112px] leading-none" style={{ fontFamily: "'The Seasons', Georgia, serif" }}>
-              404
-            </span>
-            <span className="text-caption uppercase tracking-[0.2em] opacity-80 mt-1">Postage due</span>
-          </div>
-          </div>
+          <Frame variant="portrait">
+            <div className="h-full w-full flex flex-col items-center justify-center text-[#e8c773]" style={{ background: 'radial-gradient(circle at 30% 25%, #1c4784 0%, #12315a 70%, #0d2444 100%)' }}>
+              <span className="text-small uppercase tracking-[0.25em] opacity-80">Empty frame</span>
+              <span className="text-[88px] sm:text-[104px] leading-none" style={{ fontFamily: "'The Seasons', Georgia, serif" }}>404</span>
+            </div>
+          </Frame>
         </motion.div>
 
-        {/* Postmark stamped over the corner */}
-        <motion.svg
-          aria-hidden="true"
-          viewBox="0 0 200 200"
-          className="relative -mt-[120px] ml-[52%] w-[150px] sm:w-[170px] text-[#b4321f]"
-          initial={reduced ? false : { opacity: 0, scale: 1.6, rotate: 20 }}
-          animate={{ opacity: 0.85, scale: 1, rotate: 12 }}
-          transition={{ duration: 0.35, delay: 0.55, ease: [0.34, 1.56, 0.64, 1] }}
-        >
-          <defs>
-            <path id="postmark-arc" d="M 100 100 m -70 0 a 70 70 0 1 1 140 0 a 70 70 0 1 1 -140 0" />
-          </defs>
-          <circle cx="100" cy="100" r="88" fill="none" stroke="currentColor" strokeWidth="5" />
-          <circle cx="100" cy="100" r="54" fill="none" stroke="currentColor" strokeWidth="3" />
-          <text fontSize="17" fontWeight="700" letterSpacing="4" fill="currentColor">
-            <textPath href="#postmark-arc">RETURN TO SENDER · ADDRESS UNKNOWN ·</textPath>
-          </text>
-          <text x="100" y="96" textAnchor="middle" fontSize="16" fontWeight="700" fill="currentColor">HYD</text>
-          <text x="100" y="116" textAnchor="middle" fontSize="12" fill="currentColor">INDIA</text>
-        </motion.svg>
-
         <h1
-          className="mt-4 text-h2 sm:text-h1 text-[#08304C] leading-tight"
+          className="mt-8 text-h2 sm:text-h1 text-[#f3f7ff] leading-tight"
           style={{ fontFamily: "'The Seasons', Georgia, serif" }}
         >
-          Returned to sender
+          Nothing hangs here
         </h1>
-        <p className="mt-3 text-body text-[#4b5563] leading-relaxed">
-          Nothing lives at <span className="font-medium text-[#111827] break-all">{path}</span>. The page may have moved, or the link has a typo.
+        <p className="mt-3 text-body text-[#c8d7f2] leading-relaxed">
+          Nothing lives at <span className="font-medium text-[#e8c773] break-all">{path}</span>. The page may have moved, or the link has a typo.
         </p>
 
         <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3">
@@ -113,7 +91,7 @@ export default function NotFound({ onHome, onWorks }) {
           <a
             href="/"
             onClick={(e) => { e.preventDefault(); onHome(); }}
-            className="inline-flex items-center gap-2 px-5 py-3 rounded-full text-small font-medium text-[#374151] hover:text-black"
+            className="inline-flex items-center gap-2 px-5 py-3 rounded-full text-small font-medium text-[#cfe0ff] hover:text-white"
           >
             <ArrowLeft className="w-4 h-4" /> Back to home
           </a>
