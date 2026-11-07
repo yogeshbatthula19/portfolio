@@ -17,7 +17,7 @@ const META = {"sq1": {"w": 281, "h": 269, "l": 51, "t": 52, "r": 49, "b": 52}, "
 // Older names used around the site map onto the real frames.
 const ALIAS = { ornate: 'portrait', carved: 'land', slim: 'sq1', oval: 'round', plaque: 'sq2' };
 
-export default function Frame({ children, className = '', variant = 'portrait', thickness = 0.7 }) {
+export default function Frame({ children, className = '', variant = 'portrait', thickness = 0.62 }) {
   const key = SRC[variant] ? variant : (ALIAS[variant] || 'portrait');
   const m = META[key];
   const round = key === 'round';
@@ -35,7 +35,7 @@ export default function Frame({ children, className = '', variant = 'portrait', 
   const cq = (v) => `${((v / m.w) * 100 * thickness).toFixed(2)}cqw`;
   return (
     <div
-      className={`relative w-full h-full select-none transition-transform duration-300 ease-out group-hover:scale-[1.02] ${className}`}
+      className={`frame-root relative w-full h-full select-none transition-transform duration-300 ease-out group-hover:scale-[1.02] ${className}`}
       style={{ containerType: 'inline-size', filter: 'drop-shadow(0 14px 14px rgba(0,0,0,0.38))' }}
     >
       <div
@@ -55,6 +55,19 @@ export default function Frame({ children, className = '', variant = 'portrait', 
           <div className="absolute" style={{ inset: '-1.5px' }}>{children}</div>
         </div>
       </div>
+      <div
+        aria-hidden="true"
+        className="frame-shimmer absolute inset-0 box-border pointer-events-none"
+        style={{
+          borderStyle: 'solid',
+          borderColor: 'transparent',
+          borderWidth: `${cq(m.t)} ${cq(m.r)} ${cq(m.b)} ${cq(m.l)}`,
+          WebkitMaskBoxImageSource: `url(${SRC[key]})`,
+          WebkitMaskBoxImageSlice: `${m.t} ${m.r} ${m.b} ${m.l}`,
+          WebkitMaskBoxImageWidth: `${cq(m.t)} ${cq(m.r)} ${cq(m.b)} ${cq(m.l)}`,
+          WebkitMaskBoxImageRepeat: 'stretch',
+        }}
+      />
     </div>
   );
 }

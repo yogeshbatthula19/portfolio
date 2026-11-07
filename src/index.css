@@ -286,3 +286,9 @@ i, em, cite, dfn, var, address {
 
 /* Gallery wall: gold hairline around work cards */
 .case-study-card{box-shadow:0 0 0 1px rgba(232,199,115,.6),0 22px 34px -20px rgba(0,0,0,.45)}
+
+/* Frames: gold sheen sweeps across the carving on hover */
+.frame-shimmer{background:linear-gradient(110deg,rgba(255,255,255,0) 38%,rgba(255,255,255,.9) 50%,rgba(255,255,255,0) 62%);background-size:300% 100%;background-position:120% 0;opacity:.0;transition:background-position 1.1s cubic-bezier(.22,1,.36,1),opacity .3s}
+.frame-root:hover .frame-shimmer,.group:hover .frame-shimmer{background-position:-20% 0;opacity:.85}
+@keyframes frame-sway{0%,100%{rotate:0deg}50%{rotate:.6deg}}
+@media (prefers-reduced-motion:reduce){.frame-shimmer{transition:none}}

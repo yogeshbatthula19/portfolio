@@ -256,8 +256,10 @@ function CaseStudyCard({ cover, title, outcome, description, onClick, onMouseEnt
       className={`case-study-card w-full bg-white rounded-[24px] border border-black/[0.08] overflow-hidden flex flex-col group transition-all duration-300 hover:border-black/20 hover:shadow-[0_16px_36px_-12px_rgba(0,0,0,0.08)] relative select-none will-change-transform no-underline text-inherit ${onClick ? 'cursor-pointer' : ''}`}
     >
       {/* Banner */}
-      <div className="relative w-full h-[210px] sm:h-[220px] overflow-hidden select-none bg-gray-50">
-        <CoverArt {...cover} alt={`${title} project preview`} />
+      <div className="relative w-full h-[230px] sm:h-[240px] p-3 select-none">
+        <Frame variant="wide" thickness={0.3}>
+          <CoverArt {...cover} alt={`${title} project preview`} />
+        </Frame>
         {isLocked && (
           <div className="absolute top-3.5 right-3.5 z-10 inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/90 backdrop-blur-md text-caption font-medium text-[#111827] shadow-sm border border-black/[0.08]">
             <Lock className="w-3 h-3 text-[#12315a]" />
@@ -963,7 +965,7 @@ export default function App() {
 
   // Image 2: Golden Retriever -> Slot 2
   const img2X = useTransform(smoothScrollY, scrollRange, [fitFlightX(-630, 257, 330), 0]);
-  const img2Y = useTransform(smoothScrollY, scrollRange, [-519, 0]);
+  const img2Y = useTransform(smoothScrollY, scrollRange, [-545, 0]);
   const img2ScaleX = useTransform(smoothScrollY, scrollRange, [330 / 426, 1]);
   const img2ScaleY = useTransform(smoothScrollY, scrollRange, [165 / 210, 1]);
   const img2Rotate = useTransform(smoothScrollY, scrollRange, [-15, 0]);
@@ -977,13 +979,13 @@ export default function App() {
 
   // Image 4: Couple Photo -> Slot 4
   const img4X = useTransform(smoothScrollY, scrollRange, [fitFlightX(-290, 36, 168), 0]);
-  const img4Y = useTransform(smoothScrollY, scrollRange, [-605, 0]);
+  const img4Y = useTransform(smoothScrollY, scrollRange, [-590, 0]);
   const img4ScaleX = useTransform(smoothScrollY, scrollRange, [168 / 205, 1]);
   const img4ScaleY = useTransform(smoothScrollY, scrollRange, [172 / 210, 1]);
   const img4Rotate = useTransform(smoothScrollY, scrollRange, [10, 0]);
 
   // Image 5: Breakfast Plate -> Slot 5
-  const img5X = useTransform(smoothScrollY, scrollRange, [fitFlightX(680, 257, 390), 0]);
+  const img5X = useTransform(smoothScrollY, scrollRange, [fitFlightX(250, 257, 390), 0]);
   const img5Y = useTransform(smoothScrollY, scrollRange, [-630, 0]);
   const img5ScaleX = useTransform(smoothScrollY, scrollRange, [168 / 205, 1]);
   const img5ScaleY = useTransform(smoothScrollY, scrollRange, [172 / 210, 1]);
@@ -1021,10 +1023,10 @@ export default function App() {
         {currentView === 'ahamx' ? (
           <motion.div
             key="ahamx"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.32, ease: [0.22, 1, 0.36, 1] }}
+            initial={{ opacity: 0, y: 14 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -8 }}
+            transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
           >
             <React.Suspense fallback={<div className="min-h-screen bg-[#fafafa]" />}>
               <CaseStudyAhamX onBack={navigateToHome} onNext={navigateToCaseStudy} isRevealed={caseStudyRevealed} />
@@ -1033,10 +1035,10 @@ export default function App() {
         ) : currentView === 'trosky' ? (
           <motion.div
             key="trosky"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.32, ease: [0.22, 1, 0.36, 1] }}
+            initial={{ opacity: 0, y: 14 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -8 }}
+            transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
           >
             <React.Suspense fallback={<div className="min-h-screen bg-[#fafafa]" />}>
               <CaseStudyTrosky onBack={navigateToHome} onNext={navigateToCaseStudy} isRevealed={caseStudyRevealed} />
@@ -1045,10 +1047,10 @@ export default function App() {
         ) : currentView === 'ryzeup' ? (
           <motion.div
             key="ryzeup"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.32, ease: [0.22, 1, 0.36, 1] }}
+            initial={{ opacity: 0, y: 14 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -8 }}
+            transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
           >
             <React.Suspense fallback={<div className="min-h-screen bg-[#fafafa]" />}>
               <CaseStudyRyzeup onBack={navigateToHome} onNext={navigateToCaseStudy} isRevealed={caseStudyRevealed} />
@@ -1057,20 +1059,20 @@ export default function App() {
         ) : currentView === 'notfound' ? (
           <motion.div
             key="notfound"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.32, ease: [0.22, 1, 0.36, 1] }}
+            initial={{ opacity: 0, y: 14 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -8 }}
+            transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
           >
             <NotFound onHome={() => navigateToHome('top')} onWorks={() => navigateToHome('works')} />
           </motion.div>
         ) : currentView === 'about' ? (
           <motion.div
             key="about"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.32, ease: [0.22, 1, 0.36, 1] }}
+            initial={{ opacity: 0, y: 14 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -8 }}
+            transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
           >
             <React.Suspense fallback={<div className="min-h-screen bg-[#fafafa]" />}>
               <AboutPage onBack={() => navigateToHome('about')} isRevealed={aboutRevealed} />
