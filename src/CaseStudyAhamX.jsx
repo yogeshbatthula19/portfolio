@@ -249,49 +249,15 @@ export default function CaseStudyAhamX({ onBack, onNext, isRevealed = true }) {
         </motion.h1>
 
         {/* Meta Bar / Project Overview - Clean White & Grey Grid */}
-        <motion.div 
+        <motion.p
           id="section-overview"
           initial={{ opacity: 0, y: 20 }}
           animate={isRevealed ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
           transition={{ duration: 0.7, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
-          className="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-6 pt-6 pb-6 mt-8 border-t border-b border-gray-200 scroll-mt-28"
+          className="mt-6 pt-4 border-t border-gray-200 text-small text-gray-600 font-basier scroll-mt-28"
         >
-          <div>
-            <div className="type-label">Role</div>
-            <div className="text-small font-basier font-medium text-[#111827] mt-1">
-              Product Designer
-            </div>
-            <div className="text-caption text-gray-500 font-normal">Sole Designer</div>
-          </div>
-          <div>
-            <div className="type-label">Team</div>
-            <div className="text-small font-basier font-medium text-[#111827] mt-1">
-              Agile pod
-            </div>
-            <div className="text-caption text-gray-500 font-normal">Design + engineering</div>
-          </div>
-          <div>
-            <div className="type-label">Timeline</div>
-            <div className="text-small font-basier font-medium text-[#111827] mt-1">
-              3 Months
-            </div>
-            <div className="text-caption text-gray-500 font-normal">Shipped to Prod</div>
-          </div>
-          <div>
-            <div className="type-label">Platforms</div>
-            <div className="text-small font-basier font-medium text-[#111827] mt-1">
-              Web & Mobile
-            </div>
-            <div className="text-caption text-gray-500 font-normal">Responsive System</div>
-          </div>
-          <div className="col-span-2 sm:col-span-4 border-t pt-3 border-gray-100">
-            <div className="type-label">Outcome</div>
-            <div className="text-small font-basier font-medium text-[#111827] mt-1 leading-snug">
-              Shipped; demoed at India AI Impact Summit 2026
-            </div>
-            <div className="text-caption text-gray-500 font-normal">Google and ARTPARK pavilions</div>
-          </div>
-        </motion.div>
+          Sole product designer · 3 months · Web & mobile · Shipped, demoed at India AI Impact Summit 2026
+        </motion.p>
         {/* Subtitle */}
         <motion.p
           initial={{ opacity: 0, y: 22 }}

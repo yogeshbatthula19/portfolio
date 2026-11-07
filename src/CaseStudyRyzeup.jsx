@@ -225,49 +225,15 @@ export default function CaseStudyRyzeup({ onBack, onNext, isRevealed = true }) {
         </motion.p>
 
         {/* Meta Bar / Project Overview - Clean White & Grey Grid */}
-        <motion.div 
+        <motion.p
           id="section-overview"
           initial={{ opacity: 0, y: 20 }}
           animate={isRevealed ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
           transition={{ duration: 0.7, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
-          className="grid grid-cols-2 sm:grid-cols-5 gap-4 sm:gap-6 pt-6 pb-6 mt-8 border-t border-b border-gray-200 scroll-mt-28"
+          className="mt-6 pt-4 border-t border-gray-200 text-small text-gray-600 font-basier scroll-mt-28"
         >
-          <div>
-            <div className="type-label">Role</div>
-            <div className="text-small font-basier font-medium text-[#111827] mt-1">
-              Product Designer
-            </div>
-            <div className="text-caption text-gray-500 font-normal">Sole Designer</div>
-          </div>
-          <div>
-            <div className="type-label">Team</div>
-            <div className="text-small font-basier font-medium text-[#111827] mt-1">
-              4 Members
-            </div>
-            <div className="text-caption text-gray-500 font-normal">1 PM, 2 Mobile, 1 Backend</div>
-          </div>
-          <div>
-            <div className="type-label">Timeline</div>
-            <div className="text-small font-basier font-medium text-[#111827] mt-1">
-              2 Months
-            </div>
-            <div className="text-caption text-gray-500 font-normal">Shipped Beta</div>
-          </div>
-          <div>
-            <div className="type-label">Platforms</div>
-            <div className="text-small font-basier font-medium text-[#111827] mt-1">
-              iOS & Android
-            </div>
-            <div className="text-caption text-gray-500 font-normal">Native Mobile</div>
-          </div>
-          <div className="col-span-2 sm:col-span-1 border-t sm:border-t-0 pt-3 sm:pt-0 border-gray-100">
-            <div className="type-label">Milestone</div>
-            <div className="text-small font-basier font-medium text-[#111827] mt-1 leading-snug">
-              Beta Pilot
-            </div>
-            <div className="text-caption text-gray-500 font-normal">+15% Monthly Growth</div>
-          </div>
-        </motion.div>
+          Sole product designer · 2 months · iOS & Android · Beta pilot
+        </motion.p>
 
       </header>
 

@@ -37,7 +37,7 @@ const TROSKY_SECTIONS = [
   { id: 'section-loop', label: 'The Routine Loop' },
   { id: 'section-structure', label: 'Structure & Flow' },
   { id: 'section-design', label: 'Visual Interface' },
-  { id: 'section-details', label: 'Designing for the Field' },
+  { id: 'section-details', label: 'Built for the field' },
   { id: 'section-outcomes', label: 'Outcomes & Metrics' },
   { id: 'section-reflection', label: 'Retrospective' },
 ];
@@ -382,7 +382,7 @@ export default function CaseStudyTrosky({ onBack, onNext, isRevealed = true }) {
           transition={{ duration: 0.85, delay: 0.12, ease: [0.16, 1, 0.3, 1] }}
           className="text-h2 sm:text-display-sm font-seasons font-normal text-[#111827] leading-[1.12] sm:leading-[1.08] tracking-[-0.02em] pt-6 sm:pt-8"
         >
-          Trosky 365 — A Coach in Your Pocket
+          Trosky 365: a coach in your pocket
         </motion.h1>
 
         {/* Subtitle */}
@@ -392,53 +392,19 @@ export default function CaseStudyTrosky({ onBack, onNext, isRevealed = true }) {
           transition={{ duration: 0.8, delay: 0.22, ease: [0.16, 1, 0.3, 1] }}
           className="text-body sm:text-lead text-[#4b5563] mt-3 sm:mt-4 leading-[1.5] tracking-[-0.015em] font-basier font-normal italic"
         >
-          Turning the Trosky 365 mobile app into a daily practice ritual and mental composure companion for baseball players between coaching sessions.
+          A daily practice routine for baseball players, for the days between coaching sessions.
         </motion.p>
 
         {/* Meta Bar / Project Overview - Clean White & Grey Grid */}
-        <motion.div 
+        <motion.p
           id="section-overview"
           initial={{ opacity: 0, y: 20 }}
           animate={isRevealed ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
           transition={{ duration: 0.7, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
-          className="grid grid-cols-2 sm:grid-cols-5 gap-4 sm:gap-6 pt-6 pb-6 mt-8 border-t border-b border-gray-200 scroll-mt-28"
+          className="mt-6 pt-4 border-t border-gray-200 text-small text-gray-600 font-basier scroll-mt-28"
         >
-          <div>
-            <div className="type-label">Role</div>
-            <div className="text-small font-basier font-medium text-[#111827] mt-1">
-              Product Designer
-            </div>
-            <div className="text-caption text-gray-500 font-normal">Sole Designer</div>
-          </div>
-          <div>
-            <div className="type-label">Team</div>
-            <div className="text-small font-basier font-medium text-[#111827] mt-1">
-              3 Members
-            </div>
-            <div className="text-caption text-gray-500 font-normal">Nate Trosky, Coach Matt, 1 Eng</div>
-          </div>
-          <div>
-            <div className="type-label">Timeline</div>
-            <div className="text-small font-basier font-medium text-[#111827] mt-1">
-              6 Weeks
-            </div>
-            <div className="text-caption text-gray-500 font-normal">Shipped Beta</div>
-          </div>
-          <div>
-            <div className="type-label">Platforms</div>
-            <div className="text-small font-basier font-medium text-[#111827] mt-1">
-              iOS (iPhone)
-            </div>
-            <div className="text-caption text-gray-500 font-normal">Native Mobile</div>
-          </div>
-          <div className="col-span-2 sm:col-span-1 border-t sm:border-t-0 pt-3 sm:pt-0 border-gray-100">
-            <div className="type-label">Milestone</div>
-            <div className="text-small font-basier font-medium text-[#111827] mt-1 leading-snug">
-              42-Athlete Beta
-            </div>
-            <div className="text-caption text-gray-500 font-normal">Hitting, Fielding & 6th Tool</div>
-          </div>
-        </motion.div>
+          Sole product designer · 6 weeks · iOS · Shipped to beta
+        </motion.p>
       </header>
 
       {/* ------------------------------------------------------------- */}
@@ -469,7 +435,7 @@ export default function CaseStudyTrosky({ onBack, onNext, isRevealed = true }) {
                 Executive Summary
               </h3>
               <p className="cs-body text-body text-[#1f2937] leading-[1.6] font-basier font-normal">
-                <strong>Trosky 365</strong> is a mobile coaching companion designed to bridge the gap between weekly private lessons and solo practice. I led the product and interaction design for iOS, turning Coach Nate Trosky’s hitting and fielding drills and his "6th Tool" mental framework into a focused 10-minute daily routine: watch a short clip, explain it back, practise, and reflect.
+                <strong>Trosky 365</strong> helps baseball players practise well when their coach isn’t there. I designed the iOS app, turning Coach Nate Trosky’s hitting and fielding drills, and his “6th Tool” mindset training, into one 10-minute daily routine: watch a short clip, explain it back, practise, reflect.
               </p>
             </div>
           </ScrollReveal>
@@ -483,20 +449,20 @@ export default function CaseStudyTrosky({ onBack, onNext, isRevealed = true }) {
         <section id="section-context" className="space-y-6 scroll-mt-28">
           <ScrollReveal>
             <h2 className="cs-section-title text-h3 md:text-h2 font-basier font-medium text-[#111827] tracking-tight leading-snug">
-              Practice Happens Between Coaching Sessions
+              Most practice happens without the coach
             </h2>
           </ScrollReveal>
 
           <ScrollReveal delay={0.06}>
             <div className="cs-body text-body text-[#374151] leading-[1.6] space-y-4 font-basier font-normal">
               <p>
-                Most baseball players don’t struggle because they lack desire or talent. They struggle because ninety percent of their practice happens when their coach isn’t standing right next to them.
+                Most players don’t struggle for lack of talent. They struggle because ninety percent of their practice happens when their coach isn’t there.
               </p>
               <p>
-                Trosky Baseball has built one of the country's most respected infield programs, known for mastering elite glovework and what Coach Trosky calls the 6th Tool—mental composure, breath control, and self-belief. Alongside fielding, the program coaches hitting mechanics, so the app had to carry both. But when players stepped off the field and opened it, that coaching presence disappeared into an uncurated library of static video files.
+                Trosky Baseball runs one of the country’s most respected infield programs. It also teaches hitting, and what Coach Trosky calls the 6th Tool: staying calm, controlling your breathing and believing in yourself. The app had to carry all of it. But once players left the field, the coaching disappeared into a long list of video files.
               </p>
               <p>
-                Players faced dozens of drills with no clear sequence, no guidance on what they should be feeling, and no way to know whether they were actually improving. Working directly with Coach Nate Trosky and Coach Matt, my goal was to take that catalog and build a simple, focused daily routine that feels like a conversation with your coach.
+                Players saw dozens of drills with no order, no hint of what to feel, and no way to tell if they were improving. Working with Coach Nate Trosky and Coach Matt, I set out to turn that list into one short daily routine that feels like talking to your coach.
               </p>
             </div>
           </ScrollReveal>
@@ -510,13 +476,13 @@ export default function CaseStudyTrosky({ onBack, onNext, isRevealed = true }) {
         <section id="section-challenge" className="space-y-6 scroll-mt-28">
           <ScrollReveal>
             <h2 className="cs-section-title text-h3 md:text-h2 font-basier font-medium text-[#111827] tracking-tight leading-snug">
-              A List Tells You What to Do. A Coach Helps You Understand Why.
+              A list tells you what to do. A coach explains why.
             </h2>
           </ScrollReveal>
 
           <ScrollReveal delay={0.06}>
             <p className="cs-body text-body text-[#374151] leading-[1.6] font-basier font-normal">
-              Traditional training apps treat athletes like passive consumers: watch a video, check a box, move on. But physical development requires real mental intent. When young players train alone, three friction points consistently show up:
+              Most training apps ask players to watch a video, tick a box and move on. But learning a skill takes thought. Practising alone, young players got stuck in three places:
             </p>
           </ScrollReveal>
 
@@ -525,28 +491,28 @@ export default function CaseStudyTrosky({ onBack, onNext, isRevealed = true }) {
             <div className="border border-gray-200 rounded-xl overflow-hidden bg-white shadow-xs">
               <div className="hidden sm:grid sm:grid-cols-3 bg-gray-50 border-b border-gray-200 p-3 text-caption font-basier font-medium uppercase tracking-wider text-gray-500">
                 <div className="col-span-1">Question</div>
-                <div className="col-span-2">What Happens in Solo Practice</div>
+                <div className="col-span-2">What happens when they practise alone</div>
               </div>
               
               <div className="divide-y divide-gray-100 text-small font-basier font-normal">
                 <div className="flex flex-col sm:grid sm:grid-cols-3 p-3.5 sm:p-4 gap-1.5 sm:gap-2">
                   <div className="font-basier font-medium text-gray-900">Where do I start?</div>
                   <div className="col-span-2 text-gray-600 leading-relaxed sm:border-l sm:border-gray-100 sm:pl-3">
-                    With forty video options, players freeze. They default to easy drills they already know instead of working on their weaknesses.
+                    With forty videos to choose from, players freeze and pick drills they already know instead of working on weak spots.
                   </div>
                 </div>
 
                 <div className="flex flex-col sm:grid sm:grid-cols-3 p-3.5 sm:p-4 gap-1.5 sm:gap-2">
                   <div className="font-basier font-medium text-gray-900">What should I notice?</div>
                   <div className="col-span-2 text-gray-600 leading-relaxed sm:border-l sm:border-gray-100 sm:pl-3">
-                    Watching a coach demonstrate footwork is easy. Feeling it in your own hips and fingers is difficult without clear focal cues.
+                    Watching a coach’s footwork is easy. Feeling it in your own hips and fingers is hard without one clear thing to focus on.
                   </div>
                 </div>
 
                 <div className="flex flex-col sm:grid sm:grid-cols-3 p-3.5 sm:p-4 gap-1.5 sm:gap-2">
                   <div className="font-basier font-medium text-gray-900">Did I make progress?</div>
                   <div className="col-span-2 text-gray-600 leading-relaxed sm:border-l sm:border-gray-100 sm:pl-3">
-                    Without an immediate post-drill reflection and feedback loop, solo practice feels invisible, and the habit quietly dies within a week.
+                    With no feedback after a drill, practice feels invisible and the habit fades within a week.
                   </div>
                 </div>
               </div>
@@ -555,7 +521,7 @@ export default function CaseStudyTrosky({ onBack, onNext, isRevealed = true }) {
 
           <ScrollReveal delay={0.1}>
             <blockquote className="border-l-2 border-gray-300 pl-4 sm:pl-6 my-2 text-body sm:text-lead font-seasons italic text-[#111827] leading-snug">
-              “How might we design a 10-minute daily routine that feels like a conversation with a mentor, rather than a playlist from an app?”
+              “How might we make a 10-minute daily routine that feels like a conversation with a mentor, not a playlist?”
             </blockquote>
           </ScrollReveal>
         </section>
@@ -568,20 +534,20 @@ export default function CaseStudyTrosky({ onBack, onNext, isRevealed = true }) {
         <section id="section-player" className="space-y-6 scroll-mt-28">
           <ScrollReveal>
             <h2 className="cs-section-title text-h3 md:text-h2 font-basier font-medium text-[#111827] tracking-tight leading-snug">
-              Designing for the Moment Between “Show Me” and “I Get It”
+              Designing for Alex, 13, practising alone
             </h2>
           </ScrollReveal>
 
           <ScrollReveal delay={0.06}>
             <div className="cs-body text-body text-[#374151] leading-[1.6] font-basier font-normal space-y-4">
               <p>
-                We grounded every decision around Alex, a thirteen-year-old travel ball infielder trying to make his high school varsity roster.
+                We designed around Alex, a thirteen-year-old travel ball infielder trying to make his high school varsity team.
               </p>
               <p>
-                Alex practices with his team two days a week. The other five days, he trains on his own in his garage, backyard, or against a brick school wall. Like most teenagers, his attention on a phone is fragile. If an app makes him read through dense menus with baseball gloves on, he closes it.
+                Alex trains with his team two days a week. The other five, he practises alone in his garage, backyard or against a school wall. Like most teenagers, he loses interest fast on a phone. If the app makes him dig through menus with a glove on, he closes it.
               </p>
               <p>
-                Our response was straightforward: keep every instructional video under ninety seconds, give the primary buttons massive touch targets he can tap with sweaty thumbs, and require an active recall check before he begins his physical reps.
+                So we kept each video to about a minute, made the main buttons big enough for sweaty thumbs, and asked him to explain the drill back before he starts his reps.
               </p>
             </div>
           </ScrollReveal>
@@ -595,13 +561,13 @@ export default function CaseStudyTrosky({ onBack, onNext, isRevealed = true }) {
         <section id="section-loop" className="space-y-6 scroll-mt-28">
           <ScrollReveal>
             <h2 className="cs-section-title text-h3 md:text-h2 font-basier font-medium text-[#111827] tracking-tight leading-snug">
-              A Small Loop, Designed to Build Momentum
+              One short loop, every day
             </h2>
           </ScrollReveal>
 
           <ScrollReveal delay={0.06}>
             <p className="cs-body text-body text-[#374151] leading-[1.6] font-basier font-normal">
-              Instead of browsing an endless catalog, the app presents a five-step continuous loop. Each step has one clear purpose:
+              Instead of browsing a catalog, players follow the same five steps each day:
             </p>
           </ScrollReveal>
 
@@ -610,28 +576,28 @@ export default function CaseStudyTrosky({ onBack, onNext, isRevealed = true }) {
             {[
               {
                 step: "Start",
-                title: "Orient Upfront",
-                desc: "One recommended routine on the home screen. Duration and target skills upfront—no browsing needed.",
+                title: "Today’s routine",
+                desc: "One recommended routine on the home screen, with its length and focus. No browsing.",
               },
               {
                 step: "Watch",
-                title: "Instructional Clip",
-                desc: "A sixty-second drill clip with Coach Trosky’s audio commentary and key visual freeze-frames.",
+                title: "Watch the clip",
+                desc: "A 60-second drill clip with Coach Trosky’s voice and key freeze-frames.",
               },
               {
                 step: "Respond",
-                title: "Active Recall",
-                desc: "An active recall prompt where the player explains the focal cue in their own words or records a quick voice note.",
+                title: "Explain it back",
+                desc: "The player says the key cue in their own words, or records a quick voice note.",
               },
               {
                 step: "Reflect",
-                title: "Mental Discipline",
-                desc: "A ten-second self-check on effort and mental discipline (the 6th Tool) before logging reps.",
+                title: "Check in",
+                desc: "A ten-second self-check on effort and focus (the 6th Tool) before logging reps.",
               },
               {
                 step: "Continue",
-                title: "Closure & Streak",
-                desc: "Immediate positive feedback (+50 XP, consecutive training count) and a clean path to tomorrow's focus.",
+                title: "Finish and keep the streak",
+                desc: "Quick praise (+50 XP, streak count) and a clear start for tomorrow.",
               },
             ].map((item) => (
               <div key={item.step} className="p-3.5 sm:p-4 flex items-start gap-4">
@@ -652,7 +618,7 @@ export default function CaseStudyTrosky({ onBack, onNext, isRevealed = true }) {
 
           <ScrollReveal delay={0.1}>
             <p className="text-small sm:text-body text-gray-500 leading-relaxed font-basier font-normal pt-1">
-              Viewing is passive. Practice is physical. Reflection is where skill converts into muscle memory. The experience was engineered so players put the phone down, do the work on the dirt, and return for a quick ten-second closure.
+              Watching is passive. Practice is physical. Reflection is where the skill sticks. The app is built so players put the phone down, do the work on the field, and come back for a quick check-in.
             </p>
           </ScrollReveal>
 
@@ -675,17 +641,17 @@ export default function CaseStudyTrosky({ onBack, onNext, isRevealed = true }) {
         <section id="section-structure" className="space-y-6 scroll-mt-28">
           <ScrollReveal>
             <h2 className="cs-section-title text-h3 md:text-h2 font-basier font-medium text-[#111827] tracking-tight leading-snug">
-              Work Through the Flow. Leave Room to Change It.
+              Sketching first, and dropping leaderboards
             </h2>
           </ScrollReveal>
 
           <ScrollReveal delay={0.06}>
             <div className="cs-body text-body text-[#374151] leading-[1.6] font-basier font-normal space-y-4">
               <p>
-                I started by mapping the flow on paper in a spiral notebook, tracing the player’s physical and mental steps. Early iterations explored dashboards and competitive leaderboards, but testing with youth athletes quickly showed that public leaderboards created anxiety instead of healthy habits.
+                I started on paper in a spiral notebook, tracing what a player does and feels at each step. My early ideas included dashboards and leaderboards, but testing with young athletes showed that public leaderboards made them anxious, not motivated. So I dropped them.
               </p>
               <p>
-                We stripped away all global navigation tabs during active workouts. When a player begins a routine, the app becomes a dedicated fullscreen modal with zero exits except an explicit “Save & Pause.”
+                During a workout we also removed the navigation tabs. Once a routine starts, the only way out is an explicit “Save & Pause.”
               </p>
             </div>
           </ScrollReveal>
@@ -706,10 +672,10 @@ export default function CaseStudyTrosky({ onBack, onNext, isRevealed = true }) {
         <section id="section-design" className="space-y-10 scroll-mt-28">
           <ScrollReveal>
             <h2 className="cs-section-title text-h3 md:text-h2 font-basier font-medium text-[#111827] tracking-tight leading-snug">
-              Familiar Steps, A More Personal Rhythm
+              The screens
             </h2>
             <p className="cs-body text-body text-[#374151] leading-[1.6] font-basier font-normal mt-3">
-              The high-fidelity design organizes the routine into three natural moments: Orient & Learn, Respond & Understand, and Practice & Reflect.
+              The final design follows the same loop. Here is how each part looks.
             </p>
           </ScrollReveal>
 
@@ -717,7 +683,7 @@ export default function CaseStudyTrosky({ onBack, onNext, isRevealed = true }) {
           <div className="space-y-4">
             <ScrollReveal delay={0.06}>
               <h3 className="cs-subheading text-lead font-basier font-medium text-gray-900">
-                Orient & Physical Reps
+                Learn the drill
               </h3>
               <p className="text-small sm:text-body text-gray-600 font-basier font-normal mt-1 leading-relaxed">
                 Clear expectations eliminate hesitation. Every drill displays its upfront mechanical focal point, structured bat speed reps, and concise 60-second video demonstrations with full follow-through analysis.
@@ -738,11 +704,11 @@ export default function CaseStudyTrosky({ onBack, onNext, isRevealed = true }) {
             />
           </div>
 
-          {/* Sub-flow 2: Respond & Understand (Active Recall & Direct Feedback) */}
+          {/* Sub-flow 2: Explain it back (Active Recall & Direct Feedback) */}
           <div className="space-y-4 pt-4">
             <ScrollReveal delay={0.06}>
               <h3 className="cs-subheading text-lead font-basier font-medium text-gray-900">
-                Respond & Understand
+                Explain it back
               </h3>
               <p className="text-small sm:text-body text-gray-600 font-basier font-normal mt-1 leading-relaxed">
                 Shifting from passive watching to active recall. The athlete articulates the mechanical cue in their own words, receiving immediate confirmation and feedback from Coach Nate Trosky.
@@ -782,7 +748,7 @@ export default function CaseStudyTrosky({ onBack, onNext, isRevealed = true }) {
           <div className="space-y-4 pt-4">
             <ScrollReveal delay={0.06}>
               <h3 className="cs-subheading text-lead font-basier font-medium text-gray-900">
-                The 6th Tool & Daily Win
+                The 6th Tool and the daily win
               </h3>
               <p className="text-small sm:text-body text-gray-600 font-basier font-normal mt-1 leading-relaxed">
                 Coach Nate Trosky’s signature philosophy is the 6th Tool—the mental composure and discipline that separates good players from great ones. Athletes test situational IQ, complete the Character Launch Checklist, and log their daily win.
@@ -820,13 +786,13 @@ export default function CaseStudyTrosky({ onBack, onNext, isRevealed = true }) {
         <section id="section-details" className="space-y-6 scroll-mt-28">
           <ScrollReveal>
             <h2 className="cs-section-title text-h3 md:text-h2 font-basier font-medium text-[#111827] tracking-tight leading-snug">
-              Designing for the Field
+              Built for the field
             </h2>
           </ScrollReveal>
 
           <ScrollReveal delay={0.06}>
             <p className="cs-body text-body text-[#374151] leading-[1.6] font-basier font-normal">
-              When an app is used in dusty garages, sunny fields, and batting cages, traditional design assumptions break down. Four practical details guided our decisions:
+              This app is used in dusty garages, sunny fields and batting cages, so we made four practical choices:
             </p>
           </ScrollReveal>
 
@@ -834,19 +800,19 @@ export default function CaseStudyTrosky({ onBack, onNext, isRevealed = true }) {
             {[
               {
                 title: "One task per screen",
-                desc: "Drills naturally vary in depth, but screen complexity stays minimal so athletes never feel overwhelmed.",
+                desc: "Drills vary in depth, but each screen stays simple so athletes never feel overwhelmed.",
               },
               {
                 title: "Large thumb touch targets",
-                desc: "Primary buttons are anchored to the bottom sheet with minimum 52px heights, making them easy to hit with sweaty thumbs or batting gloves.",
+                desc: "Main buttons sit at the bottom of the screen and are at least 52px tall, easy to hit with sweaty thumbs or batting gloves.",
               },
               {
                 title: "Offline caching",
-                desc: "Many batting cages and rural ballparks lack Wi-Fi. The daily routine automatically pre-caches every morning so it opens instantly offline.",
+                desc: "Many batting cages and ballparks have no Wi-Fi. The day’s routine downloads every morning so it opens instantly offline.",
               },
               {
                 title: "Direct coach tone",
-                desc: "Microcopy replaces generic corporate app copy with Coach Trosky's actual language: 'Lock in', 'Feel the bounce', and 'Stay in the tunnel'.",
+                desc: "The app’s wording uses Coach Trosky’s own phrases, like ‘Lock in’, ‘Feel the bounce’ and ‘Stay in the tunnel’, instead of generic app text.",
               },
             ].map((detail) => (
               <div key={detail.title} className="p-4 sm:p-5 rounded-xl border border-gray-200 bg-white shadow-xs">
@@ -869,13 +835,13 @@ export default function CaseStudyTrosky({ onBack, onNext, isRevealed = true }) {
         <section id="section-outcomes" className="space-y-6 scroll-mt-28">
           <ScrollReveal>
             <h2 className="cs-section-title text-h3 md:text-h2 font-basier font-medium text-[#111827] tracking-tight leading-snug">
-              Evaluation & Measurement Framework
+              What changed
             </h2>
           </ScrollReveal>
 
           <ScrollReveal delay={0.06}>
             <p className="cs-body text-body text-[#374151] leading-[1.6] font-basier font-normal">
-              Beta testing with forty-two youth and high school players over a thirty-day trial showed clear improvements in training engagement compared to the previous static catalog:
+              In a 30-day beta with 42 youth and high school players, engagement improved clearly compared with the old video catalog:
             </p>
           </ScrollReveal>
 
@@ -901,7 +867,7 @@ export default function CaseStudyTrosky({ onBack, onNext, isRevealed = true }) {
                   3.4x
                 </div>
                 <div className="text-small font-basier font-medium text-gray-900 mt-2">
-                  Active Reflections Logged
+                  Reflections written
                 </div>
                 <p className="text-caption text-gray-500 font-basier mt-1">
                   Written takeaways per completed routine.
@@ -915,10 +881,10 @@ export default function CaseStudyTrosky({ onBack, onNext, isRevealed = true }) {
                   88%
                 </div>
                 <div className="text-small font-basier font-medium text-gray-900 mt-2">
-                  Comprehension Confidence
+                  Understood the “why”
                 </div>
                 <p className="text-caption text-gray-500 font-basier mt-1">
-                  Reported understanding *why* drills were performed.
+                  Said they understood why they were doing each drill.
                 </p>
               </div>
             </ScrollReveal>
@@ -996,20 +962,20 @@ export default function CaseStudyTrosky({ onBack, onNext, isRevealed = true }) {
         <section id="section-reflection" className="space-y-6 scroll-mt-28">
           <ScrollReveal>
             <h2 className="cs-section-title text-h3 md:text-h2 font-basier font-medium text-[#111827] tracking-tight leading-snug">
-              Retrospective & Core Takeaways
+              What I learned
             </h2>
           </ScrollReveal>
 
           <ScrollReveal delay={0.06}>
             <div className="cs-body space-y-4 text-body text-[#374151] leading-[1.6] font-basier font-normal">
               <p>
-                Working on Trosky 365 taught me that designing for physical athletes is fundamentally different from designing desktop software. In most consumer apps, success is measured by time spent looking at the screen. In sports, success is getting the athlete off their phone and into their body.
+                Designing for athletes is different from designing most apps. Most apps count success by time spent on the screen. In sports, success is getting the athlete off the phone and into their body.
               </p>
               <p>
-                The breakthrough didn’t come from adding social feeds or complex leaderboard algorithms. It came from stripping away distraction, honoring Coach Trosky’s authentic voice, and building a humble five-step loop that respects the athlete's time.
+                The breakthrough didn’t come from social feeds or leaderboards. It came from removing distraction, keeping Coach Trosky’s own voice, and building a small five-step loop that respects the athlete’s time.
               </p>
               <p>
-                When software gets out of the way and provides just enough structure to build confidence, young athletes don’t just become better baseball players—they learn how to teach themselves.
+                When software gets out of the way and gives just enough structure, young athletes don’t only get better at baseball. They learn how to teach themselves.
               </p>
             </div>
           </ScrollReveal>
@@ -1019,13 +985,13 @@ export default function CaseStudyTrosky({ onBack, onNext, isRevealed = true }) {
               <div className="p-5 rounded-xl border border-gray-200 bg-white shadow-xs">
                 <h4 className="cs-detail-heading font-basier font-medium text-body text-gray-900 mb-1">Physical-First Ergonomics</h4>
                 <p className="text-small text-gray-600 leading-relaxed font-basier font-normal">
-                  Design for the worst-case physical environment: bright sun glare, dusty thumbs, and athletic fatigue dictate minimum contrast and oversized touch targets.
+                  Design for the worst conditions: sun glare, dusty thumbs and tired players call for strong contrast and big touch targets.
                 </p>
               </div>
               <div className="p-5 rounded-xl border border-gray-200 bg-white shadow-xs">
                 <h4 className="cs-detail-heading font-basier font-medium text-body text-gray-900 mb-1">Voice as Architecture</h4>
                 <p className="text-small text-gray-600 leading-relaxed font-basier font-normal">
-                  Coach Trosky's direct coaching vocabulary provided more intrinsic motivation and emotional resonance than gamified streak points ever could.
+                  Coach Trosky’s own coaching words motivated players more than streak points ever could.
                 </p>
               </div>
             </div>
