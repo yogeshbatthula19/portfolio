@@ -288,35 +288,6 @@ function TrioMockupFrame({
   );
 }
 
-// Embedded Short, Looping, Silent 60fps Micro-Interaction Video Player
-function MicroInteractionVideo({ mp4Src, webmSrc, title, caption }) {
-  return (
-    <ScrollReveal variant="scale-up" className="my-6 sm:my-8">
-      <div className="w-full rounded-xl overflow-hidden">
-                <div className="relative bg-black/[0.02]">
-          <video
-            autoPlay
-            loop
-            muted
-            playsInline
-            controls={false}
-            className="w-full h-auto block select-none pointer-events-none"
-          >
-            <source src={mp4Src} type="video/mp4" />
-            <source src={webmSrc} type="video/webm" />
-          </video>
-        </div>
-        {caption && (
-          <div className="px-4 py-3 bg-white border-t border-gray-100 text-caption sm:text-small text-gray-600 font-basier font-normal leading-relaxed">
-            <span className="font-basier font-medium text-gray-900 mr-1.5">Micro-interaction:</span>
-            {caption}
-          </div>
-        )}
-      </div>
-    </ScrollReveal>
-  );
-}
-
 export default function CaseStudyTrosky({ onBack, onNext, isRevealed = true }) {
   useEffect(() => {
     if (window.lenis) {
@@ -735,13 +706,6 @@ export default function CaseStudyTrosky({ onBack, onNext, isRevealed = true }) {
               caption2="Instant Feedback: +50 XP reward screen confirming drill completion."
             />
 
-            {/* Embedded 60fps Silent Looping Video Recording */}
-            <MicroInteractionVideo
-              mp4Src="/videos/trosky-drill-completion.mp4"
-              webmSrc="/videos/trosky-drill-completion.webm"
-              title="trosky_drill_completion.mp4"
-              caption="Submitting drill completion immediately triggers the XP reward modal and increments the training streak without leaving the active session container."
-            />
           </div>
 
           {/* Sub-flow 3: Practice & Reflect (The 6th Tool) */}
@@ -768,13 +732,6 @@ export default function CaseStudyTrosky({ onBack, onNext, isRevealed = true }) {
               caption3="Daily Win: +50 XP earned, 3/3 drills completed, streak alive."
             />
 
-            {/* Embedded 60fps Silent Looping Video Recording */}
-            <MicroInteractionVideo
-              mp4Src="/videos/trosky-reflection-interaction.mp4"
-              webmSrc="/videos/trosky-reflection-interaction.webm"
-              title="trosky_reflection_interaction.mp4"
-              caption="The 6th Tool checklist uses interactive toggle tiles that dynamically validate readiness before allowing the final 'Log Workout' confirmation."
-            />
           </div>
         </section>
 

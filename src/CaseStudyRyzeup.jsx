@@ -117,35 +117,6 @@ function DualMockupFrame({ src1, alt1, src2, alt2 }) {
   );
 }
 
-// Embedded Short, Looping, Silent 60fps Micro-Interaction Video Player
-function MicroInteractionVideo({ mp4Src, webmSrc, title, caption }) {
-  return (
-    <ScrollReveal variant="scale-up" className="my-6 sm:my-8">
-      <div className="w-full rounded-xl overflow-hidden">
-                <div className="relative bg-black/[0.02]">
-          <video
-            autoPlay
-            loop
-            muted
-            playsInline
-            controls={false}
-            className="w-full h-auto block select-none pointer-events-none"
-          >
-            <source src={mp4Src} type="video/mp4" />
-            <source src={webmSrc} type="video/webm" />
-          </video>
-        </div>
-        {caption && (
-          <div className="px-4 py-3 bg-white border-t border-gray-100 text-caption sm:text-small text-gray-600 font-basier font-normal leading-relaxed">
-            <span className="font-basier font-medium text-gray-900 mr-1.5">Micro-interaction:</span>
-            {caption}
-          </div>
-        )}
-      </div>
-    </ScrollReveal>
-  );
-}
-
 export default function CaseStudyRyzeup({ onBack, onNext, isRevealed = true }) {
   useEffect(() => {
     if (window.lenis) {
@@ -663,13 +634,6 @@ export default function CaseStudyRyzeup({ onBack, onNext, isRevealed = true }) {
             alt2="Interactive Poll & Structured Post Creation" 
           />
 
-          {/* Embedded 60fps Silent Looping Video Recording */}
-          <MicroInteractionVideo
-            mp4Src="/videos/ryzeup-poll-interaction.mp4"
-            webmSrc="/videos/ryzeup-poll-interaction.webm"
-            title="ryzeup_poll_interaction.mp4"
-            caption="Participating in interactive field polls updates vote distributions and confirmation states immediately without reloading the surrounding feed card."
-          />
 
           {/* Decision 3: Knowledge Retrieval */}
           <ScrollReveal className="space-y-3">
@@ -722,13 +686,6 @@ export default function CaseStudyRyzeup({ onBack, onNext, isRevealed = true }) {
             alt2="My Team View with Selected Employee Context" 
           />
 
-          {/* Embedded 60fps Silent Looping Video Recording */}
-          <MicroInteractionVideo
-            mp4Src="/videos/ryzeup-context-switch.mp4"
-            webmSrc="/videos/ryzeup-context-switch.webm"
-            title="ryzeup_context_switch.mp4"
-            caption="The reportee context drawer lets managers select any team member to instantly inspect their priorities while maintaining visual hierarchy and active session state."
-          />
         </section>
 
         <hr className="border-gray-100" />

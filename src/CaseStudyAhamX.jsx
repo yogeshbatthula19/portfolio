@@ -153,35 +153,6 @@ function DualMockupFrame({ src1, alt1, src2, alt2 }) {
   );
 }
 
-// Embedded Short, Looping, Silent 60fps Micro-Interaction Video Player
-function MicroInteractionVideo({ mp4Src, webmSrc, title, caption }) {
-  return (
-    <ScrollReveal variant="scale-up" className="my-6 sm:my-8">
-      <div className="w-full rounded-xl overflow-hidden">
-                <div className="relative bg-black/[0.02]">
-          <video
-            autoPlay
-            loop
-            muted
-            playsInline
-            controls={false}
-            className="w-full h-auto block select-none pointer-events-none"
-          >
-            <source src={mp4Src} type="video/mp4" />
-            <source src={webmSrc} type="video/webm" />
-          </video>
-        </div>
-        {caption && (
-          <div className="px-4 py-3 bg-white border-t border-gray-100 text-caption sm:text-small text-gray-600 font-basier font-normal leading-relaxed">
-            <span className="font-basier font-medium text-gray-900 mr-1.5">Micro-interaction:</span>
-            {caption}
-          </div>
-        )}
-      </div>
-    </ScrollReveal>
-  );
-}
-
 export default function CaseStudyAhamX({ onBack, onNext, isRevealed = true }) {
   useEffect(() => {
     if (window.lenis) {
@@ -280,8 +251,6 @@ export default function CaseStudyAhamX({ onBack, onNext, isRevealed = true }) {
       >
         <MockupFrame 
           src="/videos/learner-dashboard-enrolled-active.png" 
-          videoMp4="/videos/learner-dashboard-enrolled-active.mp4"
-          videoWebm="/videos/learner-dashboard-enrolled-active.webm"
           loop={false}
           alt="AhamX Learner Dashboard Enrolled Active interface demo" 
         />
@@ -829,13 +798,6 @@ export default function CaseStudyAhamX({ onBack, onNext, isRevealed = true }) {
               alt2="Creator Studio: Script & narration validation checkpoint."
             />
             
-            {/* Embedded 60fps Silent Looping Video Recording */}
-            <MicroInteractionVideo
-              mp4Src="/videos/verification-blocker-jump.mp4"
-              webmSrc="/videos/verification-blocker-jump.webm"
-              title="verification_blocker_jump.mp4"
-              caption="Clicking the [3 lessons incomplete] blocker count immediately jumps the view to the pending draft lesson with clear focus styling, eliminating manual navigation."
-            />
           </ScrollReveal>
 
           {/* Feature 4: Reusable Material & Cohorts */}
@@ -865,13 +827,6 @@ export default function CaseStudyAhamX({ onBack, onNext, isRevealed = true }) {
               alt="Organization Network and Member Relationship Approvals" 
             />
 
-            {/* Embedded 60fps Silent Looping Video Recording */}
-            <MicroInteractionVideo
-              mp4Src="/videos/contextual-decision-action.mp4"
-              webmSrc="/videos/contextual-decision-action.webm"
-              title="contextual_decision_action.mp4"
-              caption="Self-contained relationship rows allow enterprise leads to inspect institutional context and confirm affiliation immediately without navigating away to inspect separate profiles."
-            />
           </ScrollReveal>
 
           {/* Validation & Standards */}
