@@ -182,7 +182,7 @@ export default function CaseStudyRyzeup({ onBack, onNext, isRevealed = true }) {
           transition={{ duration: 0.85, delay: 0.12, ease: [0.16, 1, 0.3, 1] }}
           className="text-h2 sm:text-display-sm font-seasons font-normal text-[#111827] leading-[1.12] sm:leading-[1.08] tracking-[-0.02em] pt-6 sm:pt-8"
         >
-          Ryzeup — Designing a More Connected Workplace
+          Ryzeup: a calmer way to stay connected at work
         </motion.h1>
 
         {/* Subtitle */}
@@ -192,7 +192,7 @@ export default function CaseStudyRyzeup({ onBack, onNext, isRevealed = true }) {
           transition={{ duration: 0.8, delay: 0.22, ease: [0.16, 1, 0.3, 1] }}
           className="text-body sm:text-lead text-[#4b5563] mt-3 sm:mt-4 leading-[1.5] tracking-[-0.015em] font-basier font-normal italic"
         >
-          A mobile experience that brings workplace updates, shared knowledge, and team priorities together without cognitive overload.
+          A mobile app that brings updates, shared knowledge and team priorities together without overload.
         </motion.p>
 
         {/* Meta Bar / Project Overview - Clean White & Grey Grid */}
@@ -330,7 +330,7 @@ export default function CaseStudyRyzeup({ onBack, onNext, isRevealed = true }) {
                 Executive Summary
               </h3>
               <p className="cs-body text-body text-[#1f2937] leading-[1.6] font-basier font-normal">
-                <strong>Ryzeup</strong> is a modern workplace communication and team capability application. I led the mobile product redesign from the ground up, restructuring organization entry, conversational knowledge feeds, contextual search, and manager priority drawers into a cohesive system that eliminates context switching and drives daily operational focus.
+                <strong>Ryzeup</strong> is a workplace app for sharing updates and knowledge and keeping track of team priorities. I led the mobile redesign from scratch: how people enter their organisation, the knowledge feed, search, and the manager’s team drawer. The goal was less switching between screens and more focus on the day’s work.
               </p>
             </div>
           </ScrollReveal>
@@ -541,7 +541,7 @@ export default function CaseStudyRyzeup({ onBack, onNext, isRevealed = true }) {
         <section id="section-strategy" className="space-y-6 scroll-mt-28">
           <ScrollReveal>
             <h2 className="cs-section-title text-h3 md:text-h2 font-basier font-medium text-[#111827] tracking-tight leading-snug">
-              Information Architecture & Design Strategy
+              How I organised it
             </h2>
             <p className="cs-body text-body text-[#374151] leading-[1.6] font-basier font-normal mt-2">
               I structured the core experience around four activities:
@@ -596,7 +596,7 @@ export default function CaseStudyRyzeup({ onBack, onNext, isRevealed = true }) {
         <section id="section-decisions" className="space-y-10 sm:space-y-12 scroll-mt-28">
           <ScrollReveal>
             <h2 className="cs-section-title text-h3 md:text-h2 font-basier font-medium text-[#111827] tracking-tight leading-snug">
-              Key Design Decisions & Interactive Systems
+              Key design decisions
             </h2>
           </ScrollReveal>
 
@@ -606,7 +606,7 @@ export default function CaseStudyRyzeup({ onBack, onNext, isRevealed = true }) {
               Organization Context at Entry
             </h3>
             <p className="text-small sm:text-body text-gray-600 leading-relaxed font-basier font-normal">
-              Employees need to recognize the workspace they are entering before they continue to sign in. I separated organization verification from login: the entry screen validates the organization code, displays an authentic verified state, and transitions seamlessly into branded authentication.
+              People should know which workspace they’re entering before they sign in. So I split organisation check from login: the first screen verifies the organisation code, shows a clear “verified” state, and then moves into the branded sign-in.
             </p>
           </ScrollReveal>
 
@@ -620,10 +620,10 @@ export default function CaseStudyRyzeup({ onBack, onNext, isRevealed = true }) {
           {/* Decision 2: Workplace Communication */}
           <ScrollReveal className="space-y-3">
             <h3 className="cs-subheading text-lead font-basier font-medium text-gray-900">
-              Consistent Workplace Communication Structure
+              A feed that stays tidy
             </h3>
             <p className="text-small sm:text-body text-gray-600 leading-relaxed font-basier font-normal">
-              A shared feed needs to accommodate announcements, documents, and conversations without visual noise. I designed the Wall around a standardized card structure with explicit authorship, attachment previews, and lightweight engagement actions. Specialized composers for polls and questions ensure inputs are structured upfront.
+              A shared feed has to hold announcements, documents and conversations without feeling noisy. I built the Wall on one card layout with clear authorship, attachment previews and light actions. Separate composers for polls and questions keep posts structured from the start.
             </p>
           </ScrollReveal>
 
@@ -638,10 +638,10 @@ export default function CaseStudyRyzeup({ onBack, onNext, isRevealed = true }) {
           {/* Decision 3: Knowledge Retrieval */}
           <ScrollReveal className="space-y-3">
             <h3 className="cs-subheading text-lead font-basier font-medium text-gray-900">
-              Knowledge Retrieval Beyond the Feed
+              Finding things again
             </h3>
             <p className="text-small sm:text-body text-gray-600 leading-relaxed font-basier font-normal">
-              Employees should not have to scroll endlessly or remember authorship to retrieve an operational document. I structured search across All, Profiles, Posts, and Files, paired with recent searches and file metadata chips (size, format, timestamp).
+              People shouldn’t have to scroll forever or remember who posted a document. Search is split into All, Profiles, Posts and Files, with recent searches and small tags for file size, type and date.
             </p>
           </ScrollReveal>
 
@@ -652,13 +652,13 @@ export default function CaseStudyRyzeup({ onBack, onNext, isRevealed = true }) {
             alt2="Files & Document Repository View" 
           />
 
-          {/* Decision 4: Separating Personal and Team Priorities */}
+          {/* Decision 4: Personal vs team priorities */}
           <ScrollReveal className="space-y-3">
             <h3 className="cs-subheading text-lead font-basier font-medium text-gray-900">
-              Separating Personal and Team Priorities
+              Personal vs team priorities
             </h3>
             <p className="text-small sm:text-body text-gray-600 leading-relaxed font-basier font-normal">
-              Managers frequently lose track of context when moving between personal to-dos and team follow-ups. I designed Buzz with clear <strong className="text-gray-900 font-medium">Self</strong> and <strong className="text-gray-900 font-medium">My Team</strong> segmented controls, keeping the active team member persistently anchored above pending action cards.
+              Managers lose track of context when they jump between their own to-dos and team follow-ups. Buzz has clear <strong className="text-gray-900 font-medium">Self</strong> and <strong className="text-gray-900 font-medium">My Team</strong> tabs, and the selected team member stays pinned above the pending items.
             </p>
           </ScrollReveal>
 
@@ -672,10 +672,10 @@ export default function CaseStudyRyzeup({ onBack, onNext, isRevealed = true }) {
           {/* Decision 5: Reportee Selection */}
           <ScrollReveal className="space-y-3">
             <h3 className="cs-subheading text-lead font-basier font-medium text-gray-900">
-              Reportee Selection & Directory Context
+              Switching between team members
             </h3>
             <p className="text-small sm:text-body text-gray-600 leading-relaxed font-basier font-normal">
-              Whether searching by name or browsing by departmental hierarchy, managers can switch team contexts via a quick slide-over drawer that preserves their current scroll position in the underlying application.
+              Whether they search by name or browse by department, managers switch between team members in a quick slide-over drawer. The screen underneath keeps its scroll position.
             </p>
           </ScrollReveal>
 
@@ -696,13 +696,13 @@ export default function CaseStudyRyzeup({ onBack, onNext, isRevealed = true }) {
         <section id="section-execution" className="space-y-6 scroll-mt-28">
           <ScrollReveal>
             <h2 className="cs-section-title text-h3 md:text-h2 font-basier font-medium text-[#111827] tracking-tight leading-snug">
-              Execution Within a Two-Month Sprint
+              Building it in two months
             </h2>
           </ScrollReveal>
           
           <ScrollReveal delay={0.06}>
             <p className="cs-body text-body text-[#374151] leading-[1.6] font-basier font-normal">
-              The platform was taken from blank canvas to production beta in two months. Within that timeframe, I established a clean visual token system—magenta brand accents, neutral light surfaces, rounded card surfaces, and accessible bottom sheets.
+              The app went from a blank canvas to a working beta in two months. In that time I set up a simple visual system: magenta accents, light neutral surfaces, rounded cards and accessible bottom sheets.
             </p>
           </ScrollReveal>
 
@@ -751,10 +751,10 @@ export default function CaseStudyRyzeup({ onBack, onNext, isRevealed = true }) {
         <section id="section-results" className="space-y-6 scroll-mt-28">
           <ScrollReveal>
             <h2 className="cs-section-title text-h3 md:text-h2 font-basier font-medium text-[#111827] tracking-tight leading-snug">
-              Evaluation & Measurement Framework
+              What changed
             </h2>
             <p className="cs-body text-body text-[#374151] leading-[1.6] font-basier font-normal mt-2">
-              Ryzeup was deployed in beta across an operational department for a 60-day pilot:
+              Ryzeup ran as a 60-day beta pilot in one operations department:
             </p>
           </ScrollReveal>
 
@@ -876,10 +876,10 @@ export default function CaseStudyRyzeup({ onBack, onNext, isRevealed = true }) {
           <ScrollReveal delay={0.06}>
             <div className="cs-body space-y-4 text-body text-[#374151] leading-[1.6] font-basier font-normal">
               <p>
-                Ryzeup reinforced the importance of connecting information with the context needed to use it. A feed, search function, and team view each serve a purpose, but their real value depends on how clearly people can move between them without cognitive friction.
+                Ryzeup showed me that information is only useful with the context to act on it. A feed, search and a team view each do a job, but their value depends on how easily people can move between them.
               </p>
               <p>
-                My strongest design focus was making that context visible: the organization at entry, the content type in the feed, the result category in search, and the selected employee in team follow-up.
+                So I put context on screen everywhere: the organisation at entry, the type of post in the feed, the result category in search, and the selected employee in team follow-ups.
               </p>
             </div>
           </ScrollReveal>
@@ -889,7 +889,7 @@ export default function CaseStudyRyzeup({ onBack, onNext, isRevealed = true }) {
               <div className="p-5 rounded-xl border border-gray-200 bg-white shadow-xs">
                 <h4 className="cs-detail-heading font-basier font-medium text-body text-gray-900 mb-1">Visibility Precedes Action</h4>
                 <p className="text-small text-gray-600 leading-relaxed font-basier font-normal">
-                  Clarifying whose data is being viewed and what state an action represents reduces user hesitation more effectively than any tutorial tooltip.
+                  Making it clear whose data you’re looking at, and what state an action is in, reduces hesitation more than any tutorial tooltip.
                 </p>
               </div>
               <div className="p-5 rounded-xl border border-gray-200 bg-white shadow-xs">

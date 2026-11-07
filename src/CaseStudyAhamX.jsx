@@ -216,7 +216,7 @@ export default function CaseStudyAhamX({ onBack, onNext, isRevealed = true }) {
           transition={{ duration: 0.85, delay: 0.12, ease: [0.16, 1, 0.3, 1] }}
           className="text-h2 sm:text-h1 md:text-display-sm font-seasons font-normal text-[#111827] leading-[1.15] sm:leading-[1.1] tracking-[-0.02em] pt-6 sm:pt-8"
         >
-          AhamX — Continuous Learning & Capability Intelligence Platform
+          AhamX: one learning platform for everyone
         </motion.h1>
 
         {/* Meta Bar / Project Overview - Clean White & Grey Grid */}
@@ -284,26 +284,26 @@ export default function CaseStudyAhamX({ onBack, onNext, isRevealed = true }) {
         <section id="section-problem" className="space-y-6 scroll-mt-28">
           <ScrollReveal>
             <h2 className="cs-section-title text-h3 md:text-h2 font-basier font-medium text-[#111827] tracking-tight leading-snug">
-              The Problem Space & Strategic Context
+              The problem
             </h2>
           </ScrollReveal>
 
           <ScrollReveal delay={0.06}>
             <p className="cs-body text-body text-[#374151] leading-[1.6] font-basier font-normal">
-              In enterprise capability platforms, multi-sided systems frequently collapse under user fatigue:
+              Platforms with several kinds of users often wear people out. Here, three groups ran into three different problems:
             </p>
             <ul className="mt-4 space-y-3 font-basier text-small sm:text-body text-[#374151] leading-relaxed pl-1">
               <li className="flex items-start gap-3">
                 <span className="w-1.5 h-1.5 rounded-full bg-gray-400 mt-2.5 shrink-0" />
-                <span><strong className="text-gray-900 font-basier font-medium">Learners</strong> abandon courses when interruptions force them to reconstruct past study progress.</span>
+                <span><strong className="text-gray-900 font-basier font-medium">Learners</strong> gave up on courses when an interruption made them work out where they had stopped.</span>
               </li>
               <li className="flex items-start gap-3">
                 <span className="w-1.5 h-1.5 rounded-full bg-gray-400 mt-2.5 shrink-0" />
-                <span><strong className="text-gray-900 font-basier font-medium">Educators</strong> hesitate to trust AI generation tools when drafts move automatically to delivery without review gates.</span>
+                <span><strong className="text-gray-900 font-basier font-medium">Educators</strong> didn’t trust AI tools that sent drafts straight to learners with no chance to review them.</span>
               </li>
               <li className="flex items-start gap-3">
                 <span className="w-1.5 h-1.5 rounded-full bg-gray-400 mt-2.5 shrink-0" />
-                <span><strong className="text-gray-900 font-basier font-medium">Organization Leads</strong> defer institutional relationship requests because notifications arrive stripped of identity and institutional context.</span>
+                <span><strong className="text-gray-900 font-basier font-medium">Organization Leads</strong> put off approval requests because they didn’t show who was asking or why.</span>
               </li>
             </ul>
           </ScrollReveal>
@@ -370,7 +370,7 @@ export default function CaseStudyAhamX({ onBack, onNext, isRevealed = true }) {
         <section className="space-y-6">
           <ScrollReveal>
             <h2 className="cs-section-title text-h3 md:text-h2 font-basier font-medium text-[#111827] tracking-tight leading-snug">
-              The Initial Hypothesis & Product Pivot
+              My first idea, and why I changed it
             </h2>
           </ScrollReveal>
 
@@ -380,7 +380,7 @@ export default function CaseStudyAhamX({ onBack, onNext, isRevealed = true }) {
                 <div className="type-label mb-1">The Assumption</div>
                 <h4 className="cs-detail-heading font-basier font-medium text-body text-gray-900 mb-2">All-in-One Modular Dashboard</h4>
                 <p className="text-small text-gray-600 leading-relaxed font-basier font-normal">
-                  I initially explored one dashboard with active courses, cohort progress, and pending approvals to give all three roles an overview in one place.
+                  I first tried one dashboard with active courses, cohort progress and pending approvals, so all three roles would see everything in one place.
                 </p>
               </div>
 
@@ -388,7 +388,7 @@ export default function CaseStudyAhamX({ onBack, onNext, isRevealed = true }) {
                 <div className="type-label mb-1">The Breakdown</div>
                 <h4 className="cs-detail-heading font-basier font-medium text-body text-gray-900 mb-2">Competing needs on one screen</h4>
                 <p className="text-small text-gray-600 leading-relaxed font-basier font-normal">
-                  The design risk was giving learners administrative metrics when they needed their next lesson, and giving educators a one-click "Generate Course" flow without a clear opportunity to review the AI output.
+                  The risk was clear: learners would see admin numbers when they just wanted their next lesson, and educators would get a one-click “Generate Course” button with no real chance to review what the AI wrote.
                 </p>
               </div>
             </div>
@@ -418,10 +418,10 @@ export default function CaseStudyAhamX({ onBack, onNext, isRevealed = true }) {
         <section id="section-insights" className="space-y-6 scroll-mt-28">
           <ScrollReveal>
             <h2 className="cs-section-title text-h3 md:text-h2 font-basier font-medium text-[#111827] tracking-tight leading-snug">
-              User Behavioral Gaps & Field Insights
+              What each person needed
             </h2>
             <p className="cs-body text-body text-[#374151] leading-[1.6] font-basier font-normal mt-2">
-              I mapped the needs of learners, educators, and organization leads to the decisions each person needed to make. The table below describes those needs and the design response.
+              I matched each role’s needs to the decisions they have to make. The table shows the need and my design response.
             </p>
           </ScrollReveal>
 
@@ -529,10 +529,10 @@ export default function CaseStudyAhamX({ onBack, onNext, isRevealed = true }) {
         <section id="section-strategy" className="space-y-6 scroll-mt-28">
           <ScrollReveal>
             <h2 className="cs-section-title text-h3 md:text-h2 font-basier font-medium text-[#111827] tracking-tight leading-snug">
-              Strategic Layers of the Redesign
+              Three ideas behind the redesign
             </h2>
             <p className="cs-body text-body text-[#374151] leading-[1.6] font-basier font-normal mt-2">
-              We mapped the platform into three architectural layers to guarantee continuity, human-in-the-loop verification, and contextual decisions.
+              The platform rests on three ideas: pick up where you left off, a human checks the AI’s work, and decisions come with context.
             </p>
           </ScrollReveal>
 
@@ -621,10 +621,10 @@ export default function CaseStudyAhamX({ onBack, onNext, isRevealed = true }) {
         <section id="section-systems" className="space-y-6 scroll-mt-28">
           <ScrollReveal>
             <h2 className="cs-section-title text-h3 md:text-h2 font-basier font-medium text-[#111827] tracking-tight leading-snug">
-              Systems Thinking, State Logic & Edge Cases
+              Details that make it hold up
             </h2>
             <p className="cs-body text-body text-[#374151] leading-[1.6] font-basier font-normal mt-2">
-              A production-ready design system must account for system stress, data latency, and edge states.
+              A real product has to handle slow loading, errors and empty screens, not only the happy path.
             </p>
           </ScrollReveal>
 
@@ -743,10 +743,10 @@ export default function CaseStudyAhamX({ onBack, onNext, isRevealed = true }) {
           <ScrollReveal>
             <div>
               <h2 className="cs-section-title text-h3 md:text-h2 font-basier font-medium text-[#111827] tracking-tight leading-snug">
-                Visual Interface & Platform Walkthrough
+                The screens
               </h2>
               <p className="cs-body text-body text-[#374151] leading-[1.6] mt-2 font-basier font-normal">
-                A cohesive design system connecting the product shell, with interaction density tailored to the user's operational responsibility.
+                One design system across the product, with more or less detail depending on what each person does.
               </p>
             </div>
           </ScrollReveal>
@@ -856,7 +856,7 @@ export default function CaseStudyAhamX({ onBack, onNext, isRevealed = true }) {
         <section id="section-impact" className="space-y-6 scroll-mt-28">
           <ScrollReveal>
             <h2 className="cs-section-title text-h3 md:text-h2 font-basier font-medium text-[#111827] tracking-tight leading-snug">
-              Impact, Milestones & Retrospective
+              Outcome and what I’d do next
             </h2>
             <p className="cs-body text-body text-[#374151] leading-[1.6] font-basier font-normal mt-2">
               Shipped for web and mobile; demoed at the Google and ARTPARK pavilions, India AI Impact Summit 2026.
