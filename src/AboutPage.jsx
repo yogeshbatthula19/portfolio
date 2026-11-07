@@ -69,7 +69,7 @@ export default function AboutPage({ onBack, isRevealed = true }) {
               initial={{ opacity: 0, y: 24 }}
               animate={shouldAnimate ? { opacity: 1, y: 0 } : { opacity: 0, y: 24 }}
               transition={{ duration: 0.85, delay: 0.08, ease: entranceEase }}
-              className="text-4xl sm:text-5xl md:text-6xl lg:text-[66px] xl:text-[74px] tracking-tight text-[#0c4731] select-none"
+              className="text-4xl sm:text-5xl md:text-6xl lg:text-display tracking-tight text-[#0c4731] select-none"
               style={{
                 fontFamily: "'The Seasons', Georgia, serif",
                 fontWeight: 700,
@@ -97,7 +97,7 @@ export default function AboutPage({ onBack, isRevealed = true }) {
                 initial={{ opacity: 0, y: 16 }}
                 animate={shouldAnimate && photoReady ? { opacity: 1, y: 0 } : { opacity: 0, y: 16 }}
                 transition={{ duration: 0.8, delay: 0.3, ease: entranceEase }}
-                className="text-lg sm:text-xl lg:text-[22px] xl:text-[24px] font-seasons font-normal not-italic text-[#0c4731] leading-[1.3] tracking-tight"
+                className="text-lg sm:text-xl lg:text-h3 font-seasons font-normal not-italic text-[#0c4731] leading-[1.3] tracking-tight"
               >
                 Product designer, based in Hyderabad.
               </motion.h2>
@@ -107,7 +107,7 @@ export default function AboutPage({ onBack, isRevealed = true }) {
                 initial={{ opacity: 0, y: 14 }}
                 animate={shouldAnimate && photoReady ? { opacity: 1, y: 0 } : { opacity: 0, y: 14 }}
                 transition={{ duration: 0.8, delay: 0.36, ease: entranceEase }}
-                className="text-[13.5px] sm:text-[14.5px] lg:text-[15px] leading-[1.65] text-[#374151] font-normal"
+                className="text-small lg:text-body leading-[1.65] text-[#374151] font-normal"
               >
                 Over 5+ years, I’ve designed digital products across mobile apps, design systems, and UI/UX. I bring design and front-end experience to make complex experiences feel simple.
               </motion.p>
@@ -117,7 +117,7 @@ export default function AboutPage({ onBack, isRevealed = true }) {
                 initial={{ opacity: 0, y: 12 }}
                 animate={shouldAnimate && photoReady ? { opacity: 1, y: 0 } : { opacity: 0, y: 12 }}
                 transition={{ duration: 0.8, delay: 0.48, ease: entranceEase }}
-                className="pt-2 flex flex-wrap justify-center items-center gap-4 sm:gap-5 text-[13px] text-[#4b5563]"
+                className="pt-2 flex flex-wrap justify-center items-center gap-4 sm:gap-5 text-small text-[#4b5563]"
               >
                 <a
                   href="mailto:yogeshbattula55@gmail.com"
@@ -176,7 +176,7 @@ export default function AboutPage({ onBack, isRevealed = true }) {
           <div className="flex items-center gap-4">
             <button
               onClick={onBack}
-              className="group inline-flex items-center gap-2 px-4 py-2 rounded-full bg-black/[0.04] hover:bg-black/[0.08] text-[#111827] text-[13px] font-medium border border-black/[0.1] transition-colors cursor-pointer"
+              className="group inline-flex items-center gap-2 px-4 py-2 rounded-full bg-black/[0.04] hover:bg-black/[0.08] text-[#111827] text-small font-medium border border-black/[0.1] transition-colors cursor-pointer"
             >
               <ArrowLeft className="w-3.5 h-3.5 transition-transform duration-300 group-hover:-translate-x-1" />
               <span>Return to portfolio</span>
@@ -184,14 +184,14 @@ export default function AboutPage({ onBack, isRevealed = true }) {
 
             <a
               href="mailto:yogeshbattula55@gmail.com"
-              className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-[#0c4731] hover:bg-[#093524] text-white text-[13px] font-medium transition-colors"
+              className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-[#0c4731] hover:bg-[#093524] text-white text-small font-medium transition-colors"
             >
               <Mail className="w-3.5 h-3.5" />
               <span>Say hello</span>
             </a>
           </div>
 
-          <div className="text-[12.5px] text-[#6b7280]">
+          <div className="text-caption text-[#6b7280]">
             Crafted with thoughtful care • Hyderabad, India
           </div>
         </section>

@@ -140,7 +140,7 @@ export default function ThankYouEnvelope({ className = '' }) {
 
             {/* Handwritten "Thank You!" Calligraphy */}
             <span 
-              className="text-[36px] sm:text-[40px] text-[#18181b] font-normal leading-none select-none tracking-normal"
+              className="text-h1 text-[#18181b] font-normal leading-none select-none tracking-normal"
               style={{ fontFamily: "'Sacramento', cursive" }}
             >
               Thank You!
@@ -197,7 +197,7 @@ export default function ThankYouEnvelope({ className = '' }) {
         </motion.div>
 
         {/* Minimal, quiet editorial caption */}
-        <p className="text-[12px] sm:text-[13px] text-gray-400 font-switzer font-normal mt-6 tracking-wide text-center">
+        <p className="text-caption sm:text-small text-gray-500 font-basier font-normal mt-6 tracking-wide text-center">
           Thanks for reading. Questions or feedback? <a href="mailto:yogeshbattula55@gmail.com" className="underline underline-offset-2 hover:text-gray-600">Email me</a>.
         </p>
       </div>

@@ -165,7 +165,7 @@ function MicroInteractionVideo({ mp4Src, webmSrc, title, caption }) {
               <div className="w-2.5 h-2.5 rounded-full bg-gray-300" />
               <div className="w-2.5 h-2.5 rounded-full bg-gray-300" />
             </div>
-            <span className="font-mono text-[11px] text-gray-500 ml-2 hidden sm:inline">{title}</span>
+            <span className="font-basier tabular-nums text-caption text-gray-500 ml-2 hidden sm:inline">{title}</span>
           </div>
         </div>
         <div className="relative bg-black/[0.02]">
@@ -182,7 +182,7 @@ function MicroInteractionVideo({ mp4Src, webmSrc, title, caption }) {
           </video>
         </div>
         {caption && (
-          <div className="px-4 py-3 bg-white border-t border-gray-100 text-[12.5px] sm:text-[13px] text-gray-600 font-switzer font-normal leading-relaxed">
+          <div className="px-4 py-3 bg-white border-t border-gray-100 text-caption sm:text-small text-gray-600 font-basier font-normal leading-relaxed">
             <span className="font-basier font-medium text-gray-900 mr-1.5">Micro-interaction:</span>
             {caption}
           </div>
@@ -207,7 +207,7 @@ export default function CaseStudyAhamX({ onBack, onNext, isRevealed = true }) {
   const bgScale = useTransform(scrollY, [0, 1000], [1, 1.08]);
 
   return (
-    <div className="case-study-page relative isolate bg-[#ffffff] min-h-screen text-[#111827] font-switzer font-normal antialiased selection:bg-gray-200 selection:text-black pb-24 sm:pb-32 overflow-x-hidden">
+    <div className="case-study-page relative isolate bg-[#ffffff] min-h-screen text-[#111827] font-basier font-normal antialiased selection:bg-gray-200 selection:text-black pb-24 sm:pb-32 overflow-x-hidden">
       
       {/* Top Sticky Reading Progress Bar & Floating Back-To-Top Button */}
       <CaseStudyScrollProgress />
@@ -241,7 +241,7 @@ export default function CaseStudyAhamX({ onBack, onNext, isRevealed = true }) {
         >
           <button
             onClick={onBack}
-            className="min-h-11 inline-flex items-center gap-2 text-[13px] sm:text-[14px] font-basier font-medium text-[#6b7280] hover:text-[#111827] transition-colors cursor-pointer group"
+            className="min-h-11 inline-flex items-center gap-2 text-small font-basier font-medium text-[#6b7280] hover:text-[#111827] transition-colors cursor-pointer group"
           >
             <ArrowLeft className="w-4 h-4 transition-transform group-hover:-translate-x-1" />
             <span>Back to Selected Works</span>
@@ -253,7 +253,7 @@ export default function CaseStudyAhamX({ onBack, onNext, isRevealed = true }) {
           initial={{ opacity: 0, y: 32 }}
           animate={isRevealed ? { opacity: 1, y: 0 } : { opacity: 0, y: 32 }}
           transition={{ duration: 0.85, delay: 0.12, ease: [0.16, 1, 0.3, 1] }}
-          className="text-[32px] sm:text-[44px] md:text-[52px] font-seasons font-normal text-[#111827] leading-[1.15] sm:leading-[1.1] tracking-[-0.02em] pt-6 sm:pt-8"
+          className="text-h2 sm:text-h1 md:text-display-sm font-seasons font-normal text-[#111827] leading-[1.15] sm:leading-[1.1] tracking-[-0.02em] pt-6 sm:pt-8"
         >
           AhamX — Continuous Learning & Capability Intelligence Platform
         </motion.h1>
@@ -267,39 +267,39 @@ export default function CaseStudyAhamX({ onBack, onNext, isRevealed = true }) {
           className="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-6 pt-6 pb-6 mt-8 border-t border-b border-gray-200 scroll-mt-28"
         >
           <div>
-            <div className="text-[10px] sm:text-[11px] font-basier font-medium uppercase tracking-wider text-[#9ca3af]">Role</div>
-            <div className="text-[13px] sm:text-[14px] font-switzer font-medium text-[#111827] mt-1">
+            <div className="type-label">Role</div>
+            <div className="text-small font-basier font-medium text-[#111827] mt-1">
               Product Designer
             </div>
-            <div className="text-[12px] text-gray-500 font-normal">Sole Designer</div>
+            <div className="text-caption text-gray-500 font-normal">Sole Designer</div>
           </div>
           <div>
-            <div className="text-[10px] sm:text-[11px] font-basier font-medium uppercase tracking-wider text-[#9ca3af]">Team</div>
-            <div className="text-[13px] sm:text-[14px] font-switzer font-medium text-[#111827] mt-1">
+            <div className="type-label">Team</div>
+            <div className="text-small font-basier font-medium text-[#111827] mt-1">
               Agile pod
             </div>
-            <div className="text-[12px] text-gray-500 font-normal">Design + engineering</div>
+            <div className="text-caption text-gray-500 font-normal">Design + engineering</div>
           </div>
           <div>
-            <div className="text-[10px] sm:text-[11px] font-basier font-medium uppercase tracking-wider text-[#9ca3af]">Timeline</div>
-            <div className="text-[13px] sm:text-[14px] font-switzer font-medium text-[#111827] mt-1">
+            <div className="type-label">Timeline</div>
+            <div className="text-small font-basier font-medium text-[#111827] mt-1">
               3 Months
             </div>
-            <div className="text-[12px] text-gray-500 font-normal">Shipped to Prod</div>
+            <div className="text-caption text-gray-500 font-normal">Shipped to Prod</div>
           </div>
           <div>
-            <div className="text-[10px] sm:text-[11px] font-basier font-medium uppercase tracking-wider text-[#9ca3af]">Platforms</div>
-            <div className="text-[13px] sm:text-[14px] font-switzer font-medium text-[#111827] mt-1">
+            <div className="type-label">Platforms</div>
+            <div className="text-small font-basier font-medium text-[#111827] mt-1">
               Web & Mobile
             </div>
-            <div className="text-[12px] text-gray-500 font-normal">Responsive System</div>
+            <div className="text-caption text-gray-500 font-normal">Responsive System</div>
           </div>
           <div className="col-span-2 sm:col-span-4 border-t pt-3 border-gray-100">
-            <div className="text-[10px] sm:text-[11px] font-basier font-medium uppercase tracking-wider text-[#9ca3af]">Outcome</div>
-            <div className="text-[13px] sm:text-[14px] font-switzer font-medium text-[#111827] mt-1 leading-snug">
+            <div className="type-label">Outcome</div>
+            <div className="text-small font-basier font-medium text-[#111827] mt-1 leading-snug">
               Shipped; demoed at India AI Impact Summit 2026
             </div>
-            <div className="text-[12px] text-gray-500 font-normal">Google and ARTPARK pavilions</div>
+            <div className="text-caption text-gray-500 font-normal">Google and ARTPARK pavilions</div>
           </div>
         </motion.div>
         {/* Subtitle */}
@@ -307,7 +307,7 @@ export default function CaseStudyAhamX({ onBack, onNext, isRevealed = true }) {
           initial={{ opacity: 0, y: 22 }}
           animate={isRevealed ? { opacity: 1, y: 0 } : { opacity: 0, y: 22 }}
           transition={{ duration: 0.8, delay: 0.22, ease: [0.16, 1, 0.3, 1] }}
-          className="text-[16px] sm:text-[19px] md:text-[21px] text-[#374151] mt-3 sm:mt-4 leading-[1.5] tracking-[-0.015em] font-basier font-normal italic"
+          className="text-body sm:text-lead text-[#374151] mt-3 sm:mt-4 leading-[1.5] tracking-[-0.015em] font-basier font-normal italic"
         >
           One learning platform for learners, educators, and organization leads.
         </motion.p>
@@ -341,10 +341,10 @@ export default function CaseStudyAhamX({ onBack, onNext, isRevealed = true }) {
           <CaseStudyTldr accent="#7c3aed" rows={[["Problem", "Learners lost their place, educators didn't trust unreviewed AI drafts, and org leads couldn't see who they were approving."], ["My role", "Led UX/UI end to end as the sole designer, for desktop and mobile."], ["What I changed", "One product that adapts to each role: a resume-learning card, step-by-step AI review before publishing, and approval rows that show who and why."], ["Result", "Shipped in 3 months and featured at the IndiaAI Impact Summit 2026."]]} />
           <ScrollReveal>
             <div className="p-5 sm:p-6 rounded-xl bg-gray-50 border border-gray-200">
-              <h3 className="cs-label text-[11px] font-basier font-medium uppercase tracking-wider text-gray-400 mb-2">
+              <h3 className="cs-label type-label mb-2">
                 Executive Summary
               </h3>
-              <p className="cs-body text-[15px] sm:text-[16px] text-[#1f2937] leading-[1.75] font-switzer font-normal">
+              <p className="cs-body text-body text-[#1f2937] leading-[1.6] font-basier font-normal">
                 AhamX is a learning platform where each person has a profile that grows with them — what they've learned, built, and achieved. I designed it end to end, for desktop and mobile. The hard part: three very different users — learners, educators, and organization leads — had to share one product without anyone feeling it was built for someone else.
               </p>
             </div>
@@ -358,16 +358,16 @@ export default function CaseStudyAhamX({ onBack, onNext, isRevealed = true }) {
         {/* ------------------------------------------------------------- */}
         <section id="section-problem" className="space-y-6 scroll-mt-28">
           <ScrollReveal>
-            <h2 className="cs-section-title text-[22px] sm:text-[26px] md:text-[30px] font-basier font-medium text-[#111827] tracking-tight leading-snug">
+            <h2 className="cs-section-title text-h3 md:text-h2 font-basier font-medium text-[#111827] tracking-tight leading-snug">
               The Problem Space & Strategic Context
             </h2>
           </ScrollReveal>
 
           <ScrollReveal delay={0.06}>
-            <p className="cs-body text-[15px] sm:text-[16px] text-[#374151] leading-[1.75] font-switzer font-normal">
+            <p className="cs-body text-body text-[#374151] leading-[1.6] font-basier font-normal">
               In enterprise capability platforms, multi-sided systems frequently collapse under user fatigue:
             </p>
-            <ul className="mt-4 space-y-3 font-switzer text-[14.5px] sm:text-[15px] text-[#374151] leading-relaxed pl-1">
+            <ul className="mt-4 space-y-3 font-basier text-small sm:text-body text-[#374151] leading-relaxed pl-1">
               <li className="flex items-start gap-3">
                 <span className="w-1.5 h-1.5 rounded-full bg-gray-400 mt-2.5 shrink-0" />
                 <span><strong className="text-gray-900 font-basier font-medium">Learners</strong> abandon courses when interruptions force them to reconstruct past study progress.</span>
@@ -386,13 +386,13 @@ export default function CaseStudyAhamX({ onBack, onNext, isRevealed = true }) {
           {/* Strategic Pivot Card - Clean White & Grey */}
           <ScrollReveal delay={0.08} variant="scale-up">
             <div className="p-5 sm:p-6 rounded-xl bg-white border border-gray-200 shadow-xs space-y-2.5">
-              <div className="text-[11px] font-basier font-medium uppercase tracking-wider text-gray-400">
+              <div className="type-label">
                 The Strategic Pivot
               </div>
-              <h3 className="cs-subheading text-[16px] sm:text-[18px] font-basier font-medium text-gray-900 leading-snug">
+              <h3 className="cs-subheading text-body sm:text-lead font-basier font-medium text-gray-900 leading-snug">
                 One Product That Adapts to Each Role
               </h3>
-              <p className="text-[14px] sm:text-[15px] text-gray-600 leading-[1.7] font-switzer font-normal">
+              <p className="text-small sm:text-body text-gray-600 leading-[1.7] font-basier font-normal">
                 Instead of building three separate portals (a student LMS, a creator studio and an admin hub), we built <strong>one product that adapts to whoever is using it</strong>. Your profile and the overall look stay the same everywhere, while the home screen and main actions change depending on whether you're there to learn, to teach or to manage.
               </p>
             </div>
@@ -401,34 +401,34 @@ export default function CaseStudyAhamX({ onBack, onNext, isRevealed = true }) {
           {/* Role Matrix - Clean Balanced Columns with Dividers */}
           <ScrollReveal delay={0.1}>
             <div className="border border-gray-200 rounded-xl overflow-hidden bg-white shadow-xs">
-              <div className="bg-gray-50 border-b border-gray-200 px-4 py-3 text-[11px] font-basier font-medium uppercase tracking-wider text-gray-500">
+              <div className="bg-gray-50 border-b border-gray-200 px-4 py-3 text-caption font-basier font-medium uppercase tracking-wider text-gray-500">
                 Role & Responsibilities Matrix
               </div>
               <div className="grid grid-cols-1 sm:grid-cols-3 divide-y sm:divide-y-0 sm:divide-x divide-gray-100">
                 <div className="p-4 sm:p-5">
-                  <div className="flex items-center gap-2 text-gray-900 font-basier font-medium text-[14px] mb-1.5">
+                  <div className="flex items-center gap-2 text-gray-900 font-basier font-medium text-small mb-1.5">
                     <User className="w-4 h-4 text-gray-500" />
                     <span>Learner</span>
                   </div>
-                  <p className="text-[13px] text-gray-600 leading-relaxed font-switzer font-normal">
+                  <p className="text-small text-gray-600 leading-relaxed font-basier font-normal">
                     Pick up exactly where they stopped, on any device, including a quick session on the commute.
                   </p>
                 </div>
                 <div className="p-4 sm:p-5">
-                  <div className="flex items-center gap-2 text-gray-900 font-basier font-medium text-[14px] mb-1.5">
+                  <div className="flex items-center gap-2 text-gray-900 font-basier font-medium text-small mb-1.5">
                     <GraduationCap className="w-4 h-4 text-gray-500" />
                     <span>Educator / Creator</span>
                   </div>
-                  <p className="text-[13px] text-gray-600 leading-relaxed font-switzer font-normal">
+                  <p className="text-small text-gray-600 leading-relaxed font-basier font-normal">
                     Review AI-generated drafts step by step, and always see what's left before a course can be published.
                   </p>
                 </div>
                 <div className="p-4 sm:p-5">
-                  <div className="flex items-center gap-2 text-gray-900 font-basier font-medium text-[14px] mb-1.5">
+                  <div className="flex items-center gap-2 text-gray-900 font-basier font-medium text-small mb-1.5">
                     <Building2 className="w-4 h-4 text-gray-500" />
                     <span>Organization Lead</span>
                   </div>
-                  <p className="text-[13px] text-gray-600 leading-relaxed font-switzer font-normal">
+                  <p className="text-small text-gray-600 leading-relaxed font-basier font-normal">
                     Self-contained relationship rows, context-preserved approval flows, and entity governance.
                   </p>
                 </div>
@@ -444,7 +444,7 @@ export default function CaseStudyAhamX({ onBack, onNext, isRevealed = true }) {
         {/* ------------------------------------------------------------- */}
         <section className="space-y-6">
           <ScrollReveal>
-            <h2 className="cs-section-title text-[22px] sm:text-[26px] md:text-[30px] font-basier font-medium text-[#111827] tracking-tight leading-snug">
+            <h2 className="cs-section-title text-h3 md:text-h2 font-basier font-medium text-[#111827] tracking-tight leading-snug">
               The Initial Hypothesis & Product Pivot
             </h2>
           </ScrollReveal>
@@ -452,17 +452,17 @@ export default function CaseStudyAhamX({ onBack, onNext, isRevealed = true }) {
           <ScrollReveal delay={0.06}>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div className="p-5 rounded-xl border border-gray-200 bg-white shadow-xs">
-                <div className="text-[11px] font-basier font-medium uppercase tracking-wider text-gray-400 mb-1">The Assumption</div>
-                <h4 className="cs-detail-heading font-basier font-medium text-[15px] sm:text-[16px] text-gray-900 mb-2">All-in-One Modular Dashboard</h4>
-                <p className="text-[13.5px] text-gray-600 leading-relaxed font-switzer font-normal">
+                <div className="type-label mb-1">The Assumption</div>
+                <h4 className="cs-detail-heading font-basier font-medium text-body text-gray-900 mb-2">All-in-One Modular Dashboard</h4>
+                <p className="text-small text-gray-600 leading-relaxed font-basier font-normal">
                   I initially explored one dashboard with active courses, cohort progress, and pending approvals to give all three roles an overview in one place.
                 </p>
               </div>
 
               <div className="p-5 rounded-xl border border-gray-200 bg-gray-50/50 shadow-xs">
-                <div className="text-[11px] font-basier font-medium uppercase tracking-wider text-gray-400 mb-1">The Breakdown</div>
-                <h4 className="cs-detail-heading font-basier font-medium text-[15px] sm:text-[16px] text-gray-900 mb-2">Competing needs on one screen</h4>
-                <p className="text-[13.5px] text-gray-600 leading-relaxed font-switzer font-normal">
+                <div className="type-label mb-1">The Breakdown</div>
+                <h4 className="cs-detail-heading font-basier font-medium text-body text-gray-900 mb-2">Competing needs on one screen</h4>
+                <p className="text-small text-gray-600 leading-relaxed font-basier font-normal">
                   The design risk was giving learners administrative metrics when they needed their next lesson, and giving educators a one-click "Generate Course" flow without a clear opportunity to review the AI output.
                 </p>
               </div>
@@ -472,13 +472,13 @@ export default function CaseStudyAhamX({ onBack, onNext, isRevealed = true }) {
           {/* The Breakthrough Insight Quote - Clean Grey Card */}
           <ScrollReveal delay={0.08} variant="blur">
             <div className="p-5 sm:p-7 rounded-xl bg-gray-50 border border-gray-200 space-y-2.5">
-              <div className="text-[11px] font-basier font-medium uppercase tracking-wider text-gray-400">
+              <div className="type-label">
                 The Breakthrough Insight
               </div>
-              <p className="text-[16px] sm:text-[18px] md:text-[20px] font-seasons font-normal not-italic text-gray-900 leading-relaxed">
+              <p className="text-body sm:text-lead font-seasons font-normal not-italic text-gray-900 leading-relaxed">
                 "One design system doesn't mean every screen should be equally busy. Each role needs its own starting point and clear signals for what's ready and what isn't."
               </p>
-              <p className="text-[13px] sm:text-[13.5px] text-gray-600 font-switzer font-normal pt-1 leading-relaxed">
+              <p className="text-small text-gray-600 font-basier font-normal pt-1 leading-relaxed">
                 I gave each role its own home screen within the same design system. Blocked actions keep their disabled state, explain what is missing, and provide a separate link to resolve it.
               </p>
             </div>
@@ -492,10 +492,10 @@ export default function CaseStudyAhamX({ onBack, onNext, isRevealed = true }) {
         {/* ------------------------------------------------------------- */}
         <section id="section-insights" className="space-y-6 scroll-mt-28">
           <ScrollReveal>
-            <h2 className="cs-section-title text-[22px] sm:text-[26px] md:text-[30px] font-basier font-medium text-[#111827] tracking-tight leading-snug">
+            <h2 className="cs-section-title text-h3 md:text-h2 font-basier font-medium text-[#111827] tracking-tight leading-snug">
               User Behavioral Gaps & Field Insights
             </h2>
-            <p className="cs-body text-[15px] sm:text-[16px] text-[#374151] leading-[1.75] font-switzer font-normal mt-2">
+            <p className="cs-body text-body text-[#374151] leading-[1.6] font-basier font-normal mt-2">
               I mapped the needs of learners, educators, and organization leads to the decisions each person needed to make. The table below describes those needs and the design response.
             </p>
           </ScrollReveal>
@@ -503,26 +503,26 @@ export default function CaseStudyAhamX({ onBack, onNext, isRevealed = true }) {
           {/* JTBD Matrix Table - Balanced Proportions & Clean White/Grey Layout */}
           <ScrollReveal delay={0.06} variant="scale-up">
             <div className="border border-gray-200 rounded-xl overflow-hidden bg-white shadow-xs">
-              <div className="hidden sm:grid sm:grid-cols-12 bg-gray-50 border-b border-gray-200 px-4 py-3 text-[11px] font-basier font-semibold uppercase tracking-wider text-gray-500">
+              <div className="hidden sm:grid sm:grid-cols-12 bg-gray-50 border-b border-gray-200 px-4 py-3 text-caption font-basier font-medium uppercase tracking-wider text-gray-500">
                 <div className="sm:col-span-3">Persona Need</div>
                 <div className="sm:col-span-4">Operational Friction</div>
                 <div className="sm:col-span-5">Design Response</div>
               </div>
               
-              <div className="divide-y divide-gray-100 text-[13.5px] font-switzer font-normal">
+              <div className="divide-y divide-gray-100 text-small font-basier font-normal">
                 {/* Row 1 */}
                 <div className="p-4 sm:px-4 sm:py-3.5 grid grid-cols-1 sm:grid-cols-12 gap-2 sm:gap-4 items-baseline">
                   <div className="sm:col-span-3">
-                    <div className="sm:hidden text-[10px] font-basier font-medium uppercase tracking-wider text-gray-400 mb-0.5">Persona Need</div>
-                    <span className="font-basier font-medium text-gray-900 text-[13.5px]">Recovering Context</span>
-                    <span className="text-[12px] text-gray-500 block">Learner</span>
+                    <div className="sm:hidden type-label mb-0.5">Persona Need</div>
+                    <span className="font-basier font-medium text-gray-900 text-small">Recovering Context</span>
+                    <span className="text-caption text-gray-500 block">Learner</span>
                   </div>
                   <div className="sm:col-span-4 text-gray-600 sm:border-l sm:border-gray-100 sm:pl-3">
-                    <div className="sm:hidden text-[10px] font-basier font-medium uppercase tracking-wider text-gray-400 mt-1 mb-0.5">Operational Friction</div>
+                    <div className="sm:hidden type-label mt-1 mb-0.5">Operational Friction</div>
                     After a break, learners had to dig through the catalog to find where they stopped.
                   </div>
                   <div className="sm:col-span-5 text-gray-800 sm:border-l sm:border-gray-100 sm:pl-3">
-                    <div className="sm:hidden text-[10px] font-basier font-medium uppercase tracking-wider text-gray-400 mt-1 mb-0.5">Design Response</div>
+                    <div className="sm:hidden type-label mt-1 mb-0.5">Design Response</div>
                     Sticky <strong>"Resume Learning"</strong> card anchoring last active timestamp and module.
                   </div>
                 </div>
@@ -530,16 +530,16 @@ export default function CaseStudyAhamX({ onBack, onNext, isRevealed = true }) {
                 {/* Row 2 */}
                 <div className="p-4 sm:px-4 sm:py-3.5 grid grid-cols-1 sm:grid-cols-12 gap-2 sm:gap-4 items-baseline">
                   <div className="sm:col-span-3">
-                    <div className="sm:hidden text-[10px] font-basier font-medium uppercase tracking-wider text-gray-400 mb-0.5">Persona Need</div>
-                    <span className="font-basier font-medium text-gray-900 text-[13.5px]">Content Accountability</span>
-                    <span className="text-[12px] text-gray-500 block">Educator</span>
+                    <div className="sm:hidden type-label mb-0.5">Persona Need</div>
+                    <span className="font-basier font-medium text-gray-900 text-small">Content Accountability</span>
+                    <span className="text-caption text-gray-500 block">Educator</span>
                   </div>
                   <div className="sm:col-span-4 text-gray-600 sm:border-l sm:border-gray-100 sm:pl-3">
-                    <div className="sm:hidden text-[10px] font-basier font-medium uppercase tracking-wider text-gray-400 mt-1 mb-0.5">Operational Friction</div>
+                    <div className="sm:hidden type-label mt-1 mb-0.5">Operational Friction</div>
                     Drafts are generated fast, but need human subject-matter verification.
                   </div>
                   <div className="sm:col-span-5 text-gray-800 sm:border-l sm:border-gray-100 sm:pl-3">
-                    <div className="sm:hidden text-[10px] font-basier font-medium uppercase tracking-wider text-gray-400 mt-1 mb-0.5">Design Response</div>
+                    <div className="sm:hidden type-label mt-1 mb-0.5">Design Response</div>
                     Staged progression gates: <strong>Outline → Script → Video</strong>.
                   </div>
                 </div>
@@ -547,16 +547,16 @@ export default function CaseStudyAhamX({ onBack, onNext, isRevealed = true }) {
                 {/* Row 3 */}
                 <div className="p-4 sm:px-4 sm:py-3.5 grid grid-cols-1 sm:grid-cols-12 gap-2 sm:gap-4 items-baseline">
                   <div className="sm:col-span-3">
-                    <div className="sm:hidden text-[10px] font-basier font-medium uppercase tracking-wider text-gray-400 mb-0.5">Persona Need</div>
-                    <span className="font-basier font-medium text-gray-900 text-[13.5px]">Institutional Action</span>
-                    <span className="text-[12px] text-gray-500 block">Org Lead</span>
+                    <div className="sm:hidden type-label mb-0.5">Persona Need</div>
+                    <span className="font-basier font-medium text-gray-900 text-small">Institutional Action</span>
+                    <span className="text-caption text-gray-500 block">Org Lead</span>
                   </div>
                   <div className="sm:col-span-4 text-gray-600 sm:border-l sm:border-gray-100 sm:pl-3">
-                    <div className="sm:hidden text-[10px] font-basier font-medium uppercase tracking-wider text-gray-400 mt-1 mb-0.5">Operational Friction</div>
+                    <div className="sm:hidden type-label mt-1 mb-0.5">Operational Friction</div>
                     Institutional hierarchy and personal identity coexist within one network.
                   </div>
                   <div className="sm:col-span-5 text-gray-800 sm:border-l sm:border-gray-100 sm:pl-3">
-                    <div className="sm:hidden text-[10px] font-basier font-medium uppercase tracking-wider text-gray-400 mt-1 mb-0.5">Design Response</div>
+                    <div className="sm:hidden type-label mt-1 mb-0.5">Design Response</div>
                     <strong>Self-contained request rows</strong> pairing identity, cohort, and decision actions.
                   </div>
                 </div>
@@ -567,25 +567,25 @@ export default function CaseStudyAhamX({ onBack, onNext, isRevealed = true }) {
           {/* User needs guiding the design Quotes - Clean White/Grey Style */}
           <ScrollReveal delay={0.08}>
             <div className="space-y-3 pt-2">
-              <h3 className="cs-label text-[11px] font-basier font-medium uppercase tracking-wider text-gray-400">
+              <h3 className="cs-label type-label">
                 User needs guiding the design
               </h3>
               <div className="grid grid-cols-1 gap-3">
-                <div className="p-4 sm:p-5 rounded-xl border border-gray-200 bg-gray-50/50 text-[14px] sm:text-[14.5px] text-[#374151] leading-relaxed">
+                <div className="p-4 sm:p-5 rounded-xl border border-gray-200 bg-gray-50/50 text-small text-[#374151] leading-relaxed">
                   <p className="font-normal">
                     Learner: return to the paused lesson without browsing the catalog again.
                   </p>
 
                 </div>
 
-                <div className="p-4 sm:p-5 rounded-xl border border-gray-200 bg-gray-50/50 text-[14px] sm:text-[14.5px] text-[#374151] leading-relaxed">
+                <div className="p-4 sm:p-5 rounded-xl border border-gray-200 bg-gray-50/50 text-small text-[#374151] leading-relaxed">
                   <p className="font-normal">
                     Educator: review terminology and citations before an AI-drafted script becomes a video.
                   </p>
 
                 </div>
 
-                <div className="p-4 sm:p-5 rounded-xl border border-gray-200 bg-gray-50/50 text-[14px] sm:text-[14.5px] text-[#374151] leading-relaxed">
+                <div className="p-4 sm:p-5 rounded-xl border border-gray-200 bg-gray-50/50 text-small text-[#374151] leading-relaxed">
                   <p className="font-normal">
                     Organization lead: see who is requesting access and which cohort they want to join before making a decision.
                   </p>
@@ -603,10 +603,10 @@ export default function CaseStudyAhamX({ onBack, onNext, isRevealed = true }) {
         {/* ------------------------------------------------------------- */}
         <section id="section-strategy" className="space-y-6 scroll-mt-28">
           <ScrollReveal>
-            <h2 className="cs-section-title text-[22px] sm:text-[26px] md:text-[30px] font-basier font-medium text-[#111827] tracking-tight leading-snug">
+            <h2 className="cs-section-title text-h3 md:text-h2 font-basier font-medium text-[#111827] tracking-tight leading-snug">
               Strategic Layers of the Redesign
             </h2>
-            <p className="cs-body text-[15px] sm:text-[16px] text-[#374151] leading-[1.75] font-switzer font-normal mt-2">
+            <p className="cs-body text-body text-[#374151] leading-[1.6] font-basier font-normal mt-2">
               We mapped the platform into three architectural layers to guarantee continuity, human-in-the-loop verification, and contextual decisions.
             </p>
           </ScrollReveal>
@@ -615,13 +615,13 @@ export default function CaseStudyAhamX({ onBack, onNext, isRevealed = true }) {
             <div className="space-y-4">
               {/* Layer 1 */}
               <div className="p-5 sm:p-6 rounded-xl border border-gray-200 bg-white shadow-xs">
-                <div className="text-[11px] font-basier font-medium uppercase tracking-wider text-gray-400 mb-1.5">
+                <div className="type-label mb-1.5">
                   Learner Workflow
                 </div>
-                <h3 className="cs-subheading text-[16px] sm:text-[17px] font-basier font-medium text-gray-900 mb-3">
+                <h3 className="cs-subheading text-body font-basier font-medium text-gray-900 mb-3">
                   The Continuity Layer
                 </h3>
-                <ul className="space-y-2.5 text-[14px] text-gray-700 leading-relaxed font-switzer font-normal">
+                <ul className="space-y-2.5 text-small text-gray-700 leading-relaxed font-basier font-normal">
                   <li className="flex items-start gap-2.5">
                     <span className="w-1.5 h-1.5 rounded-full bg-gray-400 mt-2 shrink-0" />
                     <span><strong>Zero-Friction Resumption:</strong> Current study and progress data are pinned directly beside personalized recommendations, allowing users to jump back in with a single tap.</span>
@@ -635,13 +635,13 @@ export default function CaseStudyAhamX({ onBack, onNext, isRevealed = true }) {
 
               {/* Layer 2 */}
               <div className="p-5 sm:p-6 rounded-xl border border-gray-200 bg-white shadow-xs">
-                <div className="text-[11px] font-basier font-medium uppercase tracking-wider text-gray-400 mb-1.5">
+                <div className="type-label mb-1.5">
                   Educator Workflow
                 </div>
-                <h3 className="cs-subheading text-[16px] sm:text-[17px] font-basier font-medium text-gray-900 mb-3">
+                <h3 className="cs-subheading text-body font-basier font-medium text-gray-900 mb-3">
                   The Verification Layer
                 </h3>
-                <ul className="space-y-2.5 text-[14px] text-gray-700 leading-relaxed font-switzer font-normal">
+                <ul className="space-y-2.5 text-small text-gray-700 leading-relaxed font-basier font-normal">
                   <li className="flex items-start gap-2.5">
                     <span className="w-1.5 h-1.5 rounded-full bg-gray-400 mt-2 shrink-0" />
                     <span><strong>Staged AI Checkpoints:</strong> I pushed back on the one-click Generate Course flow and proposed three review stages: <em>Course Outline → Script & Narration Review → Video generation</em>.</span>
@@ -653,13 +653,13 @@ export default function CaseStudyAhamX({ onBack, onNext, isRevealed = true }) {
                 </ul>
                 
                 {/* Visual Formula / Badge Card - Clean White & Grey */}
-                <div className="mt-3.5 p-3 sm:p-4 rounded-lg bg-gray-50 border border-gray-200 flex flex-wrap items-center gap-2.5 text-[13px] text-gray-700">
+                <div className="mt-3.5 p-3 sm:p-4 rounded-lg bg-gray-50 border border-gray-200 flex flex-wrap items-center gap-2.5 text-small text-gray-700">
                   <span className="font-basier font-medium text-gray-900">Action: Publish</span>
-                  <span className="text-gray-400">←</span>
-                  <span className="px-2 py-0.5 rounded bg-gray-200/80 text-gray-800 text-[11.5px] font-mono">
+                  <span className="text-gray-500">←</span>
+                  <span className="px-2 py-0.5 rounded bg-gray-200/80 text-gray-800 text-caption font-basier tabular-nums">
                     [3 lessons incomplete]
                   </span>
-                  <span className="text-[12px] text-gray-500 font-sans italic ml-auto sm:ml-0">
+                  <span className="text-caption text-gray-500 font-sans italic ml-auto sm:ml-0">
                     Publish stays disabled; the missing-lessons link stays available
                   </span>
                 </div>
@@ -667,13 +667,13 @@ export default function CaseStudyAhamX({ onBack, onNext, isRevealed = true }) {
 
               {/* Layer 3 */}
               <div className="p-5 sm:p-6 rounded-xl border border-gray-200 bg-white shadow-xs">
-                <div className="text-[11px] font-basier font-medium uppercase tracking-wider text-gray-400 mb-1.5">
+                <div className="type-label mb-1.5">
                   Organization Lead Workflow
                 </div>
-                <h3 className="cs-subheading text-[16px] sm:text-[17px] font-basier font-medium text-gray-900 mb-3">
+                <h3 className="cs-subheading text-body font-basier font-medium text-gray-900 mb-3">
                   The Contextual Decision Layer
                 </h3>
-                <ul className="space-y-2.5 text-[14px] text-gray-700 leading-relaxed font-switzer font-normal">
+                <ul className="space-y-2.5 text-small text-gray-700 leading-relaxed font-basier font-normal">
                   <li className="flex items-start gap-2.5">
                     <span className="w-1.5 h-1.5 rounded-full bg-gray-400 mt-2 shrink-0" />
                     <span><strong>Consolidated Decision Rows:</strong> Member affiliation, relationship scope, request date, and binary action controls (<code className="text-xs bg-gray-100 px-1 py-0.5 rounded">Approve</code> / <code className="text-xs bg-gray-100 px-1 py-0.5 rounded">Reject</code>) are bound into a single scannable card.</span>
@@ -695,10 +695,10 @@ export default function CaseStudyAhamX({ onBack, onNext, isRevealed = true }) {
         {/* ------------------------------------------------------------- */}
         <section id="section-systems" className="space-y-6 scroll-mt-28">
           <ScrollReveal>
-            <h2 className="cs-section-title text-[22px] sm:text-[26px] md:text-[30px] font-basier font-medium text-[#111827] tracking-tight leading-snug">
+            <h2 className="cs-section-title text-h3 md:text-h2 font-basier font-medium text-[#111827] tracking-tight leading-snug">
               Systems Thinking, State Logic & Edge Cases
             </h2>
-            <p className="cs-body text-[15px] sm:text-[16px] text-[#374151] leading-[1.75] font-switzer font-normal mt-2">
+            <p className="cs-body text-body text-[#374151] leading-[1.6] font-basier font-normal mt-2">
               A production-ready design system must account for system stress, data latency, and edge states.
             </p>
           </ScrollReveal>
@@ -706,68 +706,68 @@ export default function CaseStudyAhamX({ onBack, onNext, isRevealed = true }) {
           {/* State & Dependency Pipeline - Balanced 3-Column White & Grey Table */}
           <ScrollReveal delay={0.06} variant="scale-up">
             <div className="border border-gray-200 rounded-xl overflow-hidden bg-white shadow-xs">
-              <div className="hidden sm:grid sm:grid-cols-12 bg-gray-50 border-b border-gray-200 px-4 py-3 text-[11px] font-basier font-semibold uppercase tracking-wider text-gray-500">
+              <div className="hidden sm:grid sm:grid-cols-12 bg-gray-50 border-b border-gray-200 px-4 py-3 text-caption font-basier font-medium uppercase tracking-wider text-gray-500">
                 <div className="sm:col-span-4">State & Trigger</div>
                 <div className="sm:col-span-4">Interface Behavior</div>
                 <div className="sm:col-span-4">System Rule / Recovery</div>
               </div>
-              <div className="divide-y divide-gray-100 text-[13px] font-switzer font-normal">
+              <div className="divide-y divide-gray-100 text-small font-basier font-normal">
                 <div className="p-4 sm:px-4 sm:py-3.5 grid grid-cols-1 sm:grid-cols-12 gap-2 sm:gap-4 items-baseline">
                   <div className="sm:col-span-4">
-                    <div className="sm:hidden text-[10px] font-basier font-medium uppercase tracking-wider text-gray-400 mb-0.5">State & Trigger</div>
-                    <span className="font-basier font-medium text-gray-900 text-[13.5px]">Incomplete Readiness</span>
+                    <div className="sm:hidden type-label mb-0.5">State & Trigger</div>
+                    <span className="font-basier font-medium text-gray-900 text-small">Incomplete Readiness</span>
                   </div>
                   <div className="sm:col-span-4 text-gray-600 sm:border-l sm:border-gray-100 sm:pl-3">
-                    <div className="sm:hidden text-[10px] font-basier font-medium uppercase tracking-wider text-gray-400 mt-1 mb-0.5">Interface Behavior</div>
-                    Publish action disabled; badge counts pending items (<code className="text-xs bg-gray-100 px-1.5 py-0.5 rounded text-gray-800 font-mono">[3 incomplete]</code>).
+                    <div className="sm:hidden type-label mt-1 mb-0.5">Interface Behavior</div>
+                    Publish action disabled; badge counts pending items (<code className="text-xs bg-gray-100 px-1.5 py-0.5 rounded text-gray-800 font-basier tabular-nums">[3 incomplete]</code>).
                   </div>
-                  <div className="sm:col-span-4 text-gray-500 sm:border-l sm:border-gray-100 sm:pl-3 text-[12.5px]">
-                    <div className="sm:hidden text-[10px] font-basier font-medium uppercase tracking-wider text-gray-400 mt-1 mb-0.5">System Rule / Recovery</div>
+                  <div className="sm:col-span-4 text-gray-500 sm:border-l sm:border-gray-100 sm:pl-3 text-caption">
+                    <div className="sm:hidden type-label mt-1 mb-0.5">System Rule / Recovery</div>
                     Prevents premature publishing; clicking the missing-items link opens the first incomplete lesson.
                   </div>
                 </div>
 
                 <div className="p-4 sm:px-4 sm:py-3.5 grid grid-cols-1 sm:grid-cols-12 gap-2 sm:gap-4 items-baseline">
                   <div className="sm:col-span-4">
-                    <div className="sm:hidden text-[10px] font-basier font-medium uppercase tracking-wider text-gray-400 mb-0.5">State & Trigger</div>
-                    <span className="font-basier font-medium text-gray-900 text-[13.5px]">Synthesis Failure</span>
+                    <div className="sm:hidden type-label mb-0.5">State & Trigger</div>
+                    <span className="font-basier font-medium text-gray-900 text-small">Synthesis Failure</span>
                   </div>
                   <div className="sm:col-span-4 text-gray-600 sm:border-l sm:border-gray-100 sm:pl-3">
-                    <div className="sm:hidden text-[10px] font-basier font-medium uppercase tracking-wider text-gray-400 mt-1 mb-0.5">Interface Behavior</div>
+                    <div className="sm:hidden type-label mt-1 mb-0.5">Interface Behavior</div>
                     Non-destructive retry dialog preserves reviewed script and source inputs.
                   </div>
-                  <div className="sm:col-span-4 text-gray-500 sm:border-l sm:border-gray-100 sm:pl-3 text-[12.5px]">
-                    <div className="sm:hidden text-[10px] font-basier font-medium uppercase tracking-wider text-gray-400 mt-1 mb-0.5">System Rule / Recovery</div>
+                  <div className="sm:col-span-4 text-gray-500 sm:border-l sm:border-gray-100 sm:pl-3 text-caption">
+                    <div className="sm:hidden type-label mt-1 mb-0.5">System Rule / Recovery</div>
                     Revision cached locally and server-side; zero content loss on timeouts.
                   </div>
                 </div>
 
                 <div className="p-4 sm:px-4 sm:py-3.5 grid grid-cols-1 sm:grid-cols-12 gap-2 sm:gap-4 items-baseline">
                   <div className="sm:col-span-4">
-                    <div className="sm:hidden text-[10px] font-basier font-medium uppercase tracking-wider text-gray-400 mb-0.5">State & Trigger</div>
-                    <span className="font-basier font-medium text-gray-900 text-[13.5px]">Concurrent Mutation</span>
+                    <div className="sm:hidden type-label mb-0.5">State & Trigger</div>
+                    <span className="font-basier font-medium text-gray-900 text-small">Concurrent Mutation</span>
                   </div>
                   <div className="sm:col-span-4 text-gray-600 sm:border-l sm:border-gray-100 sm:pl-3">
-                    <div className="sm:hidden text-[10px] font-basier font-medium uppercase tracking-wider text-gray-400 mt-1 mb-0.5">Interface Behavior</div>
+                    <div className="sm:hidden type-label mt-1 mb-0.5">Interface Behavior</div>
                     If someone else already approved the request in another tab, the row updates and tells you.
                   </div>
-                  <div className="sm:col-span-4 text-gray-500 sm:border-l sm:border-gray-100 sm:pl-3 text-[12.5px]">
-                    <div className="sm:hidden text-[10px] font-basier font-medium uppercase tracking-wider text-gray-400 mt-1 mb-0.5">System Rule / Recovery</div>
+                  <div className="sm:col-span-4 text-gray-500 sm:border-l sm:border-gray-100 sm:pl-3 text-caption">
+                    <div className="sm:hidden type-label mt-1 mb-0.5">System Rule / Recovery</div>
                     If modified in another tab, row transitions immediately with passive status toast.
                   </div>
                 </div>
 
                 <div className="p-4 sm:px-4 sm:py-3.5 grid grid-cols-1 sm:grid-cols-12 gap-2 sm:gap-4 items-baseline">
                   <div className="sm:col-span-4">
-                    <div className="sm:hidden text-[10px] font-basier font-medium uppercase tracking-wider text-gray-400 mb-0.5">State & Trigger</div>
-                    <span className="font-basier font-medium text-gray-900 text-[13.5px]">Connection Drop</span>
+                    <div className="sm:hidden type-label mb-0.5">State & Trigger</div>
+                    <span className="font-basier font-medium text-gray-900 text-small">Connection Drop</span>
                   </div>
                   <div className="sm:col-span-4 text-gray-600 sm:border-l sm:border-gray-100 sm:pl-3">
-                    <div className="sm:hidden text-[10px] font-basier font-medium uppercase tracking-wider text-gray-400 mt-1 mb-0.5">Interface Behavior</div>
+                    <div className="sm:hidden type-label mt-1 mb-0.5">Interface Behavior</div>
                     If the connection drops mid-lesson, playback position is kept on the device.
                   </div>
-                  <div className="sm:col-span-4 text-gray-500 sm:border-l sm:border-gray-100 sm:pl-3 text-[12.5px]">
-                    <div className="sm:hidden text-[10px] font-basier font-medium uppercase tracking-wider text-gray-400 mt-1 mb-0.5">System Rule / Recovery</div>
+                  <div className="sm:col-span-4 text-gray-500 sm:border-l sm:border-gray-100 sm:pl-3 text-caption">
+                    <div className="sm:hidden type-label mt-1 mb-0.5">System Rule / Recovery</div>
                     Saves the exact second and syncs quietly once the learner is back online.
                   </div>
                 </div>
@@ -779,22 +779,22 @@ export default function CaseStudyAhamX({ onBack, onNext, isRevealed = true }) {
           <ScrollReveal delay={0.08} variant="scale-up">
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-3.5 sm:gap-4 pt-2">
               <div className="p-4 sm:p-5 rounded-xl border border-gray-200 bg-white shadow-xs">
-                <h4 className="cs-detail-heading font-basier font-medium text-[15px] text-gray-900 mb-1.5">Contextual Density vs. Simplicity</h4>
-                <p className="text-[13px] text-gray-600 leading-relaxed font-switzer font-normal">
+                <h4 className="cs-detail-heading font-basier font-medium text-body text-gray-900 mb-1.5">Contextual Density vs. Simplicity</h4>
+                <p className="text-small text-gray-600 leading-relaxed font-basier font-normal">
                   Kept active courses and recommendations grouped together so learners resume immediately without re-exploring catalogs.
                 </p>
               </div>
 
               <div className="p-4 sm:p-5 rounded-xl border border-gray-200 bg-white shadow-xs">
-                <h4 className="cs-detail-heading font-basier font-medium text-[15px] text-gray-900 mb-1.5">Multi-stage AI vs. 1-Click</h4>
-                <p className="text-[13px] text-gray-600 leading-relaxed font-switzer font-normal">
+                <h4 className="cs-detail-heading font-basier font-medium text-body text-gray-900 mb-1.5">Multi-stage AI vs. 1-Click</h4>
+                <p className="text-small text-gray-600 leading-relaxed font-basier font-normal">
                   Traded instant publishing for staged human checkpoints (Outline → Script → Media), securing institutional credibility.
                 </p>
               </div>
 
               <div className="p-4 sm:p-5 rounded-xl border border-gray-200 bg-white shadow-xs">
-                <h4 className="cs-detail-heading font-basier font-medium text-[15px] text-gray-900 mb-1.5">Consolidated Decision Rows</h4>
-                <p className="text-[13px] text-gray-600 leading-relaxed font-switzer font-normal">
+                <h4 className="cs-detail-heading font-basier font-medium text-body text-gray-900 mb-1.5">Consolidated Decision Rows</h4>
+                <p className="text-small text-gray-600 leading-relaxed font-basier font-normal">
                   Packaged requester identity, relationship scope, and binary approval actions in one row, eliminating tab-switching.
                 </p>
               </div>
@@ -802,7 +802,7 @@ export default function CaseStudyAhamX({ onBack, onNext, isRevealed = true }) {
           </ScrollReveal>
 
           <ScrollReveal delay={0.1}>
-            <div className="p-4 sm:p-5 rounded-xl bg-gray-50 border border-gray-200 text-[13.5px] text-gray-700 font-switzer font-normal">
+            <div className="p-4 sm:p-5 rounded-xl bg-gray-50 border border-gray-200 text-small text-gray-700 font-basier font-normal">
               <strong className="text-gray-900 font-basier font-medium">Technical Alignment Note: </strong>
               I worked out the publishing rules, draft saving and approval permissions together with engineering, so what the screen shows always matches what has actually happened.
             </div>
@@ -817,10 +817,10 @@ export default function CaseStudyAhamX({ onBack, onNext, isRevealed = true }) {
         <section id="section-craft" className="space-y-10 sm:space-y-12 scroll-mt-28">
           <ScrollReveal>
             <div>
-              <h2 className="cs-section-title text-[22px] sm:text-[26px] md:text-[30px] font-basier font-medium text-[#111827] tracking-tight leading-snug">
+              <h2 className="cs-section-title text-h3 md:text-h2 font-basier font-medium text-[#111827] tracking-tight leading-snug">
                 Visual Interface & Platform Walkthrough
               </h2>
-              <p className="cs-body text-[15px] sm:text-[16px] text-[#374151] leading-[1.75] mt-2 font-switzer font-normal">
+              <p className="cs-body text-body text-[#374151] leading-[1.6] mt-2 font-basier font-normal">
                 A cohesive design system connecting the product shell, with interaction density tailored to the user's operational responsibility.
               </p>
             </div>
@@ -828,10 +828,10 @@ export default function CaseStudyAhamX({ onBack, onNext, isRevealed = true }) {
 
           {/* Feature 1: The Continuity Layer (Learner & Org Overview) */}
           <ScrollReveal>
-            <h3 className="cs-subheading text-[17px] sm:text-[19px] font-basier font-medium text-gray-900 mb-1.5">
+            <h3 className="cs-subheading text-body sm:text-lead font-basier font-medium text-gray-900 mb-1.5">
               The Continuity Layer — Learner & Organization Dashboards
             </h3>
-            <p className="text-[14px] text-gray-600 leading-relaxed font-switzer font-normal">
+            <p className="text-small text-gray-600 leading-relaxed font-basier font-normal">
               Active courses, progress checkpoints, and personalized recommendations are placed side-by-side. The same design system shell scales gracefully to provide aggregate cohort analytics for organization leads.
             </p>
             <DualMockupFrame 
@@ -844,10 +844,10 @@ export default function CaseStudyAhamX({ onBack, onNext, isRevealed = true }) {
 
           {/* Feature 2: Community Context & Identity */}
           <ScrollReveal>
-            <h3 className="cs-subheading text-[17px] sm:text-[19px] font-basier font-medium text-gray-900 mb-1.5">
+            <h3 className="cs-subheading text-body sm:text-lead font-basier font-medium text-gray-900 mb-1.5">
               Community Feed & Personal Identity Profiles
             </h3>
-            <p className="text-[14px] text-gray-600 leading-relaxed font-switzer font-normal">
+            <p className="text-small text-gray-600 leading-relaxed font-basier font-normal">
               Community discussions clearly attribute authorship and role context. Each person's profile brings their background, achievements and skills together in one place.
             </p>
             <DualMockupFrame 
@@ -860,10 +860,10 @@ export default function CaseStudyAhamX({ onBack, onNext, isRevealed = true }) {
 
           {/* Feature 3: The Verification Layer (AI Creator Studio) with Embedded 60fps Micro-interaction Video */}
           <ScrollReveal>
-            <h3 className="cs-subheading text-[17px] sm:text-[19px] font-basier font-medium text-gray-900 mb-1.5">
+            <h3 className="cs-subheading text-body sm:text-lead font-basier font-medium text-gray-900 mb-1.5">
               The Verification Layer — AI Course Outline & Script Review
             </h3>
-            <p className="text-[14px] text-gray-600 leading-relaxed font-switzer font-normal">
+            <p className="text-small text-gray-600 leading-relaxed font-basier font-normal">
               The curriculum outline exposes structural readiness and blocker counts. Review continues through script editing, narration pacing, and video generation, keeping human expertise at the center.
             </p>
             <DualMockupFrame 
@@ -884,10 +884,10 @@ export default function CaseStudyAhamX({ onBack, onNext, isRevealed = true }) {
 
           {/* Feature 4: Reusable Material & Cohorts */}
           <ScrollReveal>
-            <h3 className="cs-subheading text-[17px] sm:text-[19px] font-basier font-medium text-gray-900 mb-1.5">
+            <h3 className="cs-subheading text-body sm:text-lead font-basier font-medium text-gray-900 mb-1.5">
               Asset Library & Capability Distribution
             </h3>
-            <p className="text-[14px] text-gray-600 leading-relaxed font-switzer font-normal">
+            <p className="text-small text-gray-600 leading-relaxed font-basier font-normal">
               A centralized asset repository enables rapid curriculum authoring, tagging, and cross-course modular distribution across corporate cohorts.
             </p>
             <MockupFrame 
@@ -898,10 +898,10 @@ export default function CaseStudyAhamX({ onBack, onNext, isRevealed = true }) {
 
           {/* Feature 5: The Contextual Decision Layer with Embedded 60fps Micro-interaction Video */}
           <ScrollReveal>
-            <h3 className="cs-subheading text-[17px] sm:text-[19px] font-basier font-medium text-gray-900 mb-1.5">
+            <h3 className="cs-subheading text-body sm:text-lead font-basier font-medium text-gray-900 mb-1.5">
               The Contextual Decision Layer — Organization Network & Hierarchy
             </h3>
-            <p className="text-[14px] text-gray-600 leading-relaxed font-switzer font-normal">
+            <p className="text-small text-gray-600 leading-relaxed font-basier font-normal">
               Relationship rows bind identity, department, date, and inline actions (<code className="text-xs bg-gray-100 px-1 py-0.5 rounded">Approve</code> / <code className="text-xs bg-gray-100 px-1 py-0.5 rounded">Reject</code>) into a single scannable view, backed by a structural organizational map.
             </p>
             <MockupFrame 
@@ -922,14 +922,14 @@ export default function CaseStudyAhamX({ onBack, onNext, isRevealed = true }) {
           <ScrollReveal delay={0.06}>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 sm:gap-4 pt-2">
               <div className="p-5 rounded-xl border border-gray-200 bg-gray-50/50 shadow-xs">
-                <h4 className="cs-detail-heading font-basier font-medium text-[15px] text-gray-900 mb-1">State Behavior as First-Class UI</h4>
-                <p className="text-[13px] text-gray-600 leading-relaxed font-switzer font-normal">
+                <h4 className="cs-detail-heading font-basier font-medium text-body text-gray-900 mb-1">State Behavior as First-Class UI</h4>
+                <p className="text-small text-gray-600 leading-relaxed font-basier font-normal">
                   All shared components feature distinct hover, active, disabled, loading, and fallback states. Status tags always pair clear explanatory text with accessible cues.
                 </p>
               </div>
               <div className="p-5 rounded-xl border border-gray-200 bg-gray-50/50 shadow-xs">
-                <h4 className="cs-detail-heading font-basier font-medium text-[15px] text-gray-900 mb-1">WCAG 2.1 AA Accessibility</h4>
-                <p className="text-[13px] text-gray-600 leading-relaxed font-switzer font-normal">
+                <h4 className="cs-detail-heading font-basier font-medium text-body text-gray-900 mb-1">WCAG 2.1 AA Accessibility</h4>
+                <p className="text-small text-gray-600 leading-relaxed font-basier font-normal">
                   Designed to WCAG 2.1 AA: 4.5:1 text contrast ratios, visible keyboard focus rings, semantic landmark structures, ARIA live announcements for state updates, and narrow-viewport reflow down to 320px.
                 </p>
               </div>
@@ -944,10 +944,10 @@ export default function CaseStudyAhamX({ onBack, onNext, isRevealed = true }) {
         {/* ------------------------------------------------------------- */}
         <section id="section-impact" className="space-y-6 scroll-mt-28">
           <ScrollReveal>
-            <h2 className="cs-section-title text-[22px] sm:text-[26px] md:text-[30px] font-basier font-medium text-[#111827] tracking-tight leading-snug">
+            <h2 className="cs-section-title text-h3 md:text-h2 font-basier font-medium text-[#111827] tracking-tight leading-snug">
               Impact, Milestones & Retrospective
             </h2>
-            <p className="cs-body text-[15px] sm:text-[16px] text-[#374151] leading-[1.75] font-switzer font-normal mt-2">
+            <p className="cs-body text-body text-[#374151] leading-[1.6] font-basier font-normal mt-2">
               Shipped for web and mobile; demoed at the Google and ARTPARK pavilions, India AI Impact Summit 2026.
             </p>
           </ScrollReveal>
@@ -955,17 +955,17 @@ export default function CaseStudyAhamX({ onBack, onNext, isRevealed = true }) {
           <ScrollReveal delay={0.06}>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div className="p-5 sm:p-6 rounded-xl border border-gray-200 bg-white shadow-xs">
-                <div className="text-[10px] sm:text-[11px] font-basier font-medium uppercase tracking-wider text-gray-400 mb-1">Delivery Velocity</div>
-                <div className="text-[18px] sm:text-[20px] font-basier font-medium text-gray-900 mb-1">Shipped in 3 Months.</div>
-                <p className="text-[13px] text-gray-600 leading-relaxed font-switzer font-normal">
+                <div className="type-label mb-1">Delivery Velocity</div>
+                <div className="text-lead font-basier font-medium text-gray-900 mb-1">Shipped in 3 Months.</div>
+                <p className="text-small text-gray-600 leading-relaxed font-basier font-normal">
                   Led end-to-end design across learner, creator, and organization surfaces for desktop and mobile as sole designer in an agile pod.
                 </p>
               </div>
 
               <div className="p-5 sm:p-6 rounded-xl border border-gray-200 bg-white shadow-xs">
-                <div className="text-[10px] sm:text-[11px] font-basier font-medium uppercase tracking-wider text-gray-400 mb-1">Public demo</div>
-                <div className="text-[18px] sm:text-[20px] font-basier font-medium text-gray-900 mb-1">IndiaAI Impact Summit 2026.</div>
-                <p className="text-[13px] text-gray-600 leading-relaxed font-switzer font-normal">
+                <div className="type-label mb-1">Public demo</div>
+                <div className="text-lead font-basier font-medium text-gray-900 mb-1">IndiaAI Impact Summit 2026.</div>
+                <p className="text-small text-gray-600 leading-relaxed font-basier font-normal">
                   Demoed at the Google and ARTPARK pavilions, showing how learners, educators, and organization leads use the platform.
                 </p>
               </div>
@@ -973,53 +973,53 @@ export default function CaseStudyAhamX({ onBack, onNext, isRevealed = true }) {
 
             {/* Evaluation & Measurement Framework - Concrete Trial & Baseline Metrics */}
             <div className="border border-gray-200 rounded-xl overflow-hidden bg-white mt-5 shadow-xs">
-              <div className="hidden sm:grid sm:grid-cols-12 bg-gray-50 border-b border-gray-200 px-4 py-3 text-[11px] font-basier font-semibold uppercase tracking-wider text-gray-500">
+              <div className="hidden sm:grid sm:grid-cols-12 bg-gray-50 border-b border-gray-200 px-4 py-3 text-caption font-basier font-medium uppercase tracking-wider text-gray-500">
                 <div className="sm:col-span-5">Evaluation Focus</div>
                 <div className="sm:col-span-3">Design focus</div>
                 <div className="sm:col-span-4">Design response</div>
               </div>
-              <div className="divide-y divide-gray-100 text-[13px] font-switzer font-normal">
+              <div className="divide-y divide-gray-100 text-small font-basier font-normal">
                 <div className="p-3.5 sm:px-4 sm:py-3 grid grid-cols-1 sm:grid-cols-12 gap-1.5 sm:gap-4 items-baseline">
                   <div className="sm:col-span-5 font-basier font-medium text-gray-900">
-                    <div className="sm:hidden text-[10px] font-basier font-medium uppercase tracking-wider text-gray-400 mb-0.5">Evaluation Focus</div>
+                    <div className="sm:hidden type-label mb-0.5">Evaluation Focus</div>
                     Can a learner resume study without manual search?
                   </div>
                   <div className="sm:col-span-3 text-gray-600 sm:border-l sm:border-gray-100 sm:pl-3">
-                    <div className="sm:hidden text-[10px] font-basier font-medium uppercase tracking-wider text-gray-400 mt-1 mb-0.5">Design focus</div>
+                    <div className="sm:hidden type-label mt-1 mb-0.5">Design focus</div>
                     Resume learning
                   </div>
-                  <div className="sm:col-span-4 text-gray-900 font-mono text-[12px] sm:border-l sm:border-gray-100 sm:pl-3 font-medium">
-                    <div className="sm:hidden text-[10px] font-basier font-medium uppercase tracking-wider text-gray-400 mt-1 mb-0.5">Design response</div>
+                  <div className="sm:col-span-4 text-gray-900 font-basier tabular-nums text-caption sm:border-l sm:border-gray-100 sm:pl-3 font-medium">
+                    <div className="sm:hidden type-label mt-1 mb-0.5">Design response</div>
                     The Resume card opens the last lesson directly, without searching through the catalog.
                   </div>
                 </div>
 
                 <div className="p-3.5 sm:px-4 sm:py-3 grid grid-cols-1 sm:grid-cols-12 gap-1.5 sm:gap-4 items-baseline">
                   <div className="sm:col-span-5 font-basier font-medium text-gray-900">
-                    <div className="sm:hidden text-[10px] font-basier font-medium uppercase tracking-wider text-gray-400 mb-0.5">Evaluation Focus</div>
+                    <div className="sm:hidden type-label mb-0.5">Evaluation Focus</div>
                     Does an educator understand content readiness?
                   </div>
                   <div className="sm:col-span-3 text-gray-600 sm:border-l sm:border-gray-100 sm:pl-3">
-                    <div className="sm:hidden text-[10px] font-basier font-medium uppercase tracking-wider text-gray-400 mt-1 mb-0.5">Design focus</div>
+                    <div className="sm:hidden type-label mt-1 mb-0.5">Design focus</div>
                     Review before publishing
                   </div>
-                  <div className="sm:col-span-4 text-gray-900 font-mono text-[12px] sm:border-l sm:border-gray-100 sm:pl-3 font-medium">
-                    <div className="sm:hidden text-[10px] font-basier font-medium uppercase tracking-wider text-gray-400 mt-1 mb-0.5">Design response</div>
+                  <div className="sm:col-span-4 text-gray-900 font-basier tabular-nums text-caption sm:border-l sm:border-gray-100 sm:pl-3 font-medium">
+                    <div className="sm:hidden type-label mt-1 mb-0.5">Design response</div>
                     Educators can edit AI-drafted scripts before video generation; Publish stays disabled until required work is complete.
                   </div>
                 </div>
 
                 <div className="p-3.5 sm:px-4 sm:py-3 grid grid-cols-1 sm:grid-cols-12 gap-1.5 sm:gap-4 items-baseline">
                   <div className="sm:col-span-5 font-basier font-medium text-gray-900">
-                    <div className="sm:hidden text-[10px] font-basier font-medium uppercase tracking-wider text-gray-400 mb-0.5">Evaluation Focus</div>
+                    <div className="sm:hidden type-label mb-0.5">Evaluation Focus</div>
                     Can a lead act on a request in context?
                   </div>
                   <div className="sm:col-span-3 text-gray-600 sm:border-l sm:border-gray-100 sm:pl-3">
-                    <div className="sm:hidden text-[10px] font-basier font-medium uppercase tracking-wider text-gray-400 mt-1 mb-0.5">Design focus</div>
+                    <div className="sm:hidden type-label mt-1 mb-0.5">Design focus</div>
                     Approve in context
                   </div>
-                  <div className="sm:col-span-4 text-gray-900 font-mono text-[12px] sm:border-l sm:border-gray-100 sm:pl-3 font-medium">
-                    <div className="sm:hidden text-[10px] font-basier font-medium uppercase tracking-wider text-gray-400 mt-1 mb-0.5">Design response</div>
+                  <div className="sm:col-span-4 text-gray-900 font-basier tabular-nums text-caption sm:border-l sm:border-gray-100 sm:pl-3 font-medium">
+                    <div className="sm:hidden type-label mt-1 mb-0.5">Design response</div>
                     Requester details and Approve / Reject actions sit in the same row, so leads can make a decision without leaving the page.
                   </div>
                 </div>
@@ -1028,7 +1028,7 @@ export default function CaseStudyAhamX({ onBack, onNext, isRevealed = true }) {
           </ScrollReveal>
 
           <ScrollReveal delay={0.1}>
-            <div className="p-5 sm:p-6 rounded-xl bg-gray-50 border border-gray-200 text-[15px] sm:text-[16px] font-seasons font-normal not-italic text-gray-900 leading-relaxed text-center">
+            <div className="p-5 sm:p-6 rounded-xl bg-gray-50 border border-gray-200 text-body font-seasons font-normal not-italic text-gray-900 leading-relaxed text-center">
               What I learned: a blocked action needs a reason, not just a grey button.
             </div>
           </ScrollReveal>
@@ -1036,14 +1036,14 @@ export default function CaseStudyAhamX({ onBack, onNext, isRevealed = true }) {
           <ScrollReveal delay={0.12}>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 sm:gap-4">
               <div className="p-5 rounded-xl border border-gray-200 bg-white shadow-xs">
-                <h4 className="cs-detail-heading font-basier font-medium text-[15px] text-gray-900 mb-1">What I’d do differently</h4>
-                <p className="text-[13px] text-gray-600 leading-relaxed font-switzer font-normal">
+                <h4 className="cs-detail-heading font-basier font-medium text-body text-gray-900 mb-1">What I’d do differently</h4>
+                <p className="text-small text-gray-600 leading-relaxed font-basier font-normal">
                   I’d test the all-in-one dashboard with learners in week one, before developing the role-specific screens further.
                 </p>
               </div>
               <div className="p-5 rounded-xl border border-gray-200 bg-white shadow-xs">
-                <h4 className="cs-detail-heading font-basier font-medium text-[15px] text-gray-900 mb-1">What’s next</h4>
-                <p className="text-[13px] text-gray-600 leading-relaxed font-switzer font-normal">
+                <h4 className="cs-detail-heading font-basier font-medium text-body text-gray-900 mb-1">What’s next</h4>
+                <p className="text-small text-gray-600 leading-relaxed font-basier font-normal">
                   Linking what someone has learned to the skills their organization needs.
                 </p>
               </div>
@@ -1065,7 +1065,7 @@ export default function CaseStudyAhamX({ onBack, onNext, isRevealed = true }) {
           <div className="pt-6 sm:pt-8 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
             <button
               onClick={onBack}
-              className="min-h-11 inline-flex items-center gap-2 text-[13px] sm:text-[14px] font-basier font-medium text-gray-700 hover:text-black transition-colors cursor-pointer group"
+              className="min-h-11 inline-flex items-center gap-2 text-small font-basier font-medium text-gray-700 hover:text-black transition-colors cursor-pointer group"
             >
               <ArrowLeft className="w-4 h-4 transition-transform group-hover:-translate-x-1" />
               <span>Back to Selected Works</span>

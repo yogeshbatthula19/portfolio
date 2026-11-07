@@ -138,10 +138,10 @@ export default function CaseStudyScrollNav({ sections = DEFAULT_SECTIONS }) {
                 ref={(el) => (itemRefs.current[idx] = el)}
                 onClick={() => handleScrollTo(sec.id)}
                 aria-current={isActive ? 'true' : 'false'}
-                className={`text-left text-[14px] lg:text-[15px] leading-tight transition-all duration-300 cursor-pointer focus:outline-none focus-visible:ring-1 focus-visible:ring-black rounded px-1 -mx-1 ${
+                className={`text-left text-small lg:text-body leading-tight transition-all duration-300 cursor-pointer focus:outline-none focus-visible:ring-1 focus-visible:ring-black rounded px-1 -mx-1 ${
                   isActive
-                    ? 'font-basier font-semibold text-[#111827]'
-                    : 'font-basier font-medium text-[#9ca3af] hover:text-[#4b5563]'
+                    ? 'font-basier font-medium text-[#111827]'
+                    : 'font-basier font-medium text-gray-500 hover:text-[#4b5563]'
                 }`}
               >
                 {sec.label}

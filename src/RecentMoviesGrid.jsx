@@ -184,10 +184,10 @@ function JewelCaseCard({ item, index, parallaxY }) {
           transition={{ duration: 0.2 }}
           className="absolute bottom-2 inset-x-2 pointer-events-none bg-black/80 backdrop-blur-md rounded-md py-1 px-1.5 text-center text-white z-30"
         >
-          <p className="text-[11.5px] font-medium leading-tight truncate">
+          <p className="text-caption font-medium leading-tight truncate">
             {item.title}
           </p>
-          <p className="text-[9.5px] text-white/70 font-normal leading-tight">
+          <p className="text-caption text-white/70 font-normal leading-tight">
             {item.type} • {item.year}
           </p>
         </motion.div>
@@ -234,7 +234,7 @@ export default function RecentMoviesGrid() {
         className="mb-8 sm:mb-10 flex items-center justify-between"
       >
         <div className="flex flex-col gap-1">
-          <span className="text-[12px] sm:text-[13px] tracking-[0.14em] uppercase font-semibold text-[#8e95a5] select-none">
+          <span className="text-caption sm:text-small tracking-[0.14em] uppercase font-medium text-[#8e95a5] select-none">
             Recent Movies and Shows
           </span>
         </div>

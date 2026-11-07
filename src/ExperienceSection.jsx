@@ -39,7 +39,7 @@ export default function ExperienceSection() {
         transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
         className="mb-6 sm:mb-8"
       >
-        <span className="text-[12px] sm:text-[13px] tracking-[0.14em] uppercase font-semibold text-[#8e95a5] select-none">
+        <span className="text-caption sm:text-small tracking-[0.14em] uppercase font-medium text-[#8e95a5] select-none">
           Experience
         </span>
       </motion.div>
@@ -60,7 +60,7 @@ export default function ExperienceSection() {
             className="group py-4 sm:py-5 flex flex-col sm:flex-row sm:items-center justify-between gap-1 sm:gap-4 transition-colors duration-200 rounded-lg sm:-mx-3 sm:px-3 hover:bg-black/[0.015]"
           >
             {/* Company & Role */}
-            <div className="flex items-baseline flex-wrap text-[14.5px] sm:text-[16px] leading-relaxed text-[#111827]">
+            <div className="flex items-baseline flex-wrap text-small sm:text-body leading-relaxed text-[#111827]">
               <span className="relative inline-block font-medium">
                 {exp.company}
                 {/* Colored Underline matching reference */}
@@ -83,7 +83,7 @@ export default function ExperienceSection() {
             </div>
 
             {/* Date Period */}
-            <div className="text-[12.5px] sm:text-[14px] text-[#6b7280] font-normal whitespace-nowrap shrink-0">
+            <div className="text-caption sm:text-small text-[#6b7280] font-normal whitespace-nowrap shrink-0">
               {exp.period}
             </div>
           </motion.div>

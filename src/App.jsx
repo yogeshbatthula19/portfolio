@@ -231,7 +231,7 @@ function CoupleCard({ imageSrc }) {
             >
               {/* Handwritten letters in cursive font */}
               <div
-                className="flex items-center text-white text-[32px] sm:text-[36px] tracking-wide"
+                className="flex items-center text-white text-h2 sm:text-h1 tracking-wide"
                 style={{
                   fontFamily: "'Sacramento', 'Caveat', cursive",
                   lineHeight: 1,
@@ -399,7 +399,7 @@ function CaseStudyCard({ cover, title, outcome, description, onClick, onMouseEnt
       <div className="relative w-full h-[210px] sm:h-[220px] overflow-hidden select-none bg-gray-50">
         <CoverArt {...cover} alt={`${title} project preview`} />
         {isLocked && (
-          <div className="absolute top-3.5 right-3.5 z-10 inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/90 backdrop-blur-md text-[11.5px] font-medium text-[#111827] shadow-sm border border-black/[0.08]">
+          <div className="absolute top-3.5 right-3.5 z-10 inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/90 backdrop-blur-md text-caption font-medium text-[#111827] shadow-sm border border-black/[0.08]">
             <Lock className="w-3 h-3 text-[#0c4731]" />
             <span>Under NDA</span>
           </div>
@@ -409,10 +409,10 @@ function CaseStudyCard({ cover, title, outcome, description, onClick, onMouseEnt
       {/* Content */}
       <div className="p-5 sm:p-6 flex flex-col flex-1 justify-between">
         <div>
-          <h3 className="font-basier text-[17.5px] sm:text-[18.5px] font-bold not-italic text-[#18181b] tracking-tight leading-snug mb-2 group-hover:text-[#ff6a1f] transition-colors duration-300">
+          <h3 className="font-basier text-body sm:text-lead font-medium not-italic text-[#18181b] tracking-tight leading-snug mb-2 group-hover:text-[#ff6a1f] transition-colors duration-300">
             {title}
           </h3>
-          <p className="font-basier text-[13.5px] text-[#71717a] leading-[1.55] line-clamp-3 font-normal">
+          <p className="font-basier text-small text-[#71717a] leading-[1.55] line-clamp-3 font-normal">
             {description}
           </p>
           {outcome && <p className="project-outcome">{outcome}</p>}
@@ -557,9 +557,9 @@ function StickyNav({ scrollY, onWorks, onAbout, hidden }) {
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -16 }}
           transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
-          className="fixed top-3 sm:top-4 left-1/2 -translate-x-1/2 z-[60] flex items-center gap-0.5 p-1 rounded-full bg-white/85 backdrop-blur-md border border-black/[0.08] shadow-[0_8px_24px_-12px_rgba(0,0,0,0.18)] text-[13px] font-medium text-zinc-700"
+          className="fixed top-3 sm:top-4 left-1/2 -translate-x-1/2 z-[60] flex items-center gap-0.5 p-1 rounded-full bg-white/85 backdrop-blur-md border border-black/[0.08] shadow-[0_8px_24px_-12px_rgba(0,0,0,0.18)] text-small font-medium text-zinc-700"
         >
-          <button type="button" onClick={() => (window.lenis ? window.lenis.scrollTo(0, { duration: 1.0 }) : window.scrollTo({ top: 0, behavior: 'smooth' }))} className={`${item} font-semibold text-zinc-900`}>
+          <button type="button" onClick={() => (window.lenis ? window.lenis.scrollTo(0, { duration: 1.0 }) : window.scrollTo({ top: 0, behavior: 'smooth' }))} className={`${item} font-medium text-zinc-900`}>
             <span className="sm:hidden">Yogesh</span>
             <span className="hidden sm:inline">Yogesh Battula</span>
           </button>
@@ -585,8 +585,8 @@ function WhiteFooterCard({ navigateToCaseStudy, navigateToAbout, onScrollToWorks
         
         {/* Top Navbar Row (Like Lassie) */}
         <div className="flex flex-wrap items-center justify-center gap-3 mb-10 sm:mb-14">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-zinc-50 border border-zinc-200/80 text-[13px] font-medium text-zinc-700 shadow-xs">
-            <span className="font-semibold text-zinc-900 tracking-tight">Yogesh Battula</span>
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-zinc-50 border border-zinc-200/80 text-small font-medium text-zinc-700 shadow-xs">
+            <span className="font-medium text-zinc-900 tracking-tight">Yogesh Battula</span>
             <span className="text-zinc-300">|</span>
             <button
               onClick={onScrollToWorks || (() => {
@@ -619,7 +619,7 @@ function WhiteFooterCard({ navigateToCaseStudy, navigateToAbout, onScrollToWorks
         {/* Main Content: Headline in The Seasons & CTA */}
         <div className="max-w-2xl mx-auto">
           <h2
-            className="font-seasons text-[36px] sm:text-[48px] md:text-[56px] font-normal not-italic text-[#111827] tracking-tight leading-[1.12]"
+            className="font-seasons text-h1 sm:text-display-sm font-normal not-italic text-[#111827] tracking-tight leading-[1.12]"
             style={{ fontFamily: "'The Seasons', Georgia, serif" }}
           >
             Design that shapes the <br />
@@ -629,7 +629,7 @@ function WhiteFooterCard({ navigateToCaseStudy, navigateToAbout, onScrollToWorks
           <div className="mt-7 sm:mt-9 flex justify-center">
             <a
               href="mailto:yogeshbattula55@gmail.com"
-              className="inline-flex items-center justify-center px-6 py-3 rounded-full bg-[#111827] hover:bg-[#ff6a1f] text-white text-[14px] font-medium tracking-tight transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] hover:scale-[1.03] active:scale-95 shadow-sm"
+              className="inline-flex items-center justify-center px-6 py-3 rounded-full bg-[#111827] hover:bg-[#ff6a1f] text-white text-small font-medium tracking-tight transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] hover:scale-[1.03] active:scale-95 shadow-sm"
             >
               Get in touch
             </a>
@@ -1297,7 +1297,7 @@ export default function App() {
         <WavingNimbuMirchi />
 
         <p
-          className="relative z-10 text-white text-[20vw] sm:text-[21vw] font-bold tracking-tight leading-[0.78] select-none text-center pointer-events-none transform translate-y-[3%]"
+          className="relative z-10 text-white text-[20vw] sm:text-[21vw] font-medium tracking-tight leading-[0.78] select-none text-center pointer-events-none transform translate-y-[3%]"
           style={{ fontFamily: "'The Seasons', Georgia, serif" }}
         >
           Battula
@@ -1403,7 +1403,7 @@ export default function App() {
             initial={!reduceMotion ? { opacity: 0, y: 20 } : false}
             animate={siteOpened ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ duration: 0.8, delay: 0.30, ease: entranceEase }}
-            className="text-[14px] sm:text-[16.5px] xl:text-[18px] text-[rgba(8,48,76,0.78)] mt-2 sm:mt-3.5 max-w-[340px] sm:max-w-[520px] xl:max-w-[580px] leading-[21px] sm:leading-[26px] xl:leading-[28px] tracking-[-0.15px]"
+            className="text-small sm:text-body xl:text-lead text-[rgba(8,48,76,0.78)] mt-2 sm:mt-3.5 max-w-[340px] sm:max-w-[520px] xl:max-w-[580px] leading-[21px] sm:leading-[26px] xl:leading-[28px] tracking-[-0.15px]"
           >
             I'm Yogesh, a product designer with 5+ years of experience in AI and SaaS products. I design apps that look clean on the surface and make sense underneath.
           </motion.p>
@@ -1423,7 +1423,7 @@ export default function App() {
             initial={!reduceMotion ? { opacity: 0, y: 16 } : false}
             animate={siteOpened ? { opacity: 1, y: 0 } : { opacity: 0, y: 16 }}
             transition={{ duration: 0.75, delay: 0.52, ease: entranceEase }}
-            className="mt-2.5 sm:mt-3.5 text-[11.5px] sm:text-[13.5px] text-[rgba(8,48,76,0.65)] font-medium tracking-tight"
+            className="mt-2.5 sm:mt-3.5 text-caption sm:text-small text-[rgba(8,48,76,0.65)] font-medium tracking-tight"
           >
             Based in Hyderabad, India
           </motion.p>
@@ -1461,7 +1461,7 @@ export default function App() {
                   />
                   <div>
                     <div className="flex items-center gap-1.5">
-                      <h2 className="text-[17px] font-medium text-[#202020] tracking-tight leading-snug">
+                      <h2 className="text-body font-medium text-[#202020] tracking-tight leading-snug">
                         Yogesh
                       </h2>
                       {/* Star directly next to name */}
@@ -1475,7 +1475,7 @@ export default function App() {
                         className="w-[18px] sm:w-[20px] h-[18px] sm:h-[20px] object-contain select-none pointer-events-none"
                       />
                     </div>
-                    <p className="text-[13px] text-[#797979] mt-0.5 leading-snug">
+                    <p className="text-small text-[#797979] mt-0.5 leading-snug">
                       I design apps that make sense. I film cafés on my Osmo Pocket when I'm off the clock.
                     </p>
                   </div>
@@ -1486,7 +1486,7 @@ export default function App() {
                   download="Yogesh_Battula_Resume.pdf"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-[#2c2c2c] hover:bg-black text-white text-[12px] font-normal rounded-full transition-all shrink-0 cursor-pointer"
+                  className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-[#2c2c2c] hover:bg-black text-white text-caption font-normal rounded-full transition-all shrink-0 cursor-pointer"
                 >
                   <FileText className="w-3 h-3 text-white" />
                   Resume
@@ -1667,7 +1667,7 @@ export default function App() {
                 />
                 <div>
                   <div className="flex items-center gap-2">
-                    <h2 className="text-[20px] font-medium text-[#202020] tracking-tight leading-snug">
+                    <h2 className="text-lead font-medium text-[#202020] tracking-tight leading-snug">
                       Yogesh
                     </h2>
                     {/* Star directly next to name */}
@@ -1679,7 +1679,7 @@ export default function App() {
                       className="w-[20px] h-[20px] object-contain select-none pointer-events-none shrink-0"
                     />
                   </div>
-                  <p className="text-[14px] text-[#797979]">
+                  <p className="text-small text-[#797979]">
                     I design apps that make sense. I film cafés on my Osmo Pocket when I'm off the clock.
                   </p>
                 </div>
@@ -1690,7 +1690,7 @@ export default function App() {
                 download="Yogesh_Battula_Resume.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-4 py-2 bg-[#2c2c2c] hover:bg-black text-white text-[13px] font-normal rounded-full transition-all hover:scale-[1.02] cursor-pointer"
+                className="inline-flex items-center gap-2 px-4 py-2 bg-[#2c2c2c] hover:bg-black text-white text-small font-normal rounded-full transition-all hover:scale-[1.02] cursor-pointer"
               >
                 <FileText className="w-3.5 h-3.5 text-white" />
                 Resume
@@ -1935,10 +1935,10 @@ export default function App() {
         <motion.div 
           className="flex items-center justify-between mb-6 px-1"
         >
-          <h2 className="font-seasons text-[24px] sm:text-[26px] font-normal not-italic text-[#08304c] tracking-tight">
+          <h2 className="font-seasons text-h3 font-normal not-italic text-[#08304c] tracking-tight">
             Selected Works
           </h2>
-          <span className="font-basier text-[13px] text-gray-500 font-medium tracking-tight">
+          <span className="font-basier text-small text-gray-500 font-medium tracking-tight">
             4 case studies
           </span>
         </motion.div>
@@ -2041,7 +2041,7 @@ export default function App() {
               {/* Close Button */}
               <button
                 onClick={() => setPasswordModalOpen(false)}
-                className="absolute top-4 right-4 p-2 rounded-full text-gray-400 hover:text-gray-700 hover:bg-black/[0.04] transition-colors cursor-pointer"
+                className="absolute top-4 right-4 p-2 rounded-full text-gray-500 hover:text-gray-700 hover:bg-black/[0.04] transition-colors cursor-pointer"
                 aria-label="Close dialog"
               >
                 <X className="w-4 h-4" />
@@ -2055,24 +2055,24 @@ export default function App() {
               {/* Title in The Seasons */}
               <h3
                 id="password-modal-title"
-                className="text-[22px] sm:text-[25px] font-bold text-[#111827] tracking-tight mb-2"
+                className="text-h3 font-medium text-[#111827] tracking-tight mb-2"
                 style={{ fontFamily: "'The Seasons', Georgia, serif" }}
               >
                 Shared on a call
               </h3>
 
               {/* Subtitle */}
-              <p className="text-[13.5px] text-[#4b5563] leading-relaxed mb-6 font-basier">
+              <p className="text-small text-[#4b5563] leading-relaxed mb-6 font-basier">
                 This project covers clinical EHR workflows and unreleased healthcare technology under NDA, so I walk through it live instead of publishing it.
               </p>
 
               <a
                 href="mailto:yogeshbattula55@gmail.com?subject=CarePulse%20Health%20walkthrough&body=Hi%20Yogesh,%0A%0AI'd%20like%20to%20see%20a%20walkthrough%20of%20your%20CarePulse%20Health%20work.%20Here%20are%20a%20few%20times%20that%20work%20for%20me:%0A%0A"
-                className="inline-flex items-center justify-center gap-1.5 w-full py-3 px-5 rounded-xl bg-[#0c4731] hover:bg-[#093524] text-white text-[14px] font-medium transition-colors"
+                className="inline-flex items-center justify-center gap-1.5 w-full py-3 px-5 rounded-xl bg-[#0c4731] hover:bg-[#093524] text-white text-small font-medium transition-colors"
               >
                 Request a walkthrough <ArrowUpRight className="w-4 h-4" />
               </a>
-              <p className="pt-3 text-[12.5px] text-[#6b7280] font-basier">
+              <p className="pt-3 text-caption text-[#6b7280] font-basier">
                 I'll reply with a time for a 20-minute screen-share.
               </p>
             </motion.div>

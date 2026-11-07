@@ -80,7 +80,7 @@ function StickyCard({ item, index, isLast, isDesktop }) {
       <div className="px-2 pt-5 pb-2 sm:px-3 sm:pt-6 flex flex-col justify-between flex-1 min-h-0 text-[#2a2118]">
         
         {/* Direct Quote */}
-        <p className="font-seasons text-[19px] sm:text-[22px] font-normal leading-[1.3] text-[#2a2118] tracking-[-0.01em]">
+        <p className="font-seasons text-lead sm:text-h3 font-normal leading-[1.3] text-[#2a2118] tracking-[-0.01em]">
           “{item.quote}”
         </p>
 
@@ -95,7 +95,7 @@ function StickyCard({ item, index, isLast, isDesktop }) {
                 className="group/author inline-flex items-center gap-1.5 text-[#2a2118] truncate hover:text-[#ff6a1f] transition-colors"
                 title={`View ${item.name}'s LinkedIn profile`}
               >
-                <span className="truncate text-[26px] sm:text-[30px] leading-none" style={{ fontFamily: "'Sacramento', 'Caveat', cursive" }}>{item.name}</span>
+                <span className="truncate text-h3 sm:text-h2 leading-none" style={{ fontFamily: "'Sacramento', 'Caveat', cursive" }}>{item.name}</span>
                 <svg 
                   className="w-3.5 h-3.5 text-[#a38a62] group-hover/author:text-[#0a66c2] transition-colors shrink-0" 
                   viewBox="0 0 24 24" 
@@ -106,11 +106,11 @@ function StickyCard({ item, index, isLast, isDesktop }) {
                 </svg>
               </a>
             ) : (
-              <span className="font-basier text-[14px] sm:text-[15.5px] font-semibold text-[#2a2118] tracking-tight truncate">
+              <span className="font-basier text-small sm:text-body font-medium text-[#2a2118] tracking-tight truncate">
                 {item.name}
               </span>
             )}
-            <span className="font-basier text-[12px] sm:text-[13px] text-[#8a7650] font-normal truncate mt-1">
+            <span className="font-basier text-caption sm:text-small text-[#8a7650] font-normal truncate mt-1">
               {item.role}
             </span>
           </div>
@@ -158,7 +158,7 @@ export default function CommunityTestimonials() {
           <div className="lg:sticky lg:top-28 sm:lg:top-32 lg:self-start min-h-0 lg:min-h-[460px] flex flex-col justify-start">
             
             {/* Editorial Heading in The Seasons (Upright, Non-Italic) */}
-            <h2 className="font-seasons text-[36px] sm:text-[44px] lg:text-[48px] font-normal not-italic text-[#08304C] tracking-tight leading-[1.12]">
+            <h2 className="font-seasons text-h1 lg:text-display-sm font-normal not-italic text-[#08304C] tracking-tight leading-[1.12]">
               Kind words from <br />
               the people I’ve <br />
               built with.

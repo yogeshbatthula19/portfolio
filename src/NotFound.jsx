@@ -62,11 +62,11 @@ export default function NotFound({ onHome, onWorks }) {
         >
           <div ref={stampRef} className="aspect-[4/5] bg-[#f7e8cf] p-4" style={{ clipPath: clip }}>
           <div className="h-full w-full rounded-[3px] bg-gradient-to-br from-[#ffb36b] via-[#ff8a3d] to-[#f25c2a] flex flex-col items-center justify-center text-white">
-            <span className="text-[13px] uppercase tracking-[0.25em] opacity-80">Error</span>
+            <span className="text-small uppercase tracking-[0.25em] opacity-80">Error</span>
             <span className="text-[96px] sm:text-[112px] leading-none" style={{ fontFamily: "'The Seasons', Georgia, serif" }}>
               404
             </span>
-            <span className="text-[12px] uppercase tracking-[0.2em] opacity-80 mt-1">Postage due</span>
+            <span className="text-caption uppercase tracking-[0.2em] opacity-80 mt-1">Postage due</span>
           </div>
           </div>
         </motion.div>
@@ -93,12 +93,12 @@ export default function NotFound({ onHome, onWorks }) {
         </motion.svg>
 
         <h1
-          className="mt-4 text-[34px] sm:text-[42px] text-[#08304C] leading-tight"
+          className="mt-4 text-h2 sm:text-h1 text-[#08304C] leading-tight"
           style={{ fontFamily: "'The Seasons', Georgia, serif" }}
         >
           Returned to sender
         </h1>
-        <p className="mt-3 text-[15px] text-[#4b5563] leading-relaxed">
+        <p className="mt-3 text-body text-[#4b5563] leading-relaxed">
           Nothing lives at <span className="font-medium text-[#111827] break-all">{path}</span>. The page may have moved, or the link has a typo.
         </p>
 
@@ -106,14 +106,14 @@ export default function NotFound({ onHome, onWorks }) {
           <a
             href="/"
             onClick={(e) => { e.preventDefault(); onWorks(); }}
-            className="inline-flex items-center justify-center px-6 py-3 rounded-full bg-[#111827] hover:bg-[#ff6a1f] text-white text-[14px] font-medium transition-colors"
+            className="inline-flex items-center justify-center px-6 py-3 rounded-full bg-[#111827] hover:bg-[#ff6a1f] text-white text-small font-medium transition-colors"
           >
             See my work
           </a>
           <a
             href="/"
             onClick={(e) => { e.preventDefault(); onHome(); }}
-            className="inline-flex items-center gap-2 px-5 py-3 rounded-full text-[14px] font-medium text-[#374151] hover:text-black"
+            className="inline-flex items-center gap-2 px-5 py-3 rounded-full text-small font-medium text-[#374151] hover:text-black"
           >
             <ArrowLeft className="w-4 h-4" /> Back to home
           </a>

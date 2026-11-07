@@ -73,7 +73,7 @@ function HeroShowcaseFrame() {
             loading="eager"
             decoding="async"
           />
-          <p className="cs-caption mt-3 text-center text-[12px] font-basier text-gray-700 font-normal">
+          <p className="cs-caption mt-3 text-center text-caption font-basier text-gray-700 font-normal">
             Daily Routine Home
           </p>
         </motion.div>
@@ -90,7 +90,7 @@ function HeroShowcaseFrame() {
             loading="eager"
             decoding="async"
           />
-          <p className="cs-caption mt-3 text-center text-[12px] font-basier text-gray-900 font-medium">
+          <p className="cs-caption mt-3 text-center text-caption font-basier text-gray-900 font-medium">
             Active Drill Breakdown
           </p>
         </motion.div>
@@ -107,7 +107,7 @@ function HeroShowcaseFrame() {
             loading="eager"
             decoding="async"
           />
-          <p className="cs-caption mt-3 text-center text-[12px] font-basier text-gray-700 font-normal">
+          <p className="cs-caption mt-3 text-center text-caption font-basier text-gray-700 font-normal">
             Session Win & Streak
           </p>
         </motion.div>
@@ -144,7 +144,7 @@ function MockupFrame({ src, alt, caption }) {
           </div>
         </motion.div>
         {caption && (
-          <p className="cs-caption mt-3 text-center text-[12px] sm:text-[13px] font-basier text-gray-700 font-normal">
+          <p className="cs-caption mt-3 text-center text-caption sm:text-small font-basier text-gray-700 font-normal">
             {caption}
           </p>
         )}
@@ -182,7 +182,7 @@ function DualMockupFrame({ src1, alt1, caption1, src2, alt2, caption2 }) {
               />
             </div>
             {caption1 && (
-              <p className="cs-caption mt-2.5 text-center text-[12px] font-basier text-gray-700 font-normal">
+              <p className="cs-caption mt-2.5 text-center text-caption font-basier text-gray-700 font-normal">
                 {caption1}
               </p>
             )}
@@ -199,7 +199,7 @@ function DualMockupFrame({ src1, alt1, caption1, src2, alt2, caption2 }) {
               />
             </div>
             {caption2 && (
-              <p className="cs-caption mt-2.5 text-center text-[12px] font-basier text-gray-700 font-normal">
+              <p className="cs-caption mt-2.5 text-center text-caption font-basier text-gray-700 font-normal">
                 {caption2}
               </p>
             )}
@@ -245,7 +245,7 @@ function TrioMockupFrame({
               />
             </div>
             {caption1 && (
-              <p className="cs-caption mt-2.5 text-center text-[12px] font-basier text-gray-700 font-normal">
+              <p className="cs-caption mt-2.5 text-center text-caption font-basier text-gray-700 font-normal">
                 {caption1}
               </p>
             )}
@@ -263,7 +263,7 @@ function TrioMockupFrame({
               />
             </div>
             {caption2 && (
-              <p className="cs-caption mt-2.5 text-center text-[12px] font-basier text-gray-700 font-normal">
+              <p className="cs-caption mt-2.5 text-center text-caption font-basier text-gray-700 font-normal">
                 {caption2}
               </p>
             )}
@@ -281,7 +281,7 @@ function TrioMockupFrame({
               />
             </div>
             {caption3 && (
-              <p className="cs-caption mt-2.5 text-center text-[12px] font-basier text-gray-700 font-normal">
+              <p className="cs-caption mt-2.5 text-center text-caption font-basier text-gray-700 font-normal">
                 {caption3}
               </p>
             )}
@@ -304,9 +304,9 @@ function MicroInteractionVideo({ mp4Src, webmSrc, title, caption }) {
               <div className="w-2.5 h-2.5 rounded-full bg-gray-300" />
               <div className="w-2.5 h-2.5 rounded-full bg-gray-300" />
             </div>
-            <span className="font-mono text-[11px] text-gray-500 ml-2 hidden sm:inline">{title}</span>
+            <span className="font-basier tabular-nums text-caption text-gray-500 ml-2 hidden sm:inline">{title}</span>
           </div>
-          <span className="font-mono text-[10px] text-gray-500 bg-white px-2 py-0.5 rounded border border-gray-200">
+          <span className="font-basier tabular-nums text-caption text-gray-500 bg-white px-2 py-0.5 rounded border border-gray-200">
             60 FPS · Looping Recording
           </span>
         </div>
@@ -324,7 +324,7 @@ function MicroInteractionVideo({ mp4Src, webmSrc, title, caption }) {
           </video>
         </div>
         {caption && (
-          <div className="px-4 py-3 bg-white border-t border-gray-100 text-[12.5px] sm:text-[13px] text-gray-600 font-switzer font-normal leading-relaxed">
+          <div className="px-4 py-3 bg-white border-t border-gray-100 text-caption sm:text-small text-gray-600 font-basier font-normal leading-relaxed">
             <span className="font-basier font-medium text-gray-900 mr-1.5">Micro-interaction:</span>
             {caption}
           </div>
@@ -349,7 +349,7 @@ export default function CaseStudyTrosky({ onBack, onNext, isRevealed = true }) {
   const bgScale = useTransform(scrollY, [0, 1000], [1, 1.05]);
 
   return (
-    <div className="case-study-page relative isolate bg-[#ffffff] min-h-screen text-[#111827] font-switzer font-normal antialiased selection:bg-gray-200 selection:text-black pb-24 sm:pb-32 overflow-x-hidden">
+    <div className="case-study-page relative isolate bg-[#ffffff] min-h-screen text-[#111827] font-basier font-normal antialiased selection:bg-gray-200 selection:text-black pb-24 sm:pb-32 overflow-x-hidden">
       
       {/* Top Sticky Reading Progress Bar & Floating Back-To-Top Button */}
       <CaseStudyScrollProgress />
@@ -385,7 +385,7 @@ export default function CaseStudyTrosky({ onBack, onNext, isRevealed = true }) {
         >
           <button
             onClick={onBack}
-            className="min-h-11 inline-flex items-center gap-2 text-[13px] sm:text-[14px] font-basier font-medium text-[#6b7280] hover:text-[#111827] transition-colors cursor-pointer group"
+            className="min-h-11 inline-flex items-center gap-2 text-small font-basier font-medium text-[#6b7280] hover:text-[#111827] transition-colors cursor-pointer group"
           >
             <ArrowLeft className="w-4 h-4 transition-transform group-hover:-translate-x-1" />
             <span>Back to Selected Works</span>
@@ -397,7 +397,7 @@ export default function CaseStudyTrosky({ onBack, onNext, isRevealed = true }) {
           initial={{ opacity: 0, y: 32 }}
           animate={isRevealed ? { opacity: 1, y: 0 } : { opacity: 0, y: 32 }}
           transition={{ duration: 0.85, delay: 0.12, ease: [0.16, 1, 0.3, 1] }}
-          className="text-[34px] sm:text-[46px] md:text-[56px] font-seasons font-normal text-[#111827] leading-[1.12] sm:leading-[1.08] tracking-[-0.02em] pt-6 sm:pt-8"
+          className="text-h2 sm:text-display-sm font-seasons font-normal text-[#111827] leading-[1.12] sm:leading-[1.08] tracking-[-0.02em] pt-6 sm:pt-8"
         >
           Trosky 365 — A Coach in Your Pocket
         </motion.h1>
@@ -407,7 +407,7 @@ export default function CaseStudyTrosky({ onBack, onNext, isRevealed = true }) {
           initial={{ opacity: 0, y: 22 }}
           animate={isRevealed ? { opacity: 1, y: 0 } : { opacity: 0, y: 22 }}
           transition={{ duration: 0.8, delay: 0.22, ease: [0.16, 1, 0.3, 1] }}
-          className="text-[16px] sm:text-[19px] md:text-[21px] text-[#4b5563] mt-3 sm:mt-4 leading-[1.5] tracking-[-0.015em] font-basier font-normal italic"
+          className="text-body sm:text-lead text-[#4b5563] mt-3 sm:mt-4 leading-[1.5] tracking-[-0.015em] font-basier font-normal italic"
         >
           Turning the Trosky 365 mobile app into a daily practice ritual and mental composure companion for baseball players between coaching sessions.
         </motion.p>
@@ -421,39 +421,39 @@ export default function CaseStudyTrosky({ onBack, onNext, isRevealed = true }) {
           className="grid grid-cols-2 sm:grid-cols-5 gap-4 sm:gap-6 pt-6 pb-6 mt-8 border-t border-b border-gray-200 scroll-mt-28"
         >
           <div>
-            <div className="text-[10px] sm:text-[11px] font-basier font-medium uppercase tracking-wider text-[#9ca3af]">Role</div>
-            <div className="text-[13px] sm:text-[14px] font-switzer font-medium text-[#111827] mt-1">
+            <div className="type-label">Role</div>
+            <div className="text-small font-basier font-medium text-[#111827] mt-1">
               Product Designer
             </div>
-            <div className="text-[12px] text-gray-500 font-normal">Sole Designer</div>
+            <div className="text-caption text-gray-500 font-normal">Sole Designer</div>
           </div>
           <div>
-            <div className="text-[10px] sm:text-[11px] font-basier font-medium uppercase tracking-wider text-[#9ca3af]">Team</div>
-            <div className="text-[13px] sm:text-[14px] font-switzer font-medium text-[#111827] mt-1">
+            <div className="type-label">Team</div>
+            <div className="text-small font-basier font-medium text-[#111827] mt-1">
               3 Members
             </div>
-            <div className="text-[12px] text-gray-500 font-normal">Nate Trosky, Coach Matt, 1 Eng</div>
+            <div className="text-caption text-gray-500 font-normal">Nate Trosky, Coach Matt, 1 Eng</div>
           </div>
           <div>
-            <div className="text-[10px] sm:text-[11px] font-basier font-medium uppercase tracking-wider text-[#9ca3af]">Timeline</div>
-            <div className="text-[13px] sm:text-[14px] font-switzer font-medium text-[#111827] mt-1">
+            <div className="type-label">Timeline</div>
+            <div className="text-small font-basier font-medium text-[#111827] mt-1">
               6 Weeks
             </div>
-            <div className="text-[12px] text-gray-500 font-normal">Shipped Beta</div>
+            <div className="text-caption text-gray-500 font-normal">Shipped Beta</div>
           </div>
           <div>
-            <div className="text-[10px] sm:text-[11px] font-basier font-medium uppercase tracking-wider text-[#9ca3af]">Platforms</div>
-            <div className="text-[13px] sm:text-[14px] font-switzer font-medium text-[#111827] mt-1">
+            <div className="type-label">Platforms</div>
+            <div className="text-small font-basier font-medium text-[#111827] mt-1">
               iOS (iPhone)
             </div>
-            <div className="text-[12px] text-gray-500 font-normal">Native Mobile</div>
+            <div className="text-caption text-gray-500 font-normal">Native Mobile</div>
           </div>
           <div className="col-span-2 sm:col-span-1 border-t sm:border-t-0 pt-3 sm:pt-0 border-gray-100">
-            <div className="text-[10px] sm:text-[11px] font-basier font-medium uppercase tracking-wider text-[#9ca3af]">Milestone</div>
-            <div className="text-[13px] sm:text-[14px] font-switzer font-medium text-[#111827] mt-1 leading-snug">
+            <div className="type-label">Milestone</div>
+            <div className="text-small font-basier font-medium text-[#111827] mt-1 leading-snug">
               42-Athlete Beta
             </div>
-            <div className="text-[12px] text-gray-500 font-normal">Hitting, Fielding & 6th Tool</div>
+            <div className="text-caption text-gray-500 font-normal">Hitting, Fielding & 6th Tool</div>
           </div>
         </motion.div>
       </header>
@@ -482,10 +482,10 @@ export default function CaseStudyTrosky({ onBack, onNext, isRevealed = true }) {
           <CaseStudyTldr accent="#0b7a96" rows={[["Problem", "Players faced dozens of unsorted drill videos and no way to tell if they were improving, so solo practice faded within a week."], ["My role", "Sole product designer on iOS, working with the coaches and one engineer over 6 weeks."], ["What I changed", "Replaced the catalog with one 10-minute daily routine: watch, explain it back, practise, reflect."], ["Result", "In a 42-athlete beta, 30-day streak retention went from 26% to 62%."]]} />
           <ScrollReveal>
             <div className="p-5 sm:p-6 rounded-xl bg-gray-50 border border-gray-200">
-              <h3 className="cs-label text-[11px] font-basier font-medium uppercase tracking-wider text-gray-400 mb-2">
+              <h3 className="cs-label type-label mb-2">
                 Executive Summary
               </h3>
-              <p className="cs-body text-[15px] sm:text-[16px] text-[#1f2937] leading-[1.75] font-switzer font-normal">
+              <p className="cs-body text-body text-[#1f2937] leading-[1.6] font-basier font-normal">
                 <strong>Trosky 365</strong> is a mobile coaching companion designed to bridge the gap between weekly private lessons and solo practice. I led the product and interaction design for iOS, turning Coach Nate Trosky’s hitting and fielding drills and his "6th Tool" mental framework into a focused 10-minute daily routine: watch a short clip, explain it back, practise, and reflect.
               </p>
             </div>
@@ -499,13 +499,13 @@ export default function CaseStudyTrosky({ onBack, onNext, isRevealed = true }) {
         {/* ------------------------------------------------------------- */}
         <section id="section-context" className="space-y-6 scroll-mt-28">
           <ScrollReveal>
-            <h2 className="cs-section-title text-[22px] sm:text-[26px] md:text-[30px] font-basier font-medium text-[#111827] tracking-tight leading-snug">
+            <h2 className="cs-section-title text-h3 md:text-h2 font-basier font-medium text-[#111827] tracking-tight leading-snug">
               Practice Happens Between Coaching Sessions
             </h2>
           </ScrollReveal>
 
           <ScrollReveal delay={0.06}>
-            <div className="cs-body text-[15px] sm:text-[16px] text-[#374151] leading-[1.75] space-y-4 font-switzer font-normal">
+            <div className="cs-body text-body text-[#374151] leading-[1.6] space-y-4 font-basier font-normal">
               <p>
                 Most baseball players don’t struggle because they lack desire or talent. They struggle because ninety percent of their practice happens when their coach isn’t standing right next to them.
               </p>
@@ -526,13 +526,13 @@ export default function CaseStudyTrosky({ onBack, onNext, isRevealed = true }) {
         {/* ------------------------------------------------------------- */}
         <section id="section-challenge" className="space-y-6 scroll-mt-28">
           <ScrollReveal>
-            <h2 className="cs-section-title text-[22px] sm:text-[26px] md:text-[30px] font-basier font-medium text-[#111827] tracking-tight leading-snug">
+            <h2 className="cs-section-title text-h3 md:text-h2 font-basier font-medium text-[#111827] tracking-tight leading-snug">
               A List Tells You What to Do. A Coach Helps You Understand Why.
             </h2>
           </ScrollReveal>
 
           <ScrollReveal delay={0.06}>
-            <p className="cs-body text-[15px] sm:text-[16px] text-[#374151] leading-[1.75] font-switzer font-normal">
+            <p className="cs-body text-body text-[#374151] leading-[1.6] font-basier font-normal">
               Traditional training apps treat athletes like passive consumers: watch a video, check a box, move on. But physical development requires real mental intent. When young players train alone, three friction points consistently show up:
             </p>
           </ScrollReveal>
@@ -540,12 +540,12 @@ export default function CaseStudyTrosky({ onBack, onNext, isRevealed = true }) {
           {/* Clean Problem Breakdown Table */}
           <ScrollReveal delay={0.08} variant="scale-up">
             <div className="border border-gray-200 rounded-xl overflow-hidden bg-white shadow-xs">
-              <div className="hidden sm:grid sm:grid-cols-3 bg-gray-50 border-b border-gray-200 p-3 text-[11px] font-basier font-medium uppercase tracking-wider text-gray-500">
+              <div className="hidden sm:grid sm:grid-cols-3 bg-gray-50 border-b border-gray-200 p-3 text-caption font-basier font-medium uppercase tracking-wider text-gray-500">
                 <div className="col-span-1">Question</div>
                 <div className="col-span-2">What Happens in Solo Practice</div>
               </div>
               
-              <div className="divide-y divide-gray-100 text-[14px] font-switzer font-normal">
+              <div className="divide-y divide-gray-100 text-small font-basier font-normal">
                 <div className="flex flex-col sm:grid sm:grid-cols-3 p-3.5 sm:p-4 gap-1.5 sm:gap-2">
                   <div className="font-basier font-medium text-gray-900">Where do I start?</div>
                   <div className="col-span-2 text-gray-600 leading-relaxed sm:border-l sm:border-gray-100 sm:pl-3">
@@ -571,7 +571,7 @@ export default function CaseStudyTrosky({ onBack, onNext, isRevealed = true }) {
           </ScrollReveal>
 
           <ScrollReveal delay={0.1}>
-            <blockquote className="border-l-2 border-gray-300 pl-4 sm:pl-6 my-2 text-[17px] sm:text-[19px] font-seasons italic text-[#111827] leading-snug">
+            <blockquote className="border-l-2 border-gray-300 pl-4 sm:pl-6 my-2 text-body sm:text-lead font-seasons italic text-[#111827] leading-snug">
               “How might we design a 10-minute daily routine that feels like a conversation with a mentor, rather than a playlist from an app?”
             </blockquote>
           </ScrollReveal>
@@ -584,13 +584,13 @@ export default function CaseStudyTrosky({ onBack, onNext, isRevealed = true }) {
         {/* ------------------------------------------------------------- */}
         <section id="section-player" className="space-y-6 scroll-mt-28">
           <ScrollReveal>
-            <h2 className="cs-section-title text-[22px] sm:text-[26px] md:text-[30px] font-basier font-medium text-[#111827] tracking-tight leading-snug">
+            <h2 className="cs-section-title text-h3 md:text-h2 font-basier font-medium text-[#111827] tracking-tight leading-snug">
               Designing for the Moment Between “Show Me” and “I Get It”
             </h2>
           </ScrollReveal>
 
           <ScrollReveal delay={0.06}>
-            <div className="cs-body text-[15px] sm:text-[16px] text-[#374151] leading-[1.75] font-switzer font-normal space-y-4">
+            <div className="cs-body text-body text-[#374151] leading-[1.6] font-basier font-normal space-y-4">
               <p>
                 We grounded every decision around Alex, a thirteen-year-old travel ball infielder trying to make his high school varsity roster.
               </p>
@@ -611,19 +611,19 @@ export default function CaseStudyTrosky({ onBack, onNext, isRevealed = true }) {
         {/* ------------------------------------------------------------- */}
         <section id="section-loop" className="space-y-6 scroll-mt-28">
           <ScrollReveal>
-            <h2 className="cs-section-title text-[22px] sm:text-[26px] md:text-[30px] font-basier font-medium text-[#111827] tracking-tight leading-snug">
+            <h2 className="cs-section-title text-h3 md:text-h2 font-basier font-medium text-[#111827] tracking-tight leading-snug">
               A Small Loop, Designed to Build Momentum
             </h2>
           </ScrollReveal>
 
           <ScrollReveal delay={0.06}>
-            <p className="cs-body text-[15px] sm:text-[16px] text-[#374151] leading-[1.75] font-switzer font-normal">
+            <p className="cs-body text-body text-[#374151] leading-[1.6] font-basier font-normal">
               Instead of browsing an endless catalog, the app presents a five-step continuous loop. Each step has one clear purpose:
             </p>
           </ScrollReveal>
 
           {/* Minimal 5-Step Process List */}
-          <div className="border border-gray-200 rounded-xl divide-y divide-gray-100 bg-white shadow-xs overflow-hidden text-[14px] font-switzer font-normal">
+          <div className="border border-gray-200 rounded-xl divide-y divide-gray-100 bg-white shadow-xs overflow-hidden text-small font-basier font-normal">
             {[
               {
                 step: "Start",
@@ -652,14 +652,14 @@ export default function CaseStudyTrosky({ onBack, onNext, isRevealed = true }) {
               },
             ].map((item) => (
               <div key={item.step} className="p-3.5 sm:p-4 flex items-start gap-4">
-                <span className="font-mono text-gray-400 text-[11px] uppercase tracking-wider pt-0.5 shrink-0 w-16">
+                <span className="font-basier tabular-nums text-gray-500 text-caption uppercase tracking-wider pt-0.5 shrink-0 w-16">
                   {item.step}
                 </span>
                 <div className="flex-1 sm:border-l sm:border-gray-100 sm:pl-3">
                   <span className="font-basier font-medium text-gray-900 block mb-0.5">
                     {item.title}
                   </span>
-                  <span className="text-gray-600 leading-relaxed block text-[13px] sm:text-[14px]">
+                  <span className="text-gray-600 leading-relaxed block text-small">
                     {item.desc}
                   </span>
                 </div>
@@ -668,7 +668,7 @@ export default function CaseStudyTrosky({ onBack, onNext, isRevealed = true }) {
           </div>
 
           <ScrollReveal delay={0.1}>
-            <p className="text-[14px] sm:text-[15px] text-gray-500 leading-relaxed font-switzer font-normal pt-1">
+            <p className="text-small sm:text-body text-gray-500 leading-relaxed font-basier font-normal pt-1">
               Viewing is passive. Practice is physical. Reflection is where skill converts into muscle memory. The experience was engineered so players put the phone down, do the work on the dirt, and return for a quick ten-second closure.
             </p>
           </ScrollReveal>
@@ -691,13 +691,13 @@ export default function CaseStudyTrosky({ onBack, onNext, isRevealed = true }) {
         {/* ------------------------------------------------------------- */}
         <section id="section-structure" className="space-y-6 scroll-mt-28">
           <ScrollReveal>
-            <h2 className="cs-section-title text-[22px] sm:text-[26px] md:text-[30px] font-basier font-medium text-[#111827] tracking-tight leading-snug">
+            <h2 className="cs-section-title text-h3 md:text-h2 font-basier font-medium text-[#111827] tracking-tight leading-snug">
               Work Through the Flow. Leave Room to Change It.
             </h2>
           </ScrollReveal>
 
           <ScrollReveal delay={0.06}>
-            <div className="cs-body text-[15px] sm:text-[16px] text-[#374151] leading-[1.75] font-switzer font-normal space-y-4">
+            <div className="cs-body text-body text-[#374151] leading-[1.6] font-basier font-normal space-y-4">
               <p>
                 I started by mapping the flow on paper in a spiral notebook, tracing the player’s physical and mental steps. Early iterations explored dashboards and competitive leaderboards, but testing with youth athletes quickly showed that public leaderboards created anxiety instead of healthy habits.
               </p>
@@ -722,10 +722,10 @@ export default function CaseStudyTrosky({ onBack, onNext, isRevealed = true }) {
         {/* ------------------------------------------------------------- */}
         <section id="section-design" className="space-y-10 scroll-mt-28">
           <ScrollReveal>
-            <h2 className="cs-section-title text-[22px] sm:text-[26px] md:text-[30px] font-basier font-medium text-[#111827] tracking-tight leading-snug">
+            <h2 className="cs-section-title text-h3 md:text-h2 font-basier font-medium text-[#111827] tracking-tight leading-snug">
               Familiar Steps, A More Personal Rhythm
             </h2>
-            <p className="cs-body text-[15px] sm:text-[16px] text-[#374151] leading-[1.75] font-switzer font-normal mt-3">
+            <p className="cs-body text-body text-[#374151] leading-[1.6] font-basier font-normal mt-3">
               The high-fidelity design organizes the routine into three natural moments: Orient & Learn, Respond & Understand, and Practice & Reflect.
             </p>
           </ScrollReveal>
@@ -733,10 +733,10 @@ export default function CaseStudyTrosky({ onBack, onNext, isRevealed = true }) {
           {/* Sub-flow 1: Physical Development & Video Instruction */}
           <div className="space-y-4">
             <ScrollReveal delay={0.06}>
-              <h3 className="cs-subheading text-[18px] sm:text-[20px] font-basier font-medium text-gray-900">
+              <h3 className="cs-subheading text-lead font-basier font-medium text-gray-900">
                 Orient & Physical Reps
               </h3>
-              <p className="text-[14px] sm:text-[15px] text-gray-600 font-switzer font-normal mt-1 leading-relaxed">
+              <p className="text-small sm:text-body text-gray-600 font-basier font-normal mt-1 leading-relaxed">
                 Clear expectations eliminate hesitation. Every drill displays its upfront mechanical focal point, structured bat speed reps, and concise 60-second video demonstrations with full follow-through analysis.
               </p>
             </ScrollReveal>
@@ -758,10 +758,10 @@ export default function CaseStudyTrosky({ onBack, onNext, isRevealed = true }) {
           {/* Sub-flow 2: Respond & Understand (Active Recall & Direct Feedback) */}
           <div className="space-y-4 pt-4">
             <ScrollReveal delay={0.06}>
-              <h3 className="cs-subheading text-[18px] sm:text-[20px] font-basier font-medium text-gray-900">
+              <h3 className="cs-subheading text-lead font-basier font-medium text-gray-900">
                 Respond & Understand
               </h3>
-              <p className="text-[14px] sm:text-[15px] text-gray-600 font-switzer font-normal mt-1 leading-relaxed">
+              <p className="text-small sm:text-body text-gray-600 font-basier font-normal mt-1 leading-relaxed">
                 Shifting from passive watching to active recall. The athlete articulates the mechanical cue in their own words, receiving immediate confirmation and feedback from Coach Nate Trosky.
               </p>
             </ScrollReveal>
@@ -798,10 +798,10 @@ export default function CaseStudyTrosky({ onBack, onNext, isRevealed = true }) {
           {/* Sub-flow 3: Practice & Reflect (The 6th Tool) */}
           <div className="space-y-4 pt-4">
             <ScrollReveal delay={0.06}>
-              <h3 className="cs-subheading text-[18px] sm:text-[20px] font-basier font-medium text-gray-900">
+              <h3 className="cs-subheading text-lead font-basier font-medium text-gray-900">
                 The 6th Tool & Daily Win
               </h3>
-              <p className="text-[14px] sm:text-[15px] text-gray-600 font-switzer font-normal mt-1 leading-relaxed">
+              <p className="text-small sm:text-body text-gray-600 font-basier font-normal mt-1 leading-relaxed">
                 Coach Nate Trosky’s signature philosophy is the 6th Tool—the mental composure and discipline that separates good players from great ones. Athletes test situational IQ, complete the Character Launch Checklist, and log their daily win.
               </p>
             </ScrollReveal>
@@ -836,13 +836,13 @@ export default function CaseStudyTrosky({ onBack, onNext, isRevealed = true }) {
         {/* ------------------------------------------------------------- */}
         <section id="section-details" className="space-y-6 scroll-mt-28">
           <ScrollReveal>
-            <h2 className="cs-section-title text-[22px] sm:text-[26px] md:text-[30px] font-basier font-medium text-[#111827] tracking-tight leading-snug">
+            <h2 className="cs-section-title text-h3 md:text-h2 font-basier font-medium text-[#111827] tracking-tight leading-snug">
               Designing for the Field
             </h2>
           </ScrollReveal>
 
           <ScrollReveal delay={0.06}>
-            <p className="cs-body text-[15px] sm:text-[16px] text-[#374151] leading-[1.75] font-switzer font-normal">
+            <p className="cs-body text-body text-[#374151] leading-[1.6] font-basier font-normal">
               When an app is used in dusty garages, sunny fields, and batting cages, traditional design assumptions break down. Four practical details guided our decisions:
             </p>
           </ScrollReveal>
@@ -867,10 +867,10 @@ export default function CaseStudyTrosky({ onBack, onNext, isRevealed = true }) {
               },
             ].map((detail) => (
               <div key={detail.title} className="p-4 sm:p-5 rounded-xl border border-gray-200 bg-white shadow-xs">
-                <span className="font-basier font-medium text-gray-900 block mb-1 text-[15px]">
+                <span className="font-basier font-medium text-gray-900 block mb-1 text-body">
                   {detail.title}
                 </span>
-                <span className="text-gray-600 leading-relaxed block text-[13px] font-switzer">
+                <span className="text-gray-600 leading-relaxed block text-small font-basier">
                   {detail.desc}
                 </span>
               </div>
@@ -885,13 +885,13 @@ export default function CaseStudyTrosky({ onBack, onNext, isRevealed = true }) {
         {/* ------------------------------------------------------------- */}
         <section id="section-outcomes" className="space-y-6 scroll-mt-28">
           <ScrollReveal>
-            <h2 className="cs-section-title text-[22px] sm:text-[26px] md:text-[30px] font-basier font-medium text-[#111827] tracking-tight leading-snug">
+            <h2 className="cs-section-title text-h3 md:text-h2 font-basier font-medium text-[#111827] tracking-tight leading-snug">
               Evaluation & Measurement Framework
             </h2>
           </ScrollReveal>
 
           <ScrollReveal delay={0.06}>
-            <p className="cs-body text-[15px] sm:text-[16px] text-[#374151] leading-[1.75] font-switzer font-normal">
+            <p className="cs-body text-body text-[#374151] leading-[1.6] font-basier font-normal">
               Beta testing with forty-two youth and high school players over a thirty-day trial showed clear improvements in training engagement compared to the previous static catalog:
             </p>
           </ScrollReveal>
@@ -900,13 +900,13 @@ export default function CaseStudyTrosky({ onBack, onNext, isRevealed = true }) {
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 pt-1">
             <ScrollReveal delay={0.08}>
               <div className="p-5 sm:p-6 rounded-xl bg-gray-50 border border-gray-200 text-center">
-                <div className="text-[34px] sm:text-[42px] font-seasons font-normal leading-none" style={{ color: '#0b7a96' }}>
+                <div className="text-h2 sm:text-h1 font-seasons font-normal leading-none" style={{ color: '#0b7a96' }}>
                   +36 pts
                 </div>
-                <div className="text-[13px] font-basier font-medium text-gray-900 mt-2">
+                <div className="text-small font-basier font-medium text-gray-900 mt-2">
                   30-Day Streak Retention
                 </div>
-                <p className="text-[12px] text-gray-500 font-switzer mt-1">
+                <p className="text-caption text-gray-500 font-basier mt-1">
                   From 26% with the old video catalog to 62% with the new routine.
                 </p>
               </div>
@@ -914,13 +914,13 @@ export default function CaseStudyTrosky({ onBack, onNext, isRevealed = true }) {
 
             <ScrollReveal delay={0.12}>
               <div className="p-5 sm:p-6 rounded-xl bg-gray-50 border border-gray-200 text-center">
-                <div className="text-[34px] sm:text-[42px] font-seasons font-normal leading-none" style={{ color: '#0b7a96' }}>
+                <div className="text-h2 sm:text-h1 font-seasons font-normal leading-none" style={{ color: '#0b7a96' }}>
                   3.4x
                 </div>
-                <div className="text-[13px] font-basier font-medium text-gray-900 mt-2">
+                <div className="text-small font-basier font-medium text-gray-900 mt-2">
                   Active Reflections Logged
                 </div>
-                <p className="text-[12px] text-gray-500 font-switzer mt-1">
+                <p className="text-caption text-gray-500 font-basier mt-1">
                   Written takeaways per completed routine.
                 </p>
               </div>
@@ -928,13 +928,13 @@ export default function CaseStudyTrosky({ onBack, onNext, isRevealed = true }) {
 
             <ScrollReveal delay={0.16}>
               <div className="p-5 sm:p-6 rounded-xl bg-gray-50 border border-gray-200 text-center">
-                <div className="text-[34px] sm:text-[42px] font-seasons font-normal leading-none" style={{ color: '#0b7a96' }}>
+                <div className="text-h2 sm:text-h1 font-seasons font-normal leading-none" style={{ color: '#0b7a96' }}>
                   88%
                 </div>
-                <div className="text-[13px] font-basier font-medium text-gray-900 mt-2">
+                <div className="text-small font-basier font-medium text-gray-900 mt-2">
                   Comprehension Confidence
                 </div>
-                <p className="text-[12px] text-gray-500 font-switzer mt-1">
+                <p className="text-caption text-gray-500 font-basier mt-1">
                   Reported understanding *why* drills were performed.
                 </p>
               </div>
@@ -944,53 +944,53 @@ export default function CaseStudyTrosky({ onBack, onNext, isRevealed = true }) {
           {/* Balanced 12-Column Outcomes Table */}
           <ScrollReveal delay={0.1}>
             <div className="border border-gray-200 rounded-xl overflow-hidden bg-white mt-5 shadow-xs">
-              <div className="hidden sm:grid sm:grid-cols-12 bg-gray-50 border-b border-gray-200 px-4 py-3 text-[11px] font-basier font-semibold uppercase tracking-wider text-gray-500">
+              <div className="hidden sm:grid sm:grid-cols-12 bg-gray-50 border-b border-gray-200 px-4 py-3 text-caption font-basier font-medium uppercase tracking-wider text-gray-500">
                 <div className="sm:col-span-5">Evaluation Focus</div>
                 <div className="sm:col-span-3">Observation Metric</div>
                 <div className="sm:col-span-4">Trial / Baseline Data</div>
               </div>
-              <div className="divide-y divide-gray-100 text-[13px] font-switzer font-normal">
+              <div className="divide-y divide-gray-100 text-small font-basier font-normal">
                 <div className="p-3.5 sm:px-4 sm:py-3 grid grid-cols-1 sm:grid-cols-12 gap-1.5 sm:gap-4 items-baseline">
                   <div className="sm:col-span-5 font-basier font-medium text-gray-900">
-                    <div className="sm:hidden text-[10px] font-basier font-medium uppercase tracking-wider text-gray-400 mb-0.5">Evaluation Focus</div>
+                    <div className="sm:hidden type-label mb-0.5">Evaluation Focus</div>
                     Can a player begin solo practice without decision paralysis?
                   </div>
                   <div className="sm:col-span-3 text-gray-600 sm:border-l sm:border-gray-100 sm:pl-3">
-                    <div className="sm:hidden text-[10px] font-basier font-medium uppercase tracking-wider text-gray-400 mt-1 mb-0.5">Observation Metric</div>
+                    <div className="sm:hidden type-label mt-1 mb-0.5">Observation Metric</div>
                     Time-to-start drill
                   </div>
-                  <div className="sm:col-span-4 text-gray-900 font-mono text-[12px] sm:border-l sm:border-gray-100 sm:pl-3 font-medium">
-                    <div className="sm:hidden text-[10px] font-basier font-medium uppercase tracking-wider text-gray-400 mt-1 mb-0.5">Trial / Baseline Data</div>
+                  <div className="sm:col-span-4 text-gray-900 font-basier tabular-nums text-caption sm:border-l sm:border-gray-100 sm:pl-3 font-medium">
+                    <div className="sm:hidden type-label mt-1 mb-0.5">Trial / Baseline Data</div>
                     Reduced from ~52s across 40+ catalog items to &lt;6s single-tap launch
                   </div>
                 </div>
 
                 <div className="p-3.5 sm:px-4 sm:py-3 grid grid-cols-1 sm:grid-cols-12 gap-1.5 sm:gap-4 items-baseline">
                   <div className="sm:col-span-5 font-basier font-medium text-gray-900">
-                    <div className="sm:hidden text-[10px] font-basier font-medium uppercase tracking-wider text-gray-400 mb-0.5">Evaluation Focus</div>
+                    <div className="sm:hidden type-label mb-0.5">Evaluation Focus</div>
                     Do players complete the full physical and mental routine?
                   </div>
                   <div className="sm:col-span-3 text-gray-600 sm:border-l sm:border-gray-100 sm:pl-3">
-                    <div className="sm:hidden text-[10px] font-basier font-medium uppercase tracking-wider text-gray-400 mt-1 mb-0.5">Observation Metric</div>
+                    <div className="sm:hidden type-label mt-1 mb-0.5">Observation Metric</div>
                     Routine completion rate
                   </div>
-                  <div className="sm:col-span-4 text-gray-900 font-mono text-[12px] sm:border-l sm:border-gray-100 sm:pl-3 font-medium">
-                    <div className="sm:hidden text-[10px] font-basier font-medium uppercase tracking-wider text-gray-400 mt-1 mb-0.5">Trial / Baseline Data</div>
+                  <div className="sm:col-span-4 text-gray-900 font-basier tabular-nums text-caption sm:border-l sm:border-gray-100 sm:pl-3 font-medium">
+                    <div className="sm:hidden type-label mt-1 mb-0.5">Trial / Baseline Data</div>
                     84% full-session completion across 42 beta athletes (vs 31% baseline)
                   </div>
                 </div>
 
                 <div className="p-3.5 sm:px-4 sm:py-3 grid grid-cols-1 sm:grid-cols-12 gap-1.5 sm:gap-4 items-baseline">
                   <div className="sm:col-span-5 font-basier font-medium text-gray-900">
-                    <div className="sm:hidden text-[10px] font-basier font-medium uppercase tracking-wider text-gray-400 mb-0.5">Evaluation Focus</div>
+                    <div className="sm:hidden type-label mb-0.5">Evaluation Focus</div>
                     Does the 6th Tool reflection turn into a lasting training habit?
                   </div>
                   <div className="sm:col-span-3 text-gray-600 sm:border-l sm:border-gray-100 sm:pl-3">
-                    <div className="sm:hidden text-[10px] font-basier font-medium uppercase tracking-wider text-gray-400 mt-1 mb-0.5">Observation Metric</div>
+                    <div className="sm:hidden type-label mt-1 mb-0.5">Observation Metric</div>
                     Weekly active sessions
                   </div>
-                  <div className="sm:col-span-4 text-gray-900 font-mono text-[12px] sm:border-l sm:border-gray-100 sm:pl-3 font-medium">
-                    <div className="sm:hidden text-[10px] font-basier font-medium uppercase tracking-wider text-gray-400 mt-1 mb-0.5">Trial / Baseline Data</div>
+                  <div className="sm:col-span-4 text-gray-900 font-basier tabular-nums text-caption sm:border-l sm:border-gray-100 sm:pl-3 font-medium">
+                    <div className="sm:hidden type-label mt-1 mb-0.5">Trial / Baseline Data</div>
                     Averaged 4.8 completed routines per athlete/week over 30 days
                   </div>
                 </div>
@@ -999,7 +999,7 @@ export default function CaseStudyTrosky({ onBack, onNext, isRevealed = true }) {
           </ScrollReveal>
 
           <ScrollReveal delay={0.12}>
-            <div className="p-5 sm:p-6 rounded-xl bg-gray-50 border border-gray-200 text-[15px] sm:text-[16px] font-seasons font-normal not-italic text-gray-900 leading-relaxed text-center">
+            <div className="p-5 sm:p-6 rounded-xl bg-gray-50 border border-gray-200 text-body font-seasons font-normal not-italic text-gray-900 leading-relaxed text-center">
               "The breakthrough was realizing that young players don't need fifty drills a day; they need one purposeful routine that rewards their mental focus."
             </div>
           </ScrollReveal>
@@ -1012,13 +1012,13 @@ export default function CaseStudyTrosky({ onBack, onNext, isRevealed = true }) {
         {/* ------------------------------------------------------------- */}
         <section id="section-reflection" className="space-y-6 scroll-mt-28">
           <ScrollReveal>
-            <h2 className="cs-section-title text-[22px] sm:text-[26px] md:text-[30px] font-basier font-medium text-[#111827] tracking-tight leading-snug">
+            <h2 className="cs-section-title text-h3 md:text-h2 font-basier font-medium text-[#111827] tracking-tight leading-snug">
               Retrospective & Core Takeaways
             </h2>
           </ScrollReveal>
 
           <ScrollReveal delay={0.06}>
-            <div className="cs-body space-y-4 text-[15px] sm:text-[16px] text-[#374151] leading-[1.75] font-switzer font-normal">
+            <div className="cs-body space-y-4 text-body text-[#374151] leading-[1.6] font-basier font-normal">
               <p>
                 Working on Trosky 365 taught me that designing for physical athletes is fundamentally different from designing desktop software. In most consumer apps, success is measured by time spent looking at the screen. In sports, success is getting the athlete off their phone and into their body.
               </p>
@@ -1034,14 +1034,14 @@ export default function CaseStudyTrosky({ onBack, onNext, isRevealed = true }) {
           <ScrollReveal delay={0.08}>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 sm:gap-4 pt-2">
               <div className="p-5 rounded-xl border border-gray-200 bg-white shadow-xs">
-                <h4 className="cs-detail-heading font-basier font-medium text-[15px] text-gray-900 mb-1">Physical-First Ergonomics</h4>
-                <p className="text-[13px] text-gray-600 leading-relaxed font-switzer font-normal">
+                <h4 className="cs-detail-heading font-basier font-medium text-body text-gray-900 mb-1">Physical-First Ergonomics</h4>
+                <p className="text-small text-gray-600 leading-relaxed font-basier font-normal">
                   Design for the worst-case physical environment: bright sun glare, dusty thumbs, and athletic fatigue dictate minimum contrast and oversized touch targets.
                 </p>
               </div>
               <div className="p-5 rounded-xl border border-gray-200 bg-white shadow-xs">
-                <h4 className="cs-detail-heading font-basier font-medium text-[15px] text-gray-900 mb-1">Voice as Architecture</h4>
-                <p className="text-[13px] text-gray-600 leading-relaxed font-switzer font-normal">
+                <h4 className="cs-detail-heading font-basier font-medium text-body text-gray-900 mb-1">Voice as Architecture</h4>
+                <p className="text-small text-gray-600 leading-relaxed font-basier font-normal">
                   Coach Trosky's direct coaching vocabulary provided more intrinsic motivation and emotional resonance than gamified streak points ever could.
                 </p>
               </div>
@@ -1060,7 +1060,7 @@ export default function CaseStudyTrosky({ onBack, onNext, isRevealed = true }) {
           <div className="pt-6 sm:pt-8 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
             <button
               onClick={onBack}
-              className="min-h-11 inline-flex items-center gap-2 text-[13px] sm:text-[14px] font-basier font-medium text-gray-700 hover:text-black transition-colors cursor-pointer group"
+              className="min-h-11 inline-flex items-center gap-2 text-small font-basier font-medium text-gray-700 hover:text-black transition-colors cursor-pointer group"
             >
               <ArrowLeft className="w-4 h-4 transition-transform group-hover:-translate-x-1" />
               <span>Back to Selected Works</span>
