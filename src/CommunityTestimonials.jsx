@@ -126,7 +126,7 @@ export default function CommunityTestimonials() {
   return (
     <section 
       id="community-testimonials"
-      className="relative z-10 w-full select-none border-t border-black/[0.06] pt-12 sm:pt-20 lg:pt-24 pb-20 sm:pb-36 lg:pb-56"
+      className="relative z-10 w-full select-none border-t border-black/[0.06] pt-12 sm:pt-20 lg:pt-24 pb-14 sm:pb-20 lg:pb-24"
     >
       {/* Ambient gradient hero background matching hero section */}
       <div

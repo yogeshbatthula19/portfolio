@@ -594,39 +594,6 @@ function WhiteFooterCard({ navigateToCaseStudy, navigateToAbout, onScrollToWorks
     >
       <div className="w-[1472px] max-w-[92vw] mx-auto text-center">
         
-        {/* Top Navbar Row (Like Lassie) */}
-        <div className="flex flex-wrap items-center justify-center gap-3 mb-10 sm:mb-14">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-zinc-50 border border-zinc-200/80 text-small font-medium text-zinc-700 shadow-xs">
-            <span className="font-medium text-zinc-900 tracking-tight">Yogesh Battula</span>
-            <span className="text-zinc-300">|</span>
-            <button
-              onClick={onScrollToWorks || (() => {
-                if (window.lenis) {
-                  window.lenis.scrollTo('#selected-works', { offset: -24, duration: 1.0 });
-                } else {
-                  document.getElementById('selected-works')?.scrollIntoView({ behavior: 'smooth' });
-                }
-              })}
-              className="hover:text-black transition-colors cursor-pointer"
-            >
-              Works
-            </button>
-            <span className="text-zinc-300">|</span>
-            <button
-              onClick={navigateToAbout || (() => {
-                if (window.lenis) {
-                  window.lenis.scrollTo(0, { duration: 1.0 });
-                } else {
-                  window.scrollTo({ top: 0, behavior: 'smooth' });
-                }
-              })}
-              className="hover:text-black transition-colors cursor-pointer"
-            >
-              About
-            </button>
-          </div>
-        </div>
-
         {/* Main Content: Headline in The Seasons & CTA */}
         <div className="max-w-2xl mx-auto">
           <h2
