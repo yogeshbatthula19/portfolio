@@ -333,14 +333,14 @@ function CoverArt({ kind, bg, shots = [], alt }) {
         <div className="absolute inset-0 flex items-end justify-center gap-3 px-8 pt-8" aria-hidden="true">
           {[150, 188, 132].map((h, i) => (
             <div key={i} className="w-[30%] rounded-t-2xl bg-white/70 backdrop-blur-sm blur-[3px] p-3 space-y-2" style={{ height: h }}>
-              <div className="h-2 w-2/3 rounded-full bg-emerald-900/20" />
-              <div className="h-2 w-full rounded-full bg-emerald-900/10" />
-              <div className="h-2 w-5/6 rounded-full bg-emerald-900/10" />
-              <div className="h-10 w-full rounded-lg bg-emerald-600/20" />
+              <div className="h-2 w-2/3 rounded-full bg-[#12315a]/20" />
+              <div className="h-2 w-full rounded-full bg-[#12315a]/10" />
+              <div className="h-2 w-5/6 rounded-full bg-[#12315a]/10" />
+              <div className="h-10 w-full rounded-lg bg-[#12315a]/20" />
             </div>
           ))}
           <div className="absolute inset-0 flex items-center justify-center">
-            <span className="w-12 h-12 rounded-full bg-white/90 shadow-md flex items-center justify-center"><Lock className="w-5 h-5 text-[#0c4731]" /></span>
+            <span className="w-12 h-12 rounded-full bg-white/90 shadow-md flex items-center justify-center"><Lock className="w-5 h-5 text-[#12315a]" /></span>
           </div>
         </div>
       )}
@@ -1850,7 +1850,7 @@ export default function App() {
 
           {/* Case Study 2: AhamX */}
           <CaseStudyCard
-            cover={{ kind: 'desktop', bg: 'linear-gradient(140deg,#f5ecff 0%,#d9b8fb 55%,#f0a9f5 100%)', shots: [ahamxDashboard] }}
+            cover={{ kind: 'desktop', bg: 'linear-gradient(140deg,#eef2ff 0%,#c7d4fb 55%,#9fb4f2 100%)', shots: [ahamxDashboard] }}
             title="Helping learners pick up where they left off"
             description="Connecting learning and capability development."
             outcome="Resume learning without searching the catalog"
@@ -1876,7 +1876,7 @@ export default function App() {
 
           {/* Case Study 4: CarePulse Health */}
           <CaseStudyCard
-            cover={{ kind: 'locked', bg: 'linear-gradient(140deg,#e6fbf2 0%,#8de8c0 55%,#3fd19a 100%)' }}
+            cover={{ kind: 'locked', bg: 'linear-gradient(140deg,#fbf3e4 0%,#f1dcb8 55%,#e6c58f 100%)' }}
             title="Giving clinicians more time for care"
             description="An ambient documentation concept for clinicians."
             outcome="Under NDA · walkthrough on request"

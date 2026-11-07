@@ -45,7 +45,7 @@ export default function AboutPage({ onBack, isRevealed = true }) {
   const entranceEase = [0.16, 1, 0.3, 1];
 
   return (
-    <div className="min-h-screen bg-white text-[#111827] relative selection:bg-[#0c4731] selection:text-white flex flex-col overflow-x-clip">
+    <div className="min-h-screen bg-white text-[#111827] relative selection:bg-[#12315a] selection:text-white flex flex-col overflow-x-clip">
       {/* Ambient gradient header background matching case studies & hero */}
       <div
         aria-hidden="true"
@@ -67,7 +67,7 @@ export default function AboutPage({ onBack, isRevealed = true }) {
               initial={{ opacity: 0, y: 24 }}
               animate={shouldAnimate ? { opacity: 1, y: 0 } : { opacity: 0, y: 24 }}
               transition={{ duration: 0.85, delay: 0.08, ease: entranceEase }}
-              className="text-4xl sm:text-5xl md:text-6xl lg:text-display tracking-tight text-[#0c4731] select-none"
+              className="text-4xl sm:text-5xl md:text-6xl lg:text-display tracking-tight text-[#12315a] select-none"
               style={{
                 fontFamily: "'The Seasons', Georgia, serif",
                 fontWeight: 700,
@@ -93,7 +93,7 @@ export default function AboutPage({ onBack, isRevealed = true }) {
                 initial={{ opacity: 0, y: 16 }}
                 animate={shouldAnimate ? { opacity: 1, y: 0 } : { opacity: 0, y: 16 }}
                 transition={{ duration: 0.8, delay: 0.3, ease: entranceEase }}
-                className="text-lg sm:text-xl lg:text-h3 font-seasons font-normal not-italic text-[#0c4731] leading-[1.3] tracking-tight"
+                className="text-lg sm:text-xl lg:text-h3 font-seasons font-normal not-italic text-[#12315a] leading-[1.3] tracking-tight"
               >
                 Product designer, based in Hyderabad.
               </motion.h2>
@@ -117,7 +117,7 @@ export default function AboutPage({ onBack, isRevealed = true }) {
               >
                 <a
                   href="mailto:yogeshbattula55@gmail.com"
-                  className="inline-flex items-center gap-1.5 font-medium text-[#0c4731] hover:underline"
+                  className="inline-flex items-center gap-1.5 font-medium text-[#12315a] hover:underline"
                 >
                   <Mail className="w-3.5 h-3.5" />
                   <span>yogeshbattula55@gmail.com</span>
@@ -127,22 +127,22 @@ export default function AboutPage({ onBack, isRevealed = true }) {
                   href="https://www.linkedin.com/in/yogeshbattula/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1 font-medium text-[#0c4731] hover:underline"
+                  className="inline-flex items-center gap-1 font-medium text-[#12315a] hover:underline"
                 >
                   <LinkedinIcon className="w-3 h-3" />
                   <span>LinkedIn</span>
-                  <ArrowUpRight className="w-2.5 h-2.5 text-[#0c4731]/70" />
+                  <ArrowUpRight className="w-2.5 h-2.5 text-[#12315a]/70" />
                 </a>
 
                 <a
                   href="https://www.behance.net/yogeshbattula5"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1 font-medium text-[#0c4731] hover:underline"
+                  className="inline-flex items-center gap-1 font-medium text-[#12315a] hover:underline"
                 >
                   <BehanceIcon className="w-3 h-3" />
                   <span>Behance</span>
-                  <ArrowUpRight className="w-2.5 h-2.5 text-[#0c4731]/70" />
+                  <ArrowUpRight className="w-2.5 h-2.5 text-[#12315a]/70" />
                 </a>
 
                 <a
@@ -150,11 +150,11 @@ export default function AboutPage({ onBack, isRevealed = true }) {
                   download="Yogesh_Battula_Resume.pdf"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1 font-medium text-[#0c4731] hover:underline"
+                  className="inline-flex items-center gap-1 font-medium text-[#12315a] hover:underline"
                 >
                   <FileText className="w-3 h-3" />
                   <span>Resume</span>
-                  <ArrowUpRight className="w-2.5 h-2.5 text-[#0c4731]/70" />
+                  <ArrowUpRight className="w-2.5 h-2.5 text-[#12315a]/70" />
                 </a>
               </motion.div>
             </motion.div>
@@ -180,7 +180,7 @@ export default function AboutPage({ onBack, isRevealed = true }) {
 
             <a
               href="mailto:yogeshbattula55@gmail.com"
-              className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-[#0c4731] hover:bg-[#093524] text-white text-small font-medium transition-colors"
+              className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-[#12315a] hover:bg-[#0b2342] text-white text-small font-medium transition-colors"
             >
               <Mail className="w-3.5 h-3.5" />
               <span>Say hello</span>

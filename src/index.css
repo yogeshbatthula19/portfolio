@@ -267,7 +267,7 @@ i, em, cite, dfn, var, address {
 .home-work-button-inner{display:inline-flex;align-items:center;justify-content:center;gap:12px;background:transparent;color:#ffffff;border-radius:9999px;padding:11px 26px;font-family:'__basierCircle_9ca3f5',-apple-system,BlinkMacSystemFont,sans-serif;font-size:15px;font-weight:600;letter-spacing:-0.01em;transition:background .2s ease,color .2s ease}
 .home-work-button-arrow{display:inline-block;font-size:16px;font-weight:500;transition:transform .25s cubic-bezier(0.16,1,0.3,1)}
 .home-work-button:hover .home-work-button-arrow{transform:translate(2px,-2px)}
-.project-outcome{margin-top:16px;font-size:13px;font-weight:600;color:#0c4731}.case-study-card img{object-fit:cover!important;padding:0}.case-study-card h3{font-size:clamp(20px,2vw,24px)!important;line-height:1.25}.case-study-card p{line-clamp:unset;-webkit-line-clamp:unset}
+.project-outcome{margin-top:16px;font-size:13px;font-weight:600;color:#12315a}.case-study-card img{object-fit:cover!important;padding:0}.case-study-card h3{font-size:clamp(20px,2vw,24px)!important;line-height:1.25}.case-study-card p{line-clamp:unset;-webkit-line-clamp:unset}
 @media(max-width:639px){.home-primary-actions{gap:12px;margin-top:18px}.home-work-button{padding:3.5px}.home-work-button-inner{padding:9px 20px;font-size:14px;gap:8px}.home-hero-title{font-size:28px!important}.home-hero-copy{max-width:100%!important}.hero-section{min-height:450px}}
 
 /* Shared editorial typography for all three case studies (uses the type scale above). */
