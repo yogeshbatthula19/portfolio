@@ -693,7 +693,7 @@ export default function App() {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [passwordModalOpen]);
 
-  // Initialize Lenis Kinetic Smooth Scrolling
+  // Lenis for programmatic scrolling (wheel stays native)
   useEffect(() => {
     if (reduceMotion) return;
 
@@ -707,7 +707,7 @@ export default function App() {
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // Silky exponential ease-out
       orientation: 'vertical',
       gestureOrientation: 'vertical',
-      smoothWheel: true,
+      smoothWheel: false, // native wheel feel; Lenis still handles programmatic scrolls
       wheelMultiplier: 1.0,
       touchMultiplier: 1.5,
       autoResize: true,
