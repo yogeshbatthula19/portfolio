@@ -86,16 +86,14 @@ export default function AboutPage({ onBack, isRevealed = true }) {
             {/* Right Column: Narrative & Story */}
             <motion.div
               initial={{ opacity: 0, y: 28 }}
-              animate={shouldAnimate && photoReady ? { opacity: 1, y: 0 } : { opacity: 0, y: 28 }}
+              animate={shouldAnimate ? { opacity: 1, y: 0 } : { opacity: 0, y: 28 }}
               transition={{ duration: 0.9, delay: 0.24, ease: entranceEase }}
-              className={`camera-introduction flex flex-col justify-center space-y-3 sm:space-y-4 text-[#1f2937] ${photoReady ? 'is-visible' : ''}`}
-              inert={!photoReady}
-              aria-hidden={!photoReady}
+              className={`camera-introduction flex flex-col justify-center space-y-3 sm:space-y-4 text-[#1f2937] is-visible`}
             >
               {/* Headline in The Seasons */}
               <motion.h2
                 initial={{ opacity: 0, y: 16 }}
-                animate={shouldAnimate && photoReady ? { opacity: 1, y: 0 } : { opacity: 0, y: 16 }}
+                animate={shouldAnimate ? { opacity: 1, y: 0 } : { opacity: 0, y: 16 }}
                 transition={{ duration: 0.8, delay: 0.3, ease: entranceEase }}
                 className="text-lg sm:text-xl lg:text-h3 font-seasons font-normal not-italic text-[#0c4731] leading-[1.3] tracking-tight"
               >
@@ -105,17 +103,17 @@ export default function AboutPage({ onBack, isRevealed = true }) {
               {/* Body Copy 1 */}
               <motion.p
                 initial={{ opacity: 0, y: 14 }}
-                animate={shouldAnimate && photoReady ? { opacity: 1, y: 0 } : { opacity: 0, y: 14 }}
+                animate={shouldAnimate ? { opacity: 1, y: 0 } : { opacity: 0, y: 14 }}
                 transition={{ duration: 0.8, delay: 0.36, ease: entranceEase }}
                 className="text-small lg:text-body leading-[1.65] text-[#374151] font-normal"
               >
-                Over 5+ years, I’ve designed digital products across mobile apps, design systems, and UI/UX. I bring design and front-end experience to make complex experiences feel simple.
+                In 5+ years, I’ve designed digital products across mobile apps, design systems, and UI/UX. I bring design and front-end experience to make complex experiences feel simple.
               </motion.p>
 
               {/* Social & Contact Links */}
               <motion.div
                 initial={{ opacity: 0, y: 12 }}
-                animate={shouldAnimate && photoReady ? { opacity: 1, y: 0 } : { opacity: 0, y: 12 }}
+                animate={shouldAnimate ? { opacity: 1, y: 0 } : { opacity: 0, y: 12 }}
                 transition={{ duration: 0.8, delay: 0.48, ease: entranceEase }}
                 className="pt-2 flex flex-wrap justify-center items-center gap-4 sm:gap-5 text-small text-[#4b5563]"
               >
