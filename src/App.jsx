@@ -10,7 +10,6 @@ import ConceptToCraft from './ConceptToCraft';
 import CommunityTestimonials from './CommunityTestimonials';
 import NotFound from './NotFound';
 import photoAvatar from './assets/photo_yogesh_avatar.webp';
-import stampAboutOrange from './assets/stamp_about_orange.webp';
 
 // Substack Brand Icon
 function SubstackIcon({ className = "w-4 h-4" }) {
@@ -25,7 +24,7 @@ function SubstackIcon({ className = "w-4 h-4" }) {
 }
 
 // Authentic Postage Stamp Frame with Perforated Edge & Philatelic Margins
-function StampFrame({ children, className = "", innerClassName = "", defaultW = 205, defaultH = 210, paper = "#fbf9f4", edge = "#dcd5c7" }) {
+function StampFrame({ children, className = "", innerClassName = "", defaultW = 205, defaultH = 210, paper = "#f7e8cf", edge = "#ecd9b8" }) {
   const containerRef = useRef(null);
   const [dimensions, setDimensions] = useState({ w: defaultW, h: defaultH });
 
@@ -174,13 +173,14 @@ function NoteCard({ onClick, onMouseEnter, onFocus }) {
       onKeyDown={(e) => { if (e.key === 'Enter') onClick(); }}
       className="relative w-full h-full select-none cursor-pointer group transition-transform duration-300 ease-out group-hover:scale-[1.02]"
     >
-      <img
-        src={stampAboutOrange}
-        alt="About Yogesh - Postage Stamp"
-        loading="lazy"
-        decoding="async"
-        className="w-full h-full object-contain select-none transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-105"
-      />
+      <StampFrame className="w-full h-full" paper="#f7e8cf" edge="#ecd9b8">
+        <div
+          className="w-full h-full flex items-center justify-center"
+          style={{ background: 'radial-gradient(circle at 30% 25%, #f9a35c 0%, #f07a3a 55%, #ec6a2c 100%)' }}
+        >
+          <span className="text-white text-[34px] sm:text-[40px] leading-none" style={{ fontFamily: "'The Seasons', serif" }}>About</span>
+        </div>
+      </StampFrame>
     </div>
   );
 }
@@ -202,17 +202,13 @@ function CoupleCard({ imageSrc }) {
       onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') setIsHovered(prev => !prev); }}
       className="relative w-full h-full select-none cursor-pointer transition-transform duration-300 ease-out group-hover:scale-[1.02]"
     >
-      <img
-        src={imageSrc}
-        alt="Yogesh and partner"
-        loading="lazy"
-        decoding="async"
-        className="w-full h-full object-contain select-none transition-transform duration-700 ease-out group-hover:scale-105"
-      />
+      <StampFrame className="w-full h-full">
+        <img src={imageSrc} alt="Yogesh and partner" loading="lazy" decoding="async" className="w-full h-full object-cover select-none" />
+      </StampFrame>
 
       {/* Subtle dimming on hover over inner photo area without dimming the pink perforated teeth */}
       <div
-        className={`absolute inset-[15px] bg-black/35 rounded-[6px] transition-opacity duration-500 pointer-events-none ${
+        className={`absolute inset-[13px] sm:inset-[14px] bg-black/35 transition-opacity duration-500 pointer-events-none ${
           isHovered ? "opacity-100" : "opacity-0"
         }`}
       />
@@ -475,11 +471,7 @@ import imgNote from './assets/65b0d33492ffd94741f4de8fe2d01b44ab5a58c3.png';
 import photoStatue from './assets/photo_statue.webp';
 import photoLighthouse from './assets/photo_lighthouse.webp';
 import photoTemple from './assets/photo_temple.webp';
-import stampTemple from './assets/stamp_temple.webp';
 import photoCouple from './assets/photo_couple_full.webp';
-import stampCouple from './assets/stamp_couple.webp';
-import stampCycling from './assets/stamp_cycling.webp';
-import stampLighthouse from './assets/stamp_lighthouse.webp';
 import photoCycle from './assets/photo_cycle_full.webp';
 import cafeDumplings from './assets/foodiee/EE067D71-C03C-40AA-A692-A428618A1A7D.webp';
 
@@ -535,14 +527,16 @@ function WavingNimbuMirchi({ bottomPosition = 'clamp(270px, 46vh, 400px)' }) {
 
 // Compact pill nav that slides in once the visitor scrolls past the hero,
 // so Works, About and the resume are always one click away.
-function StickyNav({ scrollY, onWorks, onAbout, hidden }) {
+function StickyNav({ scrollY, onHome, onWorks, onAbout, hidden, current = 'home' }) {
   const [visible, setVisible] = useState(false);
   useEffect(() => {
     const update = (y) => setVisible(y > 560);
     update(scrollY.get());
     return scrollY.on('change', update);
   }, [scrollY]);
-  const show = visible && !hidden;
+  // Home: appears after the hero. Every other page: always there.
+  const show = (current !== 'home' || visible) && !hidden;
+  const on = (k) => (current === k ? ' bg-black/[0.07] text-black' : '');
   const item = "whitespace-nowrap px-2.5 sm:px-3 py-1.5 rounded-full hover:bg-black/[0.05] hover:text-black transition-colors cursor-pointer";
   return (
     <AnimatePresence>
@@ -555,12 +549,12 @@ function StickyNav({ scrollY, onWorks, onAbout, hidden }) {
           transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
           className="fixed top-3 sm:top-4 left-1/2 -translate-x-1/2 z-[60] flex items-center gap-0.5 p-1 rounded-full bg-white/85 backdrop-blur-md border border-black/[0.08] shadow-[0_8px_24px_-12px_rgba(0,0,0,0.18)] text-small font-medium text-zinc-700"
         >
-          <button type="button" onClick={() => (window.lenis ? window.lenis.scrollTo(0, { duration: 1.0 }) : window.scrollTo({ top: 0, behavior: 'smooth' }))} className={`${item} font-medium text-zinc-900`}>
+          <button type="button" onClick={onHome} className={`${item} font-medium text-zinc-900`}>
             <span className="sm:hidden">Yogesh</span>
             <span className="hidden sm:inline">Yogesh Battula</span>
           </button>
-          <button type="button" onClick={onWorks} className={item}>Works</button>
-          <button type="button" onClick={onAbout} className={item}>About</button>
+          <button type="button" onClick={onWorks} aria-current={current === 'case' ? 'page' : undefined} className={`${item}${on('case')}`}>Works</button>
+          <button type="button" onClick={onAbout} aria-current={current === 'about' ? 'page' : undefined} className={`${item}${on('about')}`}>About</button>
           <a href="/yogesh-battula-resume.pdf" target="_blank" rel="noopener noreferrer" className={`${item} bg-[#111827] text-white hover:bg-[#ff6a1f] hover:text-white`}>
             Resume
           </a>
@@ -1129,12 +1123,19 @@ export default function App() {
   return (
     <>
       
-      {currentView === 'home' && (
+      {currentView !== 'notfound' && (
         <StickyNav
           scrollY={scrollY}
-          onWorks={handleScrollToWorks}
-          onAbout={navigateToAbout}
-          hidden={introState.show || passwordModalOpen}
+          current={currentView === 'home' ? 'home' : currentView === 'about' ? 'about' : 'case'}
+          onHome={() => {
+            if (currentView === 'home') {
+              if (window.lenis) window.lenis.scrollTo(0, { duration: 1.0 });
+              else window.scrollTo({ top: 0, behavior: 'smooth' });
+            } else navigateToHome('top');
+          }}
+          onWorks={() => (currentView === 'home' ? handleScrollToWorks() : navigateToHome('works'))}
+          onAbout={() => { if (currentView !== 'about') navigateToAbout(); }}
+          hidden={(currentView === 'home' && introState.show) || passwordModalOpen}
         />
       )}
 
@@ -1429,71 +1430,53 @@ export default function App() {
               <div className="profile-gallery grid grid-cols-2 gap-2.5 sm:gap-4 max-w-[620px] mx-auto items-stretch">
                 
                 {/* 1. Coastal Lighthouse (Wide Banner across 2 Columns) */}
-                <div className="col-span-2 aspect-[852/420] w-full relative rounded-[14px] sm:rounded-[18px] border border-dashed border-gray-200/80 bg-gray-50/20">
+                <div className="col-span-2 aspect-[852/420] w-full relative">
                   <motion.div 
                     whileTap={{ scale: 0.98 }}
                     className="w-full h-full flex items-center justify-center cursor-pointer group origin-center"
                   >
                     <div className="w-full h-full select-none transition-transform duration-300 ease-out group-hover:scale-[1.02]">
-                      <img 
-                        src={stampLighthouse} 
-                        alt="Coastal lighthouse surrounded by palm trees - Panoramic Postage Stamp" 
-                        loading="lazy"
-                        decoding="async"
-                        className="w-full h-full object-contain select-none transition-transform duration-500 ease-out group-hover:scale-105" 
-                      />
+                      <StampFrame className="w-full h-full"><img src={photoLighthouse} alt="Coastal lighthouse surrounded by palm trees - Panoramic Postage Stamp" loading="lazy" decoding="async" style={{ objectPosition: "center 38%" }} className="w-full h-full object-cover select-none" /></StampFrame>
                     </div>
                   </motion.div>
                 </div>
 
                 {/* 2. Yogesh Cycling (Row 2, Col 1) */}
-                <div className="col-start-1 row-start-2 aspect-[205/210] w-full relative rounded-[14px] sm:rounded-[18px] border border-dashed border-gray-200/80 bg-gray-50/20">
+                <div className="col-start-1 row-start-2 aspect-[205/210] w-full relative">
                   <motion.div 
                     whileTap={{ scale: 0.98 }}
                     className="w-full h-full flex items-center justify-center cursor-pointer group origin-center"
                   >
                     <div className="w-full h-full select-none transition-transform duration-300 ease-out group-hover:scale-[1.02]">
-                      <img 
-                        src={stampCycling} 
-                        alt="Yogesh cycling on campus - Postage Stamp" 
-                        loading="lazy"
-                        decoding="async"
-                        className="w-full h-full object-contain select-none transition-transform duration-500 ease-out group-hover:scale-105" 
-                      />
+                      <StampFrame className="w-full h-full"><img src={photoCycle} alt="Yogesh cycling on campus - Postage Stamp" loading="lazy" decoding="async" style={{ objectPosition: "center 55%" }} className="w-full h-full object-cover select-none" /></StampFrame>
                     </div>
                   </motion.div>
                 </div>
 
                 {/* 3. Temple Gopuram (Row 2 & 3, Col 2 - Spans 2 Rows vertically) */}
-                <div className="col-start-2 row-start-2 row-span-2 aspect-[205/436] w-full relative rounded-[14px] sm:rounded-[18px] border border-dashed border-gray-200/80 bg-gray-50/20">
+                <div className="col-start-2 row-start-2 row-span-2 aspect-[205/436] w-full relative">
                   <motion.div 
                     whileTap={{ scale: 0.98 }}
                     className="w-full h-full flex items-center justify-center cursor-pointer group origin-center"
                   >
                     <div className="w-full h-full select-none transition-transform duration-300 ease-out group-hover:scale-[1.02]">
-                      <img 
-                        src={stampTemple} 
-                        alt="Historic temple gopuram with devotees - Tall Postage Stamp" 
-                        loading="lazy"
-                        decoding="async"
-                        className="w-full h-full object-contain select-none transition-transform duration-500 ease-out group-hover:scale-105" 
-                      />
+                      <StampFrame className="w-full h-full"><img src={photoTemple} alt="Historic temple gopuram with devotees - Tall Postage Stamp" loading="lazy" decoding="async" style={{ objectPosition: "center 40%" }} className="w-full h-full object-cover select-none" /></StampFrame>
                     </div>
                   </motion.div>
                 </div>
 
                 {/* 4. Couple Card (Row 3, Col 1 - Fits directly under Cycling, level with Temple) */}
-                <div className="col-start-1 row-start-3 aspect-[205/210] w-full relative rounded-[14px] sm:rounded-[18px] border border-dashed border-gray-200/80 bg-gray-50/20">
+                <div className="col-start-1 row-start-3 aspect-[205/210] w-full relative">
                   <motion.div 
                     whileTap={{ scale: 0.98 }}
                     className="w-full h-full flex items-center justify-center cursor-pointer group origin-center"
                   >
-                    <CoupleCard imageSrc={stampCouple} />
+                    <CoupleCard imageSrc={photoCouple} />
                   </motion.div>
                 </div>
 
                 {/* 5. Prabhas Photo (Row 4, Col 1) */}
-                <div className="col-start-1 row-start-4 aspect-[205/210] w-full relative rounded-[14px] sm:rounded-[18px] border border-dashed border-gray-200/80 bg-gray-50/20">
+                <div className="col-start-1 row-start-4 aspect-[205/210] w-full relative">
                   <motion.div 
                     whileTap={{ scale: 0.98 }}
                     className="w-full h-full flex items-center justify-center cursor-pointer group origin-center"
@@ -1513,7 +1496,7 @@ export default function App() {
                 </div>
 
                 {/* 6. Substack Note Card (Row 4, Col 2) */}
-                <div className="col-start-2 row-start-4 aspect-[205/210] w-full relative rounded-[14px] sm:rounded-[18px] border border-dashed border-gray-200/80 bg-gray-50/20">
+                <div className="col-start-2 row-start-4 aspect-[205/210] w-full relative">
                   <motion.div 
                     whileTap={{ scale: 0.98 }}
                     className="w-full h-full flex items-center justify-center cursor-pointer group origin-center"
@@ -1704,13 +1687,7 @@ export default function App() {
                 className="absolute left-[36px] top-[130px] pointer-events-auto cursor-pointer group"
               >
                 <div className="relative w-full h-full select-none transition-transform duration-300 ease-out group-hover:scale-[1.02]">
-                  <img
-                    src={stampCycling}
-                    alt="Yogesh cycling on campus - Postage Stamp"
-                    loading="lazy"
-                    decoding="async"
-                    className="w-full h-full object-contain select-none transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-105"
-                  />
+                  <StampFrame className="w-full h-full"><img src={photoCycle} alt="Yogesh cycling on campus - Postage Stamp" loading="lazy" decoding="async" style={{ objectPosition: "center 55%" }} className="w-full h-full object-cover select-none" /></StampFrame>
                 </div>
               </motion.div>
 
@@ -1730,13 +1707,7 @@ export default function App() {
                 className="absolute left-[257px] top-[130px] pointer-events-auto cursor-pointer group"
               >
                 <div className="relative w-full h-full select-none transition-transform duration-300 ease-out group-hover:scale-[1.02]">
-                  <img
-                    src={stampLighthouse}
-                    alt="Coastal lighthouse surrounded by palm trees - Panoramic Postage Stamp"
-                    loading="lazy"
-                    decoding="async"
-                    className="w-full h-full object-contain select-none transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-105"
-                  />
+                  <StampFrame className="w-full h-full"><img src={photoLighthouse} alt="Coastal lighthouse surrounded by palm trees - Panoramic Postage Stamp" loading="lazy" decoding="async" style={{ objectPosition: "center 38%" }} className="w-full h-full object-cover select-none" /></StampFrame>
                 </div>
               </motion.div>
 
@@ -1756,13 +1727,7 @@ export default function App() {
                 className="absolute left-[699px] top-[130px] pointer-events-auto cursor-pointer group"
               >
                 <div className="relative w-full h-full select-none transition-transform duration-300 ease-out group-hover:scale-[1.02]">
-                  <img
-                    src={stampTemple}
-                    alt="Historic temple gopuram with devotees - Tall Postage Stamp"
-                    loading="lazy"
-                    decoding="async"
-                    className="w-full h-full object-contain select-none transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-105"
-                  />
+                  <StampFrame className="w-full h-full"><img src={photoTemple} alt="Historic temple gopuram with devotees - Tall Postage Stamp" loading="lazy" decoding="async" style={{ objectPosition: "center 40%" }} className="w-full h-full object-cover select-none" /></StampFrame>
                 </div>
               </motion.div>
 
@@ -1781,7 +1746,7 @@ export default function App() {
                 }}
                 className="absolute left-[36px] top-[356px] pointer-events-auto cursor-pointer group"
               >
-                <CoupleCard imageSrc={stampCouple} />
+                <CoupleCard imageSrc={photoCouple} />
               </motion.div>
 
               {/* Image 5: Prabhas Photo -> Slot 5 (left 257px, top 356px) */}

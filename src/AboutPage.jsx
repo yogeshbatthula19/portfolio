@@ -57,12 +57,10 @@ export default function AboutPage({ onBack, isRevealed = true }) {
           backgroundRepeat: 'no-repeat',
         }}
       />
-
-      <nav className="about-back-nav" aria-label="Back navigation"><button onClick={onBack}><ArrowLeft size={16}/> Back to home</button></nav>
       {/* Main Content Area */}
       <main className="w-full flex-1 flex flex-col">
         {/* 1. Hero / Bio Section */}
-        <section className="w-full max-w-5xl mx-auto px-5 sm:px-8 lg:px-10 pt-8 sm:pt-14 md:pt-16 pb-16 sm:pb-24 flex flex-col min-h-[calc(100vh-80px)] justify-start">
+        <section className="w-full max-w-5xl mx-auto px-5 sm:px-8 lg:px-10 pt-20 sm:pt-24 md:pt-28 pb-16 sm:pb-24 flex flex-col min-h-[calc(100vh-80px)] justify-start">
           {/* Large Iconic Header Title in The Seasons Font */}
           <div className="text-center mb-12 sm:mb-16 md:mb-20 shrink-0">
             <motion.h1

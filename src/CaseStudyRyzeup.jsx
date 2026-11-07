@@ -157,7 +157,7 @@ export default function CaseStudyRyzeup({ onBack, onNext, isRevealed = true }) {
       />
       
       {/* Top Header Shell */}
-      <header className="max-w-[820px] mx-auto px-4 sm:px-6 pt-6 sm:pt-14 pb-6 sm:pb-8">
+      <header className="max-w-[820px] mx-auto px-4 sm:px-6 pt-20 sm:pt-24 pb-6 sm:pb-8">
         
         {/* Navigation */}
         <motion.div 
