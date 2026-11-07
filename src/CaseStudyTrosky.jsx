@@ -68,7 +68,7 @@ function HeroShowcaseFrame() {
           <img 
             src={m01DailyHome} 
             alt="Trosky 365 Daily Home Screen" 
-            className="w-full h-auto object-contain drop-shadow-[0_20px_35px_rgba(0,0,0,0.25)] pointer-events-none select-none" 
+            className="w-full h-auto object-contain drop-shadow-[0_12px_20px_rgba(0,0,0,0.10)] pointer-events-none select-none" 
             loading="eager"
             decoding="async"
           />
@@ -102,7 +102,7 @@ function HeroShowcaseFrame() {
           <img 
             src={m12SessionComplete} 
             alt="Trosky 365 Session Complete Screen" 
-            className="w-full h-auto object-contain drop-shadow-[0_20px_35px_rgba(0,0,0,0.25)] pointer-events-none select-none" 
+            className="w-full h-auto object-contain drop-shadow-[0_12px_20px_rgba(0,0,0,0.10)] pointer-events-none select-none" 
             loading="eager"
             decoding="async"
           />
@@ -128,8 +128,7 @@ function MockupFrame({ src, alt, caption }) {
     <ScrollReveal variant="scale-up" className="my-6 sm:my-8">
       <div 
         ref={frameRef}
-        className="w-full rounded-[16px] sm:rounded-[22px] p-3 sm:p-6 md:p-8 border border-gray-200/80 shadow-xs relative overflow-hidden bg-cover bg-center select-none"
-        style={{ backgroundImage: `url(${troskyMockupBg})` }}
+        className="w-full rounded-[16px] sm:rounded-[22px] p-3 sm:p-6 md:p-8 relative overflow-hidden select-none"
       >
         <motion.div style={{ y: innerY }}>
           <div className="rounded-[10px] sm:rounded-[16px] overflow-hidden shadow-xl border border-black/10 bg-white">
@@ -166,8 +165,7 @@ function DualMockupFrame({ src1, alt1, caption1, src2, alt2, caption2 }) {
     <ScrollReveal variant="scale-up" className="my-6 sm:my-8">
       <div 
         ref={frameRef}
-        className="w-full rounded-[16px] sm:rounded-[22px] p-4 sm:p-8 border border-gray-200/80 shadow-xs relative overflow-hidden bg-cover bg-center select-none"
-        style={{ backgroundImage: `url(${troskyMockupBg})` }}
+        className="w-full rounded-[16px] sm:rounded-[22px] p-4 sm:p-8 relative overflow-hidden select-none"
       >
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8 items-center justify-items-center">
           <motion.div style={{ y: innerY1 }} className="w-full flex flex-col items-center justify-center">
@@ -175,7 +173,7 @@ function DualMockupFrame({ src1, alt1, caption1, src2, alt2, caption2 }) {
               <img 
                 src={src1} 
                 alt={alt1} 
-                className="w-full h-auto object-contain drop-shadow-[0_20px_35px_rgba(0,0,0,0.25)] mx-auto pointer-events-none select-none" 
+                className="w-full h-auto object-contain drop-shadow-[0_12px_20px_rgba(0,0,0,0.10)] mx-auto pointer-events-none select-none" 
                 loading="lazy" 
                 decoding="async"
               />
@@ -192,7 +190,7 @@ function DualMockupFrame({ src1, alt1, caption1, src2, alt2, caption2 }) {
               <img 
                 src={src2} 
                 alt={alt2} 
-                className="w-full h-auto object-contain drop-shadow-[0_20px_35px_rgba(0,0,0,0.25)] mx-auto pointer-events-none select-none" 
+                className="w-full h-auto object-contain drop-shadow-[0_12px_20px_rgba(0,0,0,0.10)] mx-auto pointer-events-none select-none" 
                 loading="lazy" 
                 decoding="async"
               />
@@ -228,8 +226,7 @@ function TrioMockupFrame({
     <ScrollReveal variant="scale-up" className="my-6 sm:my-8">
       <div 
         ref={frameRef}
-        className="w-full rounded-[16px] sm:rounded-[22px] p-4 sm:p-6 md:p-8 border border-gray-200/80 shadow-xs relative overflow-hidden bg-cover bg-center select-none"
-        style={{ backgroundImage: `url(${troskyMockupBg})` }}
+        className="w-full rounded-[16px] sm:rounded-[22px] p-4 sm:p-6 md:p-8 relative overflow-hidden select-none"
       >
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-4 md:gap-6 items-start justify-items-center">
           {/* Phone 1 */}
@@ -238,7 +235,7 @@ function TrioMockupFrame({
               <img 
                 src={src1} 
                 alt={alt1} 
-                className="w-full h-auto object-contain drop-shadow-[0_20px_35px_rgba(0,0,0,0.25)] mx-auto pointer-events-none select-none" 
+                className="w-full h-auto object-contain drop-shadow-[0_12px_20px_rgba(0,0,0,0.10)] mx-auto pointer-events-none select-none" 
                 loading="lazy" 
                 decoding="async"
               />
@@ -256,7 +253,7 @@ function TrioMockupFrame({
               <img 
                 src={src2} 
                 alt={alt2} 
-                className="w-full h-auto object-contain drop-shadow-[0_20px_35px_rgba(0,0,0,0.25)] mx-auto pointer-events-none select-none" 
+                className="w-full h-auto object-contain drop-shadow-[0_12px_20px_rgba(0,0,0,0.10)] mx-auto pointer-events-none select-none" 
                 loading="lazy" 
                 decoding="async"
               />
@@ -274,7 +271,7 @@ function TrioMockupFrame({
               <img 
                 src={src3} 
                 alt={alt3} 
-                className="w-full h-auto object-contain drop-shadow-[0_20px_35px_rgba(0,0,0,0.25)] mx-auto pointer-events-none select-none" 
+                className="w-full h-auto object-contain drop-shadow-[0_12px_20px_rgba(0,0,0,0.10)] mx-auto pointer-events-none select-none" 
                 loading="lazy" 
                 decoding="async"
               />
@@ -295,21 +292,8 @@ function TrioMockupFrame({
 function MicroInteractionVideo({ mp4Src, webmSrc, title, caption }) {
   return (
     <ScrollReveal variant="scale-up" className="my-6 sm:my-8">
-      <div className="w-full rounded-2xl border border-gray-200 bg-white overflow-hidden shadow-xs">
-        <div className="flex items-center justify-between px-4 py-2.5 bg-gray-50 border-b border-gray-200">
-          <div className="flex items-center gap-2">
-            <div className="flex items-center gap-1.5">
-              <div className="w-2.5 h-2.5 rounded-full bg-gray-300" />
-              <div className="w-2.5 h-2.5 rounded-full bg-gray-300" />
-              <div className="w-2.5 h-2.5 rounded-full bg-gray-300" />
-            </div>
-            <span className="font-basier tabular-nums text-caption text-gray-500 ml-2 hidden sm:inline">{title}</span>
-          </div>
-          <span className="font-basier tabular-nums text-caption text-gray-500 bg-white px-2 py-0.5 rounded border border-gray-200">
-            60 FPS · Looping Recording
-          </span>
-        </div>
-        <div className="relative bg-black/[0.02]">
+      <div className="w-full rounded-xl overflow-hidden">
+                <div className="relative bg-black/[0.02]">
           <video
             autoPlay
             loop
@@ -480,7 +464,7 @@ export default function CaseStudyTrosky({ onBack, onNext, isRevealed = true }) {
         <section className="space-y-4">
           <CaseStudyTldr accent="#0b7a96" rows={[["Problem", "Players faced dozens of unsorted drill videos and no way to tell if they were improving, so solo practice faded within a week."], ["My role", "Sole product designer on iOS, working with the coaches and one engineer over 6 weeks."], ["What I changed", "Replaced the catalog with one 10-minute daily routine: watch, explain it back, practise, reflect."], ["Result", "In a 42-athlete beta, 30-day streak retention went from 26% to 62%."]]} />
           <ScrollReveal>
-            <div className="p-5 sm:p-6 rounded-xl bg-gray-50 border border-gray-200">
+            <div className="border-t border-gray-200 pt-4">
               <h3 className="cs-label type-label mb-2">
                 Executive Summary
               </h3>
@@ -898,7 +882,7 @@ export default function CaseStudyTrosky({ onBack, onNext, isRevealed = true }) {
           {/* Clean Metric Cards */}
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 pt-1">
             <ScrollReveal delay={0.08}>
-              <div className="p-5 sm:p-6 rounded-xl bg-gray-50 border border-gray-200 text-center">
+              <div className="border-t border-gray-200 pt-4 text-center">
                 <div className="text-h2 sm:text-h1 font-seasons font-normal leading-none" style={{ color: '#0b7a96' }}>
                   +36 pts
                 </div>
@@ -912,7 +896,7 @@ export default function CaseStudyTrosky({ onBack, onNext, isRevealed = true }) {
             </ScrollReveal>
 
             <ScrollReveal delay={0.12}>
-              <div className="p-5 sm:p-6 rounded-xl bg-gray-50 border border-gray-200 text-center">
+              <div className="border-t border-gray-200 pt-4 text-center">
                 <div className="text-h2 sm:text-h1 font-seasons font-normal leading-none" style={{ color: '#0b7a96' }}>
                   3.4x
                 </div>
@@ -926,7 +910,7 @@ export default function CaseStudyTrosky({ onBack, onNext, isRevealed = true }) {
             </ScrollReveal>
 
             <ScrollReveal delay={0.16}>
-              <div className="p-5 sm:p-6 rounded-xl bg-gray-50 border border-gray-200 text-center">
+              <div className="border-t border-gray-200 pt-4 text-center">
                 <div className="text-h2 sm:text-h1 font-seasons font-normal leading-none" style={{ color: '#0b7a96' }}>
                   88%
                 </div>
@@ -998,7 +982,7 @@ export default function CaseStudyTrosky({ onBack, onNext, isRevealed = true }) {
           </ScrollReveal>
 
           <ScrollReveal delay={0.12}>
-            <div className="p-5 sm:p-6 rounded-xl bg-gray-50 border border-gray-200 text-body font-seasons font-normal not-italic text-gray-900 leading-relaxed text-center">
+            <div className="border-t border-gray-200 pt-4 text-body font-seasons font-normal not-italic text-gray-900 leading-relaxed text-center">
               "The breakthrough was realizing that young players don't need fifty drills a day; they need one purposeful routine that rewards their mental focus."
             </div>
           </ScrollReveal>

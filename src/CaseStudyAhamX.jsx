@@ -157,18 +157,8 @@ function DualMockupFrame({ src1, alt1, src2, alt2 }) {
 function MicroInteractionVideo({ mp4Src, webmSrc, title, caption }) {
   return (
     <ScrollReveal variant="scale-up" className="my-6 sm:my-8">
-      <div className="w-full rounded-2xl border border-gray-200 bg-white overflow-hidden shadow-xs">
-        <div className="flex items-center justify-between px-4 py-2.5 bg-gray-50 border-b border-gray-200">
-          <div className="flex items-center gap-2">
-            <div className="flex items-center gap-1.5">
-              <div className="w-2.5 h-2.5 rounded-full bg-gray-300" />
-              <div className="w-2.5 h-2.5 rounded-full bg-gray-300" />
-              <div className="w-2.5 h-2.5 rounded-full bg-gray-300" />
-            </div>
-            <span className="font-basier tabular-nums text-caption text-gray-500 ml-2 hidden sm:inline">{title}</span>
-          </div>
-        </div>
-        <div className="relative bg-black/[0.02]">
+      <div className="w-full rounded-xl overflow-hidden">
+                <div className="relative bg-black/[0.02]">
           <video
             autoPlay
             loop
@@ -340,7 +330,7 @@ export default function CaseStudyAhamX({ onBack, onNext, isRevealed = true }) {
         <section className="space-y-4">
           <CaseStudyTldr accent="#7c3aed" rows={[["Problem", "Learners lost their place, educators didn't trust unreviewed AI drafts, and org leads couldn't see who they were approving."], ["My role", "Led UX/UI end to end as the sole designer, for desktop and mobile."], ["What I changed", "One product that adapts to each role: a resume-learning card, step-by-step AI review before publishing, and approval rows that show who and why."], ["Result", "Shipped in 3 months and featured at the IndiaAI Impact Summit 2026."]]} />
           <ScrollReveal>
-            <div className="p-5 sm:p-6 rounded-xl bg-gray-50 border border-gray-200">
+            <div className="border-t border-gray-200 pt-4">
               <h3 className="cs-label type-label mb-2">
                 Executive Summary
               </h3>
@@ -459,7 +449,7 @@ export default function CaseStudyAhamX({ onBack, onNext, isRevealed = true }) {
                 </p>
               </div>
 
-              <div className="p-5 rounded-xl border border-gray-200 bg-gray-50/50 shadow-xs">
+              <div className="border-t border-gray-200 pt-4">
                 <div className="type-label mb-1">The Breakdown</div>
                 <h4 className="cs-detail-heading font-basier font-medium text-body text-gray-900 mb-2">Competing needs on one screen</h4>
                 <p className="text-small text-gray-600 leading-relaxed font-basier font-normal">
@@ -471,7 +461,7 @@ export default function CaseStudyAhamX({ onBack, onNext, isRevealed = true }) {
 
           {/* The Breakthrough Insight Quote - Clean Grey Card */}
           <ScrollReveal delay={0.08} variant="blur">
-            <div className="p-5 sm:p-7 rounded-xl bg-gray-50 border border-gray-200 space-y-2.5">
+            <div className="border-t border-gray-200 pt-4 space-y-2.5">
               <div className="type-label">
                 The Breakthrough Insight
               </div>
@@ -571,21 +561,21 @@ export default function CaseStudyAhamX({ onBack, onNext, isRevealed = true }) {
                 User needs guiding the design
               </h3>
               <div className="grid grid-cols-1 gap-3">
-                <div className="p-4 sm:p-5 rounded-xl border border-gray-200 bg-gray-50/50 text-small text-[#374151] leading-relaxed">
+                <div className="border-t border-gray-200 pt-4 text-small text-[#374151] leading-relaxed">
                   <p className="font-normal">
                     Learner: return to the paused lesson without browsing the catalog again.
                   </p>
 
                 </div>
 
-                <div className="p-4 sm:p-5 rounded-xl border border-gray-200 bg-gray-50/50 text-small text-[#374151] leading-relaxed">
+                <div className="border-t border-gray-200 pt-4 text-small text-[#374151] leading-relaxed">
                   <p className="font-normal">
                     Educator: review terminology and citations before an AI-drafted script becomes a video.
                   </p>
 
                 </div>
 
-                <div className="p-4 sm:p-5 rounded-xl border border-gray-200 bg-gray-50/50 text-small text-[#374151] leading-relaxed">
+                <div className="border-t border-gray-200 pt-4 text-small text-[#374151] leading-relaxed">
                   <p className="font-normal">
                     Organization lead: see who is requesting access and which cohort they want to join before making a decision.
                   </p>
@@ -802,7 +792,7 @@ export default function CaseStudyAhamX({ onBack, onNext, isRevealed = true }) {
           </ScrollReveal>
 
           <ScrollReveal delay={0.1}>
-            <div className="p-4 sm:p-5 rounded-xl bg-gray-50 border border-gray-200 text-small text-gray-700 font-basier font-normal">
+            <div className="border-t border-gray-200 pt-4 text-small text-gray-700 font-basier font-normal">
               <strong className="text-gray-900 font-basier font-medium">Technical Alignment Note: </strong>
               I worked out the publishing rules, draft saving and approval permissions together with engineering, so what the screen shows always matches what has actually happened.
             </div>
@@ -921,13 +911,13 @@ export default function CaseStudyAhamX({ onBack, onNext, isRevealed = true }) {
           {/* Validation & Standards */}
           <ScrollReveal delay={0.06}>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 sm:gap-4 pt-2">
-              <div className="p-5 rounded-xl border border-gray-200 bg-gray-50/50 shadow-xs">
+              <div className="border-t border-gray-200 pt-4">
                 <h4 className="cs-detail-heading font-basier font-medium text-body text-gray-900 mb-1">State Behavior as First-Class UI</h4>
                 <p className="text-small text-gray-600 leading-relaxed font-basier font-normal">
                   All shared components feature distinct hover, active, disabled, loading, and fallback states. Status tags always pair clear explanatory text with accessible cues.
                 </p>
               </div>
-              <div className="p-5 rounded-xl border border-gray-200 bg-gray-50/50 shadow-xs">
+              <div className="border-t border-gray-200 pt-4">
                 <h4 className="cs-detail-heading font-basier font-medium text-body text-gray-900 mb-1">WCAG 2.1 AA Accessibility</h4>
                 <p className="text-small text-gray-600 leading-relaxed font-basier font-normal">
                   Designed to WCAG 2.1 AA: 4.5:1 text contrast ratios, visible keyboard focus rings, semantic landmark structures, ARIA live announcements for state updates, and narrow-viewport reflow down to 320px.
@@ -1028,7 +1018,7 @@ export default function CaseStudyAhamX({ onBack, onNext, isRevealed = true }) {
           </ScrollReveal>
 
           <ScrollReveal delay={0.1}>
-            <div className="p-5 sm:p-6 rounded-xl bg-gray-50 border border-gray-200 text-body font-seasons font-normal not-italic text-gray-900 leading-relaxed text-center">
+            <div className="border-t border-gray-200 pt-4 text-body font-seasons font-normal not-italic text-gray-900 leading-relaxed text-center">
               What I learned: a blocked action needs a reason, not just a grey button.
             </div>
           </ScrollReveal>

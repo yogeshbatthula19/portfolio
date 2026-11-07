@@ -121,21 +121,8 @@ function DualMockupFrame({ src1, alt1, src2, alt2 }) {
 function MicroInteractionVideo({ mp4Src, webmSrc, title, caption }) {
   return (
     <ScrollReveal variant="scale-up" className="my-6 sm:my-8">
-      <div className="w-full rounded-2xl border border-gray-200 bg-white overflow-hidden shadow-xs">
-        <div className="flex items-center justify-between px-4 py-2.5 bg-gray-50 border-b border-gray-200">
-          <div className="flex items-center gap-2">
-            <div className="flex items-center gap-1.5">
-              <div className="w-2.5 h-2.5 rounded-full bg-gray-300" />
-              <div className="w-2.5 h-2.5 rounded-full bg-gray-300" />
-              <div className="w-2.5 h-2.5 rounded-full bg-gray-300" />
-            </div>
-            <span className="font-basier tabular-nums text-caption text-gray-500 ml-2 hidden sm:inline">{title}</span>
-          </div>
-          <span className="font-basier tabular-nums text-caption text-gray-500 bg-white px-2 py-0.5 rounded border border-gray-200">
-            60 FPS · Looping Recording
-          </span>
-        </div>
-        <div className="relative bg-black/[0.02]">
+      <div className="w-full rounded-xl overflow-hidden">
+                <div className="relative bg-black/[0.02]">
           <video
             autoPlay
             loop
@@ -401,7 +388,7 @@ export default function CaseStudyRyzeup({ onBack, onNext, isRevealed = true }) {
         <section className="space-y-4">
           <CaseStudyTldr accent="#9d174d" rows={[["Problem", "Employees couldn't find information again, and managers lost track of whose updates they were reviewing."], ["My role", "Led the mobile redesign from a blank canvas to a production beta in 2 months."], ["What I changed", "Organization-verified entry, structured feed posts, search across people, posts and files, and a Self / My Team view with a reportee drawer."], ["Result", "+15% monthly usage over a 60-day pilot; switching to a team member's context went from about 28s to under 3s."]]} />
           <ScrollReveal>
-            <div className="p-5 sm:p-6 rounded-xl bg-gray-50 border border-gray-200">
+            <div className="border-t border-gray-200 pt-4">
               <h3 className="cs-label type-label mb-2">
                 Executive Summary
               </h3>
@@ -464,7 +451,7 @@ export default function CaseStudyRyzeup({ onBack, onNext, isRevealed = true }) {
 
           {/* Central Question Callout */}
           <ScrollReveal delay={0.1}>
-            <div className="p-5 sm:p-6 rounded-xl bg-gray-50 border border-gray-200 text-body font-seasons font-normal not-italic text-gray-900 leading-relaxed text-center">
+            <div className="border-t border-gray-200 pt-4 text-body font-seasons font-normal not-italic text-gray-900 leading-relaxed text-center">
               "How can I bring communication, knowledge discovery, and team follow-up into one mobile experience without making it feel overwhelming?"
             </div>
           </ScrollReveal>
@@ -511,7 +498,7 @@ export default function CaseStudyRyzeup({ onBack, onNext, isRevealed = true }) {
           </ScrollReveal>
 
           <ScrollReveal delay={0.1}>
-            <div className="p-4 sm:p-5 rounded-xl border border-gray-200 bg-gray-50">
+            <div className="border-t border-gray-200 pt-4">
               <div className="text-caption font-basier font-medium uppercase tracking-wider text-gray-500 mb-1">Design Objective</div>
               <p className="text-small sm:text-body font-basier font-medium text-gray-900 leading-snug">
                 Help employees find, share, and act on workplace information while keeping navigation and context understandable on a small screen.
@@ -626,7 +613,7 @@ export default function CaseStudyRyzeup({ onBack, onNext, isRevealed = true }) {
 
           {/* 4 Activities Architecture Map */}
           <ScrollReveal delay={0.06}>
-            <div className="p-4 sm:p-6 rounded-2xl bg-gray-50 border border-gray-200 space-y-3">
+            <div className="border-t border-gray-200 pt-4 space-y-3">
               <div className="type-label">
                 Core Activities Map
               </div>
@@ -851,7 +838,7 @@ export default function CaseStudyRyzeup({ onBack, onNext, isRevealed = true }) {
           {/* Clean Metric Cards */}
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 pt-1">
             <ScrollReveal delay={0.08}>
-              <div className="p-5 sm:p-6 rounded-xl bg-gray-50 border border-gray-200 text-center">
+              <div className="border-t border-gray-200 pt-4 text-center">
                 <div className="text-h2 sm:text-h1 font-seasons font-normal leading-none" style={{ color: '#9d174d' }}>
                   +15%
                 </div>
@@ -865,7 +852,7 @@ export default function CaseStudyRyzeup({ onBack, onNext, isRevealed = true }) {
             </ScrollReveal>
 
             <ScrollReveal delay={0.12}>
-              <div className="p-5 sm:p-6 rounded-xl bg-gray-50 border border-gray-200 text-center">
+              <div className="border-t border-gray-200 pt-4 text-center">
                 <div className="text-h2 sm:text-h1 font-seasons font-normal leading-none" style={{ color: '#9d174d' }}>
                   &lt;3s
                 </div>
@@ -879,7 +866,7 @@ export default function CaseStudyRyzeup({ onBack, onNext, isRevealed = true }) {
             </ScrollReveal>
 
             <ScrollReveal delay={0.16}>
-              <div className="p-5 sm:p-6 rounded-xl bg-gray-50 border border-gray-200 text-center">
+              <div className="border-t border-gray-200 pt-4 text-center">
                 <div className="text-h2 sm:text-h1 font-seasons font-normal leading-none" style={{ color: '#9d174d' }}>
                   82%
                 </div>
