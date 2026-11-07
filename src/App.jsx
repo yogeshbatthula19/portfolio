@@ -797,6 +797,18 @@ export default function App() {
     return parseCurrentRoute();
   });
 
+  // Unique tab title per page
+  useEffect(() => {
+    const titles = {
+      home: 'Yogesh Battula — Product Designer',
+      about: 'About · Yogesh Battula',
+      trosky: 'Trosky 365 case study · Yogesh Battula',
+      ahamx: 'AhamX case study · Yogesh Battula',
+      ryzeup: 'Ryzeup case study · Yogesh Battula',
+    };
+    if (titles[currentView]) document.title = titles[currentView];
+  }, [currentView]);
+
   // Upgrade legacy hash URLs (/#/about) to clean URLs (/about) without reload
   useEffect(() => {
     if (typeof window !== 'undefined' && window.location.hash) {
