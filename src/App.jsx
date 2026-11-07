@@ -394,7 +394,7 @@ function CaseStudyCard({ cover, title, outcome, description, onClick, onMouseEnt
         <CoverArt {...cover} alt={`${title} project preview`} />
         {isLocked && (
           <div className="absolute top-3.5 right-3.5 z-10 inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/90 backdrop-blur-md text-caption font-medium text-[#111827] shadow-sm border border-black/[0.08]">
-            <Lock className="w-3 h-3 text-[#0c4731]" />
+            <Lock className="w-3 h-3 text-[#12315a]" />
             <span>Under NDA</span>
           </div>
         )}
@@ -1937,7 +1937,7 @@ export default function App() {
               </button>
 
               {/* Lock Badge */}
-              <div className="w-12 h-12 rounded-2xl bg-[#0c4731]/[0.08] text-[#0c4731] flex items-center justify-center mx-auto mb-4">
+              <div className="w-12 h-12 rounded-2xl bg-[#12315a]/[0.08] text-[#12315a] flex items-center justify-center mx-auto mb-4">
                 <Lock className="w-5 h-5" />
               </div>
 
@@ -1957,7 +1957,7 @@ export default function App() {
 
               <a
                 href="mailto:yogeshbattula55@gmail.com?subject=CarePulse%20Health%20walkthrough&body=Hi%20Yogesh,%0A%0AI'd%20like%20to%20see%20a%20walkthrough%20of%20your%20CarePulse%20Health%20work.%20Here%20are%20a%20few%20times%20that%20work%20for%20me:%0A%0A"
-                className="inline-flex items-center justify-center gap-1.5 w-full py-3 px-5 rounded-xl bg-[#0c4731] hover:bg-[#093524] text-white text-small font-medium transition-colors"
+                className="inline-flex items-center justify-center gap-1.5 w-full py-3 px-5 rounded-xl bg-[#12315a] hover:bg-[#0b2342] text-white text-small font-medium transition-colors"
               >
                 Request a walkthrough <ArrowUpRight className="w-4 h-4" />
               </a>
