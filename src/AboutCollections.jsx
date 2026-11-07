@@ -128,7 +128,7 @@ export function TypewriterExperience() {
                 })}</div>;
               })}</div>
             </div>
-            <img className="typewriter-machine" src="/about-art/typewriter.jpg" alt="" width="736" height="985" loading="lazy" decoding="async" />
+            <img className="typewriter-machine" src="/about-art/typewriter.png" alt="" width="736" height="985" loading="lazy" decoding="async" />
           </div>
 
         </div>

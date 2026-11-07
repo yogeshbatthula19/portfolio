@@ -57,11 +57,11 @@ export default function ConceptToCraft() {
     >
       <div className="mx-auto max-w-[1100px]">
         <motion.div className="text-center" initial={reduced ? false : { opacity: 0, y: 22 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.4 }} transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}>
-          <p className="text-caption uppercase tracking-[0.22em] text-[#d9b35c] font-basier">Off the clock</p>
+          <p className="text-caption uppercase tracking-[0.22em] text-[#f4dfa0] font-basier">Off the clock</p>
           <h2 id="craft-title" className="mt-3 text-h1 sm:text-display text-[#dbe7ff]" style={{ fontFamily: "'The Seasons', Georgia, serif" }}>
             I film cafés
           </h2>
-          <p className="mt-4 mx-auto max-w-[46ch] text-body text-[#b9c9e6]">
+          <p className="mt-4 mx-auto max-w-[46ch] text-body text-[#eef4ff]">
             Weekends, an Osmo Pocket and a lot of coffee. A few frames from the ones I liked.
           </p>
         </motion.div>
@@ -74,7 +74,7 @@ export default function ConceptToCraft() {
                   <img src={p.src} alt={p.alt} loading="lazy" decoding="async" className="w-full h-full object-cover block" />
                 </Frame>
               </div>
-              <figcaption className="mt-3 text-center text-caption text-[#e8c773] opacity-0 translate-y-1 transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-0">
+              <figcaption className="mt-3 text-center text-caption text-[#f4dfa0] opacity-0 translate-y-1 transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-0">
                 {p.alt}
               </figcaption>
             </HungFrame>

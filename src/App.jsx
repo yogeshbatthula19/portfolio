@@ -790,7 +790,7 @@ export default function App() {
     }
 
     if (window.lenis) {
-      window.lenis.scrollTo('#selected-works', { offset: -24, duration: 1.2 });
+      window.lenis.scrollTo('#selected-works', { offset: -84, duration: 1.2 });
       return;
     }
 
@@ -798,7 +798,7 @@ export default function App() {
     if (!targetEl) return;
 
     const startY = window.scrollY || window.pageYOffset;
-    const targetY = targetEl.getBoundingClientRect().top + startY - 24;
+    const targetY = targetEl.getBoundingClientRect().top + startY - 84;
     const distance = targetY - startY;
 
     if (Math.abs(distance) < 2) return;
@@ -1091,7 +1091,7 @@ export default function App() {
                 const el = document.getElementById('selected-works');
                 if (el) {
                   if (window.lenis) {
-                    window.lenis.scrollTo(el, { offset: -24, immediate: true });
+                    window.lenis.scrollTo(el, { offset: -84, immediate: true });
                   } else {
                     el.scrollIntoView({ behavior: 'instant' });
                   }
@@ -1180,7 +1180,7 @@ export default function App() {
               fontWeight: 400,
               fontSize: 'clamp(28px, 6.2vw, 72px)',
               lineHeight: 'clamp(36px, 7vw, 78px)',
-              color: '#f3f7ff',
+              color: '#ffffff',
             }}
           >
             {/* On mobile: Line 1 pairs Designing with Product pill. On desktop: flows inline */}
@@ -1227,7 +1227,7 @@ export default function App() {
             initial={!reduceMotion ? { opacity: 0, y: 20 } : false}
             animate={siteOpened ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ duration: 0.8, delay: 0.30, ease: entranceEase }}
-            className="text-small sm:text-body xl:text-lead text-[rgba(226,236,255,0.88)] mt-2 sm:mt-3.5 max-w-[340px] sm:max-w-[520px] xl:max-w-[580px] leading-[21px] sm:leading-[26px] xl:leading-[28px] tracking-[-0.15px]"
+            className="text-small sm:text-body xl:text-lead text-[#eef4ff] mt-2 sm:mt-3.5 max-w-[340px] sm:max-w-[520px] xl:max-w-[580px] leading-[21px] sm:leading-[26px] xl:leading-[28px] tracking-[-0.15px]"
           >
             I'm Yogesh, a product designer with 5+ years of experience in AI and SaaS products. I design apps that look clean on the surface and make sense underneath.
           </motion.p>
@@ -1247,7 +1247,7 @@ export default function App() {
             initial={!reduceMotion ? { opacity: 0, y: 16 } : false}
             animate={siteOpened ? { opacity: 1, y: 0 } : { opacity: 0, y: 16 }}
             transition={{ duration: 0.75, delay: 0.52, ease: entranceEase }}
-            className="mt-2.5 sm:mt-3.5 text-caption sm:text-small text-[rgba(226,236,255,0.72)] font-medium tracking-tight"
+            className="mt-2.5 sm:mt-3.5 text-caption sm:text-small text-[#dbe7ff] font-medium tracking-tight"
           >
             Based in Hyderabad, India
           </motion.p>
@@ -1289,7 +1289,7 @@ export default function App() {
                         Yogesh
                       </h2>
                     </div>
-                    <p className="text-small text-[#b9c9e6] mt-0.5 leading-snug">
+                    <p className="text-small text-[#dbe7ff] mt-0.5 leading-snug">
                       I design apps that make sense. I film cafés on my Osmo Pocket when I'm off the clock.
                     </p>
                   </div>
@@ -1467,7 +1467,7 @@ export default function App() {
                       Yogesh
                     </h2>
                   </div>
-                  <p className="text-small text-[#b9c9e6]">
+                  <p className="text-small text-[#dbe7ff]">
                     I design apps that make sense. I film cafés on my Osmo Pocket when I'm off the clock.
                   </p>
                 </div>
@@ -1708,7 +1708,7 @@ export default function App() {
           <h2 className="font-seasons text-h3 font-normal not-italic text-[#f3f7ff] tracking-tight">
             Selected Works
           </h2>
-          <span className="font-basier text-small text-[#e8c773] font-medium tracking-tight">
+          <span className="font-basier text-small text-[#f6e3a1] font-medium tracking-tight">
             4 case studies
           </span>
         </motion.div>

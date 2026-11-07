@@ -76,8 +76,8 @@ export default function NotFound({ onHome, onWorks }) {
         >
           Nothing hangs here
         </h1>
-        <p className="mt-3 text-body text-[#c8d7f2] leading-relaxed">
-          Nothing lives at <span className="font-medium text-[#e8c773] break-all">{path}</span>. The page may have moved, or the link has a typo.
+        <p className="mt-3 text-body text-[#e1ebff] leading-relaxed">
+          Nothing lives at <span className="font-medium text-[#f6e3a1] break-all">{path}</span>. The page may have moved, or the link has a typo.
         </p>
 
         <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3">

@@ -102,7 +102,7 @@ function StickyCard({ item, index, isLast, isDesktop }) {
                 {item.name}
               </span>
             )}
-            <span className="font-basier text-caption sm:text-small text-[#8a7650] font-normal truncate mt-1">
+            <span className="font-basier text-caption sm:text-small text-[#6b5a3a] font-normal truncate mt-1">
               {item.role}
             </span>
           </div>

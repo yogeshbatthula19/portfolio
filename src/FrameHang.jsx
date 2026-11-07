@@ -37,7 +37,7 @@ export default function FrameHang() {
         viewport={{ once: true, amount: 0.5 }}
         transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
       >
-        <p className="text-caption uppercase tracking-[0.22em] text-[#d9b35c] font-basier">On the wall</p>
+        <p className="text-caption uppercase tracking-[0.22em] text-[#f4dfa0] font-basier">On the wall</p>
         <h2 id="hang-title" className="mt-3 text-h2 sm:text-h1 text-[#f3f7ff]" style={{ fontFamily: "'The Seasons', Georgia, serif" }}>
           The places and people I keep close.
         </h2>
@@ -59,7 +59,7 @@ export default function FrameHang() {
                 <img src={p.src} alt={p.alt} loading="lazy" decoding="async" style={{ objectPosition: p.pos }} className="w-full h-full object-cover block" />
               </Frame>
             </div>
-            <figcaption className="mt-3 text-center text-caption text-[#e8c773]/0 group-hover:text-[#e8c773] transition-colors duration-300">{p.note}</figcaption>
+            <figcaption className="mt-3 text-center text-caption text-[#f4dfa0]/0 group-hover:text-[#f4dfa0] transition-colors duration-300">{p.note}</figcaption>
           </motion.figure>
         ))}
       </div>

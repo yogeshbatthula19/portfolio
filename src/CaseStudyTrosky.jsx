@@ -372,7 +372,7 @@ export default function CaseStudyTrosky({ onBack, onNext, isRevealed = true }) {
           initial={{ opacity: 0, y: 20 }}
           animate={isRevealed ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
           transition={{ duration: 0.7, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
-          className="mt-6 pt-4 border-t border-white/25 text-small text-[#cfe0ff] font-basier scroll-mt-28"
+          className="mt-6 pt-4 border-t border-white/25 text-small text-[#eef4ff] font-basier scroll-mt-28"
         >
           Sole product designer · 6 weeks · iOS · Shipped to beta
         </motion.p>

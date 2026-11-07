@@ -259,7 +259,7 @@ i, em, cite, dfn, var, address {
 .home-hero-copy{z-index:40;max-width:740px!important}
 .home-hero-title{font-family:'The Seasons',Georgia,serif!important;font-weight:400!important;flex-direction:column!important;white-space:normal!important;font-size:clamp(28px,4.6vw,62px)!important;line-height:1.15!important;gap:8px!important}
 .home-primary-actions{display:flex;flex-direction:column;align-items:center;gap:16px;margin-top:24px}
-.home-availability{font-size:13px;color:#cfe0ff;display:flex;align-items:center;gap:8px}.home-availability>span{width:6px;height:6px;background:#24875f;border-radius:50%}
+.home-availability{font-size:13px;color:#e4eeff;display:flex;align-items:center;gap:8px}.home-availability>span{width:6px;height:6px;background:#24875f;border-radius:50%}
 .home-work-button{position:relative;display:inline-flex;align-items:center;justify-content:center;padding:4px;border-radius:9999px;background:#0b1d46;border:none;cursor:pointer;box-shadow:none;transition:transform .25s cubic-bezier(0.16,1,0.3,1),box-shadow .25s ease;text-decoration:none}
 .home-work-button:hover{background:#ff6a1f}
 .home-work-button:active{transform:translateY(0) scale(0.98)}
@@ -294,10 +294,10 @@ i, em, cite, dfn, var, address {
 @media (prefers-reduced-motion:reduce){.frame-shimmer{transition:none}}
 
 /* About page on the cobalt wall */
-.about-themed .collection-heading>span{color:#e8c773}
+.about-themed .collection-heading>span{color:#f4dfa0}
 .about-themed .collection-heading h2{color:#f3f7ff}
-.about-themed .experience-intro{color:#b9c9e6}
-.about-themed .camera-prompt{color:#b9c9e6}
+.about-themed .experience-intro{color:#e1ebff}
+.about-themed .camera-prompt{color:#f1f6ff}
 .about-themed .shelf-plank{opacity:.95}
-.about-themed .camera-introduction p:not(.about-signature){color:#d6e2fa}
-.about-themed .camera-introduction p a{color:#e8c773}
+.about-themed .camera-introduction p:not(.about-signature){color:#eef4ff}
+.about-themed .camera-introduction p a{color:#fbeeb8}

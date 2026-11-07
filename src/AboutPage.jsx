@@ -88,7 +88,7 @@ export default function AboutPage({ onBack, isRevealed = true }) {
               initial={{ opacity: 0, y: 28 }}
               animate={shouldAnimate ? { opacity: 1, y: 0 } : { opacity: 0, y: 28 }}
               transition={{ duration: 0.9, delay: 0.24, ease: entranceEase }}
-              className={`camera-introduction flex flex-col justify-center space-y-3 sm:space-y-4 text-[#d6e2fa] is-visible`}
+              className={`camera-introduction flex flex-col justify-center space-y-3 sm:space-y-4 text-[#eef4ff] is-visible`}
             >
               {/* Headline in The Seasons */}
               <motion.h2
@@ -119,7 +119,7 @@ export default function AboutPage({ onBack, isRevealed = true }) {
               >
                 <a
                   href="mailto:yogeshbattula55@gmail.com"
-                  className="inline-flex items-center gap-1.5 font-medium text-[#e8c773] hover:underline"
+                  className="inline-flex items-center gap-1.5 font-medium text-[#fbeeb8] hover:underline"
                 >
                   <Mail className="w-3.5 h-3.5" />
                   <span>yogeshbattula55@gmail.com</span>
@@ -129,22 +129,22 @@ export default function AboutPage({ onBack, isRevealed = true }) {
                   href="https://www.linkedin.com/in/yogeshbattula/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1 font-medium text-[#e8c773] hover:underline"
+                  className="inline-flex items-center gap-1 font-medium text-[#fbeeb8] hover:underline"
                 >
                   <LinkedinIcon className="w-3 h-3" />
                   <span>LinkedIn</span>
-                  <ArrowUpRight className="w-2.5 h-2.5 text-[#e8c773]/70" />
+                  <ArrowUpRight className="w-2.5 h-2.5 text-[#f6e3a1]/70" />
                 </a>
 
                 <a
                   href="https://www.behance.net/yogeshbattula5"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1 font-medium text-[#e8c773] hover:underline"
+                  className="inline-flex items-center gap-1 font-medium text-[#fbeeb8] hover:underline"
                 >
                   <BehanceIcon className="w-3 h-3" />
                   <span>Behance</span>
-                  <ArrowUpRight className="w-2.5 h-2.5 text-[#e8c773]/70" />
+                  <ArrowUpRight className="w-2.5 h-2.5 text-[#f6e3a1]/70" />
                 </a>
 
                 <a
@@ -152,11 +152,11 @@ export default function AboutPage({ onBack, isRevealed = true }) {
                   download="Yogesh_Battula_Resume.pdf"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1 font-medium text-[#e8c773] hover:underline"
+                  className="inline-flex items-center gap-1 font-medium text-[#fbeeb8] hover:underline"
                 >
                   <FileText className="w-3 h-3" />
                   <span>Resume</span>
-                  <ArrowUpRight className="w-2.5 h-2.5 text-[#e8c773]/70" />
+                  <ArrowUpRight className="w-2.5 h-2.5 text-[#f6e3a1]/70" />
                 </a>
               </motion.div>
             </motion.div>
@@ -191,7 +191,7 @@ export default function AboutPage({ onBack, isRevealed = true }) {
             </a>
           </div>
 
-          <div className="text-caption text-[#b9c9e6]">
+          <div className="text-caption text-[#dbe7ff]">
             Crafted with thoughtful care • Hyderabad, India
           </div>
         </section>
