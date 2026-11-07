@@ -570,6 +570,21 @@ function StickyNav({ scrollY, onWorks, onAbout, hidden }) {
   );
 }
 
+// Small live detail: current time in Hyderabad.
+function HyderabadClock() {
+  const fmt = () => new Intl.DateTimeFormat('en-IN', { hour: '2-digit', minute: '2-digit', hour12: true, timeZone: 'Asia/Kolkata' }).format(new Date());
+  const [time, setTime] = React.useState(fmt);
+  React.useEffect(() => {
+    const id = setInterval(() => setTime(fmt()), 30000);
+    return () => clearInterval(id);
+  }, []);
+  return (
+    <p className="mt-8 text-small text-zinc-500 font-basier">
+      Hyderabad, {time.toUpperCase()} · Updated November 2026
+    </p>
+  );
+}
+
 // Lassie-style White Footer Card (The Rising Curtain Layer)
 function WhiteFooterCard({ navigateToCaseStudy, navigateToAbout, onScrollToWorks }) {
   return (
@@ -630,6 +645,7 @@ function WhiteFooterCard({ navigateToCaseStudy, navigateToAbout, onScrollToWorks
               Get in touch
             </a>
           </div>
+          <HyderabadClock />
         </div>
 
       </div>
