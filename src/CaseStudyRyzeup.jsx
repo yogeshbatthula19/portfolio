@@ -6,7 +6,6 @@ import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion'
 import CaseStudyScrollNav from './CaseStudyScrollNav';
 import CaseStudyScrollProgress from './CaseStudyScrollProgress';
 import ScrollReveal from './ScrollReveal';
-import ThankYouEnvelope from './ThankYouEnvelope';
 
 import orangeBg from './assets/ryzeup_orange_bg.webp';
 import heroGradient from './assets/564cc67c35dca41051d7d78448f696fab9f139d9.webp';
@@ -999,7 +998,7 @@ export default function CaseStudyRyzeup({ onBack, onNext, isRevealed = true }) {
         {/* CREDITS & FOOTER                                              */}
         {/* ------------------------------------------------------------- */}
         <ScrollReveal className="pt-2 sm:pt-4 pb-8 space-y-4">
-          <ThankYouEnvelope />
+          
 
           <div className="pt-6 sm:pt-8 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
             <button

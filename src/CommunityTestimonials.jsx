@@ -56,18 +56,10 @@ function StickyCard({ item, index, isLast, isDesktop }) {
   return (
     <motion.div
       ref={cardRef}
-      style={isDesktop ? {
-        scale,
-        opacity,
-        rotate: TILTS[index % TILTS.length],
-        zIndex: 10 + index * 10,
-      } : {
-        zIndex: 10 + index * 10,
-      }}
-      className="relative lg:sticky top-auto lg:top-32 w-full max-w-[390px] sm:max-w-[420px] h-auto min-h-0 sm:min-h-[460px] sm:h-[530px] lg:h-[560px] mx-auto lg:ml-auto lg:mr-0 rounded-[22px] sm:rounded-[28px] overflow-hidden bg-[#f8ecd8] border border-[#e9d6b6] flex flex-col select-none shadow-[0_24px_44px_-18px_rgba(120,80,20,0.35)] p-3 sm:p-4"
+      className="relative w-full max-w-[390px] sm:max-w-[420px] h-auto min-h-0 sm:min-h-[460px] sm:h-[530px] lg:h-[560px] mx-auto lg:ml-auto lg:mr-0 rounded-[22px] sm:rounded-[28px] overflow-hidden bg-[#f8ecd8] border border-[#e9d6b6] flex flex-col select-none shadow-[0_24px_44px_-18px_rgba(120,80,20,0.35)] p-3 sm:p-4"
     >
       {/* Top Half: Photo with clean straight edge meeting dark base */}
-      <div className="w-full h-[150px] sm:h-[250px] overflow-hidden bg-white p-1.5 sm:p-2 shadow-[0_6px_16px_-6px_rgba(120,80,20,0.35)] rounded-[4px] -rotate-[1.2deg] shrink-0">
+      <div className="w-full h-[150px] sm:h-[250px] overflow-hidden bg-white p-1.5 sm:p-2 shadow-[0_6px_16px_-6px_rgba(120,80,20,0.35)] rounded-[4px] shrink-0">
         <img 
           src={item.photo} 
           alt={item.name} 
@@ -95,7 +87,7 @@ function StickyCard({ item, index, isLast, isDesktop }) {
                 className="group/author inline-flex items-center gap-1.5 text-[#2a2118] truncate hover:text-[#ff6a1f] transition-colors"
                 title={`View ${item.name}'s LinkedIn profile`}
               >
-                <span className="truncate text-h3 sm:text-h2 leading-none" style={{ fontFamily: "'Sacramento', 'Caveat', cursive" }}>{item.name}</span>
+                <span className="truncate text-h3 sm:text-h2 leading-none" style={{ fontFamily: "'The Seasons', Georgia, serif" }}>{item.name}</span>
                 <svg 
                   className="w-3.5 h-3.5 text-[#a38a62] group-hover/author:text-[#0a66c2] transition-colors shrink-0" 
                   viewBox="0 0 24 24" 
@@ -155,7 +147,7 @@ export default function CommunityTestimonials() {
           {/* ========================================================= */}
           {/* LEFT COLUMN: Editorial Text (Sticky at top-28/top-32)     */}
           {/* ========================================================= */}
-          <div className="lg:sticky lg:top-28 sm:lg:top-32 lg:self-start min-h-0 lg:min-h-[460px] flex flex-col justify-start">
+          <div className="lg:self-start min-h-0 lg:min-h-[460px] flex flex-col justify-start">
             
             {/* Editorial Heading in The Seasons (Upright, Non-Italic) */}
             <h2 className="font-seasons text-h1 lg:text-display-sm font-normal not-italic text-[#08304C] tracking-tight leading-[1.12]">
@@ -170,7 +162,7 @@ export default function CommunityTestimonials() {
           {/* RIGHT COLUMN: Generous Gap Reel Stacking to Actual        */}
           {/* Placement, followed by Full Section Scroll                */}
           {/* ========================================================= */}
-          <div className="flex flex-col items-center lg:items-end gap-6 sm:gap-10 lg:gap-[180px] pb-0">
+          <div className="flex flex-col items-center lg:items-end gap-6 sm:gap-10 lg:gap-10 pb-0">
             {spotlights.map((item, index) => (
               <StickyCard
                 key={item.id}

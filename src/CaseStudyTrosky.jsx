@@ -6,7 +6,6 @@ import { motion, useScroll, useTransform } from 'framer-motion';
 import CaseStudyScrollNav from './CaseStudyScrollNav';
 import CaseStudyScrollProgress from './CaseStudyScrollProgress';
 import ScrollReveal from './ScrollReveal';
-import ThankYouEnvelope from './ThankYouEnvelope';
 
 // Background assets
 import heroGradient from './assets/564cc67c35dca41051d7d78448f696fab9f139d9.webp';
@@ -1055,7 +1054,7 @@ export default function CaseStudyTrosky({ onBack, onNext, isRevealed = true }) {
         {/* CREDITS & FOOTER                                              */}
         {/* ------------------------------------------------------------- */}
         <ScrollReveal className="pt-2 sm:pt-4 pb-8 space-y-4">
-          <ThankYouEnvelope />
+          
 
           <div className="pt-6 sm:pt-8 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
             <button

@@ -8,8 +8,6 @@ const CaseStudyTrosky = React.lazy(() => import('./CaseStudyTrosky'));
 const AboutPage = React.lazy(() => import('./AboutPage'));
 import ConceptToCraft from './ConceptToCraft';
 import CommunityTestimonials from './CommunityTestimonials';
-import CustomCursor from './CustomCursor';
-import OpeningAnimation from './OpeningAnimation';
 import NotFound from './NotFound';
 import photoAvatar from './assets/photo_yogesh_avatar.webp';
 import stampAboutOrange from './assets/stamp_about_orange.webp';
@@ -494,8 +492,6 @@ import ahamxDashboard from './assets/covers/ahamx-dashboard.webp';
 
 
 
-// 3D Star Sparkle Asset from Figma (Node 314:1415)
-import starSparkle from './assets/star_sparkle.webp';
 import footerBlueTexture from './assets/footer-blue-texture.webp';
 import nimbuMirchi from './assets/nimbu_mirchi.png';
 
@@ -748,7 +744,7 @@ export default function App() {
     const full = `${pathname} ${hash}`;
 
     const route = parseCurrentRoute();
-    if (full.includes('nointro') || hasSeenIntro() || route === 'notfound') {
+    if (true) {
       return { route, hasIntro: false, title: 'Yogesh' };
     }
     if (route === 'about') {
@@ -1149,43 +1145,13 @@ export default function App() {
 
   return (
     <>
-      <CustomCursor />
-
+      
       {currentView === 'home' && (
         <StickyNav
           scrollY={scrollY}
           onWorks={handleScrollToWorks}
           onAbout={navigateToAbout}
           hidden={introState.show || passwordModalOpen}
-        />
-      )}
-
-      {/* Starting / Opening / Case Study / About Reveal Animation */}
-      {introState.show && (
-        <OpeningAnimation
-          key={introState.key}
-          title={introState.title}
-          reduceMotion={reduceMotion}
-          onRevealStart={() => {
-            if (introState.title === 'Yogesh') {
-              setSiteOpened(true);
-            } else if (introState.title === 'About') {
-              setAboutRevealed(true);
-            } else {
-              setCaseStudyRevealed(true);
-            }
-          }}
-          onComplete={() => {
-            markIntroSeen();
-            if (introState.title === 'Yogesh') {
-              setSiteOpened(true);
-            } else if (introState.title === 'About') {
-              setAboutRevealed(true);
-            } else {
-              setCaseStudyRevealed(true);
-            }
-            setIntroState((prev) => ({ ...prev, show: false }));
-          }}
         />
       )}
 
@@ -1379,13 +1345,6 @@ export default function App() {
                 >
                   AI products
                 </span>
-
-                {/* Hero Star Sparkle directly inside the pill */}
-                <span
-                  className="relative inline-flex items-center justify-center w-[15px] sm:w-[22px] xl:w-[28px] h-[15px] sm:h-[22px] xl:h-[28px] shrink-0 pointer-events-none"
-                >
-                  <img src={starSparkle} alt="" aria-hidden="true" className="w-full h-full object-contain" />
-                </span>
               </motion.span>
             </div>
             <motion.span 
@@ -1464,16 +1423,6 @@ export default function App() {
                       <h2 className="text-body font-medium text-[#202020] tracking-tight leading-snug">
                         Yogesh
                       </h2>
-                      {/* Star directly next to name */}
-                      <motion.img 
-                        src={starSparkle} 
-                        alt="Sparkle star" 
-                        loading="lazy"
-                        decoding="async"
-                        animate={{ rotate: reduceMotion ? 0 : 360 }}
-                        transition={{ duration: 1.2, ease: "easeOut" }}
-                        className="w-[18px] sm:w-[20px] h-[18px] sm:h-[20px] object-contain select-none pointer-events-none"
-                      />
                     </div>
                     <p className="text-small text-[#797979] mt-0.5 leading-snug">
                       I design apps that make sense. I film cafés on my Osmo Pocket when I'm off the clock.
@@ -1670,14 +1619,6 @@ export default function App() {
                     <h2 className="text-lead font-medium text-[#202020] tracking-tight leading-snug">
                       Yogesh
                     </h2>
-                    {/* Star directly next to name */}
-                    <motion.img 
-                      src={starSparkle} 
-                      alt="Sparkle star" 
-                      animate={{ rotate: reduceMotion ? 0 : 360 }}
-                      transition={{ duration: 1.2, ease: "easeOut" }}
-                      className="w-[20px] h-[20px] object-contain select-none pointer-events-none shrink-0"
-                    />
                   </div>
                   <p className="text-small text-[#797979]">
                     I design apps that make sense. I film cafés on my Osmo Pocket when I'm off the clock.

@@ -1,227 +1,41 @@
-import React, { useEffect, useLayoutEffect, useRef, useState, useMemo } from 'react';
-import { motion, AnimatePresence, useScroll, useTransform, useReducedMotion } from 'framer-motion';
+import React from 'react';
 import foodie01 from './assets/foodiee/08D11BD2-E811-496F-87D0-F920267BBD6F.jpg';
-import foodie02 from './assets/foodiee/14E8659C-DBD2-4AE3-B451-25FE1C1FAC10.jpg';
 import foodie03 from './assets/foodiee/2B9F4E39-0418-4D21-9453-83EE4C46C4B8.jpg';
-import foodie04 from './assets/foodiee/4B0A033D-13C3-4456-BCF5-51434FA41830.jpg';
 import foodie05 from './assets/foodiee/5311E363-6852-4A52-A100-BBD7AAB01A02.jpg';
 import foodie06 from './assets/foodiee/675A14DB-4D2D-4A6E-A4E7-A15571EB4BD4.jpg';
-import foodie07 from './assets/foodiee/7C0D7067-B6C1-420A-ADBB-07B85454FD5B.jpg';
-import foodie08 from './assets/foodiee/EE067D71-C03C-40AA-A692-A428618A1A7D.jpg';
-import foodie09 from './assets/foodiee/EE47A0CB-9B02-4924-8207-558C2197B111.jpg';
 import foodie10 from './assets/foodiee/F45DA272-9457-419D-94BB-7A652019D1C0.jpg';
-import foodie11 from './assets/foodiee/FE76B4D9-3BC5-464A-A623-C944B3BA0005.jpg';
-import './concept-to-craft.css';
 
-const cards = [
-  { type: 'photo', src: foodie01, alt: 'Mango dessert toast' },
-  { type: 'photo', src: foodie02, alt: 'Artisanal culinary plate' },
-  { type: 'photo', src: foodie03, alt: 'Specialty cafe dish' },
-  { type: 'photo', src: foodie04, alt: 'Gourmet meal creation' },
-  { type: 'photo', src: foodie05, alt: 'Crisp cafe breakfast' },
-  { type: 'photo', src: foodie06, alt: 'Handcrafted pasta dish' },
-  { type: 'photo', src: foodie07, alt: 'Fresh savory plate' },
-  { type: 'photo', src: foodie08, alt: 'Sweet dessert delicacy' },
-  { type: 'photo', src: foodie09, alt: 'Specialty breakfast spread' },
-  { type: 'photo', src: foodie10, alt: 'Delicious cafe culinary treat' },
-  { type: 'photo', src: foodie11, alt: 'Chef gourmet plate' },
+const photos = [
+  { src: foodie01, alt: 'Mango dessert toast' },
+  { src: foodie03, alt: 'Specialty café dish' },
+  { src: foodie05, alt: 'Crisp café breakfast' },
+  { src: foodie06, alt: 'Handcrafted pasta dish' },
+  { src: foodie10, alt: 'Café dessert' },
 ];
 
-function CraftCard({ card, index, progress, width, ribbonMetrics, reduced }) {
-  const { sizes, offsets, startX, totalTravel, baseSize } = ribbonMetrics;
-  const size = sizes[index] || baseSize;
-  const offset = offsets[index] || 0;
-
-  // Smooth continuous linear horizontal glide from startX to endX
-  const x = useTransform(progress, p => startX + offset - p * totalTravel);
-  const distance = useTransform(x, value => (value + size / 2 - width / 2) / Math.max(width / 2, 1));
-  const y = useTransform(distance, value => (baseSize - size) * 0.5 + 40 * (1 - Math.min(value * value, 2)));
-  const rotate = useTransform(distance, value => Math.max(-10, Math.min(10, value * 7)));
-  const rotateY = useTransform(distance, value => Math.max(-8, Math.min(8, -value * 6)));
-  const scale = useTransform(distance, value => 1.04 - Math.min(value * value, 1) * 0.08);
-  const z = useTransform(distance, value => -Math.min(value * value, 2) * 35);
-  const zIndex = useTransform(distance, value => Math.round(20 - Math.min(Math.abs(value), 2) * 5));
-
-  const isMobile = width < 640;
-
-  return (
-    <motion.figure
-      className={`craft-card craft-card--${card.type}`}
-      style={reduced ? undefined : {
-        x,
-        y,
-        rotate,
-        rotateY: isMobile ? 0 : rotateY,
-        scale,
-        z: isMobile ? 0 : z,
-        zIndex,
-        transformPerspective: isMobile ? undefined : 1200,
-        transformStyle: isMobile ? undefined : 'preserve-3d',
-        width: size
-      }}
-    >
-      <img
-        src={card.src}
-        alt={card.alt}
-        width="600"
-        height="750"
-        // Cards move in from off-screen via transforms, so native lazy loading
-        // starts too late and shows empty grey cards. Fetch them early, at low priority.
-        loading="eager"
-        fetchpriority="low"
-        decoding="async"
-        draggable={false}
-      />
-    </motion.figure>
-  );
-}
-
-function CraftHeading({ progress, reduced }) {
-  const [isSecondPhase, setIsSecondPhase] = useState(() => {
-    try {
-      return (progress?.get() || 0) >= 0.48;
-    } catch {
-      return false;
-    }
-  });
-
-  useEffect(() => {
-    if (!progress) return;
-    return progress.on('change', (latest) => {
-      // Hysteresis threshold to eliminate any midpoint flutter:
-      // Switches to Phase 2 ("To Foodieeee") when scrolling down past 48%
-      // Switches back to Phase 1 ("From Foodie") when scrolling up past 44%
-      if (latest >= 0.48 && !isSecondPhase) {
-        setIsSecondPhase(true);
-      } else if (latest < 0.44 && isSecondPhase) {
-        setIsSecondPhase(false);
-      }
-    });
-  }, [progress, isSecondPhase]);
-
-  if (reduced) {
-    return (
-      <div className="craft-heading">
-        <h2 id="craft-title" className="craft-heading-grid">
-          <span className="craft-heading-item">I film cafés</span>
-        </h2>
-      </div>
-    );
-  }
-
-  return (
-    <div className="craft-heading pointer-events-none select-none">
-      <h2 id="craft-title" className="craft-heading-grid overflow-hidden">
-        <span className="craft-sr-only">Off the clock, I film cafés</span>
-        
-        <AnimatePresence mode="popLayout" initial={false}>
-          {!isSecondPhase ? (
-            <motion.span
-              key="phase-1-foodie"
-              initial={{ opacity: 0, y: 28 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -28 }}
-              transition={{ duration: 0.32, ease: [0.16, 1, 0.3, 1] }}
-              className="craft-heading-item pointer-events-none select-none"
-              style={{ color: '#18181b', willChange: 'transform, opacity' }}
-              aria-hidden="true"
-            >
-              Off the clock
-            </motion.span>
-          ) : (
-            <motion.span
-              key="phase-2-foodieeee"
-              initial={{ opacity: 0, y: 28 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -28 }}
-              transition={{ duration: 0.32, ease: [0.16, 1, 0.3, 1] }}
-              className="craft-heading-item pointer-events-none select-none"
-              style={{ color: '#18181b', willChange: 'transform, opacity' }}
-              aria-hidden="true"
-            >
-              I film cafés
-            </motion.span>
-          )}
-        </AnimatePresence>
-      </h2>
-    </div>
-  );
-}
-
+// Off the clock: a short, still row of café frames.
 export default function ConceptToCraft() {
-  const sectionRef = useRef(null);
-  const viewportRef = useRef(null);
-  const reduced = useReducedMotion();
-  const [width, setWidth] = useState(1200);
-  const [height, setHeight] = useState(900);
-
-  // Track raw scroll
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ['start start', 'end end']
-  });
-
-  // Use the browser's scroll progress directly so the ribbon stays locked to
-  // wheel and touch input instead of introducing a second spring animation.
-  const progress = scrollYProgress;
-
-  useLayoutEffect(() => {
-    const viewport = viewportRef.current;
-    if (!viewport) return;
-    const measure = () => { 
-      setWidth(viewport.clientWidth); 
-      setHeight(viewport.clientHeight); 
-    };
-    measure();
-    const observer = new ResizeObserver(measure);
-    observer.observe(viewport);
-    return () => observer.disconnect();
-  }, []);
-
-  const ribbonMetrics = useMemo(() => {
-    const isMobile = width < 640;
-    const baseSize = Math.min(isMobile ? width * 0.72 : width * 0.28, height * 0.48, 420);
-    const sizeFactors = [0.82, 1.02, 0.86, 1.06, 0.78, 0.98, 0.84, 1.04, 0.82, 1.0, 0.88];
-    const gap = isMobile ? 24 : 56;
-    const sizes = sizeFactors.map(f => baseSize * f);
-    const offsets = sizeFactors.map((f, i) =>
-      sizeFactors.slice(0, i).reduce((sum, factor) => sum + baseSize * factor + gap, 0)
-    );
-
-    // Initial state: ALL images start completely outside of the frame to the right
-    // Final state: ALL images finish completely outside of the frame to the left
-    const startX = width + (isMobile ? 60 : 120);
-    const endX = -sizes[10] - (isMobile ? 60 : 120);
-    const totalTravel = (startX + offsets[10]) - endX;
-
-    return {
-      sizes,
-      offsets,
-      startX,
-      totalTravel,
-      baseSize
-    };
-  }, [width, height]);
-
   return (
-    <section className={`concept-craft ${reduced ? 'concept-craft--static' : ''}`} aria-labelledby="craft-title">
-      <div className="craft-scroll-track" ref={sectionRef}>
-        <div className="craft-viewport" ref={viewportRef}>
-          <CraftHeading progress={progress} reduced={reduced} />
-          <div className="craft-ribbon" aria-label="Café dishes I have filmed">
-            {cards.map((card, index) => (
-              <CraftCard 
-                key={index} 
-                card={card} 
-                index={index} 
-                progress={progress} 
-                width={width} 
-                height={height} 
-                ribbonMetrics={ribbonMetrics}
-                reduced={reduced} 
-              />
-            ))}
-          </div>
+    <section className="bg-white px-4 sm:px-8 py-16 sm:py-24" aria-labelledby="craft-title">
+      <div className="mx-auto max-w-[1100px]">
+        <p className="text-caption uppercase tracking-[0.12em] text-gray-500 font-basier">Off the clock</p>
+        <h2 id="craft-title" className="mt-2 text-h2 sm:text-h1 text-[#08304C]" style={{ fontFamily: "'The Seasons', Georgia, serif" }}>
+          I film cafés
+        </h2>
+        <p className="mt-3 max-w-[52ch] text-body text-gray-600">
+          Weekends, an Osmo Pocket and a lot of coffee. A few frames from the ones I liked.
+        </p>
+        <div className="mt-8 flex gap-3 sm:gap-4 overflow-x-auto snap-x snap-mandatory pb-2 -mx-4 px-4 sm:mx-0 sm:px-0 sm:grid sm:grid-cols-5 sm:overflow-visible">
+          {photos.map((p) => (
+            <img
+              key={p.src}
+              src={p.src}
+              alt={p.alt}
+              loading="lazy"
+              decoding="async"
+              className="snap-start shrink-0 w-[62%] sm:w-auto aspect-[3/4] object-cover rounded-md"
+            />
+          ))}
         </div>
       </div>
     </section>
