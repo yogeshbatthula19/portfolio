@@ -292,3 +292,6 @@ i, em, cite, dfn, var, address {
 @media (min-width: 768px) { .desk-hero .chip { left: var(--cx); bottom: var(--b); } }
 
 .desk-hero h1 em { font-style: italic !important; }
+
+.desk-hero .prop { left: var(--mx); top: var(--my); width: var(--mw); }
+@media (min-width: 768px) { .desk-hero .prop { left: var(--x); top: var(--y); width: var(--w); } }

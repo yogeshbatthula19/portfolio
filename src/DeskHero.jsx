@@ -3,6 +3,24 @@ import { motion, useReducedMotion } from 'framer-motion';
 import beach from './assets/photo_beach_full.jpg';
 import troskyHome from './assets/covers/trosky-home.webp';
 import ahamx from './assets/covers/ahamx-dashboard.webp';
+import pCap from './assets/props/cap.webp';
+import pCamera from './assets/props/camera.webp';
+import pRayban from './assets/props/rayban.webp';
+import pWallet from './assets/props/wallet.webp';
+import pPerfume from './assets/props/perfume.webp';
+import pShades from './assets/props/shades.webp';
+import pBraid from './assets/props/braid.webp';
+
+// Flat-lay props scattered round the headline. x/y = % of hero (desktop), mx/my = mobile; w = width in px (desktop) / mw (mobile).
+const PROPS = [
+  { src: pCap, alt: 'Green baseball cap', x: 5, y: 9, w: 150, mx: 3, my: 7, mw: 82, r: -12 },
+  { src: pCamera, alt: 'Vintage film camera', x: 1.5, y: 55, w: 140, mx: 62, my: 8, mw: 92, r: 8 },
+  { src: pRayban, alt: 'Black sunglasses', x: 16, y: 72, w: 140, r: -6, hideM: 1 },
+  { src: pBraid, alt: 'Braided leather bracelet', x: 17, y: 12, w: 96, r: 14, hideM: 1 },
+  { src: pWallet, alt: 'Navy leather wallet', x: 86, y: 10, w: 140, mx: 4, my: 71, mw: 92, r: 10 },
+  { src: pShades, alt: 'Black sunglasses, folded', x: 77, y: 8, w: 74, r: -16, hideM: 1 },
+  { src: pPerfume, alt: 'Bottle of amber perfume', x: 88, y: 48, w: 100, mx: 78, my: 69, mw: 58, r: -8 },
+];
 import '@fontsource/instrument-serif/400.css';
 import '@fontsource/instrument-serif/400-italic.css';
 import '@fontsource-variable/inter';
@@ -107,6 +125,26 @@ export default function DeskHero({ onWorks, onAbout }) {
         </motion.button>
       </div>
       </div>
+
+      {/* Flat-lay props: drop in, float gently, draggable */}
+      {PROPS.map((o, i) => (
+        <motion.img
+          key={o.alt}
+          src={o.src}
+          alt={o.alt}
+          draggable={false}
+          drag={!reduce}
+          dragConstraints={ref}
+          dragElastic={0.15}
+          whileDrag={{ scale: 1.06, zIndex: 40, cursor: 'grabbing' }}
+          whileHover={reduce ? undefined : { rotate: o.r + 6, scale: 1.04 }}
+          initial={reduce ? false : { y: -420, opacity: 0, rotate: o.r - 30 }}
+          animate={reduce ? { opacity: 1, rotate: o.r } : { y: [0, -7, 0], opacity: 1, rotate: o.r }}
+          transition={reduce ? undefined : { opacity: { delay: 0.3 + i * 0.1, duration: 0.3 }, rotate: { delay: 0.3 + i * 0.1, type: 'spring', stiffness: 90, damping: 10 }, y: { delay: 0.3 + i * 0.1, duration: 4 + (i % 3), repeat: Infinity, ease: 'easeInOut' } }}
+          className={`prop absolute z-[15] cursor-grab select-none h-auto ${o.hideM ? 'hidden md:block' : 'block'}`}
+          style={{ '--x': `${o.x}%`, '--y': `${o.y}%`, '--mx': `${o.mx ?? 0}%`, '--my': `${o.my ?? 0}%`, '--w': `${o.w}px`, '--mw': `${o.mw ?? o.w}px`, filter: 'drop-shadow(0 12px 14px rgba(0,0,0,0.28))' }}
+        />
+      ))}
 
       {/* Skill chips: drop in, then draggable */}
       <div className="absolute inset-x-0 bottom-0 h-[118px] sm:h-[130px] z-30 pointer-events-none">
