@@ -13,6 +13,7 @@ import '@fontsource/instrument-serif/400.css';
 import '@fontsource/instrument-serif/400-italic.css';
 import '@fontsource-variable/inter';
 import AboutPoster from './AboutPoster';
+import { KindA, KindB, PlayA, PlayB, FooterA, FooterB } from './MoreOptions';
 
 const serif = { fontFamily: "'Instrument Serif', Georgia, serif" };
 const W = [
@@ -220,6 +221,12 @@ export default function Options() {
       <Block k="A5" label="About · full photo"><AboutE /></Block>
       <Block k="A6" label="About · facts bento"><AboutF /></Block>
       <Block k="A7" label="About · poster"><AboutPoster /></Block>
+      <Block k="K1" label="Kind words · tinted cards"><KindA /></Block>
+      <Block k="K2" label="Kind words · one big quote"><KindB /></Block>
+      <Block k="P1" label="Playground · bento"><PlayA /></Block>
+      <Block k="P2" label="Playground · pill list"><PlayB /></Block>
+      <Block k="F1" label="Footer · light"><FooterA /></Block>
+      <Block k="F2" label="Footer · dark with pills"><FooterB /></Block>
     </div>
   );
 }
