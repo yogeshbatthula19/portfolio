@@ -35,13 +35,13 @@ export default function AboutPoster({ bleed = false }) {
       <div aria-hidden="true" className="absolute inset-0 opacity-[0.35] pointer-events-none" style={{ backgroundImage: 'radial-gradient(rgba(42,38,34,0.09) 1px, transparent 1px)', backgroundSize: '18px 18px' }} />
 
       <div className="relative z-10 mx-auto max-w-[860px] px-6 pt-14 md:pt-20 text-center">
-        <h2 className="text-[#141210] text-[56px] sm:text-[96px] md:text-[116px] leading-[0.95] tracking-[-0.02em]" style={serif}>
+        <h2 className="text-[#141210] text-[56px] sm:text-[72px] md:text-[88px] leading-[0.95] tracking-[-0.02em]" style={serif}>
           The person<br />behind the <em className="italic">work</em>
         </h2>
         <motion.div {...pop(0.15)} className="mx-auto mt-6 inline-block -rotate-2 rounded-[16px] md:rounded-[22px] px-6 py-3 md:px-8 md:py-4" style={gloss('#fff0b8', '#ffd983')}>
-          <span className="text-[24px] md:text-[34px] font-medium tracking-[-0.015em] leading-none text-[#e0701a]">Yogesh Battula</span>
+          <span className="text-[24px] md:text-[28px] font-medium tracking-[-0.015em] leading-none text-[#e0701a]">Yogesh Battula</span>
         </motion.div>
-        <p className="mx-auto mt-7 max-w-[600px] text-[#141210]/75 text-[17px] md:text-[20px] leading-[1.5]">
+        <p className="mx-auto mt-7 max-w-[600px] text-[#141210]/75 text-[17px] md:text-[17px] leading-[1.5]">
           Civil engineer turned designer. I found my way to UI in 2021 and now design products at Paradigm IT. As a certified Scrum Master, I care about how teams ship as much as what they ship. Away from the desk, you’ll find me on a cycle, at a temple or by the sea.
         </p>
       </div>

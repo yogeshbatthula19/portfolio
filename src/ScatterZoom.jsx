@@ -70,7 +70,7 @@ export default function ScatterZoom({ onAbout }) {
 
         <motion.p
           style={{ opacity: line1, y: line1y }}
-          className="absolute left-1/2 top-[22%] -translate-x-1/2 z-10 w-[90%] text-center text-[32px] sm:text-[52px] leading-[1.1] text-[#2a2622]"
+          className="absolute left-1/2 top-[22%] -translate-x-1/2 z-10 w-[90%] text-center text-[32px] sm:text-[42px] leading-[1.1] text-[#2a2622]"
         >
           <span style={{ fontFamily: "'Instrument Serif', Georgia, serif" }}>Off-screen, I collect small moments.</span>
         </motion.p>
@@ -81,7 +81,7 @@ export default function ScatterZoom({ onAbout }) {
         </motion.div>
 
         <motion.div style={{ opacity: line2, y: line2y }} className="absolute inset-x-0 bottom-[12%] z-10 px-6 text-center text-white">
-          <p className="mx-auto max-w-[760px] text-[38px] sm:text-[68px] leading-[1.05]" style={{ fontFamily: "'Instrument Serif', Georgia, serif" }}>
+          <p className="mx-auto max-w-[760px] text-[38px] sm:text-[52px] leading-[1.05]" style={{ fontFamily: "'Instrument Serif', Georgia, serif" }}>
             Wherever I go, I notice how things work, and how they could work better.
           </p>
           <button

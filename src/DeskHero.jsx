@@ -89,7 +89,7 @@ export default function DeskHero({ onWorks, onAbout }) {
           initial={reduce ? false : { opacity: 0, y: 18 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.12, ease: [0.22, 1, 0.36, 1] }}
-          className="text-[#141210] text-[40px] sm:text-[72px] lg:text-[90px] leading-[1.06] tracking-[-0.02em]"
+          className="text-[#141210] text-[40px] sm:text-[56px] lg:text-[72px] leading-[1.06] tracking-[-0.02em]"
           style={{ fontFamily: "'Instrument Serif', Georgia, serif" }}
         >
           Hi, <Flower color="#2f5bff" delay={0.5} /> I’m Yogesh <Photo src={beach} alt="Yogesh by the sea" delay={0.7} />

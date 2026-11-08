@@ -26,7 +26,7 @@ const Star = ({ color, cls }) => (
 );
 const Title = ({ children, sub }) => (
   <div className="mb-10 text-center">
-    <h2 className="text-[#141210] text-[44px] sm:text-[72px] leading-[0.98] tracking-[-0.02em]" style={serif}>{children}</h2>
+    <h2 className="text-[#141210] text-[44px] sm:text-[56px] leading-[0.98] tracking-[-0.02em]" style={serif}>{children}</h2>
     {sub && <p className="mt-3 text-[15px] text-[#6b645b]">{sub}</p>}
   </div>
 );
@@ -68,7 +68,7 @@ export function KindB() {
     <div className="mx-auto max-w-[980px] text-center">
       <Star color="#ff5a1f" cls="h-10 w-10 md:h-14 md:w-14" />
       <motion.blockquote key={i} initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}
-        className="mt-6 text-[#141210] text-[30px] sm:text-[46px] md:text-[54px] leading-[1.1] tracking-[-0.015em]" style={serif}>
+        className="mt-6 text-[#141210] text-[30px] sm:text-[38px] md:text-[44px] leading-[1.1] tracking-[-0.015em]" style={serif}>
         “{t.q}”
       </motion.blockquote>
       <p className="mt-8 text-[13px] text-[#6b645b]">Three people, in their own words. Tap a name.</p>
@@ -110,7 +110,7 @@ export function PlayA() {
             )}
             {x.si && <span className="absolute right-7 top-7 grid h-12 w-12 place-items-center rounded-[14px] bg-white/80"><Icon si={x.si} fill={x.c[2]} cls="h-6 w-6" /></span>}
             <span className="mb-3 inline-block self-start rounded-full bg-white/80 px-3 py-1 text-[12px] font-medium" style={{ color: x.c[2] }}>{x.tag}</span>
-            <h3 className="text-[#141210] text-[34px] md:text-[42px] leading-none tracking-[-0.02em]" style={serif}>{x.t}</h3>
+            <h3 className="text-[#141210] text-[34px] md:text-[34px] leading-none tracking-[-0.02em]" style={serif}>{x.t}</h3>
             <p className="mt-2 max-w-[360px] text-[15px] text-[#141210]/70">{x.d}</p>
           </div>
         ))}
@@ -130,7 +130,7 @@ export function PlayB() {
           <div key={x.t} onMouseEnter={() => setO(i)} onClick={() => setO(i)}
             className="cursor-pointer overflow-hidden rounded-[26px] px-6 md:px-9 transition-all duration-500" style={{ ...gloss(x.c[0], x.c[1]), rotate: `${[-1, 0.8, -0.6, 1][i]}deg` }}>
             <div className="flex items-center justify-between gap-4 py-5 md:py-6">
-              <span className="text-[30px] md:text-[48px] leading-none tracking-[-0.02em] text-[#141210]" style={serif}>{x.t}</span>
+              <span className="text-[30px] md:text-[38px] leading-none tracking-[-0.02em] text-[#141210]" style={serif}>{x.t}</span>
               <span className="flex items-center gap-2 rounded-full bg-white/80 px-3 py-1.5 text-[13px] font-medium" style={{ color: x.c[2] }}>{x.si && <Icon si={x.si} fill={x.c[2]} cls="h-4 w-4" />}{x.tag}</span>
             </div>
             <div className="grid transition-[grid-template-rows] duration-500" style={{ gridTemplateRows: o === i ? '1fr' : '0fr' }}>
@@ -160,7 +160,7 @@ export function FooterA() {
   const time = useHydTime();
   return (
     <div className="relative overflow-hidden rounded-[36px] bg-white/60 px-6 py-16 md:py-24 text-center">
-      <h2 className="text-[#141210] text-[52px] sm:text-[88px] md:text-[112px] leading-[0.95] tracking-[-0.02em]" style={serif}>
+      <h2 className="text-[#141210] text-[52px] sm:text-[68px] md:text-[84px] leading-[0.95] tracking-[-0.02em]" style={serif}>
         Let’s make <Star color="#2f5bff" cls="h-[0.55em] w-[0.55em] align-middle" /> something<br /><em>worth</em> using
       </h2>
       <a href="mailto:yogeshbattula55@gmail.com" className="mt-9 inline-flex items-center gap-2 rounded-full bg-[#2a2622] px-7 py-4 text-[16px] font-medium text-[#f4f1ea] no-underline shadow-[0_10px_24px_-12px_rgba(0,0,0,0.6)]">yogeshbattula55@gmail.com <span aria-hidden="true">↗</span></a>
@@ -180,15 +180,15 @@ export function FooterB() {
       <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-8">
         <div>
           <p className="text-[14px] text-white/50">Open to product design roles · Hyderabad · {time} IST</p>
-          <h2 className="mt-4 text-[48px] sm:text-[80px] md:text-[96px] leading-[0.95] tracking-[-0.02em]" style={serif}>Say <em>hello</em></h2>
-          <a href="mailto:yogeshbattula55@gmail.com" className="mt-3 inline-block text-[20px] sm:text-[30px] md:text-[38px] text-[#ffd983] underline decoration-1 underline-offset-[6px]" style={serif}>yogeshbattula55@gmail.com</a>
+          <h2 className="mt-4 text-[48px] sm:text-[60px] md:text-[72px] leading-[0.95] tracking-[-0.02em]" style={serif}>Say <em>hello</em></h2>
+          <a href="mailto:yogeshbattula55@gmail.com" className="mt-3 inline-block text-[20px] sm:text-[26px] md:text-[30px] text-[#ffd983] underline decoration-1 underline-offset-[6px]" style={serif}>yogeshbattula55@gmail.com</a>
         </div>
         <nav className="flex gap-6 text-[15px] text-white/70">{LINKS.map((l) => <a key={l.t} href={l.h} target="_blank" rel="noopener noreferrer" className="hover:text-white">{l.t} ↗</a>)}</nav>
       </div>
       {/* a little pile of the hero's pills resting on the bottom edge */}
       <div aria-hidden="true" className="pointer-events-none absolute inset-x-0 bottom-0 h-36 md:h-44">
         {[['research', C.blue, 4, 0, -4], ['prototyping', C.green, 22, 0, 3], ['systems', C.yellow, 44, 0, -2], ['strategy', C.peach, 60, 0, 5], ['ai', C.lilac, 52, 56, -14], ['shipping', C.pink, 76, 0, -3], ['testing', C.blue, 30, 58, 8]].map(([t, c, l, b, r]) => (
-          <span key={t} className="absolute rounded-[16px] md:rounded-[22px] px-4 py-2.5 md:px-7 md:py-4 text-[18px] md:text-[32px] font-medium leading-none" style={{ left: `${l}%`, bottom: b, rotate: `${r}deg`, color: c[2], ...gloss(c[0], c[1]) }}>{t}</span>
+          <span key={t} className="absolute rounded-[16px] md:rounded-[22px] px-4 py-2.5 md:px-7 md:py-4 text-[18px] md:text-[26px] font-medium leading-none" style={{ left: `${l}%`, bottom: b, rotate: `${r}deg`, color: c[2], ...gloss(c[0], c[1]) }}>{t}</span>
         ))}
       </div>
     </div>

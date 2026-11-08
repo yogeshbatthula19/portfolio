@@ -9,7 +9,7 @@ export default function SelectedWorks({ items, sectionRef }) {
     <section ref={sectionRef} id="selected-works" style={{ fontFamily: "'Inter Variable', system-ui, sans-serif" }} className="relative w-full px-4 sm:px-8 pt-20 pb-24 bg-[#f4f1ea]">
       <div className="mx-auto max-w-[1180px]">
         <div className="flex items-end justify-between gap-6 mb-10 md:mb-14">
-          <h2 className="text-[#141210] text-[44px] sm:text-[84px] leading-[0.98] tracking-[-0.02em]" style={{ fontFamily: "'Instrument Serif', Georgia, serif" }}>
+          <h2 className="text-[#141210] text-[44px] sm:text-[64px] leading-[0.98] tracking-[-0.02em]" style={{ fontFamily: "'Instrument Serif', Georgia, serif" }}>
             Selected <em style={{ fontStyle: 'italic' }}>work</em>
           </h2>
           <span className="hidden sm:block pb-3 text-[14px] text-[#6b645b]">{items.filter((c) => !c.locked).length} case studies + 1 under NDA</span>
@@ -37,7 +37,7 @@ export default function SelectedWorks({ items, sectionRef }) {
                     <div className="relative z-10 flex flex-col justify-between p-7 md:p-12">
                       <span />
                       <div className="my-8">
-                        <h3 className="text-[#141210] text-[36px] sm:text-[52px] md:text-[58px] leading-[1.02] tracking-[-0.02em]" style={{ fontFamily: "'Instrument Serif', Georgia, serif" }}>{c.title}</h3>
+                        <h3 className="text-[#141210] text-[36px] sm:text-[42px] md:text-[46px] leading-[1.02] tracking-[-0.02em]" style={{ fontFamily: "'Instrument Serif', Georgia, serif" }}>{c.title}</h3>
                       </div>
                       <div className="flex flex-wrap items-center gap-3">
                         <span className="rounded-full bg-white/80 px-4 py-2 text-[14px] md:text-[15px] font-medium" style={{ color: c.fg }}>{c.outcome}</span>
