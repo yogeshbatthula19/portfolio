@@ -36,13 +36,13 @@ export default function AboutPoster() {
 
       <div className="relative z-10 mx-auto max-w-[860px] px-6 pt-14 md:pt-20 text-center">
         <h2 className="text-[#141210] text-[56px] sm:text-[96px] md:text-[116px] leading-[0.95] tracking-[-0.02em]" style={serif}>
-          From <em className="italic">messy</em><br />to simple
+          The person<br />behind the <em className="italic">work</em>
         </h2>
         <motion.div {...pop(0.15)} className="mx-auto mt-6 inline-block -rotate-2 rounded-[16px] md:rounded-[22px] px-6 py-3 md:px-8 md:py-4" style={gloss('#fff0b8', '#ffd983')}>
           <span className="text-[24px] md:text-[34px] font-medium tracking-[-0.015em] leading-none text-[#e0701a]">Yogesh Battula</span>
         </motion.div>
         <p className="mx-auto mt-7 max-w-[600px] text-[#141210]/75 text-[17px] md:text-[20px] leading-[1.5]">
-          Product designer in Hyderabad with 5+ years of turning busy SaaS tools into calm, clear products. I work with teams and clients from first sketch to shipped.
+          Civil engineer turned designer. I found my way to UI in 2021 and now design products at Paradigm IT. As a certified Scrum Master, I care about how teams ship as much as what they ship. Off-screen, you'll find me on a cycle, at a temple or by the sea.
         </p>
       </div>
 
