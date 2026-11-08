@@ -8,16 +8,26 @@ import '@fontsource/instrument-serif/400.css';
 import '@fontsource/instrument-serif/400-italic.css';
 import '@fontsource-variable/inter';
 import '@fontsource/jetbrains-mono/500.css';
-import { Asterisk } from '@phosphor-icons/react';
+import { Asterisk, MagnifyingGlass, CursorClick, SquaresFour, Compass, Sparkle, Rocket } from '@phosphor-icons/react';
+import { siClaude, siGooglegemini, siPerplexity, siFigma } from 'simple-icons';
 
 // x = left on desktop (%), m = left on mobile (%), b = bottom (px), r = tilt. hideM hides on phones.
+// Glossy tinted pills: soft gradient fill, same-hue dark text and icon (like the reference stack).
 const CHIPS = [
-  { t: 'Research', c: '#d6f25f', x: 22, m: 4, b: -4, r: -3 },
-  { t: 'Prototyping', c: '#ffffff', x: 31.5, m: 33, b: 46, mb: -4, r: 4 },
-  { t: 'AI', c: '#2f5bff', x: 44, m: 66, b: -4, mb: 46, r: -4 },
-  { t: 'Systems', c: '#141210', x: 49.5, b: 46, r: 3, hideM: 1 },
-  { t: 'Strategy', c: '#d6f25f', x: 59, m: 12, b: 46, r: -5 },
-  { t: 'Shipping', c: '#ffffff', x: 69, b: -4, r: 2, hideM: 1 },
+  { t: 'research', I: MagnifyingGlass, bg: ['#e2eeff', '#c4dcff'], fg: '#3a7be8', x: 17, m: 3, b: 6, r: -4 },
+  { t: 'prototyping', I: CursorClick, bg: ['#d3f7e1', '#aeeccb'], fg: '#12906a', x: 27.5, m: 30, b: 52, mb: 4, r: 3 },
+  { t: 'systems', I: SquaresFour, bg: ['#f3ffb3', '#e2f56a'], fg: '#5d8a06', x: 41, m: 56, b: 12, mb: 66, r: -3 },
+  { t: 'strategy', I: Compass, bg: ['#fff0b8', '#ffd983'], fg: '#e0701a', x: 51, m: 8, b: 60, mb: 62, r: 4 },
+  { t: 'ai', I: Sparkle, bg: ['#f1e4ff', '#dcc0ff'], fg: '#9150e0', x: 63.5, m: 70, b: 4, mb: 20, r: -5 },
+  { t: 'shipping', I: Rocket, bg: ['#ffe0ee', '#ffc0da'], fg: '#e0457f', x: 70, b: 56, r: 3, hideM: 1 },
+];
+
+// AI tools I design with: app-icon tiles (brand glyphs from simple-icons).
+const TOOLS = [
+  { n: 'Claude', i: siClaude, bg: '#d97757' },
+  { n: 'Gemini', i: siGooglegemini, bg: '#ffffff', fg: '#8e75b2' },
+  { n: 'Perplexity', i: siPerplexity, bg: '#141414' },
+  { n: 'Figma', i: siFigma, bg: '#ffffff', fg: '#f24e1e' },
 ];
 
 export default function DeskHero({ onWorks, onAbout }) {
@@ -105,11 +115,24 @@ export default function DeskHero({ onWorks, onAbout }) {
         >
           See my work <span aria-hidden="true">↓</span>
         </motion.button>
+        <motion.div
+          initial={reduce ? false : { opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.9, duration: 0.6 }}
+          className="mt-8 flex items-center justify-center gap-3"
+        >
+          <span className="text-[12px] md:text-[13px] text-[#6b645b] mr-1">Designing with</span>
+          {TOOLS.map((t) => (
+            <span key={t.n} title={t.n} className="grid place-items-center h-9 w-9 md:h-11 md:w-11 rounded-[11px] md:rounded-[13px] shadow-[0_6px_12px_-6px_rgba(0,0,0,0.4),inset_0_1px_0_rgba(255,255,255,0.5)]" style={{ background: t.bg }}>
+              <svg viewBox="0 0 24 24" className="h-[52%] w-[52%]" fill={t.fg || '#fff'} role="img" aria-label={t.n}><path d={t.i.path} /></svg>
+            </span>
+          ))}
+        </motion.div>
       </div>
       </div>
 
       {/* Skill chips: drop in, then draggable */}
-      <div className="absolute inset-x-0 bottom-0 h-[118px] sm:h-[130px] z-30 pointer-events-none">
+      <div className="absolute inset-x-0 bottom-0 h-[150px] sm:h-[170px] z-30 pointer-events-none">
         {CHIPS.map((c, i) => (
           <motion.span
             key={c.t}
@@ -121,15 +144,17 @@ export default function DeskHero({ onWorks, onAbout }) {
             initial={reduce ? false : { y: -700, rotate: c.r * 4, opacity: 0 }}
             animate={{ y: 0, rotate: c.r, opacity: 1 }}
             transition={{ delay: 1.1 + i * 0.12, type: 'spring', stiffness: 120, damping: 11, mass: 0.9 }}
-            className={`chip ${c.hideM ? 'hidden md:inline-block' : 'inline-block'} absolute pointer-events-auto cursor-grab whitespace-nowrap rounded-full px-4 sm:px-6 py-2.5 sm:py-3.5 text-[11px] sm:text-[14px] tracking-[0.06em] uppercase shadow-[0_6px_14px_-8px_rgba(0,0,0,0.35)]`}
+            className={`chip ${c.hideM ? 'hidden md:inline-flex' : 'inline-flex'} absolute pointer-events-auto cursor-grab select-none items-center gap-2 whitespace-nowrap rounded-[14px] md:rounded-[18px] px-3.5 md:px-6 py-2 md:py-3.5 text-[17px] md:text-[28px] font-medium tracking-[-0.01em] leading-none`}
             style={{
-              background: c.c,
-              color: ['#141210', '#2f5bff'].includes(c.c) ? '#fff' : '#141210',
+              background: `linear-gradient(180deg, ${c.bg[0]}, ${c.bg[1]})`,
+              color: c.fg,
               '--cx': `${c.x}%`, '--cm': `${c.m ?? 0}%`,
               '--b': `${c.b}px`, '--mb': `${c.mb ?? c.b}px`,
-              fontFamily: "'JetBrains Mono', ui-monospace, monospace",
+              fontFamily: "'Inter Variable', system-ui, sans-serif",
+              boxShadow: 'inset 0 1.5px 0 rgba(255,255,255,0.85), inset 0 -2px 0 rgba(0,0,0,0.06), 0 10px 18px -10px rgba(40,40,60,0.45)',
             }}
           >
+            <c.I weight="bold" className="w-[1em] h-[1em]" aria-hidden="true" />
             {c.t}
           </motion.span>
         ))}
