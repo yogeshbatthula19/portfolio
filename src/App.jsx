@@ -713,7 +713,8 @@ export default function App() {
     if (cleanHash === 'case-study/trosky' || cleanHash === 'trosky') return 'trosky';
 
     // Anything else that isn't the homepage is a broken link.
-    if (pathname !== '/' && pathname !== '/index.html' && !pathname.includes('nointro')) return 'notfound';
+    // Static previews (e.g. a shared preview page) live under an unknown path: treat it as home.
+    if (!import.meta.env.VITE_STATIC_PREVIEW && pathname !== '/' && pathname !== '/index.html' && !pathname.includes('nointro')) return 'notfound';
     return 'home';
   };
 
