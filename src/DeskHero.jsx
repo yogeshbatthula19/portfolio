@@ -7,19 +7,22 @@ import '@fontsource/instrument-serif/400.css';
 import '@fontsource/instrument-serif/400-italic.css';
 import '@fontsource-variable/inter';
 import '@fontsource/jetbrains-mono/500.css';
-import { FlowArrow, Sparkle, Rocket, SquaresFour, ChatsCircle, Code, Warning, Coffee, ArrowsClockwise } from '@phosphor-icons/react';
+import { FlowArrow, Sparkle, Rocket, SquaresFour, ChatsCircle, Coffee, ArrowsClockwise, MagnifyingGlass, CursorClick, Flask, Compass, Heart } from '@phosphor-icons/react';
 
 // x = left on desktop (%), m = left on mobile (%), b = bottom (px), r = tilt. hideM hides on phones.
 const CHIPS = [
-  { t: 'Messy → simple', I: FlowArrow, c: '#c8e66b', x: -1, m: -4, b: -4, r: -2 },
-  { t: 'AI that feels human', I: Sparkle, c: '#ff8a4c', x: 7, m: 6, b: 54, r: -5 },
-  { t: 'Talking to users', I: ChatsCircle, c: '#9cc9f5', x: 14.5, m: 41, b: -4, r: 1 },
-  { t: 'Systems over screens', I: SquaresFour, c: '#f6b8d0', x: 38, b: 54, r: 3, hideM: 1 },
-  { t: 'Figma to shipped', I: Code, c: '#5fd6a0', x: 31.5, b: -4, r: 0, hideM: 1 },
-  { t: 'Edge cases first', I: Warning, c: '#d7c4f5', x: 48.5, b: -4, r: -1, hideM: 1 },
-  { t: '0 → 1 products', I: Rocket, c: '#ffd23f', x: 69, m: 58, b: 62, r: -7 },
-  { t: 'Chai-powered', I: Coffee, c: '#ffb38a', x: 65.5, b: -4, r: 2, hideM: 1 },
-  { t: 'Scrum certified', I: ArrowsClockwise, c: '#ececec', x: 81, b: -4, r: -2, hideM: 1 },
+  { t: 'Research', I: MagnifyingGlass, c: '#9cc9f5', x: 0, m: -2, b: -4, r: -2 },
+  { t: 'Flows', I: FlowArrow, c: '#c8e66b', x: 4.5, b: 50, r: -7, hideM: 1 },
+  { t: 'Prototyping', I: CursorClick, c: '#ececec', x: 14, m: 3, b: 48, r: 3 },
+  { t: 'AI', I: Sparkle, c: '#ff8a4c', x: 28, m: 43, b: 52, r: 9 },
+  { t: 'Systems', I: SquaresFour, c: '#f6b8d0', x: 26.5, m: 29, b: -4, r: 1 },
+  { t: 'Testing', I: Flask, c: '#d7c4f5', x: 38.5, b: -4, r: -2, hideM: 1 },
+  { t: 'Shipping', I: Rocket, c: '#5fd6a0', x: 51, b: -4, r: 2, hideM: 1 },
+  { t: 'Strategy', I: Compass, c: '#ffd23f', x: 58, m: 58, b: 52, mb: -4, r: -5 },
+  { t: 'Scrum', I: ArrowsClockwise, c: '#ffffff', x: 64, b: -4, r: -1, hideM: 1 },
+  { t: 'Workshops', I: ChatsCircle, c: '#ffb38a', x: 74.5, b: -4, r: 2, hideM: 1 },
+  { t: 'Chai', I: Coffee, c: '#e9d3b4', x: 82, m: 66, b: 50, r: -6 },
+  { t: 'Empathy', I: Heart, c: '#f6b8d0', x: 87.5, b: -4, r: 0, hideM: 1 },
 ];
 
 export default function DeskHero({ onWorks, onAbout }) {
@@ -99,7 +102,7 @@ export default function DeskHero({ onWorks, onAbout }) {
             style={{
               background: c.c,
               '--cx': `${c.x}%`, '--cm': `${c.m ?? 0}%`,
-              bottom: `${c.b}px`,
+              '--b': `${c.b}px`, '--mb': `${c.mb ?? c.b}px`,
               fontFamily: "'JetBrains Mono', ui-monospace, monospace",
             }}
           >

@@ -288,5 +288,5 @@ i, em, cite, dfn, var, address {
 .desk-obj { left: var(--mx); top: var(--my); width: 26%; }
 @media (min-width: 768px) { .desk-obj { left: var(--x); top: var(--y); width: 11%; } }
 .desk-label { font-family: 'Caveat', cursive; }
-.desk-hero .chip { left: var(--cm); }
-@media (min-width: 768px) { .desk-hero .chip { left: var(--cx); } }
+.desk-hero .chip { left: var(--cm); bottom: var(--mb); }
+@media (min-width: 768px) { .desk-hero .chip { left: var(--cx); bottom: var(--b); } }
