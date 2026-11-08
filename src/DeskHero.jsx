@@ -8,22 +8,16 @@ import '@fontsource/instrument-serif/400.css';
 import '@fontsource/instrument-serif/400-italic.css';
 import '@fontsource-variable/inter';
 import '@fontsource/jetbrains-mono/500.css';
-import { FlowArrow, Sparkle, Rocket, SquaresFour, ChatsCircle, Coffee, ArrowsClockwise, MagnifyingGlass, CursorClick, Flask, Compass, Heart, Asterisk } from '@phosphor-icons/react';
+import { Asterisk } from '@phosphor-icons/react';
 
 // x = left on desktop (%), m = left on mobile (%), b = bottom (px), r = tilt. hideM hides on phones.
 const CHIPS = [
-  { t: 'Research', I: MagnifyingGlass, c: '#d6f25f', x: 0, m: -2, b: -4, r: -2 },
-  { t: 'Flows', I: FlowArrow, c: '#ffffff', x: 4.5, b: 50, r: -7, hideM: 1 },
-  { t: 'Prototyping', I: CursorClick, c: '#ffffff', x: 14, m: 3, b: 48, r: 3 },
-  { t: 'AI', I: Sparkle, c: '#2f5bff', x: 28, m: 43, b: 52, r: 9 },
-  { t: 'Systems', I: SquaresFour, c: '#141210', x: 26.5, m: 29, b: -4, r: 1 },
-  { t: 'Testing', I: Flask, c: '#ffffff', x: 38.5, b: -4, r: -2, hideM: 1 },
-  { t: 'Shipping', I: Rocket, c: '#141210', x: 51, b: -4, r: 2, hideM: 1 },
-  { t: 'Strategy', I: Compass, c: '#d6f25f', x: 58, m: 58, b: 52, mb: -4, r: -5 },
-  { t: 'Scrum', I: ArrowsClockwise, c: '#ffffff', x: 64, b: -4, r: -1, hideM: 1 },
-  { t: 'Workshops', I: ChatsCircle, c: '#2f5bff', x: 74.5, b: -4, r: 2, hideM: 1 },
-  { t: 'Chai', I: Coffee, c: '#ffffff', x: 82, m: 66, b: 50, r: -6 },
-  { t: 'Empathy', I: Heart, c: '#141210', x: 87.5, b: -4, r: 0, hideM: 1 },
+  { t: 'Research', c: '#d6f25f', x: 22, m: 4, b: -4, r: -3 },
+  { t: 'Prototyping', c: '#ffffff', x: 31.5, m: 33, b: 46, mb: -4, r: 4 },
+  { t: 'AI', c: '#2f5bff', x: 44, m: 66, b: -4, mb: 46, r: -4 },
+  { t: 'Systems', c: '#141210', x: 49.5, b: 46, r: 3, hideM: 1 },
+  { t: 'Strategy', c: '#d6f25f', x: 59, m: 12, b: 46, r: -5 },
+  { t: 'Shipping', c: '#ffffff', x: 69, b: -4, r: 2, hideM: 1 },
 ];
 
 export default function DeskHero({ onWorks, onAbout }) {
@@ -136,7 +130,7 @@ export default function DeskHero({ onWorks, onAbout }) {
               fontFamily: "'JetBrains Mono', ui-monospace, monospace",
             }}
           >
-            <span className="inline-flex items-center gap-2">{c.t}<c.I size={16} weight="bold" aria-hidden="true" /></span>
+            {c.t}
           </motion.span>
         ))}
       </div>
