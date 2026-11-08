@@ -6,8 +6,6 @@ const CaseStudyAhamX = React.lazy(() => import('./CaseStudyAhamX'));
 const CaseStudyRyzeup = React.lazy(() => import('./CaseStudyRyzeup'));
 const CaseStudyTrosky = React.lazy(() => import('./CaseStudyTrosky'));
 const AboutPage = React.lazy(() => import('./AboutPage'));
-import ConceptToCraft from './ConceptToCraft';
-import CommunityTestimonials from './CommunityTestimonials';
 import NotFound from './NotFound';
 import photoAvatar from './assets/photo_yogesh_avatar.webp';
 
@@ -487,6 +485,7 @@ import ahamxDashboard from './assets/covers/ahamx-dashboard.webp';
 import DeskHero from './DeskHero';
 import SelectedWorks from './SelectedWorks';
 import AboutPoster from './AboutPoster';
+import { KindB, PlayA, FooterA } from './MoreOptions';
 import ScatterZoom from './ScatterZoom';
 import footerBlueTexture from './assets/footer-blue-texture.webp';
 import nimbuMirchi from './assets/nimbu_mirchi.png';
@@ -1236,48 +1235,12 @@ export default function App() {
             }}
           >
 
-      {/* ----------------------------------------------------------------- */}
-      {/* LAYER 0: PINNED LIGHT BLUE FOOTER (UNDERNEATH LAYER / Z-0)         */}
-      {/* ----------------------------------------------------------------- */}
-      <div
-        aria-hidden="true"
-        className="fixed bottom-0 left-0 right-0 w-full z-0 overflow-hidden flex items-end justify-center select-none pointer-events-none"
-        style={{
-          height: 'calc(clamp(270px, 46vh, 400px) + 200px)',
-        }}
-      >
-        {/* Dynamically stretched background that extends up behind the white card to fill gaps */}
-        <motion.div
-          className="absolute inset-0 w-full h-full"
-          style={{
-            backgroundImage: `url(${footerBlueTexture})`,
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-            backgroundColor: '#1799f6',
-            transformOrigin: 'bottom center',
-            scaleY: staticLayout || reduceMotion ? 1 : smoothFooterBgScaleY,
-          }}
-        />
-
-        {/* Waving Indian Nimbu Mirchi (Lemon & Chilli) Nazar Battu Hanging Charm */}
-        <WavingNimbuMirchi />
-
-        <p
-          className="relative z-10 text-white text-[20vw] sm:text-[21vw] font-medium tracking-tight leading-[0.78] select-none text-center pointer-events-none transform translate-y-[3%]"
-          style={{ fontFamily: "'The Seasons', Georgia, serif" }}
-        >
-          Battula
-        </p>
-      </div>
 
       {/* ----------------------------------------------------------------- */}
       {/* LAYER 1: MAIN CONTENT WRAPPER (SOLID WHITE, RELATIVE Z-10)        */}
       {/* ----------------------------------------------------------------- */}
       <div
-        className="relative z-10 bg-[#f4f1ea] min-h-screen font-sans text-gray-900 selection:bg-[#ffd9bd] overflow-x-clip rounded-b-[40px] sm:rounded-b-[56px] md:rounded-b-[68px] shadow-[0_24px_50px_-12px_rgba(0,0,0,0.06)]"
-        style={{
-          marginBottom: 'clamp(270px, 46vh, 400px)',
-        }}
+        className="relative z-10 bg-[#f4f1ea] min-h-screen font-sans text-gray-900 selection:bg-[#ffd9bd] overflow-x-clip"
       >
       
       <DeskHero onWorks={handleScrollToWorks} onAbout={navigateToAbout} />
@@ -1306,16 +1269,10 @@ export default function App() {
       </div>
       <ScatterZoom onAbout={navigateToAbout} />
 
-      {/* ----------------------------------------------------------------- */}
-      {/* SECTION 4: FOODIE / CONCEPT TO CRAFT & COMMUNITY TESTIMONIALS     */}
-      {/* ----------------------------------------------------------------- */}
-      <ConceptToCraft />
-
-      {/* Community Testimonials & Spotlight Feed */}
-      <CommunityTestimonials />
-
-      {/* SECTION 5: WHITE FOOTER SECTION (CURTAIN LAYER)                   */}
-      <WhiteFooterCard navigateToCaseStudy={navigateToCaseStudy} navigateToAbout={navigateToAbout} onScrollToWorks={handleScrollToWorks} />
+      {/* V3 closing sections: kind words, playground, footer */}
+      <section id="kind-words" className="px-4 sm:px-8 py-20 md:py-28"><div className="mx-auto max-w-[1180px]"><KindB /></div></section>
+      <section id="playground" className="px-4 sm:px-8 pb-20 md:pb-28"><div className="mx-auto max-w-[1180px]"><PlayA /></div></section>
+      <footer id="footer" className="px-4 sm:px-8 pb-8"><div className="mx-auto max-w-[1180px]"><FooterA /></div></footer>
 
       </div>
           </motion.div>
