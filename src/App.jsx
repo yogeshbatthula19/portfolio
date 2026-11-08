@@ -485,6 +485,7 @@ import ahamxDashboard from './assets/covers/ahamx-dashboard.webp';
 
 
 import DeskHero from './DeskHero';
+import SelectedWorks from './SelectedWorks';
 import ScatterZoom from './ScatterZoom';
 import footerBlueTexture from './assets/footer-blue-texture.webp';
 import nimbuMirchi from './assets/nimbu_mirchi.png';
@@ -1290,77 +1291,15 @@ export default function App() {
         className="profile-white-strip relative z-30 h-10 sm:h-16 w-full bg-gradient-to-b from-[#f4f1ea] via-[#f4f1ea]/80 to-transparent pointer-events-none"
       />
 
-      <section ref={worksRef} id="selected-works" className="relative shrink-0 w-[940px] max-w-[92vw] mx-auto mt-14 sm:mt-8 mb-16 z-10">
-        
-        <ScrollRevealSection sectionRef={worksRef}>
-        {/* Section header moves with the full grid. */}
-        <motion.div 
-          className="flex items-center justify-between mb-6 px-1"
-        >
-          <h2 className="font-seasons text-h3 font-normal not-italic text-[#08304c] tracking-tight">
-            Selected Works
-          </h2>
-          <span className="font-basier text-small text-gray-500 font-medium tracking-tight">
-            4 case studies
-          </span>
-        </motion.div>
-
-        {/* Case Studies Grid (2 Rows × 2 Columns) */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          
-          {/* Case Study 1: Trosky 365 */}
-          <CaseStudyCard
-            cover={{ kind: 'phones', bg: 'linear-gradient(140deg,#e6f7fd 0%,#8fe0f2 55%,#35c5e6 100%)', shots: [troskyHome, troskyXp] }}
-            title="Turning daily drills into lasting habits"
-            description="A daily training experience for baseball players."
-            outcome="30-day streak retention: 26% → 62%"
-            href="/case-study/trosky"
-            slug="trosky"
-            onClick={() => navigateToCaseStudy('trosky')}
-            onMouseEnter={() => import('./CaseStudyTrosky')}
-            onFocus={() => import('./CaseStudyTrosky')}
-          />
-
-          {/* Case Study 2: AhamX */}
-          <CaseStudyCard
-            cover={{ kind: 'desktop', bg: 'linear-gradient(140deg,#eef2ff 0%,#c7d4fb 55%,#9fb4f2 100%)', shots: [ahamxDashboard] }}
-            title="Helping learners pick up where they left off"
-            description="Connecting learning and capability development."
-            outcome="Resume learning without searching the catalog"
-            href="/case-study/ahamx"
-            slug="ahamx"
-            onClick={() => navigateToCaseStudy('ahamx')}
-            onMouseEnter={() => import('./CaseStudyAhamX')}
-            onFocus={() => import('./CaseStudyAhamX')}
-          />
-
-          {/* Case Study 3: Ryzeup */}
-          <CaseStudyCard
-            cover={{ kind: 'phones', bg: 'linear-gradient(140deg,#fff2df 0%,#ffbf7a 55%,#ff8f45 100%)', shots: [ryzeupBuzz, ryzeupWall] }}
-            title="Bringing focus to everyday team management"
-            description="Helping managers focus on their teams."
-            outcome="Context switching: 28s → under 3s"
-            href="/case-study/ryzeup"
-            slug="ryzeup"
-            onClick={() => navigateToCaseStudy('ryzeup')}
-            onMouseEnter={() => import('./CaseStudyRyzeup')}
-            onFocus={() => import('./CaseStudyRyzeup')}
-          />
-
-          {/* Case Study 4: CarePulse Health */}
-          <CaseStudyCard
-            cover={{ kind: 'locked', bg: 'linear-gradient(140deg,#fbf3e4 0%,#f1dcb8 55%,#e6c58f 100%)' }}
-            title="Giving clinicians more time for care"
-            description="An ambient documentation concept for clinicians."
-            outcome="Under NDA · walkthrough on request"
-            onClick={() => setPasswordModalOpen(true)}
-            isLocked={true}
-          />
-
-        </div>
-
-        </ScrollRevealSection>
-      </section>
+      <SelectedWorks
+        sectionRef={worksRef}
+        items={[
+          { slug: 'trosky', tag: 'Sports · Mobile', bg: 'linear-gradient(140deg,#e6f7fd,#9be4f4)', fg: '#0e7f9c', title: 'Turning daily drills into lasting habits', description: 'A daily training experience for baseball players.', outcome: '30-day streak retention: 26% → 62%', href: '/case-study/trosky', shots: [troskyHome, troskyXp], onClick: () => navigateToCaseStudy('trosky'), prefetch: () => import('./CaseStudyTrosky') },
+          { slug: 'ahamx', tag: 'EdTech · Web', bg: 'linear-gradient(140deg,#eef2ff,#cbd8fb)', fg: '#3a54b8', title: 'Helping learners pick up where they left off', description: 'Connecting learning and capability development.', outcome: 'Resume learning without searching the catalog', href: '/case-study/ahamx', shots: [ahamxDashboard], onClick: () => navigateToCaseStudy('ahamx'), prefetch: () => import('./CaseStudyAhamX') },
+          { slug: 'ryzeup', tag: 'SaaS · Mobile', bg: 'linear-gradient(140deg,#fff2df,#ffc98e)', fg: '#c25a14', title: 'Bringing focus to everyday team management', description: 'Helping managers focus on their teams.', outcome: 'Context switching: 28s → under 3s', href: '/case-study/ryzeup', shots: [ryzeupBuzz, ryzeupWall], onClick: () => navigateToCaseStudy('ryzeup'), prefetch: () => import('./CaseStudyRyzeup') },
+          { slug: 'carepulse', tag: 'Healthcare · Under NDA', bg: 'linear-gradient(140deg,#fbf3e4,#efd6a8)', fg: '#8a6a24', title: 'Giving clinicians more time for care', description: 'An ambient documentation concept for clinicians.', outcome: 'Walkthrough on request', locked: true, shots: [], onClick: () => setPasswordModalOpen(true) },
+        ]}
+      />
 
       {/* ----------------------------------------------------------------- */}
       {/* SECTION 4: FOODIE / CONCEPT TO CRAFT & COMMUNITY TESTIMONIALS     */}
