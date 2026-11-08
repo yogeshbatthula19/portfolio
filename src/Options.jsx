@@ -97,6 +97,102 @@ function AboutC() { // photo collage + one line
   );
 }
 
+
+function WorkD() { // horizontal snap strip
+  return (
+    <div className="-mx-5 sm:-mx-8 overflow-x-auto snap-x snap-mandatory [scrollbar-width:none]">
+      <div className="flex gap-5 px-5 sm:px-8 w-max">
+        {W.map((w) => (
+          <div key={w.t} className="snap-start w-[82vw] md:w-[640px]">
+            <div className="relative h-[420px] overflow-hidden rounded-[32px]" style={{ background: w.bg }}><Pic w={w} /></div>
+            <div className="mt-4 flex items-baseline justify-between"><h3 className="text-[30px] leading-tight" style={serif}>{w.t}</h3><span className="text-[14px] text-black/55">{w.n}</span></div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+function WorkE() { // bento: one hero project + two smaller
+  const [a, b, c] = W;
+  const Card = ({ w, cls }) => (
+    <div className={`relative overflow-hidden rounded-[32px] ${cls}`} style={{ background: w.bg }}>
+      <div className="absolute inset-x-0 bottom-0 top-[26%] overflow-hidden"><Pic w={w} /></div>
+      <h3 className="absolute left-6 top-6 right-6 text-[28px] md:text-[36px] leading-[1.02] tracking-[-0.02em]" style={serif}>{w.t}</h3>
+    </div>
+  );
+  return (
+    <div className="grid gap-5 md:grid-cols-[1.4fr_1fr] md:grid-rows-2 md:h-[720px]">
+      <Card w={a} cls="h-[460px] md:h-auto md:row-span-2" />
+      <Card w={b} cls="h-[340px] md:h-auto" />
+      <Card w={c} cls="h-[340px] md:h-auto" />
+    </div>
+  );
+}
+function WorkF() { // fanned deck, hover spreads
+  const [open, setOpen] = useState(false);
+  return (
+    <div onMouseEnter={() => setOpen(true)} onMouseLeave={() => setOpen(false)} onClick={() => setOpen((o) => !o)} className="relative mx-auto h-[520px] max-w-[1000px] cursor-pointer">
+      {W.map((w, i) => {
+        const d = i - 1;
+        return (
+          <div key={w.t} className="absolute left-1/2 top-6 w-[300px] md:w-[360px] transition-transform duration-500 ease-out"
+            style={{ transform: `translateX(calc(-50% + ${d * (open ? 380 : 60)}px)) rotate(${d * (open ? 2 : 8)}deg) translateY(${Math.abs(d) * (open ? 0 : 24)}px)`, zIndex: 3 - Math.abs(d) }}>
+            <div className="relative h-[400px] overflow-hidden rounded-[28px] shadow-[0_30px_50px_-25px_rgba(0,0,0,0.5)]" style={{ background: w.bg }}><Pic w={w} /></div>
+            <h3 className={`mt-4 text-center text-[24px] leading-tight transition-opacity duration-300 ${open ? 'opacity-100' : 'opacity-0'}`} style={serif}>{w.t}</h3>
+          </div>
+        );
+      })}
+    </div>
+  );
+}
+
+const JOBS = [
+  ['Paradigm IT', 'Product Designer', '2025 – now'],
+  ['Prasthana Software', 'Product Designer', '2022 – 24'],
+  ['Buildup Service', 'UI Designer', '2021 – 22'],
+];
+function AboutD() { // short line + experience list
+  return (
+    <div className="mx-auto grid max-w-[1000px] gap-10 md:grid-cols-2">
+      <p className="text-[36px] md:text-[52px] leading-[1.04] tracking-[-0.02em]" style={serif}>5 years of making busy software feel <em>calm</em>.</p>
+      <ul className="divide-y divide-black/15 border-y border-black/15 self-end">
+        {JOBS.map(([c, r, y]) => (
+          <li key={c} className="grid grid-cols-[1fr_auto] gap-x-4 py-5">
+            <span className="text-[22px]" style={serif}>{c}</span><span className="text-[14px] text-black/50">{y}</span>
+            <span className="text-[14px] text-black/55">{r}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+function AboutE() { // full-bleed photo, text on it
+  return (
+    <div className="relative h-[560px] overflow-hidden rounded-[36px]">
+      <img src={beach} alt="Yogesh by the sea" className="absolute inset-0 h-full w-full object-cover object-[center_30%]" />
+      <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
+      <div className="absolute bottom-8 left-8 right-8 text-white">
+        <h3 className="text-[48px] md:text-[80px] leading-[0.98] tracking-[-0.02em]" style={serif}>Hi, I'm Yogesh.</h3>
+        <p className="mt-3 max-w-[460px] text-[17px] text-white/85">Product designer in Hyderabad. I like quiet interfaces, long rides and the sea.</p>
+      </div>
+    </div>
+  );
+}
+function AboutF() { // bento of facts
+  const T = ({ children, bg, cls = '' }) => <div className={`rounded-[28px] p-6 flex flex-col justify-end ${cls}`} style={{ background: bg }}>{children}</div>;
+  const Big = ({ children }) => <div className="text-[44px] md:text-[56px] leading-none tracking-[-0.02em]" style={serif}>{children}</div>;
+  const Small = ({ children }) => <div className="mt-2 text-[14px] text-black/60">{children}</div>;
+  return (
+    <div className="grid gap-4 grid-cols-2 md:grid-cols-4 md:grid-rows-2 md:h-[480px]">
+      <div className="relative col-span-2 row-span-2 min-h-[320px] overflow-hidden rounded-[28px]"><img src={avatar} alt="Yogesh" className="absolute inset-0 h-full w-full object-cover" /></div>
+      <T bg="#d3f7e1" cls="min-h-[180px]"><Big>5+</Big><Small>years designing products</Small></T>
+      <T bg="#dff5ff" cls="min-h-[180px]"><Big>HYD</Big><Small>Hyderabad, India</Small></T>
+      <T bg="#fff0b8" cls="min-h-[180px]"><Big>CSM</Big><Small>Certified Scrum Master</Small></T>
+      <div className="relative min-h-[180px] overflow-hidden rounded-[28px]"><img src={cycle} alt="" className="absolute inset-0 h-full w-full object-cover" /></div>
+    </div>
+  );
+}
+
 const Block = ({ k, label, children }) => (
   <section className="px-5 sm:px-8 py-14 border-t border-black/10">
     <div className="mx-auto max-w-[1180px]">
@@ -113,9 +209,15 @@ export default function Options() {
       <Block k="W1" label="Work · big cards"><WorkA /></Block>
       <Block k="W2" label="Work · index list (hover)"><WorkB /></Block>
       <Block k="W3" label="Work · simple tiles"><WorkC /></Block>
+      <Block k="W4" label="Work · swipe strip"><WorkD /></Block>
+      <Block k="W5" label="Work · bento"><WorkE /></Block>
+      <Block k="W6" label="Work · fanned deck (hover)"><WorkF /></Block>
       <Block k="A1" label="About · statement"><AboutA /></Block>
       <Block k="A2" label="About · portrait"><AboutB /></Block>
       <Block k="A3" label="About · collage"><AboutC /></Block>
+      <Block k="A4" label="About · experience"><AboutD /></Block>
+      <Block k="A5" label="About · full photo"><AboutE /></Block>
+      <Block k="A6" label="About · facts bento"><AboutF /></Block>
     </div>
   );
 }
