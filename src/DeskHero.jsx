@@ -69,11 +69,11 @@ export default function DeskHero({ onWorks, onAbout }) {
       aria-hidden="true"
       className="inline-block align-middle mx-[0.08em] -mt-[0.1em]"
       style={{ color }}
-      initial={reduce ? false : { scale: 0, rotate: -90 }}
-      animate={reduce ? undefined : { scale: 1, rotate: 360 }}
-      transition={{ scale: { delay, type: 'spring', stiffness: 220, damping: 12 }, rotate: { delay, duration: 10, repeat: Infinity, ease: 'linear' } }}
+      initial={reduce ? false : { scale: 0, opacity: 0 }}
+      animate={reduce ? undefined : { scale: 1, opacity: 1 }}
+      transition={{ delay, duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
     >
-      <Asterisk weight="bold" className="block h-[0.62em] w-[0.62em]" />
+      <Asterisk weight="bold" className="block h-[0.62em] w-[0.62em] v3-spin" />
     </motion.span>
   );
 

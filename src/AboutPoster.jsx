@@ -21,12 +21,12 @@ const SHAPES = [
 
 export default function AboutPoster({ bleed = false }) {
   const reduce = useReducedMotion();
-  const pop = (d) => ({ initial: reduce ? false : { scale: 0.7, opacity: 0 }, whileInView: { scale: 1, opacity: 1 }, viewport: { once: true, amount: 0 }, transition: { delay: d, type: 'spring', stiffness: 140, damping: 16 } });
+  const pop = (d) => ({ initial: reduce ? false : { scale: 0.7, opacity: 0 }, whileInView: { scale: 1, opacity: 1 }, viewport: { once: true, amount: 0 }, transition: { delay: d, duration: 0.8, ease: [0.22, 1, 0.36, 1] } });
   const Star = ({ color, cls, d }) => (
     <motion.span aria-hidden="true" className={`absolute ${cls}`} style={{ color }}
-      initial={reduce ? false : { scale: 0 }} whileInView={{ scale: 1, rotate: reduce ? 0 : 360 }} viewport={{ once: true }}
-      transition={{ scale: { delay: d, type: 'spring', stiffness: 220, damping: 12 }, rotate: { delay: d, duration: 10, repeat: Infinity, ease: 'linear' } }}>
-      <Asterisk weight="bold" className="block h-full w-full" />
+      initial={reduce ? false : { scale: 0, opacity: 0 }} whileInView={{ scale: 1, opacity: 1 }} viewport={{ once: true }}
+      transition={{ delay: d, duration: 0.7, ease: [0.22, 1, 0.36, 1] }}>
+      <Asterisk weight="bold" className="block h-full w-full v3-spin" style={{ willChange: 'transform' }} />
     </motion.span>
   );
 
@@ -59,7 +59,7 @@ export default function AboutPoster({ bleed = false }) {
             initial={reduce ? false : { y: 80, opacity: 0, rotate: -3 }}
             whileInView={{ y: 0, opacity: 1, rotate: -1 }}
             viewport={{ once: true, amount: 0 }}
-            transition={{ delay: 0.35, type: 'spring', stiffness: 120, damping: 16 }}
+            transition={{ delay: 0.3, duration: 1, ease: [0.22, 1, 0.36, 1] }}
             className="relative block h-[97%] w-auto max-w-none"
             decoding="async"
           />

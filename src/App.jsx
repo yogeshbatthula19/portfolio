@@ -485,7 +485,7 @@ import ahamxDashboard from './assets/covers/ahamx-dashboard.webp';
 import DeskHero from './DeskHero';
 import SelectedWorks from './SelectedWorks';
 import AboutPoster from './AboutPoster';
-import { KindB, PlayA, FooterA } from './MoreOptions';
+import { KindB, FooterA } from './MoreOptions';
 import ScatterZoom from './ScatterZoom';
 import footerBlueTexture from './assets/footer-blue-texture.webp';
 import nimbuMirchi from './assets/nimbu_mirchi.png';
@@ -1263,9 +1263,8 @@ export default function App() {
       </div>
       <ScatterZoom onAbout={navigateToAbout} />
 
-      {/* V3 closing sections: kind words, playground, footer */}
+      {/* V3 closing sections: kind words, footer */}
       <section id="kind-words" className="px-4 sm:px-8 py-20 md:py-28"><div className="mx-auto max-w-[1180px]"><KindB /></div></section>
-      <section id="playground" className="px-4 sm:px-8 pb-20 md:pb-28"><div className="mx-auto max-w-[1180px]"><PlayA /></div></section>
       <footer id="footer" className="px-4 sm:px-8 pb-8"><div className="mx-auto max-w-[1180px]"><FooterA /></div></footer>
 
       </div>

@@ -308,3 +308,8 @@ i, em, cite, dfn, var, address {
 .case-study-page .border-gray-100,.case-study-page .border-gray-200{border-color:rgba(20,18,16,.1)!important}
 .case-study-page hr{border-color:rgba(20,18,16,.1)!important}
 .case-study-page ::selection,.v3-page ::selection{background:#ffd983;color:#141210}
+
+/* compositor-driven spin (smoother than JS-driven rotation) */
+@keyframes v3spin { to { transform: rotate(360deg); } }
+.v3-spin { animation: v3spin 10s linear infinite; transform-origin: 50% 50%; }
+@media (prefers-reduced-motion: reduce) { .v3-spin { animation: none; } }
