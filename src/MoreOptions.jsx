@@ -160,7 +160,7 @@ export function FooterA() {
   return (
     <div className="relative overflow-hidden rounded-[36px] bg-white/60 px-6 py-16 md:py-24 text-center">
       <h2 className="text-[#141210] text-[52px] sm:text-[88px] md:text-[112px] leading-[0.95] tracking-[-0.02em]" style={serif}>
-        Let's make <Star color="#2f5bff" cls="h-[0.55em] w-[0.55em] align-middle" /> something<br /><em>worth</em> using
+        Let’s make <Star color="#2f5bff" cls="h-[0.55em] w-[0.55em] align-middle" /> something<br /><em>worth</em> using
       </h2>
       <a href="mailto:yogeshbattula55@gmail.com" className="mt-9 inline-flex items-center gap-2 rounded-full bg-[#2a2622] px-7 py-4 text-[16px] font-medium text-[#f4f1ea] no-underline shadow-[0_10px_24px_-12px_rgba(0,0,0,0.6)]">yogeshbattula55@gmail.com <span aria-hidden="true">↗</span></a>
       <div className="mt-8 flex flex-wrap justify-center gap-3">

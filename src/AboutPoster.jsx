@@ -42,7 +42,7 @@ export default function AboutPoster({ bleed = false }) {
           <span className="text-[24px] md:text-[34px] font-medium tracking-[-0.015em] leading-none text-[#e0701a]">Yogesh Battula</span>
         </motion.div>
         <p className="mx-auto mt-7 max-w-[600px] text-[#141210]/75 text-[17px] md:text-[20px] leading-[1.5]">
-          Civil engineer turned designer. I found my way to UI in 2021 and now design products at Paradigm IT. As a certified Scrum Master, I care about how teams ship as much as what they ship. Off-screen, you'll find me on a cycle, at a temple or by the sea.
+          Civil engineer turned designer. I found my way to UI in 2021 and now design products at Paradigm IT. As a certified Scrum Master, I care about how teams ship as much as what they ship. Away from the desk, you’ll find me on a cycle, at a temple or by the sea.
         </p>
       </div>
 

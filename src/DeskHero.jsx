@@ -92,7 +92,7 @@ export default function DeskHero({ onWorks, onAbout }) {
           className="text-[#141210] text-[40px] sm:text-[72px] lg:text-[90px] leading-[1.06] tracking-[-0.02em]"
           style={{ fontFamily: "'Instrument Serif', Georgia, serif" }}
         >
-          Hi, <Flower color="#2f5bff" delay={0.5} /> I'm Yogesh <Photo src={beach} alt="Yogesh by the sea" delay={0.7} />
+          Hi, <Flower color="#2f5bff" delay={0.5} /> I’m Yogesh <Photo src={beach} alt="Yogesh by the sea" delay={0.7} />
           <br className="hidden md:block" />{' '}
           <span className="whitespace-nowrap"><Prop src={pCamera} alt="Vintage film camera" delay={0.9} rot={-6} /> turning <em>messy</em></span> <Flower color="#ff5a1f" delay={1.0} /> SaaS problems
           <br className="hidden md:block" />{' '}
