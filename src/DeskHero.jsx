@@ -1,8 +1,6 @@
 import React, { useRef } from 'react';
 import { motion, useReducedMotion } from 'framer-motion';
-import avatar from './assets/photo_yogesh_avatar.webp';
-import cycle from './assets/photo_cycle_full.webp';
-import couple from './assets/photo_couple_full.webp';
+import beach from './assets/photo_beach_full.jpg';
 import '@fontsource/instrument-serif/400.css';
 import '@fontsource/instrument-serif/400-italic.css';
 import '@fontsource-variable/inter';
@@ -28,14 +26,53 @@ const CHIPS = [
 export default function DeskHero({ onWorks, onAbout }) {
   const ref = useRef(null);
   const reduce = useReducedMotion();
-  const pill = (src, alt) => (
+  // Inline pieces that sit inside the headline, sized in em so they scale with the type.
+  const grow = (delay) => ({
+    initial: reduce ? false : { width: 0, opacity: 0 },
+    animate: { width: 'auto', opacity: 1 },
+    transition: { delay, duration: 0.7, ease: [0.22, 1, 0.36, 1] },
+  });
+  const Photo = ({ src, alt, delay }) => (
+    <motion.span {...grow(delay)} className="inline-block align-middle overflow-hidden mx-[0.1em] -mt-[0.14em]">
+      <img src={src} alt={alt} className="block h-[0.66em] w-[1.6em] rounded-full object-cover object-[center_22%]" />
+    </motion.span>
+  );
+  const Swatch = ({ kind, delay }) => (
+    <motion.span {...grow(delay)} aria-hidden="true" className="inline-block align-middle overflow-hidden mx-[0.1em] -mt-[0.14em]">
+      <svg viewBox="0 0 160 66" className="block h-[0.66em] w-[1.6em]">
+        <defs><clipPath id={`sw-${kind}`}><rect width="160" height="66" rx="33" /></clipPath></defs>
+        <g clipPath={`url(#sw-${kind})`}>
+          {kind === 'a' ? (
+            <>
+              <rect width="160" height="66" fill="#f9a8d4" />
+              <path d="M96 0h40c-16 20-14 44 6 66h-44c-18-22-18-44-2-66z" fill="#ff5a1f" />
+              <path d="M136 0h24v66h-18c-20-22-22-46-6-66z" fill="#9cc9f5" />
+            </>
+          ) : (
+            <>
+              <rect width="160" height="66" fill="#e4f57a" />
+              <path d="M0 40c30-26 60 20 92-6s52-22 68-10v42H0z" fill="#a9d8f7" />
+              <path d="M0 10c22 14 40-10 64 4" stroke="#a9d8f7" strokeWidth="12" fill="none" />
+            </>
+          )}
+        </g>
+      </svg>
+    </motion.span>
+  );
+  const Flower = ({ color, delay }) => (
     <motion.span
-      initial={reduce ? false : { width: 0, opacity: 0 }}
-      animate={{ width: 'auto', opacity: 1 }}
-      transition={{ delay: 0.9, duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-      className="inline-block align-middle overflow-hidden mx-[0.12em] -mt-[0.12em]"
+      aria-hidden="true"
+      className="inline-block align-middle mx-[0.08em] -mt-[0.16em]"
+      initial={reduce ? false : { scale: 0, rotate: -90 }}
+      animate={reduce ? undefined : { scale: 1, rotate: 360 }}
+      transition={{ scale: { delay, type: 'spring', stiffness: 220, damping: 12 }, rotate: { delay, duration: 14, repeat: Infinity, ease: 'linear' } }}
     >
-      <img src={src} alt={alt} className="block h-[0.78em] w-[1.5em] rounded-full object-cover border-2 border-white shadow-[0_6px_14px_-6px_rgba(0,0,0,0.4)]" />
+      <svg viewBox="-4 -4 108 108" className="block h-[0.74em] w-[0.74em]">
+        <path
+          d="M40.0 36.2C22.0 1.5 78.0 1.5 60.0 36.2C87.5 8.4 104.8 61.6 66.2 55.3C101.2 72.8 55.9 105.7 50.0 67.0C44.1 105.7 -1.2 72.8 33.8 55.3C-4.8 61.6 12.5 8.4 40.0 36.2Z"
+          fill="none" stroke={color} strokeWidth="6" strokeLinejoin="round"
+        />
+      </svg>
     </motion.span>
   );
 
@@ -45,32 +82,20 @@ export default function DeskHero({ onWorks, onAbout }) {
       <div aria-hidden="true" className="absolute inset-0 opacity-[0.35] pointer-events-none" style={{ backgroundImage: 'radial-gradient(rgba(42,38,34,0.09) 1px, transparent 1px)', backgroundSize: '18px 18px' }} />
 
       <div className="absolute inset-0 z-10 flex items-center justify-center pt-6 pb-[150px] md:pb-[130px] pointer-events-none">
-      <div className="desk-copy pointer-events-auto mx-auto max-w-[880px] px-5 text-center">
-        <motion.p
-          initial={reduce ? false : { opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="flex items-center justify-center gap-2 text-[15px] sm:text-[16px] text-[#5b5248]"
-        >
-          Hello <img src={avatar} alt="Yogesh Battula" className="w-8 h-8 rounded-full object-cover border-2 border-white shadow" /> I'm Yogesh, a product designer
-        </motion.p>
+      <div className="desk-copy pointer-events-auto mx-auto max-w-[1180px] px-5 text-center">
         <motion.h1
           initial={reduce ? false : { opacity: 0, y: 18 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.12, ease: [0.22, 1, 0.36, 1] }}
-          className="mt-4 sm:mt-6 text-[#2a2622] text-[54px] sm:text-[84px] lg:text-[104px] leading-[0.98] tracking-[-0.025em]"
+          className="text-[#141210] text-[48px] sm:text-[80px] lg:text-[100px] leading-[1.06] tracking-[-0.02em]"
           style={{ fontFamily: "'Instrument Serif', Georgia, serif" }}
         >
-          Designing {pill(cycle, 'Yogesh cycling on campus')} AI products people <em className="italic">trust</em>{pill(couple, 'Yogesh with his partner')} and enjoy.
+          <em>Hi,</em> <Flower color="#3554f0" delay={0.5} /> I'm Yogesh <Photo src={beach} alt="Yogesh by the sea" delay={0.7} />
+          <br className="hidden md:block" />{' '}
+          <span className="whitespace-nowrap"><Swatch kind="a" delay={0.9} /> <em>a designer</em></span> <Flower color="#8b5cf6" delay={1.0} /> specializing in
+          <br className="hidden md:block" />{' '}
+          <span className="whitespace-nowrap">AI products</span> <span className="whitespace-nowrap"><Swatch kind="b" delay={1.1} /> <em>&amp; SaaS.</em></span>
         </motion.h1>
-        <motion.p
-          initial={reduce ? false : { opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.5, duration: 0.6 }}
-          className="mt-5 sm:mt-7 text-[16px] sm:text-[18px] text-[#5b5248] leading-relaxed"
-        >
-          5+ years across <b className="font-medium text-[#2a2622]">AI and SaaS products</b>.<br className="hidden sm:block" /> Clean on the surface, sensible underneath. Based in Hyderabad.
-        </motion.p>
         <motion.button
           type="button"
           onClick={onWorks}
@@ -78,7 +103,7 @@ export default function DeskHero({ onWorks, onAbout }) {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.65, duration: 0.5 }}
           whileHover={{ y: -2 }}
-          className="mt-7 inline-flex items-center gap-2 rounded-full bg-[#2a2622] px-7 py-3.5 text-[15px] font-medium text-[#f4f1ea] shadow-[0_10px_24px_-12px_rgba(0,0,0,0.6)]"
+          className="mt-9 inline-flex items-center gap-2 rounded-full bg-[#2a2622] px-7 py-3.5 text-[15px] font-medium text-[#f4f1ea] shadow-[0_10px_24px_-12px_rgba(0,0,0,0.6)]"
         >
           See my work <span aria-hidden="true">↓</span>
         </motion.button>

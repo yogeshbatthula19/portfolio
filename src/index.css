@@ -290,3 +290,5 @@ i, em, cite, dfn, var, address {
 .desk-label { font-family: 'Caveat', cursive; }
 .desk-hero .chip { left: var(--cm); bottom: var(--mb); }
 @media (min-width: 768px) { .desk-hero .chip { left: var(--cx); bottom: var(--b); } }
+
+.desk-hero h1 em { font-style: italic !important; }
