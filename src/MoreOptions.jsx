@@ -20,9 +20,9 @@ const C = {
   lilac: ['#f1e4ff', '#dcc0ff', '#9150e0'], pink: ['#ffe0ee', '#ffc0da', '#e0457f'], peach: ['#ffe3d6', '#ffc3a6', '#d9572b'],
 };
 const Star = ({ color, cls }) => (
-  <motion.span aria-hidden="true" className={`inline-block ${cls}`} style={{ color }} animate={{ rotate: 360 }} transition={{ duration: 10, repeat: Infinity, ease: 'linear' }}>
-    <Asterisk weight="bold" className="block h-full w-full" />
-  </motion.span>
+  <span aria-hidden="true" className={`inline-block ${cls}`} style={{ color }}>
+    <Asterisk weight="bold" className="block h-full w-full v3-spin" />
+  </span>
 );
 const Title = ({ children, sub }) => (
   <div className="mb-10 text-center">
@@ -71,7 +71,8 @@ export function KindB() {
         className="mt-6 text-[#141210] text-[30px] sm:text-[46px] md:text-[54px] leading-[1.1] tracking-[-0.015em]" style={serif}>
         “{t.q}”
       </motion.blockquote>
-      <div className="mt-10 flex flex-wrap items-center justify-center gap-3">
+      <p className="mt-8 text-[13px] text-[#6b645b]">Three people, in their own words. Tap a name.</p>
+      <div className="mt-4 flex flex-wrap items-center justify-center gap-3">
         {Q.map((x, k) => (
           <button key={x.n} type="button" onClick={() => setI(k)} aria-pressed={k === i}
             className={`flex items-center gap-2.5 rounded-full py-1.5 pl-1.5 pr-5 transition-all ${k === i ? 'scale-105' : 'opacity-60 hover:opacity-100'}`}

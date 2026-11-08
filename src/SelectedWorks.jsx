@@ -12,7 +12,7 @@ export default function SelectedWorks({ items, sectionRef }) {
           <h2 className="text-[#141210] text-[44px] sm:text-[84px] leading-[0.98] tracking-[-0.02em]" style={{ fontFamily: "'Instrument Serif', Georgia, serif" }}>
             Selected <em style={{ fontStyle: 'italic' }}>work</em>
           </h2>
-          <span className="hidden sm:block pb-3 text-[14px] text-[#6b645b]">{items.length} case studies</span>
+          <span className="hidden sm:block pb-3 text-[14px] text-[#6b645b]">{items.filter((c) => !c.locked).length} case studies + 1 under NDA</span>
         </div>
 
         <div className="relative">
