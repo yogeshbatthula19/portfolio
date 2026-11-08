@@ -550,7 +550,7 @@ function StickyNav({ scrollY, onHome, onWorks, onAbout, hidden, current = 'home'
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -16 }}
           transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
-          className="fixed top-3 sm:top-4 left-1/2 -translate-x-1/2 z-[60] flex items-center gap-0.5 p-1 rounded-full bg-white/85 backdrop-blur-md border border-black/[0.08] shadow-[0_8px_24px_-12px_rgba(0,0,0,0.18)] text-small font-medium text-zinc-700"
+          className="fixed top-3 sm:top-4 left-1/2 -translate-x-1/2 z-[60] flex items-center gap-0.5 p-1 rounded-full bg-white/95 border border-black/[0.08] shadow-[0_8px_24px_-12px_rgba(0,0,0,0.18)] text-small font-medium text-zinc-700"
         >
           <button type="button" onClick={onHome} className={`${item} font-medium text-zinc-900`}>
             <span className="sm:hidden">Yogesh</span>

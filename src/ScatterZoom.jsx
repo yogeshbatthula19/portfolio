@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import beach from './assets/photo_beach_full-opt.webp';
 import lighthouse from './assets/photo_lighthouse-sm.webp';
 import temple from './assets/photo_temple.webp';
@@ -27,13 +27,13 @@ const TILES = [
 
 function Tile({ t, progress }) {
   const spread = useTransform(progress, [0, 0.45], [1, 2.4]);
-  const x = useTransform(spread, (s) => `${t.x * s}vw`);
-  const y = useTransform(spread, (s) => `${t.y * s}vh`);
+  const x = useTransform(spread, (s) => t.x * s * window.innerWidth / 100);
+  const y = useTransform(spread, (s) => t.y * s * window.innerHeight / 100);
   const opacity = useTransform(progress, [0.25, 0.45], [1, 0]);
   return (
     <motion.div
       className="absolute left-1/2 top-1/2 shadow-[0_10px_24px_-14px_rgba(0,0,0,0.5)]"
-      style={{ x, y, opacity, rotate: t.r, width: `max(${t.w}vw, ${t.w * 1.9}px + 34px)`, translateX: '-50%', translateY: '-50%' }}
+      style={{ x, y, opacity, rotate: t.r, willChange: 'transform, opacity', width: `max(${t.w}vw, ${t.w * 1.9}px + 34px)`, translateX: '-50%', translateY: '-50%' }}
     >
       <img src={t.src} alt="" loading="lazy" className="block w-full aspect-[4/5] object-cover" draggable={false} />
     </motion.div>
@@ -43,7 +43,7 @@ function Tile({ t, progress }) {
 export default function ScatterZoom({ onAbout }) {
   const ref = useRef(null);
   const { scrollYProgress } = useScroll({ target: ref, offset: ['start start', 'end end'] });
-  const p = useSpring(scrollYProgress, { stiffness: 120, damping: 26, mass: 0.4 });
+  const p = scrollYProgress; // Lenis/native scroll already smooths; a second spring only adds lag
 
   // Hero photo grows from a small tile to full-bleed. Animate clip-path on a full-screen layer
   // (no width/height changes, so the browser never re-lays out the page while scrolling).
@@ -75,7 +75,7 @@ export default function ScatterZoom({ onAbout }) {
           <span style={{ fontFamily: "'Instrument Serif', Georgia, serif" }}>Off-screen, I collect small moments.</span>
         </motion.p>
 
-        <motion.div className="absolute inset-0 overflow-hidden z-0" style={{ clipPath: clip, WebkitClipPath: clip }}>
+        <motion.div className="absolute inset-0 overflow-hidden z-0" style={{ clipPath: clip, WebkitClipPath: clip, willChange: 'clip-path', transform: 'translateZ(0)' }}>
           <motion.img src={beach} alt="Yogesh standing on the rocks by the sea" className="w-full h-full object-cover object-[center_35%]" style={{ scale: imgScale }} draggable={false} />
           <motion.div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent" style={{ opacity: shade }} />
         </motion.div>
