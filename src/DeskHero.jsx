@@ -82,19 +82,19 @@ export default function DeskHero({ onWorks, onAbout }) {
       <div aria-hidden="true" className="absolute inset-0 opacity-[0.35] pointer-events-none" style={{ backgroundImage: 'radial-gradient(rgba(42,38,34,0.09) 1px, transparent 1px)', backgroundSize: '18px 18px' }} />
 
       <div className="absolute inset-0 z-10 flex items-center justify-center pt-6 pb-[150px] md:pb-[130px] pointer-events-none">
-      <div className="desk-copy pointer-events-auto mx-auto max-w-[1180px] px-5 text-center">
+      <div className="desk-copy pointer-events-auto mx-auto max-w-[1260px] px-5 text-center">
         <motion.h1
           initial={reduce ? false : { opacity: 0, y: 18 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.12, ease: [0.22, 1, 0.36, 1] }}
-          className="text-[#141210] text-[48px] sm:text-[80px] lg:text-[100px] leading-[1.06] tracking-[-0.02em]"
+          className="text-[#141210] text-[40px] sm:text-[72px] lg:text-[90px] leading-[1.06] tracking-[-0.02em]"
           style={{ fontFamily: "'Instrument Serif', Georgia, serif" }}
         >
           <em>Hi,</em> <Flower color="#3554f0" delay={0.5} /> I'm Yogesh <Photo src={beach} alt="Yogesh by the sea" delay={0.7} />
           <br className="hidden md:block" />{' '}
-          <span className="whitespace-nowrap"><Swatch kind="a" delay={0.9} /> <em>a designer</em></span> <Flower color="#8b5cf6" delay={1.0} /> specializing in
+          <span className="whitespace-nowrap"><Swatch kind="a" delay={0.9} /> <em>turning messy</em></span> <Flower color="#8b5cf6" delay={1.0} /> SaaS problems
           <br className="hidden md:block" />{' '}
-          <span className="whitespace-nowrap">AI products</span> <span className="whitespace-nowrap"><Swatch kind="b" delay={1.1} /> <em>&amp; SaaS.</em></span>
+          <span className="whitespace-nowrap">into calm</span> <span className="whitespace-nowrap"><Swatch kind="b" delay={1.1} /> <em>&amp; simple products.</em></span>
         </motion.h1>
         <motion.button
           type="button"
