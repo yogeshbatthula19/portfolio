@@ -1,26 +1,9 @@
 import React, { useRef } from 'react';
 import { motion, useReducedMotion } from 'framer-motion';
 import beach from './assets/photo_beach_full.jpg';
-import troskyHome from './assets/covers/trosky-home.webp';
-import ahamx from './assets/covers/ahamx-dashboard.webp';
-import pCap from './assets/props/cap.webp';
 import pCamera from './assets/props/camera.webp';
 import pRayban from './assets/props/rayban.webp';
-import pWallet from './assets/props/wallet.webp';
-import pPerfume from './assets/props/perfume.webp';
-import pShades from './assets/props/shades.webp';
-import pBraid from './assets/props/braid.webp';
 
-// Flat-lay props scattered round the headline. x/y = % of hero (desktop), mx/my = mobile; w = width in px (desktop) / mw (mobile).
-const PROPS = [
-  { src: pCap, alt: 'Green baseball cap', x: 5, y: 9, w: 150, mx: 3, my: 7, mw: 82, r: -12 },
-  { src: pCamera, alt: 'Vintage film camera', x: 1.5, y: 55, w: 140, mx: 62, my: 8, mw: 92, r: 8 },
-  { src: pRayban, alt: 'Black sunglasses', x: 16, y: 72, w: 140, r: -6, hideM: 1 },
-  { src: pBraid, alt: 'Braided leather bracelet', x: 17, y: 12, w: 96, r: 14, hideM: 1 },
-  { src: pWallet, alt: 'Navy leather wallet', x: 86, y: 10, w: 140, mx: 4, my: 71, mw: 92, r: 10 },
-  { src: pShades, alt: 'Black sunglasses, folded', x: 77, y: 8, w: 74, r: -16, hideM: 1 },
-  { src: pPerfume, alt: 'Bottle of amber perfume', x: 88, y: 48, w: 100, mx: 78, my: 69, mw: 58, r: -8 },
-];
 import '@fontsource/instrument-serif/400.css';
 import '@fontsource/instrument-serif/400-italic.css';
 import '@fontsource-variable/inter';
@@ -54,7 +37,12 @@ export default function DeskHero({ onWorks, onAbout }) {
   });
   const Photo = ({ src, alt, delay, pos = 'center 22%', zoom = 1 }) => (
     <motion.span {...grow(delay)} className="inline-block align-middle overflow-hidden rounded-full mx-[0.1em] -mt-[0.14em]">
-      <img src={src} alt={alt} className="block h-[0.66em] w-[1.6em] rounded-full object-cover border-[2.5px] border-[#141210]" style={{ objectPosition: pos, transform: `scale(${zoom})` }} />
+      <img src={src} alt={alt} className="block h-[0.66em] w-[1.6em] rounded-full object-cover" style={{ objectPosition: pos, transform: `scale(${zoom})` }} />
+    </motion.span>
+  );
+  const Prop = ({ src, alt, delay, rot = 0 }) => (
+    <motion.span {...grow(delay)} className="inline-block align-middle mx-[0.1em] -mt-[0.1em]">
+      <img src={src} alt={alt} draggable={false} className="block h-[0.8em] w-auto max-w-none" style={{ transform: `rotate(${rot}deg)`, filter: 'drop-shadow(0 6px 8px rgba(0,0,0,0.25))' }} />
     </motion.span>
   );
   const Swatch = ({ kind, delay }) => (
@@ -108,9 +96,9 @@ export default function DeskHero({ onWorks, onAbout }) {
         >
           Hi, <Flower color="#2f5bff" delay={0.5} /> I'm Yogesh <Photo src={beach} alt="Yogesh by the sea" delay={0.7} />
           <br className="hidden md:block" />{' '}
-          <span className="whitespace-nowrap"><Photo src={troskyHome} alt="Trosky app screen" delay={0.9} pos="center 38%" zoom={1.0} /> turning <em>messy</em></span> <Flower color="#ff5a1f" delay={1.0} /> SaaS problems
+          <span className="whitespace-nowrap"><Prop src={pCamera} alt="Vintage film camera" delay={0.9} rot={-6} /> turning <em>messy</em></span> <Flower color="#ff5a1f" delay={1.0} /> SaaS problems
           <br className="hidden md:block" />{' '}
-          <span className="whitespace-nowrap">into calm</span> <span className="whitespace-nowrap"><Photo src={ahamx} alt="AhamX dashboard" delay={1.1} pos="center 15%" /> &amp; simple products.</span>
+          <span className="whitespace-nowrap">into calm</span> <span className="whitespace-nowrap"><Prop src={pRayban} alt="Black sunglasses" delay={1.1} rot={4} /> &amp; simple products.</span>
         </motion.h1>
         <motion.button
           type="button"
@@ -126,26 +114,6 @@ export default function DeskHero({ onWorks, onAbout }) {
       </div>
       </div>
 
-      {/* Flat-lay props: drop in, float gently, draggable */}
-      {PROPS.map((o, i) => (
-        <motion.img
-          key={o.alt}
-          src={o.src}
-          alt={o.alt}
-          draggable={false}
-          drag={!reduce}
-          dragConstraints={ref}
-          dragElastic={0.15}
-          whileDrag={{ scale: 1.06, zIndex: 40, cursor: 'grabbing' }}
-          whileHover={reduce ? undefined : { rotate: o.r + 6, scale: 1.04 }}
-          initial={reduce ? false : { y: -420, opacity: 0, rotate: o.r - 30 }}
-          animate={reduce ? { opacity: 1, rotate: o.r } : { y: [0, -7, 0], opacity: 1, rotate: o.r }}
-          transition={reduce ? undefined : { opacity: { delay: 0.3 + i * 0.1, duration: 0.3 }, rotate: { delay: 0.3 + i * 0.1, type: 'spring', stiffness: 90, damping: 10 }, y: { delay: 0.3 + i * 0.1, duration: 4 + (i % 3), repeat: Infinity, ease: 'easeInOut' } }}
-          className={`prop absolute z-[15] cursor-grab select-none h-auto ${o.hideM ? 'hidden md:block' : 'block'}`}
-          style={{ '--x': `${o.x}%`, '--y': `${o.y}%`, '--mx': `${o.mx ?? 0}%`, '--my': `${o.my ?? 0}%`, '--w': `${o.w}px`, '--mw': `${o.mw ?? o.w}px`, filter: 'drop-shadow(0 12px 14px rgba(0,0,0,0.28))' }}
-        />
-      ))}
-
       {/* Skill chips: drop in, then draggable */}
       <div className="absolute inset-x-0 bottom-0 h-[118px] sm:h-[130px] z-30 pointer-events-none">
         {CHIPS.map((c, i) => (
@@ -159,7 +127,7 @@ export default function DeskHero({ onWorks, onAbout }) {
             initial={reduce ? false : { y: -700, rotate: c.r * 4, opacity: 0 }}
             animate={{ y: 0, rotate: c.r, opacity: 1 }}
             transition={{ delay: 1.1 + i * 0.12, type: 'spring', stiffness: 120, damping: 11, mass: 0.9 }}
-            className={`chip ${c.hideM ? 'hidden md:inline-block' : 'inline-block'} absolute pointer-events-auto cursor-grab whitespace-nowrap rounded-full px-4 sm:px-6 py-2.5 sm:py-3.5 text-[11px] sm:text-[14px] tracking-[0.06em] uppercase border border-black/80 shadow-[0_6px_14px_-8px_rgba(0,0,0,0.35)]`}
+            className={`chip ${c.hideM ? 'hidden md:inline-block' : 'inline-block'} absolute pointer-events-auto cursor-grab whitespace-nowrap rounded-full px-4 sm:px-6 py-2.5 sm:py-3.5 text-[11px] sm:text-[14px] tracking-[0.06em] uppercase shadow-[0_6px_14px_-8px_rgba(0,0,0,0.35)]`}
             style={{
               background: c.c,
               color: ['#141210', '#2f5bff'].includes(c.c) ? '#fff' : '#141210',
