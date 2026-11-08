@@ -12,6 +12,7 @@ import ahamx from './assets/covers/ahamx-dashboard.webp';
 import '@fontsource/instrument-serif/400.css';
 import '@fontsource/instrument-serif/400-italic.css';
 import '@fontsource-variable/inter';
+import AboutPoster from './AboutPoster';
 
 const serif = { fontFamily: "'Instrument Serif', Georgia, serif" };
 const W = [
@@ -218,6 +219,7 @@ export default function Options() {
       <Block k="A4" label="About · experience"><AboutD /></Block>
       <Block k="A5" label="About · full photo"><AboutE /></Block>
       <Block k="A6" label="About · facts bento"><AboutF /></Block>
+      <Block k="A7" label="About · poster"><AboutPoster /></Block>
     </div>
   );
 }
