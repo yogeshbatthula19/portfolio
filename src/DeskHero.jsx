@@ -1,26 +1,28 @@
 import React, { useRef } from 'react';
 import { motion, useReducedMotion } from 'framer-motion';
 import beach from './assets/photo_beach_full.jpg';
+import troskyHome from './assets/covers/trosky-home.webp';
+import ahamx from './assets/covers/ahamx-dashboard.webp';
 import '@fontsource/instrument-serif/400.css';
 import '@fontsource/instrument-serif/400-italic.css';
 import '@fontsource-variable/inter';
 import '@fontsource/jetbrains-mono/500.css';
-import { FlowArrow, Sparkle, Rocket, SquaresFour, ChatsCircle, Coffee, ArrowsClockwise, MagnifyingGlass, CursorClick, Flask, Compass, Heart } from '@phosphor-icons/react';
+import { FlowArrow, Sparkle, Rocket, SquaresFour, ChatsCircle, Coffee, ArrowsClockwise, MagnifyingGlass, CursorClick, Flask, Compass, Heart, Asterisk } from '@phosphor-icons/react';
 
 // x = left on desktop (%), m = left on mobile (%), b = bottom (px), r = tilt. hideM hides on phones.
 const CHIPS = [
-  { t: 'Research', I: MagnifyingGlass, c: '#9cc9f5', x: 0, m: -2, b: -4, r: -2 },
-  { t: 'Flows', I: FlowArrow, c: '#c8e66b', x: 4.5, b: 50, r: -7, hideM: 1 },
-  { t: 'Prototyping', I: CursorClick, c: '#ececec', x: 14, m: 3, b: 48, r: 3 },
-  { t: 'AI', I: Sparkle, c: '#ff8a4c', x: 28, m: 43, b: 52, r: 9 },
-  { t: 'Systems', I: SquaresFour, c: '#f6b8d0', x: 26.5, m: 29, b: -4, r: 1 },
-  { t: 'Testing', I: Flask, c: '#d7c4f5', x: 38.5, b: -4, r: -2, hideM: 1 },
-  { t: 'Shipping', I: Rocket, c: '#5fd6a0', x: 51, b: -4, r: 2, hideM: 1 },
-  { t: 'Strategy', I: Compass, c: '#ffd23f', x: 58, m: 58, b: 52, mb: -4, r: -5 },
+  { t: 'Research', I: MagnifyingGlass, c: '#d6f25f', x: 0, m: -2, b: -4, r: -2 },
+  { t: 'Flows', I: FlowArrow, c: '#ffffff', x: 4.5, b: 50, r: -7, hideM: 1 },
+  { t: 'Prototyping', I: CursorClick, c: '#ffffff', x: 14, m: 3, b: 48, r: 3 },
+  { t: 'AI', I: Sparkle, c: '#2f5bff', x: 28, m: 43, b: 52, r: 9 },
+  { t: 'Systems', I: SquaresFour, c: '#141210', x: 26.5, m: 29, b: -4, r: 1 },
+  { t: 'Testing', I: Flask, c: '#ffffff', x: 38.5, b: -4, r: -2, hideM: 1 },
+  { t: 'Shipping', I: Rocket, c: '#141210', x: 51, b: -4, r: 2, hideM: 1 },
+  { t: 'Strategy', I: Compass, c: '#d6f25f', x: 58, m: 58, b: 52, mb: -4, r: -5 },
   { t: 'Scrum', I: ArrowsClockwise, c: '#ffffff', x: 64, b: -4, r: -1, hideM: 1 },
-  { t: 'Workshops', I: ChatsCircle, c: '#ffb38a', x: 74.5, b: -4, r: 2, hideM: 1 },
-  { t: 'Chai', I: Coffee, c: '#e9d3b4', x: 82, m: 66, b: 50, r: -6 },
-  { t: 'Empathy', I: Heart, c: '#f6b8d0', x: 87.5, b: -4, r: 0, hideM: 1 },
+  { t: 'Workshops', I: ChatsCircle, c: '#2f5bff', x: 74.5, b: -4, r: 2, hideM: 1 },
+  { t: 'Chai', I: Coffee, c: '#ffffff', x: 82, m: 66, b: 50, r: -6 },
+  { t: 'Empathy', I: Heart, c: '#141210', x: 87.5, b: -4, r: 0, hideM: 1 },
 ];
 
 export default function DeskHero({ onWorks, onAbout }) {
@@ -32,9 +34,9 @@ export default function DeskHero({ onWorks, onAbout }) {
     animate: { width: 'auto', opacity: 1 },
     transition: { delay, duration: 0.7, ease: [0.22, 1, 0.36, 1] },
   });
-  const Photo = ({ src, alt, delay }) => (
-    <motion.span {...grow(delay)} className="inline-block align-middle overflow-hidden mx-[0.1em] -mt-[0.14em]">
-      <img src={src} alt={alt} className="block h-[0.66em] w-[1.6em] rounded-full object-cover object-[center_22%]" />
+  const Photo = ({ src, alt, delay, pos = 'center 22%', zoom = 1 }) => (
+    <motion.span {...grow(delay)} className="inline-block align-middle overflow-hidden rounded-full mx-[0.1em] -mt-[0.14em]">
+      <img src={src} alt={alt} className="block h-[0.66em] w-[1.6em] rounded-full object-cover border-[2.5px] border-[#141210]" style={{ objectPosition: pos, transform: `scale(${zoom})` }} />
     </motion.span>
   );
   const Swatch = ({ kind, delay }) => (
@@ -62,17 +64,13 @@ export default function DeskHero({ onWorks, onAbout }) {
   const Flower = ({ color, delay }) => (
     <motion.span
       aria-hidden="true"
-      className="inline-block align-middle mx-[0.08em] -mt-[0.16em]"
+      className="inline-block align-middle mx-[0.08em] -mt-[0.1em]"
+      style={{ color }}
       initial={reduce ? false : { scale: 0, rotate: -90 }}
       animate={reduce ? undefined : { scale: 1, rotate: 360 }}
-      transition={{ scale: { delay, type: 'spring', stiffness: 220, damping: 12 }, rotate: { delay, duration: 14, repeat: Infinity, ease: 'linear' } }}
+      transition={{ scale: { delay, type: 'spring', stiffness: 220, damping: 12 }, rotate: { delay, duration: 10, repeat: Infinity, ease: 'linear' } }}
     >
-      <svg viewBox="-4 -4 108 108" className="block h-[0.74em] w-[0.74em]">
-        <path
-          d="M40.0 36.2C22.0 1.5 78.0 1.5 60.0 36.2C87.5 8.4 104.8 61.6 66.2 55.3C101.2 72.8 55.9 105.7 50.0 67.0C44.1 105.7 -1.2 72.8 33.8 55.3C-4.8 61.6 12.5 8.4 40.0 36.2Z"
-          fill="none" stroke={color} strokeWidth="6" strokeLinejoin="round"
-        />
-      </svg>
+      <Asterisk weight="bold" className="block h-[0.62em] w-[0.62em]" />
     </motion.span>
   );
 
@@ -90,11 +88,11 @@ export default function DeskHero({ onWorks, onAbout }) {
           className="text-[#141210] text-[40px] sm:text-[72px] lg:text-[90px] leading-[1.06] tracking-[-0.02em]"
           style={{ fontFamily: "'Instrument Serif', Georgia, serif" }}
         >
-          <em>Hi,</em> <Flower color="#3554f0" delay={0.5} /> I'm Yogesh <Photo src={beach} alt="Yogesh by the sea" delay={0.7} />
+          Hi, <Flower color="#2f5bff" delay={0.5} /> I'm Yogesh <Photo src={beach} alt="Yogesh by the sea" delay={0.7} />
           <br className="hidden md:block" />{' '}
-          <span className="whitespace-nowrap"><Swatch kind="a" delay={0.9} /> <em>turning messy</em></span> <Flower color="#8b5cf6" delay={1.0} /> SaaS problems
+          <span className="whitespace-nowrap"><Photo src={troskyHome} alt="Trosky app screen" delay={0.9} pos="center 38%" zoom={1.0} /> turning <em>messy</em></span> <Flower color="#ff5a1f" delay={1.0} /> SaaS problems
           <br className="hidden md:block" />{' '}
-          <span className="whitespace-nowrap">into calm</span> <span className="whitespace-nowrap"><Swatch kind="b" delay={1.1} /> <em>&amp; simple products.</em></span>
+          <span className="whitespace-nowrap">into calm</span> <span className="whitespace-nowrap"><Photo src={ahamx} alt="AhamX dashboard" delay={1.1} pos="center 15%" /> &amp; simple products.</span>
         </motion.h1>
         <motion.button
           type="button"
@@ -123,9 +121,10 @@ export default function DeskHero({ onWorks, onAbout }) {
             initial={reduce ? false : { y: -700, rotate: c.r * 4, opacity: 0 }}
             animate={{ y: 0, rotate: c.r, opacity: 1 }}
             transition={{ delay: 1.1 + i * 0.12, type: 'spring', stiffness: 120, damping: 11, mass: 0.9 }}
-            className={`chip ${c.hideM ? 'hidden md:inline-block' : 'inline-block'} absolute pointer-events-auto cursor-grab whitespace-nowrap rounded-full px-4 sm:px-6 py-2.5 sm:py-3.5 text-[11px] sm:text-[14px] tracking-[0.06em] uppercase text-[#2a2622] border border-black/10 shadow-[0_6px_14px_-8px_rgba(0,0,0,0.35)]`}
+            className={`chip ${c.hideM ? 'hidden md:inline-block' : 'inline-block'} absolute pointer-events-auto cursor-grab whitespace-nowrap rounded-full px-4 sm:px-6 py-2.5 sm:py-3.5 text-[11px] sm:text-[14px] tracking-[0.06em] uppercase border border-black/80 shadow-[0_6px_14px_-8px_rgba(0,0,0,0.35)]`}
             style={{
               background: c.c,
+              color: ['#141210', '#2f5bff'].includes(c.c) ? '#fff' : '#141210',
               '--cx': `${c.x}%`, '--cm': `${c.m ?? 0}%`,
               '--b': `${c.b}px`, '--mb': `${c.mb ?? c.b}px`,
               fontFamily: "'JetBrains Mono', ui-monospace, monospace",
