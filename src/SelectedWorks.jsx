@@ -35,13 +35,9 @@ export default function SelectedWorks({ items, sectionRef }) {
                     style={{ background: c.bg }}
                   >
                     <div className="relative z-10 flex flex-col justify-between p-7 md:p-12">
-                      <div className="flex items-center gap-3 text-[13px] font-medium" style={{ color: c.fg }}>
-                        <span className="grid place-items-center h-8 w-8 rounded-full bg-white/70">{String(i + 1).padStart(2, '0')}</span>
-                        <span className="uppercase tracking-[0.14em]">{c.tag}</span>
-                      </div>
+                      <span />
                       <div className="my-8">
                         <h3 className="text-[#141210] text-[36px] sm:text-[52px] md:text-[58px] leading-[1.02] tracking-[-0.02em]" style={{ fontFamily: "'Instrument Serif', Georgia, serif" }}>{c.title}</h3>
-                        <p className="mt-4 max-w-[420px] text-[16px] md:text-[17px] leading-snug text-[#141210]/70">{c.description}</p>
                       </div>
                       <div className="flex flex-wrap items-center gap-3">
                         <span className="rounded-full bg-white/80 px-4 py-2 text-[14px] md:text-[15px] font-medium" style={{ color: c.fg }}>{c.outcome}</span>

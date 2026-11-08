@@ -486,6 +486,7 @@ import ahamxDashboard from './assets/covers/ahamx-dashboard.webp';
 
 import DeskHero from './DeskHero';
 import SelectedWorks from './SelectedWorks';
+import AboutPoster from './AboutPoster';
 import ScatterZoom from './ScatterZoom';
 import footerBlueTexture from './assets/footer-blue-texture.webp';
 import nimbuMirchi from './assets/nimbu_mirchi.png';
@@ -1280,7 +1281,6 @@ export default function App() {
       >
       
       <DeskHero onWorks={handleScrollToWorks} onAbout={navigateToAbout} />
-      <ScatterZoom onAbout={navigateToAbout} />
 
       {/* ----------------------------------------------------------------- */}
       {/* SECTION 3: SELECTED WORKS                                         */}
@@ -1300,6 +1300,11 @@ export default function App() {
           { slug: 'carepulse', tag: 'Healthcare · Under NDA', bg: 'linear-gradient(140deg,#fbf3e4,#efd6a8)', fg: '#8a6a24', title: 'Giving clinicians more time for care', description: 'An ambient documentation concept for clinicians.', outcome: 'Walkthrough on request', locked: true, shots: [], onClick: () => setPasswordModalOpen(true) },
         ]}
       />
+
+      <div id="about-me" className="relative bg-[#f4f1ea] px-4 sm:px-8 pb-16">
+        <div className="mx-auto max-w-[1180px]"><AboutPoster /></div>
+      </div>
+      <ScatterZoom onAbout={navigateToAbout} />
 
       {/* ----------------------------------------------------------------- */}
       {/* SECTION 4: FOODIE / CONCEPT TO CRAFT & COMMUNITY TESTIMONIALS     */}
