@@ -39,7 +39,7 @@ export default function PillDrop({ heroRef, textRef, reduce }) {
   useEffect(() => {
     const hero = heroRef.current; if (!hero) return undefined;
     const mobile = () => window.innerWidth < 768;
-    let raf = 0; let timer = 0; let engine; let items = []; let alive = true; let drag = null; let onResize; let wake = () => {}; let io;
+    let raf = 0; let timer = 0; let engine; let items = []; let alive = true; let drag = null; let onResize; let wake = () => {}; let io; let onTilt = null;
 
     const place = () => {
       const W = hero.clientWidth; const H = hero.clientHeight;
@@ -104,6 +104,19 @@ export default function PillDrop({ heroRef, textRef, reduce }) {
       io.observe(hero);
       wake();
 
+      // Tilt: on phones, gravity follows the device so the pills slide to whichever side it leans.
+      let lastGx = 0;
+      onTilt = (e) => {
+        if (e.gamma == null) return;
+        const ang = (screen.orientation && screen.orientation.angle) || window.orientation || 0;
+        let side = e.gamma; // left/right lean in portrait
+        if (ang === 90) side = e.beta; else if (ang === -90 || ang === 270) side = -e.beta;
+        const gx = Math.max(-1, Math.min(1, side / 35));
+        engine.gravity.x = gx * 1.4;
+        if (Math.abs(gx - lastGx) > 0.06) { lastGx = gx; items.forEach(({ body }) => Sleeping.set(body, false)); wake(); }
+      };
+      window.addEventListener('deviceorientation', onTilt);
+
       // drag with a spring constraint
       const pos = (e) => { const r = hero.getBoundingClientRect(); return { x: e.clientX - r.left, y: e.clientY - r.top }; };
       items.forEach(({ el, body }) => {
@@ -120,15 +133,20 @@ export default function PillDrop({ heroRef, textRef, reduce }) {
     };
 
     timer = window.setTimeout(place, reduce ? 0 : 1900);
+    const askMotion = () => {
+      const D = window.DeviceOrientationEvent;
+      if (D && typeof D.requestPermission === 'function') D.requestPermission().catch(() => {});
+    };
+    window.addEventListener('touchend', askMotion, { once: true });
     let lastW = window.innerWidth;
     onResize = () => { // restart the pile only when the width really changes (mobile URL bar fires resize on scroll)
       if (window.innerWidth === lastW) return; lastW = window.innerWidth;
-      alive = false; cancelAnimationFrame(raf); window.clearTimeout(timer); if (io) io.disconnect();
+      alive = false; cancelAnimationFrame(raf); window.clearTimeout(timer); if (io) io.disconnect(); if (onTilt) window.removeEventListener('deviceorientation', onTilt);
       if (engine) { Composite.clear(engine.world, false); Engine.clear(engine); }
       alive = true; place();
     };
     window.addEventListener('resize', onResize);
-    return () => { alive = false; if (io) io.disconnect(); cancelAnimationFrame(raf); window.clearTimeout(timer); window.removeEventListener('resize', onResize); if (engine) { Composite.clear(engine.world, false); Engine.clear(engine); } };
+    return () => { alive = false; window.removeEventListener('touchend', askMotion); if (onTilt) window.removeEventListener('deviceorientation', onTilt); if (io) io.disconnect(); cancelAnimationFrame(raf); window.clearTimeout(timer); window.removeEventListener('resize', onResize); if (engine) { Composite.clear(engine.world, false); Engine.clear(engine); } };
   }, [heroRef, textRef, reduce]);
 
   return (

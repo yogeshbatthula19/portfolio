@@ -1258,8 +1258,8 @@ export default function App() {
         ]}
       />
 
-      <div id="about-me" className="relative bg-[#f4f1ea] px-4 sm:px-8 pb-16">
-        <div className="mx-auto max-w-[1180px]"><AboutPoster /></div>
+      <div id="about-me" className="relative bg-[#f4f1ea]">
+        <AboutPoster bleed />
       </div>
       <ScatterZoom onAbout={navigateToAbout} />
 

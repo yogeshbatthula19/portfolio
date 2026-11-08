@@ -19,7 +19,7 @@ const SHAPES = [
   { c: ['#f1e4ff', '#dcc0ff'], l: 66, b: 52, w: 20, h: 18, r: 18, d: 0.32 },
 ];
 
-export default function AboutPoster() {
+export default function AboutPoster({ bleed = false }) {
   const reduce = useReducedMotion();
   const pop = (d) => ({ initial: reduce ? false : { scale: 0.7, opacity: 0 }, whileInView: { scale: 1, opacity: 1 }, viewport: { once: true, amount: 0 }, transition: { delay: d, type: 'spring', stiffness: 140, damping: 16 } });
   const Star = ({ color, cls, d }) => (
@@ -31,7 +31,7 @@ export default function AboutPoster() {
   );
 
   return (
-    <section className="relative overflow-hidden rounded-[36px] bg-[#f4f1ea]" style={{ fontFamily: "'Inter Variable', system-ui, sans-serif" }}>
+    <section className={`relative overflow-hidden bg-[#f4f1ea] ${bleed ? '' : 'rounded-[36px]'}`} style={{ fontFamily: "'Inter Variable', system-ui, sans-serif" }}>
       <div aria-hidden="true" className="absolute inset-0 opacity-[0.35] pointer-events-none" style={{ backgroundImage: 'radial-gradient(rgba(42,38,34,0.09) 1px, transparent 1px)', backgroundSize: '18px 18px' }} />
 
       <div className="relative z-10 mx-auto max-w-[860px] px-6 pt-14 md:pt-20 text-center">
