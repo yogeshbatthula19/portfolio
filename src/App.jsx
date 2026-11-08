@@ -331,14 +331,14 @@ function CoverArt({ kind, bg, shots = [], alt }) {
         <div className="absolute inset-0 flex items-end justify-center gap-3 px-8 pt-8" aria-hidden="true">
           {[150, 188, 132].map((h, i) => (
             <div key={i} className="w-[30%] rounded-t-2xl bg-white/70 backdrop-blur-sm blur-[3px] p-3 space-y-2" style={{ height: h }}>
-              <div className="h-2 w-2/3 rounded-full bg-[#12315a]/20" />
-              <div className="h-2 w-full rounded-full bg-[#12315a]/10" />
-              <div className="h-2 w-5/6 rounded-full bg-[#12315a]/10" />
-              <div className="h-10 w-full rounded-lg bg-[#12315a]/20" />
+              <div className="h-2 w-2/3 rounded-full bg-[#141210]/20" />
+              <div className="h-2 w-full rounded-full bg-[#141210]/10" />
+              <div className="h-2 w-5/6 rounded-full bg-[#141210]/10" />
+              <div className="h-10 w-full rounded-lg bg-[#141210]/20" />
             </div>
           ))}
           <div className="absolute inset-0 flex items-center justify-center">
-            <span className="w-12 h-12 rounded-full bg-white/90 shadow-md flex items-center justify-center"><Lock className="w-5 h-5 text-[#12315a]" /></span>
+            <span className="w-12 h-12 rounded-full bg-white/90 shadow-md flex items-center justify-center"><Lock className="w-5 h-5 text-[#141210]" /></span>
           </div>
         </div>
       )}
@@ -392,7 +392,7 @@ function CaseStudyCard({ cover, title, outcome, description, onClick, onMouseEnt
         <CoverArt {...cover} alt={`${title} project preview`} />
         {isLocked && (
           <div className="absolute top-3.5 right-3.5 z-10 inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/90 backdrop-blur-md text-caption font-medium text-[#111827] shadow-sm border border-black/[0.08]">
-            <Lock className="w-3 h-3 text-[#12315a]" />
+            <Lock className="w-3 h-3 text-[#141210]" />
             <span>Under NDA</span>
           </div>
         )}
@@ -595,7 +595,7 @@ function WhiteFooterCard({ navigateToCaseStudy, navigateToAbout, onScrollToWorks
         <div className="max-w-2xl mx-auto">
           <h2
             className="font-seasons text-h1 sm:text-display-sm font-normal not-italic text-[#111827] tracking-tight leading-[1.12]"
-            style={{ fontFamily: "'The Seasons', Georgia, serif" }}
+            style={{ fontFamily: "'Instrument Serif', Georgia, serif" }}
           >
             Design that shapes the <br />
             product experience
@@ -1305,7 +1305,7 @@ export default function App() {
               </button>
 
               {/* Lock Badge */}
-              <div className="w-12 h-12 rounded-2xl bg-[#12315a]/[0.08] text-[#12315a] flex items-center justify-center mx-auto mb-4">
+              <div className="w-12 h-12 rounded-2xl bg-[#141210]/[0.08] text-[#141210] flex items-center justify-center mx-auto mb-4">
                 <Lock className="w-5 h-5" />
               </div>
 
@@ -1313,7 +1313,7 @@ export default function App() {
               <h3
                 id="password-modal-title"
                 className="text-h3 font-medium text-[#111827] tracking-tight mb-2"
-                style={{ fontFamily: "'The Seasons', Georgia, serif" }}
+                style={{ fontFamily: "'Instrument Serif', Georgia, serif" }}
               >
                 Shared on a call
               </h3>
@@ -1325,7 +1325,7 @@ export default function App() {
 
               <a
                 href="mailto:yogeshbattula55@gmail.com?subject=CarePulse%20Health%20walkthrough&body=Hi%20Yogesh,%0A%0AI'd%20like%20to%20see%20a%20walkthrough%20of%20your%20CarePulse%20Health%20work.%20Here%20are%20a%20few%20times%20that%20work%20for%20me:%0A%0A"
-                className="inline-flex items-center justify-center gap-1.5 w-full py-3 px-5 rounded-xl bg-[#12315a] hover:bg-[#0b2342] text-white text-small font-medium transition-colors"
+                className="inline-flex items-center justify-center gap-1.5 w-full py-3 px-5 rounded-xl bg-[#141210] hover:bg-[#000000] text-white text-small font-medium transition-colors"
               >
                 Request a walkthrough <ArrowUpRight className="w-4 h-4" />
               </a>

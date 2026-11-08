@@ -24,15 +24,15 @@ export default function NextCaseStudy({ current, onNavigate }) {
         event.preventDefault();
         onNavigate(next.slug);
       }}
-      className="group inline-flex items-center gap-3 sm:text-right min-h-11 no-underline"
+      className="group inline-flex items-center gap-4 sm:text-right min-h-11 no-underline"
     >
       <span className="flex flex-col">
-        <span className="text-caption uppercase tracking-wider text-gray-500 font-basier">Next case study</span>
-        <span className="text-small sm:text-body font-basier font-medium text-gray-900 group-hover:text-[#ff6a1f] transition-colors">
-          {next.title}: {next.blurb}
+        <span className="text-[12px] uppercase tracking-[0.12em] text-[#6b645b]" style={{ fontFamily: "'Inter Variable', sans-serif" }}>Next case study</span>
+        <span className="text-[26px] sm:text-[34px] leading-[1.05] tracking-[-0.015em] text-[#141210] group-hover:text-[#2f5bff] transition-colors" style={{ fontFamily: "'Instrument Serif', Georgia, serif" }}>
+          {next.blurb}
         </span>
       </span>
-      <ArrowRight className="w-4 h-4 text-gray-700 shrink-0 transition-transform group-hover:translate-x-1" />
+      <span className="grid place-items-center h-11 w-11 shrink-0 rounded-full bg-[#2a2622] text-[#f4f1ea] transition-transform group-hover:translate-x-1"><ArrowRight className="w-4 h-4" /></span>
     </a>
   );
 }

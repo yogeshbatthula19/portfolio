@@ -1,3 +1,4 @@
+import { FooterA } from './MoreOptions';
 import NextCaseStudy from './NextCaseStudy';
 import CaseStudyTldr from './CaseStudyTldr';
 import React, { useEffect, useRef } from 'react';
@@ -303,7 +304,7 @@ export default function CaseStudyTrosky({ onBack, onNext, isRevealed = true }) {
   const bgScale = useTransform(scrollY, [0, 1000], [1, 1.05]);
 
   return (
-    <div className="case-study-page relative isolate bg-[#ffffff] min-h-screen text-[#111827] font-basier font-normal antialiased selection:bg-gray-200 selection:text-black pb-24 sm:pb-32 overflow-x-hidden">
+    <div className="case-study-page relative isolate bg-[#ffffff] min-h-screen text-[#111827] font-basier font-normal antialiased selection:bg-gray-200 selection:text-black pb-8 overflow-x-hidden">
       
       {/* Top Sticky Reading Progress Bar & Floating Back-To-Top Button */}
       <CaseStudyScrollProgress />
@@ -977,6 +978,8 @@ export default function CaseStudyTrosky({ onBack, onNext, isRevealed = true }) {
         </ScrollReveal>
 
       </main>
+
+      <footer className="px-4 sm:px-8 mt-20 sm:mt-28"><div className="mx-auto max-w-[1180px]"><FooterA /></div></footer>
 
     </div>
   );
