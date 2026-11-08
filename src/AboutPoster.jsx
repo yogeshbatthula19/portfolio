@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion, useReducedMotion } from 'framer-motion';
 import { Asterisk } from '@phosphor-icons/react';
-import cutout from './assets/yogesh_cutout.webp';
+import cutout from './assets/yogesh_casual.webp';
 import '@fontsource/instrument-serif/400.css';
 import '@fontsource/instrument-serif/400-italic.css';
 import '@fontsource-variable/inter';
@@ -53,14 +53,14 @@ export default function AboutPoster() {
         ))}
         <Star color="#2f5bff" cls="left-[12%] top-[6%] h-12 w-12 md:h-20 md:w-20" d={0.5} />
         <Star color="#ff5a1f" cls="right-[10%] top-[18%] h-10 w-10 md:h-16 md:w-16" d={0.6} />
-        <div className="absolute inset-0 flex justify-center overflow-hidden">
+        <div className="absolute inset-0 flex justify-center items-end overflow-hidden">
           <motion.img
             src={cutout} alt="Yogesh Battula" draggable={false}
-            initial={reduce ? false : { y: 60, opacity: 0, rotate: -4 }}
-            whileInView={{ y: 0, opacity: 1, rotate: -2 }}
+            initial={reduce ? false : { y: 80, opacity: 0, rotate: -3 }}
+            whileInView={{ y: 0, opacity: 1, rotate: -1 }}
             viewport={{ once: true, amount: 0 }}
             transition={{ delay: 0.35, type: 'spring', stiffness: 120, damping: 16 }}
-            className="relative block h-[128%] w-auto max-w-none self-start mt-[3%]"
+            className="relative block h-[97%] w-auto max-w-none"
             style={{ filter: 'drop-shadow(6px 0 0 #fff) drop-shadow(-6px 0 0 #fff) drop-shadow(0 6px 0 #fff) drop-shadow(0 -6px 0 #fff) drop-shadow(0 18px 24px rgba(0,0,0,0.2))' }}
           />
         </div>
