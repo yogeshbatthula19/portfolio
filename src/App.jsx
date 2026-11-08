@@ -6,8 +6,6 @@ const CaseStudyAhamX = React.lazy(() => import('./CaseStudyAhamX'));
 const CaseStudyRyzeup = React.lazy(() => import('./CaseStudyRyzeup'));
 const CaseStudyTrosky = React.lazy(() => import('./CaseStudyTrosky'));
 const AboutPage = React.lazy(() => import('./AboutPage'));
-import ConceptToCraft from './ConceptToCraft';
-import CommunityTestimonials from './CommunityTestimonials';
 import NotFound from './NotFound';
 import photoAvatar from './assets/photo_yogesh_avatar.webp';
 
@@ -333,14 +331,14 @@ function CoverArt({ kind, bg, shots = [], alt }) {
         <div className="absolute inset-0 flex items-end justify-center gap-3 px-8 pt-8" aria-hidden="true">
           {[150, 188, 132].map((h, i) => (
             <div key={i} className="w-[30%] rounded-t-2xl bg-white/70 backdrop-blur-sm blur-[3px] p-3 space-y-2" style={{ height: h }}>
-              <div className="h-2 w-2/3 rounded-full bg-[#12315a]/20" />
-              <div className="h-2 w-full rounded-full bg-[#12315a]/10" />
-              <div className="h-2 w-5/6 rounded-full bg-[#12315a]/10" />
-              <div className="h-10 w-full rounded-lg bg-[#12315a]/20" />
+              <div className="h-2 w-2/3 rounded-full bg-[#141210]/20" />
+              <div className="h-2 w-full rounded-full bg-[#141210]/10" />
+              <div className="h-2 w-5/6 rounded-full bg-[#141210]/10" />
+              <div className="h-10 w-full rounded-lg bg-[#141210]/20" />
             </div>
           ))}
           <div className="absolute inset-0 flex items-center justify-center">
-            <span className="w-12 h-12 rounded-full bg-white/90 shadow-md flex items-center justify-center"><Lock className="w-5 h-5 text-[#12315a]" /></span>
+            <span className="w-12 h-12 rounded-full bg-white/90 shadow-md flex items-center justify-center"><Lock className="w-5 h-5 text-[#141210]" /></span>
           </div>
         </div>
       )}
@@ -394,7 +392,7 @@ function CaseStudyCard({ cover, title, outcome, description, onClick, onMouseEnt
         <CoverArt {...cover} alt={`${title} project preview`} />
         {isLocked && (
           <div className="absolute top-3.5 right-3.5 z-10 inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/90 backdrop-blur-md text-caption font-medium text-[#111827] shadow-sm border border-black/[0.08]">
-            <Lock className="w-3 h-3 text-[#12315a]" />
+            <Lock className="w-3 h-3 text-[#141210]" />
             <span>Under NDA</span>
           </div>
         )}
@@ -468,8 +466,8 @@ import imgMatcha from './assets/e4dbcdd77bc9c13d2de4378af5f748570474120d.webp';
 import imgNote from './assets/65b0d33492ffd94741f4de8fe2d01b44ab5a58c3.png';
 
 // User Uploaded Photos & Custom Postage Stamps (Full resolution edge-to-edge)
-import photoStatue from './assets/photo_statue.webp';
-import photoLighthouse from './assets/photo_lighthouse.webp';
+import photoStatue from './assets/photo_statue-sm.webp';
+import photoLighthouse from './assets/photo_lighthouse-sm.webp';
 import photoTemple from './assets/photo_temple.webp';
 import photoCouple from './assets/photo_couple_full.webp';
 import photoCycle from './assets/photo_cycle_full.webp';
@@ -484,6 +482,11 @@ import ahamxDashboard from './assets/covers/ahamx-dashboard.webp';
 
 
 
+import DeskHero from './DeskHero';
+import SelectedWorks from './SelectedWorks';
+import AboutPoster from './AboutPoster';
+import { KindB, FooterA } from './MoreOptions';
+import ScatterZoom from './ScatterZoom';
 import footerBlueTexture from './assets/footer-blue-texture.webp';
 import nimbuMirchi from './assets/nimbu_mirchi.png';
 
@@ -592,7 +595,7 @@ function WhiteFooterCard({ navigateToCaseStudy, navigateToAbout, onScrollToWorks
         <div className="max-w-2xl mx-auto">
           <h2
             className="font-seasons text-h1 sm:text-display-sm font-normal not-italic text-[#111827] tracking-tight leading-[1.12]"
-            style={{ fontFamily: "'The Seasons', Georgia, serif" }}
+            style={{ fontFamily: "'Instrument Serif', Georgia, serif" }}
           >
             Design that shapes the <br />
             product experience
@@ -710,7 +713,8 @@ export default function App() {
     if (cleanHash === 'case-study/trosky' || cleanHash === 'trosky') return 'trosky';
 
     // Anything else that isn't the homepage is a broken link.
-    if (pathname !== '/' && pathname !== '/index.html' && !pathname.includes('nointro')) return 'notfound';
+    // Static previews (e.g. a shared preview page) live under an unknown path: treat it as home.
+    if (!import.meta.env.VITE_STATIC_PREVIEW && pathname !== '/' && pathname !== '/index.html' && !pathname.includes('nointro')) return 'notfound';
     return 'home';
   };
 
@@ -1023,13 +1027,6 @@ export default function App() {
   // Track window scroll
   const { scrollY, scrollYProgress } = useScroll();
 
-  // Dynamic footer background stretch on final scroll to seamlessly fill gaps behind rounded card corners
-  const footerBgScaleY = useTransform(scrollYProgress, [0.82, 1], [0.96, 1.05]);
-  const smoothFooterBgScaleY = useSpring(footerBgScaleY, {
-    stiffness: 220,
-    damping: 30,
-    mass: 0.2,
-  });
 
   // Lenis owns smoothing; visual transforms track its actual scroll position.
   const smoothScrollY = scrollY;
@@ -1232,593 +1229,15 @@ export default function App() {
             }}
           >
 
-      {/* ----------------------------------------------------------------- */}
-      {/* LAYER 0: PINNED LIGHT BLUE FOOTER (UNDERNEATH LAYER / Z-0)         */}
-      {/* ----------------------------------------------------------------- */}
-      <div
-        aria-hidden="true"
-        className="fixed bottom-0 left-0 right-0 w-full z-0 overflow-hidden flex items-end justify-center select-none pointer-events-none"
-        style={{
-          height: 'calc(clamp(270px, 46vh, 400px) + 200px)',
-        }}
-      >
-        {/* Dynamically stretched background that extends up behind the white card to fill gaps */}
-        <motion.div
-          className="absolute inset-0 w-full h-full"
-          style={{
-            backgroundImage: `url(${footerBlueTexture})`,
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-            backgroundColor: '#1799f6',
-            transformOrigin: 'bottom center',
-            scaleY: staticLayout || reduceMotion ? 1 : smoothFooterBgScaleY,
-          }}
-        />
-
-        {/* Waving Indian Nimbu Mirchi (Lemon & Chilli) Nazar Battu Hanging Charm */}
-        <WavingNimbuMirchi />
-
-        <p
-          className="relative z-10 text-white text-[20vw] sm:text-[21vw] font-medium tracking-tight leading-[0.78] select-none text-center pointer-events-none transform translate-y-[3%]"
-          style={{ fontFamily: "'The Seasons', Georgia, serif" }}
-        >
-          Battula
-        </p>
-      </div>
 
       {/* ----------------------------------------------------------------- */}
       {/* LAYER 1: MAIN CONTENT WRAPPER (SOLID WHITE, RELATIVE Z-10)        */}
       {/* ----------------------------------------------------------------- */}
       <div
-        className="relative z-10 bg-[#ffffff] min-h-screen font-sans text-gray-900 selection:bg-[#ffd9bd] overflow-x-clip pt-4 rounded-b-[40px] sm:rounded-b-[56px] md:rounded-b-[68px] shadow-[0_24px_50px_-12px_rgba(0,0,0,0.06)]"
-        style={{
-          marginBottom: 'clamp(270px, 46vh, 400px)',
-        }}
+        className="relative z-10 bg-[#f4f1ea] min-h-screen font-sans text-gray-900 selection:bg-[#ffd9bd] overflow-x-clip"
       >
       
-      {/* ----------------------------------------------------------------- */}
-      {/* SECTION 1: HERO SECTION                                          */}
-      {/* ----------------------------------------------------------------- */}
-      <motion.section 
-        style={{
-          opacity: staticLayout ? 1 : heroOpacity,
-          scale: staticLayout ? 1 : heroScale,
-          y: staticLayout ? 0 : heroY,
-        }}
-        className="hero-section relative w-[1472px] max-w-[96vw] min-h-[calc(100svh-24px)] sm:min-h-[calc(100svh-32px)] md:min-h-[640px] xl:h-[787px] mx-auto rounded-[20px] sm:rounded-[28px] xl:rounded-[32px] border border-black/[0.08] overflow-hidden flex flex-col items-center justify-center will-change-transform py-8 sm:py-10 xl:py-0 px-3 sm:px-6"
-      >
-        {/* Ambient gradient hero background matching case studies */}
-        <div
-          aria-hidden="true"
-          className="absolute inset-0 pointer-events-none -z-10"
-          style={{
-            backgroundImage: `linear-gradient(to bottom, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0.3) 40%, #ffffff 100%), url(${imgBg})`,
-            backgroundSize: 'cover',
-            backgroundPosition: 'center top',
-            backgroundRepeat: 'no-repeat',
-          }}
-        />
-
-        {/* Hero Text & Domain Capsule */}
-        <div className="home-hero-copy relative z-10 flex flex-col items-center text-center max-w-5xl px-2 sm:px-4">
-
-          {/* Main Headline */}
-          <h1 
-            className="home-hero-title tracking-tight sm:tracking-[-1px] mx-auto flex flex-col md:flex-row items-center justify-center gap-y-1 sm:gap-y-2 md:gap-y-0 md:gap-x-3.5 whitespace-normal md:whitespace-nowrap"
-            style={{
-              fontFamily: "'The Seasons', Georgia, serif",
-              fontStyle: 'normal',
-              fontWeight: 400,
-              fontSize: 'clamp(28px, 6.2vw, 72px)',
-              lineHeight: 'clamp(36px, 7vw, 78px)',
-              color: '#08304C',
-            }}
-          >
-            {/* On mobile: Line 1 pairs Designing with Product pill. On desktop: flows inline */}
-            <div className="flex items-center justify-center gap-x-1.5 sm:gap-x-3.5 flex-nowrap shrink-0">
-              <motion.span
-                initial={!reduceMotion ? { opacity: 0, y: 22 } : false}
-                animate={siteOpened ? { opacity: 1, y: 0 } : { opacity: 0, y: 22 }}
-                transition={{ duration: 0.8, delay: 0.08, ease: entranceEase }}
-              >
-                Designing
-              </motion.span>
-              <motion.span 
-                initial={!reduceMotion ? { opacity: 0, scale: 0.94 } : false}
-                animate={siteOpened ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.94 }}
-                transition={{ duration: 0.8, delay: 0.16, ease: entranceEase }}
-                className="relative inline-flex items-center justify-center bg-white/95 rounded-[14px] sm:rounded-[18px] px-[12px] sm:px-[18px] xl:px-[22px] py-[3px] sm:py-[5px] shadow-[0_1px_3px_rgba(0,0,0,0.06)] border border-black/[0.08] group/product cursor-pointer align-middle my-[-2px] sm:my-[-4px] transition-all duration-300 shrink-0 gap-[6px] sm:gap-[8px] hover:border-black/20 hover:shadow-[0_2px_8px_rgba(0,0,0,0.08)]"
-              >
-                <span
-                  className="capitalize text-[#08304C] not-italic"
-                  style={{
-                    fontFamily: "'The Seasons', Georgia, serif",
-                    fontStyle: 'italic',
-                    fontWeight: 400,
-                    fontSize: '0.9em',
-                    lineHeight: 'normal',
-                  }}
-                >
-                  AI products
-                </span>
-              </motion.span>
-            </div>
-            <motion.span 
-              initial={!reduceMotion ? { opacity: 0, y: 22 } : false}
-              animate={siteOpened ? { opacity: 1, y: 0 } : { opacity: 0, y: 22 }}
-              transition={{ duration: 0.8, delay: 0.22, ease: entranceEase }}
-              className="shrink-0 whitespace-nowrap"
-            >
-              people trust.
-            </motion.span>
-          </h1>
-
-          {/* Subtitle */}
-          <motion.p 
-            initial={!reduceMotion ? { opacity: 0, y: 20 } : false}
-            animate={siteOpened ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-            transition={{ duration: 0.8, delay: 0.30, ease: entranceEase }}
-            className="text-small sm:text-body xl:text-lead text-[rgba(8,48,76,0.78)] mt-2 sm:mt-3.5 max-w-[340px] sm:max-w-[520px] xl:max-w-[580px] leading-[21px] sm:leading-[26px] xl:leading-[28px] tracking-[-0.15px]"
-          >
-            I'm Yogesh, a product designer with 5+ years of experience in AI and SaaS products. I design apps that look clean on the surface and make sense underneath.
-          </motion.p>
-
-          <motion.div className="home-primary-actions" initial={reduceMotion?false:{opacity:0,y:12}} animate={siteOpened?{opacity:1,y:0}:{opacity:0,y:12}} transition={{duration:.5,delay:.3}}>
-            <p className="home-availability"><span aria-hidden="true"/>Open to Product Design roles</p>
-            <button onClick={handleScrollToWorks} className="home-work-button" aria-label="View my work">
-              <span className="home-work-button-inner">
-                <span>View my work</span>
-                <span className="home-work-button-arrow" aria-hidden="true">↗</span>
-              </span>
-            </button>
-          </motion.div>
-
-          {/* Location Line */}
-          <motion.p 
-            initial={!reduceMotion ? { opacity: 0, y: 16 } : false}
-            animate={siteOpened ? { opacity: 1, y: 0 } : { opacity: 0, y: 16 }}
-            transition={{ duration: 0.75, delay: 0.52, ease: entranceEase }}
-            className="mt-2.5 sm:mt-3.5 text-caption sm:text-small text-[rgba(8,48,76,0.65)] font-medium tracking-tight"
-          >
-            Based in Hyderabad, India
-          </motion.p>
-        </div>
-      </motion.section>
-
-
-      {/* ----------------------------------------------------------------- */}
-      <motion.div 
-        initial={!reduceMotion ? { opacity: 0, y: 28 } : false}
-        animate={siteOpened ? { opacity: 1, y: 0 } : { opacity: 0, y: 28 }}
-        transition={{ duration: 0.85, delay: 0.55, ease: entranceEase }}
-        className="responsive-profile relative z-30 block xl:hidden w-full max-w-[940px] mx-auto px-3 sm:px-4 mt-6 sm:mt-8"
-      >
-        <motion.section 
-          style={reduceMotion ? undefined : {
-            scale: cardScale,
-            y: cardY,
-            transformOrigin: "center center",
-          }}
-          className="w-full"
-        >
-          <div className="bg-[rgba(0,0,0,0.02)] border border-[rgba(0,0,0,0.08)] p-[4px] rounded-[24px]">
-            <div className="bg-white rounded-[20px] p-4 sm:p-5 relative">
-              
-              {/* Header */}
-              <div className="profile-header flex flex-wrap items-center justify-between gap-4 mb-4 pb-1">
-                <div className="flex items-center gap-3">
-                  <img
-                    src={photoAvatar}
-                    alt="Yogesh"
-                    loading="lazy"
-                    decoding="async"
-                    className="shrink-0 w-[52px] h-[52px] rounded-full object-cover shadow-sm border border-black/5"
-                  />
-                  <div>
-                    <div className="flex items-center gap-1.5">
-                      <h2 className="text-body font-medium text-[#202020] tracking-tight leading-snug">
-                        Yogesh
-                      </h2>
-                    </div>
-                    <p className="text-small text-[#797979] mt-0.5 leading-snug">
-                      I design apps that make sense. I film cafés on my Osmo Pocket when I'm off the clock.
-                    </p>
-                  </div>
-                </div>
-
-                <a
-                  href="/yogesh-battula-resume.pdf"
-                  download="Yogesh_Battula_Resume.pdf"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-[#2c2c2c] hover:bg-black text-white text-caption font-normal rounded-full transition-all shrink-0 cursor-pointer"
-                >
-                  <FileText className="w-3 h-3 text-white" />
-                  Resume
-                </a>
-              </div>
-
-              {/* Responsive Bento Grid of Stamps */}
-              <div className="profile-gallery grid grid-cols-2 gap-2.5 sm:gap-4 max-w-[620px] mx-auto items-stretch">
-                
-                {/* 1. Coastal Lighthouse (Wide Banner across 2 Columns) */}
-                <div className="col-span-2 aspect-[852/420] w-full relative">
-                  <motion.div 
-                    whileTap={{ scale: 0.98 }}
-                    className="w-full h-full flex items-center justify-center cursor-pointer group origin-center"
-                  >
-                    <div className="w-full h-full select-none transition-transform duration-300 ease-out group-hover:scale-[1.02]">
-                      <StampFrame className="w-full h-full"><img src={photoLighthouse} alt="Coastal lighthouse surrounded by palm trees - Panoramic Postage Stamp" loading="lazy" decoding="async" style={{ objectPosition: "center 38%" }} className="w-full h-full object-cover select-none" /></StampFrame>
-                    </div>
-                  </motion.div>
-                </div>
-
-                {/* 2. Yogesh Cycling (Row 2, Col 1) */}
-                <div className="col-start-1 row-start-2 aspect-[205/210] w-full relative">
-                  <motion.div 
-                    whileTap={{ scale: 0.98 }}
-                    className="w-full h-full flex items-center justify-center cursor-pointer group origin-center"
-                  >
-                    <div className="w-full h-full select-none transition-transform duration-300 ease-out group-hover:scale-[1.02]">
-                      <StampFrame className="w-full h-full"><img src={photoCycle} alt="Yogesh cycling on campus - Postage Stamp" loading="lazy" decoding="async" style={{ objectPosition: "center 55%" }} className="w-full h-full object-cover select-none" /></StampFrame>
-                    </div>
-                  </motion.div>
-                </div>
-
-                {/* 3. Temple Gopuram (Row 2 & 3, Col 2 - Spans 2 Rows vertically) */}
-                <div className="col-start-2 row-start-2 row-span-2 aspect-[205/436] w-full relative">
-                  <motion.div 
-                    whileTap={{ scale: 0.98 }}
-                    className="w-full h-full flex items-center justify-center cursor-pointer group origin-center"
-                  >
-                    <div className="w-full h-full select-none transition-transform duration-300 ease-out group-hover:scale-[1.02]">
-                      <StampFrame className="w-full h-full"><img src={photoTemple} alt="Historic temple gopuram with devotees - Tall Postage Stamp" loading="lazy" decoding="async" style={{ objectPosition: "center 40%" }} className="w-full h-full object-cover select-none" /></StampFrame>
-                    </div>
-                  </motion.div>
-                </div>
-
-                {/* 4. Couple Card (Row 3, Col 1 - Fits directly under Cycling, level with Temple) */}
-                <div className="col-start-1 row-start-3 aspect-[205/210] w-full relative">
-                  <motion.div 
-                    whileTap={{ scale: 0.98 }}
-                    className="w-full h-full flex items-center justify-center cursor-pointer group origin-center"
-                  >
-                    <CoupleCard imageSrc={photoCouple} />
-                  </motion.div>
-                </div>
-
-                {/* 5. Prabhas Photo (Row 4, Col 1) */}
-                <div className="col-start-1 row-start-4 aspect-[205/210] w-full relative">
-                  <motion.div 
-                    whileTap={{ scale: 0.98 }}
-                    className="w-full h-full flex items-center justify-center cursor-pointer group origin-center"
-                  >
-                    <div className="w-full h-full select-none transition-transform duration-300 ease-out group-hover:scale-[1.02]">
-                      <StampFrame className="w-full h-full" paper="#f7e8cf" edge="#ecd9b8">
-                        <img
-                          src={cafeDumplings}
-                          alt="Crispy golden dumpling purses on a pewter plate, filmed at a café"
-                          loading="lazy"
-                          decoding="async"
-                          className="w-full h-full object-cover select-none"
-                        />
-                      </StampFrame>
-                    </div>
-                  </motion.div>
-                </div>
-
-                {/* 6. Substack Note Card (Row 4, Col 2) */}
-                <div className="col-start-2 row-start-4 aspect-[205/210] w-full relative">
-                  <motion.div 
-                    whileTap={{ scale: 0.98 }}
-                    className="w-full h-full flex items-center justify-center cursor-pointer group origin-center"
-                  >
-                    <NoteCard 
-                      onClick={navigateToAbout} 
-                      onMouseEnter={() => import('./AboutPage')}
-                      onFocus={() => import('./AboutPage')}
-                    />
-                  </motion.div>
-                </div>
-
-              </div>
-
-            {/* Floating Bottom Social Dock */}
-            <div className="flex justify-center mt-4">
-              <div className="inline-flex items-center gap-1.5 p-1.5 bg-white/95 backdrop-blur-md rounded-full border border-gray-200/80">
-                <a
-                  href="https://www.linkedin.com/in/yogeshbattula/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="Yogesh on LinkedIn (opens in a new tab)"
-                  title="LinkedIn"
-                  className="w-11 h-11 rounded-full flex items-center justify-center text-[#0a66c2] hover:text-[#084e96] hover:bg-blue-50/70 transition-colors"
-                >
-                  <LinkedInIcon className="w-5 h-5" />
-                </a>
-                <a
-                  href="https://www.behance.net/yogeshbattula5"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="Yogesh on Behance (opens in a new tab)"
-                  title="Behance"
-                  className="w-11 h-11 rounded-full flex items-center justify-center text-[#0057ff] hover:text-[#0043c4] hover:bg-blue-50/70 transition-colors"
-                >
-                  <BehanceIcon className="w-[22px] h-[22px]" />
-                </a>
-                <a
-                  href="mailto:yogeshbattula55@gmail.com"
-                  aria-label="Email Yogesh at yogeshbattula55@gmail.com"
-                  title="Email Yogesh"
-                  className="w-11 h-11 rounded-full flex items-center justify-center text-[#475569] hover:text-[#0066ff] hover:bg-blue-50/70 transition-colors"
-                >
-                  <EmailIcon className="w-5 h-5" />
-                </a>
-              </div>
-            </div>
-
-          </div>
-        </div>
-      </motion.section>
-    </motion.div>
-
-
-      {/* ----------------------------------------------------------------- */}
-      {/* SECTION 2: ANIMATED DESKTOP BENTO (>= 1280px) */}
-      {/* ----------------------------------------------------------------- */}
-      <motion.div 
-        initial={!reduceMotion ? { opacity: 0, y: 28 } : false}
-        animate={siteOpened ? { opacity: 1, y: 0 } : { opacity: 0, y: 28 }}
-        transition={{ duration: 0.85, delay: 0.55, ease: entranceEase }}
-        className="desktop-profile relative z-30 hidden xl:flex w-full justify-center mt-[82px]"
-      >
-        <motion.section 
-          style={{
-            scale: cardScale,
-            y: cardY,
-            transformOrigin: "center center",
-          }}
-          className="relative shrink-0 w-[940px] max-w-[92vw] mx-auto z-20 will-change-transform"
-        >
-          {/* Outer card container */}
-          <div className="bg-[rgba(0,0,0,0.02)] border border-[rgba(0,0,0,0.08)] p-[5px] rounded-[24px] relative">
-            <div className="bg-white rounded-[20px] p-[32px] relative">
-            
-            {/* Header */}
-            <div className="flex items-center justify-between mb-6 pb-1">
-              <div className="flex items-center gap-3">
-                <img
-                  src={photoAvatar}
-                  alt="Yogesh"
-                  className="w-[74px] h-[74px] rounded-full object-cover shadow-sm border border-black/5"
-                />
-                <div>
-                  <div className="flex items-center gap-2">
-                    <h2 className="text-lead font-medium text-[#202020] tracking-tight leading-snug">
-                      Yogesh
-                    </h2>
-                  </div>
-                  <p className="text-small text-[#797979]">
-                    I design apps that make sense. I film cafés on my Osmo Pocket when I'm off the clock.
-                  </p>
-                </div>
-              </div>
-
-              <a
-                href="/yogesh-battula-resume.pdf"
-                download="Yogesh_Battula_Resume.pdf"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-4 py-2 bg-[#2c2c2c] hover:bg-black text-white text-small font-normal rounded-full transition-all hover:scale-[1.02] cursor-pointer"
-              >
-                <FileText className="w-3.5 h-3.5 text-white" />
-                Resume
-              </a>
-            </div>
-
-            {/* 6 Outline Slots Balanced Bento Grid (868px total width) */}
-            <motion.div 
-              style={{ opacity: slotOpacity }}
-              className="grid grid-cols-[205px_426px_205px] gap-[16px] items-start w-[868px] mx-auto pointer-events-none"
-            >
-              
-              {/* Column 1: Slot 1 (Beanie) & Slot 4 (Polaroid) */}
-              <div className="flex flex-col gap-[16px]">
-                <div className="w-[205px] h-[210px] rounded-[18px] border border-dashed border-gray-200/80 bg-transparent" />
-                <div className="w-[205px] h-[210px] rounded-[18px] border border-dashed border-gray-200/80 bg-transparent" />
-              </div>
-
-              {/* Column 2: Slot 2 (Dog wide) & [Slot 5 (Matcha) + Slot 6 (Note)] */}
-              <div className="flex flex-col gap-[16px]">
-                <div className="w-[426px] h-[210px] rounded-[18px] border border-dashed border-gray-200/80 bg-transparent" />
-                <div className="flex gap-[16px]">
-                  <div className="w-[205px] h-[210px] rounded-[18px] border border-dashed border-gray-200/80 bg-transparent" />
-                  <div className="w-[205px] h-[210px] rounded-[18px] border border-dashed border-gray-200/80 bg-transparent" />
-                </div>
-              </div>
-
-              {/* Column 3: Slot 3 (Two Women portrait tall) */}
-              <div>
-                <div className="w-[205px] h-[436px] rounded-[18px] border border-dashed border-gray-200/80 bg-transparent" />
-              </div>
-
-            </motion.div>
-
-            {/* Floating Bottom Social Dock */}
-            <div className="flex justify-center mt-5">
-              <div className="inline-flex items-center gap-1.5 p-1.5 bg-white/95 backdrop-blur-md rounded-full border border-gray-200/80">
-                <a
-                  href="https://www.linkedin.com/in/yogeshbattula/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="Yogesh on LinkedIn (opens in a new tab)"
-                  title="LinkedIn"
-                  className="w-11 h-11 rounded-full flex items-center justify-center text-[#0a66c2] hover:text-[#084e96] hover:bg-blue-50/70 transition-colors"
-                >
-                  <LinkedInIcon className="w-5 h-5" />
-                </a>
-                <a
-                  href="https://www.behance.net/yogeshbattula5"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="Yogesh on Behance (opens in a new tab)"
-                  title="Behance"
-                  className="w-11 h-11 rounded-full flex items-center justify-center text-[#0057ff] hover:text-[#0043c4] hover:bg-blue-50/70 transition-colors"
-                >
-                  <BehanceIcon className="w-[22px] h-[22px]" />
-                </a>
-                <a
-                  href="mailto:yogeshbattula55@gmail.com"
-                  aria-label="Email Yogesh at yogeshbattula55@gmail.com"
-                  title="Email Yogesh"
-                  className="w-11 h-11 rounded-full flex items-center justify-center text-[#475569] hover:text-[#0066ff] hover:bg-blue-50/70 transition-colors"
-                >
-                  <EmailIcon className="w-5 h-5" />
-                </a>
-              </div>
-            </div>
-
-            {/* ----------------------------------------------------------- */}
-            {/* THE 6 FLOATING IMAGES (OUTSIDE THE GRID, ANCHORED TO SLOTS) */}
-            {/* ----------------------------------------------------------- */}
-            <div className="absolute inset-0 pointer-events-none z-30">
-              
-              {/* Image 1: Yogesh Cycling -> Slot 1 (left 36px, top 130px) */}
-              <motion.div
-                style={{
-                  x: img1X,
-                  y: img1Y,
-                  width: 205,
-                  height: 210,
-                  scaleX: img1ScaleX,
-                  scaleY: img1ScaleY,
-                  transformOrigin: "top left",
-                  willChange: "transform",
-                  rotate: img1Rotate,
-                }}
-                className="absolute left-[36px] top-[130px] pointer-events-auto cursor-pointer group"
-              >
-                <div className="relative w-full h-full select-none transition-transform duration-300 ease-out group-hover:scale-[1.02]">
-                  <StampFrame className="w-full h-full"><img src={photoCycle} alt="Yogesh cycling on campus - Postage Stamp" loading="lazy" decoding="async" style={{ objectPosition: "center 55%" }} className="w-full h-full object-cover select-none" /></StampFrame>
-                </div>
-              </motion.div>
-
-              {/* Image 2: Coastal Lighthouse -> Slot 2 (left 257px, top 130px) */}
-              <motion.div
-                style={{
-                  x: img2X,
-                  y: img2Y,
-                  width: 426,
-                  height: 210,
-                  scaleX: img2ScaleX,
-                  scaleY: img2ScaleY,
-                  transformOrigin: "top left",
-                  willChange: "transform",
-                  rotate: img2Rotate,
-                }}
-                className="absolute left-[257px] top-[130px] pointer-events-auto cursor-pointer group"
-              >
-                <div className="relative w-full h-full select-none transition-transform duration-300 ease-out group-hover:scale-[1.02]">
-                  <StampFrame className="w-full h-full"><img src={photoLighthouse} alt="Coastal lighthouse surrounded by palm trees - Panoramic Postage Stamp" loading="lazy" decoding="async" style={{ objectPosition: "center 38%" }} className="w-full h-full object-cover select-none" /></StampFrame>
-                </div>
-              </motion.div>
-
-              {/* Image 3: Temple Gopuram -> Slot 3 (left 699px, top 130px) */}
-              <motion.div
-                style={{
-                  x: img3X,
-                  y: img3Y,
-                  width: 205,
-                  height: 436,
-                  scaleX: img3ScaleX,
-                  scaleY: img3ScaleY,
-                  transformOrigin: "top left",
-                  willChange: "transform",
-                  rotate: img3Rotate,
-                }}
-                className="absolute left-[699px] top-[130px] pointer-events-auto cursor-pointer group"
-              >
-                <div className="relative w-full h-full select-none transition-transform duration-300 ease-out group-hover:scale-[1.02]">
-                  <StampFrame className="w-full h-full"><img src={photoTemple} alt="Historic temple gopuram with devotees - Tall Postage Stamp" loading="lazy" decoding="async" style={{ objectPosition: "center 40%" }} className="w-full h-full object-cover select-none" /></StampFrame>
-                </div>
-              </motion.div>
-
-              {/* Image 4: Couple Photo (The Better Half) -> Slot 4 (left 36px, top 356px) */}
-              <motion.div
-                style={{
-                  x: img4X,
-                  y: img4Y,
-                  width: 205,
-                  height: 210,
-                  scaleX: img4ScaleX,
-                  scaleY: img4ScaleY,
-                  transformOrigin: "top left",
-                  willChange: "transform",
-                  rotate: img4Rotate,
-                }}
-                className="absolute left-[36px] top-[356px] pointer-events-auto cursor-pointer group"
-              >
-                <CoupleCard imageSrc={photoCouple} />
-              </motion.div>
-
-              {/* Image 5: Prabhas Photo -> Slot 5 (left 257px, top 356px) */}
-              <motion.div
-                style={{
-                  x: img5X,
-                  y: img5Y,
-                  width: 205,
-                  height: 210,
-                  scaleX: img5ScaleX,
-                  scaleY: img5ScaleY,
-                  transformOrigin: "top left",
-                  willChange: "transform",
-                  rotate: img5Rotate,
-                }}
-                className="absolute left-[257px] top-[356px] pointer-events-auto cursor-pointer group"
-              >
-                <div className="relative w-full h-full select-none transition-transform duration-300 ease-out group-hover:scale-[1.02]">
-                  <StampFrame className="w-full h-full" paper="#f7e8cf" edge="#ecd9b8">
-                    <img
-                      src={cafeDumplings}
-                      alt="Crispy golden dumpling purses on a pewter plate, filmed at a café"
-                      loading="lazy"
-                      decoding="async"
-                      className="w-full h-full object-cover select-none"
-                    />
-                  </StampFrame>
-                </div>
-              </motion.div>
-
-              {/* Image 6: Substack Note Card -> Slot 6 (left 478px, top 356px) */}
-              <motion.div
-                style={{
-                  x: img6X,
-                  y: img6Y,
-                  width: 205,
-                  height: 210,
-                  scaleX: img6ScaleX,
-                  scaleY: img6ScaleY,
-                  transformOrigin: "top left",
-                  willChange: "transform",
-                  rotate: img6Rotate,
-                }}
-                className="absolute left-[478px] top-[356px] pointer-events-auto"
-              >
-                <NoteCard 
-                  onClick={navigateToAbout} 
-                  onMouseEnter={() => import('./AboutPage')}
-                  onFocus={() => import('./AboutPage')}
-                />
-              </motion.div>
-
-            </div>
-
-          </div>
-
-        </div>
-
-      </motion.section>
-    </motion.div>
+      <DeskHero onWorks={handleScrollToWorks} onAbout={navigateToAbout} />
 
       {/* ----------------------------------------------------------------- */}
       {/* SECTION 3: SELECTED WORKS                                         */}
@@ -1826,91 +1245,27 @@ export default function App() {
       {/* White gradient keeps the reveal transition soft and feathered below the second section. */}
       <div
         aria-hidden="true"
-        className="profile-white-strip relative z-30 h-10 sm:h-16 w-full bg-gradient-to-b from-white via-white/80 to-transparent pointer-events-none"
+        className="profile-white-strip relative z-30 h-10 sm:h-16 w-full bg-gradient-to-b from-[#f4f1ea] via-[#f4f1ea]/80 to-transparent pointer-events-none"
       />
 
-      <section ref={worksRef} id="selected-works" className="relative shrink-0 w-[940px] max-w-[92vw] mx-auto mt-14 sm:mt-8 mb-16 z-10">
-        
-        <ScrollRevealSection sectionRef={worksRef}>
-        {/* Section header moves with the full grid. */}
-        <motion.div 
-          className="flex items-center justify-between mb-6 px-1"
-        >
-          <h2 className="font-seasons text-h3 font-normal not-italic text-[#08304c] tracking-tight">
-            Selected Works
-          </h2>
-          <span className="font-basier text-small text-gray-500 font-medium tracking-tight">
-            4 case studies
-          </span>
-        </motion.div>
+      <SelectedWorks
+        sectionRef={worksRef}
+        items={[
+          { slug: 'trosky', tag: 'Sports · Mobile', bg: 'linear-gradient(140deg,#e6f7fd,#9be4f4)', fg: '#0e7f9c', title: 'Turning daily drills into lasting habits', description: 'A daily training experience for baseball players.', outcome: '30-day streak retention: 26% → 62%', href: '/case-study/trosky', shots: [troskyHome, troskyXp], onClick: () => navigateToCaseStudy('trosky'), prefetch: () => import('./CaseStudyTrosky') },
+          { slug: 'ahamx', tag: 'EdTech · Web', bg: 'linear-gradient(140deg,#eef2ff,#cbd8fb)', fg: '#3a54b8', title: 'Helping learners pick up where they left off', description: 'Connecting learning and capability development.', outcome: 'Resume learning without searching the catalog', href: '/case-study/ahamx', shots: [ahamxDashboard], onClick: () => navigateToCaseStudy('ahamx'), prefetch: () => import('./CaseStudyAhamX') },
+          { slug: 'ryzeup', tag: 'SaaS · Mobile', bg: 'linear-gradient(140deg,#fff2df,#ffc98e)', fg: '#c25a14', title: 'Bringing focus to everyday team management', description: 'Helping managers focus on their teams.', outcome: 'Context switching: 28s → under 3s', href: '/case-study/ryzeup', shots: [ryzeupBuzz, ryzeupWall], onClick: () => navigateToCaseStudy('ryzeup'), prefetch: () => import('./CaseStudyRyzeup') },
+          { slug: 'carepulse', tag: 'Healthcare · Under NDA', bg: 'linear-gradient(140deg,#fbf3e4,#efd6a8)', fg: '#8a6a24', title: 'Giving clinicians more time for care', description: 'An ambient documentation concept for clinicians.', outcome: 'Walkthrough on request', locked: true, shots: [], onClick: () => setPasswordModalOpen(true) },
+        ]}
+      />
 
-        {/* Case Studies Grid (2 Rows × 2 Columns) */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          
-          {/* Case Study 1: Trosky 365 */}
-          <CaseStudyCard
-            cover={{ kind: 'phones', bg: 'linear-gradient(140deg,#e6f7fd 0%,#8fe0f2 55%,#35c5e6 100%)', shots: [troskyHome, troskyXp] }}
-            title="Turning daily drills into lasting habits"
-            description="A daily training experience for baseball players."
-            outcome="30-day streak retention: 26% → 62%"
-            href="/case-study/trosky"
-            slug="trosky"
-            onClick={() => navigateToCaseStudy('trosky')}
-            onMouseEnter={() => import('./CaseStudyTrosky')}
-            onFocus={() => import('./CaseStudyTrosky')}
-          />
+      <div id="about-me" className="relative bg-[#f4f1ea]">
+        <AboutPoster bleed />
+      </div>
+      <ScatterZoom onAbout={navigateToAbout} />
 
-          {/* Case Study 2: AhamX */}
-          <CaseStudyCard
-            cover={{ kind: 'desktop', bg: 'linear-gradient(140deg,#eef2ff 0%,#c7d4fb 55%,#9fb4f2 100%)', shots: [ahamxDashboard] }}
-            title="Helping learners pick up where they left off"
-            description="Connecting learning and capability development."
-            outcome="Resume learning without searching the catalog"
-            href="/case-study/ahamx"
-            slug="ahamx"
-            onClick={() => navigateToCaseStudy('ahamx')}
-            onMouseEnter={() => import('./CaseStudyAhamX')}
-            onFocus={() => import('./CaseStudyAhamX')}
-          />
-
-          {/* Case Study 3: Ryzeup */}
-          <CaseStudyCard
-            cover={{ kind: 'phones', bg: 'linear-gradient(140deg,#fff2df 0%,#ffbf7a 55%,#ff8f45 100%)', shots: [ryzeupBuzz, ryzeupWall] }}
-            title="Bringing focus to everyday team management"
-            description="Helping managers focus on their teams."
-            outcome="Context switching: 28s → under 3s"
-            href="/case-study/ryzeup"
-            slug="ryzeup"
-            onClick={() => navigateToCaseStudy('ryzeup')}
-            onMouseEnter={() => import('./CaseStudyRyzeup')}
-            onFocus={() => import('./CaseStudyRyzeup')}
-          />
-
-          {/* Case Study 4: CarePulse Health */}
-          <CaseStudyCard
-            cover={{ kind: 'locked', bg: 'linear-gradient(140deg,#fbf3e4 0%,#f1dcb8 55%,#e6c58f 100%)' }}
-            title="Giving clinicians more time for care"
-            description="An ambient documentation concept for clinicians."
-            outcome="Under NDA · walkthrough on request"
-            onClick={() => setPasswordModalOpen(true)}
-            isLocked={true}
-          />
-
-        </div>
-
-        </ScrollRevealSection>
-      </section>
-
-      {/* ----------------------------------------------------------------- */}
-      {/* SECTION 4: FOODIE / CONCEPT TO CRAFT & COMMUNITY TESTIMONIALS     */}
-      {/* ----------------------------------------------------------------- */}
-      <ConceptToCraft />
-
-      {/* Community Testimonials & Spotlight Feed */}
-      <CommunityTestimonials />
-
-      {/* SECTION 5: WHITE FOOTER SECTION (CURTAIN LAYER)                   */}
-      <WhiteFooterCard navigateToCaseStudy={navigateToCaseStudy} navigateToAbout={navigateToAbout} onScrollToWorks={handleScrollToWorks} />
+      {/* V3 closing sections: kind words, footer */}
+      <section id="kind-words" className="px-4 sm:px-8 py-20 md:py-28"><div className="mx-auto max-w-[1180px]"><KindB /></div></section>
+      <footer id="footer" className="px-4 sm:px-8 pb-8"><div className="mx-auto max-w-[1180px]"><FooterA /></div></footer>
 
       </div>
           </motion.div>
@@ -1949,7 +1304,7 @@ export default function App() {
               </button>
 
               {/* Lock Badge */}
-              <div className="w-12 h-12 rounded-2xl bg-[#12315a]/[0.08] text-[#12315a] flex items-center justify-center mx-auto mb-4">
+              <div className="w-12 h-12 rounded-2xl bg-[#141210]/[0.08] text-[#141210] flex items-center justify-center mx-auto mb-4">
                 <Lock className="w-5 h-5" />
               </div>
 
@@ -1957,7 +1312,7 @@ export default function App() {
               <h3
                 id="password-modal-title"
                 className="text-h3 font-medium text-[#111827] tracking-tight mb-2"
-                style={{ fontFamily: "'The Seasons', Georgia, serif" }}
+                style={{ fontFamily: "'Instrument Serif', Georgia, serif" }}
               >
                 Shared on a call
               </h3>
@@ -1969,7 +1324,7 @@ export default function App() {
 
               <a
                 href="mailto:yogeshbattula55@gmail.com?subject=CarePulse%20Health%20walkthrough&body=Hi%20Yogesh,%0A%0AI'd%20like%20to%20see%20a%20walkthrough%20of%20your%20CarePulse%20Health%20work.%20Here%20are%20a%20few%20times%20that%20work%20for%20me:%0A%0A"
-                className="inline-flex items-center justify-center gap-1.5 w-full py-3 px-5 rounded-xl bg-[#12315a] hover:bg-[#0b2342] text-white text-small font-medium transition-colors"
+                className="inline-flex items-center justify-center gap-1.5 w-full py-3 px-5 rounded-xl bg-[#141210] hover:bg-[#000000] text-white text-small font-medium transition-colors"
               >
                 Request a walkthrough <ArrowUpRight className="w-4 h-4" />
               </a>

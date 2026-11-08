@@ -89,9 +89,9 @@ html, body {
    from 16px). Every font size on the site should come from this list.
    ------------------------------------------------------------------ */
 @theme {
-  --font-seasons: 'The Seasons', Georgia, serif;
-  --font-basier: '__basierCircle_9ca3f5', 'Segoe UI', Roboto, sans-serif;
-  --font-switzer: '__basierCircle_9ca3f5', 'Segoe UI', Roboto, sans-serif;
+  --font-seasons: 'Instrument Serif', Georgia, serif;
+  --font-basier: 'Inter Variable', 'Segoe UI', Roboto, sans-serif;
+  --font-switzer: 'Inter Variable', 'Segoe UI', Roboto, sans-serif;
 
   --text-caption: 0.75rem;      /* 12px: labels, meta */
   --text-caption--line-height: 1.4;
@@ -120,7 +120,7 @@ html, body {
 
 /* Short uppercase labels: 12px, medium, tracked out, readable grey. */
 .type-label {
-  font-family: '__basierCircle_9ca3f5', 'Segoe UI', Roboto, sans-serif;
+  font-family: 'Inter Variable', 'Segoe UI', Roboto, sans-serif;
   font-size: 0.75rem;
   line-height: 1.4;
   font-weight: 500;
@@ -130,16 +130,17 @@ html, body {
 }
 
 .font-seasons {
-  font-family: 'The Seasons', Georgia, serif !important;
+  font-family: 'Instrument Serif', Georgia, serif !important;
+  font-weight: 400 !important;
 }
 
 .font-basier {
-  font-family: '__basierCircle_9ca3f5', 'Segoe UI', Roboto, sans-serif !important;
+  font-family: 'Inter Variable', 'Segoe UI', Roboto, sans-serif !important;
 }
 
 .font-switzer {
   /* Retired: kept as an alias so any leftover class still renders in Basier. */
-  font-family: '__basierCircle_9ca3f5', 'Segoe UI', Roboto, sans-serif !important;
+  font-family: 'Inter Variable', 'Segoe UI', Roboto, sans-serif !important;
 }
 
 html,
@@ -149,7 +150,7 @@ body {
   width: 100%;
   max-width: 100vw;
   overflow-x: clip;
-  font-family: '__basierCircle_9ca3f5', '__basierCircle_Fallback_9ca3f5', 'Segoe UI', 'Roboto', sans-serif;
+  font-family: 'Inter Variable', 'Segoe UI', 'Roboto', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: #ffffff;
@@ -271,9 +272,9 @@ i, em, cite, dfn, var, address {
 @media(max-width:639px){.home-primary-actions{gap:12px;margin-top:18px}.home-work-button{padding:3.5px}.home-work-button-inner{padding:9px 20px;font-size:14px;gap:8px}.home-hero-title{font-size:28px!important}.home-hero-copy{max-width:100%!important}.hero-section{min-height:450px}}
 
 /* Shared editorial typography for all three case studies (uses the type scale above). */
-.case-study-page{--cs-body-font:'__basierCircle_9ca3f5','Segoe UI',sans-serif;--cs-heading-font:'__basierCircle_9ca3f5','Segoe UI',sans-serif}
-.case-study-page .cs-title{font-family:'The Seasons',Georgia,serif!important;font-size:32px;font-weight:400;line-height:1.1;letter-spacing:-.02em;text-wrap:balance}
-.case-study-page .cs-section-title{font-family:'The Seasons',Georgia,serif!important;font-size:24px;font-weight:400;line-height:1.2;letter-spacing:-.01em;text-wrap:balance}
+.case-study-page{--cs-body-font:'Inter Variable','Segoe UI',sans-serif;--cs-heading-font:'Inter Variable','Segoe UI',sans-serif}
+.case-study-page .cs-title{font-family:'Instrument Serif',Georgia,serif!important;font-size:40px;font-weight:400;line-height:1.1;letter-spacing:-.02em;text-wrap:balance}
+.case-study-page .cs-section-title{font-family:'Instrument Serif',Georgia,serif!important;font-size:34px;font-weight:400;line-height:1.2;letter-spacing:-.01em;text-wrap:balance}
 .case-study-page .cs-subheading{font-family:var(--cs-heading-font)!important;font-size:20px;font-weight:500;line-height:1.4;letter-spacing:0}
 .case-study-page .cs-detail-heading{font-family:var(--cs-heading-font)!important;font-size:16px;font-weight:500;line-height:1.5;letter-spacing:0}
 .case-study-page .cs-body{font-family:var(--cs-body-font)!important;font-size:16px;font-weight:400;line-height:1.6;letter-spacing:0;max-width:68ch}
@@ -283,3 +284,32 @@ i, em, cite, dfn, var, address {
 .case-study-page .cs-body strong{font-weight:500;color:#111827}
 @media(min-width:768px){.case-study-page .cs-title{font-size:40px}.case-study-page .cs-section-title{font-size:32px}}
 @media(min-width:1024px){.case-study-page .cs-title{font-size:48px}.case-study-page .cs-body{font-size:17px}}
+
+/* ---- Version 3: designer's desk hero ---- */
+.desk-obj { left: var(--mx); top: var(--my); width: 26%; }
+@media (min-width: 768px) { .desk-obj { left: var(--x); top: var(--y); width: 11%; } }
+.desk-label { font-family: 'Caveat', cursive; }
+.desk-hero .chip { left: var(--cm); bottom: var(--mb); }
+@media (min-width: 768px) { .desk-hero .chip { left: var(--cx); bottom: var(--b); } }
+
+.desk-hero h1 em { font-style: italic !important; }
+
+.desk-hero .prop { left: var(--mx); top: var(--my); width: var(--mw); }
+@media (min-width: 768px) { .desk-hero .prop { left: var(--x); top: var(--y); width: var(--w); } }
+
+
+/* ---- V3 theme for inner pages (case studies, about, 404): cream paper, ink type, serif headings ---- */
+.case-study-page{background:#f4f1ea!important;color:#141210}
+.case-study-page::before{content:"";position:absolute;inset:0;z-index:-20;pointer-events:none;opacity:.35;background-image:radial-gradient(rgba(42,38,34,.09) 1px,transparent 1px);background-size:18px 18px}
+.case-study-page > .-z-10{display:none}
+.case-study-page h1.font-seasons{font-size:clamp(44px,6.4vw,88px)!important;line-height:.98!important;letter-spacing:-.02em!important;color:#141210!important}
+.case-study-page .cs-section-title{font-weight:400!important;color:#141210!important}
+@media (min-width:768px){.case-study-page .cs-section-title{font-size:44px}.case-study-page .cs-title{font-size:52px}}
+.case-study-page .border-gray-100,.case-study-page .border-gray-200{border-color:rgba(20,18,16,.1)!important}
+.case-study-page hr{border-color:rgba(20,18,16,.1)!important}
+.case-study-page ::selection,.v3-page ::selection{background:#ffd983;color:#141210}
+
+/* compositor-driven spin (smoother than JS-driven rotation) */
+@keyframes v3spin { to { transform: rotate(360deg); } }
+.v3-spin { animation: v3spin 10s linear infinite; transform-origin: 50% 50%; }
+@media (prefers-reduced-motion: reduce) { .v3-spin { animation: none; } }

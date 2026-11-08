@@ -52,7 +52,7 @@ export default function NotFound({ onHome, onWorks }) {
   const path = typeof window !== 'undefined' ? window.location.pathname : '';
 
   return (
-    <main className="min-h-screen bg-[#fbf6ee] flex items-center justify-center px-4 py-16 font-basier">
+    <main className="min-h-screen bg-[#f4f1ea] flex items-center justify-center px-4 py-16 font-basier">
       <div className="w-full max-w-[520px] text-center">
         <motion.div
           initial={reduced ? false : { opacity: 0, y: 24, rotate: -6 }}
@@ -63,7 +63,7 @@ export default function NotFound({ onHome, onWorks }) {
           <div ref={stampRef} className="aspect-[4/5] bg-[#f7e8cf] p-4" style={{ clipPath: clip }}>
           <div className="h-full w-full rounded-[3px] bg-gradient-to-br from-[#ffb36b] via-[#ff8a3d] to-[#f25c2a] flex flex-col items-center justify-center text-white">
             <span className="text-small uppercase tracking-[0.25em] opacity-80">Error</span>
-            <span className="text-[96px] sm:text-[112px] leading-none" style={{ fontFamily: "'The Seasons', Georgia, serif" }}>
+            <span className="text-[96px] sm:text-[112px] leading-none" style={{ fontFamily: "'Instrument Serif', Georgia, serif" }}>
               404
             </span>
             <span className="text-caption uppercase tracking-[0.2em] opacity-80 mt-1">Postage due</span>
@@ -93,8 +93,8 @@ export default function NotFound({ onHome, onWorks }) {
         </motion.svg>
 
         <h1
-          className="mt-4 text-h2 sm:text-h1 text-[#08304C] leading-tight"
-          style={{ fontFamily: "'The Seasons', Georgia, serif" }}
+          className="mt-4 text-h2 sm:text-h1 text-[#141210] leading-tight text-[52px] sm:text-[72px]"
+          style={{ fontFamily: "'Instrument Serif', Georgia, serif" }}
         >
           Returned to sender
         </h1>
@@ -106,7 +106,7 @@ export default function NotFound({ onHome, onWorks }) {
           <a
             href="/"
             onClick={(e) => { e.preventDefault(); onWorks(); }}
-            className="inline-flex items-center justify-center px-6 py-3 rounded-full bg-[#111827] hover:bg-[#ff6a1f] text-white text-small font-medium transition-colors"
+            className="inline-flex items-center justify-center px-6 py-3 rounded-full bg-[#2a2622] hover:bg-black text-[#f4f1ea] text-small font-medium transition-colors"
           >
             See my work
           </a>
