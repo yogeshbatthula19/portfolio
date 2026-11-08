@@ -63,18 +63,23 @@ export function KindA() {
 // K2: one big quote at a time, glossy name pills switch between them
 export function KindB() {
   const [i, setI] = useState(0);
+  const [auto, setAuto] = useState(true);
+  useEffect(() => {
+    if (!auto) return undefined;
+    const id = window.setInterval(() => setI((n) => (n + 1) % Q.length), 6000);
+    return () => window.clearInterval(id);
+  }, [auto]);
   const t = Q[i];
   return (
-    <div className="mx-auto max-w-[980px] text-center">
-      <Star color="#ff5a1f" cls="h-10 w-10 md:h-14 md:w-14" />
+    <div className="mx-auto max-w-[760px] text-center">
+      <Star color="#ff5a1f" cls="h-8 w-8 md:h-10 md:w-10" />
       <motion.blockquote key={i} initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}
-        className="mt-6 text-[#141210] text-[30px] sm:text-[38px] md:text-[44px] leading-[1.1] tracking-[-0.015em]" style={serif}>
+        className="mt-5 min-h-[190px] sm:min-h-[150px] md:min-h-[130px] text-[#141210] text-[22px] sm:text-[26px] md:text-[30px] leading-[1.25] tracking-[-0.01em]" style={serif}>
         “{t.q}”
       </motion.blockquote>
-      <p className="mt-8 text-[13px] text-[#6b645b]">Three people, in their own words. Tap a name.</p>
-      <div className="mt-4 flex flex-wrap items-center justify-center gap-3">
+      <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
         {Q.map((x, k) => (
-          <button key={x.n} type="button" onClick={() => setI(k)} aria-pressed={k === i}
+          <button key={x.n} type="button" onClick={() => { setAuto(false); setI(k); }} aria-pressed={k === i}
             className={`flex items-center gap-2.5 rounded-full py-1.5 pl-1.5 pr-5 transition-all ${k === i ? 'scale-105' : 'opacity-60 hover:opacity-100'}`}
             style={k === i ? gloss(x.c[0], x.c[1]) : { background: 'rgba(255,255,255,0.7)' }}>
             <img src={x.p} alt="" className="h-9 w-9 rounded-full object-cover" />

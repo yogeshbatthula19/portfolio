@@ -10,17 +10,8 @@ import '@fontsource-variable/inter';
 import '@fontsource/jetbrains-mono/500.css';
 import { Asterisk } from '@phosphor-icons/react';
 import PillDrop from './PillDrop';
-import { siClaude, siGooglegemini, siPerplexity, siFigma } from 'simple-icons';
 
 // x = left on desktop (%), m = left on mobile (%), b = bottom (px), r = tilt. hideM hides on phones.
-
-// AI tools I design with: app-icon tiles (brand glyphs from simple-icons).
-const TOOLS = [
-  { n: 'Claude', i: siClaude, bg: '#d97757' },
-  { n: 'Gemini', i: siGooglegemini, bg: '#ffffff', fg: '#8e75b2' },
-  { n: 'Perplexity', i: siPerplexity, bg: '#141414' },
-  { n: 'Figma', i: siFigma, bg: '#ffffff', fg: '#f24e1e' },
-];
 
 export default function DeskHero({ onWorks, onAbout }) {
   const ref = useRef(null);
@@ -109,19 +100,6 @@ export default function DeskHero({ onWorks, onAbout }) {
         >
           See my work <span aria-hidden="true">↓</span>
         </motion.button>
-        <motion.div
-          initial={reduce ? false : { opacity: 0, y: 12 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.9, duration: 0.6 }}
-          className="mt-8 flex items-center justify-center gap-3"
-        >
-          <span className="text-[12px] md:text-[13px] text-[#6b645b] mr-1">Designing with</span>
-          {TOOLS.map((t) => (
-            <span key={t.n} title={t.n} className="grid place-items-center h-9 w-9 md:h-11 md:w-11 rounded-[11px] md:rounded-[13px] shadow-[0_6px_12px_-6px_rgba(0,0,0,0.4),inset_0_1px_0_rgba(255,255,255,0.5)]" style={{ background: t.bg }}>
-              <svg viewBox="0 0 24 24" className="h-[52%] w-[52%]" fill={t.fg || '#fff'} role="img" aria-label={t.n}><path d={t.i.path} /></svg>
-            </span>
-          ))}
-        </motion.div>
       </div>
       </div>
 
