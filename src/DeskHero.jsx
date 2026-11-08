@@ -4,6 +4,12 @@ import avatar from './assets/photo_yogesh_avatar.webp';
 import lighthouse from './assets/photo_lighthouse.webp';
 import cycle from './assets/photo_cycle_full.webp';
 import couple from './assets/photo_couple_full.webp';
+import '@fontsource/instrument-serif/400.css';
+import '@fontsource/instrument-serif/400-italic.css';
+import '@fontsource-variable/inter';
+import '@fontsource/jetbrains-mono/500.css';
+import { FlowArrow, Sparkle, SquaresFour, CursorClick, Question, CornersOut, Code, ArrowsClockwise, MagnifyingGlass } from '@phosphor-icons/react';
+import { sparkles, glowingStar, sunflower, cloud, heart, drawPen, drawCursor, drawSmile } from './Illustrations';
 
 // Hand-drawn line objects (code-generated SVG). One ink colour, one accent blob each.
 const INK = '#2a2622';
@@ -87,15 +93,15 @@ const OBJECTS = [
 ];
 
 const CHIPS = [
-  { t: 'Untangling flows', c: '#c8e66b', x: -1, m: -4, r: -4 },
-  { t: 'AI products', c: '#ff8a4c', x: 14, m: 44, r: -18, lift: 1 },
-  { t: 'Design systems', c: '#f6b8d0', x: 25, m: 70, r: 2, hideM: 1 },
-  { t: 'Prototyping', c: '#ececec', x: 13, m: 2, r: 0, row: 1 },
-  { t: 'Asking why', c: '#9cc9f5', x: 58, m: 70, r: 3, row: 1 },
-  { t: 'Edge cases', c: '#d7c4f5', x: 76, m: 72, r: -3, hideM: 1 },
-  { t: 'Shipping with devs', c: '#5fd6a0', x: 52, m: 33, r: 0, row: 1 },
-  { t: 'Scrum master', c: '#ffd23f', x: 80, m: 76, r: 5, row: 1, hideM: 1 },
-  { t: 'User research', c: '#ffb38a', x: 33, m: 30, r: 6, row: 1, hideM: 1 },
+  { t: 'Untangling flows', I: FlowArrow, c: '#c8e66b', x: -1, m: -4, r: -4 },
+  { t: 'AI products', I: Sparkle, c: '#ff8a4c', x: 16, m: 44, r: -18, lift: 1 },
+  { t: 'Design systems', I: SquaresFour, c: '#f6b8d0', x: 31, m: 70, r: 2, hideM: 1 },
+  { t: 'Prototyping', I: CursorClick, c: '#ececec', x: 13, m: 2, r: 0, row: 1 },
+  { t: 'Asking why', I: Question, c: '#9cc9f5', x: 63, m: 70, r: 3, row: 1 },
+  { t: 'Edge cases', I: CornersOut, c: '#d7c4f5', x: 76, m: 72, r: -3, hideM: 1 },
+  { t: 'Shipping with devs', I: Code, c: '#5fd6a0', x: 47, m: 33, r: 0, row: 1 },
+  { t: 'Scrum master', I: ArrowsClockwise, c: '#ffd23f', x: 80, m: 76, r: 5, row: 1, hideM: 1 },
+  { t: 'User research', I: MagnifyingGlass, c: '#ffb38a', x: 33, m: 30, r: 6, row: 1, hideM: 1 },
 ];
 
 function DeskObject({ o, i, onAction, reduce }) {
@@ -160,7 +166,7 @@ export default function DeskHero({ onWorks, onAbout }) {
   );
 
   return (
-    <section ref={ref} className="desk-hero relative w-full min-h-[max(100svh,820px)] md:min-h-[max(100svh,780px)] overflow-hidden bg-[#f4f1ea]">
+    <section ref={ref} style={{ fontFamily: "'Inter Variable', system-ui, sans-serif" }} className="desk-hero relative w-full min-h-[max(100svh,820px)] md:min-h-[max(100svh,780px)] overflow-hidden bg-[#f4f1ea]">
       {/* faint paper grain */}
       <div aria-hidden="true" className="absolute inset-0 opacity-[0.35] pointer-events-none" style={{ backgroundImage: 'radial-gradient(rgba(42,38,34,0.09) 1px, transparent 1px)', backgroundSize: '18px 18px' }} />
 
@@ -171,6 +177,30 @@ export default function DeskHero({ onWorks, onAbout }) {
           Open to Product Design roles
         </span>
       </header>
+
+
+      {/* Illustrations: Fluent Emoji + Streamline Freehand doodles */}
+      {[
+        { C: sparkles, cls: 'left-[30%] top-[17%] w-8 md:w-10', r: -10, d: 0 },
+        { C: glowingStar, cls: 'right-[29%] top-[16%] w-7 md:w-9', r: 12, d: 0.6 },
+        { C: sunflower, cls: 'hidden md:block left-[29%] top-[67%] w-10', r: -8, d: 1.2 },
+        { C: cloud, cls: 'hidden md:block right-[27%] top-[66%] w-12', r: 0, d: 0.3 },
+        { C: heart, cls: 'hidden md:block left-[47%] top-[9%] w-6', r: 10, d: 0.9 },
+                { C: drawPen, cls: 'hidden md:block right-[20%] top-[34%] w-10 opacity-80', r: 8, d: 1 },
+        { C: drawCursor, cls: 'hidden md:block left-[38%] top-[78%] w-9 opacity-80', r: -6, d: 0.2 },
+        { C: drawSmile, cls: 'hidden md:block right-[35%] top-[79%] w-8 opacity-80', r: 0, d: 0.8 },
+      ].map(({ C, cls, r, d }, i) => (
+        <motion.div
+          key={i}
+          aria-hidden="true"
+          className={`absolute z-[5] pointer-events-none ${cls}`}
+          initial={reduce ? false : { opacity: 0, scale: 0.4, rotate: r - 30 }}
+          animate={reduce ? { opacity: 1 } : { opacity: 1, scale: 1, rotate: [r, r + 8, r], y: [0, -6, 0] }}
+          transition={{ opacity: { delay: 0.8 + d, duration: 0.4 }, scale: { delay: 0.8 + d, type: 'spring', stiffness: 200, damping: 12 }, rotate: { duration: 5 + d, repeat: Infinity, ease: 'easeInOut' }, y: { duration: 4 + d, repeat: Infinity, ease: 'easeInOut' } }}
+        >
+          <C className="w-full h-auto" />
+        </motion.div>
+      ))}
 
       {OBJECTS.map((o, i) => <DeskObject key={o.key} o={o} i={i} onAction={onAction} reduce={reduce} />)}
 
@@ -188,8 +218,8 @@ export default function DeskHero({ onWorks, onAbout }) {
           initial={reduce ? false : { opacity: 0, y: 18 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.12, ease: [0.22, 1, 0.36, 1] }}
-          className="mt-4 sm:mt-6 text-[#2a2622] text-[46px] sm:text-[72px] lg:text-[88px] leading-[1.02] tracking-[-0.02em]"
-          style={{ fontFamily: "'The Seasons', Georgia, serif" }}
+          className="mt-4 sm:mt-6 text-[#2a2622] text-[54px] sm:text-[84px] lg:text-[104px] leading-[0.98] tracking-[-0.025em]"
+          style={{ fontFamily: "'Instrument Serif', Georgia, serif" }}
         >
           Designing {pill(cycle, 'Yogesh cycling on campus')} AI products people <em className="italic">trust</em>{pill(couple, 'Yogesh with his partner')} and enjoy.
         </motion.h1>
@@ -232,11 +262,11 @@ export default function DeskHero({ onWorks, onAbout }) {
             style={{
               background: c.c,
               '--cx': `${c.x}%`, '--cm': `${c.m}%`,
-              bottom: c.row ? '-6px' : c.lift ? '58px' : '50px',
-              fontFamily: "ui-monospace, 'SF Mono', Menlo, monospace",
+              bottom: c.row ? '-6px' : c.lift ? '92px' : '50px',
+              fontFamily: "'JetBrains Mono', ui-monospace, monospace",
             }}
           >
-            {c.t}
+            <span className="inline-flex items-center gap-2">{c.t}<c.I size={16} weight="bold" aria-hidden="true" /></span>
           </motion.span>
         ))}
       </div>
