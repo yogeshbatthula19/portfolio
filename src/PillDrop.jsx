@@ -3,7 +3,7 @@ import Matter from 'matter-js';
 
 // Pills fall from above the hero, bounce off the headline's words and pile up on the hero's bottom edge.
 // Drag them to throw them around. `heroRef` = hero section, `textRef` = headline element.
-const { Engine, Bodies, Body, Composite, Constraint, Query } = Matter;
+const { Engine, Bodies, Body, Composite, Constraint, Sleeping } = Matter;
 
 export const PILLS = [
   { t: 'research', bg: ['#e2eeff', '#c4dcff'], fg: '#3a7be8' },
@@ -39,7 +39,7 @@ export default function PillDrop({ heroRef, textRef, reduce }) {
   useEffect(() => {
     const hero = heroRef.current; if (!hero) return undefined;
     const mobile = () => window.innerWidth < 768;
-    let raf = 0; let timer = 0; let engine; let items = []; let alive = true; let drag = null; let onResize;
+    let raf = 0; let timer = 0; let engine; let items = []; let alive = true; let drag = null; let onResize; let wake = () => {}; let io;
 
     const place = () => {
       const W = hero.clientWidth; const H = hero.clientHeight;
@@ -56,7 +56,7 @@ export default function PillDrop({ heroRef, textRef, reduce }) {
         return;
       }
 
-      engine = Engine.create({ gravity: { y: 1.15 } });
+      engine = Engine.create({ gravity: { y: 1.15 }, enableSleeping: true });
       const wall = { isStatic: true, restitution: 0.3, friction: 0.5 };
       const floor = Bodies.rectangle(W / 2, H + 30 - 4, W * 3, 60, wall);
       const left = Bodies.rectangle(-30, H / 2, 60, H * 4, wall);
@@ -78,28 +78,40 @@ export default function PillDrop({ heroRef, textRef, reduce }) {
         return { el, body, w, h, still: 0 };
       });
 
-      let last = performance.now();
+      // pills resting above the headline's bottom edge get nudged through; the pile below is left alone
+      const tb = textRef.current.getBoundingClientRect(); const textBottom = tb.bottom - hero.getBoundingClientRect().top;
+      let last = performance.now(); let running = false; let visible = true;
       const loop = (now) => {
-        if (!alive) return;
+        if (!alive || !visible) { running = false; return; }
         const dt = Math.min(32, now - last); last = now;
         Engine.update(engine, dt);
+        let awake = !!drag;
         items.forEach((it) => {
           const { el, body, w, h } = it;
-          // anti-jam: a pill resting on the text gets a shove so it keeps tumbling down to the floor
-          if (body.position.y < H - h * 1.4 && body.speed < 0.5 && !(drag && drag.c.bodyB === body)) { it.still += dt; if (it.still > 400) { body.collisionFilter.mask = 0xfffd; Body.setVelocity(body, { x: (Math.random() - 0.5) * 3, y: 1 }); Body.setAngularVelocity(body, (Math.random() - 0.5) * 0.15); it.still = 0; } } else it.still = 0;
-          el.style.transform = `translate(${body.position.x - w / 2}px, ${body.position.y - h / 2}px) rotate(${body.angle}rad)`; });
+          if (!body.isSleeping) awake = true;
+          // anti-jam: a pill resting on the text drops through the letters to the floor
+          if (now - start < 9000 && body.position.y < textBottom && body.speed < 0.5 && !(drag && drag.c.bodyB === body)) { awake = true; it.still += dt; if (it.still > 400) { Sleeping.set(body, false); body.collisionFilter.mask = 0xfffd; Body.setVelocity(body, { x: (Math.random() - 0.5) * 3, y: 1 }); Body.setAngularVelocity(body, (Math.random() - 0.5) * 0.15); it.still = 0; } } else it.still = 0;
+          const tx = `translate3d(${(body.position.x - w / 2).toFixed(1)}px, ${(body.position.y - h / 2).toFixed(1)}px, 0) rotate(${body.angle.toFixed(3)}rad)`;
+          if (tx !== it.tx) { el.style.transform = tx; it.tx = tx; }
+        });
+        // everything has come to rest: stop the loop until someone grabs a pill
+        if (!awake && now - start > 2500) { running = false; return; }
         raf = requestAnimationFrame(loop);
       };
-      raf = requestAnimationFrame(loop);
+      const start = performance.now();
+      wake = () => { if (!running && alive && visible) { running = true; last = performance.now(); raf = requestAnimationFrame(loop); } };
+      io = new IntersectionObserver(([e]) => { visible = e.isIntersecting; if (visible) wake(); });
+      io.observe(hero);
+      wake();
 
       // drag with a spring constraint
       const pos = (e) => { const r = hero.getBoundingClientRect(); return { x: e.clientX - r.left, y: e.clientY - r.top }; };
       items.forEach(({ el, body }) => {
         el.onpointerdown = (e) => {
-          e.preventDefault(); el.setPointerCapture(e.pointerId);
+          e.preventDefault(); el.setPointerCapture(e.pointerId); Sleeping.set(body, false);
           const p = pos(e);
           drag = { id: e.pointerId, c: Constraint.create({ pointA: p, bodyB: body, pointB: { x: p.x - body.position.x, y: p.y - body.position.y }, stiffness: 0.12, damping: 0.1, length: 0 }) };
-          Composite.add(engine.world, drag.c); el.style.cursor = 'grabbing'; el.style.zIndex = 50;
+          Composite.add(engine.world, drag.c); el.style.cursor = 'grabbing'; el.style.zIndex = 50; wake();
         };
         el.onpointermove = (e) => { if (drag && drag.id === e.pointerId) drag.c.pointA = pos(e); };
         const up = (e) => { if (drag && drag.id === e.pointerId) { Composite.remove(engine.world, drag.c); drag = null; el.style.cursor = 'grab'; el.style.zIndex = 30; } };
@@ -108,13 +120,15 @@ export default function PillDrop({ heroRef, textRef, reduce }) {
     };
 
     timer = window.setTimeout(place, reduce ? 0 : 1900);
-    onResize = () => { // keep it simple: restart the pile at the new size
-      alive = false; cancelAnimationFrame(raf); window.clearTimeout(timer);
+    let lastW = window.innerWidth;
+    onResize = () => { // restart the pile only when the width really changes (mobile URL bar fires resize on scroll)
+      if (window.innerWidth === lastW) return; lastW = window.innerWidth;
+      alive = false; cancelAnimationFrame(raf); window.clearTimeout(timer); if (io) io.disconnect();
       if (engine) { Composite.clear(engine.world, false); Engine.clear(engine); }
       alive = true; place();
     };
     window.addEventListener('resize', onResize);
-    return () => { alive = false; cancelAnimationFrame(raf); window.clearTimeout(timer); window.removeEventListener('resize', onResize); if (engine) { Composite.clear(engine.world, false); Engine.clear(engine); } };
+    return () => { alive = false; if (io) io.disconnect(); cancelAnimationFrame(raf); window.clearTimeout(timer); window.removeEventListener('resize', onResize); if (engine) { Composite.clear(engine.world, false); Engine.clear(engine); } };
   }, [heroRef, textRef, reduce]);
 
   return (

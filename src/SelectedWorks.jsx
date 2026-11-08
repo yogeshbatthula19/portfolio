@@ -21,7 +21,7 @@ export default function SelectedWorks({ items, sectionRef }) {
             const link = c.locked ? { role: 'button', tabIndex: 0, onClick: c.onClick, onKeyDown: (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); c.onClick(); } } }
               : { href: c.href, onMouseEnter: c.prefetch, onFocus: c.prefetch, onClick: (e) => { if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button !== 0) return; e.preventDefault(); c.onClick(); } };
             return (
-              <div key={c.title} className="sticky mb-6 md:mb-10" style={{ top: `calc(84px + ${i * 14}px)` }}>
+              <div key={c.title} className="sticky mb-6 md:mb-10" style={{ top: `calc(84px + ${i * 14}px)`, transform: 'translateZ(0)' }}>
                 <motion.div
                   initial={reduce ? false : { opacity: 0, y: 40 }}
                   whileInView={{ opacity: 1, y: 0 }}
@@ -50,12 +50,12 @@ export default function SelectedWorks({ items, sectionRef }) {
                       {c.shots.length > 1 ? (
                         <div className="absolute inset-0 flex items-end justify-center gap-4 px-6 pt-8">
                           {c.shots.map((s, k) => (
-                            <img key={s} src={s} alt={k === 0 ? `${c.title} preview` : ''} loading="lazy" draggable={false}
-                              className={`block h-[92%] w-auto max-w-[46%] object-contain object-bottom drop-shadow-[0_24px_30px_rgba(0,0,0,0.25)] transition-transform duration-500 group-hover:-translate-y-2 ${k ? 'translate-y-10' : ''}`} />
+                            <img key={s} src={s} alt={k === 0 ? `${c.title} preview` : ''} loading="lazy" decoding="async" draggable={false}
+                              className={`block h-[92%] w-auto max-w-[46%] object-contain object-bottom transition-transform duration-500 group-hover:-translate-y-2 ${k ? 'translate-y-10' : ''}`} />
                           ))}
                         </div>
                       ) : c.shots.length === 1 ? (
-                        <img src={c.shots[0]} alt={`${c.title} preview`} loading="lazy" draggable={false}
+                        <img src={c.shots[0]} alt={`${c.title} preview`} loading="lazy" decoding="async" draggable={false}
                           className="absolute bottom-0 right-0 block w-[94%] max-w-none h-auto rounded-tl-[22px] shadow-[0_24px_40px_-10px_rgba(0,0,0,0.3)] transition-transform duration-500 group-hover:-translate-y-2" />
                       ) : (
                         <div className="absolute inset-0 grid place-items-center"><Lock className="h-14 w-14 text-[#141210]/25" /></div>

@@ -1,15 +1,15 @@
 import React, { useRef } from 'react';
 import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
-import beach from './assets/photo_beach_full.jpg';
-import lighthouse from './assets/photo_lighthouse.webp';
+import beach from './assets/photo_beach_full-opt.webp';
+import lighthouse from './assets/photo_lighthouse-sm.webp';
 import temple from './assets/photo_temple.webp';
 import cycle from './assets/photo_cycle_full.webp';
 import couple from './assets/photo_couple_full.webp';
-import statue from './assets/photo_statue.webp';
-import breakfast from './assets/photo_breakfast.jpg';
-import f1 from './assets/foodie/foodie-02.jpg';
-import f2 from './assets/foodie/foodie-05.jpg';
-import f3 from './assets/foodie/foodie-08.jpg';
+import statue from './assets/photo_statue-sm.webp';
+import breakfast from './assets/photo_breakfast-opt.webp';
+import f1 from './assets/foodie/foodie-02-sm.webp';
+import f2 from './assets/foodie/foodie-05-sm.webp';
+import f3 from './assets/foodie/foodie-08-sm.webp';
 
 // Telescope-style: small photos scattered on paper, then one of them grows to fill the screen.
 // x/y = centre in vw/vh from the middle; w = width in vw (desktop), mw on mobile.
@@ -45,10 +45,16 @@ export default function ScatterZoom({ onAbout }) {
   const { scrollYProgress } = useScroll({ target: ref, offset: ['start start', 'end end'] });
   const p = useSpring(scrollYProgress, { stiffness: 120, damping: 26, mass: 0.4 });
 
-  // Hero photo grows from a small tile to full-bleed.
-  const w = useTransform(p, [0.08, 0.5], ['min(16vw, 220px)', '100vw']);
-  const h = useTransform(p, [0.08, 0.5], ['min(20vw, 275px)', '100vh']);
-  const radius = useTransform(p, [0.08, 0.5], [6, 0]);
+  // Hero photo grows from a small tile to full-bleed. Animate clip-path on a full-screen layer
+  // (no width/height changes, so the browser never re-lays out the page while scrolling).
+  const grow = useTransform(p, [0.08, 0.5], [0, 1], { clamp: true });
+  const clip = useTransform(grow, (t) => {
+    const vw = window.innerWidth; const vh = window.innerHeight;
+    const w0 = Math.min(vw * 0.16, 220) + 0; const h0 = Math.min(vw * 0.2, 275);
+    const w = w0 + (vw - w0) * t; const h = h0 + (vh - h0) * t;
+    const x = (vw - w) / 2; const y = (vh - h) / 2; const r = 6 * (1 - t);
+    return `inset(${y.toFixed(1)}px ${x.toFixed(1)}px ${y.toFixed(1)}px ${x.toFixed(1)}px round ${r.toFixed(1)}px)`;
+  });
   const imgScale = useTransform(p, [0.5, 1], [1, 1.08]);
   const shade = useTransform(p, [0.4, 0.62], [0, 0.75]);
 
@@ -69,10 +75,7 @@ export default function ScatterZoom({ onAbout }) {
           <span style={{ fontFamily: "'Instrument Serif', Georgia, serif" }}>Off-screen, I collect small moments.</span>
         </motion.p>
 
-        <motion.div
-          className="absolute left-1/2 top-1/2 overflow-hidden z-0"
-          style={{ width: w, height: h, borderRadius: radius, translateX: '-50%', translateY: '-50%' }}
-        >
+        <motion.div className="absolute inset-0 overflow-hidden z-0" style={{ clipPath: clip, WebkitClipPath: clip }}>
           <motion.img src={beach} alt="Yogesh standing on the rocks by the sea" className="w-full h-full object-cover object-[center_35%]" style={{ scale: imgScale }} draggable={false} />
           <motion.div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent" style={{ opacity: shade }} />
         </motion.div>

@@ -61,7 +61,7 @@ export default function AboutPoster() {
             viewport={{ once: true, amount: 0 }}
             transition={{ delay: 0.35, type: 'spring', stiffness: 120, damping: 16 }}
             className="relative block h-[97%] w-auto max-w-none"
-            style={{ filter: 'drop-shadow(6px 0 0 #fff) drop-shadow(-6px 0 0 #fff) drop-shadow(0 6px 0 #fff) drop-shadow(0 -6px 0 #fff) drop-shadow(0 18px 24px rgba(0,0,0,0.2))' }}
+            decoding="async"
           />
         </div>
       </div>

@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 import { motion, useReducedMotion } from 'framer-motion';
-import beach from './assets/photo_beach_full.jpg';
+import beach from './assets/photo_beach_full-opt.webp';
 import pCamera from './assets/props/camera.webp';
 import pRayban from './assets/props/rayban.webp';
 

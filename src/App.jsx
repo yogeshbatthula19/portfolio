@@ -466,8 +466,8 @@ import imgMatcha from './assets/e4dbcdd77bc9c13d2de4378af5f748570474120d.webp';
 import imgNote from './assets/65b0d33492ffd94741f4de8fe2d01b44ab5a58c3.png';
 
 // User Uploaded Photos & Custom Postage Stamps (Full resolution edge-to-edge)
-import photoStatue from './assets/photo_statue.webp';
-import photoLighthouse from './assets/photo_lighthouse.webp';
+import photoStatue from './assets/photo_statue-sm.webp';
+import photoLighthouse from './assets/photo_lighthouse-sm.webp';
 import photoTemple from './assets/photo_temple.webp';
 import photoCouple from './assets/photo_couple_full.webp';
 import photoCycle from './assets/photo_cycle_full.webp';
@@ -1027,13 +1027,6 @@ export default function App() {
   // Track window scroll
   const { scrollY, scrollYProgress } = useScroll();
 
-  // Dynamic footer background stretch on final scroll to seamlessly fill gaps behind rounded card corners
-  const footerBgScaleY = useTransform(scrollYProgress, [0.82, 1], [0.96, 1.05]);
-  const smoothFooterBgScaleY = useSpring(footerBgScaleY, {
-    stiffness: 220,
-    damping: 30,
-    mass: 0.2,
-  });
 
   // Lenis owns smoothing; visual transforms track its actual scroll position.
   const smoothScrollY = scrollY;

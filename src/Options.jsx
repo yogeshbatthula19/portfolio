@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import beach from './assets/photo_beach_full.jpg';
+import beach from './assets/photo_beach_full-opt.webp';
 import cycle from './assets/photo_cycle_full.webp';
 import temple from './assets/photo_temple.webp';
-import lighthouse from './assets/photo_lighthouse.webp';
+import lighthouse from './assets/photo_lighthouse-sm.webp';
 import avatar from './assets/photo_yogesh_avatar.webp';
 import troskyHome from './assets/covers/trosky-home.webp';
 import troskyXp from './assets/covers/trosky-xp.webp';
