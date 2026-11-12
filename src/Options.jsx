@@ -206,7 +206,7 @@ const Block = ({ k, label, children }) => (
 
 export default function Options() {
   return (
-    <div className="min-h-screen bg-[#f4f1ea] text-[#141210]" style={{ fontFamily: "'Inter Variable', system-ui, sans-serif" }}>
+    <div className="min-h-screen bg-[#f4f1ea] text-[#141210]" style={{ fontFamily: "'STK Bureau Sans','Inter Variable', system-ui, sans-serif" }}>
       <header className="px-5 sm:px-8 pt-12 pb-6"><div className="mx-auto max-w-[1180px] text-[52px] sm:text-[84px] leading-none tracking-[-0.02em]" style={serif}>Work <em>&amp;</em> About</div></header>
       <Block k="W1" label="Work · big cards"><WorkA /></Block>
       <Block k="W2" label="Work · index list (hover)"><WorkB /></Block>

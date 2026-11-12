@@ -16,7 +16,7 @@ export default function AboutPage() {
   }, []);
 
   return (
-    <div className="v3-page min-h-screen bg-[#f4f1ea] text-[#141210] relative flex flex-col overflow-x-clip" style={{ fontFamily: "'Inter Variable', system-ui, sans-serif" }}>
+    <div className="v3-page min-h-screen bg-[#f4f1ea] text-[#141210] relative flex flex-col overflow-x-clip" style={{ fontFamily: "'STK Bureau Sans','Inter Variable', system-ui, sans-serif" }}>
       <div aria-hidden="true" className="absolute inset-0 opacity-[0.35] pointer-events-none" style={{ backgroundImage: 'radial-gradient(rgba(42,38,34,0.09) 1px, transparent 1px)', backgroundSize: '18px 18px' }} />
       <main className="relative w-full flex-1 flex flex-col">
         <div className="pt-12 sm:pt-10"><AboutPoster bleed /></div>

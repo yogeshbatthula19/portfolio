@@ -168,7 +168,7 @@ function Card({ p, index, layout = 'tall' }) {
 
 export default function Playground() {
   return (
-    <section id="playground" style={{ fontFamily: "'Inter Variable', system-ui, sans-serif" }} className="relative w-full bg-[#f4f1ea] px-4 sm:px-8 pt-10 pb-24">
+    <section id="playground" style={{ fontFamily: "'STK Bureau Sans','Inter Variable', system-ui, sans-serif" }} className="relative w-full bg-[#f4f1ea] px-4 sm:px-8 pt-10 pb-24">
       <div className="mx-auto max-w-[1180px]">
         <div className="mb-10 flex items-end justify-between gap-6 md:mb-14">
           <h2 className="text-[#141210] text-[44px] sm:text-[64px] leading-[0.98] tracking-[-0.02em]" style={{ fontFamily: "'STK Bureau Serif', 'Newsreader Variable', Georgia, serif" }}>

@@ -6,7 +6,7 @@ import { Lock } from 'lucide-react';
 export default function SelectedWorks({ items, sectionRef }) {
   const reduce = useReducedMotion();
   return (
-    <section ref={sectionRef} id="selected-works" style={{ fontFamily: "'Inter Variable', system-ui, sans-serif" }} className="relative w-full px-4 sm:px-8 pt-20 pb-24 bg-[#f4f1ea]">
+    <section ref={sectionRef} id="selected-works" style={{ fontFamily: "'STK Bureau Sans','Inter Variable', system-ui, sans-serif" }} className="relative w-full px-4 sm:px-8 pt-20 pb-24 bg-[#f4f1ea]">
       <div className="mx-auto max-w-[1180px]">
         <div className="flex items-end justify-between gap-6 mb-10 md:mb-14">
           <h2 className="text-[#141210] text-[44px] sm:text-[64px] leading-[0.98] tracking-[-0.02em]" style={{ fontFamily: "'STK Bureau Serif', 'Newsreader Variable', Georgia, serif" }}>

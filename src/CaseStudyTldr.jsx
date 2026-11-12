@@ -14,8 +14,8 @@ export default function CaseStudyTldr({ rows, accent = '#ff7a2f' }) {
       >
         {rows.map(([label, text], i) => (
           <div key={label} className={`grid grid-cols-1 sm:grid-cols-[130px_1fr] gap-1 sm:gap-5 py-4 ${i ? 'border-t border-black/[0.06]' : ''}`}>
-            <dt className="text-[12px] font-medium uppercase tracking-[0.12em] sm:pt-[4px]" style={{ color: accent, fontFamily: "'Inter Variable', sans-serif" }}>{label}</dt>
-            <dd className="text-[16px] sm:text-[17px] text-[#141210] leading-[1.55]" style={{ fontFamily: "'Inter Variable', sans-serif" }}>{text}</dd>
+            <dt className="text-[12px] font-medium uppercase tracking-[0.12em] sm:pt-[4px]" style={{ color: accent, fontFamily: "'STK Bureau Sans','Inter Variable', sans-serif" }}>{label}</dt>
+            <dd className="text-[16px] sm:text-[17px] text-[#141210] leading-[1.55]" style={{ fontFamily: "'STK Bureau Sans','Inter Variable', sans-serif" }}>{text}</dd>
           </div>
         ))}
       </dl>
