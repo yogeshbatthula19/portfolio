@@ -129,7 +129,7 @@ function ForgeMock() {
 
 const MOCKS = { face: FaceUnlockMock, notch: NotchMock, forge: ForgeMock };
 
-function Card({ p, index, layout = 'tall', dark = false }) {
+function Card({ p, index, layout = 'tall' }) {
   const reduce = useReducedMotion();
   const live = Boolean(p.href);
   const Tag = live ? 'a' : 'div';
@@ -147,7 +147,7 @@ function Card({ p, index, layout = 'tall', dark = false }) {
       <Tag
         {...link}
         data-playground={p.key}
-        className={`group relative h-full overflow-hidden rounded-[28px] text-inherit no-underline transition-transform duration-300 ${dark ? 'shadow-[0_30px_60px_-30px_rgba(0,0,0,0.9)]' : 'shadow-[0_24px_50px_-28px_rgba(30,25,20,0.45)]'} ${live ? 'cursor-pointer hover:-translate-y-1.5' : 'cursor-default'} ${wide ? 'grid min-h-[380px] sm:grid-cols-[1fr_1.1fr]' : 'flex min-h-[560px] flex-col'}`}
+        className={`group relative h-full overflow-hidden rounded-[28px] text-inherit no-underline transition-transform duration-300 shadow-[0_24px_50px_-28px_rgba(30,25,20,0.45)] ${live ? 'cursor-pointer hover:-translate-y-1.5' : 'cursor-default'} ${wide ? 'grid min-h-[380px] sm:grid-cols-[1fr_1.1fr]' : 'flex min-h-[560px] flex-col'}`}
         style={{ background: p.bg }}
       >
         <div className={`relative z-10 p-7 ${wide ? 'flex flex-col justify-end sm:p-10' : 'pb-0'}`}>
@@ -166,37 +166,19 @@ function Card({ p, index, layout = 'tall', dark = false }) {
   );
 }
 
-// Layouts: 'cards' (three tall cards) · 'stack' (wide rows, like Selected work)
-// · 'bento' (one hero card + two halves) · 'dark' (three cards on a dark band)
-export default function Playground({ variant: variantProp = 'cards' }) {
-  const preview = typeof window !== 'undefined' ? new URLSearchParams(window.location.search).get('pg') : null;
-  const variant = preview || variantProp;
-  const dark = variant === 'dark';
+export default function Playground() {
   return (
-    <section id="playground" style={{ fontFamily: "'Inter Variable', system-ui, sans-serif" }} className={`relative w-full px-4 sm:px-8 ${dark ? 'bg-[#f4f1ea] py-10' : 'bg-[#f4f1ea] pt-10 pb-24'}`}>
-      <div className={`mx-auto max-w-[1180px] ${dark ? 'rounded-[40px] bg-[#171513] px-6 py-14 sm:px-12 sm:py-16' : ''}`}>
+    <section id="playground" style={{ fontFamily: "'Inter Variable', system-ui, sans-serif" }} className="relative w-full bg-[#f4f1ea] px-4 sm:px-8 pt-10 pb-24">
+      <div className="mx-auto max-w-[1180px]">
         <div className="mb-10 flex items-end justify-between gap-6 md:mb-14">
-          <h2 className={`text-[44px] sm:text-[64px] leading-[0.98] tracking-[-0.02em] ${dark ? 'text-[#f4f1ea]' : 'text-[#141210]'}`} style={{ fontFamily: "'Instrument Serif', Georgia, serif" }}>
+          <h2 className="text-[#141210] text-[44px] sm:text-[64px] leading-[0.98] tracking-[-0.02em]" style={{ fontFamily: "'Instrument Serif', Georgia, serif" }}>
             The <em style={{ fontStyle: 'italic' }}>playground</em>
           </h2>
-          <span className={`hidden sm:block pb-3 text-[14px] ${dark ? 'text-[#a59d92]' : 'text-[#6b645b]'}`}>Side projects I build for fun</span>
+          <span className="hidden sm:block pb-3 text-[14px] text-[#6b645b]">Side projects I build for fun</span>
         </div>
-        {variant === 'stack' && (
-          <div className="grid gap-6">
-            {PROJECTS.map((p, i) => <Card key={p.key} p={p} index={0} layout="wide" />)}
-          </div>
-        )}
-        {variant === 'bento' && (
-          <div className="grid gap-5 md:grid-cols-2">
-            <div className="md:col-span-2"><Card p={PROJECTS[0]} index={0} layout="wide" /></div>
-            {PROJECTS.slice(1).map((p, i) => <Card key={p.key} p={p} index={i + 1} />)}
-          </div>
-        )}
-        {(variant === 'cards' || dark) && (
-          <div className="grid gap-5 md:grid-cols-3">
-            {PROJECTS.map((p, i) => <Card key={p.key} p={p} index={i} dark={dark} />)}
-          </div>
-        )}
+        <div className="grid gap-5 md:grid-cols-3">
+          {PROJECTS.map((p, i) => <Card key={p.key} p={p} index={i} />)}
+        </div>
       </div>
     </section>
   );
