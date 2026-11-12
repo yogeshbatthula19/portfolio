@@ -80,7 +80,7 @@ export default function DeskHero({ onWorks, onAbout }) {
           initial={reduce ? false : { opacity: 0, y: 18 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.12, ease: [0.22, 1, 0.36, 1] }}
-          className="text-[#141210] text-[40px] sm:text-[56px] lg:text-[72px] leading-[1.06] tracking-[-0.02em]"
+          className="text-[#141210] text-[34px] sm:text-[46px] lg:text-[58px] leading-[1.06] tracking-[-0.02em]"
           style={{ fontFamily: "'STK Bureau Serif', 'Newsreader Variable', Georgia, serif" }}
         >
           Hi, <Flower color="#2f5bff" delay={0.5} /> I’m Yogesh <Photo src={beach} alt="Yogesh by the sea" delay={0.7} />
@@ -96,7 +96,7 @@ export default function DeskHero({ onWorks, onAbout }) {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.65, duration: 0.5 }}
           whileHover={{ y: -2 }}
-          className="mt-9 inline-flex items-center gap-2 rounded-full bg-[#2a2622] px-7 py-3.5 text-[15px] font-medium text-[#f4f1ea] shadow-[0_10px_24px_-12px_rgba(0,0,0,0.6)]"
+          className="mt-9 inline-flex items-center gap-2 rounded-full bg-[#2a2622] px-6 py-3 text-[14px] font-medium text-[#f4f1ea] shadow-[0_10px_24px_-12px_rgba(0,0,0,0.6)]"
         >
           See my work <span aria-hidden="true">↓</span>
         </motion.button>

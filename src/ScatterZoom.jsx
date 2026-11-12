@@ -70,7 +70,7 @@ export default function ScatterZoom({ onAbout }) {
 
         <motion.p
           style={{ opacity: line1, y: line1y }}
-          className="absolute left-1/2 top-[22%] -translate-x-1/2 z-10 w-[90%] text-center text-[32px] sm:text-[42px] leading-[1.1] text-[#2a2622]"
+          className="absolute left-1/2 top-[22%] -translate-x-1/2 z-10 w-[90%] text-center text-[26px] sm:text-[34px] leading-[1.1] text-[#2a2622]"
         >
           <span style={{ fontFamily: "'STK Bureau Serif', 'Newsreader Variable', Georgia, serif" }}>Off-screen, I collect small moments.</span>
         </motion.p>
@@ -81,13 +81,13 @@ export default function ScatterZoom({ onAbout }) {
         </motion.div>
 
         <motion.div style={{ opacity: line2, y: line2y }} className="absolute inset-x-0 bottom-[12%] z-10 px-6 text-center text-white">
-          <p className="mx-auto max-w-[760px] text-[38px] sm:text-[52px] leading-[1.05]" style={{ fontFamily: "'STK Bureau Serif', 'Newsreader Variable', Georgia, serif" }}>
+          <p className="mx-auto max-w-[760px] text-[30px] sm:text-[40px] leading-[1.05]" style={{ fontFamily: "'STK Bureau Serif', 'Newsreader Variable', Georgia, serif" }}>
             Wherever I go, I notice how things work, and how they could work better.
           </p>
           <button
             type="button"
             onClick={onAbout}
-            className="mt-7 inline-flex items-center gap-2 rounded-full bg-[#f4f1ea] px-6 py-3 text-[15px] font-medium text-[#2a2622] hover:bg-white transition-colors"
+            className="mt-7 inline-flex items-center gap-2 rounded-full bg-[#f4f1ea] px-6 py-3 text-[14px] font-medium text-[#2a2622] hover:bg-white transition-colors"
           >
             More about me <span aria-hidden="true">→</span>
           </button>

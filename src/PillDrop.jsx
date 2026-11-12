@@ -155,7 +155,7 @@ export default function PillDrop({ heroRef, textRef, reduce }) {
         <div
           key={p.t}
           ref={(el) => { els.current[i] = el; }}
-          className={`pill absolute left-0 top-0 ${p.hideM ? 'hidden md:block' : 'block'} pointer-events-auto cursor-grab select-none whitespace-nowrap rounded-[16px] md:rounded-[22px] px-4 py-2.5 md:px-6 md:py-[14px] text-[21px] md:text-[30px] font-medium tracking-[-0.015em] leading-none`}
+          className={`pill absolute left-0 top-0 ${p.hideM ? 'hidden md:block' : 'block'} pointer-events-auto cursor-grab select-none whitespace-nowrap rounded-[16px] md:rounded-[22px] px-3.5 py-2 md:px-5 md:py-[11px] text-[18px] md:text-[24px] font-medium tracking-[-0.015em] leading-none`}
           style={{
             opacity: 0, touchAction: 'none', zIndex: 30, willChange: 'transform',
             background: `linear-gradient(180deg, ${p.bg[0]}, ${p.bg[1]})`, color: p.fg,
