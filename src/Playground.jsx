@@ -129,34 +129,36 @@ function ForgeMock() {
 
 const MOCKS = { face: FaceUnlockMock, notch: NotchMock, forge: ForgeMock };
 
-function Card({ p, index }) {
+function Card({ p, index, layout = 'tall', dark = false }) {
   const reduce = useReducedMotion();
   const live = Boolean(p.href);
   const Tag = live ? 'a' : 'div';
   const Mock = MOCKS[p.glyph];
   const link = live ? { href: p.href, target: '_blank', rel: 'noopener noreferrer' } : {};
+  const wide = layout === 'wide';
   return (
     <motion.div
+      className="h-full"
       initial={reduce ? false : { opacity: 0, y: 32 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.25 }}
+      viewport={{ once: true, amount: 0.2 }}
       transition={{ duration: 0.6, delay: index * 0.08, ease: [0.22, 1, 0.36, 1] }}
     >
       <Tag
         {...link}
         data-playground={p.key}
-        className={`group relative flex h-full min-h-[560px] flex-col overflow-hidden rounded-[28px] text-inherit no-underline shadow-[0_24px_50px_-28px_rgba(30,25,20,0.45)] transition-transform duration-300 ${live ? 'cursor-pointer hover:-translate-y-1.5' : 'cursor-default'}`}
+        className={`group relative h-full overflow-hidden rounded-[28px] text-inherit no-underline transition-transform duration-300 ${dark ? 'shadow-[0_30px_60px_-30px_rgba(0,0,0,0.9)]' : 'shadow-[0_24px_50px_-28px_rgba(30,25,20,0.45)]'} ${live ? 'cursor-pointer hover:-translate-y-1.5' : 'cursor-default'} ${wide ? 'grid min-h-[380px] sm:grid-cols-[1fr_1.1fr]' : 'flex min-h-[560px] flex-col'}`}
         style={{ background: p.bg }}
       >
-        <div className="relative z-10 p-7 pb-0">
-          <span className="inline-block rounded-full bg-white/70 px-3 py-1.5 text-[12px] font-medium" style={{ color: p.fg }}>{p.tag}</span>
-          <h3 className="mt-4 text-[#141210] text-[34px] leading-[1.02] tracking-[-0.02em]" style={{ fontFamily: "'Instrument Serif', Georgia, serif" }}>{p.title}</h3>
+        <div className={`relative z-10 p-7 ${wide ? 'flex flex-col justify-end sm:p-10' : 'pb-0'}`}>
+          <span className="inline-block self-start rounded-full bg-white/70 px-3 py-1.5 text-[12px] font-medium" style={{ color: p.fg }}>{p.tag}</span>
+          <h3 className={`mt-4 text-[#141210] leading-[1.02] tracking-[-0.02em] ${wide ? 'text-[40px] md:text-[46px]' : 'text-[34px]'}`} style={{ fontFamily: "'Instrument Serif', Georgia, serif" }}>{p.title}</h3>
           <p className="mt-2 max-w-[34ch] text-[15px] leading-[1.45] text-[#4a443c]">{p.description}</p>
-          <span className={`mt-5 inline-flex items-center gap-2 rounded-full px-4 py-2 text-[14px] font-medium ${live ? 'bg-[#2a2622] text-[#f4f1ea] transition-transform group-hover:translate-x-1' : 'bg-white/60 text-[#6b645b]'}`}>
+          <span className={`mt-5 inline-flex items-center gap-2 self-start rounded-full px-4 py-2 text-[14px] font-medium ${live ? 'bg-[#2a2622] text-[#f4f1ea] transition-transform group-hover:translate-x-1' : 'bg-white/60 text-[#6b645b]'}`}>
             {p.cta}{live && <ArrowUpRight className="h-4 w-4" />}
           </span>
         </div>
-        <div className="relative mt-6 h-[250px] flex-1">
+        <div className={`relative ${wide ? 'min-h-[280px]' : 'mt-6 h-[250px] flex-1'}`}>
           <Mock />
         </div>
       </Tag>
@@ -164,19 +166,37 @@ function Card({ p, index }) {
   );
 }
 
-export default function Playground() {
+// Layouts: 'cards' (three tall cards) · 'stack' (wide rows, like Selected work)
+// · 'bento' (one hero card + two halves) · 'dark' (three cards on a dark band)
+export default function Playground({ variant: variantProp = 'cards' }) {
+  const preview = typeof window !== 'undefined' ? new URLSearchParams(window.location.search).get('pg') : null;
+  const variant = preview || variantProp;
+  const dark = variant === 'dark';
   return (
-    <section id="playground" style={{ fontFamily: "'Inter Variable', system-ui, sans-serif" }} className="relative w-full bg-[#f4f1ea] px-4 sm:px-8 pt-10 pb-24">
-      <div className="mx-auto max-w-[1180px]">
+    <section id="playground" style={{ fontFamily: "'Inter Variable', system-ui, sans-serif" }} className={`relative w-full px-4 sm:px-8 ${dark ? 'bg-[#f4f1ea] py-10' : 'bg-[#f4f1ea] pt-10 pb-24'}`}>
+      <div className={`mx-auto max-w-[1180px] ${dark ? 'rounded-[40px] bg-[#171513] px-6 py-14 sm:px-12 sm:py-16' : ''}`}>
         <div className="mb-10 flex items-end justify-between gap-6 md:mb-14">
-          <h2 className="text-[#141210] text-[44px] sm:text-[64px] leading-[0.98] tracking-[-0.02em]" style={{ fontFamily: "'Instrument Serif', Georgia, serif" }}>
+          <h2 className={`text-[44px] sm:text-[64px] leading-[0.98] tracking-[-0.02em] ${dark ? 'text-[#f4f1ea]' : 'text-[#141210]'}`} style={{ fontFamily: "'Instrument Serif', Georgia, serif" }}>
             The <em style={{ fontStyle: 'italic' }}>playground</em>
           </h2>
-          <span className="hidden sm:block pb-3 text-[14px] text-[#6b645b]">Side projects I build for fun</span>
+          <span className={`hidden sm:block pb-3 text-[14px] ${dark ? 'text-[#a59d92]' : 'text-[#6b645b]'}`}>Side projects I build for fun</span>
         </div>
-        <div className="grid gap-5 md:grid-cols-3">
-          {PROJECTS.map((p, i) => <Card key={p.key} p={p} index={i} />)}
-        </div>
+        {variant === 'stack' && (
+          <div className="grid gap-6">
+            {PROJECTS.map((p, i) => <Card key={p.key} p={p} index={0} layout="wide" />)}
+          </div>
+        )}
+        {variant === 'bento' && (
+          <div className="grid gap-5 md:grid-cols-2">
+            <div className="md:col-span-2"><Card p={PROJECTS[0]} index={0} layout="wide" /></div>
+            {PROJECTS.slice(1).map((p, i) => <Card key={p.key} p={p} index={i + 1} />)}
+          </div>
+        )}
+        {(variant === 'cards' || dark) && (
+          <div className="grid gap-5 md:grid-cols-3">
+            {PROJECTS.map((p, i) => <Card key={p.key} p={p} index={i} dark={dark} />)}
+          </div>
+        )}
       </div>
     </section>
   );
