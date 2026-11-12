@@ -159,7 +159,7 @@ export default function PillDrop({ heroRef, textRef, reduce }) {
           style={{
             opacity: 0, touchAction: 'none', zIndex: 30, willChange: 'transform',
             background: `linear-gradient(180deg, ${p.bg[0]}, ${p.bg[1]})`, color: p.fg,
-            fontFamily: "'Inter Variable', system-ui, sans-serif",
+            fontFamily: "'STK Bureau Sans','Inter Variable', system-ui, sans-serif",
             boxShadow: 'inset 0 2px 0 rgba(255,255,255,0.85), inset 0 -3px 0 rgba(0,0,0,0.06), 0 12px 20px -10px rgba(40,40,60,0.5)',
           }}
         >

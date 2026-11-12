@@ -9,13 +9,13 @@ import troskyXp from './assets/covers/trosky-xp.webp';
 import ryzeupBuzz from './assets/covers/ryzeup-buzz.webp';
 import ryzeupWall from './assets/covers/ryzeup-wall.webp';
 import ahamx from './assets/covers/ahamx-dashboard.webp';
-import '@fontsource/instrument-serif/400.css';
-import '@fontsource/instrument-serif/400-italic.css';
+import '@fontsource-variable/newsreader/opsz.css';
+import '@fontsource-variable/newsreader/opsz-italic.css';
 import '@fontsource-variable/inter';
 import AboutPoster from './AboutPoster';
 import { KindA, KindB, PlayA, PlayB, FooterA, FooterB } from './MoreOptions';
 
-const serif = { fontFamily: "'Instrument Serif', Georgia, serif" };
+const serif = { fontFamily: "'STK Bureau Serif', 'Newsreader Variable', Georgia, serif" };
 const W = [
   { t: 'Daily drills, lasting habits', n: '26% → 62% streak retention', bg: '#bfeaf5', img: [troskyHome, troskyXp], ph: true },
   { t: 'Learners resume where they left off', n: 'No more catalog hunting', bg: '#d4dcfb', img: [ahamx] },
@@ -206,7 +206,7 @@ const Block = ({ k, label, children }) => (
 
 export default function Options() {
   return (
-    <div className="min-h-screen bg-[#f4f1ea] text-[#141210]" style={{ fontFamily: "'Inter Variable', system-ui, sans-serif" }}>
+    <div className="min-h-screen bg-[#f4f1ea] text-[#141210]" style={{ fontFamily: "'STK Bureau Sans','Inter Variable', system-ui, sans-serif" }}>
       <header className="px-5 sm:px-8 pt-12 pb-6"><div className="mx-auto max-w-[1180px] text-[52px] sm:text-[84px] leading-none tracking-[-0.02em]" style={serif}>Work <em>&amp;</em> About</div></header>
       <Block k="W1" label="Work · big cards"><WorkA /></Block>
       <Block k="W2" label="Work · index list (hover)"><WorkB /></Block>

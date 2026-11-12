@@ -89,9 +89,9 @@ html, body {
    from 16px). Every font size on the site should come from this list.
    ------------------------------------------------------------------ */
 @theme {
-  --font-seasons: 'Instrument Serif', Georgia, serif;
-  --font-basier: 'Inter Variable', 'Segoe UI', Roboto, sans-serif;
-  --font-switzer: 'Inter Variable', 'Segoe UI', Roboto, sans-serif;
+  --font-seasons: 'STK Bureau Serif', 'Newsreader Variable', Georgia, serif;
+  --font-basier: 'STK Bureau Sans','Inter Variable', 'Segoe UI', Roboto, sans-serif;
+  --font-switzer: 'STK Bureau Sans','Inter Variable', 'Segoe UI', Roboto, sans-serif;
 
   --text-caption: 0.75rem;      /* 12px: labels, meta */
   --text-caption--line-height: 1.4;
@@ -120,7 +120,7 @@ html, body {
 
 /* Short uppercase labels: 12px, medium, tracked out, readable grey. */
 .type-label {
-  font-family: 'Inter Variable', 'Segoe UI', Roboto, sans-serif;
+  font-family: 'STK Bureau Sans','Inter Variable', 'Segoe UI', Roboto, sans-serif;
   font-size: 0.75rem;
   line-height: 1.4;
   font-weight: 500;
@@ -130,17 +130,17 @@ html, body {
 }
 
 .font-seasons {
-  font-family: 'Instrument Serif', Georgia, serif !important;
+  font-family: 'STK Bureau Serif', 'Newsreader Variable', Georgia, serif !important;
   font-weight: 400 !important;
 }
 
 .font-basier {
-  font-family: 'Inter Variable', 'Segoe UI', Roboto, sans-serif !important;
+  font-family: 'STK Bureau Sans','Inter Variable', 'Segoe UI', Roboto, sans-serif !important;
 }
 
 .font-switzer {
   /* Retired: kept as an alias so any leftover class still renders in Basier. */
-  font-family: 'Inter Variable', 'Segoe UI', Roboto, sans-serif !important;
+  font-family: 'STK Bureau Sans','Inter Variable', 'Segoe UI', Roboto, sans-serif !important;
 }
 
 html,
@@ -150,7 +150,7 @@ body {
   width: 100%;
   max-width: 100vw;
   overflow-x: clip;
-  font-family: 'Inter Variable', 'Segoe UI', 'Roboto', sans-serif;
+  font-family: 'STK Bureau Sans','Inter Variable', 'Segoe UI', 'Roboto', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: #ffffff;
@@ -272,9 +272,9 @@ i, em, cite, dfn, var, address {
 @media(max-width:639px){.home-primary-actions{gap:12px;margin-top:18px}.home-work-button{padding:3.5px}.home-work-button-inner{padding:9px 20px;font-size:14px;gap:8px}.home-hero-title{font-size:28px!important}.home-hero-copy{max-width:100%!important}.hero-section{min-height:450px}}
 
 /* Shared editorial typography for all three case studies (uses the type scale above). */
-.case-study-page{--cs-body-font:'Inter Variable','Segoe UI',sans-serif;--cs-heading-font:'Inter Variable','Segoe UI',sans-serif}
-.case-study-page .cs-title{font-family:'Instrument Serif',Georgia,serif!important;font-size:40px;font-weight:400;line-height:1.1;letter-spacing:-.02em;text-wrap:balance}
-.case-study-page .cs-section-title{font-family:'Instrument Serif',Georgia,serif!important;font-size:34px;font-weight:400;line-height:1.2;letter-spacing:-.01em;text-wrap:balance}
+.case-study-page{--cs-body-font:'STK Bureau Sans','Inter Variable','Segoe UI',sans-serif;--cs-heading-font:'STK Bureau Sans','Inter Variable','Segoe UI',sans-serif}
+.case-study-page .cs-title{font-family:'STK Bureau Serif', 'Newsreader Variable',Georgia,serif!important;font-size:40px;font-weight:400;line-height:1.1;letter-spacing:-.025em;text-wrap:balance}
+.case-study-page .cs-section-title{font-family:'STK Bureau Serif', 'Newsreader Variable',Georgia,serif!important;font-size:34px;font-weight:400;line-height:1.2;letter-spacing:-.01em;text-wrap:balance}
 .case-study-page .cs-subheading{font-family:var(--cs-heading-font)!important;font-size:20px;font-weight:500;line-height:1.4;letter-spacing:0}
 .case-study-page .cs-detail-heading{font-family:var(--cs-heading-font)!important;font-size:16px;font-weight:500;line-height:1.5;letter-spacing:0}
 .case-study-page .cs-body{font-family:var(--cs-body-font)!important;font-size:16px;font-weight:400;line-height:1.6;letter-spacing:0;max-width:68ch}
@@ -313,3 +313,12 @@ i, em, cite, dfn, var, address {
 @keyframes v3spin { to { transform: rotate(360deg); } }
 .v3-spin { animation: v3spin 10s linear infinite; transform-origin: 50% 50%; }
 @media (prefers-reduced-motion: reduce) { .v3-spin { animation: none; } }
+
+/* STK Bureau Serif (trial licence: preview only until a web licence is bought). Trial files only carry ~80 glyphs, so Newsreader fills the gaps. */
+@font-face{font-family:'STK Bureau Serif';font-weight:400;font-style:normal;font-display:swap;src:url('./assets/fonts/stk-bureau-serif-book.woff2') format('woff2')}
+@font-face{font-family:'STK Bureau Serif';font-weight:400;font-style:italic;font-display:swap;src:url('./assets/fonts/stk-bureau-serif-bookitalic.woff2') format('woff2')}
+@font-face{font-family:'STK Bureau Serif';font-weight:500;font-style:normal;font-display:swap;src:url('./assets/fonts/stk-bureau-serif-medium.woff2') format('woff2')}
+@font-face{font-family:'STK Bureau Sans';font-weight:400;font-style:normal;font-display:swap;src:url('./assets/fonts/stk-bureau-sans-book.woff2') format('woff2')}
+@font-face{font-family:'STK Bureau Sans';font-weight:500;font-style:normal;font-display:swap;src:url('./assets/fonts/stk-bureau-sans-medium.woff2') format('woff2')}
+@font-face{font-family:'STK Bureau Sans';font-weight:600;font-style:normal;font-display:swap;src:url('./assets/fonts/stk-bureau-sans-semibold.woff2') format('woff2')}
+@font-face{font-family:'STK Bureau Sans';font-weight:700;font-style:normal;font-display:swap;src:url('./assets/fonts/stk-bureau-sans-bold.woff2') format('woff2')}

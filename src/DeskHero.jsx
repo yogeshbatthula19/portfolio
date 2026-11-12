@@ -4,8 +4,8 @@ import beach from './assets/photo_beach_full-opt.webp';
 import pCamera from './assets/props/camera.webp';
 import pRayban from './assets/props/rayban.webp';
 
-import '@fontsource/instrument-serif/400.css';
-import '@fontsource/instrument-serif/400-italic.css';
+import '@fontsource-variable/newsreader/opsz.css';
+import '@fontsource-variable/newsreader/opsz-italic.css';
 import '@fontsource-variable/inter';
 import '@fontsource/jetbrains-mono/500.css';
 import { Asterisk } from '@phosphor-icons/react';
@@ -69,7 +69,7 @@ export default function DeskHero({ onWorks, onAbout }) {
   );
 
   return (
-    <section ref={ref} style={{ fontFamily: "'Inter Variable', system-ui, sans-serif" }} className="desk-hero relative w-full min-h-[max(100svh,820px)] md:min-h-[max(100svh,780px)] overflow-hidden bg-[#f4f1ea]">
+    <section ref={ref} style={{ fontFamily: "'STK Bureau Sans','Inter Variable', system-ui, sans-serif" }} className="desk-hero relative w-full min-h-[max(100svh,820px)] md:min-h-[max(100svh,780px)] overflow-hidden bg-[#f4f1ea]">
       {/* faint paper grain */}
       <div aria-hidden="true" className="absolute inset-0 opacity-[0.35] pointer-events-none" style={{ backgroundImage: 'radial-gradient(rgba(42,38,34,0.09) 1px, transparent 1px)', backgroundSize: '18px 18px' }} />
 
@@ -81,7 +81,7 @@ export default function DeskHero({ onWorks, onAbout }) {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.12, ease: [0.22, 1, 0.36, 1] }}
           className="text-[#141210] text-[40px] sm:text-[56px] lg:text-[72px] leading-[1.06] tracking-[-0.02em]"
-          style={{ fontFamily: "'Instrument Serif', Georgia, serif" }}
+          style={{ fontFamily: "'STK Bureau Serif', 'Newsreader Variable', Georgia, serif" }}
         >
           Hi, <Flower color="#2f5bff" delay={0.5} /> I’m Yogesh <Photo src={beach} alt="Yogesh by the sea" delay={0.7} />
           <br className="hidden md:block" />{' '}

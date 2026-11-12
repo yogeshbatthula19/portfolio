@@ -2,13 +2,13 @@ import React from 'react';
 import { motion, useReducedMotion } from 'framer-motion';
 import { Asterisk } from '@phosphor-icons/react';
 import cutout from './assets/yogesh_casual.webp';
-import '@fontsource/instrument-serif/400.css';
-import '@fontsource/instrument-serif/400-italic.css';
+import '@fontsource-variable/newsreader/opsz.css';
+import '@fontsource-variable/newsreader/opsz-italic.css';
 import '@fontsource-variable/inter';
 
 // Poster-style About in the hero's language: Instrument Serif, cream paper,
 // glossy pastel pills (same gradients as the falling pills) and the spinning asterisks.
-const serif = { fontFamily: "'Instrument Serif', Georgia, serif" };
+const serif = { fontFamily: "'STK Bureau Serif', 'Newsreader Variable', Georgia, serif" };
 const gloss = (a, b) => ({ background: `linear-gradient(180deg, ${a}, ${b})`, boxShadow: 'inset 0 3px 0 rgba(255,255,255,0.85), inset 0 -6px 0 rgba(0,0,0,0.05), 0 24px 40px -24px rgba(40,40,60,0.45)' });
 
 // giant pills behind the photo: left/bottom in %, width in %, rotation
@@ -31,7 +31,7 @@ export default function AboutPoster({ bleed = false }) {
   );
 
   return (
-    <section className={`relative overflow-hidden bg-[#f4f1ea] ${bleed ? '' : 'rounded-[36px]'}`} style={{ fontFamily: "'Inter Variable', system-ui, sans-serif" }}>
+    <section className={`relative overflow-hidden bg-[#f4f1ea] ${bleed ? '' : 'rounded-[36px]'}`} style={{ fontFamily: "'STK Bureau Sans','Inter Variable', system-ui, sans-serif" }}>
       <div aria-hidden="true" className="absolute inset-0 opacity-[0.35] pointer-events-none" style={{ backgroundImage: 'radial-gradient(rgba(42,38,34,0.09) 1px, transparent 1px)', backgroundSize: '18px 18px' }} />
 
       <div className="relative z-10 mx-auto max-w-[860px] px-6 pt-14 md:pt-20 text-center">

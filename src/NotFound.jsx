@@ -63,7 +63,7 @@ export default function NotFound({ onHome, onWorks }) {
           <div ref={stampRef} className="aspect-[4/5] bg-[#f7e8cf] p-4" style={{ clipPath: clip }}>
           <div className="h-full w-full rounded-[3px] bg-gradient-to-br from-[#ffb36b] via-[#ff8a3d] to-[#f25c2a] flex flex-col items-center justify-center text-white">
             <span className="text-small uppercase tracking-[0.25em] opacity-80">Error</span>
-            <span className="text-[96px] sm:text-[112px] leading-none" style={{ fontFamily: "'Instrument Serif', Georgia, serif" }}>
+            <span className="text-[96px] sm:text-[112px] leading-none" style={{ fontFamily: "'STK Bureau Serif', 'Newsreader Variable', Georgia, serif" }}>
               404
             </span>
             <span className="text-caption uppercase tracking-[0.2em] opacity-80 mt-1">Postage due</span>
@@ -94,7 +94,7 @@ export default function NotFound({ onHome, onWorks }) {
 
         <h1
           className="mt-4 text-h2 sm:text-h1 text-[#141210] leading-tight text-[52px] sm:text-[72px]"
-          style={{ fontFamily: "'Instrument Serif', Georgia, serif" }}
+          style={{ fontFamily: "'STK Bureau Serif', 'Newsreader Variable', Georgia, serif" }}
         >
           Returned to sender
         </h1>
