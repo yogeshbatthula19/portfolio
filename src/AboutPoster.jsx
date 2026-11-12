@@ -35,7 +35,7 @@ export default function AboutPoster({ bleed = false }) {
       <div aria-hidden="true" className="absolute inset-0 opacity-[0.35] pointer-events-none" style={{ backgroundImage: 'radial-gradient(rgba(42,38,34,0.09) 1px, transparent 1px)', backgroundSize: '18px 18px' }} />
 
       <div className="relative z-10 mx-auto max-w-[860px] px-6 pt-14 md:pt-20 text-center">
-        <h2 className="text-[#141210] text-[44px] sm:text-[56px] md:text-[68px] leading-[0.95] tracking-[-0.02em]" style={serif}>
+        <h2 className="text-[#141210] text-[36px] sm:text-[46px] md:text-[54px] leading-[0.95] tracking-[-0.02em]" style={serif}>
           The person<br />behind the <em className="italic">work</em>
         </h2>
         <motion.div {...pop(0.15)} className="mx-auto mt-6 inline-block -rotate-2 rounded-[16px] md:rounded-[22px] px-6 py-3 md:px-8 md:py-4" style={gloss('#fff0b8', '#ffd983')}>

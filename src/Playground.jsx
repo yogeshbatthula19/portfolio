@@ -151,10 +151,10 @@ function Card({ p, index, layout = 'tall' }) {
         style={{ background: p.bg }}
       >
         <div className={`relative z-10 p-7 ${wide ? 'flex flex-col justify-end sm:p-10' : 'pb-0'}`}>
-          <span className="inline-block self-start rounded-full bg-white/70 px-3 py-1.5 text-[12px] font-medium" style={{ color: p.fg }}>{p.tag}</span>
-          <h3 className={`mt-4 text-[#141210] leading-[1.02] tracking-[-0.02em] ${wide ? 'text-[40px] md:text-[46px]' : 'text-[34px]'}`} style={{ fontFamily: "'STK Bureau Serif', 'Newsreader Variable', Georgia, serif" }}>{p.title}</h3>
-          <p className="mt-2 max-w-[34ch] text-[15px] leading-[1.45] text-[#4a443c]">{p.description}</p>
-          <span className={`mt-5 inline-flex items-center gap-2 self-start rounded-full px-4 py-2 text-[14px] font-medium ${live ? 'bg-[#2a2622] text-[#f4f1ea] transition-transform group-hover:translate-x-1' : 'bg-white/60 text-[#6b645b]'}`}>
+          <span className="inline-block self-start rounded-full bg-white/70 px-3 py-1 text-[11px] font-medium" style={{ color: p.fg }}>{p.tag}</span>
+          <h3 className={`mt-4 text-[#141210] leading-[1.02] tracking-[-0.02em] ${wide ? 'text-[28px] md:text-[32px]' : 'text-[26px]'}`} style={{ fontFamily: "'STK Bureau Serif', 'Newsreader Variable', Georgia, serif" }}>{p.title}</h3>
+          <p className="mt-2 max-w-[34ch] text-[14px] leading-[1.45] text-[#4a443c]">{p.description}</p>
+          <span className={`mt-5 inline-flex items-center gap-2 self-start rounded-full px-3.5 py-1.5 text-[13px] font-medium ${live ? 'bg-[#2a2622] text-[#f4f1ea] transition-transform group-hover:translate-x-1' : 'bg-white/60 text-[#6b645b]'}`}>
             {p.cta}{live && <ArrowUpRight className="h-4 w-4" />}
           </span>
         </div>
@@ -171,7 +171,7 @@ export default function Playground() {
     <section id="playground" style={{ fontFamily: "'STK Bureau Sans','Inter Variable', system-ui, sans-serif" }} className="relative w-full bg-[#f4f1ea] px-4 sm:px-8 pt-10 pb-24">
       <div className="mx-auto max-w-[1180px]">
         <div className="mb-10 flex items-end justify-between gap-6 md:mb-14">
-          <h2 className="text-[#141210] text-[44px] sm:text-[64px] leading-[0.98] tracking-[-0.02em]" style={{ fontFamily: "'STK Bureau Serif', 'Newsreader Variable', Georgia, serif" }}>
+          <h2 className="text-[#141210] text-[36px] sm:text-[48px] leading-[0.98] tracking-[-0.02em]" style={{ fontFamily: "'STK Bureau Serif', 'Newsreader Variable', Georgia, serif" }}>
             The <em style={{ fontStyle: 'italic' }}>playground</em>
           </h2>
           <span className="hidden sm:block pb-3 text-[14px] text-[#6b645b]">Side projects I build for fun</span>

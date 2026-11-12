@@ -302,9 +302,9 @@ i, em, cite, dfn, var, address {
 .case-study-page{background:#f4f1ea!important;color:#141210}
 .case-study-page::before{content:"";position:absolute;inset:0;z-index:-20;pointer-events:none;opacity:.35;background-image:radial-gradient(rgba(42,38,34,.09) 1px,transparent 1px);background-size:18px 18px}
 .case-study-page > .-z-10{display:none}
-.case-study-page h1.font-seasons{font-size:clamp(44px,6.4vw,88px)!important;line-height:.98!important;letter-spacing:-.02em!important;color:#141210!important}
+.case-study-page h1.font-seasons{font-size:clamp(30px,3.6vw,46px)!important;line-height:.98!important;letter-spacing:-.02em!important;color:#141210!important}
 .case-study-page .cs-section-title{font-weight:400!important;color:#141210!important}
-@media (min-width:768px){.case-study-page .cs-section-title{font-size:44px}.case-study-page .cs-title{font-size:52px}}
+@media (min-width:768px){.case-study-page .cs-section-title{font-size:30px}.case-study-page .cs-title{font-size:36px}}
 .case-study-page .border-gray-100,.case-study-page .border-gray-200{border-color:rgba(20,18,16,.1)!important}
 .case-study-page hr{border-color:rgba(20,18,16,.1)!important}
 .case-study-page ::selection,.v3-page ::selection{background:#ffd983;color:#141210}
