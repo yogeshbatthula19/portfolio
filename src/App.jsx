@@ -7,6 +7,7 @@ const CaseStudyRyzeup = React.lazy(() => import('./CaseStudyRyzeup'));
 const CaseStudyTrosky = React.lazy(() => import('./CaseStudyTrosky'));
 const AboutPage = React.lazy(() => import('./AboutPage'));
 import NotFound from './NotFound';
+import CursorWave from './CursorWave';
 import photoAvatar from './assets/photo_yogesh_avatar.webp';
 
 // Substack Brand Icon
@@ -1238,6 +1239,7 @@ export default function App() {
         className="relative z-10 bg-[#f4f1ea] min-h-screen font-sans text-gray-900 selection:bg-[#ffd9bd] overflow-x-clip"
       >
       
+      <CursorWave />
       <DeskHero onWorks={handleScrollToWorks} onAbout={navigateToAbout} />
 
       {/* ----------------------------------------------------------------- */}
