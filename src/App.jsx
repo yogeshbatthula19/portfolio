@@ -596,7 +596,7 @@ function WhiteFooterCard({ navigateToCaseStudy, navigateToAbout, onScrollToWorks
         <div className="max-w-2xl mx-auto">
           <h2
             className="font-seasons text-h1 sm:text-display-sm font-normal not-italic text-[#111827] tracking-tight leading-[1.12]"
-            style={{ fontFamily: "'Instrument Serif', Georgia, serif" }}
+            style={{ fontFamily: "'Newsreader Variable', Georgia, serif" }}
           >
             Design that shapes the <br />
             product experience
@@ -1315,7 +1315,7 @@ export default function App() {
               <h3
                 id="password-modal-title"
                 className="text-h3 font-medium text-[#111827] tracking-tight mb-2"
-                style={{ fontFamily: "'Instrument Serif', Georgia, serif" }}
+                style={{ fontFamily: "'Newsreader Variable', Georgia, serif" }}
               >
                 Shared on a call
               </h3>
