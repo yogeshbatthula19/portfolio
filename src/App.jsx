@@ -484,6 +484,7 @@ import ahamxDashboard from './assets/covers/ahamx-dashboard.webp';
 
 import DeskHero from './DeskHero';
 import SelectedWorks from './SelectedWorks';
+import Playground from './Playground';
 import AboutPoster from './AboutPoster';
 import { KindB, FooterA } from './MoreOptions';
 import ScatterZoom from './ScatterZoom';
@@ -1257,6 +1258,8 @@ export default function App() {
           { slug: 'carepulse', tag: 'Healthcare · Under NDA', bg: 'linear-gradient(140deg,#fbf3e4,#efd6a8)', fg: '#8a6a24', title: 'Giving clinicians more time for care', description: 'An ambient documentation concept for clinicians.', outcome: 'Walkthrough on request', locked: true, shots: [], onClick: () => setPasswordModalOpen(true) },
         ]}
       />
+
+      <Playground />
 
       <div id="about-me" className="relative bg-[#f4f1ea]">
         <AboutPoster bleed />
