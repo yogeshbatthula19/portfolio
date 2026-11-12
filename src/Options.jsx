@@ -15,7 +15,7 @@ import '@fontsource-variable/inter';
 import AboutPoster from './AboutPoster';
 import { KindA, KindB, PlayA, PlayB, FooterA, FooterB } from './MoreOptions';
 
-const serif = { fontFamily: "'Newsreader Variable', Georgia, serif" };
+const serif = { fontFamily: "'STK Bureau Serif', 'Newsreader Variable', Georgia, serif" };
 const W = [
   { t: 'Daily drills, lasting habits', n: '26% → 62% streak retention', bg: '#bfeaf5', img: [troskyHome, troskyXp], ph: true },
   { t: 'Learners resume where they left off', n: 'No more catalog hunting', bg: '#d4dcfb', img: [ahamx] },

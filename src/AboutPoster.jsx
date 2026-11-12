@@ -8,7 +8,7 @@ import '@fontsource-variable/inter';
 
 // Poster-style About in the hero's language: Instrument Serif, cream paper,
 // glossy pastel pills (same gradients as the falling pills) and the spinning asterisks.
-const serif = { fontFamily: "'Newsreader Variable', Georgia, serif" };
+const serif = { fontFamily: "'STK Bureau Serif', 'Newsreader Variable', Georgia, serif" };
 const gloss = (a, b) => ({ background: `linear-gradient(180deg, ${a}, ${b})`, boxShadow: 'inset 0 3px 0 rgba(255,255,255,0.85), inset 0 -6px 0 rgba(0,0,0,0.05), 0 24px 40px -24px rgba(40,40,60,0.45)' });
 
 // giant pills behind the photo: left/bottom in %, width in %, rotation

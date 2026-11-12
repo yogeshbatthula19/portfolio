@@ -81,7 +81,7 @@ export default function DeskHero({ onWorks, onAbout }) {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.12, ease: [0.22, 1, 0.36, 1] }}
           className="text-[#141210] text-[40px] sm:text-[56px] lg:text-[72px] leading-[1.06] tracking-[-0.02em]"
-          style={{ fontFamily: "'Newsreader Variable', Georgia, serif" }}
+          style={{ fontFamily: "'STK Bureau Serif', 'Newsreader Variable', Georgia, serif" }}
         >
           Hi, <Flower color="#2f5bff" delay={0.5} /> I’m Yogesh <Photo src={beach} alt="Yogesh by the sea" delay={0.7} />
           <br className="hidden md:block" />{' '}

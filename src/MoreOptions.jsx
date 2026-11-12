@@ -13,7 +13,7 @@ import '@fontsource-variable/newsreader/opsz-italic.css';
 import '@fontsource-variable/inter';
 
 // Shared hero language: Instrument Serif, cream paper, glossy pastel pills, asterisks.
-const serif = { fontFamily: "'Newsreader Variable', Georgia, serif" };
+const serif = { fontFamily: "'STK Bureau Serif', 'Newsreader Variable', Georgia, serif" };
 const gloss = (a, b) => ({ background: `linear-gradient(180deg, ${a}, ${b})`, boxShadow: 'inset 0 2px 0 rgba(255,255,255,0.85), inset 0 -4px 0 rgba(0,0,0,0.05), 0 18px 30px -20px rgba(40,40,60,0.45)' });
 const C = {
   blue: ['#e2eeff', '#c4dcff', '#3a7be8'], green: ['#d3f7e1', '#aeeccb', '#12906a'], yellow: ['#fff0b8', '#ffd983', '#e0701a'],
