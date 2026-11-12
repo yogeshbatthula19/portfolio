@@ -115,7 +115,7 @@ export function PlayA() {
             )}
             {x.si && <span className="absolute right-7 top-7 grid h-12 w-12 place-items-center rounded-[14px] bg-white/80"><Icon si={x.si} fill={x.c[2]} cls="h-6 w-6" /></span>}
             <span className="mb-3 inline-block self-start rounded-full bg-white/80 px-3 py-1 text-[12px] font-medium" style={{ color: x.c[2] }}>{x.tag}</span>
-            <h3 className="text-[#141210] text-[28px] md:text-[28px] leading-none tracking-[-0.02em]" style={serif}>{x.t}</h3>
+            <h3 className="text-[#141210] text-[22px] md:text-[22px] leading-none tracking-[-0.02em]" style={serif}>{x.t}</h3>
             <p className="mt-2 max-w-[360px] text-[14px] text-[#141210]/70">{x.d}</p>
           </div>
         ))}
@@ -135,11 +135,11 @@ export function PlayB() {
           <div key={x.t} onMouseEnter={() => setO(i)} onClick={() => setO(i)}
             className="cursor-pointer overflow-hidden rounded-[26px] px-6 md:px-9 transition-all duration-500" style={{ ...gloss(x.c[0], x.c[1]), rotate: `${[-1, 0.8, -0.6, 1][i]}deg` }}>
             <div className="flex items-center justify-between gap-4 py-5 md:py-6">
-              <span className="text-[26px] md:text-[30px] leading-none tracking-[-0.02em] text-[#141210]" style={serif}>{x.t}</span>
-              <span className="flex items-center gap-2 rounded-full bg-white/80 px-3 py-1.5 text-[13px] font-medium" style={{ color: x.c[2] }}>{x.si && <Icon si={x.si} fill={x.c[2]} cls="h-4 w-4" />}{x.tag}</span>
+              <span className="text-[21px] md:text-[24px] leading-none tracking-[-0.02em] text-[#141210]" style={serif}>{x.t}</span>
+              <span className="flex items-center gap-2 rounded-full bg-white/80 px-3 py-1 text-[12px] font-medium" style={{ color: x.c[2] }}>{x.si && <Icon si={x.si} fill={x.c[2]} cls="h-4 w-4" />}{x.tag}</span>
             </div>
             <div className="grid transition-[grid-template-rows] duration-500" style={{ gridTemplateRows: o === i ? '1fr' : '0fr' }}>
-              <p className="overflow-hidden text-[15px] md:text-[16px] text-[#141210]/70"><span className="block pb-6">{x.d}</span></p>
+              <p className="overflow-hidden text-[14px] md:text-[15px] text-[#141210]/70"><span className="block pb-6">{x.d}</span></p>
             </div>
           </div>
         ))}

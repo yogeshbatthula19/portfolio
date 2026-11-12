@@ -31,17 +31,17 @@ export default function SelectedWorks({ items, sectionRef }) {
                   <Tag
                     {...link}
                     data-slug={c.slug}
-                    className="group relative grid md:grid-cols-[1fr_1.15fr] overflow-hidden rounded-[28px] md:rounded-[40px] text-inherit no-underline cursor-pointer shadow-[0_30px_60px_-30px_rgba(30,25,20,0.45)] min-h-[520px] md:min-h-[560px]"
+                    className="group relative grid md:grid-cols-[1fr_1.15fr] overflow-hidden rounded-[24px] md:rounded-[32px] text-inherit no-underline cursor-pointer shadow-[0_30px_60px_-30px_rgba(30,25,20,0.45)] min-h-[440px] md:min-h-[480px]"
                     style={{ background: c.bg }}
                   >
-                    <div className="relative z-10 flex flex-col justify-between p-7 md:p-12">
+                    <div className="relative z-10 flex flex-col justify-between p-6 md:p-10">
                       <span />
                       <div className="my-8">
-                        <h3 className="text-[#141210] text-[30px] sm:text-[34px] md:text-[36px] leading-[1.02] tracking-[-0.02em]" style={{ fontFamily: "'STK Bureau Serif', 'Newsreader Variable', Georgia, serif" }}>{c.title}</h3>
+                        <h3 className="text-[#141210] text-[24px] sm:text-[28px] md:text-[30px] leading-[1.02] tracking-[-0.02em]" style={{ fontFamily: "'STK Bureau Serif', 'Newsreader Variable', Georgia, serif" }}>{c.title}</h3>
                       </div>
                       <div className="flex flex-wrap items-center gap-3">
-                        <span className="rounded-full bg-white/80 px-4 py-2 text-[13px] md:text-[14px] font-medium" style={{ color: c.fg }}>{c.outcome}</span>
-                        <span className="inline-flex items-center gap-2 rounded-full bg-[#2a2622] px-5 py-2.5 text-[13px] font-medium text-[#f4f1ea] transition-transform group-hover:translate-x-1">
+                        <span className="rounded-full bg-white/80 px-3.5 py-1.5 text-[12px] md:text-[13px] font-medium" style={{ color: c.fg }}>{c.outcome}</span>
+                        <span className="inline-flex items-center gap-2 rounded-full bg-[#2a2622] px-4 py-2 text-[12px] font-medium text-[#f4f1ea] transition-transform group-hover:translate-x-1">
                           {c.locked ? (<><Lock className="h-3.5 w-3.5" /> Ask for access</>) : (<>View case study <span aria-hidden="true">→</span></>)}
                         </span>
                       </div>

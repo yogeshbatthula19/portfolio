@@ -28,7 +28,7 @@ export default function NextCaseStudy({ current, onNavigate }) {
     >
       <span className="flex flex-col">
         <span className="text-[12px] uppercase tracking-[0.12em] text-[#6b645b]" style={{ fontFamily: "'STK Bureau Sans','Inter Variable', sans-serif" }}>Next case study</span>
-        <span className="text-[26px] sm:text-[34px] leading-[1.05] tracking-[-0.015em] text-[#141210] group-hover:text-[#2f5bff] transition-colors" style={{ fontFamily: "'STK Bureau Serif', 'Newsreader Variable', Georgia, serif" }}>
+        <span className="text-[22px] sm:text-[28px] leading-[1.05] tracking-[-0.015em] text-[#141210] group-hover:text-[#2f5bff] transition-colors" style={{ fontFamily: "'STK Bureau Serif', 'Newsreader Variable', Georgia, serif" }}>
           {next.blurb}
         </span>
       </span>
