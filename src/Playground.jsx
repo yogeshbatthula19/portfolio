@@ -12,7 +12,7 @@ const PROJECTS = [
     title: 'FaceUnlock',
     tag: 'macOS app · Swift',
     description: 'Unlocks your MacBook with your face. A glass menu-bar app with an iPhone-style face scan.',
-    href: 'https://claude.ai/artifact/CpUwpjdqvEVxd6Fg49dXEJ',
+    href: '/faceunlock',
     cta: 'Install & try',
     bg: 'linear-gradient(145deg,#eaf3ff,#b9d6fb)',
     fg: '#1d4fa8',
@@ -134,7 +134,7 @@ function Card({ p, index, layout = 'tall' }) {
   const live = Boolean(p.href);
   const Tag = live ? 'a' : 'div';
   const Mock = MOCKS[p.glyph];
-  const link = live ? { href: p.href, target: '_blank', rel: 'noopener noreferrer' } : {};
+  const link = live ? { href: p.href } : {};
   const wide = layout === 'wide';
   return (
     <motion.div
