@@ -322,3 +322,10 @@ i, em, cite, dfn, var, address {
 @font-face{font-family:'STK Bureau Sans';font-weight:500;font-style:normal;font-display:swap;src:url('./assets/fonts/stk-bureau-sans-medium.woff2') format('woff2')}
 @font-face{font-family:'STK Bureau Sans';font-weight:600;font-style:normal;font-display:swap;src:url('./assets/fonts/stk-bureau-sans-semibold.woff2') format('woff2')}
 @font-face{font-family:'STK Bureau Sans';font-weight:700;font-style:normal;font-display:swap;src:url('./assets/fonts/stk-bureau-sans-bold.woff2') format('woff2')}
+
+/* FaceUnlock page: same serif + sans pairing as the portfolio */
+#top h1,#top h2,#top h3{font-family:'STK Bureau Serif','Newsreader Variable',Georgia,serif!important;font-weight:400!important;letter-spacing:-0.02em!important}
+#top h1{font-size:clamp(40px,6vw,76px)!important}
+#top h2{font-size:clamp(32px,4.2vw,48px)!important}
+#top h3{font-size:22px!important}
+#top button,#top input,#top a{font-family:inherit}
