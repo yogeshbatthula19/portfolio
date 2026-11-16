@@ -75,12 +75,21 @@ export default function DeskHero({ onWorks, onAbout }) {
 
       <div className="absolute inset-0 z-10 flex items-center justify-center pt-6 pb-[150px] md:pb-[130px] pointer-events-none">
       <div className="desk-copy pointer-events-auto mx-auto max-w-[1260px] px-5 text-center">
+        <motion.div
+          initial={reduce ? false : { opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+          className="mx-auto mb-5 inline-flex items-center gap-2 rounded-full bg-white/80 px-3.5 py-1.5 text-[12px] sm:text-[13px] text-[#141210]/75 shadow-[0_1px_0_rgba(20,18,16,0.06)] ring-1 ring-black/5"
+        >
+          <span aria-hidden="true" className="h-1.5 w-1.5 rounded-full bg-[#1f9d63]" />
+          Open to new roles · Hyderabad
+        </motion.div>
         <motion.h1
           ref={textRef}
           initial={reduce ? false : { opacity: 0, y: 18 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.12, ease: [0.22, 1, 0.36, 1] }}
-          className="text-[#141210] text-[34px] sm:text-[46px] lg:text-[58px] leading-[1.06] tracking-[-0.02em]"
+          className="text-[#141210] text-[32px] sm:text-[46px] lg:text-[58px] leading-[1.06] tracking-[-0.02em]"
           style={{ fontFamily: "'STK Bureau Serif', 'Newsreader Variable', Georgia, serif" }}
         >
           Hi, <Flower color="#2f5bff" delay={0.5} /> I’m Yogesh <Photo src={beach} alt="Yogesh by the sea" delay={0.7} />

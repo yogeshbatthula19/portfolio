@@ -329,3 +329,11 @@ i, em, cite, dfn, var, address {
 #top h2{font-size:clamp(32px,4.2vw,48px)!important}
 #top h3{font-size:22px!important}
 #top button,#top input,#top a{font-family:inherit}
+
+/* FaceUnlock nav on phones: icon + Portfolio + Download only */
+@media (max-width:600px){
+  #top header{padding:12px 12px 0!important}
+  #top header>div{gap:8px!important;padding:8px 8px 8px 12px!important}
+  #top header a[href="#top"] span,#top header a[href="#features"],#top header a[href="#install"]{display:none!important}
+  #top header nav{gap:14px!important}
+}
